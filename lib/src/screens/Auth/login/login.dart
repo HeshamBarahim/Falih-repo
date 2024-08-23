@@ -1,10 +1,10 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/config/images.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -48,29 +48,29 @@ class _LoginState extends State<Login> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(right: 130),
-                    child: const Text("Welcome Back",
-                        style: TextStyle(
+                    child: Text(S.of(context).title_login,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30)),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   // Text Field
-                  const CustomTextForm(
-                    hintText: '+967',
-                    prefixIcon: Icon(Icons.phone_android),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_phone,
+                    prefixIcon: const Icon(Icons.phone_android),
                   ),
                   // Text Field
-                  const CustomTextForm(
-                    hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_password,
+                    prefixIcon: const Icon(Icons.lock),
                   ),
                   // Forget password
                   Container(
                     margin: const EdgeInsets.only(right: 190),
-                    child: const InkWell(
-                        child: Text('Forget Passwrod',
-                            style: TextStyle(
+                    child: InkWell(
+                        child: Text(S.of(context).forget_password,
+                            style: const TextStyle(
                                 color: AppColors.shadowColor,
                                 fontWeight: FontWeight.bold))),
                   ),
@@ -78,24 +78,25 @@ class _LoginState extends State<Login> {
                     height: 50,
                   ),
                   // Login Button
-                  const GradientButton(
-                    text: 'Login',
+                  GradientButton(
+                    text: S.of(context).login,
                     height: 50,
                     width: 150,
                   ),
                   const SizedBox(
                     height: 200,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Not registerd yet? ',
-                        style: TextStyle(
+                        S.of(context).not_registerd,
+                        style: const TextStyle(
                             // fontSize: 20.0,
                             fontWeight: FontWeight.w500),
                       ),
-                      GradientText(text: ' Create an Account', route: 'signup')
+                      GradientText(
+                          text: S.of(context).create_account, route: 'signup')
                     ],
                   )
                 ],

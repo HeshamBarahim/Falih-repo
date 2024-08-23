@@ -4,8 +4,6 @@ import 'package:falih/src/config/themes.dart';
 class CustomTextForm extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
-  // final TextEditingController myController;
-  // final String? Function(String?)? validator;
 
   const CustomTextForm({
     super.key,

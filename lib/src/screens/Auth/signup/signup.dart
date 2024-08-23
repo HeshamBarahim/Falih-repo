@@ -1,3 +1,6 @@
+import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:flutter/material.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/custom_rich_text.dart';
@@ -13,6 +16,7 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -47,38 +51,57 @@ class _SignupState extends State<Signup> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(right: 130),
-                    child: const Text("Create Account",
-                        style: TextStyle(
+                    child: Text(S.of(context).title_signup,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30)),
                   ),
                   // Text Fields
-                  const CustomTextForm(
-                    hintText: '+967',
-                    prefixIcon: Icon(Icons.phone_android),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_phone,
+                    prefixIcon: const Icon(Icons.phone_android),
                   ),
-                  const CustomTextForm(
-                    hintText: 'Full Name',
-                    prefixIcon: Icon(Icons.person),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_username,
+                    prefixIcon: const Icon(Icons.person),
                   ),
-                  const CustomTextForm(
-                    hintText: 'Governorate',
-                    prefixIcon: Icon(Icons.location_on),
+                  CustomDropDownForm(
+                    hintText: S.of(context).hint_text_Governorate,
+                    prefixIcon: const Icon(Icons.location_pin),
+                    list: [
+                      DropdownMenuItem(
+                          value: "one",
+                          child: Text(S.of(context).drop_governorate_val1)),
+                      DropdownMenuItem(
+                          value: 'Two',
+                          child: Text(S.of(context).drop_governorate_val2)),
+                      DropdownMenuItem(
+                          value: 'Three',
+                          child: Text(S.of(context).drop_governorate_val3)),
+                    ],
                   ),
-                  const CustomTextForm(
-                    hintText: 'Shool Name',
-                    prefixIcon: Icon(Icons.location_city),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_School,
+                    prefixIcon: const Icon(Icons.location_city),
                   ),
-                  const CustomTextForm(
-                    hintText: 'Grade',
-                    prefixIcon: Icon(Icons.gas_meter_rounded),
+                  CustomDropDownForm(
+                    hintText: S.of(context).hint_text_Grade,
+                    prefixIcon: const Icon(Icons.location_pin),
+                    list: [
+                      DropdownMenuItem(
+                          value: "one",
+                          child: Text(S.of(context).drop_grade_val1)),
+                      DropdownMenuItem(
+                          value: 'Two',
+                          child: Text(S.of(context).drop_grade_val2)),
+                    ],
                   ),
-                  const CustomTextForm(
-                    hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_password,
+                    prefixIcon: const Icon(Icons.lock),
                   ),
-                  const CustomTextForm(
-                    hintText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock),
+                  CustomTextForm(
+                    hintText: S.of(context).hint_text_confirm,
+                    prefixIcon: const Icon(Icons.lock),
                   ),
                   const SizedBox(
                     height: 10,
@@ -92,11 +115,11 @@ class _SignupState extends State<Signup> {
                               _isChecked = value!;
                             });
                           }),
-                      CustomRichText(),
+                      const CustomRichText(),
                     ],
                   ),
                   MaterialButton(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: Colors.white,
                     height: 50,
                     minWidth: 300,
                     shape: RoundedRectangleBorder(
@@ -104,26 +127,27 @@ class _SignupState extends State<Signup> {
                     textColor: Colors.black,
                     onPressed: () {},
                     child: Text(
-                      'Create Account',
+                      S.of(context).title_signup,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Color(0xFF9A9393)),
+                          color: AppColors.shadowColor),
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Have an account? ',
-                        style: TextStyle(
+                        S.of(context).bottom_text_part1,
+                        style: const TextStyle(
                             // fontSize: 20.0,
                             fontWeight: FontWeight.w500),
                       ),
-                      GradientText(text: ' Login instead', route: 'login')
+                      GradientText(
+                          text: S.of(context).bottom_text_part2, route: 'login')
                     ],
                   )
                 ],

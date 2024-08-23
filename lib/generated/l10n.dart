@@ -1,0 +1,279 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'intl/messages_all.dart';
+
+// **************************************************************************
+// Generator: Flutter Intl IDE plugin
+// Made by Localizely
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+// ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
+// ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
+
+class S {
+  S();
+
+  static S? _current;
+
+  static S get current {
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    return _current!;
+  }
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+
+  static Future<S> load(Locale locale) {
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name);
+    return initializeMessages(localeName).then((_) {
+      Intl.defaultLocale = localeName;
+      final instance = S();
+      S._current = instance;
+
+      return instance;
+    });
+  }
+
+  static S of(BuildContext context) {
+    final instance = S.maybeOf(context);
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    return instance!;
+  }
+
+  static S? maybeOf(BuildContext context) {
+    return Localizations.of<S>(context, S);
+  }
+
+  /// `Welcome Back`
+  String get title_login {
+    return Intl.message(
+      'Welcome Back',
+      name: 'title_login',
+      desc: 'This is the Start of the login page',
+      args: [],
+    );
+  }
+
+  /// `+967`
+  String get hint_text_phone {
+    return Intl.message(
+      '+967',
+      name: 'hint_text_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get hint_text_password {
+    return Intl.message(
+      'Password',
+      name: 'hint_text_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password`
+  String get forget_password {
+    return Intl.message(
+      'Forget Password',
+      name: 'forget_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not registerd yet? `
+  String get not_registerd {
+    return Intl.message(
+      'Not registerd yet? ',
+      name: 'not_registerd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Create an Account`
+  String get create_account {
+    return Intl.message(
+      ' Create an Account',
+      name: 'create_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Create Account`
+  String get title_signup {
+    return Intl.message(
+      ' Create Account',
+      name: 'title_signup',
+      desc: 'This is the start of the sign up Page',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get hint_text_username {
+    return Intl.message(
+      'Full Name',
+      name: 'hint_text_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Governorate`
+  String get hint_text_Governorate {
+    return Intl.message(
+      'Governorate',
+      name: 'hint_text_Governorate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `School Name`
+  String get hint_text_School {
+    return Intl.message(
+      'School Name',
+      name: 'hint_text_School',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grade`
+  String get hint_text_Grade {
+    return Intl.message(
+      'Grade',
+      name: 'hint_text_Grade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get hint_text_confirm {
+    return Intl.message(
+      'Confirm Password',
+      name: 'hint_text_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account? `
+  String get bottom_text_part1 {
+    return Intl.message(
+      'Have an account? ',
+      name: 'bottom_text_part1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Login instead`
+  String get bottom_text_part2 {
+    return Intl.message(
+      ' Login instead',
+      name: 'bottom_text_part2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sanaa`
+  String get drop_governorate_val1 {
+    return Intl.message(
+      'Sanaa',
+      name: 'drop_governorate_val1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ibb`
+  String get drop_governorate_val2 {
+    return Intl.message(
+      'Ibb',
+      name: 'drop_governorate_val2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taiz`
+  String get drop_governorate_val3 {
+    return Intl.message(
+      'Taiz',
+      name: 'drop_governorate_val3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `class 9`
+  String get drop_grade_val1 {
+    return Intl.message(
+      'class 9',
+      name: 'drop_grade_val1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `class 12`
+  String get drop_grade_val2 {
+    return Intl.message(
+      'class 12',
+      name: 'drop_grade_val2',
+      desc: '',
+      args: [],
+    );
+  }
+}
+
+class AppLocalizationDelegate extends LocalizationsDelegate<S> {
+  const AppLocalizationDelegate();
+
+  List<Locale> get supportedLocales {
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
+    ];
+  }
+
+  @override
+  bool isSupported(Locale locale) => _isSupported(locale);
+  @override
+  Future<S> load(Locale locale) => S.load(locale);
+  @override
+  bool shouldReload(AppLocalizationDelegate old) => false;
+
+  bool _isSupported(Locale locale) {
+    for (var supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale.languageCode) {
+        return true;
+      }
+    }
+    return false;
+  }
+}

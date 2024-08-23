@@ -1,0 +1,85 @@
+{
+    "@@locale": "en",
+    "@title_login": {
+        "description": "This is the Start of the login page"
+      },
+      "title_login": "Welcome Back",
+      "@hint_text_phone": {
+        "description": ""
+      },
+      "hint_text_phone": "+967",
+      "@hint_text_password": {
+        "description": ""
+      },
+      "hint_text_password":"Password",
+      "@forget_password": {
+        "description": ""
+      },
+      "forget_password":"Forget Password",
+      "@login": {
+        "description": ""
+      },
+      "login":"Login",
+      "@not_registerd": {
+        "description": ""
+      },
+      "not_registerd":"Not registerd yet? ",
+      "@create_account": {
+        "description": ""
+      },
+      "create_account":" Create an Account",
+
+      "@title_signup": {
+        "description": "This is the start of the sign up Page"
+      },
+      "title_signup":" Create Account",
+
+      "@hint_text_username": {
+        "description": ""
+      },
+      "hint_text_username":"Full Name",
+      "@hint_text_Governorate": {
+        "description": ""
+      },
+      "hint_text_Governorate":"Governorate",
+      "@hint_text_School": {
+        "description": ""
+      },
+      "hint_text_School":"School Name",
+      "@hint_text_Grade": {
+        "description": ""
+      },
+      "hint_text_Grade":"Grade",
+      "@hint_text_confirm": {
+        "description": ""
+      },
+      "hint_text_confirm":"Confirm Password",
+      "@bottom_text_part1": {
+        "description": ""
+      },
+      "bottom_text_part1":"Have an account? ",
+      "@bottom_text_part2": {
+        "description": ""
+      },
+      "bottom_text_part2":" Login instead",
+      "@drop_governorate_val1": {
+        "description": ""
+      },
+      "drop_governorate_val1":"Sanaa",
+      "@drop_governorate_val2": {
+        "description": ""
+      },
+      "drop_governorate_val2":"Ibb",
+      "@drop_governorate_val3": {
+        "description": ""
+      },
+      "drop_governorate_val3":"Taiz",
+      "@drop_grade_val1": {
+        "description": ""
+      },
+      "drop_grade_val1":"class 9",
+      "@drop_grade_val2": {
+        "description": ""
+      },
+      "drop_grade_val2":"class 12"
+}

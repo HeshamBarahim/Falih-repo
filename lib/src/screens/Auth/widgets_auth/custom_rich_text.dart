@@ -42,7 +42,7 @@ class CustomRichText extends StatelessWidget {
             child: ShaderMask(
               shaderCallback: (bounds) =>
                   AppColors.primaryGradients.createShader(bounds),
-              child: Text(
+              child: const Text(
                 ' Privacy Policy ',
                 style: TextStyle(color: Colors.white, fontSize: 12),
               ),
