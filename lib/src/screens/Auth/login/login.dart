@@ -86,21 +86,16 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 200,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Not registerd yet? ',
                         style: TextStyle(
                             // fontSize: 20.0,
                             fontWeight: FontWeight.w500),
                       ),
-                      GradientText(
-                        text: ' Create an Account',
-                        // route: () {
-                        //   Navigator.of(context).pushReplacementNamed("signup");
-                        // },
-                      )
+                      GradientText(text: ' Create an Account', route: 'signup')
                     ],
                   )
                 ],

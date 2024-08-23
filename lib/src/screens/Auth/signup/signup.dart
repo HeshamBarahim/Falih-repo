@@ -114,18 +114,16 @@ class _SignupState extends State<Signup> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Have an account? ',
                         style: TextStyle(
                             // fontSize: 20.0,
                             fontWeight: FontWeight.w500),
                       ),
-                      GradientText(
-                        text: ' Login instead',
-                      )
+                      GradientText(text: ' Login instead', route: 'login')
                     ],
                   )
                 ],

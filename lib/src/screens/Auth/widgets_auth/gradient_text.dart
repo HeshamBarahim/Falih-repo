@@ -3,11 +3,11 @@ import 'package:falih/src/config/themes.dart';
 
 class GradientText extends StatelessWidget {
   final String text;
-  // final Function route;
+  final String route;
   const GradientText({
     super.key,
     required this.text,
-    // required this.route,
+    required this.route,
   });
 
   @override
@@ -16,7 +16,9 @@ class GradientText extends StatelessWidget {
       shaderCallback: (bounds) =>
           AppColors.primaryGradients.createShader(bounds),
       child: InkWell(
-        // onTap: route(),
+        onTap: () {
+          Navigator.of(context).pushReplacementNamed(route);
+        },
         child: Text(
           text,
           style: const TextStyle(
