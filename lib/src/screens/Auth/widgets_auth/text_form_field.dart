@@ -29,7 +29,7 @@ class CustomTextForm extends StatelessWidget {
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: const Color(0xFF9A9393)))),
+                borderSide: const BorderSide(color: Color(0xFF9A9393)))),
       ),
     );
   }

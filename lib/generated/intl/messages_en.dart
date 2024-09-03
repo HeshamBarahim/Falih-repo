@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Have an account? "),
         "bottom_text_part2":
             MessageLookupByLibrary.simpleMessage(" Login instead"),
+        "changing_subHeader":
+            MessageLookupByLibrary.simpleMessage(" not taken "),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
@@ -33,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Taiz"),
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("class 9"),
         "drop_grade_val2": MessageLookupByLibrary.simpleMessage("class 12"),
+        "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password"),
         "hint_text_Governorate":
@@ -45,8 +48,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "not_registerd":
             MessageLookupByLibrary.simpleMessage("Not registerd yet? "),
+        "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
+        "part_two_subHeader":
+            MessageLookupByLibrary.simpleMessage(" any tests yet"),
+        "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account")
       };

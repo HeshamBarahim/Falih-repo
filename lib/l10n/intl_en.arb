@@ -81,5 +81,31 @@
       "@drop_grade_val2": {
         "description": ""
       },
-      "drop_grade_val2":"class 12"
+      "drop_grade_val2":"class 12",
+
+      "@first_header_home": {
+        "description": "This is the start of the home Page"
+      },
+      "first_header_home":"Hi Yousif,",
+      "@part_one_subHeader": {
+        "description": ""
+      },
+      "part_one_subHeader":"You have ",
+      "@changing_subHeader": {
+        "description": ""
+      },
+      "changing_subHeader":" not taken ",
+      "@part_two_subHeader": {
+        "description": ""
+      },
+      "part_two_subHeader":" any tests yet",
+      "@score": {
+        "description": ""
+      },
+      "score":"0 points",
+      "@name_league": {
+        "description": ""
+      },
+      "name_league":"Silvery League"
+      
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/Auth/login/login.dart';
 import 'screens/Auth/signup/signup.dart';
+import 'screens/home/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:falih/generated/l10n.dart';
 
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: const Color(0xFFFFFFFF)),
       locale: const Locale('en'),
       localizationsDelegates: const [
         S.delegate,
@@ -22,7 +24,7 @@ class App extends StatelessWidget {
         "signup": (context) => const Signup(),
         "login": (context) => const Login(),
       },
-      home: Login(),
+      home: HomePage(),
     );
   }
 }

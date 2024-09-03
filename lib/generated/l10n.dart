@@ -249,6 +249,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Hi Yousif,`
+  String get first_header_home {
+    return Intl.message(
+      'Hi Yousif,',
+      name: 'first_header_home',
+      desc: 'This is the start of the home Page',
+      args: [],
+    );
+  }
+
+  /// `You have `
+  String get part_one_subHeader {
+    return Intl.message(
+      'You have ',
+      name: 'part_one_subHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` not taken `
+  String get changing_subHeader {
+    return Intl.message(
+      ' not taken ',
+      name: 'changing_subHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` any tests yet`
+  String get part_two_subHeader {
+    return Intl.message(
+      ' any tests yet',
+      name: 'part_two_subHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0 points`
+  String get score {
+    return Intl.message(
+      '0 points',
+      name: 'score',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Silvery League`
+  String get name_league {
+    return Intl.message(
+      'Silvery League',
+      name: 'name_league',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
