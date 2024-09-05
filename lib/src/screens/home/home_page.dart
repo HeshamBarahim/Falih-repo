@@ -1,6 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  // test precentage of progress bar
   late double precentage = 0.50;
+
+  // test the list
+  final images = [
+    Image.asset('assets/images/test.png'),
+    Image.asset('assets/images/test.png'),
+    Image.asset('assets/images/test.png'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +84,47 @@ class _HomePage extends State<HomePage> {
                 ),
               ],
             ),
-            // line
+            //  just line
             Container(
               height: 1.0,
               color: AppColors.borderColor,
               margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            // image ane indcator slider
+            CustomCarousel(
+              images: images,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            // history side
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  S.of(context).history_heading,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                const Icon(
+                  Icons.info_outline_rounded,
+                  color: Color(0XFFD42A2A),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30),
+            const Center(
+              child: Text(
+                "You have not taken any tests yet",
+                style: TextStyle(
+                    color: AppColors.shadowColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+              ),
+            )
           ],
         ),
       ),

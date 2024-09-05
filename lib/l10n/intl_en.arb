@@ -106,6 +106,42 @@
       "@name_league": {
         "description": ""
       },
-      "name_league":"Silvery League"
-      
+      "name_league":"Silvery League",
+      "@history_heading": {
+        "description": ""
+      },
+      "history_heading":"Your test histroy",
+
+      "@subject_one": {
+        "description": "This is the start of the Curriculum Page"
+      },
+      "subject_one":"Quran",
+      "@subject_two": {
+        "description": ""
+      },
+      "subject_two":"Islamic Education",
+      "@subject_three": {
+        "description": ""
+      },
+      "subject_three":"Arabic Language",
+      "@subject_four": {
+        "description": ""
+      },
+      "subject_four":"English Language",
+      "@subject_five": {
+        "description": ""
+      },
+      "subject_five":"Chemistry",
+      "@subject_six": {
+        "description": ""
+      },
+      "subject_six":"Physics",
+      "@subject_seven": {
+        "description": ""
+      },
+      "subject_seven":"Biology",
+      "@subject_eight": {
+        "description": ""
+      },
+      "subject_eight":"Math"
 }

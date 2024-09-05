@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "history_heading":
+            MessageLookupByLibrary.simpleMessage("Your test histroy"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "not_registerd":
@@ -55,6 +57,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
+        "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
+        "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
+        "subject_four":
+            MessageLookupByLibrary.simpleMessage("English Language"),
+        "subject_one": MessageLookupByLibrary.simpleMessage("Quran"),
+        "subject_seven": MessageLookupByLibrary.simpleMessage("Biology"),
+        "subject_six": MessageLookupByLibrary.simpleMessage("Physics"),
+        "subject_three":
+            MessageLookupByLibrary.simpleMessage("Arabic Language"),
+        "subject_two":
+            MessageLookupByLibrary.simpleMessage("Islamic Education"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account")
       };

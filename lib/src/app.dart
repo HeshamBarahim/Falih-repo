@@ -1,3 +1,4 @@
+import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:flutter/material.dart';
 import 'screens/Auth/login/login.dart';
 import 'screens/Auth/signup/signup.dart';
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
         "signup": (context) => const Signup(),
         "login": (context) => const Login(),
       },
-      home: HomePage(),
+      home: Curriculum(),
     );
   }
 }

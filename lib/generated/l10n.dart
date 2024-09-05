@@ -309,6 +309,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Your test histroy`
+  String get history_heading {
+    return Intl.message(
+      'Your test histroy',
+      name: 'history_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quran`
+  String get subject_one {
+    return Intl.message(
+      'Quran',
+      name: 'subject_one',
+      desc: 'This is the start of the Curriculum Page',
+      args: [],
+    );
+  }
+
+  /// `Islamic Education`
+  String get subject_two {
+    return Intl.message(
+      'Islamic Education',
+      name: 'subject_two',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic Language`
+  String get subject_three {
+    return Intl.message(
+      'Arabic Language',
+      name: 'subject_three',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English Language`
+  String get subject_four {
+    return Intl.message(
+      'English Language',
+      name: 'subject_four',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chemistry`
+  String get subject_five {
+    return Intl.message(
+      'Chemistry',
+      name: 'subject_five',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Physics`
+  String get subject_six {
+    return Intl.message(
+      'Physics',
+      name: 'subject_six',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biology`
+  String get subject_seven {
+    return Intl.message(
+      'Biology',
+      name: 'subject_seven',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Math`
+  String get subject_eight {
+    return Intl.message(
+      'Math',
+      name: 'subject_eight',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
