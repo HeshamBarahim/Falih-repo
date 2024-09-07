@@ -19,6 +19,16 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> fields = [
+      {'text': S.of(context).hint_text_phone, 'icon': Icons.phone_android},
+      {'text': S.of(context).hint_text_username, 'icon': Icons.person},
+      {'text': S.of(context).hint_text_Governorate, 'icon': Icons.add_home},
+      {'text': S.of(context).hint_text_School, 'icon': Icons.location_city},
+      {'text': S.of(context).hint_text_Grade, 'icon': Icons.location_pin},
+      {'text': S.of(context).hint_text_password, 'icon': Icons.lock},
+      {'text': S.of(context).hint_text_confirm, 'icon': Icons.lock},
+    ];
+
     return Stack(children: [
       Form(
         // Container for background image
@@ -56,6 +66,16 @@ class _SignupState extends State<Signup> {
                             fontWeight: FontWeight.bold, fontSize: 30)),
                   ),
                   // Text Fields
+                  // Expanded(
+                  //   child: ListView.builder(
+                  //     itemCount: ,
+                  //     itemBuilder: (context, index){
+
+                  //     }
+
+                  //   )
+
+                  // ),
                   CustomTextForm(
                     hintText: S.of(context).hint_text_phone,
                     prefixIcon: const Icon(Icons.phone_android),

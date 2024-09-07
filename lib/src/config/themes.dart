@@ -9,7 +9,9 @@ class AppColors {
   static const shadowColor = Color(0xFF9A9393);
   static const subHeaderNotTaken = Color(0xFFD42A2A);
   static const borderColor = Color(0XFF9A9393);
+  static const customGrey = Color(0XFFf6f6f9);
 
+  // currculum page
   static const LinearGradient quranColor = LinearGradient(colors: [
     Color(0xFFD39646),
     Color.fromARGB(127, 228, 156, 63),

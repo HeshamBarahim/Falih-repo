@@ -3,8 +3,6 @@ class Images {
   static const String logoFalih = 'assets/images/logo_falih.png';
   static const String backgroundImageOfAuth =
       'assets/images/background_image_of_auth.png';
-  static const String goldenMedal = 'assets/images/gold_medal.png';
-  static const String silverMedal = 'assets/images/silver_medal.png';
 
   // icons of subjects
   static const String quranIcon = 'assets/subjects_icons/quran_icon.png';
@@ -16,4 +14,9 @@ class Images {
   static const String physicsIcon = 'assets/subjects_icons/physics_icon.png';
   static const String biologyIcon = 'assets/subjects_icons/biology_icon.png';
   static const String mathIcon = 'assets/subjects_icons/math_icon.png';
+
+  // leaderboard page
+  static const String goldenMedal = 'assets/images/gold_medal.png';
+  static const String silverMedal = 'assets/images/silver_medal.png';
+  static const String bronzeMedal = 'assets/images/bronze_medal.png';
 }

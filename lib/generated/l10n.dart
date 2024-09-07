@@ -399,6 +399,16 @@ class S {
       args: [],
     );
   }
+
+  /// `you have not taken any test yet take a test to join the leaderboard and compete with other students`
+  String get not_taken_exams {
+    return Intl.message(
+      'you have not taken any test yet take a test to join the leaderboard and compete with other students',
+      name: 'not_taken_exams',
+      desc: 'This the start of leaderborad page',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

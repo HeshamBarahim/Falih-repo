@@ -1,6 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/screens/home/widgets_home/custom_app_bar.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   // test precentage of progress bar
   late double precentage = 0.50;
+  int myindex = 0;
 
   // test the list
   final images = [
@@ -23,17 +25,12 @@ class _HomePage extends State<HomePage> {
     Image.asset('assets/images/test.png'),
     Image.asset('assets/images/test.png'),
   ];
+  List<Widget> widgetList = const [
+    HomePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
-        ],
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25),
         child: Column(

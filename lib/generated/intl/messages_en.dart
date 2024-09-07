@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "not_registerd":
             MessageLookupByLibrary.simpleMessage("Not registerd yet? "),
+        "not_taken_exams": MessageLookupByLibrary.simpleMessage(
+            "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
