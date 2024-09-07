@@ -56,6 +56,7 @@ class _CurriculumState extends State<Curriculum> {
       },
     ];
     return Scaffold(
+      backgroundColor: Colors.white,
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

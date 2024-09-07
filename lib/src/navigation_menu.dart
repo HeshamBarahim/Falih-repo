@@ -13,7 +13,7 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           leading: IconButton(
               onPressed: () {}, icon: const Icon(Icons.notifications)),
           actions: [
@@ -21,25 +21,47 @@ class NavigationMenu extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Obx(
-          () => ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(50),
-              topRight: Radius.circular(50),
+          () => Container(
+            decoration: BoxDecoration(
+              color: Colors
+                  .white, // Adjust the color of the navigation bar if needed
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2), // Shadow color
+                  spreadRadius: 2,
+                  blurRadius: 10,
+                  offset: const Offset(
+                      0, -3), // Positioning of the shadow (vertical)
+                ),
+              ],
             ),
-            child: NavigationBar(
-                height: 100,
-                elevation: 0,
-                selectedIndex: controller.selectedIndex.value,
-                onDestinationSelected: (index) =>
-                    controller.selectedIndex.value = index,
-                destinations: const [
-                  NavigationDestination(
-                      icon: Icon(Icons.menu_book_outlined), label: 'subjects'),
-                  NavigationDestination(icon: Icon(Icons.home), label: 'home'),
-                  NavigationDestination(
-                      icon: Icon(Icons.leaderboard_outlined),
-                      label: 'LeaderBoard'),
-                ]),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              child: NavigationBar(
+                  backgroundColor: Colors.white,
+                  height: 100,
+                  elevation: 0,
+                  selectedIndex: controller.selectedIndex.value,
+                  onDestinationSelected: (index) =>
+                      controller.selectedIndex.value = index,
+                  destinations: const [
+                    NavigationDestination(
+                        icon: Icon(Icons.menu_book_outlined),
+                        label: 'Subjects'),
+                    NavigationDestination(
+                        icon: Icon(Icons.home), label: 'Home'),
+                    NavigationDestination(
+                        icon: Icon(Icons.leaderboard_outlined),
+                        label: 'LeaderBoard'),
+                  ]),
+            ),
           ),
         ),
         body: Obx(() => controller.screens[controller.selectedIndex.value]));
