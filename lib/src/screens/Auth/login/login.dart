@@ -39,6 +39,7 @@ class _LoginState extends State<Login> {
                 children: [
                   const SizedBox(height: 40),
                   Container(
+                    color: Colors.transparent,
                     child: Image.asset(
                       Images.logoFalih,
                       width: 200.0,

@@ -320,10 +320,20 @@ class S {
     );
   }
 
-  /// `Quran`
+  /// `You have not taken any tests yet`
+  String get not_taken_exams_home_page {
+    return Intl.message(
+      'You have not taken any tests yet',
+      name: 'not_taken_exams_home_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quran Kareem`
   String get subject_one {
     return Intl.message(
-      'Quran',
+      'Quran Kareem',
       name: 'subject_one',
       desc: 'This is the start of the Curriculum Page',
       args: [],
@@ -390,10 +400,10 @@ class S {
     );
   }
 
-  /// `Math`
+  /// `Mathematics`
   String get subject_eight {
     return Intl.message(
-      'Math',
+      'Mathematics',
       name: 'subject_eight',
       desc: '',
       args: [],
@@ -406,6 +416,36 @@ class S {
       'you have not taken any test yet take a test to join the leaderboard and compete with other students',
       name: 'not_taken_exams',
       desc: 'This the start of leaderborad page',
+      args: [],
+    );
+  }
+
+  /// `Statistics`
+  String get statistics {
+    return Intl.message(
+      'Statistics',
+      name: 'statistics',
+      desc: 'This the start of subject page',
+      args: [],
+    );
+  }
+
+  /// `Chapters`
+  String get chapters {
+    return Intl.message(
+      'Chapters',
+      name: 'chapters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exams`
+  String get exams {
+    return Intl.message(
+      'Exams',
+      name: 'exams',
+      desc: '',
       args: [],
     );
   }

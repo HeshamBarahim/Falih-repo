@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" Login instead"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage(" not taken "),
+        "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Taiz"),
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("class 9"),
         "drop_grade_val2": MessageLookupByLibrary.simpleMessage("class 12"),
+        "exams": MessageLookupByLibrary.simpleMessage("Exams"),
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password"),
@@ -55,15 +57,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Not registerd yet? "),
         "not_taken_exams": MessageLookupByLibrary.simpleMessage(
             "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
+        "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
+            "You have not taken any tests yet"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
-        "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
+        "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
+        "subject_eight": MessageLookupByLibrary.simpleMessage("Mathematics"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
         "subject_four":
             MessageLookupByLibrary.simpleMessage("English Language"),
-        "subject_one": MessageLookupByLibrary.simpleMessage("Quran"),
+        "subject_one": MessageLookupByLibrary.simpleMessage("Quran Kareem"),
         "subject_seven": MessageLookupByLibrary.simpleMessage("Biology"),
         "subject_six": MessageLookupByLibrary.simpleMessage("Physics"),
         "subject_three":

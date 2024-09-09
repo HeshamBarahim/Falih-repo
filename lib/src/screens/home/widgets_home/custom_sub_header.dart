@@ -9,8 +9,7 @@ class CustomSubHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: RichText(
+    return RichText(
       text: TextSpan(children: [
         TextSpan(
             text: S.of(context).part_one_subHeader,
@@ -28,6 +27,6 @@ class CustomSubHeader extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.black, fontWeight: FontWeight.w500))
       ]),
-    ));
+    );
   }
 }

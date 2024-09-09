@@ -24,7 +24,7 @@ class NavigationMenu extends StatelessWidget {
           () => Container(
             decoration: BoxDecoration(
               color: Colors
-                  .white, // Adjust the color of the navigation bar if needed
+                  .white, 
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),

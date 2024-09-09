@@ -31,7 +31,7 @@ class _RunExamState extends State<RunExam> {
                     ),
                     height: 300,
                     width: double.infinity,
-                    child: Icon(Icons.arrow_back),
+                    child: const Icon(Icons.arrow_back),
                   ),
                   // Positioned Text
                   Positioned(
@@ -46,14 +46,15 @@ class _RunExamState extends State<RunExam> {
                             color: Colors.black.withOpacity(0.5),
                             spreadRadius: 5,
                             blurRadius: 10,
-                            offset: Offset(5, 5), // changes position of shadow
+                            offset: const Offset(
+                                5, 5), // changes position of shadow
                           ),
                         ],
                       ),
                       height: 300,
                       width: 350,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(15.0),
                         child: Column(
                           children: [
                             Row(
@@ -77,35 +78,35 @@ class _RunExamState extends State<RunExam> {
                     ),
                   ),
                   // Positioned Circle Avatar
-                  Positioned(
+                  const Positioned(
                     top: 50,
                     left: 140,
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      child: const Text('20'),
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      child: Text('20'),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: const EdgeInsets.only(bottom: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
                   color: AppColors.customGrey,
                   border: Border.all(color: Colors.blue, width: 2),
                   borderRadius: BorderRadius.circular(10)),
-              child: Center(
+              child: const Center(
                 child: Text('data'),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
@@ -126,7 +127,7 @@ class _RunExamState extends State<RunExam> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: const EdgeInsets.only(bottom: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
@@ -143,7 +144,7 @@ class _RunExamState extends State<RunExam> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('data'),
+                    const Text('data'),
                     Container(
                       height: 25,
                       width: 25,
@@ -180,7 +181,7 @@ class _RunExamState extends State<RunExam> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('data'),
+                        const Text('data'),
                         Container(
                           height: 25,
                           width: 25,

@@ -111,11 +111,15 @@
         "description": ""
       },
       "history_heading":"Your test histroy",
+      "@not_taken_exams_home_page": {
+        "description": ""
+      },
+      "not_taken_exams_home_page":"You have not taken any tests yet",
 
       "@subject_one": {
         "description": "This is the start of the Curriculum Page"
       },
-      "subject_one":"Quran",
+      "subject_one":"Quran Kareem",
       "@subject_two": {
         "description": ""
       },
@@ -143,10 +147,24 @@
       "@subject_eight": {
         "description": ""
       },
-      "subject_eight":"Math",
+      "subject_eight":"Mathematics",
       "@not_taken_exams": {
         "description": "This the start of leaderborad page"
       },
-      "not_taken_exams":"you have not taken any test yet take a test to join the leaderboard and compete with other students"
+      "not_taken_exams":"you have not taken any test yet take a test to join the leaderboard and compete with other students",
+      "@statistics": {
+        "description": "This the start of subject page"
+      },
+      "statistics":"Statistics",
+      "@chapters": {
+        "description": ""
+      },
+      "chapters":"Chapters",
+      "@exams": {
+        "description": ""
+      },
+      "exams":"Exams"
+      
+      
       
 }

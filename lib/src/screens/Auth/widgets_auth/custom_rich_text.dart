@@ -11,7 +11,7 @@ class CustomRichText extends StatelessWidget {
     return Expanded(
       child: RichText(
           text: TextSpan(children: [
-        TextSpan(
+        const TextSpan(
             text: "By clicking on Create Account, you're agreeing the app",
             style: TextStyle(
                 color: Colors.black,
@@ -23,14 +23,14 @@ class CustomRichText extends StatelessWidget {
             child: ShaderMask(
               shaderCallback: (bounds) =>
                   AppColors.primaryGradients.createShader(bounds),
-              child: Text(
+              child: const Text(
                 'Terms of services',
                 style: TextStyle(color: Colors.white, fontSize: 12),
               ),
             ),
           ),
         ),
-        TextSpan(
+        const TextSpan(
             text: ' and ',
             style: TextStyle(
                 color: Colors.black,

@@ -20,13 +20,31 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> fields = [
-      {'text': S.of(context).hint_text_phone, 'icon': Icons.phone_android},
-      {'text': S.of(context).hint_text_username, 'icon': Icons.person},
-      {'text': S.of(context).hint_text_Governorate, 'icon': Icons.add_home},
-      {'text': S.of(context).hint_text_School, 'icon': Icons.location_city},
-      {'text': S.of(context).hint_text_Grade, 'icon': Icons.location_pin},
-      {'text': S.of(context).hint_text_password, 'icon': Icons.lock},
-      {'text': S.of(context).hint_text_confirm, 'icon': Icons.lock},
+      {
+        'text': S.of(context).hint_text_phone,
+        'icon': const Icon(Icons.phone_android)
+      },
+      {
+        'text': S.of(context).hint_text_username,
+        'icon': const Icon(Icons.person)
+      },
+      {
+        'text': S.of(context).hint_text_Governorate,
+        'icon': const Icon(Icons.add_home)
+      },
+      {
+        'text': S.of(context).hint_text_School,
+        'icon': const Icon(Icons.location_city)
+      },
+      {
+        'text': S.of(context).hint_text_Grade,
+        'icon': const Icon(Icons.location_pin)
+      },
+      {
+        'text': S.of(context).hint_text_password,
+        'icon': const Icon(Icons.lock)
+      },
+      {'text': S.of(context).hint_text_confirm, 'icon': const Icon(Icons.lock)},
     ];
 
     return Stack(children: [
@@ -51,7 +69,9 @@ class _SignupState extends State<Signup> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 40),
+                  // logo of falih
                   Container(
+                    color: Colors.transparent,
                     child: Image.asset(
                       Images.logoFalih,
                       width: 200.0,
@@ -59,73 +79,63 @@ class _SignupState extends State<Signup> {
                       fit: BoxFit.contain,
                     ),
                   ),
+                  // title of the signup
                   Container(
                     margin: const EdgeInsets.only(right: 130),
                     child: Text(S.of(context).title_signup,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30)),
                   ),
-                  // Text Fields
-                  // Expanded(
-                  //   child: ListView.builder(
-                  //     itemCount: ,
-                  //     itemBuilder: (context, index){
-
-                  //     }
-
-                  //   )
-
-                  // ),
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_phone,
-                    prefixIcon: const Icon(Icons.phone_android),
-                  ),
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_username,
-                    prefixIcon: const Icon(Icons.person),
-                  ),
-                  CustomDropDownForm(
-                    hintText: S.of(context).hint_text_Governorate,
-                    prefixIcon: const Icon(Icons.location_pin),
-                    list: [
-                      DropdownMenuItem(
-                          value: "one",
-                          child: Text(S.of(context).drop_governorate_val1)),
-                      DropdownMenuItem(
-                          value: 'Two',
-                          child: Text(S.of(context).drop_governorate_val2)),
-                      DropdownMenuItem(
-                          value: 'Three',
-                          child: Text(S.of(context).drop_governorate_val3)),
-                    ],
-                  ),
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_School,
-                    prefixIcon: const Icon(Icons.location_city),
-                  ),
-                  CustomDropDownForm(
-                    hintText: S.of(context).hint_text_Grade,
-                    prefixIcon: const Icon(Icons.location_pin),
-                    list: [
-                      DropdownMenuItem(
-                          value: "one",
-                          child: Text(S.of(context).drop_grade_val1)),
-                      DropdownMenuItem(
-                          value: 'Two',
-                          child: Text(S.of(context).drop_grade_val2)),
-                    ],
-                  ),
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_password,
-                    prefixIcon: const Icon(Icons.lock),
-                  ),
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_confirm,
-                    prefixIcon: const Icon(Icons.lock),
-                  ),
+                  // build the fields of signup
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: fields.length,
+                      itemBuilder: (context, index) {
+                        if (fields[index]['text'] ==
+                            S.of(context).hint_text_Governorate) {
+                          return CustomDropDownForm(
+                            hintText: S.of(context).hint_text_Governorate,
+                            prefixIcon: const Icon(Icons.location_pin),
+                            list: [
+                              DropdownMenuItem(
+                                  value: "one",
+                                  child: Text(
+                                      S.of(context).drop_governorate_val1)),
+                              DropdownMenuItem(
+                                  value: 'Two',
+                                  child: Text(
+                                      S.of(context).drop_governorate_val2)),
+                              DropdownMenuItem(
+                                  value: 'Three',
+                                  child: Text(
+                                      S.of(context).drop_governorate_val3)),
+                            ],
+                          );
+                        } else if (fields[index]['text'] ==
+                            S.of(context).hint_text_Grade) {
+                          return CustomDropDownForm(
+                            hintText: S.of(context).hint_text_Grade,
+                            prefixIcon: const Icon(Icons.location_pin),
+                            list: [
+                              DropdownMenuItem(
+                                  value: "one",
+                                  child: Text(S.of(context).drop_grade_val1)),
+                              DropdownMenuItem(
+                                  value: 'Two',
+                                  child: Text(S.of(context).drop_grade_val2)),
+                            ],
+                          );
+                        } else {
+                          return CustomTextForm(
+                            hintText: fields[index]['text'],
+                            prefixIcon: fields[index]['icon'],
+                          );
+                        }
+                      }),
                   const SizedBox(
                     height: 10,
                   ),
+                  // the the rules text and check box
                   Row(
                     children: [
                       Checkbox(
