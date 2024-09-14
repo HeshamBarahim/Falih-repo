@@ -23,8 +23,7 @@ class NavigationMenu extends StatelessWidget {
         bottomNavigationBar: Obx(
           () => Container(
             decoration: BoxDecoration(
-              color: Colors
-                  .white, 
+              color: Colors.white,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
@@ -72,8 +71,8 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
   final screens = [
-    const Curriculum(),
-    const HomePage(),
-    const Leaderboard(),
+    Curriculum(),
+    HomePage(),
+    Leaderboard(),
   ];
 }

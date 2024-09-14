@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:get/get.dart';
 
 class GradientText extends StatelessWidget {
   final String text;
@@ -17,7 +18,8 @@ class GradientText extends StatelessWidget {
           AppColors.primaryGradients.createShader(bounds),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushReplacementNamed(route);
+          // Navigator.of(context).pushReplacementNamed(route);
+          Get.toNamed(route);
         },
         child: Text(
           text,

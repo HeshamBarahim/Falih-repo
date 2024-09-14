@@ -40,6 +40,7 @@ dependencies:
   carousel_slider: 
   smooth_page_indicator:
   get:
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:

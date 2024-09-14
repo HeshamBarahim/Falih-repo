@@ -1,24 +1,23 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/signup_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:flutter/material.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/custom_rich_text.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
+import 'package:get/get.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Signup extends StatelessWidget {
+  Signup({super.key});
 
-  @override
-  State<Signup> createState() => _SignupState();
-}
-
-class _SignupState extends State<Signup> {
-  bool _isChecked = false;
+  // Initialize the controller
+  final SignupController signupController = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
+    // list of
     List<Map<String, dynamic>> fields = [
       {
         'text': S.of(context).hint_text_phone,
@@ -136,18 +135,16 @@ class _SignupState extends State<Signup> {
                     height: 10,
                   ),
                   // the the rules text and check box
-                  Row(
-                    children: [
-                      Checkbox(
-                          value: _isChecked,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _isChecked = value!;
-                            });
-                          }),
-                      const CustomRichText(),
-                    ],
-                  ),
+                  Obx(() => Row(
+                        children: [
+                          Checkbox(
+                              value: signupController.isChecked.value,
+                              onChanged: (bool? value) {
+                                signupController.toggleCheckbox(value!);
+                              }),
+                          const CustomRichText(),
+                        ],
+                      )),
                   MaterialButton(
                     color: Colors.white,
                     height: 50,
@@ -177,7 +174,8 @@ class _SignupState extends State<Signup> {
                             fontWeight: FontWeight.w500),
                       ),
                       GradientText(
-                          text: S.of(context).bottom_text_part2, route: 'login')
+                          text: S.of(context).bottom_text_part2,
+                          route: '/login')
                     ],
                   )
                 ],

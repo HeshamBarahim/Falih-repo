@@ -1,32 +1,18 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePage();
-}
+  final HomeController controller = Get.put(HomeController());
 
-class _HomePage extends State<HomePage> {
-  // test precentage of progress bar
-  late double precentage = 0.50;
-  int myindex = 0;
-
-  // test the list
-  final images = [
-    Image.asset('assets/images/test.png'),
-    Image.asset('assets/images/test.png'),
-    Image.asset('assets/images/test.png'),
-  ];
-  List<Widget> widgetList = const [
-    HomePage(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +29,7 @@ class _HomePage extends State<HomePage> {
             ),
             // sub header
             const CustomSubHeader(),
-            const SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
 
             Row(
               children: [
@@ -66,8 +50,11 @@ class _HomePage extends State<HomePage> {
                       child: Text(S.of(context).score),
                     ),
                     // progress bar of home page
-                    CustomProgressBar(
-                        width: 250, height: 20, progress: precentage),
+                    Obx(() => CustomProgressBar(
+                          width: 250,
+                          height: 20,
+                          progress: controller.percentage.value,
+                        )),
                     Container(
                       margin: const EdgeInsets.only(top: 5),
                       child: Text(
@@ -86,17 +73,16 @@ class _HomePage extends State<HomePage> {
               color: AppColors.borderColor,
               margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            // image ane indcator slider
-            CustomCarousel(
-              images: images,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            // history side
+            const SizedBox(height: 10),
+            // image and indicator slider
+            Obx(() => CustomCarousel(
+                  // Convert String paths to Image widgets
+                  images: controller.images
+                      .map((imagePath) => Image.asset(imagePath))
+                      .toList(),
+                )),
+            const SizedBox(height: 10),
+            // history section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -112,7 +98,7 @@ class _HomePage extends State<HomePage> {
               ],
             ),
             const SizedBox(height: 30),
-            // last part of home page ,,, before he taken any exam
+            // last part of home page ,,, before any exam is taken
             Center(
               child: Text(
                 S.of(context).not_taken_exams_home_page,
