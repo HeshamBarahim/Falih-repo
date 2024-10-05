@@ -14,18 +14,21 @@ class ColumnOfChoices extends StatelessWidget {
       {'choiceNumber': 'D', 'choiceText': '0.454'},
     ];
 
-    return ListView.builder(
-      shrinkWrap: true, // Allows ListView to wrap its content
-      itemCount: choicesData.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
-          child: Choices(
+    return Container(
+      padding: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
+      child: ListView.builder(
+        shrinkWrap: true, // Allows ListView to wrap its content
+        itemCount: choicesData.length,
+        itemBuilder: (context, index) {
+          return Choices(
             choiceNumber: choicesData[index]['choiceNumber']!,
             choiceText: choicesData[index]['choiceText']!,
-          ),
-        );
-      },
+            index: index,
+          );
+        },
+      ),
     );
   }
 }

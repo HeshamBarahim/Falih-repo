@@ -12,6 +12,7 @@ class RunExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // take color and subject name from subject page
     final LinearGradient color = Get.arguments['color'];
     // final String name = Get.arguments['name'];
 
@@ -19,52 +20,55 @@ class RunExam extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(gradient: color),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 100,
-            ),
-            // Question box
-            const QuestionBox(),
-            const SizedBox(
-              height: 30,
-            ),
-            // choices box
-            Container(
-                padding: const EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                    color: AppColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(20)),
-                // choices go here
-                child: const ColumnOfChoices()),
-            const SizedBox(
-              height: 40,
-            ),
-
-            // Ai button
-            Center(
-              child: GradientButton(
-                text: 'Ai',
-                height: 50,
-                width: 100,
-                onClick: () => showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    builder: (context) => const BottomSheetWidget()),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 100,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            // confirm button
-            GradientButton(
-              text: 'Confirm',
-              height: 50,
-              width: double.infinity,
-              onClick: () {},
-            ),
-          ],
+              // Question box
+              const QuestionBox(),
+              const SizedBox(
+                height: 30,
+              ),
+              // choices box
+              // Container(
+              //     padding: const EdgeInsets.all(25),
+              //     decoration: BoxDecoration(
+              //         color: AppColors.secondaryColor,
+              //         borderRadius: BorderRadius.circular(20)),
+              //     // choices go here
+              //     child: const ColumnOfChoices()),
+              const ColumnOfChoices(),
+              const SizedBox(
+                height: 40,
+              ),
+
+              // Ai button
+              Center(
+                child: GradientButton(
+                  text: 'Ai',
+                  height: 50,
+                  width: 100,
+                  onClick: () => showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => const BottomSheetWidget()),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              // confirm button
+              GradientButton(
+                text: 'Confirm',
+                height: 50,
+                width: double.infinity,
+                onClick: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
