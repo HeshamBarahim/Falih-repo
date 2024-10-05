@@ -32,6 +32,14 @@
       "@title_signup": {
         "description": "This is the start of the sign up Page"
       },
+      "step1_of_2":"step 1 of 2",
+      "@step1_of_2": {
+        "description": ""
+      },
+      "step2_of_2":"step 2 of 2",
+      "@step2_of_2": {
+        "description": ""
+      },
       "title_signup":" Create Account",
 
       "@hint_text_username": {
@@ -43,6 +51,10 @@
       },
       "hint_text_Governorate":"Governorate",
       "@hint_text_School": {
+        "description": ""
+      },
+      "next":"next",
+      "@next": {
         "description": ""
       },
       "hint_text_School":"School Name",
@@ -147,7 +159,7 @@
       "@subject_eight": {
         "description": ""
       },
-      "subject_eight":"Mathematics",
+      "subject_eight":"Math",
       "@not_taken_exams": {
         "description": "This the start of leaderborad page"
       },

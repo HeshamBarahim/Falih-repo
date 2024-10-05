@@ -30,7 +30,7 @@ class CustomProgressBar extends StatelessWidget {
                 width: width * progress,
                 height: height,
                 decoration: BoxDecoration(
-                    gradient: AppColors.primaryGradients,
+                    color: AppColors.mainColor,
                     borderRadius: BorderRadius.circular(10)),
               ),
             ],

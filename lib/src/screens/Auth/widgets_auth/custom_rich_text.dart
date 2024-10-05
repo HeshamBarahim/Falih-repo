@@ -20,13 +20,12 @@ class CustomRichText extends StatelessWidget {
         WidgetSpan(
           child: GestureDetector(
             onTap: () => {},
-            child: ShaderMask(
-              shaderCallback: (bounds) =>
-                  AppColors.primaryGradients.createShader(bounds),
-              child: const Text(
-                'Terms of services',
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
+            child: const Text(
+              'Terms of services',
+              style: TextStyle(
+                  color: AppColors.successColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -39,13 +38,12 @@ class CustomRichText extends StatelessWidget {
         WidgetSpan(
           child: GestureDetector(
             onTap: () => {},
-            child: ShaderMask(
-              shaderCallback: (bounds) =>
-                  AppColors.primaryGradients.createShader(bounds),
-              child: const Text(
-                ' Privacy Policy ',
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
+            child: const Text(
+              ' Privacy Policy ',
+              style: TextStyle(
+                  color: AppColors.successColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),

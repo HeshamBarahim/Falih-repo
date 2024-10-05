@@ -37,6 +37,7 @@ dependencies:
   flutter_localizations:
         sdk: flutter
   flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
   carousel_slider: 
   smooth_page_indicator:
   get:

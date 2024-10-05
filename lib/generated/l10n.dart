@@ -120,6 +120,26 @@ class S {
     );
   }
 
+  /// `step 1 of 2`
+  String get step1_of_2 {
+    return Intl.message(
+      'step 1 of 2',
+      name: 'step1_of_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `step 2 of 2`
+  String get step2_of_2 {
+    return Intl.message(
+      'step 2 of 2',
+      name: 'step2_of_2',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` Create Account`
   String get title_signup {
     return Intl.message(
@@ -145,6 +165,16 @@ class S {
     return Intl.message(
       'Governorate',
       name: 'hint_text_Governorate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `next`
+  String get next {
+    return Intl.message(
+      'next',
+      name: 'next',
       desc: '',
       args: [],
     );
@@ -400,10 +430,10 @@ class S {
     );
   }
 
-  /// `Mathematics`
+  /// `Math`
   String get subject_eight {
     return Intl.message(
-      'Mathematics',
+      'Math',
       name: 'subject_eight',
       desc: '',
       args: [],

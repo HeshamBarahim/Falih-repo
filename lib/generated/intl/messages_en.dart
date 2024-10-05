@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your test histroy"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
+        "next": MessageLookupByLibrary.simpleMessage("next"),
         "not_registerd":
             MessageLookupByLibrary.simpleMessage("Not registerd yet? "),
         "not_taken_exams": MessageLookupByLibrary.simpleMessage(
@@ -64,7 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
-        "subject_eight": MessageLookupByLibrary.simpleMessage("Mathematics"),
+        "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),
+        "step2_of_2": MessageLookupByLibrary.simpleMessage("step 2 of 2"),
+        "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
         "subject_four":
             MessageLookupByLibrary.simpleMessage("English Language"),

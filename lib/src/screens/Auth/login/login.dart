@@ -6,14 +6,9 @@ import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/config/images.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatelessWidget {
   const Login({super.key});
 
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -47,22 +42,24 @@ class _LoginState extends State<Login> {
                       fit: BoxFit.contain,
                     ),
                   ),
+                  // welcome back title
                   Container(
                     margin: const EdgeInsets.only(right: 130),
                     child: Text(S.of(context).title_login,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        )),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-
-                  // Text Field
+                  // Text Field of phone number
                   CustomTextForm(
                     hintText: S.of(context).hint_text_phone,
                     prefixIcon: const Icon(Icons.phone_android),
                   ),
-                  // Text Field
+                  // Text Field of the password
                   CustomTextForm(
                     hintText: S.of(context).hint_text_password,
                     prefixIcon: const Icon(Icons.lock),
@@ -77,25 +74,23 @@ class _LoginState extends State<Login> {
                                 fontWeight: FontWeight.bold))),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 200,
                   ),
                   // Login Button
                   GradientButton(
-                    text: S.of(context).login,
-                    height: 50,
-                    width: 150,
-                  ),
+                      text: S.of(context).login,
+                      height: 50,
+                      width: double.infinity,
+                      onClick: () {}),
                   const SizedBox(
-                    height: 200,
+                    height: 50,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         S.of(context).not_registerd,
-                        style: const TextStyle(
-                            // fontSize: 20.0,
-                            fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                       GradientText(
                           text: S.of(context).create_account, route: '/signup')

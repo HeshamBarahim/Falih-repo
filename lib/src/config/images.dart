@@ -4,6 +4,10 @@ class Images {
   static const String backgroundImageOfAuth =
       'assets/images/background_image_of_auth.png';
 
+// test profile
+  static const String test = 'assets/images/yousif.png';
+  static const String testAds = 'assets/images/test_ads.png';
+
   // icons of subjects
   static const String quranIcon = 'assets/subjects_icons/quran_icon.png';
   static const String islamicIcon = 'assets/subjects_icons/islamic_icon.png';

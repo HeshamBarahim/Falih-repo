@@ -14,6 +14,7 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(4),
       child: TextFormField(
         // validator: validator ,
@@ -21,8 +22,9 @@ class CustomTextForm extends StatelessWidget {
         decoration: InputDecoration(
             hintText: hintText,
             hintStyle:
-                const TextStyle(fontSize: 14, color: AppColors.shadowColor),
+                const TextStyle(fontSize: 14, color: AppColors.mainColor),
             prefixIcon: prefixIcon,
+            prefixIconColor: AppColors.mainColor,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             filled: true,

@@ -22,58 +22,66 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //  first heading text
-            Text(
-              S.of(context).first_header_home,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            // sub header
-            const CustomSubHeader(),
-            const SizedBox(height: 5),
-
-            Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(right: 5),
-                  child: Image.asset(
-                    Images.silverMedal,
-                    width: 40.0,
-                    height: 40.0,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 5),
-                      child: Text(S.of(context).score),
-                    ),
-                    // progress bar of home page
-                    Obx(() => CustomProgressBar(
-                          width: 250,
-                          height: 20,
-                          progress: controller.percentage.value,
-                        )),
-                    Container(
-                      margin: const EdgeInsets.only(top: 5),
-                      child: Text(
-                        S.of(context).name_league,
-                        style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            //  just line
+            // the heading profile
             Container(
-              height: 1.0,
-              color: AppColors.borderColor,
-              margin: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 5),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: AppColors.secondaryColor, // Container color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2), // Shadow color
+                    spreadRadius: 2, // Spread of the shadow
+                    blurRadius: 10, // Blur effect
+                    offset: const Offset(
+                        0, 5), // Position of the shadow (horizontal, vertical)
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // circulr avatar for the photo
+                      CircleAvatar(
+                        radius: 50, // Size of the circle
+                        backgroundImage: AssetImage(Images.test),
+                        backgroundColor: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      // information about the user and his rank
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Hi yousif,"),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text('#3 Rank'),
+                          Text("2,639/5,999 Points")
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // progress bar
+                  Obx(() => CustomProgressBar(
+                        width: 250,
+                        height: 20,
+                        progress: controller.percentage.value,
+                      )),
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: 20,
+            ),
             // image and indicator slider
             Obx(() => CustomCarousel(
                   // Convert String paths to Image widgets
@@ -81,32 +89,13 @@ class HomePage extends StatelessWidget {
                       .map((imagePath) => Image.asset(imagePath))
                       .toList(),
                 )),
-            const SizedBox(height: 10),
-            // history section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).history_heading,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                const Icon(
-                  Icons.info_outline_rounded,
-                  color: Color(0XFFD42A2A),
-                ),
-              ],
+            const SizedBox(
+              height: 20,
             ),
-            const SizedBox(height: 30),
-            // last part of home page ,,, before any exam is taken
-            Center(
-              child: Text(
-                S.of(context).not_taken_exams_home_page,
-                style: const TextStyle(
-                    color: AppColors.shadowColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17),
-              ),
+            // history part
+            Text(
+              "Your Test History ",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             )
           ],
         ),

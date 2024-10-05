@@ -1,4 +1,5 @@
 // import 'package:flutter/foundation.dart';
+import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
 import 'package:falih/src/screens/leaderboard/leaderboard.dart';
@@ -13,11 +14,19 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.secondaryColor,
           leading: IconButton(
-              onPressed: () {}, icon: const Icon(Icons.notifications)),
+              onPressed: () {},
+              icon: const Icon(Icons.notifications),
+              color: AppColors.mainColor,
+              iconSize: 30),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+              color: AppColors.mainColor,
+              iconSize: 30,
+            ),
           ],
         ),
         bottomNavigationBar: Obx(

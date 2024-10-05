@@ -12,6 +12,7 @@ class SubjectPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          // box who has the subject name and image
           Container(
               padding: const EdgeInsets.all(20),
               height: 300,
@@ -19,11 +20,9 @@ class SubjectPage extends StatelessWidget {
                 gradient: color,
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  // show image and subject name
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -43,9 +42,15 @@ class SubjectPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  const CustomRow()
                 ],
-              ))
+              )),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomRow(
+            color: color,
+            name: name,
+          )
         ],
       ),
     );

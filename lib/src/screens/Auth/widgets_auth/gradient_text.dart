@@ -13,19 +13,17 @@ class GradientText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (bounds) =>
-          AppColors.primaryGradients.createShader(bounds),
-      child: InkWell(
-        onTap: () {
-          // Navigator.of(context).pushReplacementNamed(route);
-          Get.toNamed(route);
-        },
-        child: Text(
-          text,
-          style: const TextStyle(
-              fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+    return InkWell(
+      onTap: () {
+        // Navigator.of(context).pushReplacementNamed(route);
+        Get.toNamed(route);
+      },
+      child: Text(
+        text,
+        style: const TextStyle(
+            fontSize: 15.0,
+            color: AppColors.successColor,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

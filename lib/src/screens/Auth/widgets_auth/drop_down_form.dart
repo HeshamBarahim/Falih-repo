@@ -27,8 +27,9 @@ class _CustomDropDownForm extends State<CustomDropDownForm> {
           hint: Text(widget.hintText),
           decoration: InputDecoration(
               hintStyle:
-                  const TextStyle(fontSize: 14, color: AppColors.shadowColor),
+                  const TextStyle(fontSize: 14, color: AppColors.mainColor),
               prefixIcon: widget.prefixIcon,
+              prefixIconColor: AppColors.mainColor,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               filled: true,

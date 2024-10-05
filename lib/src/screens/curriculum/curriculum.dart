@@ -12,6 +12,7 @@ class Curriculum extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(() {
+        // show subjects as grid
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -26,6 +27,7 @@ class Curriculum extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
+                  // navigate to the subject page
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => SubjectPage(
                       color: subject['color'],
@@ -34,6 +36,7 @@ class Curriculum extends StatelessWidget {
                     ),
                   ));
                 },
+                // show each box with its color and text
                 child: Container(
                   padding: const EdgeInsets.all(15),
                   height: 120,
@@ -41,6 +44,7 @@ class Curriculum extends StatelessWidget {
                     gradient: subject['color'],
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  // to center the content name & image
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

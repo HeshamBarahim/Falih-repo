@@ -7,8 +7,8 @@ class HomeController extends GetxController {
 
   // test the list images for ads
   final images = [
-    'assets/images/test.png',
-    'assets/images/test.png',
-    'assets/images/test.png',
+    'assets/images/test_ads.png',
+    'assets/images/test_ads.png',
+    'assets/images/test_ads.png',
   ].obs;
 }
