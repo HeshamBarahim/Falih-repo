@@ -7,6 +7,9 @@ import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:csv/csv.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async' show Future;
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -93,13 +96,18 @@ class HomePage extends StatelessWidget {
               height: 20,
             ),
             // history part
-            Text(
+            const Text(
               "Your Test History ",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            )
+            ),
+            ElevatedButton(onPressed: exportData, child: Text('export CSV'))
           ],
         ),
       ),
     );
+  }
+
+  void exportData() {
+    final CollectionReference physcis=FirebaseFirestore 
   }
 }
