@@ -1,4 +1,5 @@
 // import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
@@ -7,11 +8,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({super.key});
+  NavigationMenu({super.key});
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  readQuestions() async
+  {
+    await db.collection("falih").get().then((event) {
+      for (var doc in event.docs) {
+        print("========> ${doc.id} => ${doc.data()}");
+        doc.data().forEach((k,v) => print('${k}: ${v}'));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
+    readQuestions();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.secondaryColor,
@@ -82,6 +96,6 @@ class NavigationController extends GetxController {
   final screens = [
     Curriculum(),
     HomePage(),
-    Leaderboard(),
+    const Leaderboard(),
   ];
 }

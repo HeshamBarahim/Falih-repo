@@ -42,7 +42,6 @@ dependencies:
   smooth_page_indicator:
   get:
   percent_indicator:
-  csv:
 
 dev_dependencies:
   flutter_test:

@@ -33,7 +33,7 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       getPages: [
         //  routes here
-        GetPage(name: '/', page: () => const NavigationMenu()),
+        GetPage(name: '/', page: () => NavigationMenu()),
         // GetPage(name: '/', page: () => const Login()),
         GetPage(name: '/signup', page: () => Signup()),
         GetPage(name: '/signupPart2', page: () => SignupPart2()),
