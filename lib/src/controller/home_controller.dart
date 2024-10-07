@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  // test precentage of progress bar
+  // test percentage of progress bar
   var percentage = 0.50.obs;
   var myIndex = 0.obs;
 
