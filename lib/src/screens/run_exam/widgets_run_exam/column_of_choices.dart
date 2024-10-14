@@ -14,6 +14,12 @@ class ColumnOfChoices extends StatelessWidget {
       {'choiceNumber': 'D', 'choiceText': '0.454'},
     ];
 
+    // if the choices will be true or false
+    // final List<Map<String, String>> choicesOfTrueFalseData = [
+    //   {'choiceNumber': 'A', 'choiceText': 'True'},
+    //   {'choiceNumber': 'B', 'choiceText': 'False'},
+    // ];
+
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(

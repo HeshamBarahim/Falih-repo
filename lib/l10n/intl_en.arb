@@ -175,7 +175,11 @@
       "@exams": {
         "description": ""
       },
-      "exams":"Exams"
+      "exams":"Exams",
+      "@confirm": {
+        "description": "This the start of run exam"
+      },
+      "confirm":"confirm"
       
       
       

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
@@ -8,8 +9,9 @@ import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:csv/csv.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'dart:async' show Future;
+import 'dart:convert';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -107,7 +109,47 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void exportData() {
-    final CollectionReference physcis=FirebaseFirestore 
+  // Function to convert UTF-16 LE bytes to a UTF-8 string
+  String convertUtf16ToUtf8(Uint8List bytes) {
+    StringBuffer buffer = StringBuffer();
+    for (int i = 0; i < bytes.length; i += 2) {
+      int charCode = bytes[i] + (bytes[i + 1] << 8);
+      buffer.writeCharCode(charCode);
+    }
+    return buffer.toString(); // No need to encode again, return UTF-16 string
+  }
+
+  void exportData() async {
+    final CollectionReference subject =
+        FirebaseFirestore.instance.collection("nationalism_unit4_9");
+    try {
+      // Load the CSV file as bytes
+      ByteData byteData = await rootBundle
+          .load("assets/csv_files/nationalism_unit4_9_test.csv");
+      Uint8List bytes = byteData.buffer.asUint8List();
+
+      // Convert from UTF-16 LE to a UTF-8 string
+      String myData = convertUtf16ToUtf8(bytes);
+      print("Converted Data: $myData");
+
+      // Convert CSV file to a list of lists
+      List<List<dynamic>> csvTable = CsvToListConverter().convert(myData);
+
+      // Loop through the CSV table and create records
+      for (var i = 0; i < csvTable.length; i++) {
+        var record = {
+          "question": csvTable[i][0],
+          "ch1": csvTable[i][1],
+          "ch2": csvTable[i][2],
+          "ch3": csvTable[i][3],
+          "ch4": csvTable[i][4],
+          "answer": csvTable[i][5],
+        };
+        await subject.add(record); // Use await for Firestore operations
+        print(record);
+      }
+    } catch (e) {
+      print("Error exporting data: $e");
+    }
   }
 }

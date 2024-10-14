@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage(" not taken "),
         "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
+        "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),

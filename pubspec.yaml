@@ -42,7 +42,9 @@ dependencies:
   smooth_page_indicator:
   get:
   percent_indicator:
-
+  firebase_core:
+  cloud_firestore:
+  csv:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -68,6 +70,7 @@ flutter:
   assets:
     - assets/images/
     - assets/subjects_icons/
+    - assets/csv_files/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

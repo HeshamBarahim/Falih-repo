@@ -31,14 +31,6 @@ class RunExam extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              // choices box
-              // Container(
-              //     padding: const EdgeInsets.all(25),
-              //     decoration: BoxDecoration(
-              //         color: AppColors.secondaryColor,
-              //         borderRadius: BorderRadius.circular(20)),
-              //     // choices go here
-              //     child: const ColumnOfChoices()),
               const ColumnOfChoices(),
               const SizedBox(
                 height: 40,
@@ -62,11 +54,14 @@ class RunExam extends StatelessWidget {
               ),
               // confirm button
               GradientButton(
-                text: 'Confirm',
+                text: S.of(context).confirm,
                 height: 50,
                 width: double.infinity,
                 onClick: () {},
               ),
+              const SizedBox(
+                height: 50,
+              )
             ],
           ),
         ),
