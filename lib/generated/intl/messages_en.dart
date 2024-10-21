@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
+        "practice_test": MessageLookupByLibrary.simpleMessage("results"),
+        "results": MessageLookupByLibrary.simpleMessage("results"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),

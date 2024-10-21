@@ -29,7 +29,7 @@ class CustomRow extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                S.of(context).statistics,
+                S.of(context).chapters,
                 style: const TextStyle(
                     color: AppColors.mainColor, fontWeight: FontWeight.bold),
               ),

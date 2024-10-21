@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -452,10 +451,10 @@ class S {
   }
 
   /// `Statistics`
-  String get results {
+  String get statistics {
     return Intl.message(
-      'Results',
-      name: 'results',
+      'Statistics',
+      name: 'statistics',
       desc: 'This the start of subject page',
       args: [],
     );
@@ -481,22 +480,32 @@ class S {
     );
   }
 
-  /// `Practice Test`
-  String get practice_test {
-    return Intl.message(
-      'Practice Test',
-      name: 'practice_test',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `confirm`
   String get confirm {
     return Intl.message(
       'confirm',
       name: 'confirm',
       desc: 'This the start of run exam',
+      args: [],
+    );
+  }
+
+  /// `results`
+  String get results {
+    return Intl.message(
+      'results',
+      name: 'results',
+      desc: 'Test ',
+      args: [],
+    );
+  }
+
+  /// `results`
+  String get practice_test {
+    return Intl.message(
+      'results',
+      name: 'practice_test',
+      desc: 'Test ',
       args: [],
     );
   }
