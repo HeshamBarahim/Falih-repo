@@ -19,7 +19,6 @@ class ColumnOfChoices extends StatelessWidget {
     //   {'choiceNumber': 'A', 'choiceText': 'True'},
     //   {'choiceNumber': 'B', 'choiceText': 'False'},
     // ];
-
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(

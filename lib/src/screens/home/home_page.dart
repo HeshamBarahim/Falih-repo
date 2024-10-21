@@ -120,12 +120,14 @@ class HomePage extends StatelessWidget {
   }
 
   void exportData() async {
-    final CollectionReference subject =
-        FirebaseFirestore.instance.collection("nationalism_unit4_9");
+    final CollectionReference subjectsCollection =
+        FirebaseFirestore.instance.collection("subjects_ar_9");
+
     try {
+      var csvFilePath = "assets/csv_files/chemistry_unit5_9_ar_test.csv";
+      var subjectName = "chemistry_9";
       // Load the CSV file as bytes
-      ByteData byteData = await rootBundle
-          .load("assets/csv_files/nationalism_unit4_9_test.csv");
+      ByteData byteData = await rootBundle.load(csvFilePath);
       Uint8List bytes = byteData.buffer.asUint8List();
 
       // Convert from UTF-16 LE to a UTF-8 string
@@ -135,19 +137,48 @@ class HomePage extends StatelessWidget {
       // Convert CSV file to a list of lists
       List<List<dynamic>> csvTable = CsvToListConverter().convert(myData);
 
-      // Loop through the CSV table and create records
+      // Create an array to store the new unit's questions
+      List<Map<String, dynamic>> questions = [];
+
       for (var i = 0; i < csvTable.length; i++) {
-        var record = {
-          "question": csvTable[i][0],
-          "ch1": csvTable[i][1],
-          "ch2": csvTable[i][2],
-          "ch3": csvTable[i][3],
-          "ch4": csvTable[i][4],
-          "answer": csvTable[i][5],
+        var question = {
+          "question": csvTable[i][0], // The question text
+          "choices": [
+            // Array of choices
+            csvTable[i][1], // Choice 1
+            csvTable[i][2], // Choice 2
+            csvTable[i][3], // Choice 3
+            csvTable[i][4], // Choice 4
+          ],
+          "correctAnswer": csvTable[i][5], // Correct answer
         };
-        await subject.add(record); // Use await for Firestore operations
-        print(record);
+
+        questions.add(question); // Add each question to the array
       }
+
+      // Add the questions as a new unit
+      var newUnit = {"questions": questions};
+
+      // Fetch the current document data (if it exists)
+      DocumentSnapshot subjectDoc =
+          await subjectsCollection.doc(subjectName).get();
+
+      List<dynamic> currentUnits = [];
+
+      if (subjectDoc.exists && subjectDoc.data() != null) {
+        // Get the existing units array
+        currentUnits = subjectDoc["units"];
+      }
+
+      // Add the new unit to the current units array
+      currentUnits.add(newUnit);
+
+      // Update the document with the new units array
+      await subjectsCollection.doc(subjectName).update({
+        "units": currentUnits,
+      });
+
+      print("Data successfully exported.");
     } catch (e) {
       print("Error exporting data: $e");
     }

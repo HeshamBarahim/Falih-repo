@@ -3,6 +3,7 @@ import 'package:falih/src/navigation_menu.dart';
 import 'package:falih/src/screens/Auth/signup/signup_part2.dart';
 import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
+import 'package:falih/src/screens/pre_exam/pre_exam.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
