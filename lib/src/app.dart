@@ -40,6 +40,7 @@ class App extends StatelessWidget {
         GetPage(name: '/signupPart2', page: () => SignupPart2()),
         GetPage(name: '/login', page: () => const Login()),
         GetPage(name: '/runExam', page: () => const RunExam()),
+        GetPage(name: '/preExam', page: () => const PreExam()),
       ],
     );
   }

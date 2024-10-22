@@ -13,7 +13,7 @@ class SubjectsLabels extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<SubjectsLabelsData> items = [
       SubjectsLabelsData(
-          S.of(context).exams, Icons.bookmarks_sharp, '/runExam'),
+          S.of(context).exams, Icons.bookmarks_sharp, '/preExam'),
       SubjectsLabelsData(S.of(context).results, Icons.stacked_line_chart, ''),
       SubjectsLabelsData(
           S.of(context).practice_test, Icons.app_shortcut_sharp, ''),

@@ -12,8 +12,7 @@ class NavigationMenu extends StatelessWidget {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  readQuestions() async
-  {
+  readQuestions() async {
     // await db.collection("biology_unit1_9_ar").get().then((event) {
     //
     //   for (var doc in event.docs) {
