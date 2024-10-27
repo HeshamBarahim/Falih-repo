@@ -1,8 +1,10 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 
-class CustomBox extends StatelessWidget {
-  const CustomBox({super.key});
+class PreExamBox extends StatelessWidget {
+  const PreExamBox({super.key, required this.questionCount});
+
+  final int questionCount;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,10 @@ class CustomBox extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         color: AppColors.choicesColor),
                     width: 75,
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        '50',
-                        style: TextStyle(
+                        "$questionCount",
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
@@ -56,10 +58,10 @@ class CustomBox extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         color: AppColors.choicesColor),
                     width: 75,
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        '100',
-                        style: TextStyle(
+                        (questionCount * 2).toString(),
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),

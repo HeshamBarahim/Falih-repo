@@ -1,16 +1,19 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
-import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_box.dart';
+import 'package:falih/src/screens/pre_exam/widgets_pre_exam/pre_exam_box.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+
+import '../../controller/exam_controller.dart';
 
 class PreExam extends StatelessWidget {
   const PreExam({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ExamController controller = Get.put(ExamController());
     final LinearGradient color = Get.arguments['color'];
     final String name = Get.arguments['name'];
     return Scaffold(
@@ -33,7 +36,7 @@ class PreExam extends StatelessWidget {
               height: 20,
             ),
             // box of the questions and points
-            const CustomBox(),
+            PreExamBox(questionCount: controller.questions.length),
             // box to set rules of the exam
             Container(
               padding: const EdgeInsets.all(25),
@@ -49,11 +52,11 @@ class PreExam extends StatelessWidget {
             ),
             // start taking the exam button
             GradientButton(
-              text: 'start taking the exam',
+              text: 'Start taking the exam',
               height: 50,
               width: double.infinity,
               onClick: () {
-                Get.to(const RunExam(), arguments: {
+                Get.to(() => const RunExam(), arguments: {
                   'color': color,
                   'name': name,
                 });

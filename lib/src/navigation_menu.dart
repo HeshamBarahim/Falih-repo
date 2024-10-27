@@ -1,5 +1,4 @@
 // import 'package:flutter/foundation.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
@@ -10,7 +9,7 @@ import 'package:get/get.dart';
 class NavigationMenu extends StatelessWidget {
   NavigationMenu({super.key});
 
-  FirebaseFirestore db = FirebaseFirestore.instance;
+  // FirebaseFirestore db = FirebaseFirestore.instance;
 
   readQuestions() async {
     // await db.collection("biology_unit1_9_ar").get().then((event) {

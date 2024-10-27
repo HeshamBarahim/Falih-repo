@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -486,6 +487,26 @@ class S {
       'confirm',
       name: 'confirm',
       desc: 'This the start of run exam',
+      args: [],
+    );
+  }
+
+  /// `continue`
+  String get continueText {
+    return Intl.message(
+      'continue',
+      name: 'continue',
+      desc: 'continue asking',
+      args: [],
+    );
+  }
+
+  /// `unit_exams`
+  String get unit_exams {
+    return Intl.message(
+      'Unit Exams',
+      name: 'Unit Exams',
+      desc: '',
       args: [],
     );
   }
