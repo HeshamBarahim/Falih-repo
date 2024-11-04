@@ -36,10 +36,10 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       getPages: [
         //  routes here
-        // GetPage(name: '/', page: () => NavigationMenu()),
+        GetPage(name: '/', page: () => NavigationMenu()),
         // GetPage(name: '/', page: () => SettingsScreen_2()),
         // GetPage(name: '/', page: () => const Login()),
-        GetPage(name: '/', page: () => const SubscriptionScreen()),
+        // GetPage(name: '/', page: () => const SubscriptionScreen()),
         GetPage(name: '/signup', page: () => Signup()),
         GetPage(name: '/signupPart2', page: () => SignupPart2()),
         GetPage(name: '/login', page: () => const Login()),

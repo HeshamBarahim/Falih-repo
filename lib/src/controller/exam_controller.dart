@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:falih/generated/l10n.dart';
 import 'package:get/get.dart';
 
 import '../config/themes.dart';
@@ -71,5 +72,33 @@ class ExamController extends GetxController {
     return index == questions[questionIndex.value].correctAnswerIndex
         ? AppColors.mainColor
         : AppColors.choicesColor;
+  }
+
+  // Filter type
+  var filter = 'all'.obs;
+
+  //  To get filtered questions based on selected filter
+  List<Exam> get filteredQuestions {
+    switch (filter.value) {
+      case 'correct':
+        return questions
+            .asMap()
+            .entries
+            .where((entry) =>
+                selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
+            .map((entry) => entry.value)
+            .toList();
+      case 'incorrect':
+        return questions
+            .asMap()
+            .entries
+            .where((entry) =>
+                selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
+                selectedAnswers[entry.key] != null)
+            .map((entry) => entry.value)
+            .toList();
+      default:
+        return questions;
+    }
   }
 }

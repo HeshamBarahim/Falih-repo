@@ -1,7 +1,9 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
+import 'package:falih/src/screens/after_exam/after_exam.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/bottom_sheet.dart';
+import 'package:falih/src/screens/run_exam/widgets_run_exam/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +14,12 @@ class RunExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final String name = Get.arguments['name'];
+    final String name = Get.arguments['name'];
     final LinearGradient color = Get.arguments['color'];
     final ExamController controller = Get.put(ExamController());
-
+    // strings for dialog
+    final nextText = S.of(context).next;
+    // final reviewAnswer = S.of(context).review_answer;
     return Scaffold(
       body: Obx(() {
         if (controller.questions.isEmpty) {
@@ -76,7 +80,7 @@ class RunExam extends StatelessWidget {
                           ),
                           // Question number of 50
                           Text(
-                            "Questions ${questionNumber + 1}/${controller.questions.length}",
+                            "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
                             style:
                                 const TextStyle(color: AppColors.warningColor),
                           ),
@@ -176,6 +180,33 @@ class RunExam extends StatelessWidget {
                 ),
                 const SizedBox(
                   height: 50,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => const AfterExam(), arguments: {
+                      "color": color,
+                      "name": name,
+                    });
+                  },
+                  child: Text('result page'),
+                ),
+                // this dialog shuld be shown once the question finished
+                ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => CustomDialog(
+                        nextText: nextText,
+                        reviewAnswer: 'reviewAnswer',
+                        numberOfQuestion: '50',
+                        score: '66',
+                        time: '16:14',
+                        trueAnswers: '23',
+                        wrongAnswers: '27',
+                      ),
+                    );
+                  },
+                  child: Text('dialog'),
                 )
               ],
             ),

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -491,26 +490,6 @@ class S {
     );
   }
 
-  /// `continue`
-  String get continueText {
-    return Intl.message(
-      'continue',
-      name: 'continue',
-      desc: 'continue asking',
-      args: [],
-    );
-  }
-
-  /// `unit_exams`
-  String get unit_exams {
-    return Intl.message(
-      'Unit Exams',
-      name: 'Unit Exams',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `results`
   String get results {
     return Intl.message(
@@ -527,6 +506,76 @@ class S {
       'results',
       name: 'practice_test',
       desc: 'Test ',
+      args: [],
+    );
+  }
+
+  /// `Question`
+  String get question {
+    return Intl.message(
+      'Question',
+      name: 'question',
+      desc: 'Test ',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueText {
+    return Intl.message(
+      'Continue',
+      name: 'continueText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `unit_exams`
+  String get unit_exams {
+    return Intl.message(
+      'unit_exams',
+      name: 'unit_exams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correct`
+  String get correct {
+    return Intl.message(
+      'Correct',
+      name: 'correct',
+      desc: 'the start of after exam',
+      args: [],
+    );
+  }
+
+  /// `Wrong`
+  String get wrong {
+    return Intl.message(
+      'Wrong',
+      name: 'wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back To Subjects`
+  String get back_to_subjects {
+    return Intl.message(
+      'Back To Subjects',
+      name: 'back_to_subjects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review Your Answers`
+  String get review_answer {
+    return Intl.message(
+      'Review Your Answers',
+      name: 'review_answer',
+      desc: '',
       args: [],
     );
   }

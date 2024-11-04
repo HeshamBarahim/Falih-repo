@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "back_to_subjects":
+            MessageLookupByLibrary.simpleMessage("Back To Subjects"),
         "bottom_text_part1":
             MessageLookupByLibrary.simpleMessage("Have an account? "),
         "bottom_text_part2":
@@ -30,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" not taken "),
         "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
+        "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
+        "correct": MessageLookupByLibrary.simpleMessage("Correct"),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
@@ -65,7 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
         "practice_test": MessageLookupByLibrary.simpleMessage("results"),
+        "question": MessageLookupByLibrary.simpleMessage("Question"),
         "results": MessageLookupByLibrary.simpleMessage("results"),
+        "review_answer":
+            MessageLookupByLibrary.simpleMessage("Review Your Answers"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),
@@ -82,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "subject_two":
             MessageLookupByLibrary.simpleMessage("Islamic Education"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
-        "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account")
+        "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
+        "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
+        "wrong": MessageLookupByLibrary.simpleMessage("Wrong")
       };
 }

@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
+import 'package:falih/src/screens/after_exam/after_exam.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/pre_exam_box.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';

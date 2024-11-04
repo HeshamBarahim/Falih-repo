@@ -187,7 +187,37 @@
       "@practice_test": {
         "description": "Test "
       },
-      "practice_test":"results"
+      "practice_test":"results",
+      "@question": {
+        "description": "Test "
+      },
+      "question":"Question",
+      "@continueText": {
+        "description": ""
+      },
+      "continueText":"Continue",
+      "@unit_exams": {
+        "description": ""
+      },
+      "unit_exams":"unit_exams",
+      "@correct": {
+        "description": "the start of after exam"
+      },
+      "correct":"Correct",
+      "@wrong": {
+        "description": ""
+      },
+      "wrong":"Wrong",
+      "@back_to_subjects": {
+        "description": ""
+      },
+      "back_to_subjects":"Back To Subjects",
+      "@review_answer": {
+        "description": ""
+      },
+      "review_answer":"Review Your Answers"
+
+
       
   
       
