@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:falih/src/config/sizes.dart';
 
 class Header extends StatelessWidget {
-
-  const Header(
-      {super.key, });
+  const Header({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class Header extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: SizeConfig.screenWidth! * 0.039,
-                  color: Color(0xFFBBA3C2),
+                  color: const Color(0xFFBBA3C2),
                 ),
               ),
             ],

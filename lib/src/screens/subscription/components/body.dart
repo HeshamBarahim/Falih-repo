@@ -18,51 +18,47 @@ class Body extends StatelessWidget {
                 BorderRadius.circular(SizeConfig.screenWidth! * 0.029),
           ),
           padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.048),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Annual",
-                        style: TextStyle(
-                          fontSize: SizeConfig.screenWidth! * 0.043,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFFBF7FC),
-                        ),
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth! * 0.486),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.screenWidth! * 0.015,
-                          vertical: SizeConfig.screenHeight! * 0.005,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(
-                              SizeConfig.screenWidth! * 0.024),
-                        ),
-                        child: Text(
-                          "Best Value",
-                          style: TextStyle(
-                            fontSize: SizeConfig.screenWidth! * 0.029,
-                            color: Color(0xFFFBF7FC),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.012),
                   Text(
-                    "First 30 days free - Then \$999/Year",
+                    "Annual",
                     style: TextStyle(
+                      fontSize: SizeConfig.screenWidth! * 0.043,
+                      fontWeight: FontWeight.bold,
                       color: Color(0xFFFBF7FC),
-                      fontSize: SizeConfig.screenWidth! * 0.035,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.screenWidth! * 0.015,
+                      vertical: SizeConfig.screenHeight! * 0.005,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(
+                          SizeConfig.screenWidth! * 0.024),
+                    ),
+                    child: Text(
+                      "Best Value",
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenWidth! * 0.029,
+                        color: Color(0xFFFBF7FC),
+                      ),
                     ),
                   ),
                 ],
+              ),
+              SizedBox(height: SizeConfig.screenHeight! * 0.012),
+              Text(
+                "First 30 days free - Then \$999/Year",
+                style: TextStyle(
+                  color: Color(0xFFFBF7FC),
+                  fontSize: SizeConfig.screenWidth! * 0.035,
+                ),
               ),
             ],
           ),

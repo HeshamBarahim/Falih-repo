@@ -9,7 +9,6 @@ class SubjectPage extends StatelessWidget {
   final LinearGradient color;
   final String icon;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

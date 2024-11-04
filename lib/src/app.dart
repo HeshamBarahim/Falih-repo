@@ -5,6 +5,8 @@ import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
 import 'package:falih/src/screens/pre_exam/pre_exam.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
+import 'package:falih/src/screens/settings/settings_screen_2.dart';
+import 'package:falih/src/screens/subscription/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/Auth/login/login.dart';
@@ -34,8 +36,10 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       getPages: [
         //  routes here
-        GetPage(name: '/', page: () => NavigationMenu()),
+        // GetPage(name: '/', page: () => NavigationMenu()),
+        // GetPage(name: '/', page: () => SettingsScreen_2()),
         // GetPage(name: '/', page: () => const Login()),
+        GetPage(name: '/', page: () => const SubscriptionScreen()),
         GetPage(name: '/signup', page: () => Signup()),
         GetPage(name: '/signupPart2', page: () => SignupPart2()),
         GetPage(name: '/login', page: () => const Login()),
