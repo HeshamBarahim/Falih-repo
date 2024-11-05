@@ -3,13 +3,12 @@ import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SubjectPage extends StatelessWidget {
-  const SubjectPage(
-      {super.key, required this.name, required this.color, required this.icon});
+import '../../controller/subjects_controller.dart';
 
-  final String name;
-  final LinearGradient color;
-  final String icon;
+class SubjectPage extends StatelessWidget {
+  SubjectPage({super.key});
+
+  final SubjectsController subjectController = Get.put(SubjectsController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class SubjectPage extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               height: MediaQuery.sizeOf(context).height * 0.35,
               decoration: BoxDecoration(
-                gradient: color,
+                gradient: subjectController.color,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -32,14 +31,14 @@ class SubjectPage extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Text(
-                        name,
+                            subjectController.name.value,
                         style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       )),
                       Image.asset(
-                        icon,
+                        subjectController.icon_path,
                         // color: Colors.white,
                         height: 150,
                         width: 150,
@@ -51,10 +50,7 @@ class SubjectPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          SubjectsLabels(
-            color: color,
-            name: name,
-          ),
+          SubjectsLabels(),
         ],
       ),
     );

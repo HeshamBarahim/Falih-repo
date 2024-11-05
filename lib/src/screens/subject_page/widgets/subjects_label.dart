@@ -9,12 +9,10 @@ import '../../../controller/subjects_controller.dart';
 import '../../pre_exam/pre_exam.dart';
 
 class SubjectsLabels extends StatelessWidget {
-  final String name;
-  final LinearGradient color;
 
-  SubjectsLabels({super.key, required this.color, required this.name});
+  SubjectsLabels({super.key});
 
-  final SubjectsController controller = Get.put(SubjectsController());
+  final SubjectsController subjectController = Get.put(SubjectsController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +36,14 @@ class SubjectsLabels extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     // Update selected index using the controller
-                    controller.changeSelectedIndex(index);
+                    subjectController.changeSelectedIndex(index);
                   },
                   child: Obx(() => Container(
                         width: MediaQuery.of(context).size.width * 0.3,
                         padding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 10),
                         decoration: BoxDecoration(
-                          color: controller.selectedIndex.value == index
+                          color: subjectController.selectedIndex.value == index
                               ? Colors.grey[300] // Highlight selected item
                               : Colors.white,
                           borderRadius: BorderRadius.circular(30),
@@ -77,9 +75,9 @@ class SubjectsLabels extends StatelessWidget {
 
           // Content based on the selected index
           Obx(() {
-            if (controller.selectedIndex.value == 0) {
+            if (subjectController.selectedIndex.value == 0) {
               return _buildUnitsExams(firestore);
-            } else if (controller.selectedIndex.value == 1) {
+            } else if (subjectController.selectedIndex.value == 1) {
               return _buildExamsContent();
             } else {
               return _buildResultsContent();
@@ -92,11 +90,22 @@ class SubjectsLabels extends StatelessWidget {
 
   // Function to build content for "unit_exams"
   Widget _buildUnitsExams(FirebaseFirestore firestore) {
-    print("${name.toLowerCase()}_9");
+    var subjectName = subjectController.name.value;
+    if (subjectName == "Islamic Education") {
+      subjectName = "islamic";
+    } else if (subjectName == "Quram Kareem") {
+      subjectName = "quran";
+    } else if (subjectName == "Arabic Language") {
+      subjectName = "arabic";
+    } else if (subjectName == "English Language") {
+      subjectName = "english";
+    }
+
+    print("${subjectName.toLowerCase()}_9");
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       future: firestore
           .collection('subjects_ar_9')
-          .doc("${name.toLowerCase()}_9")
+          .doc("${subjectName.toLowerCase()}_9")
           .get(),
       builder: (BuildContext context,
           AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
@@ -104,10 +113,13 @@ class SubjectsLabels extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
+        } else if (!snapshot.hasData ||
+            !snapshot.data!.exists ||
+            snapshot.data!.data()!.isEmpty) {
           return const Center(child: Text('No data found'));
         }
 
+        print(snapshot.data!.data()?.isEmpty);
         final subjectData = snapshot.data!.data() as Map<String, dynamic>;
         final units = subjectData['units'];
 
@@ -123,10 +135,7 @@ class SubjectsLabels extends StatelessWidget {
                     final ExamController controller = Get.put(ExamController());
                     controller.resetExam();
                     controller.setQuestions(unit["questions"]);
-                    Get.to(() => const PreExam(), arguments: {
-                      "color": color,
-                      "name": name,
-                    });
+                    Get.to(() => const PreExam());
                   },
                   child: Card(
                     color: const Color(0xFFFBF7FC),
@@ -136,31 +145,39 @@ class SubjectsLabels extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           const CircleAvatar(),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Chapter: ${index + 1}",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Chapter: ${index + 1}",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                              ),
-                              Text(unit["unitName"]),
-                            ],
+                                Text(
+                                  unit["unitName"],
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.right,
+                                ),
+                              ],
+                            ),
                           ),
-                          const Spacer(),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "${unit["questions"].length} Questions",
                             style: const TextStyle(
-                                color: Color(0xFF3CD797),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                              color: Color(0xFF3CD797),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
                           ),
                           const SizedBox(
                             width: 5,

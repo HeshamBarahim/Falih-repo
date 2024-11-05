@@ -1,11 +1,14 @@
 import 'package:falih/src/controller/curriculum_controller.dart';
+import 'package:falih/src/controller/subjects_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/src/screens/subject_page/subject_page.dart';
 
 class Curriculum extends StatelessWidget {
   Curriculum({super.key});
+
   final CurriculumController controller = Get.put(CurriculumController());
+  final SubjectsController subjectController = Get.put(SubjectsController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +31,11 @@ class Curriculum extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   // navigate to the subject page
+                  subjectController.name.value = subject['name'];
+                  subjectController.color = subject['color'];
+                  subjectController.icon_path = subject['icon'];
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SubjectPage(
-                      color: subject['color'],
-                      name: subject['name'],
-                      icon: subject['icon'],
-                    ),
+                    builder: (context) => SubjectPage(),
                   ));
                 },
                 // show each box with its color and text

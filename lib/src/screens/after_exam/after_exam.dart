@@ -1,19 +1,20 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
 
 import '../../controller/exam_controller.dart';
+import '../../controller/subjects_controller.dart';
 
 class AfterExam extends StatelessWidget {
   const AfterExam({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final LinearGradient color = Get.arguments['color'];
-    final String name = Get.arguments['name'];
+    // final LinearGradient color = Get.arguments['color'];
     final ExamController controller = Get.put(ExamController());
+    final SubjectsController subjectController = Get.put(SubjectsController());
 
     final List items = [
       {
@@ -33,13 +34,13 @@ class AfterExam extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
         child: CustomAppBar(
-          name: name,
-          color: color,
+          name: subjectController.name.value,
+          color: subjectController.color,
         ),
       ),
       body: Container(
         padding: const EdgeInsets.all(25),
-        decoration: BoxDecoration(gradient: color),
+        decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           children: [
             // Row of filter buttons
@@ -48,6 +49,7 @@ class AfterExam extends StatelessWidget {
               children: List.generate(items.length, (index) {
                 return InkWell(
                   onTap: () {
+                    print(controller.falseAnswers);
                     controller.filter.value = items[index]['value'];
                   },
                   child: Obx(() => Container(
@@ -66,7 +68,7 @@ class AfterExam extends StatelessWidget {
                         ),
                         child: Center(
                             child: Text(
-                          items[index]['name'],
+                              "${items[index]['name']} ${controller.filteredQuestions.length}",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         )),
                       )),
@@ -90,7 +92,7 @@ class AfterExam extends StatelessWidget {
                     final isCorrect = controller.selectedAnswers[
                             controller.questions.indexOf(question)] ==
                         question.correctAnswerIndex;
-                    // box of queston
+                    // box of question
                     return Container(
                       margin: const EdgeInsets.only(bottom: 15),
                       height: 200,
@@ -105,7 +107,7 @@ class AfterExam extends StatelessWidget {
                         children: [
                           // number of question
                           Text(
-                            "${S.of(context).question} ${index + 1}/${controller.questions.length}",
+                            "${S.of(context).question} ${controller.questions.indexOf(question) + 1}/${controller.questions.length}",
                             style: const TextStyle(
                               color: AppColors.warningColor,
                               fontWeight: FontWeight.bold,

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/exam_controller.dart';
+import '../../controller/subjects_controller.dart';
 
 class PreExam extends StatelessWidget {
   const PreExam({super.key});
@@ -15,21 +16,21 @@ class PreExam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ExamController controller = Get.put(ExamController());
-    final LinearGradient color = Get.arguments['color'];
-    final String name = Get.arguments['name'];
+    final SubjectsController subjectController = Get.put(SubjectsController());
+
     return Scaffold(
       // appbar for the name of the subject
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
         child: CustomAppBar(
-          name: name,
-          color: color,
+          name: subjectController.name.value,
+          color: subjectController.color,
         ),
       ),
       // container to set the backgroung gradinet color
       body: Container(
         padding: const EdgeInsets.all(25),
-        decoration: BoxDecoration(gradient: color),
+        decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -57,10 +58,7 @@ class PreExam extends StatelessWidget {
               height: 50,
               width: double.infinity,
               onClick: () {
-                Get.to(() => const RunExam(), arguments: {
-                  'color': color,
-                  'name': name,
-                });
+                Get.to(() => const RunExam());
               },
             ),
           ],

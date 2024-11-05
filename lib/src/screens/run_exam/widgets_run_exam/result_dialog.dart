@@ -1,30 +1,23 @@
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomDialog extends StatelessWidget {
-  final String nextText;
-  final String reviewAnswer;
-  final String wrongAnswers;
-  final String trueAnswers;
-  final String numberOfQuestion;
-  final String score;
-  final String time;
-  const CustomDialog({
-    super.key,
-    required this.nextText,
-    required this.wrongAnswers,
-    required this.trueAnswers,
-    required this.numberOfQuestion,
-    required this.score,
-    required this.time,
-    required this.reviewAnswer,
-  });
+import '../../../../generated/l10n.dart';
+import '../../../controller/exam_controller.dart';
+import '../../after_exam/after_exam.dart';
+
+class ResultDialog extends StatelessWidget {
+  final BuildContext context;
+
+  const ResultDialog({super.key, required this.context});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext _context) {
+    final ExamController controller = Get.put(ExamController());
+
     return Dialog(
-      child: Builder(builder: (context) {
+      child: Builder(builder: (_) {
         return Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -52,7 +45,8 @@ class CustomDialog extends StatelessWidget {
                         width: 2.0,
                       ),
                     ),
-                    child: Center(child: Text(numberOfQuestion)),
+                    child: Center(
+                        child: Text(controller.questions.length.toString())),
                   ),
                   InkWell(
                     onTap: () {},
@@ -77,7 +71,7 @@ class CustomDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 10),
                       child: Text(
-                        trueAnswers,
+                        controller.trueAnswers.value.toString(),
                         style: const TextStyle(
                             color: AppColors.successColor,
                             fontWeight: FontWeight.bold),
@@ -91,7 +85,7 @@ class CustomDialog extends StatelessWidget {
                           horizontal: 30, vertical: 10),
                       child: Center(
                         child: Text(
-                          wrongAnswers,
+                          controller.falseAnswers.value.toString(),
                           style: const TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
                         ),
@@ -113,7 +107,7 @@ class CustomDialog extends StatelessWidget {
                       Icons.watch_later_outlined,
                       color: AppColors.mainColor,
                     ),
-                    Text(time),
+                    Text(controller.examTime.value.toString()),
                   ],
                 ),
               ),
@@ -125,18 +119,23 @@ class CustomDialog extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.mainColor.withOpacity(0.25),
                       borderRadius: BorderRadius.circular(25)),
-                  child: Center(child: Text(score))),
+                  child:
+                      Center(child: Text(controller.score.value.toString()))),
               const SizedBox(
                 height: 25,
               ),
               InkWell(
+                  onTap: () {
+                    Navigator.pop(_context);
+                    Get.to(() => const AfterExam());
+                  },
                   child: Container(
                       width: 200,
                       decoration: BoxDecoration(
                           border:
                               Border.all(width: 2, color: AppColors.mainColor),
                           borderRadius: BorderRadius.circular(25)),
-                      child: Center(child: Text(reviewAnswer)))),
+                      child: Center(child: Text(S.of(context).review_answer)))),
               const SizedBox(
                 height: 10,
               ),
@@ -147,10 +146,12 @@ class CustomDialog extends StatelessWidget {
                           color: AppColors.mainColor,
                           borderRadius: BorderRadius.circular(25)),
                       child: Center(
-                        child: Text(
-                          nextText,
-                          style: const TextStyle(color: Colors.white),
-                        ),
+                        child: Builder(builder: (_) {
+                          return Text(
+                            S.of(context).done,
+                            style: const TextStyle(color: Colors.white),
+                          );
+                        }),
                       ))),
             ],
           ),

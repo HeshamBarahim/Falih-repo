@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -56,6 +57,16 @@ class S {
       'Welcome Back',
       name: 'title_login',
       desc: 'This is the Start of the login page',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'Done',
+      desc: '',
       args: [],
     );
   }
@@ -503,9 +514,9 @@ class S {
   /// `results`
   String get practice_test {
     return Intl.message(
-      'results',
+      'Practice test',
       name: 'practice_test',
-      desc: 'Test ',
+      desc: 'Practice Test',
       args: [],
     );
   }

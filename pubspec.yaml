@@ -35,16 +35,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_localizations:
-        sdk: flutter
+    sdk: flutter
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
-  carousel_slider: 
+  carousel_slider:
   smooth_page_indicator:
   get:
   percent_indicator:
   firebase_core:
   cloud_firestore:
   csv:
+  aws_client:
+  aws_signature_v4:
+  http:
 dev_dependencies:
   flutter_test:
     sdk: flutter
