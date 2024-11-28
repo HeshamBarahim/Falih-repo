@@ -1,0 +1,12 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+
+  background_image: assets/images/background_image_of_auth.png
+  image: assets/images/logo_falih.png
+
+  android_12:
+    background_image: assets/images/background_image_of_auth.png
+    image: assets/images/logo_falih.png
