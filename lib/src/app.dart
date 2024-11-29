@@ -1,23 +1,29 @@
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/navigation_menu.dart';
-import 'package:falih/src/screens/Auth/signup/signup_part2.dart';
-import 'package:falih/src/screens/curriculum/curriculum.dart';
-import 'package:falih/src/screens/home/home_page.dart';
+import 'package:falih/src/menu_screen.dart';
 import 'package:falih/src/screens/pre_exam/pre_exam.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
-import 'package:falih/src/screens/settings/settings_screen_2.dart';
-import 'package:falih/src/screens/subscription/subscription_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+import '../generated/l10n.dart';
 import 'screens/Auth/login/login.dart';
 import 'screens/Auth/signup/signup.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:falih/generated/l10n.dart';
-import 'package:get/get.dart';
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
+    // Initialize GetStorage instance
+    final box = GetStorage();
+
+    // Check if onboarding has been seen
+    final hasSeenOnboarding = box.read('hasSeenOnboarding') ?? false;
+
     return GetMaterialApp(
       //  GetMaterialApp instead of MaterialApp
       debugShowCheckedModeBanner: false,
@@ -36,16 +42,25 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       getPages: [
         //  routes here
-        GetPage(name: '/', page: () => NavigationMenu()),
-        // GetPage(name: '/', page: () => SettingsScreen_2()),
-        // GetPage(name: '/', page: () => const Login()),
-        // GetPage(name: '/', page: () => const SubscriptionScreen()),
+        // GetPage(
+        //     name: '/',
+        //     page: () =>
+        //         hasSeenOnboarding ? Login() : const FirstPageBoarding()),
         GetPage(name: '/signup', page: () => Signup()),
-        GetPage(name: '/signupPart2', page: () => SignupPart2()),
-        GetPage(name: '/login', page: () => const Login()),
+        // GetPage(name: '/', page: () => HomePage()),
+        // GetPage(name: '/', page: () => CheckoutScreen()),
+        // GetPage(name: '/', page: () => LeaderBoardScreen()),
+        GetPage(name: '/', page: () => const MenuScreen()),
+        // GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/runExam', page: () => const RunExam()),
         GetPage(name: '/preExam', page: () => const PreExam()),
       ],
     );
   }
+}
+
+// cheack if the current state is arabic
+bool isArabic() {
+  return Intl.getCurrentLocale() == 'ar';
 }
