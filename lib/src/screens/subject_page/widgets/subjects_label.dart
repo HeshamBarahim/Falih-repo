@@ -13,6 +13,7 @@ class SubjectsLabels extends StatelessWidget {
   SubjectsLabels({super.key});
 
   final SubjectsController subjectController = Get.put(SubjectsController());
+  final ExamController controller = Get.put(ExamController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,11 @@ class SubjectsLabels extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     // Update selected index using the controller
+                    if (index == 1) {
+                      controller.setExamQuestions();
+                      Get.to(() => const PreExam());
+                      return;
+                    }
                     subjectController.changeSelectedIndex(index);
                   },
                   child: Obx(() => Container(
@@ -77,11 +83,14 @@ class SubjectsLabels extends StatelessWidget {
           Obx(() {
             if (subjectController.selectedIndex.value == 0) {
               return _buildUnitsExams(firestore);
-            } else if (subjectController.selectedIndex.value == 1) {
-              return _buildExamsContent();
-            } else {
+              // } else if (subjectController.selectedIndex.value == 1) {
+              //   Get.to(() => const PreExam());
+              //   return Container();
+              // return _buildExamsContent();
+            } else if (subjectController.selectedIndex.value == 2) {
               return _buildResultsContent();
             }
+            return Container();
           })
         ],
       ),
@@ -93,7 +102,7 @@ class SubjectsLabels extends StatelessWidget {
     var subjectName = subjectController.name.value;
     if (subjectName == "Islamic Education") {
       subjectName = "islamic";
-    } else if (subjectName == "Quram Kareem") {
+    } else if (subjectName == "Quran Kareem") {
       subjectName = "quran";
     } else if (subjectName == "Arabic Language") {
       subjectName = "arabic";
@@ -102,6 +111,7 @@ class SubjectsLabels extends StatelessWidget {
     }
 
     print("${subjectName.toLowerCase()}_9");
+
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       future: firestore
           .collection('subjects_ar_9')
@@ -122,6 +132,7 @@ class SubjectsLabels extends StatelessWidget {
         print(snapshot.data!.data()?.isEmpty);
         final subjectData = snapshot.data!.data() as Map<String, dynamic>;
         final units = subjectData['units'];
+        controller.units = units;
 
         return Expanded(
           child: ListView.builder(
@@ -132,9 +143,8 @@ class SubjectsLabels extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    final ExamController controller = Get.put(ExamController());
                     controller.resetExam();
-                    controller.setQuestions(unit["questions"]);
+                    controller.setUnitQuestions(unit["questions"]);
                     Get.to(() => const PreExam());
                   },
                   child: Card(
@@ -201,11 +211,12 @@ class SubjectsLabels extends StatelessWidget {
   }
 
   // Placeholder content for "exams"
-  Widget _buildExamsContent() {
-    return Center(
-      child: Text("Exams content here"),
-    );
-  }
+  // void Widget _buildExamsContent() {
+  //   Get.to(() => const PreExam());
+  //   // return Center(
+  //   //   child: Text("Exams content here"),
+  //   // );
+  // }
 
   // Placeholder content for "results"
   Widget _buildResultsContent() {

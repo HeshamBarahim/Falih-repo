@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,18 +10,63 @@ import '../models/exam.dart';
 import '../screens/run_exam/widgets_run_exam/result_dialog.dart';
 
 class ExamController extends GetxController {
-  var questionIndex = 19.obs;
+  var questionIndex = 0.obs;
   var score = 0.obs;
   var trueAnswers = 0.obs;
   var falseAnswers = 0.obs;
   var examTime = 0.obs;
+  var isFinalExam = false.obs;
   var isGeneratingResponse = false.obs;
   var generatedResponse = "".obs;
+  late List<dynamic> units;
   var questions = <Exam>[].obs;
   var selectedAnswers = <int?>[].obs; // List to store selected answer indices
 
-  void setQuestions(List<dynamic> questionData) {
+  void setUnitQuestions(List<dynamic> questionData) {
     final List<Exam> loadedQuestions = questionData.map((data) {
+      print(data);
+      return Exam.fromMap(data as Map<String, dynamic>);
+    }).toList();
+    questions.assignAll(loadedQuestions);
+    selectedAnswers.assignAll(List<int?>.filled(loadedQuestions.length, null));
+  }
+
+  void setExamQuestions() {
+    isFinalExam.value = true;
+    // Calculate the total number of questions in all units
+    var totalUnitsQuestions =
+        units.fold(0, (sum, unit) => sum + unit["questions"].length as int);
+    // print(totalUnitsQuestions);
+
+    List<dynamic> selected_50_Questions =
+        []; // General list to store selected questions from all units
+
+    for (var unit in units) {
+      int unitQuestionCount = unit["questions"].length;
+
+      // Calculate the percentage of total questions this unit holds
+      double unitPercentage = (unitQuestionCount / totalUnitsQuestions) * 100;
+
+      // Calculate the number of questions to take from this unit (based on a 50-question target)
+      int selectedQuestionsCount = (unitPercentage * 50 / 100).round();
+      print(
+          "Unit percentage: ${unitPercentage}, selected questions: $selectedQuestionsCount");
+
+      //  Shuffle the questions and then take the required count
+      final random = Random();
+      List<dynamic> shuffledQuestions = List.from(unit["questions"])
+        ..shuffle(random);
+      List<dynamic> selectedQuestions =
+          shuffledQuestions.take(selectedQuestionsCount).toList();
+
+      // Add selected questions from the current unit to the general list
+      selected_50_Questions.addAll(selectedQuestions);
+    }
+    // Questions from all units
+    selected_50_Questions = List.from(selected_50_Questions)..shuffle(Random());
+    print("Total selected questions: ${selected_50_Questions.length}");
+
+    final List<Exam> loadedQuestions = selected_50_Questions.map((data) {
       return Exam.fromMap(data as Map<String, dynamic>);
     }).toList();
     questions.assignAll(loadedQuestions);
@@ -74,6 +120,7 @@ class ExamController extends GetxController {
     score.value = 0;
     falseAnswers.value = 0;
     trueAnswers.value = 0;
+    isFinalExam.value = false;
   }
 
   generateResponse(String questionText) async {
