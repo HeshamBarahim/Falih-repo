@@ -11,7 +11,10 @@ class Exam {
   factory Exam.fromMap(Map<String, dynamic> data) {
     return Exam(
       questionText: data['question'] ?? '',
-      options: List<String>.from(data['choices']),
+      options: data['choices'][0] is int || data['choices'][0] is double
+          ? List<String>.from(
+              data['choices'].map((choice) => choice.toString()))
+          : List<String>.from(data['choices']),
       correctAnswerIndex: data['correctAnswer'] ?? 0,
     );
   }
