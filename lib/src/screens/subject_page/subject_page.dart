@@ -1,4 +1,3 @@
-import 'package:falih/src/screens/after_exam/after_exam.dart';
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,9 +46,9 @@ class SubjectPage extends StatelessWidget {
                   ),
                 ],
               )),
-          const SizedBox(
-            height: 20,
-          ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
           SubjectsLabels(),
         ],
       ),

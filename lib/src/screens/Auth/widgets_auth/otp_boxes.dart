@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pinput/pinput.dart';
 
 class OtpBoxes extends StatelessWidget {
   final TextEditingController otp;
+
   const OtpBoxes({
     super.key,
     required this.otp,

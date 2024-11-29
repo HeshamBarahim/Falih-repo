@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/src/controller/subjects_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/themes.dart';
-import '../models/exam.dart';
+import '../models/exam_model.dart';
 import '../screens/run_exam/widgets_run_exam/result_dialog.dart';
 
 class ExamController extends GetxController {
@@ -22,9 +24,12 @@ class ExamController extends GetxController {
   var questions = <Exam>[].obs;
   var selectedAnswers = <int?>[].obs; // List to store selected answer indices
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final SubjectsController subjectController = Get.put(SubjectsController());
+
   void setUnitQuestions(List<dynamic> questionData) {
     final List<Exam> loadedQuestions = questionData.map((data) {
-      print(data);
+      // print(data);
       return Exam.fromMap(data as Map<String, dynamic>);
     }).toList();
     questions.assignAll(loadedQuestions);
@@ -181,7 +186,7 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-        selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
+                selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
             .map((entry) => entry.value)
             .toList();
       case 'incorrect':
@@ -189,12 +194,51 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-        selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
-            selectedAnswers[entry.key] != null)
+                selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
+                selectedAnswers[entry.key] != null)
             .map((entry) => entry.value)
             .toList();
       default:
         return questions;
+    }
+  }
+
+  Future<void> saveExamResult() async {
+    try {
+      final examResult = {
+        'examName': subjectController.name + "_9",
+        'score': score.value,
+        'totalQuestions': questions.length,
+        'correctAnswers': trueAnswers.value,
+        'wrongAnswers': falseAnswers.value,
+        // 'timeTaken': Time,
+        'date': Timestamp.now(),
+        'answers': selectedAnswers,
+      };
+
+      // Save result to Firestore
+      await _firestore
+          .collection('exams')
+          .doc("sameer-77") // user id from firebase
+          .collection('userExams')
+          .doc()
+          .set(examResult);
+
+      Get.snackbar(
+        'Success',
+        'Exam result saved successfully!',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 3),
+      );
+    } catch (error) {
+      Get.snackbar(
+        'Error',
+        'Failed to save exam result: $error',
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Colors.red,
+        backgroundColor: Colors.white,
+        duration: const Duration(seconds: 3),
+      );
     }
   }
 }

@@ -7,6 +7,7 @@ class ResendCodeButton extends StatelessWidget {
   const ResendCodeButton({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

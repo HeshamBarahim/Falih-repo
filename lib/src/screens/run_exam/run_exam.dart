@@ -2,13 +2,12 @@ import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
-import 'package:falih/src/screens/run_exam/widgets_run_exam/result_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
-import '../after_exam/after_exam.dart';
 
 class RunExam extends StatelessWidget {
   const RunExam({super.key});
@@ -28,7 +27,9 @@ class RunExam extends StatelessWidget {
         final questionNumber = controller.questionIndex.value;
         final selectedAnswer =
             controller.selectedAnswers[controller.questionIndex.value];
-
+        // final SubjectsController subjectController =
+        //     Get.put(SubjectsController());
+        // print(subjectController.name);
         return Container(
           padding: const EdgeInsets.all(25),
           height: double.infinity,

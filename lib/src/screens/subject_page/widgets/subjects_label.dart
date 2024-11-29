@@ -4,12 +4,13 @@ import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/exam_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../controller/subjects_controller.dart';
 import '../../pre_exam/pre_exam.dart';
 
 class SubjectsLabels extends StatelessWidget {
-
   SubjectsLabels({super.key});
 
   final SubjectsController subjectController = Get.put(SubjectsController());
@@ -88,7 +89,7 @@ class SubjectsLabels extends StatelessWidget {
               //   return Container();
               // return _buildExamsContent();
             } else if (subjectController.selectedIndex.value == 2) {
-              return _buildResultsContent();
+              return _buildResultsContent(firestore);
             }
             return Container();
           })
@@ -110,7 +111,9 @@ class SubjectsLabels extends StatelessWidget {
       subjectName = "english";
     }
 
-    print("${subjectName.toLowerCase()}_9");
+    // if (kDebugMode) {
+    //   print("${subjectName.toLowerCase()}_9");
+    // }
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       future: firestore
@@ -129,13 +132,13 @@ class SubjectsLabels extends StatelessWidget {
           return const Center(child: Text('No data found'));
         }
 
-        print(snapshot.data!.data()?.isEmpty);
         final subjectData = snapshot.data!.data() as Map<String, dynamic>;
         final units = subjectData['units'];
         controller.units = units;
 
         return Expanded(
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             itemCount: units.length,
             itemBuilder: (context, index) {
               final unit = units[index];
@@ -219,9 +222,167 @@ class SubjectsLabels extends StatelessWidget {
   // }
 
   // Placeholder content for "results"
-  Widget _buildResultsContent() {
-    return Center(
-      child: Text("Results content here"),
+  Widget _buildResultsContent(FirebaseFirestore firestore) {
+    return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      future: firestore
+          .collection('exams')
+          .doc("sameer-77") // user id from firebase
+          .collection('userExams')
+          .get(),
+      builder: (BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data found'));
+        }
+
+        final examResults = snapshot.data!.docs;
+
+        return Expanded(
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: examResults.length,
+            itemBuilder: (context, index) {
+              final examResult = examResults[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // controller.resetExam();
+                    // controller.setUnitQuestions(examResult["questions"]);
+                    // Get.to(() => const PreExam());
+                  },
+                  child: SizedBox(
+                    height: 100,
+                    child: Card(
+                      color: AppColors.secondaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            // const CircleAvatar(),
+                            CircularPercentIndicator(
+                              radius: 30.0,
+                              animation: true,
+                              animationDuration: 1200,
+                              lineWidth: 5.0,
+                              percent: examResult["correctAnswers"] /
+                                  examResult["totalQuestions"],
+                              center: Text(
+                                  "${(examResult["correctAnswers"] / examResult["totalQuestions"]) * 100}%"),
+                              progressColor: (examResult["correctAnswers"] /
+                                          examResult["totalQuestions"]) >
+                                      0.5
+                                  ? Colors.green
+                                  : Colors.red,
+                            ),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  (examResult["correctAnswers"] /
+                                              examResult["totalQuestions"]) >
+                                          0.5
+                                      ? Container(
+                                          decoration: const BoxDecoration(
+                                              color: AppColors.successBoxColor,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                          child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              child: Text("Passed",
+                                                  style: TextStyle(
+                                                      color: AppColors
+                                                          .successColor,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 14))))
+                                      : Container(
+                                          decoration: const BoxDecoration(
+                                              color: AppColors.errorBoxColor,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                          child: const Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            child: Text("Failed",
+                                                style: TextStyle(
+                                                    color: AppColors.errorColor,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14)),
+                                          ),
+                                        ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 5.0),
+                                    child: Text(
+                                      "${examResult["examName"]}",
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Correct Answers: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                  style: const TextStyle(
+                                    color: Color(0xFF3CD797),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  "On: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.right,
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 20,
+                              color: Color(0xFF743089),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
