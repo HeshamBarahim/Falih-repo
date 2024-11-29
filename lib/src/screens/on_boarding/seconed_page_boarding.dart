@@ -6,6 +6,7 @@ import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SeconedPageBoarding extends StatelessWidget {
   const SeconedPageBoarding({super.key});
@@ -35,28 +36,28 @@ class SeconedPageBoarding extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 80,
+                      SizedBox(
+                        height: 80.h,
                       ),
                       Container(
                           margin: const EdgeInsets.only(left: 20),
-                          height: 250,
-                          width: 350,
+                          height: 250.h,
+                          width: 350.w,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(S.of(context).learn,
-                                  style: const TextStyle(
-                                      fontSize: 30,
+                                  style: TextStyle(
+                                      fontSize: 30.sp,
                                       fontWeight: FontWeight.bold)),
                               Text(S.of(context).your,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: AppColors.bgScreen2,
-                                      fontSize: 30,
+                                      fontSize: 30.sp,
                                       fontWeight: FontWeight.bold)),
                               Text(S.of(context).way,
-                                  style: const TextStyle(
-                                      fontSize: 30,
+                                  style: TextStyle(
+                                      fontSize: 30.sp,
                                       fontWeight: FontWeight.bold))
                             ],
                           )),
@@ -68,8 +69,8 @@ class SeconedPageBoarding extends StatelessWidget {
                   right: -10, // Distance from the right
                   child: Image.asset(
                     Images.onBoardingTwo,
-                    width: 300,
-                    height: 300,
+                    width: 300.w,
+                    height: 300.h,
                   ),
                 )
               ],

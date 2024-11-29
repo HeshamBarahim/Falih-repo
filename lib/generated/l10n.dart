@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -756,6 +755,36 @@ class S {
     return Intl.message(
       'done',
       name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subjects`
+  String get subjects {
+    return Intl.message(
+      'Subjects',
+      name: 'subjects',
+      desc: 'Navigation_Menu folder',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LeaderBoard`
+  String get leaderBoard {
+    return Intl.message(
+      'LeaderBoard',
+      name: 'leaderBoard',
       desc: '',
       args: [],
     );

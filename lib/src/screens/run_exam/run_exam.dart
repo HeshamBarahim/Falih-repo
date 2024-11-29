@@ -5,7 +5,7 @@ import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart
 import 'package:falih/src/screens/run_exam/widgets_run_exam/result_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
 import '../after_exam/after_exam.dart';
@@ -99,8 +99,8 @@ class RunExam extends StatelessWidget {
                           child: Transform.translate(
                             offset: const Offset(0, -30),
                             child: Container(
-                                width: 75,
-                                height: 75,
+                                width: 75.w,
+                                height: 75.h,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
                                     color: AppColors.secondaryColor),
@@ -132,8 +132,8 @@ class RunExam extends StatelessWidget {
                                     controller.selectAnswer(idx);
                                   },
                                   child: Container(
-                                      width: 30,
-                                      height: 30,
+                                      width: 30.w,
+                                      height: 30.h,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(50),

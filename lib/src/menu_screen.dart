@@ -5,6 +5,8 @@ import 'package:falih/src/screens/leaderboard/leaderboard_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:falih/generated/l10n.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -17,36 +19,38 @@ class MenuScreen extends StatelessWidget {
           title: Center(
             child: Obx(() => Text(
                 controller.screenTitle[controller.selectedIndex.value],
-                style: const TextStyle(
+                style: TextStyle(
                     color: AppColors.mainColor,
                     fontFamily: 'GoogleFonts.montserratAlternatesTextTheme',
                     fontWeight: FontWeight.bold,
-                    fontSize: 30))),
+                    fontSize: 20.sp))),
           ),
           backgroundColor: AppColors.moreLigtenMainColor,
           leading: IconButton(
-              padding: const EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.05),
               onPressed: () {},
-              icon: const Icon(
+              icon: Icon(
                 Icons.notifications_none,
-                size: 40,
+                size: 25.w,
               ),
               color: AppColors.mainColor,
-              iconSize: 30),
+              iconSize: 25.w),
           actions: [
             IconButton(
-              padding: const EdgeInsets.only(right: 20),
+              padding: EdgeInsets.only(
+                  right: MediaQuery.of(context).size.width * 0.05),
               onPressed: () {
                 Get.to(() => const SettingsScreen_2());
               },
               icon: const Icon(Icons.settings),
               color: AppColors.mainColor,
-              iconSize: 30,
+              iconSize: 25.w,
             ),
           ],
         ),
         bottomNavigationBar: Obx(
-              () => Container(
+          () => Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: const BorderRadius.only(
@@ -69,27 +73,36 @@ class MenuScreen extends StatelessWidget {
                 topRight: Radius.circular(30),
               ),
               child: NavigationBar(
+                  indicatorColor: AppColors.choicesColor,
                   backgroundColor: AppColors.moreLigtenMainColor,
-                  height: 100,
+                  height: 100.h,
                   elevation: 0,
                   selectedIndex: controller.selectedIndex.value,
                   onDestinationSelected: (index) =>
                       controller.selectedIndex.value = index,
-                  destinations: const [
+                  destinations: [
                     NavigationDestination(
                         icon: Icon(
                           Icons.menu_book_outlined,
                           color: AppColors.mainColor,
+                          size: 30.w,
                         ),
-                        label: 'Subjects'),
+                        label: S.of(context).subjects),
                     NavigationDestination(
-                      icon: Icon(Icons.home, color: AppColors.mainColor),
-                      label: 'Home',
+                      icon: Icon(
+                        Icons.home,
+                        color: AppColors.mainColor,
+                        size: 30.w,
+                      ),
+                      label: S.of(context).home,
                     ),
                     NavigationDestination(
-                      icon: Icon(Icons.leaderboard_outlined,
-                          color: AppColors.mainColor),
-                      label: 'LeaderBoard',
+                      icon: Icon(
+                        Icons.leaderboard_outlined,
+                        color: AppColors.mainColor,
+                        size: 30.w,
+                      ),
+                      label: S.of(context).leaderBoard,
                     ),
                   ]),
             ),
@@ -107,5 +120,9 @@ class NavigationController extends GetxController {
     HomePage(),
     LeaderBoardScreen(),
   ];
-  final screenTitle = ['Subjects', 'Home', 'LeaderBoard'];
+  final screenTitle = [
+    S.current.subjects,
+    S.current.home,
+    S.current.leaderBoard
+  ];
 }

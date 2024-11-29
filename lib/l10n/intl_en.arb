@@ -285,5 +285,17 @@
     "@done": {
       "description": ""
     },
-    "done":"done"
+    "done":"done",
+    "@subjects": {
+      "description": "Navigation_Menu folder"
+    },
+    "subjects":"Subjects",
+    "@home": {
+      "description": ""
+    },
+    "home":"Home",
+    "@leaderBoard": {
+      "description": ""
+    },
+    "leaderBoard":"LeaderBoard"
 }

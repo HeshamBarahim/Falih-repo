@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "history_heading":
             MessageLookupByLibrary.simpleMessage("Your test histroy"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "leaderBoard": MessageLookupByLibrary.simpleMessage("LeaderBoard"),
         "learn": MessageLookupByLibrary.simpleMessage("Learn"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
@@ -105,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Arabic Language"),
         "subject_two":
             MessageLookupByLibrary.simpleMessage("Islamic Education"),
+        "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),

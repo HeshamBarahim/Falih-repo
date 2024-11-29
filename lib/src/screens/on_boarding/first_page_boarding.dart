@@ -6,6 +6,7 @@ import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FirstPageBoarding extends StatelessWidget {
   const FirstPageBoarding({super.key});
@@ -39,30 +40,30 @@ class FirstPageBoarding extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 20),
                         child: Text(
                           S.of(context).welcome_to,
-                          style: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 25.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 20),
                         child: Text(
                           S.of(context).falih,
-                          style: const TextStyle(
-                              fontSize: 25,
+                          style: TextStyle(
+                              fontSize: 25.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.bgScreen1),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             margin: const EdgeInsets.only(left: 20),
-                            height: 200,
-                            width: 150,
+                            height: 200.h,
+                            width: 150.w,
                             child: Text(
                               S.of(context).explaination_on_boarding_1,
                               style: const TextStyle(
@@ -79,8 +80,8 @@ class FirstPageBoarding extends StatelessWidget {
                   right: -80, // Distance from the right
                   child: Image.asset(
                     Images.onBoardingOne,
-                    width: 300,
-                    height: 300,
+                    width: 300.w,
+                    height: 300.h,
                   ),
                 )
               ],

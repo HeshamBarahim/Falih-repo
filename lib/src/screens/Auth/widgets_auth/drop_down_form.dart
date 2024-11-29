@@ -26,7 +26,7 @@ class CustomDropDownForm extends StatelessWidget {
         value: selectedValue,
         hint: Text(hintText),
         decoration: InputDecoration(
-          hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.mainColor),
+          hintStyle: TextStyle(fontSize: 20.sp, color: AppColors.mainColor),
           prefixIcon: prefixIcon,
           prefixIconColor: AppColors.mainColor,
           contentPadding:

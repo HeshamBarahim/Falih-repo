@@ -172,64 +172,6 @@ class LeaderBoardScreen extends StatelessWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: GetBuilder<FloatingNavBarController>(
-      //   init: FloatingNavBarController(),
-      //   builder: (controller) {
-      //     return Padding(
-      //       padding: EdgeInsets.only(bottom: SizeConfig.screenHeight! * 0.03),
-      //       child: Container(
-      //         margin: EdgeInsets.symmetric(
-      //             horizontal: SizeConfig.screenWidth! * 0.18),
-      //         decoration: BoxDecoration(
-      //           color: Colors.white,
-      //           borderRadius: BorderRadius.circular(30.0),
-      //           boxShadow: [
-      //             BoxShadow(
-      //               color: Colors.black26,
-      //               blurRadius: 10,
-      //               offset: Offset(3, 2),
-      //             ),
-      //           ],
-      //         ),
-      //         child: BottomNavigationBar(
-      //           currentIndex: controller.selectedIndex,
-      //           onTap: (val) {
-      //             controller.changeIndex(val);
-      //           },
-      //           backgroundColor: Color(0xFFFBF7FC),
-      //           elevation: 0,
-      //           selectedLabelStyle: TextStyle(
-      //             fontSize: SizeConfig.screenWidth! * 0.032,
-      //             color: Color(0xFF743089),
-      //           ),
-      //           showUnselectedLabels: false,
-      //           selectedIconTheme: IconThemeData(
-      //             color: Color(0xFF743089),
-      //             size: SizeConfig.screenWidth! * 0.08,
-      //           ),
-      //           unselectedIconTheme: IconThemeData(
-      //             color: Color(0xFFBBA3C2),
-      //             size: SizeConfig.screenWidth! * 0.07,
-      //           ),
-      //           items: [
-      //             BottomNavigationBarItem(
-      //               icon: Icon(Icons.search),
-      //               label: 'Search',
-      //             ),
-      //             BottomNavigationBarItem(
-      //               icon: Icon(Icons.home),
-      //               label: 'Home',
-      //             ),
-      //             BottomNavigationBarItem(
-      //               icon: Icon(Icons.leaderboard_outlined),
-      //               label: 'LeaderBoard',
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // )
     );
   }
 }

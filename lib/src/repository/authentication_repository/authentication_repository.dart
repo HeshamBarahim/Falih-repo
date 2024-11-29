@@ -1,3 +1,5 @@
+import 'package:falih/src/menu_screen.dart';
+import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -40,16 +42,14 @@ class AuthenticationRepository extends GetxController {
   /// Setting initial screen
   setInitialScreen(User? user) async {
     if (user != null) {
-      user.emailVerified
-          ? Get.offAll(() => const ())
-          : Get.offAll(() => const ());
+      Get.offAll(() => const MenuScreen());
     } else {
       // Check if it's the user's first time, then navigate accordingly
       userStorage.writeIfNull('isFirstTime', true);
       print(userStorage.read('isFirstTime'));
       userStorage.read('isFirstTime') != true
-          ? Get.offAll(() => const FirstPageBoarding())
-          : Get.offAll(() => const ());
+          ? Get.offAll(() => Login())
+          : Get.offAll(() => const FirstPageBoarding());
     }
 
     // Note: As per this code you will not see OnBoarding Screen on app launch.
@@ -57,7 +57,7 @@ class AuthenticationRepository extends GetxController {
     // https://www.youtube.com/watch?v=GYtMpccOOtU&t=78s
   }
 
-  /* ---------------------------- Email & Password sign-in ---------------------------------*/
+// Email & Password sign-in
 
   // EmailAuthentication - LOGIN
   Future<void> loginWithEmailAndPassword(String email, String password) async {
@@ -101,49 +101,6 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  // PhoneAuthentication LOGIN
-  loginWithPhoneNo(String phoneNumber) async {
-    try {
-      await _auth.signInWithPhoneNumber(phoneNumber);
-    } on FirebaseAuthException catch (e) {
-      final ex = TExceptions.fromCode(e.code);
-      throw ex.message;
-    } catch (e) {
-      throw e.toString().isEmpty
-          ? 'Unknown Error Occurred. Try again!'
-          : e.toString();
-    }
-  }
-
-  // PhoneAuthentication  REGISTER
-  Future<void> phoneAuthentication(String phoneNo) async {
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNo,
-        verificationCompleted: (credential) async {
-          await _auth.signInWithCredential(credential);
-        },
-        codeSent: (verificationId, resendToken) {
-          _phoneVerificationId.value = verificationId;
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
-          _phoneVerificationId.value = verificationId;
-        },
-        verificationFailed: (e) {
-          final result = TExceptions.fromCode(e.code);
-          throw result.message;
-        },
-      );
-    } on FirebaseAuthException catch (e) {
-      final result = TExceptions.fromCode(e.code);
-      throw result.message;
-    } catch (e) {
-      throw e.toString().isEmpty
-          ? 'Unknown Error Occurred. Try again!'
-          : e.toString();
-    }
-  }
-
   // PhoneAuthentication VERIFY PHONE NO BY OTP
   Future<bool> verifyOTP(String otp) async {
     var credentials = await _auth.signInWithCredential(
@@ -153,9 +110,7 @@ class AuthenticationRepository extends GetxController {
     return credentials.user != null ? true : false;
   }
 
-  /* ---------------------------- ./end Federated identity & social sign-in ---------------------------------*/
-
-  // LogoutUser -
+  // LogoutUser
   Future<void> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
