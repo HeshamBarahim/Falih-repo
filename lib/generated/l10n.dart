@@ -61,16 +61,6 @@ class S {
     );
   }
 
-  /// `Done`
-  String get done {
-    return Intl.message(
-      'Done',
-      name: 'Done',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `+967`
   String get hint_text_phone {
     return Intl.message(
@@ -286,6 +276,46 @@ class S {
     return Intl.message(
       'class 12',
       name: 'drop_grade_val2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `submit`
+  String get submit {
+    return Intl.message(
+      'submit',
+      name: 'submit',
+      desc: 'This is start of verification page',
+      args: [],
+    );
+  }
+
+  /// `OTP`
+  String get otp {
+    return Intl.message(
+      'OTP',
+      name: 'otp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent OTP code verification to your Phone Number`
+  String get explaination_text {
+    return Intl.message(
+      'We have sent OTP code verification to your Phone Number',
+      name: 'explaination_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend The Code`
+  String get resend_code {
+    return Intl.message(
+      'Resend The Code',
+      name: 'resend_code',
       desc: '',
       args: [],
     );
@@ -514,9 +544,9 @@ class S {
   /// `results`
   String get practice_test {
     return Intl.message(
-      'Practice test',
+      'results',
       name: 'practice_test',
-      desc: 'Practice Test',
+      desc: 'Test ',
       args: [],
     );
   }
@@ -586,6 +616,146 @@ class S {
     return Intl.message(
       'Review Your Answers',
       name: 'review_answer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Master School Subjects with Your Ultimate Study Companion.`
+  String get explaination_on_boarding_1 {
+    return Intl.message(
+      'Master School Subjects with Your Ultimate Study Companion.',
+      name: 'explaination_on_boarding_1',
+      desc: 'The start of boarding screens',
+      args: [],
+    );
+  }
+
+  /// `Welcome To`
+  String get welcome_to {
+    return Intl.message(
+      'Welcome To',
+      name: 'welcome_to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Falih`
+  String get falih {
+    return Intl.message(
+      'Falih',
+      name: 'falih',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn`
+  String get learn {
+    return Intl.message(
+      'Learn',
+      name: 'learn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your`
+  String get your {
+    return Intl.message(
+      'Your',
+      name: 'your',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `way`
+  String get way {
+    return Intl.message(
+      'way',
+      name: 'way',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Equip`
+  String get equip {
+    return Intl.message(
+      'Equip',
+      name: 'equip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yourself`
+  String get your_self {
+    return Intl.message(
+      'Yourself',
+      name: 'your_self',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With The`
+  String get with_the {
+    return Intl.message(
+      'With The',
+      name: 'with_the',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best Tools`
+  String get best_tools {
+    return Intl.message(
+      'Best Tools',
+      name: 'best_tools',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time will be counted during the exam`
+  String get explaintion_number1 {
+    return Intl.message(
+      'Time will be counted during the exam',
+      name: 'explaintion_number1',
+      desc: 'Start of the pre exam screen',
+      args: [],
+    );
+  }
+
+  /// `You can continue take exam anytime`
+  String get explaintion_number2 {
+    return Intl.message(
+      'You can continue take exam anytime',
+      name: 'explaintion_number2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Taking The Exam`
+  String get start_exam {
+    return Intl.message(
+      'Start Taking The Exam',
+      name: 'start_exam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `done`
+  String get done {
+    return Intl.message(
+      'done',
+      name: 'done',
       desc: '',
       args: [],
     );

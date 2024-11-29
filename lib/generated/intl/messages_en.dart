@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "back_to_subjects":
             MessageLookupByLibrary.simpleMessage("Back To Subjects"),
+        "best_tools": MessageLookupByLibrary.simpleMessage("Best Tools"),
         "bottom_text_part1":
             MessageLookupByLibrary.simpleMessage("Have an account? "),
         "bottom_text_part2":
@@ -36,12 +37,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
+        "done": MessageLookupByLibrary.simpleMessage("done"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
         "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("Ibb"),
         "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Taiz"),
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("class 9"),
         "drop_grade_val2": MessageLookupByLibrary.simpleMessage("class 12"),
+        "equip": MessageLookupByLibrary.simpleMessage("Equip"),
         "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+        "explaination_on_boarding_1": MessageLookupByLibrary.simpleMessage(
+            "Master School Subjects with Your Ultimate Study Companion."),
+        "explaination_text": MessageLookupByLibrary.simpleMessage(
+            "We have sent OTP code verification to your Phone Number"),
+        "explaintion_number1": MessageLookupByLibrary.simpleMessage(
+            "Time will be counted during the exam"),
+        "explaintion_number2": MessageLookupByLibrary.simpleMessage(
+            "You can continue take exam anytime"),
+        "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password"),
@@ -56,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "history_heading":
             MessageLookupByLibrary.simpleMessage("Your test histroy"),
+        "learn": MessageLookupByLibrary.simpleMessage("Learn"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "next": MessageLookupByLibrary.simpleMessage("next"),
@@ -65,15 +78,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
         "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
             "You have not taken any tests yet"),
+        "otp": MessageLookupByLibrary.simpleMessage("OTP"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
         "practice_test": MessageLookupByLibrary.simpleMessage("results"),
         "question": MessageLookupByLibrary.simpleMessage("Question"),
+        "resend_code": MessageLookupByLibrary.simpleMessage("Resend The Code"),
         "results": MessageLookupByLibrary.simpleMessage("results"),
         "review_answer":
             MessageLookupByLibrary.simpleMessage("Review Your Answers"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
+        "start_exam":
+            MessageLookupByLibrary.simpleMessage("Start Taking The Exam"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),
         "step2_of_2": MessageLookupByLibrary.simpleMessage("step 2 of 2"),
@@ -88,9 +105,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Arabic Language"),
         "subject_two":
             MessageLookupByLibrary.simpleMessage("Islamic Education"),
+        "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
-        "wrong": MessageLookupByLibrary.simpleMessage("Wrong")
+        "way": MessageLookupByLibrary.simpleMessage("way"),
+        "welcome_to": MessageLookupByLibrary.simpleMessage("Welcome To"),
+        "with_the": MessageLookupByLibrary.simpleMessage("With The"),
+        "wrong": MessageLookupByLibrary.simpleMessage("Wrong"),
+        "your": MessageLookupByLibrary.simpleMessage("Your"),
+        "your_self": MessageLookupByLibrary.simpleMessage("Yourself")
       };
 }

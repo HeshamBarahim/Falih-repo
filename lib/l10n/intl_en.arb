@@ -1,226 +1,289 @@
 {
-    "@@locale": "en",
-    "@title_login": {
-        "description": "This is the Start of the login page"
-      },
-      "title_login": "Welcome Back",
-      "@hint_text_phone": {
-        "description": ""
-      },
-      "hint_text_phone": "+967",
-      "@hint_text_password": {
-        "description": ""
-      },
-      "hint_text_password":"Password",
-      "@forget_password": {
-        "description": ""
-      },
-      "forget_password":"Forget Password",
-      "@login": {
-        "description": ""
-      },
-      "login":"Login",
-      "@not_registerd": {
-        "description": ""
-      },
-      "not_registerd":"Not registerd yet? ",
-      "@create_account": {
-        "description": ""
-      },
-      "create_account":" Create an Account",
+  "@@locale": "en",
+  "@title_login": {
+      "description": "This is the Start of the login page"
+    },
+    "title_login": "Welcome Back",
+    "@hint_text_phone": {
+      "description": ""
+    },
+    "hint_text_phone": "+967",
+    "@hint_text_password": {
+      "description": ""
+    },
+    "hint_text_password":"Password",
+    "@forget_password": {
+      "description": ""
+    },
+    "forget_password":"Forget Password",
+    "@login": {
+      "description": ""
+    },
+    "login":"Login",
+    "@not_registerd": {
+      "description": ""
+    },
+    "not_registerd":"Not registerd yet? ",
+    "@create_account": {
+      "description": ""
+    },
+    "create_account":" Create an Account",
 
-      "@title_signup": {
-        "description": "This is the start of the sign up Page"
-      },
-      "step1_of_2":"step 1 of 2",
-      "@step1_of_2": {
-        "description": ""
-      },
-      "step2_of_2":"step 2 of 2",
-      "@step2_of_2": {
-        "description": ""
-      },
-      "title_signup":" Create Account",
+    "@title_signup": {
+      "description": "This is the start of the sign up Page"
+    },
+    "step1_of_2":"step 1 of 2",
+    "@step1_of_2": {
+      "description": ""
+    },
+    "step2_of_2":"step 2 of 2",
+    "@step2_of_2": {
+      "description": ""
+    },
+    "title_signup":" Create Account",
+    "@hint_text_username": {
+      "description": ""
+    },
+    "hint_text_username":"Full Name",
+    "@hint_text_Governorate": {
+      "description": ""
+    },
+    "hint_text_Governorate":"Governorate",
+    "@hint_text_School": {
+      "description": ""
+    },
+    "next":"next",
+    "@next": {
+      "description": ""
+    },
+    "hint_text_School":"School Name",
+    "@hint_text_Grade": {
+      "description": ""
+    },
+    "hint_text_Grade":"Grade",
+    "@hint_text_confirm": {
+      "description": ""
+    },
+    "hint_text_confirm":"Confirm Password",
+    "@bottom_text_part1": {
+      "description": ""
+    },
+    "bottom_text_part1":"Have an account? ",
+    "@bottom_text_part2": {
+      "description": ""
+    },
+    "bottom_text_part2":" Login instead",
+    "@drop_governorate_val1": {
+      "description": ""
+    },
+    "drop_governorate_val1":"Sanaa",
+    "@drop_governorate_val2": {
+      "description": ""
+    },
+    "drop_governorate_val2":"Ibb",
+    "@drop_governorate_val3": {
+      "description": ""
+    },
+    "drop_governorate_val3":"Taiz",
+    "@drop_grade_val1": {
+      "description": ""
+    },
+    "drop_grade_val1":"class 9",
+    "@drop_grade_val2": {
+      "description": ""
+    },
+    "drop_grade_val2":"class 12",
+    "@submit": {
+      "description": "This is start of verification page"
+    },
+    "submit":"submit",
+    "@otp": {
+      "description": ""
+    },
+    "otp":"OTP",
+    "@explaination_text": {
+      "description": ""
+    },
+    "explaination_text":"We have sent OTP code verification to your Phone Number",
+    "@first_header_home": {
+      "description": "This is the start of the home Page"
+    },
+    "@resend_code": {
+      "description": ""
+    },
+    "resend_code":"Resend The Code",
+    "first_header_home":"Hi Yousif,",
+    "@part_one_subHeader": {
+      "description": ""
+    },
+    "part_one_subHeader":"You have ",
+    "@changing_subHeader": {
+      "description": ""
+    },
+    "changing_subHeader":" not taken ",
+    "@part_two_subHeader": {
+      "description": ""
+    },
+    "part_two_subHeader":" any tests yet",
+    "@score": {
+      "description": ""
+    },
+    "score":"0 points",
+    "@name_league": {
+      "description": ""
+    },
+    "name_league":"Silvery League",
+    "@history_heading": {
+      "description": ""
+    },
+    "history_heading":"Your test histroy",
+    "@not_taken_exams_home_page": {
+      "description": ""
+    },
+    "not_taken_exams_home_page":"You have not taken any tests yet",
 
-      "@hint_text_username": {
-        "description": ""
-      },
-      "hint_text_username":"Full Name",
-      "@hint_text_Governorate": {
-        "description": ""
-      },
-      "hint_text_Governorate":"Governorate",
-      "@hint_text_School": {
-        "description": ""
-      },
-      "next":"next",
-      "@next": {
-        "description": ""
-      },
-      "hint_text_School":"School Name",
-      "@hint_text_Grade": {
-        "description": ""
-      },
-      "hint_text_Grade":"Grade",
-      "@hint_text_confirm": {
-        "description": ""
-      },
-      "hint_text_confirm":"Confirm Password",
-      "@bottom_text_part1": {
-        "description": ""
-      },
-      "bottom_text_part1":"Have an account? ",
-      "@bottom_text_part2": {
-        "description": ""
-      },
-      "bottom_text_part2":" Login instead",
-      "@drop_governorate_val1": {
-        "description": ""
-      },
-      "drop_governorate_val1":"Sanaa",
-      "@drop_governorate_val2": {
-        "description": ""
-      },
-      "drop_governorate_val2":"Ibb",
-      "@drop_governorate_val3": {
-        "description": ""
-      },
-      "drop_governorate_val3":"Taiz",
-      "@drop_grade_val1": {
-        "description": ""
-      },
-      "drop_grade_val1":"class 9",
-      "@drop_grade_val2": {
-        "description": ""
-      },
-      "drop_grade_val2":"class 12",
-
-      "@first_header_home": {
-        "description": "This is the start of the home Page"
-      },
-      "first_header_home":"Hi Yousif,",
-      "@part_one_subHeader": {
-        "description": ""
-      },
-      "part_one_subHeader":"You have ",
-      "@changing_subHeader": {
-        "description": ""
-      },
-      "changing_subHeader":" not taken ",
-      "@part_two_subHeader": {
-        "description": ""
-      },
-      "part_two_subHeader":" any tests yet",
-      "@score": {
-        "description": ""
-      },
-      "score":"0 points",
-      "@name_league": {
-        "description": ""
-      },
-      "name_league":"Silvery League",
-      "@history_heading": {
-        "description": ""
-      },
-      "history_heading":"Your test histroy",
-      "@not_taken_exams_home_page": {
-        "description": ""
-      },
-      "not_taken_exams_home_page":"You have not taken any tests yet",
-
-      "@subject_one": {
-        "description": "This is the start of the Curriculum Page"
-      },
-      "subject_one":"Quran Kareem",
-      "@subject_two": {
-        "description": ""
-      },
-      "subject_two":"Islamic Education",
-      "@subject_three": {
-        "description": ""
-      },
-      "subject_three":"Arabic Language",
-      "@subject_four": {
-        "description": ""
-      },
-      "subject_four":"English Language",
-      "@subject_five": {
-        "description": ""
-      },
-      "subject_five":"Chemistry",
-      "@subject_six": {
-        "description": ""
-      },
-      "subject_six":"Physics",
-      "@subject_seven": {
-        "description": ""
-      },
-      "subject_seven":"Biology",
-      "@subject_eight": {
-        "description": ""
-      },
-      "subject_eight":"Math",
-      "@not_taken_exams": {
-        "description": "This the start of leaderborad page"
-      },
-      "not_taken_exams":"you have not taken any test yet take a test to join the leaderboard and compete with other students",
-      "@statistics": {
-        "description": "This the start of subject page"
-      },
-      "statistics":"Statistics",
-      "@chapters": {
-        "description": ""
-      },
-      "chapters":"Chapters",
-      "@exams": {
-        "description": ""
-      },
-      "exams":"Exams",
-      "@confirm": {
-        "description": "This the start of run exam"
-      },
-      "confirm":"confirm",
-      "@results": {
-        "description": "Test "
-      },
-      "results":"results",
-      "@practice_test": {
-        "description": "Test "
-      },
-      "practice_test":"results",
-      "@question": {
-        "description": "Test "
-      },
-      "question":"Question",
-      "@continueText": {
-        "description": ""
-      },
-      "continueText":"Continue",
-      "@unit_exams": {
-        "description": ""
-      },
-      "unit_exams":"unit_exams",
-      "@correct": {
-        "description": "the start of after exam"
-      },
-      "correct":"Correct",
-      "@wrong": {
-        "description": ""
-      },
-      "wrong":"Wrong",
-      "@back_to_subjects": {
-        "description": ""
-      },
-      "back_to_subjects":"Back To Subjects",
-      "@review_answer": {
-        "description": ""
-      },
-      "review_answer":"Review Your Answers"
-
-
-      
-  
-      
-      
-      
+    "@subject_one": {
+      "description": "This is the start of the Curriculum Page"
+    },
+    "subject_one":"Quran Kareem",
+    "@subject_two": {
+      "description": ""
+    },
+    "subject_two":"Islamic Education",
+    "@subject_three": {
+      "description": ""
+    },
+    "subject_three":"Arabic Language",
+    "@subject_four": {
+      "description": ""
+    },
+    "subject_four":"English Language",
+    "@subject_five": {
+      "description": ""
+    },
+    "subject_five":"Chemistry",
+    "@subject_six": {
+      "description": ""
+    },
+    "subject_six":"Physics",
+    "@subject_seven": {
+      "description": ""
+    },
+    "subject_seven":"Biology",
+    "@subject_eight": {
+      "description": ""
+    },
+    "subject_eight":"Math",
+    "@not_taken_exams": {
+      "description": "This the start of leaderborad page"
+    },
+    "not_taken_exams":"you have not taken any test yet take a test to join the leaderboard and compete with other students",
+    "@statistics": {
+      "description": "This the start of subject page"
+    },
+    "statistics":"Statistics",
+    "@chapters": {
+      "description": ""
+    },
+    "chapters":"Chapters",
+    "@exams": {
+      "description": ""
+    },
+    "exams":"Exams",
+    "@confirm": {
+      "description": "This the start of run exam"
+    },
+    "confirm":"confirm",
+    "@results": {
+      "description": "Test "
+    },
+    "results":"results",
+    "@practice_test": {
+      "description": "Test "
+    },
+    "practice_test":"results",
+    "@question": {
+      "description": "Test "
+    },
+    "question":"Question",
+    "@continueText": {
+      "description": ""
+    },
+    "continueText":"Continue",
+    "@unit_exams": {
+      "description": ""
+    },
+    "unit_exams":"unit_exams",
+    "@correct": {
+      "description": "the start of after exam"
+    },
+    "correct":"Correct",
+    "@wrong": {
+      "description": ""
+    },
+    "wrong":"Wrong",
+    "@back_to_subjects": {
+      "description": ""
+    },
+    "back_to_subjects":"Back To Subjects",
+    "@review_answer": {
+      "description": ""
+    },
+    "review_answer":"Review Your Answers",
+    "@explaination_on_boarding_1": {
+      "description": "The start of boarding screens"
+    },
+    "explaination_on_boarding_1":"Master School Subjects with Your Ultimate Study Companion.",
+    "@welcome_to": {
+      "description": ""
+    },
+    "welcome_to":"Welcome To",
+    "@falih": {
+      "description": ""
+    },
+    "falih":"Falih",
+    "@learn": {
+      "description": ""
+    },
+    "learn":"Learn",
+    "@your": {
+      "description": ""
+    },
+    "your":"Your",
+    "@way": {
+      "description": ""
+    },
+    "way":"way",
+    "@equip": {
+      "description": ""
+    },
+    "equip":"Equip",
+    "@your_self": {
+      "description": ""
+    },
+    "your_self":"Yourself",
+    "@with_the": {
+      "description": ""
+    },
+    "with_the":"With The",
+    "@best_tools": {
+      "description": ""
+    },
+    "best_tools":"Best Tools",
+    "@explaintion_number1": {
+      "description": "Start of the pre exam screen"
+    },
+    "explaintion_number1":"Time will be counted during the exam",
+    "@explaintion_number2": {
+      "description": ""
+    },
+    "explaintion_number2":"You can continue take exam anytime",
+    "@start_exam": {
+      "description": ""
+    },
+    "start_exam":"Start Taking The Exam",
+    "@done": {
+      "description": ""
+    },
+    "done":"done"
 }

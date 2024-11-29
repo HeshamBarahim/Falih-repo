@@ -1,5 +1,6 @@
 class Images {
   Images._();
+
   static const String logoFalih = 'assets/images/logo_falih.png';
   static const String backgroundImageOfAuth =
       'assets/images/background_image_of_auth.png';
@@ -9,6 +10,15 @@ class Images {
   static const String testAds = 'assets/images/test_ads.png';
 
   // icons of subjects
+
+  // On boarding Screen
+  static const String onBoardingOne =
+      'assets/images/on_boarding/on_boarding_1.png';
+  static const String onBoardingTwo =
+      'assets/images/on_boarding/on_boarding_2.png';
+  static const String onBoardingThree =
+      'assets/images/on_boarding/on_boarding_3.png';
+
   static const String quranIcon = 'assets/subjects_icons/quran_icon.png';
   static const String islamicIcon = 'assets/subjects_icons/islamic_icon.png';
   static const String arabicIcon = 'assets/subjects_icons/arabic_icon.png';

@@ -1,41 +1,44 @@
-// import 'package:flutter/foundation.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
-import 'package:falih/src/screens/leaderboard/leaderboard.dart';
+import 'package:falih/src/screens/leaderboard/leaderboard_screen.dart';
+import 'package:falih/src/screens/settings/settings_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NavigationMenu extends StatelessWidget {
-  NavigationMenu({super.key});
-
-  // FirebaseFirestore db = FirebaseFirestore.instance;
-
-  readQuestions() async {
-    // await db.collection("biology_unit1_9_ar").get().then((event) {
-    //
-    //   for (var doc in event.docs) {
-    //     print("========> ${doc.id} => ${doc.data()}");
-    //     doc.data().forEach((k,v) => print('${k}: ${v}'));
-    //   }
-    // });
-  }
+class MenuScreen extends StatelessWidget {
+  const MenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    readQuestions();
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.secondaryColor,
+          title: Center(
+            child: Obx(() => Text(
+                controller.screenTitle[controller.selectedIndex.value],
+                style: const TextStyle(
+                    color: AppColors.mainColor,
+                    fontFamily: 'GoogleFonts.montserratAlternatesTextTheme',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30))),
+          ),
+          backgroundColor: AppColors.moreLigtenMainColor,
           leading: IconButton(
+              padding: const EdgeInsets.only(left: 20),
               onPressed: () {},
-              icon: const Icon(Icons.notifications),
+              icon: const Icon(
+                Icons.notifications_none,
+                size: 40,
+              ),
               color: AppColors.mainColor,
               iconSize: 30),
           actions: [
             IconButton(
-              onPressed: () {},
+              padding: const EdgeInsets.only(right: 20),
+              onPressed: () {
+                Get.to(() => const SettingsScreen_2());
+              },
               icon: const Icon(Icons.settings),
               color: AppColors.mainColor,
               iconSize: 30,
@@ -43,7 +46,7 @@ class NavigationMenu extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Obx(
-          () => Container(
+              () => Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: const BorderRadius.only(
@@ -66,7 +69,7 @@ class NavigationMenu extends StatelessWidget {
                 topRight: Radius.circular(30),
               ),
               child: NavigationBar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: AppColors.moreLigtenMainColor,
                   height: 100,
                   elevation: 0,
                   selectedIndex: controller.selectedIndex.value,
@@ -74,13 +77,20 @@ class NavigationMenu extends StatelessWidget {
                       controller.selectedIndex.value = index,
                   destinations: const [
                     NavigationDestination(
-                        icon: Icon(Icons.menu_book_outlined),
+                        icon: Icon(
+                          Icons.menu_book_outlined,
+                          color: AppColors.mainColor,
+                        ),
                         label: 'Subjects'),
                     NavigationDestination(
-                        icon: Icon(Icons.home), label: 'Home'),
+                      icon: Icon(Icons.home, color: AppColors.mainColor),
+                      label: 'Home',
+                    ),
                     NavigationDestination(
-                        icon: Icon(Icons.leaderboard_outlined),
-                        label: 'LeaderBoard'),
+                      icon: Icon(Icons.leaderboard_outlined,
+                          color: AppColors.mainColor),
+                      label: 'LeaderBoard',
+                    ),
                   ]),
             ),
           ),
@@ -95,6 +105,7 @@ class NavigationController extends GetxController {
   final screens = [
     Curriculum(),
     HomePage(),
-    const Leaderboard(),
+    LeaderBoardScreen(),
   ];
+  final screenTitle = ['Subjects', 'Home', 'LeaderBoard'];
 }

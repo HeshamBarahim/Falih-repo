@@ -10,12 +10,19 @@ class AppColors {
   static const secondaryColor = Color(0xFFFBF7FC);
   static const choicesColor = Color(0xFFE4CAEC);
   static const successColor = Color(0xFF3CD797);
+  static const ligtenMainColor = Color(0xFFE4CAEC);
+  static const moreLigtenMainColor = Color(0xFFF7F0FA);
 
   static const shadowColor = Color(0xFF9A9393);
   static const subHeaderNotTaken = Color(0xFFD42A2A);
   static const borderColor = Color(0XFF9A9393);
   static const customGrey = Color(0XFFf6f6f9);
   static const warningColor = Color(0XFFFD9900);
+
+  // on boarding background Color
+  static const bgScreen1 = Color(0XFF548AD8);
+  static const bgScreen2 = Color(0XFFF33E62);
+  static const bgScreen3 = Color(0XFFF79334);
 
   // currculum page
   static const LinearGradient quranColor = LinearGradient(colors: [

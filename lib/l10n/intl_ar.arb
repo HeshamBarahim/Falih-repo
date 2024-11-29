@@ -1,1 +1,8 @@
-{}
+{
+    "@@locale": "ar",
+    "@title": {
+      "description": "The title on the home page"
+    },
+    "title": "مرحباً"
+  }
+  
