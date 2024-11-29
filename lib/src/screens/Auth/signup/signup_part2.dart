@@ -1,27 +1,25 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/signup_controller.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/custom_rich_text.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/next_button.dart';
-import 'package:flutter/material.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/custom_rich_text.dart';
-import 'package:falih/src/config/images.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignupPart2 extends StatelessWidget {
   SignupPart2({super.key});
 
   // Initialize the controller
-  final SignupController signupController = Get.put(SignupController());
+  final SignUpController controller = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
       Form(
+        key: controller.signupFormKey,
         // Container for background image
         child: Container(
           decoration: BoxDecoration(
@@ -70,14 +68,13 @@ class SignupPart2 extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  // strat the fields of forms
-                  // school fields
-                  CustomTextForm(
-                    hintText: S.of(context).hint_text_School,
-                    prefixIcon: const Icon(Icons.location_city),
-                  ),
+                  // strat the fields of form
                   // Grade dorp down
                   CustomDropDownForm(
+                    onChanged: (newValue) {
+                      controller.selectedGovernorate.value = newValue;
+                    },
+                    selectedValue: controller.selectedGovernorate.value,
                     hintText: S.of(context).hint_text_Grade,
                     prefixIcon: const Icon(Icons.location_pin),
                     list: [
@@ -93,26 +90,38 @@ class SignupPart2 extends StatelessWidget {
                   CustomTextForm(
                     hintText: S.of(context).hint_text_confirm,
                     prefixIcon: const Icon(Icons.lock),
+                    myController: controller.password,
+                    validator: (value) {
+                      if (value!.isEmpty) return 'password cannot be empty';
+                      return null;
+                    },
                   ),
                   // Confirm password field
                   CustomTextForm(
                     hintText: S.of(context).hint_text_confirm,
                     prefixIcon: const Icon(Icons.lock),
+                    myController: controller.password,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'confirm password cannot be empty';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   // the the rules text and check box
                   Obx(() => Row(
-                        children: [
-                          Checkbox(
-                              value: signupController.isChecked.value,
+                    children: [
+                      Checkbox(
+                          value: controller.isChecked.value,
                               onChanged: (bool? value) {
-                                signupController.toggleCheckbox(value!);
+                                controller.toggleCheckbox(value!);
                               }),
-                          const CustomRichText(),
-                        ],
-                      )),
+                      const CustomRichText(),
+                    ],
+                  )),
                   const SizedBox(
                     height: 40,
                   ),

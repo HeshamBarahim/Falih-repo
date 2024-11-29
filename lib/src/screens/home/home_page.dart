@@ -1,17 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:falih/generated/l10n.dart';
+import 'package:csv/csv.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
-import 'package:falih/src/screens/home/widgets_home/custom_sub_header.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:csv/csv.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
-import 'dart:async' show Future;
-import 'dart:convert';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});

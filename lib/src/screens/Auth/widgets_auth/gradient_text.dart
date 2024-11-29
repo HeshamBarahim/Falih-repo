@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class GradientText extends StatelessWidget {
@@ -20,8 +21,8 @@ class GradientText extends StatelessWidget {
       },
       child: Text(
         text,
-        style: const TextStyle(
-            fontSize: 15.0,
+        style: TextStyle(
+            fontSize: 15.sp,
             color: AppColors.successColor,
             fontWeight: FontWeight.bold),
       ),

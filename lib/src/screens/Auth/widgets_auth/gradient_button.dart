@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GradientButton extends StatelessWidget {
   final String text;
@@ -20,10 +21,10 @@ class GradientButton extends StatelessWidget {
       width: width,
       height: height,
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
           color: AppColors.mainColor),
       child: MaterialButton(
-        height: 40,
+        height: 40.h,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         textColor: Colors.white,
         onPressed: onClick,
