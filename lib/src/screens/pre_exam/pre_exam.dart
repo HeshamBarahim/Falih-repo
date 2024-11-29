@@ -1,6 +1,5 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
-import 'package:falih/src/screens/after_exam/after_exam.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/pre_exam_box.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
@@ -41,17 +40,46 @@ class PreExam extends StatelessWidget {
             PreExamBox(questionCount: controller.questions.length),
             // box to set rules of the exam
             Container(
-              padding: const EdgeInsets.all(25),
-              decoration: BoxDecoration(
-                  color: AppColors.secondaryColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: const Column(
-                children: [
-                  Text('Time will be counted during the exam'),
-                  Text('You can continue take exam anytime ')
-                ],
-              ),
-            ),
+                padding: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                    color: AppColors.secondaryColor,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    controller.isFinalExam.value == true
+                        ? const Row(
+                            children: [
+                              Text("• ", style: TextStyle(fontSize: 40)),
+                              // Bullet symbol
+                              Expanded(
+                                child: Text(
+                                    'This exam is a simulation of the final exam'),
+                              ),
+                            ],
+                          )
+                        : Container(),
+                    const Row(
+                      children: [
+                        Text("• ", style: TextStyle(fontSize: 40)),
+                        // Bullet symbol
+                        Expanded(
+                          child: Text('Time will be counted during the exam'),
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        Text("• ", style: TextStyle(fontSize: 40)),
+                        // Bullet symbol
+                        Expanded(
+                          child:
+                              Text('You can continue to take the exam anytime'),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
             // start taking the exam button
             GradientButton(
               text: 'Start taking the exam',
