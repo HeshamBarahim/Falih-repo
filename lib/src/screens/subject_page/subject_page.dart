@@ -2,7 +2,7 @@ import 'package:falih/src/screens/after_exam/after_exam.dart';
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../controller/subjects_controller.dart';
 
 class SubjectPage extends StatelessWidget {
@@ -31,17 +31,17 @@ class SubjectPage extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Text(
-                            subjectController.name.value,
-                        style: const TextStyle(
-                            fontSize: 30,
+                        subjectController.name.value,
+                        style: TextStyle(
+                            fontSize: 30.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       )),
                       Image.asset(
                         subjectController.icon_path,
                         // color: Colors.white,
-                        height: 150,
-                        width: 150,
+                        height: 150.h,
+                        width: 150.w,
                       )
                     ],
                   ),

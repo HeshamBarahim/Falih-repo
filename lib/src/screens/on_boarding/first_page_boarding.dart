@@ -66,8 +66,8 @@ class FirstPageBoarding extends StatelessWidget {
                             width: 150.w,
                             child: Text(
                               S.of(context).explaination_on_boarding_1,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 17.sp),
                             ),
                           ),
                         ],

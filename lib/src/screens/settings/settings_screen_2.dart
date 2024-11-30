@@ -1,3 +1,5 @@
+import 'package:falih/src/config/images.dart';
+import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
@@ -48,9 +50,8 @@ class SettingsScreen_2 extends StatelessWidget {
           children: [
             // Profile Section
             SizedBox(height: SizeConfig.screenHeight! * 0.095),
-            ProfileSection(
-                profileImage:
-                    'https://www.esafety.gov.au/sites/default/files/2019-07/protect_your_personal_information_0.jpg',
+            const ProfileSection(
+                profileImage: Images.test,
                 name: 'Yusif',
                 email: 'yusif123@gmail.com'),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
@@ -76,7 +77,9 @@ class SettingsScreen_2 extends StatelessWidget {
               onTapTerms_ConditionsFunction: () {},
 
               /// Logout Button
-              onTapLogoutFunction: () {},
+              onTapLogoutFunction: () {
+                AuthenticationRepository.instance.logout();
+              },
             ),
           ],
         ),

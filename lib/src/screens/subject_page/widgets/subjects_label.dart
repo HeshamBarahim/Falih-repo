@@ -4,12 +4,11 @@ import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/exam_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../controller/subjects_controller.dart';
 import '../../pre_exam/pre_exam.dart';
 
 class SubjectsLabels extends StatelessWidget {
-
   SubjectsLabels({super.key});
 
   final SubjectsController subjectController = Get.put(SubjectsController());
@@ -66,10 +65,10 @@ class SubjectsLabels extends StatelessWidget {
                             // ),
                             Text(
                               items[index].labelName,
-                              style: const TextStyle(
-                                color: AppColors.mainColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(
+                                  color: AppColors.mainColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10.sp),
                             ),
                           ],
                         ),

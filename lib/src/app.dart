@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/menu_screen.dart';
+import 'package:falih/src/screens/on_boarding/first_page_boarding.dart';
 import 'package:falih/src/screens/pre_exam/pre_exam.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,8 @@ class App extends StatelessWidget {
         // GetPage(name: '/', page: () => CheckoutScreen()),
         // GetPage(name: '/', page: () => LeaderBoardScreen()),
         // GetPage(name: '/', page: () => const MenuScreen()),
-        GetPage(name: '/', page: () => Login()),
+        // GetPage(name: '/', page: () => Login()),
+        GetPage(name: '/', page: () => FirstPageBoarding()),
         // GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/runExam', page: () => const RunExam()),
         GetPage(name: '/preExam', page: () => const PreExam()),

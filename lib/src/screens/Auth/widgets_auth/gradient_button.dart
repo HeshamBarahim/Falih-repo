@@ -30,7 +30,7 @@ class GradientButton extends StatelessWidget {
         onPressed: onClick,
         child: Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
         ),
       ),
     );

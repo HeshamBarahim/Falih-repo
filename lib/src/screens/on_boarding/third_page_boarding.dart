@@ -7,6 +7,7 @@ import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThirdPageBoarding extends StatelessWidget {
   const ThirdPageBoarding({super.key});
@@ -37,30 +38,32 @@ class ThirdPageBoarding extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 100,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.10,
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 20),
-                        height: 250,
-                        width: 350,
+                        height: 250.h,
+                        width: 350.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(S.of(context).equip,
-                                style: const TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold)),
+                                style: TextStyle(
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.bold)),
                             Text(S.of(context).your_self,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: AppColors.bgScreen3,
-                                    fontSize: 30,
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold)),
                             Text(S.of(context).with_the,
-                                style: const TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold)),
+                                style: TextStyle(
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.bold)),
                             Text(S.of(context).best_tools,
-                                style: const TextStyle(
-                                    fontSize: 30,
+                                style: TextStyle(
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.bgScreen3))
                           ],
@@ -74,8 +77,8 @@ class ThirdPageBoarding extends StatelessWidget {
                   right: -60, // Distance from the right
                   child: Image.asset(
                     Images.onBoardingThree,
-                    width: 300,
-                    height: 300,
+                    width: 300.w,
+                    height: 300.h,
                   ),
                 )
               ],
@@ -83,7 +86,7 @@ class ThirdPageBoarding extends StatelessWidget {
             BoardingButton(onClick: () {
               // Save state to skip onboarding in the future
               box.write('hasSeenOnboarding', true);
-              Get.to(() => Login());
+              Get.offAll(() => Login());
             })
           ],
         ),

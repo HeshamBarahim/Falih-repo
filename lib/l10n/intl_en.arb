@@ -15,7 +15,7 @@
     "@forget_password": {
       "description": ""
     },
-    "forget_password":"Forget Password",
+    "forget_password":"Forget Password?",
     "@login": {
       "description": ""
     },
