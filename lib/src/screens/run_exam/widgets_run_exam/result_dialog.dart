@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../../generated/l10n.dart';
 import '../../../controller/exam_controller.dart';
 import '../../after_exam/after_exam.dart';
+import '../../subject_page/subject_page.dart';
 
 class ResultDialog extends StatelessWidget {
   final BuildContext context;
@@ -140,6 +141,14 @@ class ResultDialog extends StatelessWidget {
                 height: 10,
               ),
               InkWell(
+                  onTap: () {
+                    final ExamController controller = Get.put(ExamController());
+                    controller.saveExamResult();
+                    Navigator.pop(_context);
+                    Get.to(
+                      () => SubjectPage(),
+                    );
+                  },
                   child: Container(
                       width: 200,
                       decoration: BoxDecoration(

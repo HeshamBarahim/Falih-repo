@@ -1,21 +1,23 @@
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/otp_boxes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/resend_code_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:falih/src/config/images.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:get/get.dart';
 
 class Otp extends StatelessWidget {
   Otp({
     super.key,
   });
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final otp = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final String verificationId = Get.arguments['verificationId'];

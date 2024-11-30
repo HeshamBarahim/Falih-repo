@@ -10,6 +10,9 @@ class AppColors {
   static const secondaryColor = Color(0xFFFBF7FC);
   static const choicesColor = Color(0xFFE4CAEC);
   static const successColor = Color(0xFF3CD797);
+  static const errorColor = Color(0xFFFE2712);
+  static const successBoxColor = Color(0x333CD797);
+  static const errorBoxColor = Color(0x33FE2712);
   static const ligtenMainColor = Color(0xFFE4CAEC);
   static const moreLigtenMainColor = Color(0xFFF7F0FA);
 
