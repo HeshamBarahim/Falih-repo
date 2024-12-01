@@ -3,6 +3,7 @@ import 'package:csv/csv.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
+import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,7 @@ class HomePage extends StatelessWidget {
                     ),
                     // progress bar
                     Obx(() => CustomProgressBar(
-                          width: 250,
+                          width: 20,
                           height: 20,
                           progress: controller.percentage.value,
                         )),
@@ -132,64 +133,75 @@ class HomePage extends StatelessWidget {
 
   void exportData() async {
     final CollectionReference subjectsCollection =
-        FirebaseFirestore.instance.collection("subjects_ar_9");
+        FirebaseFirestore.instance.collection("subjects_ar_12");
 
     try {
-      var csvFilePath = "assets/csv_files/chemistry_unit5_9_ar_test.csv";
-      var subjectName = "chemistry_9";
-      // Load the CSV file as bytes
-      ByteData byteData = await rootBundle.load(csvFilePath);
-      Uint8List bytes = byteData.buffer.asUint8List();
+      final uid = AuthenticationRepository.instance.getUserID;
+      print(uid); // Prints the user's UID
+      final email = AuthenticationRepository.instance.getUserEmail;
+      print(email); // Prints the user's email address
+      final name = AuthenticationRepository.instance.getDisplayName;
+      print("Welcome, $name!");
+      final getPhoneNo = AuthenticationRepository.instance.getPhoneNo;
+      print(getPhoneNo); // Prints the user's email address
+      final phone = AuthenticationRepository.instance.getPhoneNo;
+      print(phone);
 
-      // Convert from UTF-16 LE to a UTF-8 string
-      String myData = convertUtf16ToUtf8(bytes);
-      print("Converted Data: $myData");
+      // var csvFilePath = "assets/csv_files/chemistry_unit5_9_ar_test.csv";
+      // var subjectName = "chemistry_12";
+      // // Load the CSV file as bytes
+      // ByteData byteData = await rootBundle.load(csvFilePath);
+      // Uint8List bytes = byteData.buffer.asUint8List();
 
-      // Convert CSV file to a list of lists
-      List<List<dynamic>> csvTable = CsvToListConverter().convert(myData);
+      // // Convert from UTF-16 LE to a UTF-8 string
+      // String myData = convertUtf16ToUtf8(bytes);
+      // print("Converted Data: $myData");
 
-      // Create an array to store the new unit's questions
-      List<Map<String, dynamic>> questions = [];
+      // // Convert CSV file to a list of lists
+      // List<List<dynamic>> csvTable = CsvToListConverter().convert(myData);
 
-      for (var i = 0; i < csvTable.length; i++) {
-        var question = {
-          "question": csvTable[i][0], // The question text
-          "choices": [
-            // Array of choices
-            csvTable[i][1], // Choice 1
-            csvTable[i][2], // Choice 2
-            csvTable[i][3], // Choice 3
-            csvTable[i][4], // Choice 4
-          ],
-          "correctAnswer": csvTable[i][5], // Correct answer
-        };
+      // // Create an array to store the new unit's questions
+      // List<Map<String, dynamic>> questions = [];
 
-        questions.add(question); // Add each question to the array
-      }
+      // for (var i = 0; i < csvTable.length; i++) {
+      //   var question = {
+      //     "question": csvTable[i][0], // The question text
+      //     "choices": [
+      //       // Array of choices
+      //       csvTable[i][1], // Choice 1
+      //       csvTable[i][2], // Choice 2
+      //       csvTable[i][3], // Choice 3
+      //       csvTable[i][4], // Choice 4
+      //     ],
+      //     "correctAnswer": csvTable[i][5], // Correct answer
+      //   };
 
-      // Add the questions as a new unit
-      var newUnit = {"questions": questions};
+      //   questions.add(question); // Add each question to the array
+      // }
 
-      // Fetch the current document data (if it exists)
-      DocumentSnapshot subjectDoc =
-          await subjectsCollection.doc(subjectName).get();
+      // // Add the questions as a new unit
+      // var newUnit = {"questions": questions};
 
-      List<dynamic> currentUnits = [];
+      // // Fetch the current document data (if it exists)
+      // DocumentSnapshot subjectDoc =
+      //     await subjectsCollection.doc(subjectName).get();
 
-      if (subjectDoc.exists && subjectDoc.data() != null) {
-        // Get the existing units array
-        currentUnits = subjectDoc["units"];
-      }
+      // List<dynamic> currentUnits = [];
 
-      // Add the new unit to the current units array
-      currentUnits.add(newUnit);
+      // if (subjectDoc.exists && subjectDoc.data() != null) {
+      //   // Get the existing units array
+      //   currentUnits = subjectDoc["units"];
+      // }
 
-      // Update the document with the new units array
-      await subjectsCollection.doc(subjectName).update({
-        "units": currentUnits,
-      });
+      // // Add the new unit to the current units array
+      // currentUnits.add(newUnit);
 
-      print("Data successfully exported.");
+      // // Update the document with the new units array
+      // await subjectsCollection.doc(subjectName).update({
+      //   "units": currentUnits,
+      // });
+
+      // print("Data successfully exported.");
     } catch (e) {
       print("Error exporting data: $e");
     }

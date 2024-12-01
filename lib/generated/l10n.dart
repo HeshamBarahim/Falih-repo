@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Forget Password`
+  /// `Forget Password?`
   String get forget_password {
     return Intl.message(
-      'Forget Password',
+      'Forget Password?',
       name: 'forget_password',
       desc: '',
       args: [],
@@ -200,6 +200,16 @@ class S {
     );
   }
 
+  /// `Department`
+  String get hint_text_department {
+    return Intl.message(
+      'Department',
+      name: 'hint_text_department',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm Password`
   String get hint_text_confirm {
     return Intl.message(
@@ -275,6 +285,26 @@ class S {
     return Intl.message(
       'class 12',
       name: 'drop_grade_val2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get drop_depatment_val1 {
+    return Intl.message(
+      'English',
+      name: 'drop_depatment_val1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get drop_depatment_val2 {
+    return Intl.message(
+      'Arabic',
+      name: 'drop_depatment_val2',
       desc: '',
       args: [],
     );

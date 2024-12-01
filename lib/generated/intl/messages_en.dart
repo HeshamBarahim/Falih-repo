@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "done": MessageLookupByLibrary.simpleMessage("done"),
+        "drop_depatment_val1": MessageLookupByLibrary.simpleMessage("English"),
+        "drop_depatment_val2": MessageLookupByLibrary.simpleMessage("Arabic"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
         "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("Ibb"),
         "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Taiz"),
@@ -56,13 +58,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
-            MessageLookupByLibrary.simpleMessage("Forget Password"),
+            MessageLookupByLibrary.simpleMessage("Forget Password?"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("Governorate"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("Grade"),
         "hint_text_School": MessageLookupByLibrary.simpleMessage("School Name"),
         "hint_text_confirm":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "hint_text_department":
+            MessageLookupByLibrary.simpleMessage("Department"),
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),

@@ -1,5 +1,7 @@
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +28,14 @@ class LoginController extends GetxController {
       }
       final auth = AuthenticationRepository.instance;
       await auth.loginWithEmailAndPassword(fakeEmail, password.text.trim());
+
+      // Fetch the logged-in user's data
+      final user = await UserRepository.instance.getUserDetails();
+
+      // Store the user details in a UserController
+      UserController.instance.setUser(user);
+
+      // Set the initial screen
       auth.setInitialScreen(auth.firebaseUser);
     } catch (e) {
       isLoading.value = false;

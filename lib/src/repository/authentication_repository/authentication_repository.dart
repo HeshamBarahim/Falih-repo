@@ -51,10 +51,6 @@ class AuthenticationRepository extends GetxController {
           ? Get.offAll(() => Login())
           : Get.offAll(() => const FirstPageBoarding());
     }
-
-    // Note: As per this code you will not see OnBoarding Screen on app launch.
-    // If you want to add that functionality please refer to this tutorial.
-    // https://www.youtube.com/watch?v=GYtMpccOOtU&t=78s
   }
 
 // Email & Password sign-in

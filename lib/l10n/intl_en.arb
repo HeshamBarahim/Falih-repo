@@ -61,6 +61,10 @@
       "description": ""
     },
     "hint_text_Grade":"Grade",
+    "@hint_text_department": {
+      "description": ""
+    },
+    "hint_text_department":"Department",
     "@hint_text_confirm": {
       "description": ""
     },
@@ -93,6 +97,14 @@
       "description": ""
     },
     "drop_grade_val2":"class 12",
+    "@drop_depatment_val1": {
+      "description": ""
+    },
+    "drop_depatment_val1":"English",
+    "@drop_depatment_val2": {
+      "description": ""
+    },
+    "drop_depatment_val2":"Arabic",
     "@submit": {
       "description": "This is start of verification page"
     },

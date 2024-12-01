@@ -126,11 +126,28 @@ class Signup extends StatelessWidget {
                           prefixIcon: const Icon(Icons.location_pin),
                           list: [
                             DropdownMenuItem(
-                                value: "Class_9",
+                                value: "9",
                                 child: Text(S.of(context).drop_grade_val1)),
                             DropdownMenuItem(
-                                value: 'Class_12',
+                                value: '12',
                                 child: Text(S.of(context).drop_grade_val2)),
+                          ],
+                        ),
+                        // Department dorp down
+                        CustomDropDownForm(
+                          onChanged: (newValue) {
+                            controller.selectedDepartment.value = newValue;
+                          },
+                          selectedValue: controller.selectedGrade.value,
+                          hintText: S.of(context).hint_text_department,
+                          prefixIcon: const Icon(Icons.home_work_outlined),
+                          list: [
+                            DropdownMenuItem(
+                                value: "En",
+                                child: Text(S.of(context).drop_depatment_val1)),
+                            DropdownMenuItem(
+                                value: 'Ar',
+                                child: Text(S.of(context).drop_depatment_val2)),
                           ],
                         ),
                         // password field
