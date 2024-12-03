@@ -819,6 +819,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Nontification`
+  String get notification {
+    return Intl.message(
+      'Nontification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

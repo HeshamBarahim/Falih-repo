@@ -309,5 +309,10 @@
     "@leaderBoard": {
       "description": ""
     },
-    "leaderBoard":"LeaderBoard"
+    "leaderBoard":"LeaderBoard",
+    "@notification": {
+      "description": ""
+    },
+    "notification":"Nontification:"
+
 }
