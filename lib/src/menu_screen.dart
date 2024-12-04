@@ -3,6 +3,7 @@ import 'package:falih/src/screens/curriculum/curriculum.dart';
 import 'package:falih/src/screens/home/home_page.dart';
 import 'package:falih/src/screens/leaderboard/leaderboard_screen.dart';
 import 'package:falih/src/screens/notification/notification_page.dart';
+import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class MenuScreen extends StatelessWidget {
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.05),
               onPressed: () {
-                Get.to(() => const NotificationPage());
+                Get.to(() => EditProfileScreen());
               },
               icon: Icon(
                 Icons.notifications_none,

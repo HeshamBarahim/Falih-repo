@@ -81,6 +81,7 @@ class UserRepository extends GetxController {
       final uid = FirebaseAuth.instance.currentUser?.uid;
       if (uid == null) throw "User is not authenticated.";
 
+      // Update the Firestore document with the new user data
       await _db.collection("users").doc(uid).update(user.toJson());
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);

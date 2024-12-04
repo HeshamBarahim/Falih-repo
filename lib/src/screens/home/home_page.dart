@@ -3,37 +3,35 @@ import 'package:csv/csv.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController controller = Get.put(HomeController());
+  final UserController userController = UserController.instance;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        image: DecorationImage(
-          image: const AssetImage(
-            Images.backgroundImageOfAuth,
-          ),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-            BlendMode.lighten,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Images.backgroundImageOfAuth),
+            fit: BoxFit.cover,
+            opacity: .2,
           ),
         ),
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Scaffold(
-        body: SingleChildScrollView(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,47 +54,52 @@ class HomePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // circulr avatar for the photo
-                        CircleAvatar(
+                        const CircleAvatar(
                           radius: 50, // Size of the circle
                           backgroundImage: AssetImage(Images.test),
                           backgroundColor: Colors.transparent,
                         ),
                         SizedBox(
-                          width: 20,
+                          width: MediaQuery.sizeOf(context).width * .03,
                         ),
                         // information about the user and his rank
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Hi yousif,"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text('#3 Rank'),
-                            Text("2,639/5,999 Points")
-                          ],
+                        Obx(
+                          () => userController.currentUser == null
+                              ? const Text("User data not available.")
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "Hi, ${userController.currentUser!.fullName}"),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text('#3 Rank'),
+                                    Text("2,639/5,999 Points")
+                                  ],
+                                ),
                         )
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * .03,
                     ),
                     // progress bar
                     Obx(() => CustomProgressBar(
-                          width: 20,
-                          height: 20,
+                          width: 100.w,
+                          height: 15.h,
                           progress: controller.percentage.value,
                         )),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .03,
               ),
               // image and indicator slider
               Obx(() => CustomCarousel(

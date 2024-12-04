@@ -35,8 +35,8 @@ class _CustomCarouselState extends State<CustomCarousel> {
                   });
                 }),
             items: widget.images),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height * .02,
         ),
         Center(
           child: AnimatedSmoothIndicator(

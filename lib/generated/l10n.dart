@@ -300,6 +300,26 @@ class S {
     );
   }
 
+  /// `Male`
+  String get male {
+    return Intl.message(
+      'Male',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message(
+      'Female',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Arabic`
   String get drop_depatment_val2 {
     return Intl.message(
@@ -820,11 +840,21 @@ class S {
     );
   }
 
-  /// `Nontification`
+  /// `Nontification:`
   String get notification {
     return Intl.message(
-      'Nontification',
+      'Nontification:',
       name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Profile:`
+  String get update_profile {
+    return Intl.message(
+      'Update Profile:',
+      name: 'update_profile',
       desc: '',
       args: [],
     );

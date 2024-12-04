@@ -101,6 +101,14 @@
       "description": ""
     },
     "drop_depatment_val1":"English",
+    "@male": {
+      "description": ""
+    },
+    "male":"Male",
+    "@female": {
+      "description": ""
+    },
+    "female":"Female",
     "@drop_depatment_val2": {
       "description": ""
     },
@@ -313,6 +321,10 @@
     "@notification": {
       "description": ""
     },
-    "notification":"Nontification:"
+    "notification":"Nontification:",
+    "@update_profile": {
+      "description": ""
+    },
+    "update_profile":"Update Profile"
 
 }

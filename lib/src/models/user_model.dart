@@ -9,6 +9,7 @@ class UserModel {
   final String? selectedGovernorate;
   final String? selectedGrade;
   final String? selectedDepartment;
+  final String? selectedGender;
 
   // Authentication will handle login logout for us.
   final String? password;
@@ -24,6 +25,7 @@ class UserModel {
     required this.selectedGovernorate,
     required this.selectedGrade,
     required this.selectedDepartment,
+    required this.selectedGender,
   });
 
   // convert model to Json structure so that you can use it to store data in Firebase
@@ -36,19 +38,22 @@ class UserModel {
       "Governoroate": selectedGovernorate,
       "Grade": selectedGrade,
       "Department": selectedDepartment,
+      "Gender": selectedGender,
     };
   }
 
   /// Empty Constructor for UserModel
   static UserModel empty() => const UserModel(
-      id: '',
-      fullName: '',
-      phoneNo: '',
-      fakeEmail: '',
-      selectedGovernorate: '',
-      schoolName: '',
-      selectedGrade: '',
-      selectedDepartment: '');
+        id: '',
+        fullName: '',
+        phoneNo: '',
+        fakeEmail: '',
+        selectedGovernorate: '',
+        schoolName: '',
+        selectedGrade: '',
+        selectedDepartment: '',
+        selectedGender: '',
+      );
 
   /// Map Json oriented document snapshot from Firebase to UserModel
   factory UserModel.fromSnapshot(
@@ -67,6 +72,7 @@ class UserModel {
       schoolName: data["School Name"] ?? '',
       selectedGrade: data["Grade"] ?? '',
       selectedDepartment: data["Department"] ?? '',
+      selectedGender: data["Gender"] ?? '',
     );
   }
 }

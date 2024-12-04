@@ -87,35 +87,33 @@ class Signup extends StatelessWidget {
                             myController: controller.fullName,
                             validator: Helper.validatefullName),
                         CustomTextForm(
-                            hintText: 'school Name',
-                            prefixIcon: const Icon(Icons.person),
+                            hintText: S.of(context).hint_text_School,
+                            prefixIcon: const Icon(Icons.school),
                             myController: controller.schoolName,
                             validator: Helper.validateSchoolName),
                         // Governorate dorp down
-                        Obx(() {
-                          return CustomDropDownForm(
-                            hintText: S.of(context).hint_text_Governorate,
-                            prefixIcon: const Icon(Icons.location_pin),
-                            list: [
-                              DropdownMenuItem(
-                                  value: "Sana'a",
-                                  child: Text(
-                                      S.of(context).drop_governorate_val1)),
-                              DropdownMenuItem(
-                                  value: 'Taiz',
-                                  child: Text(
-                                      S.of(context).drop_governorate_val2)),
-                              DropdownMenuItem(
-                                  value: 'Ibb',
-                                  child: Text(
-                                      S.of(context).drop_governorate_val3)),
-                            ],
-                            onChanged: (newValue) {
-                              controller.selectedGovernorate.value = newValue;
-                            },
-                            selectedValue: controller.selectedGovernorate.value,
-                          );
-                        }),
+                        CustomDropDownForm(
+                          onChanged: (newValue) {
+                            controller.selectedGovernorate.value = newValue;
+                          },
+                          selectedValue: controller.selectedGovernorate.value,
+                          hintText: S.of(context).hint_text_Governorate,
+                          prefixIcon: const Icon(Icons.location_pin),
+                          list: [
+                            DropdownMenuItem(
+                                value: "Sana'a",
+                                child:
+                                    Text(S.of(context).drop_governorate_val1)),
+                            DropdownMenuItem(
+                                value: 'Taiz',
+                                child:
+                                    Text(S.of(context).drop_governorate_val2)),
+                            DropdownMenuItem(
+                                value: 'Ibb',
+                                child:
+                                    Text(S.of(context).drop_governorate_val3)),
+                          ],
+                        ),
                         // Grade dorp down
                         CustomDropDownForm(
                           onChanged: (newValue) {
@@ -138,7 +136,7 @@ class Signup extends StatelessWidget {
                           onChanged: (newValue) {
                             controller.selectedDepartment.value = newValue;
                           },
-                          selectedValue: controller.selectedGrade.value,
+                          selectedValue: controller.selectedDepartment.value,
                           hintText: S.of(context).hint_text_department,
                           prefixIcon: const Icon(Icons.home_work_outlined),
                           list: [
@@ -148,6 +146,22 @@ class Signup extends StatelessWidget {
                             DropdownMenuItem(
                                 value: 'Ar',
                                 child: Text(S.of(context).drop_depatment_val2)),
+                          ],
+                        ),
+                        // Male & Female
+                        CustomDropDownForm(
+                          onChanged: (newValue) {
+                            controller.selectedGender.value = newValue;
+                          },
+                          selectedValue: controller.selectedGender.value,
+                          hintText: S.of(context).male,
+                          prefixIcon: const Icon(Icons.home_work_outlined),
+                          list: [
+                            DropdownMenuItem(
+                                value: "Male", child: Text(S.of(context).male)),
+                            DropdownMenuItem(
+                                value: 'Female',
+                                child: Text(S.of(context).female)),
                           ],
                         ),
                         // password field

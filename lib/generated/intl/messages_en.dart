@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "explaintion_number2": MessageLookupByLibrary.simpleMessage(
             "You can continue take exam anytime"),
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
+        "female": MessageLookupByLibrary.simpleMessage("Female"),
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
@@ -76,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "leaderBoard": MessageLookupByLibrary.simpleMessage("LeaderBoard"),
         "learn": MessageLookupByLibrary.simpleMessage("Learn"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "male": MessageLookupByLibrary.simpleMessage("Male"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "next": MessageLookupByLibrary.simpleMessage("next"),
         "not_registerd":
@@ -84,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
         "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
             "You have not taken any tests yet"),
-        "notification": MessageLookupByLibrary.simpleMessage("Nontification"),
+        "notification": MessageLookupByLibrary.simpleMessage("Nontification:"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
@@ -117,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
+        "update_profile":
+            MessageLookupByLibrary.simpleMessage("Update Profile:"),
         "way": MessageLookupByLibrary.simpleMessage("way"),
         "welcome_to": MessageLookupByLibrary.simpleMessage("Welcome To"),
         "with_the": MessageLookupByLibrary.simpleMessage("With The"),

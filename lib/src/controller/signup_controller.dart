@@ -19,6 +19,7 @@ class SignUpController extends GetxController {
   var selectedGovernorate = Rxn<String>();
   var selectedGrade = Rxn<String>();
   var selectedDepartment = Rxn<String>();
+  var selectedGender = Rxn<String>();
   final UserRepository userRepository = Get.put(UserRepository());
 
   /// Loader
@@ -50,6 +51,7 @@ class SignUpController extends GetxController {
         selectedGovernorate: selectedGovernorate.value,
         selectedGrade: selectedGrade.value,
         selectedDepartment: selectedDepartment.value,
+        selectedGender: selectedGender.value,
       );
 
       // Authenticate User first
