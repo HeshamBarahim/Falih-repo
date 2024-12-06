@@ -8,16 +8,17 @@ import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:get/get.dart';
 import 'package:falih/src/controller/login_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../config/sizes.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
 
-  // Initialize the controller
   final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Stack(
       children: [
         Form(
@@ -36,7 +37,9 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(
+                horizontal: SizeConfig.screenWidth! * 0.05,
+                vertical: SizeConfig.screenHeight! * 0.0243),
             child: Scaffold(
               backgroundColor: Colors.transparent,
               body: SafeArea(
@@ -52,49 +55,56 @@ class Login extends StatelessWidget {
                             color: Colors.transparent,
                             child: Image.asset(
                               Images.logoFalih,
-                              width: 150.w,
-                              height: 150.h,
+                              width: SizeConfig.screenWidth! * 0.46,
+                              height: SizeConfig.screenHeight! * 0.18,
                               fit: BoxFit.contain,
                             ),
                           ),
                           Align(
                             alignment: Alignment.topLeft,
                             child: Container(
-                              margin: const EdgeInsets.all(10),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: SizeConfig.screenWidth! * 0.02,
+                                  vertical: SizeConfig.screenHeight! * 0.00975),
                               child: Text(
                                 S.of(context).title_login,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 25.sp,
+                                  fontSize: SizeConfig.screenHeight! * 0.03,
                                 ),
                               ),
                             ),
                           ),
-                          // Text Field of phone number
                           CustomTextForm(
                             myController: controller.email,
                             hintText: S.of(context).hint_text_phone,
-                            prefixIcon: const Icon(Icons.phone_android),
+                            prefixIcon: Icon(
+                              Icons.phone_android,
+                              size: SizeConfig.screenHeight! * 0.03,
+                            ),
                             validator: Helper.validatePhoneNumber,
                           ),
-                          // Text Field of the password
                           CustomTextForm(
                             hintText: S.of(context).hint_text_password,
-                            prefixIcon: const Icon(Icons.lock),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              size: SizeConfig.screenHeight! * 0.03,
+                            ),
                             myController: controller.password,
                             validator: Helper.validatePassword,
                           ),
-                          // Forget password
                           Align(
                             alignment: Alignment.topLeft,
                             child: Container(
-                              margin: const EdgeInsets.all(10),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: SizeConfig.screenWidth! * 0.02,
+                                  vertical: SizeConfig.screenHeight! * 0.00975),
                               child: InkWell(
                                 child: Text(
                                   S.of(context).forget_password,
                                   style: TextStyle(
                                     color: AppColors.warningColor,
-                                    fontSize: 13.sp,
+                                    fontSize: SizeConfig.screenHeight! * 0.018,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -103,19 +113,19 @@ class Login extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: MediaQuery.sizeOf(context).height * .20),
+                      SizedBox(height: SizeConfig.screenHeight! * 0.15),
                       Column(
                         children: [
                           GradientButton(
                             text: S.of(context).login,
-                            height: 50.h,
+                            height: SizeConfig.screenHeight! * 0.06,
                             width: double.infinity,
                             onClick: () {
                               controller.login();
                             },
                           ),
                           SizedBox(
-                            height: 25.h,
+                            height: SizeConfig.screenHeight! * 0.03,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +134,7 @@ class Login extends StatelessWidget {
                                 S.of(context).not_registerd,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 15.sp,
+                                  fontSize: SizeConfig.screenHeight! * 0.018,
                                 ),
                               ),
                               GradientText(

@@ -2,6 +2,8 @@ import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../config/sizes.dart';
+
 class CustomTextForm extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
@@ -18,33 +20,43 @@ class CustomTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(4),
+      padding: EdgeInsets.symmetric(
+          vertical: SizeConfig.screenHeight! * 0.007,
+          horizontal: SizeConfig.screenWidth! * 0.0097),
       child: TextFormField(
         validator: validator,
         controller: myController,
         decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.mainColor),
+            // hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.mainColor),
+            hintStyle: TextStyle(
+                fontSize: SizeConfig.screenWidth! * 0.03875,
+                color: AppColors.mainColor),
             prefixIcon: prefixIcon,
             prefixIconColor: AppColors.mainColor,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: SizeConfig.screenHeight! * 0.00118,
+                horizontal: SizeConfig.screenWidth! * 0.048),
             filled: true,
             fillColor: Colors.white,
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.borderColor),
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(SizeConfig.screenWidth! * 0.0486))),
             errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColors.warningColor),
-                borderRadius: BorderRadius.circular(20)),
+                borderSide: BorderSide(color: AppColors.warningColor),
+                borderRadius:
+                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
             focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.red),
-                borderRadius: BorderRadius.circular(20)),
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius:
+                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: Color(0xFF9A9393)))),
+                borderRadius:
+                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+                borderSide: BorderSide(color: Color(0xFF9A9393)))),
       ),
     );
   }

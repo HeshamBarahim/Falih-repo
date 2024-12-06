@@ -3,7 +3,7 @@ import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/signup_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
-import 'package:falih/src/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';

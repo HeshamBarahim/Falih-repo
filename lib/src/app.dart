@@ -1,5 +1,5 @@
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/on_boarding/first_page_boarding.dart';
 import 'package:falih/src/screens/pre_exam/pre_exam.dart';
 import 'package:falih/src/screens/run_exam/run_exam.dart';

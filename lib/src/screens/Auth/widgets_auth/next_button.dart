@@ -3,6 +3,8 @@ import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../config/sizes.dart';
+
 class NextButton extends StatelessWidget {
   final void Function()? funtion;
 
@@ -13,20 +15,25 @@ class NextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return MaterialButton(
-      color: Colors.white,
-      height: 50.h,
-      minWidth: 300.w,
+      color: AppColors.mainColor,
+      // height: 50.h,
+      height: SizeConfig.screenHeight! * 0.06,
+      // minWidth: SizeConfig.screenWidth! * 0.8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(SizeConfig.screenWidth! * 0.121),
       ),
       onPressed: funtion,
-      child: Text(
-        S.of(context).next,
-        style: TextStyle(
+      child: Center(
+        child: Text(
+          S.of(context).next,
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 25.sp,
-            color: AppColors.mainColor),
+            fontSize: SizeConfig.screenWidth! * 0.0577,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

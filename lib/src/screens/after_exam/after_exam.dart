@@ -12,78 +12,86 @@ class AfterExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final LinearGradient color = Get.arguments['color'];
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     final ExamController controller = Get.put(ExamController());
     final SubjectsController subjectController = Get.put(SubjectsController());
 
     final List items = [
-      {
-        'value': 'all',
-        'name': 'All',
-      },
-      {
-        'value': 'correct',
-        'name': 'Correct',
-      },
-      {
-        'value': 'incorrect',
-        'name': 'Wrong',
-      },
+      {'value': 'all', 'name': 'All'},
+      {'value': 'correct', 'name': 'Correct'},
+      {'value': 'incorrect', 'name': 'Wrong'},
     ];
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56),
+        preferredSize: Size.fromHeight(screenHeight * 0.08),
         child: CustomAppBar(
           name: subjectController.name.value,
           color: subjectController.color,
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.all(25),
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.06,
+          vertical: screenHeight * 0.03,
+        ),
         decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           children: [
-            // Row of filter buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(items.length, (index) {
                 return InkWell(
                   onTap: () {
-                    print(controller.falseAnswers);
                     controller.filter.value = items[index]['value'];
                   },
-                  child: Obx(() => Container(
-                        padding: const EdgeInsets.all(10),
-                        width: 100,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 2.5, color: AppColors.mainColor),
-                          color:
-                              // the clicked button get the whole opacity
-                              controller.filter.value == items[index]['value']
-                                  ? Colors.white
-                                  : Colors.white.withOpacity(0.25),
-                          borderRadius: BorderRadius.circular(20),
+                  child: Obx(
+                    () => Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.03,
+                        vertical: screenHeight * 0.012,
+                      ),
+                      width: screenWidth * 0.25,
+                      height: screenHeight * 0.06,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 2.5,
+                          color: AppColors.mainColor,
                         ),
-                        child: Center(
-                            child: Text(
-                              "${items[index]['name']} ${controller.filteredQuestions.length}",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                      )),
+                        color: controller.filter.value == items[index]['value']
+                            ? Colors.white
+                            : Colors.white.withOpacity(0.25),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "${items[index]['name']} ${controller.filteredQuestions.length}",
+                          style: TextStyle(
+                            fontSize: screenHeight * 0.018,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               }),
             ),
-
-            const SizedBox(height: 20),
-
-            // Filtered list of questions
+            SizedBox(height: screenHeight * 0.02),
             Expanded(
               child: Obx(() {
                 final questionsToDisplay = controller.filteredQuestions;
                 if (questionsToDisplay.isEmpty) {
-                  return const Center(child: Text("No questions to display"));
+                  return Center(
+                    child: Text(
+                      "No questions to display",
+                      style: TextStyle(
+                        fontSize: screenHeight * 0.018,
+                      ),
+                    ),
+                  );
                 }
                 return ListView.builder(
                   itemCount: questionsToDisplay.length,
@@ -92,41 +100,44 @@ class AfterExam extends StatelessWidget {
                     final isCorrect = controller.selectedAnswers[
                             controller.questions.indexOf(question)] ==
                         question.correctAnswerIndex;
-                    // box of question
+
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 15),
-                      height: 200,
+                      margin: EdgeInsets.only(bottom: screenHeight * 0.02),
+                      height: screenHeight * 0.25,
                       decoration: BoxDecoration(
                         color: AppColors.secondaryColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.02,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // number of question
                           Text(
                             "${S.of(context).question} ${controller.questions.indexOf(question) + 1}/${controller.questions.length}",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: AppColors.warningColor,
                               fontWeight: FontWeight.bold,
+                              fontSize: screenHeight * 0.018,
                             ),
                           ),
-                          // the text of the question
                           SizedBox(
-                            height: 70,
+                            height: screenHeight * 0.1,
                             child: Text(
                               question.questionText,
-                              style: const TextStyle(fontSize: 16),
+                              style: TextStyle(
+                                fontSize: screenHeight * 0.019,
+                              ),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 5,
                             ),
                           ),
-                          // box weather the question is true or false
                           Container(
-                            width: 120,
-                            height: 40,
+                            width: screenWidth * 0.3,
+                            height: screenHeight * 0.05,
                             alignment: Alignment.centerLeft,
                             decoration: BoxDecoration(
                               color: isCorrect
@@ -134,8 +145,10 @@ class AfterExam extends StatelessWidget {
                                   : Colors.red.withOpacity(0.25),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 10),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.07,
+                              vertical: screenHeight * 0.01,
+                            ),
                             child: Center(
                               child: Text(
                                 isCorrect
@@ -146,6 +159,7 @@ class AfterExam extends StatelessWidget {
                                       ? AppColors.successColor
                                       : Colors.red,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: screenHeight * 0.018,
                                 ),
                               ),
                             ),

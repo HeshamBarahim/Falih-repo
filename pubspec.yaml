@@ -28,47 +28,31 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  carousel_slider: null
+  cloud_firestore: null
+  csv: null
+  cupertino_icons: ^1.0.8
+  firebase_auth: ^5.3.2
+  firebase_core: null
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-
-  flutter_svg: ^2.0.10+1
-  google_fonts: ^6.2.1
-  carousel_slider: null
-
-  pinput: ^5.0.0
-  percent_indicator: null
-  csv: null
-  flutter_screenutil:
-
-  ## -- Localizations PACKAGES
   flutter_localizations:
     sdk: flutter
-  intl:
-  intl_utils: ^2.8.7
-
-  ## -- OnBoarding PACKAGES
-  smooth_page_indicator: null
-
-  ## -- STATE MANAGEMENT
+  flutter_native_splash: null
+  flutter_screenutil: null
+  flutter_svg: ^2.0.10+1
   get: null
   get_storage: null
-
-  ## -- FIREBASE PACKAGES
-  firebase_core: null
-  cloud_firestore: null
-  firebase_auth: ^5.3.2
-  flutter_native_splash: null
-
-  ## -- AWS API CONNECTION
-  http:
+  google_fonts: ^6.2.1
+  http: null
+  intl: null
+  intl_utils: ^2.8.7
+  percent_indicator: null
+  pinput: ^5.0.0
+  rive: 
+  smooth_page_indicator: null
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -76,6 +60,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -93,6 +79,7 @@ flutter:
     - assets/images/on_boarding/
     - assets/subjects_icons/
     - assets/csv_files/
+    - assets/RiveAssets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

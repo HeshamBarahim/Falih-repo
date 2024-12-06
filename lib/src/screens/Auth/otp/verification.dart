@@ -10,6 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/sizes.dart';
+
 class Otp extends StatelessWidget {
   Otp({
     super.key,
@@ -21,121 +23,132 @@ class Otp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String verificationId = Get.arguments['verificationId'];
+
+    SizeConfig().init(context);
     return Stack(children: [
       Form(
-        // Container for background image
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
-                  image: const AssetImage(
-                    Images.backgroundImageOfAuth,
-                  ),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-                      BlendMode.lighten))),
-          padding: const EdgeInsets.all(20),
+            color: Colors.white,
+            image: DecorationImage(
+              image: const AssetImage(
+                Images.backgroundImageOfAuth,
+              ),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
+                BlendMode.lighten,
+              ),
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.screenWidth! * 0.05,
+            vertical: SizeConfig.screenHeight! * 0.02,
+          ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 40),
-                  // logo of falih
+                  SizedBox(height: SizeConfig.screenHeight! * 0.05),
                   Container(
                     color: Colors.transparent,
                     child: Image.asset(
                       Images.logoFalih,
-                      width: 200.0,
-                      height: 200.0,
+                      width: SizeConfig.screenWidth! * 0.5,
+                      height: SizeConfig.screenHeight! * 0.24,
                       fit: BoxFit.contain,
                     ),
                   ),
-                  // otp text
                   Text(
                     S.of(context).otp,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 20),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: SizeConfig.screenHeight! * 0.025,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.01,
                   ),
-                  // explaination text for send otp
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    margin: EdgeInsets.symmetric(
+                      vertical: SizeConfig.screenHeight! * 0.015,
+                    ),
                     child: Text(
                       textAlign: TextAlign.center,
                       S.of(context).explaination_text,
-                      style: const TextStyle(
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenHeight! * 0.017,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  // number the code has been sent
-                  const Text(
+                  Text(
                     '7777777',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.successColor),
+                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.screenHeight! * 0.017,
+                      color: AppColors.successColor,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.03,
                   ),
-                  // otp boxes fields
                   OtpBoxes(
                     otp: otp,
                   ),
-                  const SizedBox(
-                    height: 40,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.05,
                   ),
-                  // timing
-                  const Text(
+                  Text(
                     '0:59',
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                      fontSize: SizeConfig.screenHeight! * 0.017,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  // resend button
                   const ResendCodeButton(),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.06,
                   ),
-                  // Submit button
                   GradientButton(
-                      text: S.of(context).submit,
-                      height: 55,
-                      width: double.infinity,
-                      onClick: () async {
-                        // Create a PhoneAuthCredential with the code
-                        PhoneAuthCredential credential =
-                            PhoneAuthProvider.credential(
-                                verificationId: verificationId,
-                                smsCode: otp.text);
+                    text: S.of(context).submit,
+                    height: SizeConfig.screenHeight! * 0.065,
+                    width: double.infinity,
+                    onClick: () async {
+                      PhoneAuthCredential credential =
+                          PhoneAuthProvider.credential(
+                        verificationId: verificationId,
+                        smsCode: otp.text,
+                      );
 
-                        // Sign the user in (or link) with the credential
-                        await auth.signInWithCredential(credential);
+                      await auth.signInWithCredential(credential);
 
-                        if (auth.currentUser != null) {
-                          Get.to(() => Login());
-                        }
-                      }),
-                  const SizedBox(
-                    height: 50,
+                      if (auth.currentUser != null) {
+                        Get.to(() => Login());
+                      }
+                    },
                   ),
-                  // last text below button
+                  SizedBox(
+                    height: SizeConfig.screenHeight! * 0.06,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         S.of(context).bottom_text_part1,
-                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: SizeConfig.screenHeight! * 0.017,
+                        ),
                       ),
                       GradientText(
-                          text: S.of(context).bottom_text_part2,
-                          route: '/login')
+                        text: S.of(context).bottom_text_part2,
+                        route: '/login',
+                      ),
                     ],
                   )
                 ],

@@ -1,4 +1,4 @@
-import 'package:falih/src/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';

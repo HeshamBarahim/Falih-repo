@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../config/sizes.dart';
+
 class GradientText extends StatelessWidget {
   final String text;
   final String route;
@@ -14,6 +16,7 @@ class GradientText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return InkWell(
       onTap: () {
         // Navigator.of(context).pushReplacementNamed(route);
@@ -22,9 +25,10 @@ class GradientText extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-            fontSize: 15.sp,
+            fontSize: SizeConfig.screenWidth! * 0.036,
             color: AppColors.successColor,
-            fontWeight: FontWeight.bold),
+            fontWeight: 
+            FontWeight.bold),
       ),
     );
   }
