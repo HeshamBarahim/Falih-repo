@@ -1,9 +1,5 @@
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
-import 'package:falih/src/screens/on_boarding/first_page_boarding.dart';
-import 'package:falih/src/screens/pre_exam/pre_exam.dart';
-import 'package:falih/src/screens/run_exam/run_exam.dart';
-import 'package:falih/src/screens/subscription/subscription_screen.dart';
+import 'package:falih/src/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -12,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../generated/l10n.dart';
-import 'screens/Auth/login/login.dart';
 import 'screens/Auth/signup/signup.dart';
 
 class App extends StatelessWidget {
@@ -48,8 +43,8 @@ class App extends StatelessWidget {
         //     name: '/',
         //     page: () =>
         //         hasSeenOnboarding ? Login() : const FirstPageBoarding()),
-        GetPage(name: '/', page: () => Signup()),
-        // GetPage(name: '/', page: () => HomePage()),
+        GetPage(name: '/signup', page: () => Signup()),
+        GetPage(name: '/', page: () => HomePage()),
         // GetPage(name: '/', page: () => CheckoutScreen()),
         // GetPage(name: '/', page: () => LeaderBoardScreen()),
         // GetPage(name: '/', page: () => const MenuScreen()),

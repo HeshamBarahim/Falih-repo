@@ -1,3 +1,5 @@
+
+
 class Exam {
   final String questionText;
   final List<String> options;
@@ -15,7 +17,9 @@ class Exam {
           ? List<String>.from(
               data['choices'].map((choice) => choice.toString()))
           : List<String>.from(data['choices']),
-      correctAnswerIndex: data['correctAnswer'] ?? 0,
+      correctAnswerIndex: data['correctAnswer'] is String
+          ? int.parse(data['correctAnswer'])
+          : data['correctAnswer'] ?? 0,
     );
   }
 }

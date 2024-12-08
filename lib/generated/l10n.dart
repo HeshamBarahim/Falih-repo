@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -583,8 +584,8 @@ class S {
   /// `results`
   String get results {
     return Intl.message(
-      'results',
-      name: 'results',
+      'Results',
+      name: 'Results',
       desc: 'Test ',
       args: [],
     );
@@ -623,8 +624,8 @@ class S {
   /// `unit_exams`
   String get unit_exams {
     return Intl.message(
-      'unit_exams',
-      name: 'unit_exams',
+      'Unit Exams',
+      name: 'Unit Exams',
       desc: '',
       args: [],
     );

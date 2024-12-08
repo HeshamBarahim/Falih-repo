@@ -19,7 +19,7 @@ class UserRepository extends GetxController {
 
       // Check if the record already exists based on email.
       final exists = await recordExist(user.fakeEmail);
-      if (exists) throw "Record Already Exists";
+      if (exists) throw "User already exists";
 
       // Add user using uID as the document ID.
       await _db.collection("users").doc(uid).set(user.toJson());
