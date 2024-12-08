@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
+import 'package:falih/src/models/user_model.dart';
+import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -205,8 +207,11 @@ class ExamController extends GetxController {
 
   Future<void> saveExamResult() async {
     try {
+      UserModel user = await UserRepository.instance.getUserDetails();
       final examResult = {
-        'examName': subjectController.name + "_9",
+        'examName': subjectController.name.value.capitalize,
+        "grade": user.selectedGrade,
+        'examType': 'UnitExam', // or "FullExam" TODO
         'score': score.value,
         'totalQuestions': questions.length,
         'correctAnswers': trueAnswers.value,
@@ -217,9 +222,10 @@ class ExamController extends GetxController {
       };
 
       // Save result to Firestore
+
       await _firestore
           .collection('exams')
-          .doc("sameer-77") // user id from firebase
+          .doc(user.id) // user id from firebase
           .collection('userExams')
           .doc()
           .set(examResult);

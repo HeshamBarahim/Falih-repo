@@ -215,7 +215,7 @@ class SubjectsLabels extends StatelessWidget {
                                 Text(
                                   "${unit["questions"].length} Questions",
                                   style: const TextStyle(
-                                    color: Color(0xFF3CD797),
+                                    color: AppColors.successColor,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
                                   ),
@@ -252,6 +252,17 @@ class SubjectsLabels extends StatelessWidget {
 
   // Placeholder content for "results"
   Widget _buildResultsContent(FirebaseFirestore firestore) {
+    var subjectName = subjectController.name;
+    if (subjectName.value == "Islamic Education") {
+      subjectName.value = "Islamic";
+    } else if (subjectName.value == "Quran Kareem") {
+      subjectName.value = "Quran";
+    } else if (subjectName.value == "Arabic Language") {
+      subjectName.value = "Arabic";
+    } else if (subjectName.value == "English Language") {
+      subjectName.value = "English";
+    }
+
     return FutureBuilder<UserModel>(
       future: UserRepository.instance.getUserDetails(),
       // Fetch user details asynchronously
@@ -259,9 +270,11 @@ class SubjectsLabels extends StatelessWidget {
         if (userSnapshot.connectionState == ConnectionState.waiting) {
           return Container();
         } else if (userSnapshot.hasError) {
-          return Center(child: Text('Error: ${userSnapshot.error}'));
+          return Expanded(
+              child: Center(child: Text('Error: ${userSnapshot.error}')));
         } else if (!userSnapshot.hasData) {
-          return const Center(child: Text('Failed to load user data'));
+          return const Expanded(
+              child: Center(child: Text('User is not authenticated')));
         }
 
         UserModel user = userSnapshot.data!;
@@ -283,7 +296,12 @@ class SubjectsLabels extends StatelessWidget {
             }
 
             final examResults = snapshot.data!.docs;
-            if (examResults.isEmpty) {
+            print(subjectName.value);
+            final filteredExams = examResults.where((doc) {
+              final data = doc.data(); // Ensure the data is cast as a map
+              return data["examName"] == subjectName.value;
+            }).toList();
+            if (filteredExams.isEmpty) {
               return const Expanded(
                   child: Center(child: Text('No exams yet, go and take one')));
             }
@@ -291,9 +309,13 @@ class SubjectsLabels extends StatelessWidget {
             return Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,
-                itemCount: examResults.length,
+                itemCount: filteredExams.length,
                 itemBuilder: (context, index) {
                   final examResult = examResults[index];
+                  double percentage = (examResult["correctAnswers"] /
+                      examResult["totalQuestions"]);
+                  double roundedPercentage =
+                      double.parse((percentage).toStringAsFixed(1));
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
@@ -321,10 +343,8 @@ class SubjectsLabels extends StatelessWidget {
                                   animation: true,
                                   animationDuration: 1200,
                                   lineWidth: 5.0,
-                                  percent: examResult["correctAnswers"] /
-                                      examResult["totalQuestions"],
-                                  center: Text(
-                                      "${(examResult["correctAnswers"] / examResult["totalQuestions"]) * 100}%"),
+                                  percent: roundedPercentage,
+                                  center: Text("${roundedPercentage * 100}%"),
                                   progressColor: (examResult["correctAnswers"] /
                                               examResult["totalQuestions"]) >
                                           0.5
@@ -336,55 +356,55 @@ class SubjectsLabels extends StatelessWidget {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       (examResult["correctAnswers"] /
-                                                  examResult[
-                                                      "totalQuestions"]) >
-                                              0.5
+                                          examResult[
+                                          "totalQuestions"]) >
+                                          0.5
                                           ? Container(
-                                              decoration: const BoxDecoration(
-                                                  color:
-                                                      AppColors.successBoxColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20))),
-                                              child: const Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
-                                                  child: Text("Passed",
-                                                      style: TextStyle(
-                                                          color: AppColors
-                                                              .successColor,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 14))))
+                                          decoration: const BoxDecoration(
+                                              color:
+                                              AppColors.successBoxColor,
+                                              borderRadius:
+                                              BorderRadius.all(
+                                                  Radius.circular(20))),
+                                          child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              child: Text("Passed",
+                                                  style: TextStyle(
+                                                      color: AppColors
+                                                          .successColor,
+                                                      fontWeight:
+                                                      FontWeight.w500,
+                                                      fontSize: 14))))
                                           : Container(
-                                              decoration: const BoxDecoration(
-                                                  color:
-                                                      AppColors.errorBoxColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20))),
-                                              child: const Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
-                                                child: Text("Failed",
-                                                    style: TextStyle(
-                                                        color: AppColors
-                                                            .errorColor,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 14)),
-                                              ),
-                                            ),
+                                        decoration: const BoxDecoration(
+                                            color:
+                                            AppColors.errorBoxColor,
+                                            borderRadius:
+                                            BorderRadius.all(
+                                                Radius.circular(20))),
+                                        child: const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Text("Failed",
+                                              style: TextStyle(
+                                                  color: AppColors
+                                                      .errorColor,
+                                                  fontWeight:
+                                                  FontWeight.w500,
+                                                  fontSize: 14)),
+                                        ),
+                                      ),
                                       const SizedBox(
                                         height: 8,
                                       ),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 5.0),
+                                        const EdgeInsets.only(left: 5.0),
                                         child: Text(
                                           "${examResult["examName"]}",
                                           style: const TextStyle(
