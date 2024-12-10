@@ -41,7 +41,9 @@ class NavBarTile extends StatelessWidget {
               left: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6792FF),
+                  color: const Color(0xFFFFA620),
+                  // color: const Color(0xFFFFB443),
+                  // color: const Color(0xFFFFC56E),
                   borderRadius: BorderRadius.all(
                     Radius.circular(SizeConfig.screenHeight! * 0.012),
                   ),
@@ -64,6 +66,7 @@ class NavBarTile extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: SizeConfig.screenHeight! * 0.018,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

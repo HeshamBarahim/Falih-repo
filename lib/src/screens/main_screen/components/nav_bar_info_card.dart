@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../../config/sizes.dart';
 
-
 class NavBarInfoCard extends StatelessWidget {
   final String name;
   final String profession;
@@ -18,12 +17,12 @@ class NavBarInfoCard extends StatelessWidget {
     SizeConfig().init(context);
     return ListTile(
       leading: CircleAvatar(
-        radius: SizeConfig.screenHeight! * 0.03,
+        radius: SizeConfig.screenHeight! * 0.04,
         backgroundColor: Colors.white24,
         child: Icon(
           CupertinoIcons.person,
           color: Colors.white,
-          size: SizeConfig.screenHeight! * 0.04,
+          size: SizeConfig.screenHeight! * 0.05,
         ),
       ),
       title: Text(

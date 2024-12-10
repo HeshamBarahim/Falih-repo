@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rive/rive.dart';
+import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
 
@@ -28,7 +28,22 @@ class _NavBarState extends State<NavBar> {
       body: Container(
         width: SizeConfig.screenWidth! * 0.7,
         height: double.infinity,
-        color: const Color(0xFF17203A),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF742f88),
+              Color(0xFF943dae),
+              Color(0xFFab59c5),
+              Color(0xFFbe7ed2),
+              Color(0xFFd1a4df),
+              Color(0xFFe4caed),
+              Color(0xFFf7effa),
+              // Color(0xFFfcf7fd),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: SafeArea(
           child: GetBuilder<NavBarController>(
             init: NavBarController(),
@@ -38,7 +53,7 @@ class _NavBarState extends State<NavBar> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      left: SizeConfig.screenWidth! * 0.02,
+                      // left: SizeConfig.screenWidth! * 0.00,
                       top: SizeConfig.screenHeight! * 0.02,
                     ),
                     child: const NavBarInfoCard(
@@ -64,10 +79,11 @@ class _NavBarState extends State<NavBar> {
                     (menu) => NavBarTile(
                       menu: menu,
                       riveonInit: (artboard) {
-                        StateMachineController controller =
+                        rive.StateMachineController controller =
                             RiveUtils.getRiveController(artboard,
                                 stateMachineName: menu.stateMachineName);
-                        menu.input = controller.findSMI("active") as SMIBool;
+                        menu.input =
+                            controller.findSMI("active") as rive.SMIBool;
                       },
                       press: controller.isProsess
                           ? () => null
@@ -79,15 +95,15 @@ class _NavBarState extends State<NavBar> {
                               Future.delayed(const Duration(seconds: 1), () {
                                 menu.input!.change(false);
 
-                                if (menu.index == 1) {
+                                if (menu.index == 0) {
+                                  setState(() {
+                                    controller.isProsess = false;
+                                  });
+                                } else if (menu.index == 1) {
                                   setState(() {
                                     controller.isProsess = false;
                                   });
                                 } else if (menu.index == 2) {
-                                  setState(() {
-                                    controller.isProsess = false;
-                                  });
-                                } else if (menu.index == 3) {
                                   setState(() {
                                     controller.isProsess = false;
                                   });
@@ -118,10 +134,11 @@ class _NavBarState extends State<NavBar> {
                     (menu) => NavBarTile(
                       menu: menu,
                       riveonInit: (artboard) {
-                        StateMachineController controller =
+                        rive.StateMachineController controller =
                             RiveUtils.getRiveController(artboard,
                                 stateMachineName: menu.stateMachineName);
-                        menu.input = controller.findSMI("active") as SMIBool;
+                        menu.input =
+                            controller.findSMI("active") as rive.SMIBool;
                       },
                       press: controller.isProsess
                           ? () => null
@@ -133,11 +150,15 @@ class _NavBarState extends State<NavBar> {
                               Future.delayed(const Duration(seconds: 1), () {
                                 menu.input!.change(false);
 
-                                if (menu.index == 2) {
+                                if (menu.index == 0) {
                                   setState(() {
                                     controller.isProsess = false;
                                   });
                                 } else if (menu.index == 1) {
+                                  setState(() {
+                                    controller.isProsess = false;
+                                  });
+                                } else if (menu.index == 2) {
                                   setState(() {
                                     controller.isProsess = false;
                                   });

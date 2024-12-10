@@ -3,7 +3,6 @@ import 'package:rive/rive.dart';
 
 import '../../../config/sizes.dart';
 
-
 class NavBarButton extends StatelessWidget {
   NavBarButton({
     Key? key,
