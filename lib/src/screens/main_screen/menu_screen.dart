@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rive/rive.dart';
 
+import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
 import '../curriculum/curriculum.dart';
@@ -114,133 +116,147 @@ class _MenuScreenState extends State<MenuScreen>
                 child: Transform.scale(
                   scale: scalAnimation.value,
                   child: Scaffold(
-                    body: Stack(
-                      children: [
-                        Container(
-                          height: SizeConfig.screenHeight! * 0.06,
-                          width: SizeConfig.screenWidth!,
-                          margin: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.screenWidth! * 0.02,
-                              vertical: SizeConfig.screenHeight! * 0.015),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFBF7FC),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                  padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).size.width *
-                                          0.05),
-                                  onPressed: () {
-                                    Get.to(() => EditProfileScreen());
-                                  },
-                                  icon: Icon(
-                                    Icons.notifications_none,
-                                    size: 25.w,
-                                  ),
-                                  color: AppColors.mainColor,
-                                  iconSize: 25.w),
-                              Center(
-                                child: Obx(
-                                  () => Text(
-                                    controller.screenTitle[
-                                        controller.selectedIndex.value],
-                                    style: TextStyle(
-                                        color: AppColors.mainColor,
-                                        fontFamily:
-                                            'GoogleFonts.montserratAlternatesTextTheme',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.sp),
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                padding: EdgeInsets.only(
-                                    right: MediaQuery.of(context).size.width *
-                                        0.05),
-                                onPressed: () {
-                                  Get.to(() => const SettingsScreen_2());
-                                },
-                                icon: const Icon(Icons.settings),
-                                color: AppColors.mainColor,
-                                iconSize: 25.w,
-                              ),
-                            ],
-                          ),
+                    backgroundColor: Colors.white,
+                    body: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Images.backgroundImageOfAuth),
+                          fit: BoxFit.cover,
+                          opacity: 0.2,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: SizeConfig.screenHeight! * 0.08),
-                          child: Scaffold(
-                              bottomNavigationBar: Obx(
-                                () => Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black
-                                            .withOpacity(0.2), // Shadow color
-                                        spreadRadius: 2,
-                                        blurRadius: 10,
-                                        offset: const Offset(0,
-                                            -3), // Positioning of the shadow (vertical)
-                                      ),
-                                    ],
+                      ),
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: SizeConfig.screenHeight! * 0.053),
+                            child: Container(
+                              height: SizeConfig.screenHeight! * 0.077,
+                              width: SizeConfig.screenWidth!,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: SizeConfig.screenWidth! * 0.02),
+                              decoration: BoxDecoration(
+                                // color: Color(0xFFFBF7FC),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(20.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 0.9,
+                                    offset: Offset(.9, .5),
                                   ),
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30),
+                                ],
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                      width: SizeConfig.screenWidth! * 0.13),
+                                  Center(
+                                    child: Obx(
+                                      () => Text(
+                                        controller.screenTitle[
+                                            controller.selectedIndex.value],
+                                        style: TextStyle(
+                                            color: AppColors.mainColor,
+                                            fontFamily:
+                                                'GoogleFonts.montserratAlternatesTextTheme',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25.sp),
+                                      ),
                                     ),
-                                    child: NavigationBar(
-                                        indicatorColor: AppColors.choicesColor,
-                                        backgroundColor:
-                                            AppColors.moreLigtenMainColor,
-                                        height: 100.h,
-                                        elevation: 0,
-                                        selectedIndex:
-                                            controller.selectedIndex.value,
-                                        onDestinationSelected: (index) =>
-                                            controller.selectedIndex.value =
-                                                index,
-                                        destinations: [
-                                          NavigationDestination(
+                                  ),
+                                  IconButton(
+                                    padding: EdgeInsets.only(
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.05),
+                                    onPressed: () {
+                                      Get.to(() => const NotificationPage());
+                                    },
+                                    icon: const Icon(Icons.notifications),
+                                    color: AppColors.mainColor,
+                                    iconSize: 40.w,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: SizeConfig.screenHeight! * 0.14),
+                            child: Scaffold(
+                                bottomNavigationBar: Obx(
+                                  () => Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(30),
+                                        topRight: Radius.circular(30),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black
+                                              .withOpacity(0.2), // Shadow color
+                                          spreadRadius: 2,
+                                          blurRadius: 10,
+                                          offset: const Offset(0,
+                                              -3), // Positioning of the shadow (vertical)
+                                        ),
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(30),
+                                        topRight: Radius.circular(30),
+                                      ),
+                                      child: NavigationBar(
+                                          indicatorColor:
+                                              AppColors.choicesColor,
+                                          backgroundColor:
+                                              AppColors.moreLigtenMainColor,
+                                          height: 100.h,
+                                          elevation: 0,
+                                          selectedIndex:
+                                              controller.selectedIndex.value,
+                                          onDestinationSelected: (index) =>
+                                              controller.selectedIndex.value =
+                                                  index,
+                                          destinations: [
+                                            NavigationDestination(
+                                                icon: Icon(
+                                                  Icons.menu_book_outlined,
+                                                  color: AppColors.mainColor,
+                                                  size: 30.w,
+                                                ),
+                                                label: S.of(context).subjects),
+                                            NavigationDestination(
                                               icon: Icon(
-                                                Icons.menu_book_outlined,
+                                                Icons.home,
                                                 color: AppColors.mainColor,
                                                 size: 30.w,
                                               ),
-                                              label: S.of(context).subjects),
-                                          NavigationDestination(
-                                            icon: Icon(
-                                              Icons.home,
-                                              color: AppColors.mainColor,
-                                              size: 30.w,
+                                              label: S.of(context).home,
                                             ),
-                                            label: S.of(context).home,
-                                          ),
-                                          NavigationDestination(
-                                            icon: Icon(
-                                              Icons.leaderboard_outlined,
-                                              color: AppColors.mainColor,
-                                              size: 30.w,
+                                            NavigationDestination(
+                                              icon: Icon(
+                                                Icons.leaderboard_outlined,
+                                                color: AppColors.mainColor,
+                                                size: 30.w,
+                                              ),
+                                              label: S.of(context).leaderBoard,
                                             ),
-                                            label: S.of(context).leaderBoard,
-                                          ),
-                                        ]),
+                                          ]),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              body: Obx(() => controller
-                                  .screens[controller.selectedIndex.value])),
-                        ),
-                      ],
+                                body: Obx(() => controller
+                                    .screens[controller.selectedIndex.value])),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
