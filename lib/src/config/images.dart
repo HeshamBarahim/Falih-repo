@@ -6,7 +6,7 @@ class Images {
       'assets/images/background_image_of_auth.png';
 
 // test profile
-  static const String test = 'assets/images/yousif.png';
+  static const String test = 'assets/images/test.jpg';
   static const String testAds = 'assets/images/test_ads.png';
 
   // icons of subjects

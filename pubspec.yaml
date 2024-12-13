@@ -32,34 +32,31 @@ dependencies:
   cloud_firestore: null
   csv: null
   cupertino_icons: ^1.0.8
-  firebase_auth:
+  firebase_auth: null
   firebase_core: null
+  firebase_storage: ^12.3.7
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: null
   flutter_screenutil: null
-  flutter_svg:
+  flutter_svg: null
   get: null
   get_storage: null
-  google_fonts:
+  google_fonts: null
   http: null
+  image_picker: ^1.1.2
   intl: null
-  intl_utils:
+  intl_utils: null
+  path: ^1.9.0
   percent_indicator: null
-  pinput:
-  rive: 
+  pinput: null
+  rive: null
   smooth_page_indicator: null
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints:
+  flutter_lints: null
   flutter_test:
     sdk: flutter
 
