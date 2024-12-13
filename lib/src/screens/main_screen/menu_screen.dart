@@ -14,7 +14,7 @@ import '../curriculum/curriculum.dart';
 import '../home/home_page.dart';
 import '../leaderboard/leaderboard_screen.dart';
 import '../profile/edit_profile_screen.dart';
-import '../settings/settings_screen_2.dart';
+import '../settings/settings_screen.dart';
 import 'components/nav_bar_button.dart';
 import 'components/nav_bar.dart';
 import 'utils/rive_utils.dart';

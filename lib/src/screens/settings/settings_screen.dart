@@ -10,9 +10,9 @@ import 'components/profile_section.dart';
 import 'widgets/settings_section.dart';
 import 'widgets/settings_tile.dart';
 
-class SettingsScreen_2 extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
   static const String sc_route = '/settings-screen-2';
-  const SettingsScreen_2({Key? key}) : super(key: key);
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

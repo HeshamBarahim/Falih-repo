@@ -1,3 +1,8 @@
+import 'package:falih/src/screens/about_us/about_us_screen.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
+import 'package:falih/src/screens/profile/edit_profile_screen.dart';
+import 'package:falih/src/screens/settings/settings_screen.dart';
+import 'package:falih/src/screens/subscription/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
@@ -98,14 +103,17 @@ class _NavBarState extends State<NavBar> {
                                 if (menu.index == 0) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    Get.offAll(MenuScreen());
                                   });
                                 } else if (menu.index == 1) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    Get.to(EditProfileScreen());
                                   });
                                 } else if (menu.index == 2) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    Get.to(SubscriptionScreen());
                                   });
                                 }
                               });
@@ -153,14 +161,17 @@ class _NavBarState extends State<NavBar> {
                                 if (menu.index == 0) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    //
                                   });
                                 } else if (menu.index == 1) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    Get.to(AboutUsScreen());
                                   });
                                 } else if (menu.index == 2) {
                                   setState(() {
                                     controller.isProsess = false;
+                                    Get.to(SettingsScreen());
                                   });
                                 }
                               });
