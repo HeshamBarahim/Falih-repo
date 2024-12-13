@@ -60,4 +60,51 @@ class AppColors {
     Color(0xFF548AD8),
     Color(0XFF8A4BD3),
   ]);
+
+  static const LinearGradient aboutUsViewsBorderColor_1 = LinearGradient(
+    colors: [
+      Color(0xFFf52c74),
+      Color(0xFFce3383),
+      Color(0xFF903d9a),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+  static const LinearGradient aboutUsViewsBorderColor_2 = LinearGradient(
+    colors: [
+      Color(0xFF5589d8),
+      Color(0xFF6972d6),
+      Color(0xFF894dd3),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+  static const LinearGradient aboutUsViewsBorderColor_3 = LinearGradient(
+    colors: [
+      Color(0xFFf79135),
+      Color(0xFFf56c49),
+      Color(0xFFf34061),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+  static const LinearGradient aboutUsViewsBorderColor_4 = LinearGradient(
+    colors: [
+      Color(0xFF86a0c3),
+      Color(0xFF6a7ead),
+      Color(0xFF485693),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static const LinearGradient aboutUsViewsBorderColor_5 = LinearGradient(
+    colors: [
+      Color(0xFF33d9b2),
+      Color(0xFF10ac84),
+      Color(0xFF1dd1a1),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
 }

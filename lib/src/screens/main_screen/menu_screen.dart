@@ -187,11 +187,11 @@ class _MenuScreenState extends State<MenuScreen>
                                       ),
                                     ),
                                     IconButton(
-                                      padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.05),
+                                      // padding: EdgeInsets.only(
+                                      //     right: MediaQuery.of(context)
+                                      //             .size
+                                      //             .width *
+                                      //         0.05),
                                       onPressed: () {
                                         Get.to(() => const NotificationPage());
                                       },
