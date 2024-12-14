@@ -1,21 +1,21 @@
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/subscription_plans_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controller/payment_choice_controller.dart';
 import 'payment_choice_button.dart';
 
 class CheckoutAppBar extends StatelessWidget {
-  final int paymentType;
-  final String price;
-  final VoidCallback creditCardFunction;
-  final VoidCallback kuraimiFunction;
+  CheckoutAppBar({super.key});
 
-  const CheckoutAppBar(
-      {super.key,
-      required this.paymentType,
-      required this.price,
-      required this.creditCardFunction,
-      required this.kuraimiFunction});
+  final PaymentChoiceController paymentController =
+      Get.put(PaymentChoiceController());
+
+  final SubscriptionPlansController controller =
+      Get.put(SubscriptionPlansController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class CheckoutAppBar extends StatelessWidget {
       children: [
         /// Payment Title & Details
         Container(
-          height: SizeConfig.screenHeight! * 0.2548,
+          height: SizeConfig.screenHeight! * 0.3948,
           padding: EdgeInsets.symmetric(
               horizontal: SizeConfig.screenWidth! * 0.0388),
           decoration: BoxDecoration(
@@ -57,16 +57,12 @@ class CheckoutAppBar extends StatelessWidget {
                 },
               ),
 
-              ///
-              ///
-              /// Payment Title
               Center(
                 child: Text(
                   'Checkout Details',
                   style: TextStyle(
                     fontSize: SizeConfig.screenWidth! * 0.063,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
                   ),
                 ),
               ),
@@ -75,45 +71,184 @@ class CheckoutAppBar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: SizeConfig.screenWidth! * 0.13),
 
-                ///
-                ///
                 /// Payment Details
-                child: Row(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // Plan Details Section
                     Text(
-                      'For payment:',
+                      'Plan Details',
                       style: TextStyle(
-                        fontSize: SizeConfig.screenWidth! * 0.036,
-                        color: const Color(0XFFBBA3C2),
+                        fontSize: SizeConfig.screenWidth! * 0.04,
                         fontWeight: FontWeight.bold,
+                        color: const Color(0XFF333333),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          price,
-                          // '\$240,55',
+                        const Text(
+                          'Plan:',
                           style: TextStyle(
-                            // fontSize: SizeConfig.screenWidth! * 0.029,
-                            fontSize: SizeConfig.screenWidth! * 0.036,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0XFF3CD797),
+                            color: Color(0XFF666666),
                           ),
                         ),
                         Text(
-                          'Including VAT (21%)',
-                          style: TextStyle(
-                            // fontSize: SizeConfig.screenWidth! * 0.029,
-                            fontSize: SizeConfig.screenWidth! * 0.031,
-                            color: const Color(0XFFBBA3C2),
+                          '${controller.selectedPlan.value?["name"] ?? "No Plan Selected"}',
+                          style: const TextStyle(
+                            color: Color(0XFF666666),
                           ),
                         ),
                       ],
-                    )
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Type:',
+                          style: TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                        Text(
+                          controller.selectedPlan.value?["type"]
+                                  .toString()
+                                  .capitalize ??
+                              "No Plan Selected",
+                          style: const TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Class:',
+                          style: TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                        Text(
+                          '${controller.selectedPlan.value?["class"] ?? "No Plan Selected"}',
+                          style: const TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Section:',
+                          style: TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                        Text(
+                          controller.selectedPlan.value?["section"]
+                                  .toString()
+                                  .capitalize ??
+                              "No Plan Selected",
+                          style: const TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // if (features.isNotEmpty)
+                    //   Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: features
+                    //         .map((feature) => Text(
+                    //               '• $feature',
+                    //               style: TextStyle(
+                    //                 fontSize: SizeConfig.screenWidth! * 0.03,
+                    //                 color: const Color(0XFF666666),
+                    //               ),
+                    //             ))
+                    //         .toList(),
+                    //   ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Price:',
+                          style: TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                        Text(
+                          '${controller.selectedPlan.value!["price"]} r.y',
+                          style: const TextStyle(
+                            color: Color(0XFF666666),
+                          ),
+                        ),
+                      ],
+                    ),
+                    controller.selectedPlan.value?["durationInDays"] != 0
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Duration: ',
+                                style: TextStyle(
+                                  color: Color(0XFF666666),
+                                ),
+                              ),
+                              Text(
+                                '${controller.selectedPlan.value!["durationInDays"]} days',
+                                style: const TextStyle(
+                                  color: Color(0XFF666666),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Unit Exam Limit:',
+                                    style: TextStyle(
+                                      color: Color(0XFF666666),
+                                    ),
+                                  ),
+                                  Text(
+                                    '${controller.selectedPlan.value!["unitExamLimit"]} times',
+                                    style: const TextStyle(
+                                      color: Color(0XFF666666),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Final Exam Limit:',
+                                    style: TextStyle(
+                                      color: Color(0XFF666666),
+                                    ),
+                                  ),
+                                  Text(
+                                    '${controller.selectedPlan.value!["finalExamLimit"]} times',
+                                    style: const TextStyle(
+                                      color: Color(0XFF666666),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                    // const Divider(color: Color(0XFFCCCCCC)),
                   ],
                 ),
               ),
@@ -121,32 +256,38 @@ class CheckoutAppBar extends StatelessWidget {
           ),
         ),
 
-        ///
-        ///
         /// Payment Type Choices Buttons
         PaymentChoiceButton(
-            creditBackgroundColor: paymentType == 0
-                ? const Color(0xFF743089)
-                : Colors.grey.shade300,
+            creditBackgroundColor: paymentController.paymentType == 0
+                ? AppColors.darkMainColor
+                : AppColors.lightenMainColor,
             creditCardOnPressed: () {
               // setState(() {
-              //   paymentType = 0;
+              //   paymentController.paymentType = 0;
               // });
-              creditCardFunction();
+              // creditCardFunction();
             },
-            creditIconColor: paymentType == 0 ? Colors.white : Colors.black,
-            creditTextColor: paymentType == 0 ? Colors.white : Colors.black,
-            kuraimiBackgroundColor: paymentType == 1
-                ? const Color(0xFF743089)
-                : Colors.grey.shade300,
+            creditIconColor: paymentController.paymentType == 0
+                ? Colors.white
+                : Colors.black,
+            creditTextColor: paymentController.paymentType == 0
+                ? Colors.white
+                : Colors.black,
+            kuraimiBackgroundColor: paymentController.paymentType == 1
+                ? AppColors.darkMainColor
+                : AppColors.lightenMainColor,
             kuraimiOnPressed: () {
               // setState(() {
-              //   paymentType = 1;
+              //   paymentController.paymentType = 1;
               // });
-              kuraimiFunction();
+              // kuraimiFunction();
             },
-            kuraimiIconColor: paymentType == 1 ? Colors.white : Colors.black,
-            kuraimiTextColor: paymentType == 1 ? Colors.white : Colors.black)
+            kuraimiIconColor: paymentController.paymentType == 1
+                ? Colors.white
+                : Colors.black,
+            kuraimiTextColor: paymentController.paymentType == 1
+                ? Colors.white
+                : Colors.black)
       ],
     );
   }

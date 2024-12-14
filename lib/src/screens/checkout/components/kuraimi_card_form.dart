@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'checkout_textfield.dart';
 
-class KurimiCardForm extends StatelessWidget {
+class KuraimiCardForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
 
   final TextEditingController cardNumber;
@@ -15,7 +15,7 @@ class KurimiCardForm extends StatelessWidget {
 
   // final Widget datePicker;
 
-  const KurimiCardForm({
+  const KuraimiCardForm({
     super.key,
     required this.formKey,
     required this.cardNumber,

@@ -1,4 +1,5 @@
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -33,7 +34,7 @@ class CheckoutTextfield extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.0388,
-            color: Colors.black,
+            color: AppColors.darkMainColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -46,7 +47,7 @@ class CheckoutTextfield extends StatelessWidget {
           inputFormatters: [inputFormatters],
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.0389,
-            color: Colors.black,
+            color: AppColors.darkMainColor,
           ),
           decoration: InputDecoration(
             hintText: hintText,
@@ -54,7 +55,7 @@ class CheckoutTextfield extends StatelessWidget {
               fontSize: SizeConfig.screenWidth! * 0.0389,
               color: Colors.grey.shade500,
             ),
-            suffixIcon: label == 'Credit Card Number'
+            suffixIcon: label == 'Account Number'
                 ? SizedBox(
                     width: SizeConfig.screenWidth! * 0.218,
                     child: Row(

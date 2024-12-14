@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
-
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/config/themes.dart';
+import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -18,7 +17,7 @@ class Footer extends StatelessWidget {
             TextSpan(
               text: "By placing this order, you agree to the ",
               style: TextStyle(
-                color: Color(0xFFFBF7FC),
+                color: AppColors.secondaryColor,
                 fontSize: SizeConfig.screenWidth! * 0.035,
               ),
             ),
@@ -33,7 +32,7 @@ class Footer extends StatelessWidget {
             TextSpan(
               text: " and ",
               style: TextStyle(
-                color: Color(0xFFFBF7FC),
+                color: AppColors.secondaryColor,
                 fontSize: SizeConfig.screenWidth! * 0.035,
               ),
             ),
@@ -47,10 +46,10 @@ class Footer extends StatelessWidget {
             ),
             TextSpan(
               text:
-                  " Subscription automatically renews\nunless auto-renew is turned off at least 24-hours before\n"
+              " Subscription automatically renews\nunless auto-renew is turned off at least 24-hours before\n"
                   "the end of the current period.",
               style: TextStyle(
-                color: Color(0xFFFBF7FC),
+                color: AppColors.secondaryColor,
                 fontSize: SizeConfig.screenWidth! * 0.035,
               ),
             ),

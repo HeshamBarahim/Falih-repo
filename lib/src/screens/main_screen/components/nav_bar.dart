@@ -2,13 +2,12 @@ import 'package:falih/src/screens/about_us/about_us_screen.dart';
 import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen.dart';
-import 'package:falih/src/screens/subscription/subscription_screen.dart';
+import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
-
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
 import '../models/rive_asset.dart';
@@ -113,7 +112,7 @@ class _NavBarState extends State<NavBar> {
                                 } else if (menu.index == 2) {
                                   setState(() {
                                     controller.isProsess = false;
-                                    Get.to(SubscriptionScreen());
+                                    Get.to(SubscriptionPlansScreen());
                                   });
                                 }
                               });

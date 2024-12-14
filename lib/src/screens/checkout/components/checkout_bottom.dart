@@ -1,10 +1,12 @@
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
-class CheckoutBottom extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
+import '../../../config/themes.dart';
 
+class CheckoutBottom extends StatelessWidget {
   const CheckoutBottom({super.key, required this.formKey});
+
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +15,14 @@ class CheckoutBottom extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: SizeConfig.screenWidth! * 0.194,
+              horizontal: SizeConfig.screenWidth! * 0.1,
               vertical: SizeConfig.screenHeight! * 0.0077),
-          child: Center(
-            child: Text(
-              'We will send you an order details to your email after the successful payment',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: SizeConfig.screenWidth! * 0.0291,
-              ),
+          child: Text(
+            'We will send you an order details to your email after the successful payment',
+            // textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.grey.shade600,
+              fontSize: SizeConfig.screenWidth! * 0.0291,
             ),
           ),
         ),
@@ -30,8 +30,8 @@ class CheckoutBottom extends StatelessWidget {
         Center(
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              iconColor: const Color(0xFF743089),
-              // primary: Color(0xFFAC7ABC),
+              iconColor: AppColors.mainColor,
+              backgroundColor: AppColors.mainColor,
               // primary: Color(0xFF743089),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
@@ -40,7 +40,7 @@ class CheckoutBottom extends StatelessWidget {
                   vertical: SizeConfig.screenHeight! * 0.0189,
                   horizontal: SizeConfig.screenWidth! * 0.194),
             ),
-            icon: const Icon(Icons.lock, color: Colors.white),
+            icon: const Icon(Icons.payment, color: Colors.white),
             label: Text(
               'Pay For The Plan',
               style: TextStyle(

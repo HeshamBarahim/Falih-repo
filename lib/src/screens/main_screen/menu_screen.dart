@@ -1,10 +1,10 @@
 import 'dart:math';
 
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:falih/generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../config/images.dart';
@@ -13,10 +13,8 @@ import '../../config/themes.dart';
 import '../curriculum/curriculum.dart';
 import '../home/home_page.dart';
 import '../leaderboard/leaderboard_screen.dart';
-import '../profile/edit_profile_screen.dart';
-import '../settings/settings_screen.dart';
-import 'components/nav_bar_button.dart';
 import 'components/nav_bar.dart';
+import 'components/nav_bar_button.dart';
 import 'utils/rive_utils.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -234,7 +232,7 @@ class _MenuScreenState extends State<MenuScreen>
                                             indicatorColor:
                                                 AppColors.choicesColor,
                                             backgroundColor:
-                                                AppColors.moreLigtenMainColor,
+                                                AppColors.moreLightenMainColor,
                                             height: 100.h,
                                             elevation: 0,
                                             selectedIndex:

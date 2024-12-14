@@ -31,13 +31,13 @@ class CreditCardForm extends StatelessWidget {
       child: Column(
         children: [
           CheckoutTextfield(
-            label: 'Credit Card Number',
+            label: 'Account Number',
             inputType: TextInputType.number,
             controller: cardNumber,
             validator: (val) {
               //
               if (val == null || val.isEmpty) {
-                return 'Please Enter Your Card Number';
+                return 'Please Enter Your Account Number';
               }
               return null;
             },
@@ -54,7 +54,7 @@ class CreditCardForm extends StatelessWidget {
           SizedBox(height: SizeConfig.screenHeight! * 0.0296),
           ////////////////////
           CheckoutTextfield(
-            label: 'Card Holder Name',
+            label: 'Account Holder Name',
             inputType: TextInputType.name,
             controller: cardHolderName,
             validator: (val) {
@@ -71,60 +71,58 @@ class CreditCardForm extends StatelessWidget {
             },
             inputFormatters: FilteringTextInputFormatter.deny(RegExp(r'\s')),
             icon: null,
-            hintText: 'Ex: Isaac Edwards',
+            hintText: 'Ex: Sameer Saeed Anwar',
           ),
           ////////////////////
           SizedBox(height: SizeConfig.screenHeight! * 0.0296),
           ////////////////////
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Expire date',
-                      style: TextStyle(
-                        fontSize: SizeConfig.screenWidth! * 0.0388,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: SizeConfig.screenHeight! * 0.0094),
-                    datePicker,
-                  ],
-                ),
-              ),
-              ////////////////////
-              SizedBox(width: SizeConfig.screenWidth! * 0.085),
-              ////////////////////
-              Expanded(
-                child: CheckoutTextfield(
-                  label: 'CVV / CVC',
-                  inputType: TextInputType.number,
-                  controller: cvv_cvcNumber,
-                  validator: (val) {
-                    //
-                    if (val == null || val.isEmpty) {
-                      return 'Please Enter Your CVV / CVC Number';
-                    }
-                    return null;
-                  },
-                  onChangedFunction: (val) {
-                    return null;
-
-                    //
-                  },
-                  inputFormatters:
-                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                  icon: Icons.info_rounded,
-                  hintText: 'Ex: 915',
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.end,
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     Expanded(
+          //       child: Column(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: [
+          //           Text(
+          //             'Expire date',
+          //             style: TextStyle(
+          //               fontSize: SizeConfig.screenWidth! * 0.0388,
+          //               color: Colors.black,
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //           ),
+          //           SizedBox(height: SizeConfig.screenHeight! * 0.0094),
+          //           datePicker,
+          //         ],
+          //       ),
+          //     ),
+          //     ////////////////////
+          //     SizedBox(width: SizeConfig.screenWidth! * 0.085),
+          //     ////////////////////
+          //     Expanded(
+          //       child: CheckoutTextfield(
+          //         label: 'CVV / CVC',
+          //         inputType: TextInputType.number,
+          //         controller: cvv_cvcNumber,
+          //         validator: (val) {
+          //           //
+          //           if (val == null || val.isEmpty) {
+          //             return 'Please Enter Your CVV / CVC Number';
+          //           }
+          //           return null;
+          //         },
+          //         onChangedFunction: (val) {
+          //           return null;
+          //           },
+          //         inputFormatters:
+          //             FilteringTextInputFormatter.deny(RegExp(r'\s')),
+          //         icon: Icons.info_rounded,
+          //         hintText: 'Ex: 915',
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

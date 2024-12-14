@@ -31,7 +31,7 @@ class PaymentChoiceButton extends StatelessWidget {
       margin: EdgeInsets.only(
           right: SizeConfig.screenWidth! * 0.097,
           left: SizeConfig.screenWidth! * 0.097,
-          top: SizeConfig.screenHeight! * 0.218),
+          top: SizeConfig.screenHeight! * 0.358),
       height: SizeConfig.screenHeight! * 0.071,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(SizeConfig.screenHeight! * 0.022),
@@ -39,76 +39,80 @@ class PaymentChoiceButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
+            blurRadius: 450,
             offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ////////////////////
-          /// Credit Card Button
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.screenWidth! * 0.048),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(SizeConfig.screenWidth! * 0.048),
+                ),
+                backgroundColor: creditBackgroundColor,
+                // paymentType == 0 ? Color(0xFF743089) : Colors.grey.shade300,
               ),
-              backgroundColor: creditBackgroundColor,
-              // paymentType == 0 ? Color(0xFF743089) : Colors.grey.shade300,
-            ),
-            onPressed: creditCardOnPressed,
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    CupertinoIcons.creditcard_fill,
-                    // color: paymentType == 0 ? Colors.white : Colors.black,
-                    color: creditIconColor,
-                    size: SizeConfig.screenWidth! * 0.060,
-                  ),
-                  Text(
-                    ' Credit Card',
-                    style: TextStyle(
-                      fontSize: SizeConfig.screenWidth! * 0.038,
+              onPressed: creditCardOnPressed,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      CupertinoIcons.creditcard_fill,
                       // color: paymentType == 0 ? Colors.white : Colors.black,
-                      color: creditTextColor,
+                      color: creditIconColor,
+                      size: SizeConfig.screenWidth! * 0.060,
                     ),
-                  ),
-                ],
+                    Text(
+                      'Kuraimi',
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenWidth! * 0.038,
+                        // color: paymentType == 0 ? Colors.white : Colors.black,
+                        color: creditTextColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
 
-          ////////////////////
           /// Apple Pay Button
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.screenWidth! * 0.048),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(SizeConfig.screenWidth! * 0.048),
+                ),
+                backgroundColor: kuraimiBackgroundColor,
               ),
-              backgroundColor: kuraimiBackgroundColor,
-            ),
-            onPressed: kuraimiOnPressed,
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.apple,
-                    color: kuraimiIconColor,
-                    size: SizeConfig.screenWidth! * 0.060,
-                  ),
-                  Text(
-                    ' Apple Pay',
-                    style: TextStyle(
-                      fontSize: SizeConfig.screenWidth! * 0.035,
-                      color: kuraimiTextColor,
+              onPressed: kuraimiOnPressed,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.apple,
+                      color: kuraimiIconColor,
+                      size: SizeConfig.screenWidth! * 0.060,
                     ),
-                  ),
-                ],
+                    Text(
+                      'Jaib',
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenWidth! * 0.035,
+                        color: kuraimiTextColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
