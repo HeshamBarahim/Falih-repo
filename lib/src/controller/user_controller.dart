@@ -6,9 +6,14 @@ class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final user = Rxn<UserModel>();
+  var profileImageUrl = ''.obs;
 
   void setUser(UserModel userData) {
     user.value = userData;
+  }
+
+  void setProfileImageUrl(String url) {
+    profileImageUrl.value = url;
   }
 
   UserModel? get currentUser => user.value;

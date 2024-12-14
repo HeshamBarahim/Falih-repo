@@ -6,14 +6,14 @@ import '../widgets/settings_section.dart';
 import '../widgets/settings_tile.dart';
 
 class AccountSection extends StatelessWidget {
-  final VoidCallback onTapAboutFunction;
+  final VoidCallback onTapEditProfileFunction;
   final VoidCallback onTapPrivacyFunction;
   final VoidCallback onTapTerms_ConditionsFunction;
   final VoidCallback onTapLogoutFunction;
 
   const AccountSection(
       {super.key,
-      required this.onTapAboutFunction,
+      required this.onTapEditProfileFunction,
       required this.onTapPrivacyFunction,
       required this.onTapTerms_ConditionsFunction,
       required this.onTapLogoutFunction});
@@ -29,14 +29,14 @@ class AccountSection extends StatelessWidget {
           tiles: [
             SettingsTile(
               icon: Icons.info,
-              title: 'About',
+              title: 'Edit profile',
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
               // About Button Function
-              onTap: onTapAboutFunction,
+              onTap: onTapEditProfileFunction,
             ),
             SettingsTile(
               icon: Icons.privacy_tip,
@@ -50,8 +50,8 @@ class AccountSection extends StatelessWidget {
               onTap: onTapPrivacyFunction,
             ),
             SettingsTile(
-              icon: Icons.article,
-              title: 'Terms & Conditions',
+              icon: Icons.add_to_queue_outlined,
+              title: 'Subscription packages',
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,

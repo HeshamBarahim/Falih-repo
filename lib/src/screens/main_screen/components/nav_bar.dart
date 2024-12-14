@@ -33,7 +33,7 @@ class _NavBarState extends State<NavBar> {
       body: Container(
         width: SizeConfig.screenWidth! * 0.7,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color(0xFF742f88),

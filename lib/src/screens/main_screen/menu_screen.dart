@@ -136,7 +136,7 @@ class _MenuScreenState extends State<MenuScreen>
                     child: Scaffold(
                       backgroundColor: Colors.white,
                       body: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(Images.backgroundImageOfAuth),
                             fit: BoxFit.cover,
@@ -154,10 +154,9 @@ class _MenuScreenState extends State<MenuScreen>
                                 margin: EdgeInsets.symmetric(
                                     horizontal: SizeConfig.screenWidth! * 0.02),
                                 decoration: BoxDecoration(
-                                  // color: Color(0xFFFBF7FC),
-                                  color: Color(0xFFFFFFFF),
+                                  color: const Color(0xFFFFFFFF),
                                   borderRadius: BorderRadius.circular(20.0),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.grey,
                                       blurRadius: 0.9,

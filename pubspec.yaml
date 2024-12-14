@@ -54,6 +54,7 @@ dependencies:
   pinput: null
   rive: null
   smooth_page_indicator: null
+  cached_network_image:
 
 dev_dependencies:
   flutter_lints: null

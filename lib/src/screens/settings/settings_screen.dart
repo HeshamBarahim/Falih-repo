@@ -1,9 +1,12 @@
 import 'package:falih/src/config/images.dart';
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
+import 'package:get/get.dart';
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
@@ -12,8 +15,8 @@ import 'widgets/settings_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String sc_route = '/settings-screen-2';
-  const SettingsScreen({Key? key}) : super(key: key);
-
+  SettingsScreen({Key? key}) : super(key: key);
+  final UserController userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     // Get screen dimensions From Sizes Calss
@@ -43,15 +46,15 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.04),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: secondaryBackgroundColor_2,
         ),
         child: Column(
           children: [
             // Profile Section
             SizedBox(height: SizeConfig.screenHeight! * 0.095),
-            const ProfileSection(
-                profileImage: Images.test,
+            ProfileSection(
+                profileImage: userController.profileImageUrl.value,
                 name: 'Yusif',
                 email: 'yusif123@gmail.com'),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
@@ -70,7 +73,9 @@ class SettingsScreen extends StatelessWidget {
             /// Account Section
             AccountSection(
               // About Button Function
-              onTapAboutFunction: () {},
+              onTapEditProfileFunction: () {
+                Get.to(() => EditProfileScreen());
+              },
               // Privacy Button Function
               onTapPrivacyFunction: () {},
               // Terms & Conditions Button Function

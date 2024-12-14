@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:csv/csv.dart';
 import 'package:falih/src/config/images.dart';
+import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
@@ -59,11 +60,27 @@ class HomePage extends StatelessWidget {
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // circulr avatar for the photo
-                        const CircleAvatar(
-                          radius: 50, // Size of the circle
-                          backgroundImage: AssetImage(Images.test),
-                          backgroundColor: Colors.transparent,
-                        ),
+                        CircleAvatar(
+                            radius: SizeConfig.screenWidth! * 0.12,
+                            backgroundColor: Colors.grey[200],
+                            child: Obx(() {
+                              if (userController.profileImageUrl.isEmpty) {
+                                return ClipOval(
+                                  child: Image.asset(Images.test),
+                                );
+                              }
+                              return ClipOval(
+                                  child: CachedNetworkImage(
+                                imageUrl: userController.profileImageUrl.value,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                fit: BoxFit.cover,
+                                width: SizeConfig.screenWidth! * 0.282,
+                                height: SizeConfig.screenWidth! * 0.282,
+                              ));
+                            })),
                         SizedBox(
                           width: MediaQuery.sizeOf(context).width * .03,
                         ),

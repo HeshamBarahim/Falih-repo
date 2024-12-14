@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/signup_controller.dart';
@@ -10,7 +10,6 @@ import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-import 'package:falih/src/screens/home/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +67,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   setState(() {
                     imageType = 0;
                     saveImage();
+                    userController.setProfileImageUrl(ProfileImgUrl!);
                     Navigator.pop(context);
                   });
                 },
@@ -120,7 +120,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     try {
       // Generate a unique filename using user ID and timestamp
       String userId = FirebaseAuth.instance.currentUser!.uid;
-
       String fileName = '${userId}${fileExtension}';
 
       // Reference to Firebase Storage
@@ -149,11 +148,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           .refFromURL('gs://falih-1.firebasestorage.app')
           .child('user_profile_images/$userId.png')
           .getDownloadURL();
+
+      // Update UserController
+      userController.setProfileImageUrl(ProfileImgUrl!);
     } catch (e) {
-      ProfileImgUrl = await FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$userId.jpg')
-          .getDownloadURL();
+      try {
+        ProfileImgUrl = await FirebaseStorage.instance
+            .refFromURL('gs://falih-1.firebasestorage.app')
+            .child('user_profile_images/$userId.jpg')
+            .getDownloadURL();
+
+        // Update UserController
+        userController.setProfileImageUrl(ProfileImgUrl!);
+      } catch (error) {
+        ProfileImgUrl = null;
+      }
     }
     setState(() {});
   }
@@ -231,11 +240,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     children: [
                       CircleAvatar(
                         radius: SizeConfig.screenWidth! * 0.141,
-                        backgroundImage: ProfileImgUrl != null
-                            ? NetworkImage('$ProfileImgUrl')
-                            : AssetImage(
-                                Images.test,
-                              ),
+                        backgroundColor: Colors.grey[200],
+                        child: ClipOval(
+                          child: ProfileImgUrl != null
+                              ? CachedNetworkImage(
+                                  imageUrl: ProfileImgUrl!,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                  fit: BoxFit.cover,
+                                  width: SizeConfig.screenWidth! * 0.282,
+                                  height: SizeConfig.screenWidth! * 0.282,
+                                )
+                              : Image.asset(
+                                  Images.test,
+                                  fit: BoxFit.cover,
+                                  width: SizeConfig.screenWidth! * 0.282,
+                                  height: SizeConfig.screenWidth! * 0.282,
+                                ),
+                        ),
                       ),
                       Positioned(
                         bottom: 0,
