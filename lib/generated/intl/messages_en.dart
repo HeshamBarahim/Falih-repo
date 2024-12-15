@@ -120,7 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
         "update_profile":
-            MessageLookupByLibrary.simpleMessage("Update Profile:"),
+            MessageLookupByLibrary.simpleMessage("Update Profile"),
         "way": MessageLookupByLibrary.simpleMessage("way"),
         "welcome_to": MessageLookupByLibrary.simpleMessage("Welcome To"),
         "with_the": MessageLookupByLibrary.simpleMessage("With The"),

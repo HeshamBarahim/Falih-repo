@@ -1,225 +1,32 @@
-import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
-import 'package:falih/src/controller/signup_controller.dart';
+import 'package:falih/src/controller/profile_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
-import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
+import 'package:get/get.dart';
 
 import '../../config/const.dart';
 import '../../config/sizes.dart';
 
-class EditProfileScreen extends StatefulWidget {
+class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
-  @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  final SignUpController signUpController = Get.put(SignUpController());
-
   final UserController userController = Get.put(UserController());
-
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  int imageType = 0;
-
-  File? file;
-
-  String? ProfileImgUrl;
-
-  String? fileExtension;
-
-  String userId = FirebaseAuth.instance.currentUser!.uid;
-  ImagePickerType(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(
-                  Icons.image,
-                  size: 25.0,
-                ),
-                title: const Text(
-                  'Upload Image',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ),
-                onTap: () {
-                  setState(() {
-                    imageType = 0;
-                    saveImage();
-                    userController.setProfileImageUrl(ProfileImgUrl!);
-                    Navigator.pop(context);
-                  });
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.camera_alt,
-                  size: 25.0,
-                ),
-                title: const Text(
-                  'Take Photo',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ),
-                onTap: () {
-                  setState(() {
-                    imageType = 1;
-                    saveImage();
-                    Navigator.pop(context);
-                  });
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  saveImage() async {
-    final XFile? ChangeProfileImage;
-
-    imageType == 0
-        ? ChangeProfileImage =
-            await ImagePicker().pickImage(source: ImageSource.gallery)
-        : ChangeProfileImage =
-            await ImagePicker().pickImage(source: ImageSource.camera);
-    if (ChangeProfileImage != null) {
-      file = File(ChangeProfileImage!.path);
-      fileExtension = path.extension(ChangeProfileImage.path);
-    }
-    setState(() {});
-
-    if (file == null) {
-      Get.snackbar("Error", "No image selected");
-      return;
-    }
-
-    try {
-      // Generate a unique filename using user ID and timestamp
-      String userId = FirebaseAuth.instance.currentUser!.uid;
-      String fileName = '${userId}${fileExtension}';
-
-      // Reference to Firebase Storage
-      // final storageRef2 = FirebaseStorage.instance.refFromURL();
-      final storageRef = FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$fileName');
-
-      // Upload the file
-      await storageRef.putFile(file!);
-
-      // Retrieve the download URL
-      ProfileImgUrl = await storageRef.getDownloadURL();
-
-      setState(() {});
-
-      Get.snackbar("Success", "Image uploaded successfully");
-    } catch (e) {
-      Get.snackbar("Error", "Failed to upload image: $e");
-    }
-  }
-
-  getProfileImage() async {
-    try {
-      ProfileImgUrl = await FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$userId.png')
-          .getDownloadURL();
-
-      // Update UserController
-      userController.setProfileImageUrl(ProfileImgUrl!);
-    } catch (e) {
-      try {
-        ProfileImgUrl = await FirebaseStorage.instance
-            .refFromURL('gs://falih-1.firebasestorage.app')
-            .child('user_profile_images/$userId.jpg')
-            .getDownloadURL();
-
-        // Update UserController
-        userController.setProfileImageUrl(ProfileImgUrl!);
-      } catch (error) {
-        ProfileImgUrl = null;
-      }
-    }
-    setState(() {});
-  }
-
-  // loadingDialog() {
-  //   Future<void> _performLongRunningTask(BuildContext context) async {
-  //     // Show loading dialog
-  //     showDialog(
-  //       context: context,
-  //       barrierDismissible: false, // Prevent dismissing by tapping outside
-  //       builder: (BuildContext context) {
-  //         return const Dialog(
-  //           child: Padding(
-  //             padding: EdgeInsets.all(16.0),
-  //             child: Row(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 CircularProgressIndicator(),
-  //                 SizedBox(width: 16.0),
-  //                 Text("Loading..."),
-  //               ],
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     );
-  //   }
-  //   // await Future.delayed(const Duration(seconds: 5));
-
-  //   // Navigator.of(context).pop();
-  // }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    getProfileImage();
-    super.initState();
-  }
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
-    final user = userController.currentUser;
-    if (user != null) {
-      signUpController.fullName.text = user.fullName;
-      signUpController.phoneNo.text = user.phoneNo;
-      signUpController.schoolName.text = user.schoolName;
-      signUpController.selectedGovernorate.value = user.selectedGovernorate;
-      signUpController.selectedGrade.value = user.selectedGrade;
-      signUpController.selectedGender.value = user.selectedGender;
-    }
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-            color: Colors.white,
             image: DecorationImage(
                 image: const AssetImage(
                   Images.backgroundImageOfAuth,
@@ -229,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
                     BlendMode.lighten))),
         child: Form(
-            key: formKey,
+            key: profileController.formKey,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -241,36 +48,39 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       CircleAvatar(
                         radius: SizeConfig.screenWidth! * 0.141,
                         backgroundColor: Colors.grey[200],
-                        child: ClipOval(
-                          child: ProfileImgUrl != null
-                              ? CachedNetworkImage(
-                                  imageUrl: ProfileImgUrl!,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
-                                  fit: BoxFit.cover,
-                                  width: SizeConfig.screenWidth! * 0.282,
-                                  height: SizeConfig.screenWidth! * 0.282,
-                                )
-                              : Image.asset(
-                                  Images.test,
-                                  fit: BoxFit.cover,
-                                  width: SizeConfig.screenWidth! * 0.282,
-                                  height: SizeConfig.screenWidth! * 0.282,
-                                ),
+                        child: Obx(
+                          () => ClipOval(
+                            child: profileController.profileImgUrl.value != null
+                                ? CachedNetworkImage(
+                                    imageUrl:
+                                        profileController.profileImgUrl.value!,
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    fit: BoxFit.cover,
+                                    width: SizeConfig.screenWidth! * 0.282,
+                                    height: SizeConfig.screenWidth! * 0.282,
+                                  )
+                                : Image.asset(
+                                    Images.test,
+                                    fit: BoxFit.cover,
+                                    width: SizeConfig.screenWidth! * 0.282,
+                                    height: SizeConfig.screenWidth! * 0.282,
+                                  ),
+                          ),
                         ),
                       ),
                       Positioned(
                         bottom: 0,
                         right: 0,
-                        child: Container(
+                        child: SizedBox(
                           height: SizeConfig.screenWidth! * 0.08,
                           width: SizeConfig.screenWidth! * 0.08,
                           child: IconButton(
                             splashColor: Colors.black,
                             onPressed: () {
-                              ImagePickerType(context);
+                              imagePickerDialog(context);
                             },
                             style: IconButton.styleFrom(
                               backgroundColor: iconColor_2,
@@ -291,19 +101,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       CustomTextForm(
                           hintText: S.of(context).hint_text_username,
                           prefixIcon: const Icon(Icons.person),
-                          myController: signUpController.fullName,
+                          myController: profileController.fullName,
                           validator: Helper.validatefullName),
                       CustomTextForm(
                           hintText: S.of(context).hint_text_School,
                           prefixIcon: const Icon(Icons.home_work_outlined),
-                          myController: signUpController.schoolName,
+                          myController: profileController.schoolName,
                           validator: Helper.validateSchoolName),
                       CustomDropDownForm(
                         onChanged: (newValue) {
-                          signUpController.selectedGovernorate.value = newValue;
+                          profileController.selectedGovernorate.value =
+                              newValue;
                         },
                         selectedValue:
-                            signUpController.selectedGovernorate.value,
+                            profileController.selectedGovernorate.value,
                         hintText: S.of(context).hint_text_Governorate,
                         prefixIcon: const Icon(Icons.location_pin),
                         list: [
@@ -320,9 +131,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       CustomDropDownForm(
                         onChanged: (newValue) {
-                          signUpController.selectedGrade.value = newValue;
+                          profileController.selectedGrade.value = newValue;
                         },
-                        selectedValue: signUpController.selectedGrade.value,
+                        selectedValue: profileController.selectedGrade.value,
                         hintText: S.of(context).hint_text_Grade,
                         prefixIcon: const Icon(Icons.school),
                         list: [
@@ -336,9 +147,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       CustomDropDownForm(
                         onChanged: (newValue) {
-                          signUpController.selectedGender.value = newValue;
+                          profileController.selectedGender.value = newValue;
                         },
-                        selectedValue: signUpController.selectedGender.value,
+                        selectedValue: profileController.selectedGender.value,
                         hintText: S.of(context).male,
                         prefixIcon: const Icon(Icons.person_pin_rounded),
                         list: [
@@ -352,49 +163,107 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * .10),
-                  GradientButton(
-                    text: S.of(context).update_profile,
-                    height: 50.h,
-                    width: double.infinity,
-                    onClick: () async {
-                      if (formKey.currentState!.validate()) {
-                        try {
-                          final updatedUser = UserModel(
-                            id: user?.id,
-                            fullName: signUpController.fullName.text.trim(),
-                            phoneNo: user?.phoneNo ?? '',
-                            fakeEmail: user?.fakeEmail ?? '',
-                            schoolName: signUpController.schoolName.text.trim(),
-                            selectedGovernorate:
-                                signUpController.selectedGovernorate.value,
-                            selectedGrade: signUpController.selectedGrade.value,
-                            selectedGender:
-                                signUpController.selectedGender.value,
-                            selectedDepartment: user?.selectedDepartment,
-                          );
-
-                          await userController.updateUser(updatedUser);
-                          Helper.successSnackBar(
-                            title: "Success",
-                            message: "Profile updated successfully!",
-                          );
-                          Get.offAll(() => const MenuScreen());
-                        } catch (e) {
-                          Helper.errorSnackBar(
-                            title: "Update Failed",
-                            message: e.toString().isNotEmpty
-                                ? e.toString()
-                                : "An unexpected error occurred. Please try again.",
-                          );
-                        }
-                      }
-                    },
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * .10),
+                  Obx(() => profileController.isSavingData.value == false
+                      ? GradientButton(
+                          text: S.of(context).update_profile,
+                          height: 50.h,
+                          width: double.infinity,
+                          onClick: () async {
+                            if (profileController.formKey.currentState!
+                                .validate()) {
+                              profileController.updateUserData();
+                            }
+                          },
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(),
+                        ))
                 ],
               ),
             )),
       ),
     );
   }
+
+  void imagePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.image,
+                  size: 25.0,
+                ),
+                title: const Text(
+                  'Upload Image',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  // setState(() {
+                  //   imageType = 0;
+                  //   saveImage();
+                  //   userController.setProfileImageUrl(ProfileImgUrl!);
+                  //   Navigator.pop(context);
+                  // });
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.camera_alt,
+                  size: 25.0,
+                ),
+                title: const Text(
+                  'Take Photo',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  // setState(() {
+                  //   imageType = 1;
+                  //   saveImage();
+                  //   Navigator.pop(context);
+                  // });
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+// loadingDialog() {
+//   Future<void> _performLongRunningTask(BuildContext context) async {
+//     // Show loading dialog
+//     showDialog(
+//       context: context,
+//       barrierDismissible: false, // Prevent dismissing by tapping outside
+//       builder: (BuildContext context) {
+//         return const Dialog(
+//           child: Padding(
+//             padding: EdgeInsets.all(16.0),
+//             child: Row(
+//               mainAxisSize: MainAxisSize.min,
+//               children: [
+//                 CircularProgressIndicator(),
+//                 SizedBox(width: 16.0),
+//                 Text("Loading..."),
+//               ],
+//             ),
+//           ),
+//         );
+//       },
+//     );
+//   }
+//   // await Future.delayed(const Duration(seconds: 5));
+
+//   // Navigator.of(context).pop();
+// }
 }

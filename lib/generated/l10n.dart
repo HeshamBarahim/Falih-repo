@@ -854,7 +854,7 @@ class S {
   /// `Update Profile:`
   String get update_profile {
     return Intl.message(
-      'Update Profile:',
+      'Update Profile',
       name: 'update_profile',
       desc: '',
       args: [],
