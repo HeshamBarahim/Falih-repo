@@ -52,6 +52,8 @@ class EditProfileScreen extends StatelessWidget {
                           () => ClipOval(
                             child: profileController.profileImgUrl.value != null
                                 ? CachedNetworkImage(
+                                    key: ValueKey(
+                                        profileController.profileImgUrl.value),
                                     imageUrl:
                                         profileController.profileImgUrl.value!,
                                     placeholder: (context, url) =>
@@ -205,6 +207,8 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
+                  profileController.saveImage();
+                  Navigator.pop(context);
                   // setState(() {
                   //   imageType = 0;
                   //   saveImage();

@@ -65,7 +65,7 @@ class _NavBarState extends State<NavBar> {
                     ),
                     child: NavBarInfoCard(
                       name: userController.user.value?.fullName ?? "user",
-                      profession: userController.user.value!.schoolName,
+                      profession: userController.user.value?.schoolName ?? "",
                     ),
                   ),
                   Padding(
