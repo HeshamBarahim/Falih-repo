@@ -10,17 +10,18 @@ import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
 import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
-import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController controller = Get.put(HomeController());
-  final UserController userController = UserController.instance;
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -71,35 +72,35 @@ class HomePage extends StatelessWidget {
                               }
                               return ClipOval(
                                   child: CachedNetworkImage(
-                                imageUrl: userController.profileImageUrl.value,
-                                placeholder: (context, url) =>
+                                    imageUrl: userController.profileImageUrl.value,
+                                    placeholder: (context, url) =>
                                     const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
+                                    errorWidget: (context, url, error) =>
                                     const Icon(Icons.error),
-                                fit: BoxFit.cover,
-                                width: SizeConfig.screenWidth! * 0.282,
-                                height: SizeConfig.screenWidth! * 0.282,
-                              ));
+                                    fit: BoxFit.cover,
+                                    width: SizeConfig.screenWidth! * 0.282,
+                                    height: SizeConfig.screenWidth! * 0.282,
+                                  ));
                             })),
                         SizedBox(
                           width: MediaQuery.sizeOf(context).width * .03,
                         ),
                         // information about the user and his rank
                         Obx(
-                          () => userController.currentUser == null
+                              () => userController.currentUser == null
                               ? const Text("User data not available.")
                               : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                                     Text(
                                         "Hi, ${userController.currentUser!.fullName}"),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
-                                    Text('#3 Rank'),
-                                    Text("2,639/5,999 Points")
+                                    const Text('#3 Rank'),
+                                    const Text("2,639/5,999 Points")
                                   ],
-                                ),
+                          ),
                         )
                       ],
                     ),
@@ -108,10 +109,10 @@ class HomePage extends StatelessWidget {
                     ),
                     // progress bar
                     Obx(() => CustomProgressBar(
-                          width: 100.w,
-                          height: 15.h,
-                          progress: controller.percentage.value,
-                        )),
+                      width: 100.w,
+                      height: 15.h,
+                      progress: controller.percentage.value,
+                    )),
                   ],
                 ),
               ),
@@ -120,11 +121,11 @@ class HomePage extends StatelessWidget {
               ),
               // image and indicator slider
               Obx(() => CustomCarousel(
-                    // Convert String paths to Image widgets
-                    images: controller.images
-                        .map((imagePath) => Image.asset(imagePath))
-                        .toList(),
-                  )),
+                // Convert String paths to Image widgets
+                images: controller.images
+                    .map((imagePath) => Image.asset(imagePath))
+                    .toList(),
+              )),
               const SizedBox(
                 height: 20,
               ),

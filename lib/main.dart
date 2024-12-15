@@ -6,23 +6,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
 import 'firebase_options.dart';
 import 'src/app.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((_) {
-    Get.put(AuthenticationRepository());
-    Get.put(UserRepository());
-    Get.put(UserController()); // Initialize UserController
-  });
-
+      .then((_) {});
+  await initDependencies();
   // Initialize GetStorage
   await GetStorage.init();
   // Clear the cache
 
   runApp(const MyApp());
+}
+
+Future<void> initDependencies() async {
+  Get.put(AuthenticationRepository());
+  Get.put(UserRepository());
+  Get.put(UserController());
 }
 
 class MyApp extends StatelessWidget {

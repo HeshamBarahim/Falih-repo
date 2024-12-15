@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
+import '../../../controller/user_controller.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
 import '../models/rive_asset.dart';
@@ -24,10 +25,12 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   RiveAsset selectedMenu = sideMenuDataList_1.first;
+  final UserController userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       body: Container(
         width: SizeConfig.screenWidth! * 0.7,
@@ -60,9 +63,9 @@ class _NavBarState extends State<NavBar> {
                       // left: SizeConfig.screenWidth! * 0.00,
                       top: SizeConfig.screenHeight! * 0.02,
                     ),
-                    child: const NavBarInfoCard(
-                      name: "Amr Alsarori",
-                      profession: "Software Engineer",
+                    child: NavBarInfoCard(
+                      name: userController.user.value?.fullName ?? "user",
+                      profession: userController.user.value!.schoolName,
                     ),
                   ),
                   Padding(
@@ -82,18 +85,18 @@ class _NavBarState extends State<NavBar> {
                   ...sideMenuDataList_1.map(
                     (menu) => NavBarTile(
                       menu: menu,
-                      riveonInit: (artboard) {
+                      riveonInit: (artBoard) {
                         rive.StateMachineController controller =
-                            RiveUtils.getRiveController(artboard,
+                            RiveUtils.getRiveController(artBoard,
                                 stateMachineName: menu.stateMachineName);
                         menu.input =
                             controller.findSMI("active") as rive.SMIBool;
                       },
-                      press: controller.isProsess
-                          ? () => null
+                      press: controller.isProcess
+                          ? () {}
                           : () {
                               setState(() {
-                                controller.isProsess = true;
+                                controller.isProcess = true;
                               });
                               menu.input!.change(true);
                               Future.delayed(const Duration(seconds: 1), () {
@@ -101,17 +104,17 @@ class _NavBarState extends State<NavBar> {
 
                                 if (menu.index == 0) {
                                   setState(() {
-                                    controller.isProsess = false;
-                                    Get.offAll(MenuScreen());
+                                    controller.isProcess = false;
+                                    Get.offAll(const MenuScreen());
                                   });
                                 } else if (menu.index == 1) {
                                   setState(() {
-                                    controller.isProsess = false;
+                                    controller.isProcess = false;
                                     Get.to(EditProfileScreen());
                                   });
                                 } else if (menu.index == 2) {
                                   setState(() {
-                                    controller.isProsess = false;
+                                    controller.isProcess = false;
                                     Get.to(SubscriptionPlansScreen());
                                   });
                                 }
@@ -147,11 +150,11 @@ class _NavBarState extends State<NavBar> {
                         menu.input =
                             controller.findSMI("active") as rive.SMIBool;
                       },
-                      press: controller.isProsess
+                      press: controller.isProcess
                           ? () => null
                           : () {
                               setState(() {
-                                controller.isProsess = true;
+                                controller.isProcess = true;
                               });
                               menu.input!.change(true);
                               Future.delayed(const Duration(seconds: 1), () {
@@ -159,17 +162,17 @@ class _NavBarState extends State<NavBar> {
 
                                 if (menu.index == 0) {
                                   setState(() {
-                                    controller.isProsess = false;
+                                    controller.isProcess = false;
                                     //
                                   });
                                 } else if (menu.index == 1) {
                                   setState(() {
-                                    controller.isProsess = false;
+                                    controller.isProcess = false;
                                     Get.to(AboutUsScreen());
                                   });
                                 } else if (menu.index == 2) {
                                   setState(() {
-                                    controller.isProsess = false;
+                                    controller.isProcess = false;
                                     Get.to(SettingsScreen());
                                   });
                                 }

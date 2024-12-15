@@ -10,7 +10,7 @@ import 'package:rive/rive.dart' as rive;
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../curriculum/curriculum.dart';
+import '../curriculum/curriculum_page.dart';
 import '../home/home_page.dart';
 import '../leaderboard/leaderboard_screen.dart';
 import 'components/nav_bar.dart';
@@ -90,12 +90,68 @@ class _MenuScreenState extends State<MenuScreen>
         return true;
       },
       child: Scaffold(
-        // backgroundColor: Color(
-        //     0xFFbe7ed2), //sssssssssssssssssssssssssssssssss/////////////sssssssssssa
         resizeToAvoidBottomInset: false,
         extendBody: true,
+        bottomNavigationBar: Obx(
+          () => Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(30),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2), // Shadow color
+                  spreadRadius: 2,
+                  blurRadius: 10,
+                  offset: const Offset(
+                      0, -3), // Positioning of the shadow (vertical)
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              child: NavigationBar(
+                  indicatorColor: AppColors.choicesColor,
+                  backgroundColor: AppColors.moreLightenMainColor,
+                  height: 70.h,
+                  elevation: 0,
+                  selectedIndex: controller.selectedIndex.value,
+                  onDestinationSelected: (index) =>
+                      controller.selectedIndex.value = index,
+                  destinations: [
+                    NavigationDestination(
+                        icon: Icon(
+                          Icons.menu_book_outlined,
+                          color: AppColors.mainColor,
+                          size: 30.w,
+                        ),
+                        label: S.of(context).subjects),
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.home,
+                        color: AppColors.mainColor,
+                        size: 30.w,
+                      ),
+                      label: S.of(context).home,
+                    ),
+                    NavigationDestination(
+                      icon: Icon(
+                        Icons.leaderboard_outlined,
+                        color: AppColors.mainColor,
+                        size: 30.w,
+                      ),
+                      label: S.of(context).leaderBoard,
+                    ),
+                  ]),
+            ),
+          ),
+        ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color(0xFF742f88),
@@ -131,150 +187,79 @@ class _MenuScreenState extends State<MenuScreen>
                       animation.value * SizeConfig.screenWidth! * 0.66, 0),
                   child: Transform.scale(
                     scale: scalAnimation.value,
-                    child: Scaffold(
-                      backgroundColor: Colors.white,
-                      body: Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(Images.backgroundImageOfAuth),
-                            fit: BoxFit.cover,
-                            opacity: 0.2,
-                          ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                          image: AssetImage(Images.backgroundImageOfAuth),
+                          fit: BoxFit.cover,
+                          opacity: 0.2,
                         ),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: SizeConfig.screenHeight! * 0.053),
-                              child: Container(
-                                height: SizeConfig.screenHeight! * 0.077,
-                                width: SizeConfig.screenWidth!,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: SizeConfig.screenWidth! * 0.02),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFFFFFFF),
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 0.9,
-                                      offset: Offset(.9, .5),
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                        width: SizeConfig.screenWidth! * 0.13),
-                                    Center(
-                                      child: Obx(
-                                        () => Text(
-                                          controller.screenTitle[
-                                              controller.selectedIndex.value],
-                                          style: TextStyle(
-                                              color: AppColors.mainColor,
-                                              fontFamily:
-                                                  'GoogleFonts.montserratAlternatesTextTheme',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 25.sp),
-                                        ),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      // padding: EdgeInsets.only(
-                                      //     right: MediaQuery.of(context)
-                                      //             .size
-                                      //             .width *
-                                      //         0.05),
-                                      onPressed: () {
-                                        Get.to(() => const NotificationPage());
-                                      },
-                                      icon: const Icon(Icons.notifications),
-                                      color: AppColors.mainColor,
-                                      iconSize: 40.w,
-                                    ),
-                                  ],
-                                ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: SizeConfig.screenHeight! * 0.053),
+                            child: Container(
+                              height: SizeConfig.screenHeight! * 0.077,
+                              width: SizeConfig.screenWidth!,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: SizeConfig.screenWidth! * 0.02),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(20.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 0.9,
+                                    offset: Offset(.9, .5),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: SizeConfig.screenHeight! * 0.14),
-                              child: Scaffold(
-                                  bottomNavigationBar: Obx(
-                                    () => Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          topRight: Radius.circular(30),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(
-                                                0.2), // Shadow color
-                                            spreadRadius: 2,
-                                            blurRadius: 10,
-                                            offset: const Offset(0,
-                                                -3), // Positioning of the shadow (vertical)
-                                          ),
-                                        ],
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          topRight: Radius.circular(30),
-                                        ),
-                                        child: NavigationBar(
-                                            indicatorColor:
-                                                AppColors.choicesColor,
-                                            backgroundColor:
-                                                AppColors.moreLightenMainColor,
-                                            height: 100.h,
-                                            elevation: 0,
-                                            selectedIndex:
-                                                controller.selectedIndex.value,
-                                            onDestinationSelected: (index) =>
-                                                controller.selectedIndex.value =
-                                                    index,
-                                            destinations: [
-                                              NavigationDestination(
-                                                  icon: Icon(
-                                                    Icons.menu_book_outlined,
-                                                    color: AppColors.mainColor,
-                                                    size: 30.w,
-                                                  ),
-                                                  label:
-                                                      S.of(context).subjects),
-                                              NavigationDestination(
-                                                icon: Icon(
-                                                  Icons.home,
-                                                  color: AppColors.mainColor,
-                                                  size: 30.w,
-                                                ),
-                                                label: S.of(context).home,
-                                              ),
-                                              NavigationDestination(
-                                                icon: Icon(
-                                                  Icons.leaderboard_outlined,
-                                                  color: AppColors.mainColor,
-                                                  size: 30.w,
-                                                ),
-                                                label:
-                                                    S.of(context).leaderBoard,
-                                              ),
-                                            ]),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                      width: SizeConfig.screenWidth! * 0.13),
+                                  Center(
+                                    child: Obx(
+                                      () => Text(
+                                        controller.screenTitle[
+                                            controller.selectedIndex.value],
+                                        style: TextStyle(
+                                            color: AppColors.mainColor,
+                                            fontFamily:
+                                                'GoogleFonts.montserratAlternatesTextTheme',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25.sp),
                                       ),
                                     ),
                                   ),
-                                  body: Obx(() => controller.screens[
-                                      controller.selectedIndex.value])),
+                                  IconButton(
+                                    padding: EdgeInsets.only(
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.05),
+                                    onPressed: () {
+                                      Get.to(() => const NotificationPage());
+                                    },
+                                    icon: const Icon(Icons.notifications),
+                                    color: AppColors.mainColor,
+                                    iconSize: 30.w,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: SizeConfig.screenHeight! * 0.14),
+                              child: Obx(() => controller
+                                  .screens[controller.selectedIndex.value])),
+                        ],
                       ),
                     ),
                   ),
@@ -284,7 +269,7 @@ class _MenuScreenState extends State<MenuScreen>
                 duration: const Duration(milliseconds: 600),
                 curve: Curves.fastOutSlowIn,
                 left: isSideNavBarClosed ? 0 : SizeConfig.screenWidth! * 0.54,
-                top: SizeConfig.screenHeight! * 0.019,
+                top: SizeConfig.screenHeight! * 0.004,
                 child: Row(
                   children: [
                     NavBarButton(
@@ -320,10 +305,10 @@ class _MenuScreenState extends State<MenuScreen>
 }
 
 class NavigationController extends GetxController {
-  final Rx<int> selectedIndex = 0.obs;
+  final Rx<int> selectedIndex = 1.obs;
 
   final screens = [
-    Curriculum(),
+    CurriculumPage(),
     HomePage(),
     LeaderBoardScreen(),
   ];

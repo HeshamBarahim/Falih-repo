@@ -1,5 +1,5 @@
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,6 +29,8 @@ class AuthenticationRepository extends GetxController {
 
   String get getPhoneNo => firebaseUser?.phoneNumber ?? "";
 
+  RxBool isAuthCheckComplete = false.obs;
+
   /// Loads when app Launch from main.dart
   @override
   void onReady() {
@@ -36,6 +38,8 @@ class AuthenticationRepository extends GetxController {
     _firebaseUser.bindStream(_auth.userChanges());
     // FlutterNativeSplash.remove();
     setInitialScreen(_firebaseUser.value);
+    isAuthCheckComplete.value = true; // Mark auth check as complete
+
     // ever(_firebaseUser, _setInitialScreen);
   }
 

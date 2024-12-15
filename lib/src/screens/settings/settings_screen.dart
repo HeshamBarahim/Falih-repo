@@ -1,22 +1,21 @@
-import 'package:falih/src/config/images.dart';
+import 'package:falih/src/config/const.dart';
+import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'package:falih/src/config/const.dart';
-import 'package:falih/src/config/sizes.dart';
 import 'package:get/get.dart';
+
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
-import 'widgets/settings_section.dart';
-import 'widgets/settings_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String sc_route = '/settings-screen-2';
+
   SettingsScreen({Key? key}) : super(key: key);
   final UserController userController = Get.find<UserController>();
+
   @override
   Widget build(BuildContext context) {
     // Get screen dimensions From Sizes Calss
@@ -28,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
         title: Text(
           'Settings',
           style: TextStyle(
-            fontSize: SizeConfig.screenWidth! * 0.046,
+            fontSize: SizeConfig.screenWidth! * 0.059,
             color: fontColor_1,
           ),
         ),
@@ -55,8 +54,8 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.095),
             ProfileSection(
                 profileImage: userController.profileImageUrl.value,
-                name: 'Yusif',
-                email: 'yusif123@gmail.com'),
+                name: userController.user.value!.fullName,
+                email: userController.user.value!.phoneNo),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
 
             /// Preferences Section

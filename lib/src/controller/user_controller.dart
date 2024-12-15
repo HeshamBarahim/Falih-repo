@@ -5,8 +5,15 @@ import 'package:get/get.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
-  final user = Rxn<UserModel>();
+  late var user = Rxn<UserModel>();
   var profileImageUrl = ''.obs;
+
+  @override
+  Future<void> onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    user.value = await UserRepository.instance.getUserDetails();
+  }
 
   void setUser(UserModel userData) {
     user.value = userData;

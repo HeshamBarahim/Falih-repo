@@ -1,16 +1,23 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 
 class NavBarController extends GetxController {
-  bool isProsess = false;
+  bool isProcess = false;
 
-  void startProsess(int index) {
-    isProsess = true;
+  // var user;
+  @override
+  Future<void> onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    // user = await UserRepository.instance.getUserDetails();
+  }
+
+  void startProcess(int index) {
+    isProcess = true;
     update();
   }
 
-  void stoptProsess(int index) {
-    isProsess = false;
+  void stopProcess(int index) {
+    isProcess = false;
     update();
   }
 }
