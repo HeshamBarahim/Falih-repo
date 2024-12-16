@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
-
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
 import '../screens/main_screen/menu_screen.dart';
@@ -106,6 +104,8 @@ class ProfileController extends GetxController {
 
       // Retrieve the download URL
       profileImgUrl.value = await storageRef.getDownloadURL();
+      // Update UserController
+      userController.setProfileImageUrl(profileImgUrl.value!);
 
       Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
