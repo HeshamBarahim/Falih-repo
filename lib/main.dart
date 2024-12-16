@@ -1,3 +1,4 @@
+import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
@@ -26,6 +27,7 @@ Future<void> initDependencies() async {
   Get.put(AuthenticationRepository());
   Get.put(UserRepository());
   Get.put(UserController());
+  Get.put(SettingsController());
 }
 
 class MyApp extends StatelessWidget {
