@@ -1,5 +1,6 @@
 import 'package:falih/src/screens/about_us/about_us_screen.dart';
 import 'package:falih/src/screens/main_screen/menu_screen.dart';
+import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
@@ -9,6 +10,7 @@ import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
 import '../../../controller/user_controller.dart';
+import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
 import '../models/rive_asset.dart';
@@ -65,7 +67,7 @@ class _NavBarState extends State<NavBar> {
                     ),
                     child: NavBarInfoCard(
                       name: userController.user.value?.fullName ?? "user",
-                      profession: userController.user.value!.schoolName,
+                      profession: userController.user.value?.schoolName ?? "",
                     ),
                   ),
                   Padding(
@@ -116,6 +118,11 @@ class _NavBarState extends State<NavBar> {
                                   setState(() {
                                     controller.isProcess = false;
                                     Get.to(SubscriptionPlansScreen());
+                                  });
+                                } else if (menu.index == 3) {
+                                  setState(() {
+                                    controller.isProcess = false;
+                                    Get.to(NotificationPage());
                                   });
                                 }
                               });
@@ -174,6 +181,12 @@ class _NavBarState extends State<NavBar> {
                                   setState(() {
                                     controller.isProcess = false;
                                     Get.to(SettingsScreen());
+                                  });
+                                } else if (menu.index == 3) {
+                                  setState(() {
+                                    controller.isProcess = false;
+                                    // Get.to(SettingsScreen());
+                                    AuthenticationRepository.instance.logout();
                                   });
                                 }
                               });

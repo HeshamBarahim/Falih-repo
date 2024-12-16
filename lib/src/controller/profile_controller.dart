@@ -15,6 +15,7 @@ import '../screens/main_screen/menu_screen.dart';
 class ProfileController extends GetxController {
   final UserController userController = Get.put(UserController());
   final showPassword = false.obs;
+  // bool isLoadingImg = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // TextField Controllers to get data from TextFields
