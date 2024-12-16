@@ -82,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
 
               /// Logout Button
               onTapLogoutFunction: () {
-                AuthenticationRepository.instance.logout();
+                AuthenticationRepository.instance.logout(context);
               },
             ),
           ],

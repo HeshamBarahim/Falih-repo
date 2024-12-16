@@ -1,9 +1,11 @@
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../controller/loading_dialog_controller.dart';
 import '../../screens/on_boarding/first_page_boarding.dart';
 import 'exceptions/t_exceptions.dart';
 
@@ -30,6 +32,9 @@ class AuthenticationRepository extends GetxController {
   String get getPhoneNo => firebaseUser?.phoneNumber ?? "";
 
   RxBool isAuthCheckComplete = false.obs;
+
+  final LoadingDialogController loadingDialogController =
+      Get.put(LoadingDialogController());
 
   /// Loads when app Launch from main.dart
   @override
@@ -111,16 +116,24 @@ class AuthenticationRepository extends GetxController {
   }
 
   // LogoutUser
-  Future<void> logout() async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      Get.offAll(() => Login());
-    } on FirebaseAuthException catch (e) {
-      throw e.message!;
-    } on FormatException catch (e) {
-      throw e.message;
-    } catch (e) {
-      throw 'Unable to logout. Try again.';
-    }
+  Future<void> logout(BuildContext context) async {
+    loadingDialogController.showLoadingDialog(context);
+    await Future.delayed(const Duration(seconds: 1), () async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        loadingDialogController.closeLoadingDialog(context);
+
+        Get.offAll(() => Login());
+      } on FirebaseAuthException catch (e) {
+        loadingDialogController.closeLoadingDialog(context);
+        throw e.message!;
+      } on FormatException catch (e) {
+        loadingDialogController.closeLoadingDialog(context);
+        throw e.message;
+      } catch (e) {
+        loadingDialogController.closeLoadingDialog(context);
+        throw 'Unable to logout. Try again.';
+      }
+    });
   }
 }

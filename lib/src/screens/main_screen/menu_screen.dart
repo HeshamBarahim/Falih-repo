@@ -175,7 +175,7 @@ class _MenuScreenState extends State<MenuScreen>
                 width: SizeConfig.screenWidth! * 0.7,
                 left: isSideNavBarClosed ? -SizeConfig.screenWidth! * 0.7 : 0,
                 height: SizeConfig.screenHeight!,
-                child: const NavBar(),
+                child: NavBar(),
               ),
               Transform(
                 alignment: Alignment.center,
