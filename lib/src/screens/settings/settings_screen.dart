@@ -1,11 +1,11 @@
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
@@ -15,6 +15,7 @@ class SettingsScreen extends StatelessWidget {
 
   SettingsScreen({Key? key}) : super(key: key);
   final UserController userController = Get.find<UserController>();
+  final SettingsController settingsController = Get.find<SettingsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
             // Profile Section
             SizedBox(height: SizeConfig.screenHeight! * 0.095),
             ProfileSection(
-                profileImage: userController.profileImageUrl.value,
+                // profileImage: userController.profileImageUrl.value,
                 name: userController.user.value!.fullName,
                 email: userController.user.value!.phoneNo),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
@@ -61,6 +62,8 @@ class SettingsScreen extends StatelessWidget {
             /// Preferences Section
             PreferencesSection(
               // Dark Mode toggle Button Function
+              // Toggle the theme using the controller
+
               onChangeDarkModeFunction: (val) {},
               // Notifications toggle Button Function
               onChangeNotificationsFunction: (val) {},

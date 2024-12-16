@@ -7,13 +7,13 @@ import 'package:falih/src/config/sizes.dart';
 import 'package:get/get.dart';
 
 class ProfileSection extends StatelessWidget {
-  final String profileImage;
+  // final String profileImage;
   final String name;
   final String email;
 
   ProfileSection(
       {super.key,
-      required this.profileImage,
+      // required this.profileImage,
       required this.name,
       required this.email});
 

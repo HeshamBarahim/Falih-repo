@@ -1,20 +1,24 @@
+import 'package:falih/src/controller/settings_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
+import 'package:get/get.dart';
 import '../widgets/settings_section.dart';
 import '../widgets/settings_tile.dart';
 
 class PreferencesSection extends StatelessWidget {
-  final bool? Function(bool?) onChangeDarkModeFunction;
+  final bool? Function(bool) onChangeDarkModeFunction;
   final bool? Function(bool?) onChangeNotificationsFunction;
   final VoidCallback onTapLanguageFunction;
 
-  const PreferencesSection(
+  PreferencesSection(
       {super.key,
       required this.onChangeDarkModeFunction,
       required this.onChangeNotificationsFunction,
       required this.onTapLanguageFunction});
+
+  final SettingsController settingsController = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,25 @@ class PreferencesSection extends StatelessWidget {
         SettingsTile(
           icon: Icons.dark_mode,
           title: 'Dark Mode',
-          trailing: Switch(
-            activeTrackColor: iconColor_2,
-            activeColor: Colors.white,
-            inactiveTrackColor: Color(0xFFBBA3C2),
-            inactiveThumbColor: Colors.white,
-            // inactiveTrackColor: Colors.grey,
-            value: true,
-            // Dark Mode toggle Button Function
-            onChanged: onChangeDarkModeFunction,
+          trailing: Obx(
+            () => Switch(
+              activeTrackColor: iconColor_2,
+              activeColor: Colors.white,
+              inactiveTrackColor: const Color(0xFFBBA3C2),
+              inactiveThumbColor: Colors.white,
+              value: settingsController.isDarkMode.value,
+              // Dark Mode toggle Button Function
+              onChanged: (val) {
+                settingsController.toggleDarkMode(val);
+                if (val) {
+                  Get.changeTheme(ThemeData.dark());
+                  print('dark on');
+                } else {
+                  Get.changeTheme(ThemeData.light());
+                  print('dark off');
+                }
+              },
+            ),
           ),
         ),
         SettingsTile(
