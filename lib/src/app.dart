@@ -31,7 +31,8 @@ class App extends StatelessWidget {
           textTheme: GoogleFonts.montserratAlternatesTextTheme()
               .apply(bodyColor: AppColors.mainColor),
         ),
-        locale: const Locale('en'),
+        locale: Get.locale,
+        fallbackLocale: const Locale('en'), // Fallback to English
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

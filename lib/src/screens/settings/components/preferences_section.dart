@@ -1,5 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/settings_controller.dart';
+import 'package:falih/src/screens/home/home_page.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
@@ -73,7 +75,55 @@ class PreferencesSection extends StatelessWidget {
             color: iconColor_1,
           ),
           // Language Button Function
-          onTap: onTapLanguageFunction,
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: const Text('English'),
+                          onTap: () {
+                            settingsController.updateLanguage('en');
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: const Text('العربية'),
+                          onTap: () {
+                            settingsController.updateLanguage('ar');
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                });
+            // Get.dialog(AlertDialog(
+            //   title: Text(S.of(context).language),
+            //   content: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       ListTile(
+            //         title: const Text('English'),
+            //         onTap: () {
+            //           settingsController.updateLanguage('en');
+            //           Get.back(); // Close the dialog
+            //         },
+            //       ),
+            //       ListTile(
+            //         title: const Text('العربية'),
+            //         onTap: () {
+            //           settingsController.updateLanguage('ar');
+            //           Get.back(); // Close the dialog
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ));
+          },
         ),
       ],
     );
