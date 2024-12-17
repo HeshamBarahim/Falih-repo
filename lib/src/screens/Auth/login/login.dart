@@ -179,8 +179,8 @@ class Login extends StatelessWidget {
                                   ),
                                   GradientText(
                                     text: S.of(context).create_account,
-                                    // route: '/signup',
-                                    route: Signup(),
+                                    route: '/signup',
+                                    // route: Signup(),
                                   ),
                                 ],
                               ),
