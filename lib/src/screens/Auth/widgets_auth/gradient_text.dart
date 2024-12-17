@@ -7,7 +7,7 @@ import '../../../config/sizes.dart';
 
 class GradientText extends StatelessWidget {
   final String text;
-  final String route;
+  final Widget route;
   const GradientText({
     super.key,
     required this.text,
@@ -20,15 +20,14 @@ class GradientText extends StatelessWidget {
     return InkWell(
       onTap: () {
         // Navigator.of(context).pushReplacementNamed(route);
-        Get.toNamed(route);
+        Get.to(route);
       },
       child: Text(
         text,
         style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.036,
             color: AppColors.successColor,
-            fontWeight: 
-            FontWeight.bold),
+            fontWeight: FontWeight.bold),
       ),
     );
   }

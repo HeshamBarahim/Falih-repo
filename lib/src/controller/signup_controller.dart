@@ -4,6 +4,8 @@ import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'loading_dialog_controller.dart';
+
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
@@ -21,16 +23,20 @@ class SignUpController extends GetxController {
   var selectedDepartment = Rxn<String>();
   var selectedGender = Rxn<String>();
   final UserRepository userRepository = Get.put(UserRepository());
+  final LoadingDialogController loadingDialogController =
+      Get.put(LoadingDialogController());
 
   /// Loader
   final isLoading = false.obs;
 
   /// Register New User using ither PhoneEmail and password
-  Future<void> createUser() async {
+  Future<void> createUser(BuildContext context) async {
+    loadingDialogController.openLoadingDialog(context);
     try {
       isLoading.value = true;
       if (!signupFormKey.currentState!.validate()) {
         isLoading.value = false;
+        loadingDialogController.closeLoadingDialog(context);
         return;
       }
 
@@ -59,7 +65,9 @@ class SignUpController extends GetxController {
       await auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
       await UserRepository.instance.createUser(user);
       auth.setInitialScreen(auth.firebaseUser);
+      loadingDialogController.closeLoadingDialog(context);
     } catch (e) {
+      loadingDialogController.closeLoadingDialog(context);
       isLoading.value = false;
       Get.snackbar("Error", e.toString(),
           snackPosition: SnackPosition.BOTTOM,

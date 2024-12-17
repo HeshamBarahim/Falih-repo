@@ -58,7 +58,7 @@ class AuthenticationRepository extends GetxController {
       print(userStorage.read('isFirstTime'));
       userStorage.read('isFirstTime') != true
           ? Get.offAll(() => Login())
-          : Get.offAll(() => const FirstPageBoarding());
+          : Get.offAll(() => FirstPageBoarding());
     }
   }
 
@@ -117,7 +117,7 @@ class AuthenticationRepository extends GetxController {
 
   // LogoutUser
   Future<void> logout(BuildContext context) async {
-    loadingDialogController.showLoadingDialog(context);
+    loadingDialogController.openLoadingDialog(context);
     await Future.delayed(const Duration(seconds: 1), () async {
       try {
         await FirebaseAuth.instance.signOut();

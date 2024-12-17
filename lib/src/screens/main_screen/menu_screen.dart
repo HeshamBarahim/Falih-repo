@@ -81,7 +81,13 @@ class _MenuScreenState extends State<MenuScreen>
                 horizontal: SizeConfig.screenWidth! * 0.04,
                 vertical: SizeConfig.screenHeight! * 0.01,
               ),
-              content: const Text('Press back again to exit'),
+              content: const Text(
+                'Press back again to exit The App',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.white,
+                ),
+              ),
               duration: const Duration(seconds: 2),
             ),
           );
@@ -117,7 +123,7 @@ class _MenuScreenState extends State<MenuScreen>
               child: NavigationBar(
                   indicatorColor: AppColors.choicesColor,
                   backgroundColor: AppColors.moreLightenMainColor,
-                  height: 70.h,
+                  height: 55.h,
                   elevation: 0,
                   selectedIndex: controller.selectedIndex.value,
                   onDestinationSelected: (index) =>
@@ -202,8 +208,8 @@ class _MenuScreenState extends State<MenuScreen>
                             padding: EdgeInsets.only(
                                 top: SizeConfig.screenHeight! * 0.053),
                             child: Container(
-                              height: SizeConfig.screenHeight! * 0.077,
-                              width: SizeConfig.screenWidth!,
+                              height: SizeConfig.screenHeight! * 0.067,
+                              // width: SizeConfig.screenWidth!,
                               margin: EdgeInsets.symmetric(
                                   horizontal: SizeConfig.screenWidth! * 0.02),
                               decoration: BoxDecoration(
@@ -269,7 +275,7 @@ class _MenuScreenState extends State<MenuScreen>
                 duration: const Duration(milliseconds: 600),
                 curve: Curves.fastOutSlowIn,
                 left: isSideNavBarClosed ? 0 : SizeConfig.screenWidth! * 0.54,
-                top: SizeConfig.screenHeight! * 0.004,
+                top: SizeConfig.screenHeight! * 0.025,
                 child: Row(
                   children: [
                     NavBarButton(

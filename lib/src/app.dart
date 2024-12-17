@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/screens/Auth/signup/signup.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -44,7 +45,7 @@ class App extends StatelessWidget {
 
         initialRoute: "/splash",
         // Set the initial route
-        unknownRoute: GetPage(name: '/signup', page: () => SplashScreen()),
+        unknownRoute: GetPage(name: '/signup', page: () => Signup()),
 
         getPages: [
           //  routes here

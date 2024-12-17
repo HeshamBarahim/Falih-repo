@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoadingDialogController extends GetxController {
-  RxBool isLoading = false.obs;
+  // RxBool isLoading = false.obs;
 
-  void showLoadingDialog(BuildContext context) {
+  void openLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false, // Prevent dismissing by tapping outside
@@ -28,13 +28,13 @@ class LoadingDialogController extends GetxController {
   }
 
   void closeLoadingDialog(BuildContext context) {
-    isLoading.value = false;
+    // isLoading.value = false;
     Navigator.of(context, rootNavigator: true).pop();
   }
 
-  void openLoadingDialog() {
-    isLoading.value = true;
-  }
+  // void openLoadingDialog() {
+  //   // isLoading.value = true;
+  // }
 
   //   Widget loadingDialog() {
   //   return isLoading.value

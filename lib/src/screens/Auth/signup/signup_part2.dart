@@ -1,3 +1,4 @@
+import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
@@ -152,7 +153,8 @@ class SignupPart2 extends StatelessWidget {
                         ),
                         GradientText(
                           text: S.of(context).bottom_text_part2,
-                          route: '/login',
+                          // route: '/login',
+                          route: Login(),
                         ),
                       ],
                     ),
