@@ -18,15 +18,9 @@ import '../utils/rive_utils.dart';
 import 'nav_bar_info_card.dart';
 import 'nav_bar_tile.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+class NavBar extends StatelessWidget {
+  NavBar({super.key});
 
-  @override
-  State<NavBar> createState() => _NavBarState();
-}
-
-class _NavBarState extends State<NavBar> {
-  RiveAsset selectedMenu = sideMenuDataList_1.first;
   final UserController userController = Get.find<UserController>();
 
   @override
@@ -88,49 +82,37 @@ class _NavBarState extends State<NavBar> {
                     (menu) => NavBarTile(
                       menu: menu,
                       riveonInit: (artBoard) {
-                        rive.StateMachineController controller =
+                        rive.StateMachineController stateMachineController =
                             RiveUtils.getRiveController(artBoard,
                                 stateMachineName: menu.stateMachineName);
-                        menu.input =
-                            controller.findSMI("active") as rive.SMIBool;
+                        menu.input = stateMachineController.findSMI("active")
+                            as rive.SMIBool;
                       },
                       press: controller.isProcess
                           ? () {}
                           : () {
-                              setState(() {
-                                controller.isProcess = true;
-                              });
+                              controller.startProcess();
                               menu.input!.change(true);
                               Future.delayed(const Duration(seconds: 1), () {
                                 menu.input!.change(false);
 
                                 if (menu.index == 0) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.offAll(const MenuScreen());
-                                  });
+                                  controller.stopProcess();
+                                  Get.offAll(const MenuScreen());
                                 } else if (menu.index == 1) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.to(EditProfileScreen());
-                                  });
+                                  controller.stopProcess();
+                                  Get.to(EditProfileScreen());
                                 } else if (menu.index == 2) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.to(SubscriptionPlansScreen());
-                                  });
+                                  controller.stopProcess();
+                                  Get.to(SubscriptionPlansScreen());
                                 } else if (menu.index == 3) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.to(NotificationPage());
-                                  });
+                                  controller.stopProcess();
+                                  Get.to(NotificationPage());
                                 }
                               });
-                              setState(() {
-                                selectedMenu = menu;
-                              });
+                              controller.selectMenu(menu);
                             },
-                      isActive: selectedMenu == menu,
+                      isActive: controller.selectedMenu == menu,
                     ),
                   ),
                   Padding(
@@ -151,50 +133,39 @@ class _NavBarState extends State<NavBar> {
                     (menu) => NavBarTile(
                       menu: menu,
                       riveonInit: (artboard) {
-                        rive.StateMachineController controller =
+                        rive.StateMachineController stateMachineController =
                             RiveUtils.getRiveController(artboard,
                                 stateMachineName: menu.stateMachineName);
-                        menu.input =
-                            controller.findSMI("active") as rive.SMIBool;
+                        menu.input = stateMachineController.findSMI("active")
+                            as rive.SMIBool;
                       },
                       press: controller.isProcess
                           ? () => null
                           : () {
-                              setState(() {
-                                controller.isProcess = true;
-                              });
+                              controller.startProcess();
                               menu.input!.change(true);
                               Future.delayed(const Duration(seconds: 1), () {
                                 menu.input!.change(false);
 
                                 if (menu.index == 0) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    //
-                                  });
+                                  controller.stopProcess();
+                                  // Get.to(ContactUsScreen());
                                 } else if (menu.index == 1) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.to(AboutUsScreen());
-                                  });
+                                  controller.stopProcess();
+                                  Get.to(AboutUsScreen());
                                 } else if (menu.index == 2) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    Get.to(SettingsScreen());
-                                  });
+                                  controller.stopProcess();
+                                  Get.to(SettingsScreen());
                                 } else if (menu.index == 3) {
-                                  setState(() {
-                                    controller.isProcess = false;
-                                    // Get.to(SettingsScreen());
-                                    AuthenticationRepository.instance.logout();
-                                  });
+                                  controller.stopProcess();
+                                  // Get.to(SettingsScreen());
+                                  AuthenticationRepository.instance
+                                      .logout(context);
                                 }
                               });
-                              setState(() {
-                                selectedMenu = menu;
-                              });
+                              controller.selectMenu(menu);
                             },
-                      isActive: selectedMenu == menu,
+                      isActive: controller.selectedMenu == menu,
                     ),
                   ),
                 ],

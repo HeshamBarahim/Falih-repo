@@ -1,3 +1,4 @@
+import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
@@ -247,7 +248,7 @@ class Signup extends StatelessWidget {
                         children: [
                           NextButton(
                             funtion: () {
-                              controller.createUser();
+                              controller.createUser(context);
                             },
                           ),
                           SizedBox(height: SizeConfig.screenHeight! * 0.01),
@@ -264,6 +265,7 @@ class Signup extends StatelessWidget {
                               GradientText(
                                 text: S.of(context).bottom_text_part2,
                                 route: '/login',
+                                // route: Login(),
                               ),
                             ],
                           ),

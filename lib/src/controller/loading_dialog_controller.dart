@@ -2,44 +2,72 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoadingDialogController extends GetxController {
-  final RxBool _isShowing = false.obs;
+  // RxBool isLoading = false.obs;
 
-  Future<void> showLoadingDialog(
-      BuildContext context, VoidCallback performFunction) async {
-    // Simulate a delay to mimic a long-running operation
-    await Future.delayed(Duration(seconds: 0));
+  void openLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
-      barrierDismissible:
-          false, // Prevents dismissing the dialog by tapping outside
+      barrierDismissible: false, // Prevent dismissing by tapping outside
       builder: (BuildContext context) {
-        // Trigger the function when the dialog appears
-        performFunction();
-        Get.back();
-        return AlertDialog(
-          title: Text('Processing...'),
-          content: Row(
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(width: 20),
-              Text("Please wait"),
-            ],
+        return Dialog(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(width: 16.0),
+                Text("Loading..."),
+              ],
+            ),
           ),
         );
       },
     );
-    // Once the function is complete, close the dialog
   }
+
+  void closeLoadingDialog(BuildContext context) {
+    // isLoading.value = false;
+    Navigator.of(context, rootNavigator: true).pop();
+  }
+
+  // void openLoadingDialog() {
+  //   // isLoading.value = true;
+  // }
+
+  //   Widget loadingDialog() {
+  //   return isLoading.value
+  //       ? Container(
+  //           child: Center(
+  //             child: Column(
+  //               children: [
+  //                 CircularProgressIndicator(),
+  //                 Text(
+  //                   'Loading...',
+  //                   style: TextStyle(
+  //                     fontSize: 20.0,
+  //                     fontWeight: FontWeight.bold,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         )
+  //       : SizedBox();
+  // }
+
+  // Future<void> performFunction(BuildContext context) async {
+  //   await Future.delayed(Duration(seconds: 3));
+
+  //   Get.back();
+  // }
 
   // void showDialogWithFunction(BuildContext context) {
   //   showDialog(
   //     context: context,
-  //     barrierDismissible:
-  //         false, // Prevents dismissing the dialog by tapping outside
+  //     barrierDismissible: false,
   //     builder: (BuildContext context) {
-  //       // Trigger the function when the dialog appears
-  //       showLoadingDialog(context);
-
   //       return AlertDialog(
   //         title: Text('Processing...'),
   //         content: Row(

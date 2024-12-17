@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 
+import '../data/side_menu_data_list.dart';
+import '../models/rive_asset.dart';
+
 class NavBarController extends GetxController {
+  RiveAsset selectedMenu = sideMenuDataList_1.first;
   bool isProcess = false;
 
   // var user;
@@ -11,12 +15,17 @@ class NavBarController extends GetxController {
     // user = await UserRepository.instance.getUserDetails();
   }
 
-  void startProcess(int index) {
+  void selectMenu(RiveAsset menu) {
+    selectedMenu = menu;
+    update();
+  }
+
+  void startProcess() {
     isProcess = true;
     update();
   }
 
-  void stopProcess(int index) {
+  void stopProcess() {
     isProcess = false;
     update();
   }

@@ -27,8 +27,7 @@ class GradientText extends StatelessWidget {
         style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.036,
             color: AppColors.successColor,
-            fontWeight: 
-            FontWeight.bold),
+            fontWeight: FontWeight.bold),
       ),
     );
   }
