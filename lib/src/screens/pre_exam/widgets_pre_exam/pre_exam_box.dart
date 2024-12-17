@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +25,8 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Questions",
+                  Text(
+                    S.of(context).questions,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(
@@ -49,8 +50,8 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Points",
+                  Text(
+                    S.of(context).points,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(

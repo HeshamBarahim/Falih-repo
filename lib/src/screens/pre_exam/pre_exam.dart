@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
@@ -48,33 +49,31 @@ class PreExam extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     controller.isFinalExam.value == true
-                        ? const Row(
+                        ? Row(
                             children: [
-                              Text("• ", style: TextStyle(fontSize: 40)),
+                              const Text("• ", style: TextStyle(fontSize: 40)),
                               // Bullet symbol
                               Expanded(
-                                child: Text(
-                                    'This exam is a simulation of the final exam'),
+                                child: Text(S.of(context).exam_simulation),
                               ),
                             ],
                           )
                         : Container(),
-                    const Row(
+                    Row(
                       children: [
-                        Text("• ", style: TextStyle(fontSize: 40)),
+                        const Text("• ", style: TextStyle(fontSize: 40)),
                         // Bullet symbol
                         Expanded(
-                          child: Text('Time will be counted during the exam'),
+                          child: Text(S.of(context).time_will_counted),
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
-                        Text("• ", style: TextStyle(fontSize: 40)),
+                        const Text("• ", style: TextStyle(fontSize: 40)),
                         // Bullet symbol
                         Expanded(
-                          child:
-                              Text('You can continue to take the exam anytime'),
+                          child: Text(S.of(context).you_can_continue),
                         ),
                       ],
                     ),
@@ -82,7 +81,7 @@ class PreExam extends StatelessWidget {
                 )),
             // start taking the exam button
             GradientButton(
-              text: 'Start taking the exam',
+              text: S.of(context).start_taking_exam,
               height: 50,
               width: double.infinity,
               onClick: () {

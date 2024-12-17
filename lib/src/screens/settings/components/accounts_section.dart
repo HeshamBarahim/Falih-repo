@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
@@ -25,11 +26,11 @@ class AccountSection extends StatelessWidget {
       children: [
         /// Account Section
         SettingsSection(
-          title: 'Account',
+          title: S.of(context).account,
           tiles: [
             SettingsTile(
               icon: Icons.info,
-              title: 'Edit profile',
+              title: S.of(context).edit_profile,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
@@ -40,7 +41,7 @@ class AccountSection extends StatelessWidget {
             ),
             SettingsTile(
               icon: Icons.privacy_tip,
-              title: 'Privacy',
+              title: S.of(context).privacy,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
@@ -51,7 +52,7 @@ class AccountSection extends StatelessWidget {
             ),
             SettingsTile(
               icon: Icons.add_to_queue_outlined,
-              title: 'Subscription packages',
+              title: S.of(context).subscription_packages,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
@@ -68,7 +69,7 @@ class AccountSection extends StatelessWidget {
         /// Logout Button
         SettingsTile(
           icon: Icons.logout,
-          title: 'Logout',
+          title: S.of(context).logout,
           trailing: Icon(
             Icons.arrow_forward_ios,
             size: SizeConfig.screenWidth! * 0.063,

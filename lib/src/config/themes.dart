@@ -22,6 +22,7 @@ class AppColors {
   static const borderColor = Color(0XFF9A9393);
   static const customGrey = Color(0XFFf6f6f9);
   static const warningColor = Color(0XFFFD9900);
+  static const flintColor = Color(0XFF666666);
 
   // on boarding background Color
   static const bgScreen1 = Color(0XFF548AD8);

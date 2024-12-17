@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,13 +32,13 @@ class CreditCardForm extends StatelessWidget {
       child: Column(
         children: [
           CheckoutTextfield(
-            label: 'Account Number',
+            label: S.of(context).account_number,
             inputType: TextInputType.number,
             controller: cardNumber,
             validator: (val) {
               //
               if (val == null || val.isEmpty) {
-                return 'Please Enter Your Account Number';
+                return S.of(context).enter_account_number;
               }
               return null;
             },
@@ -54,13 +55,13 @@ class CreditCardForm extends StatelessWidget {
           SizedBox(height: SizeConfig.screenHeight! * 0.0296),
           ////////////////////
           CheckoutTextfield(
-            label: 'Account Holder Name',
+            label: S.of(context).account_holder_number,
             inputType: TextInputType.name,
             controller: cardHolderName,
             validator: (val) {
               //
               if (val == null || val.isEmpty) {
-                return 'Please Enter The Card Holder Name';
+                return S.of(context).enter_holder_number;
               }
               return null;
             },

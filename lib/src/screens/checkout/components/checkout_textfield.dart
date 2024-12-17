@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class CheckoutTextfield extends StatelessWidget {
               fontSize: SizeConfig.screenWidth! * 0.0389,
               color: Colors.grey.shade500,
             ),
-            suffixIcon: label == 'Account Number'
+            suffixIcon: label == S.of(context).account_number
                 ? SizedBox(
                     width: SizeConfig.screenWidth! * 0.218,
                     child: Row(
@@ -78,7 +79,7 @@ class CheckoutTextfield extends StatelessWidget {
                       ],
                     ),
                   )
-                : label == 'Kuraimi Card Number'
+                : label == S.of(context).kurami_card
                     ? SizedBox(
                         width: SizeConfig.screenWidth! * 0.218,
                         child: Row(

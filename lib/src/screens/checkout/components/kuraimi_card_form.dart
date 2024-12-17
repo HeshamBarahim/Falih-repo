@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,13 +33,13 @@ class KuraimiCardForm extends StatelessWidget {
       child: Column(
         children: [
           CheckoutTextfield(
-            label: 'Kuraimi Card Number',
+            label: S.of(context).kurami_card,
             inputType: TextInputType.number,
             controller: cardNumber,
             validator: (val) {
               //
               if (val == null || val.isEmpty) {
-                return 'Please Enter Your Card Number';
+                return S.of(context).enter_card_number;
               }
               return null;
             },

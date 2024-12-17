@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
@@ -59,7 +60,7 @@ class CheckoutAppBar extends StatelessWidget {
 
               Center(
                 child: Text(
-                  'Checkout Details',
+                  S.of(context).check_details,
                   style: TextStyle(
                     fontSize: SizeConfig.screenWidth! * 0.063,
                     fontWeight: FontWeight.bold,
@@ -77,7 +78,7 @@ class CheckoutAppBar extends StatelessWidget {
                   children: [
                     // Plan Details Section
                     Text(
-                      'Plan Details',
+                      S.of(context).plan_details,
                       style: TextStyle(
                         fontSize: SizeConfig.screenWidth! * 0.04,
                         fontWeight: FontWeight.bold,
@@ -88,16 +89,16 @@ class CheckoutAppBar extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Plan:',
-                          style: TextStyle(
-                            color: Color(0XFF666666),
+                        Text(
+                          S.of(context).plan,
+                          style: const TextStyle(
+                            color: AppColors.flintColor,
                           ),
                         ),
                         Text(
-                          '${controller.selectedPlan.value?["name"] ?? "No Plan Selected"}',
+                          '${controller.selectedPlan.value?["name"] ?? S.of(context).no_plan_selected}',
                           style: const TextStyle(
-                            color: Color(0XFF666666),
+                            color: AppColors.flintColor,
                           ),
                         ),
                       ],
@@ -105,17 +106,17 @@ class CheckoutAppBar extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Type:',
-                          style: TextStyle(
-                            color: Color(0XFF666666),
+                        Text(
+                          S.of(context).type,
+                          style: const TextStyle(
+                            color: AppColors.flintColor,
                           ),
                         ),
                         Text(
                           controller.selectedPlan.value?["type"]
                                   .toString()
                                   .capitalize ??
-                              "No Plan Selected",
+                              S.of(context).no_plan_selected,
                           style: const TextStyle(
                             color: Color(0XFF666666),
                           ),
@@ -125,16 +126,16 @@ class CheckoutAppBar extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Class:',
-                          style: TextStyle(
-                            color: Color(0XFF666666),
+                        Text(
+                          S.of(context).class_text,
+                          style: const TextStyle(
+                            color: AppColors.flintColor,
                           ),
                         ),
                         Text(
-                          '${controller.selectedPlan.value?["class"] ?? "No Plan Selected"}',
+                          '${controller.selectedPlan.value?["class"] ?? S.of(context).no_plan_selected}',
                           style: const TextStyle(
-                            color: Color(0XFF666666),
+                            color: AppColors.flintColor,
                           ),
                         ),
                       ],
@@ -142,19 +143,19 @@ class CheckoutAppBar extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Section:',
-                          style: TextStyle(
-                            color: Color(0XFF666666),
+                        Text(
+                          S.of(context).section,
+                          style: const TextStyle(
+                            color: AppColors.flintColor,
                           ),
                         ),
                         Text(
                           controller.selectedPlan.value?["section"]
                                   .toString()
                                   .capitalize ??
-                              "No Plan Selected",
+                              S.of(context).no_plan_selected,
                           style: const TextStyle(
-                            color: Color(0XFF666666),
+                            color: AppColors.flintColor,
                           ),
                         ),
                       ],
@@ -176,14 +177,14 @@ class CheckoutAppBar extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Price:',
-                          style: TextStyle(
-                            color: Color(0XFF666666),
+                        Text(
+                          S.of(context).price,
+                          style: const TextStyle(
+                            color: AppColors.flintColor,
                           ),
                         ),
                         Text(
-                          '${controller.selectedPlan.value!["price"]} r.y',
+                          "${controller.selectedPlan.value!["price"]} ${S.of(context).no_plan_selected}",
                           style: const TextStyle(
                             color: Color(0XFF666666),
                           ),
@@ -194,16 +195,16 @@ class CheckoutAppBar extends StatelessWidget {
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                'Duration: ',
-                                style: TextStyle(
-                                  color: Color(0XFF666666),
+                              Text(
+                                S.of(context).no_plan_selected,
+                                style: const TextStyle(
+                                  color: AppColors.flintColor,
                                 ),
                               ),
                               Text(
-                                '${controller.selectedPlan.value!["durationInDays"]} days',
+                                '${controller.selectedPlan.value!["durationInDays"]} ${S.of(context).days}',
                                 style: const TextStyle(
-                                  color: Color(0XFF666666),
+                                  color: AppColors.flintColor,
                                 ),
                               ),
                             ],
@@ -214,16 +215,16 @@ class CheckoutAppBar extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
-                                    'Unit Exam Limit:',
-                                    style: TextStyle(
-                                      color: Color(0XFF666666),
+                                  Text(
+                                    S.of(context).unit_exam_limit,
+                                    style: const TextStyle(
+                                      color: AppColors.flintColor,
                                     ),
                                   ),
                                   Text(
-                                    '${controller.selectedPlan.value!["unitExamLimit"]} times',
+                                    '${controller.selectedPlan.value!["unitExamLimit"]} ${S.of(context).times}',
                                     style: const TextStyle(
-                                      color: Color(0XFF666666),
+                                      color: AppColors.flintColor,
                                     ),
                                   ),
                                 ],
@@ -232,16 +233,16 @@ class CheckoutAppBar extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
-                                    'Final Exam Limit:',
-                                    style: TextStyle(
-                                      color: Color(0XFF666666),
+                                  Text(
+                                    S.of(context).final_exam_limit,
+                                    style: const TextStyle(
+                                      color: AppColors.flintColor,
                                     ),
                                   ),
                                   Text(
-                                    '${controller.selectedPlan.value!["finalExamLimit"]} times',
+                                    '${controller.selectedPlan.value!["finalExamLimit"]} ${S.of(context).times}',
                                     style: const TextStyle(
-                                      color: Color(0XFF666666),
+                                      color: AppColors.flintColor,
                                     ),
                                   ),
                                 ],

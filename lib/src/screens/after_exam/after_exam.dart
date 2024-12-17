@@ -86,7 +86,7 @@ class AfterExam extends StatelessWidget {
                 if (questionsToDisplay.isEmpty) {
                   return Center(
                     child: Text(
-                      "No questions to display",
+                      S.of(context).no_question,
                       style: TextStyle(
                         fontSize: screenHeight * 0.018,
                       ),
