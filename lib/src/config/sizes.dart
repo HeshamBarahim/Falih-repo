@@ -15,9 +15,9 @@ class SizeConfig {
         ? screenHeight! * .024
         : screenWidth! * .024;
 
-    print('The Device Default Screen Height is : $screenHeight');
-    print('The Device Default Screen Width is : $screenWidth');
-    print('The Device Default Screen Orientation is : $orientation');
-    print('The Device Default Screen Size is : $defaultSize');
+    // print('The Device Default Screen Height is : $screenHeight');
+    // print('The Device Default Screen Width is : $screenWidth');
+    // print('The Device Default Screen Orientation is : $orientation');
+    // print('The Device Default Screen Size is : $defaultSize');
   }
 }
