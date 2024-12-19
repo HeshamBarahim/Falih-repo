@@ -49,7 +49,7 @@ class NavBarInfoCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${userController.user.value?.fullName ?? "User Name"} ${userController.user.value?.schoolName ?? "user"}',
+              '${userController.user.value?.fullName ?? "user"} ${userController.user.value?.schoolName ?? "0"}',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
