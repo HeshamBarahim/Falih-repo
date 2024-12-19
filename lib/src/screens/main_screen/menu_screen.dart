@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
@@ -81,10 +80,10 @@ class _MenuScreenState extends State<MenuScreen>
                 horizontal: SizeConfig.screenWidth! * 0.04,
                 vertical: SizeConfig.screenHeight! * 0.01,
               ),
-              content: const Text(
+              content: Text(
                 'Press back again to exit The App',
                 style: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: SizeConfig.screenHeight! * 0.015,
                   color: Colors.white,
                 ),
               ),
@@ -98,61 +97,97 @@ class _MenuScreenState extends State<MenuScreen>
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        bottomNavigationBar: Obx(
-          () => Container(
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 15.0),
+          child: Container(
+            margin: EdgeInsets.symmetric(
+                horizontal: SizeConfig.screenWidth! * 0.17),
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(0),
-                topRight: Radius.circular(30),
-              ),
+              color: Colors.transparent,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Shadow color
-                  spreadRadius: 2,
-                  blurRadius: 10,
-                  offset: const Offset(
-                      0, -3), // Positioning of the shadow (vertical)
+                  color: Colors.black26,
+                  blurRadius: 15,
+                  offset: Offset(5, 9),
                 ),
               ],
             ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-              child: NavigationBar(
-                  indicatorColor: AppColors.choicesColor,
-                  backgroundColor: AppColors.moreLightenMainColor,
-                  height: 55.h,
-                  elevation: 0,
-                  selectedIndex: controller.selectedIndex.value,
-                  onDestinationSelected: (index) =>
-                      controller.selectedIndex.value = index,
-                  destinations: [
-                    NavigationDestination(
+            child: Obx(
+              () => ClipRRect(
+                borderRadius:
+                    BorderRadius.circular(SizeConfig.screenWidth! * 0.07),
+                child: NavigationBarTheme(
+                  data: NavigationBarThemeData(
+                    indicatorColor: AppColors.choicesColor,
+                    backgroundColor: AppColors.moreLightenMainColor,
+                    labelTextStyle:
+                        MaterialStateProperty.resolveWith<TextStyle>(
+                      (states) {
+                        if (states.contains(MaterialState.selected)) {
+                          return TextStyle(
+                            fontSize: SizeConfig.screenWidth! *
+                                0.029, // Font size for selected labels
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.mainColor, // Selected label color
+                          );
+                        }
+                        return TextStyle(
+                          fontSize: 0, // Font size for unselected labels
+                          color:
+                              const Color(0xFFD2A8DF), // Unselected label color
+                        );
+                      },
+                    ),
+                  ),
+                  child: NavigationBar(
+                    elevation: 0,
+                    selectedIndex: controller.selectedIndex.value,
+                    onDestinationSelected: (index) =>
+                        controller.selectedIndex.value = index,
+                    destinations: [
+                      NavigationDestination(
+                        selectedIcon: Icon(
+                          Icons.menu_book,
+                          color: AppColors.mainColor,
+                          size: SizeConfig.screenHeight! * 0.04,
+                        ),
                         icon: Icon(
                           Icons.menu_book_outlined,
-                          color: AppColors.mainColor,
-                          size: 30.w,
+                          color: const Color(0xFFD2A8DF),
+                          size: SizeConfig.screenHeight! * 0.04,
                         ),
-                        label: S.of(context).subjects),
-                    NavigationDestination(
-                      icon: Icon(
-                        Icons.home,
-                        color: AppColors.mainColor,
-                        size: 30.w,
+                        label: S.of(context).subjects,
                       ),
-                      label: S.of(context).home,
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        Icons.leaderboard_outlined,
-                        color: AppColors.mainColor,
-                        size: 30.w,
+                      NavigationDestination(
+                        selectedIcon: Icon(
+                          Icons.home,
+                          color: AppColors.mainColor,
+                          size: SizeConfig.screenHeight! * 0.04,
+                        ),
+                        icon: Icon(
+                          Icons.home,
+                          color: const Color(0xFFD2A8DF),
+                          size: SizeConfig.screenHeight! * 0.04,
+                        ),
+                        label: S.of(context).home,
                       ),
-                      label: S.of(context).leaderBoard,
-                    ),
-                  ]),
+                      NavigationDestination(
+                        selectedIcon: Icon(
+                          Icons.leaderboard_outlined,
+                          color: AppColors.mainColor,
+                          size: SizeConfig.screenHeight! * 0.04,
+                        ),
+                        icon: Icon(
+                          Icons.leaderboard_outlined,
+                          color: const Color(0xFFD2A8DF),
+                          size: SizeConfig.screenHeight! * 0.04,
+                        ),
+                        label: S.of(context).leaderBoard,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -175,6 +210,18 @@ class _MenuScreenState extends State<MenuScreen>
           ),
           child: Stack(
             children: [
+              Positioned.fill(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    image: DecorationImage(
+                      image: AssetImage(Images.backgroundImageOfAuth),
+                      fit: BoxFit.cover,
+                      opacity: 0.2,
+                    ),
+                  ),
+                ),
+              ),
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.fastOutSlowIn,
@@ -190,18 +237,10 @@ class _MenuScreenState extends State<MenuScreen>
                   ..rotateY(animation.value - 30 * animation.value * pi / 180),
                 child: Transform.translate(
                   offset: Offset(
-                      animation.value * SizeConfig.screenWidth! * 0.66, 0),
+                      animation.value * SizeConfig.screenWidth! * 0.62, 0),
                   child: Transform.scale(
                     scale: scalAnimation.value,
                     child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        image: DecorationImage(
-                          image: AssetImage(Images.backgroundImageOfAuth),
-                          fit: BoxFit.cover,
-                          opacity: 0.2,
-                        ),
-                      ),
                       child: Stack(
                         children: [
                           Padding(
@@ -209,17 +248,17 @@ class _MenuScreenState extends State<MenuScreen>
                                 top: SizeConfig.screenHeight! * 0.053),
                             child: Container(
                               height: SizeConfig.screenHeight! * 0.067,
-                              // width: SizeConfig.screenWidth!,
+                              width: double.infinity,
                               margin: EdgeInsets.symmetric(
                                   horizontal: SizeConfig.screenWidth! * 0.02),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey,
                                     blurRadius: 0.9,
-                                    offset: Offset(.9, .5),
+                                    offset: Offset(0.9, 0.5),
                                   ),
                                 ],
                               ),
@@ -236,35 +275,34 @@ class _MenuScreenState extends State<MenuScreen>
                                         controller.screenTitle[
                                             controller.selectedIndex.value],
                                         style: TextStyle(
-                                            color: AppColors.mainColor,
-                                            fontFamily:
-                                                'GoogleFonts.montserratAlternatesTextTheme',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 25.sp),
+                                          color: AppColors.mainColor,
+                                          fontSize:
+                                              SizeConfig.screenHeight! * 0.032,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   IconButton(
-                                    padding: EdgeInsets.only(
-                                        right:
-                                            MediaQuery.of(context).size.width *
-                                                0.05),
                                     onPressed: () {
                                       Get.to(() => const NotificationPage());
                                     },
-                                    icon: const Icon(Icons.notifications),
-                                    color: AppColors.mainColor,
-                                    iconSize: 30.w,
+                                    icon: Icon(
+                                      Icons.notifications,
+                                      color: AppColors.mainColor,
+                                      size: SizeConfig.screenHeight! * 0.04,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.only(
-                                  top: SizeConfig.screenHeight! * 0.14),
-                              child: Obx(() => controller
-                                  .screens[controller.selectedIndex.value])),
+                            padding: EdgeInsets.only(
+                                top: SizeConfig.screenHeight! * 0.14),
+                            child: Obx(() => controller
+                                .screens[controller.selectedIndex.value]),
+                          ),
                         ],
                       ),
                     ),
@@ -275,7 +313,8 @@ class _MenuScreenState extends State<MenuScreen>
                 duration: const Duration(milliseconds: 600),
                 curve: Curves.fastOutSlowIn,
                 left: isSideNavBarClosed ? 0 : SizeConfig.screenWidth! * 0.54,
-                top: SizeConfig.screenHeight! * 0.025,
+                top: SizeConfig.screenHeight! * 0.015,
+                bottom: SizeConfig.screenHeight! * 0.78,
                 child: Row(
                   children: [
                     NavBarButton(

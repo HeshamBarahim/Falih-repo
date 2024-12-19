@@ -4,8 +4,9 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/subject_page/subject_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import '../../config/sizes.dart';
 
 class CurriculumPage extends StatelessWidget {
   CurriculumPage({super.key});
@@ -17,30 +18,39 @@ class CurriculumPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: SizeConfig.screenWidth! * 0.04,
+      ),
       child: Column(
         children: [
-          // Add a widget above the GridView
           Obx(
             () => userController.currentUser == null
-                ? const Text("User data not available.")
+                ? Text(
+                    "User data not available.",
+                    style: TextStyle(
+                      fontSize: SizeConfig.screenWidth! * 0.04,
+                    ),
+                  )
                 : Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.screenWidth! * 0.02,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Class: ${userController.currentUser!.selectedGrade}',
                           style: TextStyle(
-                            fontSize: 18.sp,
+                            fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           '${userController.currentUser!.selectedDepartment}',
                           style: TextStyle(
-                            fontSize: 18.sp,
+                            fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -49,62 +59,61 @@ class CurriculumPage extends StatelessWidget {
                   ),
           ),
           Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 15.h,
-                crossAxisSpacing: 15.w,
-                childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 3),
-              ),
-              itemCount: controller.subjects.length,
-              itemBuilder: (context, index) {
-                final subject = controller.subjects[index];
-                return GestureDetector(
-                  onTap: () {
-                    // navigate to the subject page
-                    subjectController.name.value = subject['name'];
-                    subjectController.color = subject['color'];
-                    subjectController.icon_path = subject['icon'];
-                    Get.to(() => SubjectPage());
-                  },
-                  // show each box with its color and text
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      gradient: subject['color'],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    // to center the content name & image
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.screenWidth! * 0.097,
+                  vertical: SizeConfig.screenHeight! * 0.0059),
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: SizeConfig.screenHeight! * 0.16,
+                  mainAxisSpacing: SizeConfig.screenHeight! * 0.013,
+                  crossAxisSpacing: SizeConfig.screenWidth! * 0.03,
+                  childAspectRatio: SizeConfig.screenWidth! /
+                      (SizeConfig.screenHeight! / 1.4),
+                ),
+                itemCount: controller.subjects.length,
+                itemBuilder: (context, index) {
+                  final subject = controller.subjects[index];
+                  return GestureDetector(
+                    onTap: () {
+                      subjectController.name.value = subject['name'];
+                      subjectController.color = subject['color'];
+                      subjectController.icon_path = subject['icon'];
+                      Get.to(() => SubjectPage());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: subject['color'],
+                        borderRadius: BorderRadius.circular(
+                            SizeConfig.screenWidth! * 0.055),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.asset(
-                            subject['icon'],
-                            height: 30.h,
-                            width: 30.w,
+                          Container(
+                            width: SizeConfig.screenWidth! * 0.165,
+                            child: Image.asset(
+                              subject['icon'],
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          Expanded(
-                            child: Text(
-                              subject['name'],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13.sp,
-                              ),
+                          Text(
+                            subject['name'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: SizeConfig.screenWidth! * 0.039,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ],

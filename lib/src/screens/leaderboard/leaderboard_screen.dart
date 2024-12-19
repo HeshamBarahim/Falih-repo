@@ -87,13 +87,6 @@ class LeaderBoardScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(Images.backgroundImageOfAuth),
-                fit: BoxFit.cover,
-                opacity: .2,
-              ),
-            ),
             child: Column(
               children: [
                 Container(

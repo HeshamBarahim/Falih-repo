@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
+import '../../../controller/profile_controller.dart';
 import '../../../controller/user_controller.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
-import '../models/rive_asset.dart';
 import '../utils/rive_utils.dart';
 import 'nav_bar_info_card.dart';
 import 'nav_bar_tile.dart';
@@ -22,11 +22,11 @@ class NavBar extends StatelessWidget {
   NavBar({super.key});
 
   final UserController userController = Get.find<UserController>();
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
     return Scaffold(
       body: Container(
         width: SizeConfig.screenWidth! * 0.7,
@@ -41,7 +41,6 @@ class NavBar extends StatelessWidget {
               Color(0xFFd1a4df),
               Color(0xFFe4caed),
               Color(0xFFf7effa),
-              // Color(0xFFfcf7fd),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -56,26 +55,26 @@ class NavBar extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      // left: SizeConfig.screenWidth! * 0.00,
-                      top: SizeConfig.screenHeight! * 0.02,
+                      left: SizeConfig.screenWidth! * 0.03,
+                      top: SizeConfig.screenHeight! * 0.01,
                     ),
                     child: NavBarInfoCard(
-                      name: userController.user.value?.fullName ?? "user",
-                      profession: userController.user.value?.schoolName ?? "",
+                      profileController: profileController,
+                      userController: userController,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
                       left: SizeConfig.screenWidth! * 0.06,
-                      top: SizeConfig.screenHeight! * 0.045,
-                      bottom: SizeConfig.screenHeight! * 0.02,
+                      top: SizeConfig.screenHeight! * 0.015,
+                      bottom: SizeConfig.screenHeight! * 0.01,
                     ),
                     child: Text(
                       "BROWSE",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Colors.white70,
-                            fontSize: SizeConfig.screenHeight! * 0.018,
-                          ),
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: SizeConfig.screenHeight! * 0.018,
+                      ),
                     ),
                   ),
                   ...sideMenuDataList_1.map(
@@ -118,15 +117,15 @@ class NavBar extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                       left: SizeConfig.screenWidth! * 0.06,
-                      top: SizeConfig.screenHeight! * 0.045,
-                      bottom: SizeConfig.screenHeight! * 0.02,
+                      top: SizeConfig.screenHeight! * 0.03,
+                      bottom: SizeConfig.screenHeight! * 0.01,
                     ),
                     child: Text(
                       "HISTORY",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Colors.white70,
-                            fontSize: SizeConfig.screenHeight! * 0.018,
-                          ),
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: SizeConfig.screenHeight! * 0.018,
+                      ),
                     ),
                   ),
                   ...sideMenuDataList_2.map(

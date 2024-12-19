@@ -105,15 +105,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2_of_2": MessageLookupByLibrary.simpleMessage("step 2 of 2"),
         "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
-        "subject_four":
-            MessageLookupByLibrary.simpleMessage("English Language"),
+        "subject_four": MessageLookupByLibrary.simpleMessage("English"),
         "subject_one": MessageLookupByLibrary.simpleMessage("Quran Kareem"),
         "subject_seven": MessageLookupByLibrary.simpleMessage("Biology"),
         "subject_six": MessageLookupByLibrary.simpleMessage("Physics"),
-        "subject_three":
-            MessageLookupByLibrary.simpleMessage("Arabic Language"),
-        "subject_two":
-            MessageLookupByLibrary.simpleMessage("Islamic Education"),
+        "subject_three": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "subject_two": MessageLookupByLibrary.simpleMessage("Islamic"),
         "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
