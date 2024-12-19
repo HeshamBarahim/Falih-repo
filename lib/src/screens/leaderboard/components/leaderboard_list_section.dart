@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class LeaderboardListSection extends StatelessWidget {
   final String name;
   final int points;
-  final String image;
+  // final String image;
 
   const LeaderboardListSection({
     super.key,
     required this.name,
     required this.points,
-    required this.image,
+    // required this.image,
   });
 
   @override
@@ -32,7 +32,7 @@ class LeaderboardListSection extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: SizeConfig.screenWidth! * 0.06,
-                backgroundImage: AssetImage(image),
+                // backgroundImage: AssetImage(image),
               ),
               SizedBox(width: SizeConfig.screenWidth! * 0.03),
               Column(

@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
-import '../../../controller/profile_controller.dart';
-import '../../../controller/user_controller.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
@@ -21,8 +19,6 @@ import 'nav_bar_tile.dart';
 class NavBar extends StatelessWidget {
   NavBar({super.key});
 
-  final UserController userController = Get.find<UserController>();
-  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +54,7 @@ class NavBar extends StatelessWidget {
                       left: SizeConfig.screenWidth! * 0.03,
                       top: SizeConfig.screenHeight! * 0.01,
                     ),
-                    child: NavBarInfoCard(
-                      profileController: profileController,
-                      userController: userController,
-                    ),
+                    child: NavBarInfoCard(),
                   ),
                   Padding(
                     padding: EdgeInsets.only(

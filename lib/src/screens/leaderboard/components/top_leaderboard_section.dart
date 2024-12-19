@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../controller/leaderboard_controller.dart';
 
 class TopLeaderboardSection extends StatelessWidget {
-  const TopLeaderboardSection({
+  TopLeaderboardSection({
     super.key,
-    required this.topUsers,
   });
 
-  final List<Map<String, dynamic>> topUsers;
+  final leaderboardController = Get.find<LeaderboardController>();
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-
-    Map<String, dynamic> highestUser = topUsers.reduce(
-        (current, next) => current['points'] > next['points'] ? current : next);
+    List<int> topUserOrder = [1, 0, 2]; // Custom order: second, first, third
 
     return Container(
-      height: screenHeight * 0.35,
-      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.085),
+      height: screenHeight * 0.25,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: topUsers.map((user) {
-          bool isMiddleUser = user['rank'] == 1;
-          bool isSecondUser = user['rank'] == 2;
-          bool isThirdUser = user['rank'] == 3;
-          bool hasCrown = user == highestUser;
+        children: topUserOrder.map((index) {
+          final user = leaderboardController.usersList.value[index];
+
+          bool isMiddleUser = index == 0;
+          bool isSecondUser = index == 1;
+          bool isThirdUser = index == 2;
+          bool hasCrown = isMiddleUser;
 
           return Expanded(
             flex: isMiddleUser ? 5 : 4,
@@ -33,7 +34,8 @@ class TopLeaderboardSection extends StatelessWidget {
               alignment: Alignment.topCenter,
               children: [
                 Positioned(
-                  bottom: screenHeight * 0.012,
+                  top: isMiddleUser ? screenHeight * 0.08 : screenHeight * 0.12,
+                  // bottom: screenHeight * 0.08,
                   child: Container(
                     height: isMiddleUser
                         ? screenHeight * 0.19
@@ -66,7 +68,7 @@ class TopLeaderboardSection extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          user['name'],
+                          user.fullName,
                           style: TextStyle(
                             fontSize: screenWidth * 0.035,
                             fontWeight: FontWeight.bold,
@@ -77,7 +79,7 @@ class TopLeaderboardSection extends StatelessWidget {
                         ),
                         SizedBox(height: screenHeight * 0.003),
                         Text(
-                          '${user['points']}p',
+                          '${leaderboardController.userPoints[user.id] ?? 0} p',
                           style: TextStyle(
                             fontSize: screenWidth * 0.037,
                             color: Colors.green,
@@ -93,8 +95,8 @@ class TopLeaderboardSection extends StatelessWidget {
                   children: [
                     Positioned(
                       top: isMiddleUser
-                          ? screenHeight * 0.089
-                          : screenHeight * 0.14,
+                          ? screenHeight * 0.009
+                          : screenHeight * 0.06,
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -107,7 +109,8 @@ class TopLeaderboardSection extends StatelessWidget {
                           radius: isMiddleUser
                               ? screenWidth * 0.1
                               : screenWidth * 0.085,
-                          backgroundImage: AssetImage(user['image']),
+                          backgroundImage:
+                              AssetImage('assets/images/placeholder.png'),
                           onBackgroundImageError: (_, __) =>
                               const AssetImage('assets/images/placeholder.png'),
                         ),
@@ -115,7 +118,7 @@ class TopLeaderboardSection extends StatelessWidget {
                     ),
                     if (hasCrown)
                       Positioned(
-                        top: screenHeight * 0.053,
+                        top: screenHeight * 0.0001,
                         child: Image.asset(
                           'assets/images/crown_icon.png',
                           width: screenWidth * 0.085,
@@ -124,8 +127,8 @@ class TopLeaderboardSection extends StatelessWidget {
                     if (isMiddleUser || isSecondUser || isThirdUser)
                       Positioned(
                         top: isMiddleUser
-                            ? screenHeight * 0.18
-                            : screenHeight * 0.22,
+                            ? screenHeight * 0.10
+                            : screenHeight * 0.14,
                         child: Transform.rotate(
                           angle: 38.5,
                           child: Container(
@@ -140,7 +143,7 @@ class TopLeaderboardSection extends StatelessWidget {
                               angle: 49.5,
                               child: Center(
                                 child: Text(
-                                  '${user['rank']}',
+                                  '${index + 1}',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: screenWidth * 0.032,

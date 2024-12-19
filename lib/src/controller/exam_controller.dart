@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
-import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +18,7 @@ class ExamController extends GetxController {
   var score = 0.obs;
   var trueAnswers = 0.obs;
   var falseAnswers = 0.obs;
+  var examType = "".obs;
   var examTime = 0.obs;
   var isFinalExam = false.obs;
   var isGeneratingResponse = false.obs;
@@ -107,8 +108,6 @@ class ExamController extends GetxController {
     if (questionIndex.value < questions.length - 1) {
       questionIndex.value++;
     } else {
-      print("show result");
-      print(questionIndex.value);
       // Get.to(() => ResultsPage(score: score.value));
       showDialog(
         context: context,
@@ -206,17 +205,18 @@ class ExamController extends GetxController {
   }
 
   Future<void> saveExamResult() async {
+    var points = calculateUserPoints();
     try {
-      UserModel user = await UserRepository.instance.getUserDetails();
+      UserModel? user = UserController.instance.user.value;
       final examResult = {
         'examName': subjectController.name.value.capitalize,
-        "grade": user.selectedGrade,
-        'examType': 'UnitExam', // or "FullExam" TODO
+        "grade": user?.selectedGrade,
+        'examType': examType.value,
         'score': score.value,
         'totalQuestions': questions.length,
         'correctAnswers': trueAnswers.value,
         'wrongAnswers': falseAnswers.value,
-        // 'timeTaken': Time,
+        'points': points,
         'date': Timestamp.now(),
         'answers': selectedAnswers,
       };
@@ -225,7 +225,7 @@ class ExamController extends GetxController {
 
       await _firestore
           .collection('exams')
-          .doc(user.id) // user id from firebase
+          .doc(user?.id) // user id from firebase
           .collection('userExams')
           .doc()
           .set(examResult);
@@ -246,5 +246,31 @@ class ExamController extends GetxController {
         duration: const Duration(seconds: 3),
       );
     }
+  }
+
+  int calculateUserPoints() {
+    int points = 0;
+
+    // Attempting the Exam(Finishing the whole exam)
+    points += examType.value == "UnitExam" ? 2 : 3;
+
+    // Correct Answer points
+    points += examType.value == "UnitExam"
+        ? trueAnswers.value
+        : (trueAnswers.value * 2);
+
+    // Perfect Score points for unit exam
+    points +=
+        examType.value == "UnitExam" && questions.length == trueAnswers.value
+            ? 5
+            : 0;
+
+    // Perfect Score points for final exam
+    points +=
+        examType.value == "FinalExam" && questions.length == trueAnswers.value
+            ? 15
+            : 0;
+
+    return points;
   }
 }

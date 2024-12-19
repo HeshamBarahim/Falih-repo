@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 import '../../../config/images.dart';
 import '../../../config/sizes.dart';
@@ -9,19 +8,17 @@ import '../../../controller/profile_controller.dart';
 import '../../../controller/user_controller.dart';
 
 class NavBarInfoCard extends StatelessWidget {
-  final ProfileController profileController;
-  final UserController userController;
-  const NavBarInfoCard({
+  NavBarInfoCard({
     super.key,
-    required this.profileController,
-    required this.userController,
   });
+
+  final UserController userController = Get.find<UserController>();
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
-        child: Row(
+    return Row(
       // mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Obx(
@@ -67,6 +64,6 @@ class NavBarInfoCard extends StatelessWidget {
           ],
         ),
       ],
-    ));
+    );
   }
 }

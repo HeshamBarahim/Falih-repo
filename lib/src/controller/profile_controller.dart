@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
 import '../screens/main_screen/menu_screen.dart';
@@ -41,7 +43,6 @@ class ProfileController extends GetxController {
     fullName.text = userController.user.value!.fullName;
     schoolName.text = userController.user.value!.schoolName;
     phoneNo.text = userController.user.value!.phoneNo;
-    fullName.text = userController.user.value!.fullName;
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
     selectedGrade.value = userController.user.value!.selectedGrade;
     selectedGender.value = userController.user.value!.selectedGender;

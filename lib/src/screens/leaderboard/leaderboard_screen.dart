@@ -1,7 +1,8 @@
-import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../controller/leaderboard_controller.dart';
 import 'components/leaderboard_list_section.dart';
 import 'components/top_leaderboard_section.dart';
 
@@ -78,70 +79,66 @@ class LeaderBoardScreen extends StatelessWidget {
       "rank": 11
     },
   ];
+  final controller = Get.put(LeaderboardController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            child: Column(
+    return Obx(
+      () => controller.isLoading.value
+          ? const Expanded(child: Center(child: CircularProgressIndicator()))
+          : Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  margin: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.03),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBF7FC),
-                    borderRadius: BorderRadius.circular(15.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        blurRadius: 50,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                ),
-                TopLeaderboardSection(
-                  topUsers: usersList.where((e) => e['rank'] < 4).toList(),
-                ),
-                Container(
-                  height: SizeConfig.screenHeight! * 0.38,
-                  margin: EdgeInsets.symmetric(
+                // Container(
+                //   padding: const EdgeInsets.symmetric(vertical: 5.0),
+                //   margin: EdgeInsets.symmetric(
+                //       horizontal: SizeConfig.screenWidth! * 0.03),
+                //   decoration: BoxDecoration(
+                //     color: const Color(0xFFFBF7FC),
+                //     borderRadius: BorderRadius.circular(15.0),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: Colors.grey.shade300,
+                //         blurRadius: 50,
+                //         offset: const Offset(0, 5),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                TopLeaderboardSection(),
+                Expanded(
+                  child: Container(
+                    // height: SizeConfig.screenHeight! * 0.38,
+                    margin: const EdgeInsets.only(
+                        left: 16, right: 16, top: 8, bottom: 70),
+                    padding: EdgeInsets.symmetric(
                       horizontal: SizeConfig.screenWidth! * 0.04,
-                      vertical: SizeConfig.screenHeight! * 0.015),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.04,
-                      vertical: SizeConfig.screenHeight! * 0.015),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBF7FC),
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade300,
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: ListView(
-                    children: usersList
-                        .where((e) => e['rank'] > 3)
-                        .map((e) => LeaderboardListSection(
-                            image: e['image'],
-                            name: e['name'],
-                            points: e['points']))
-                        .toList(),
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBF7FC),
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: controller.usersList.value
+                          // .where((e) => e['rank'] > 3)
+                          .map((user) => LeaderboardListSection(
+                              // image: e['image'],
+                              name: user.fullName,
+                              points: controller.userPoints[user.id] ?? 0))
+                          .toList(),
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-      ),
     );
   }
 }
