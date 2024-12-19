@@ -314,7 +314,6 @@ class _MenuScreenState extends State<MenuScreen>
                 curve: Curves.fastOutSlowIn,
                 left: isSideNavBarClosed ? 0 : SizeConfig.screenWidth! * 0.54,
                 top: SizeConfig.screenHeight! * 0.015,
-                bottom: SizeConfig.screenHeight! * 0.78,
                 child: Row(
                   children: [
                     NavBarButton(
