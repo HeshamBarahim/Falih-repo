@@ -1,8 +1,586 @@
 {
     "@@locale": "ar",
-    "@title": {
-      "description": "The title on the home page"
-    },
-    "title": "مرحباً"
+    "@title_login": {
+        "description": "This is the Start of the login page"
+      },
+      "title_login": "مرحبا بك من جديد",
+      "@hint_text_phone": {
+        "description": ""
+      },
+      "hint_text_phone": "+967",
+      "@hint_text_password": {
+        "description": ""
+      },
+      "hint_text_password":"كلمة المرور",
+      "@forget_password": {
+        "description": ""
+      },
+      "forget_password":"نسيت كلمة المرور؟",
+      "@login": {
+        "description": ""
+      },
+      "login":"تسجيل الدخول",
+      "@not_registerd": {
+        "description": ""
+      },
+      "not_registerd":"لم تقم بالتسجيل بعد؟ ",
+      "@create_account": {
+        "description": ""
+      },
+      "create_account":" إنشاء حساب",
+  
+      "@title_signup": {
+        "description": "This is the start of the sign up Page"
+      },
+      "step1_of_2":"الخطوة 1 من 2",
+      "@step1_of_2": {
+        "description": ""
+      },
+      "step2_of_2":"الخطوة 2 من 2",
+      "@step2_of_2": {
+        "description": ""
+      },
+      "title_signup":"إنشاء حساب",
+      "@hint_text_username": {
+        "description": ""
+      },
+      "hint_text_username":"الاسم الكامل",
+      "@hint_text_Governorate": {
+        "description": ""
+      },
+      "hint_text_Governorate":"المحافظة",
+      "@hint_text_School": {
+        "description": ""
+      },
+      "next":"التالي",
+      "@next": {
+        "description": ""
+      },
+      "hint_text_School":"اسم المدرسة",
+      "@hint_text_Grade": {
+        "description": ""
+      },
+      "hint_text_Grade":"الصف",
+      "@hint_text_department": {
+        "description": ""
+      },
+      "hint_text_department":"القسم",
+      "@hint_text_confirm": {
+        "description": ""
+      },
+      "hint_text_confirm":"تأكيد كلمة المرور",
+      "@bottom_text_part1": {
+        "description": ""
+      },
+      "bottom_text_part1":"لديك حساب؟ ",
+      "@bottom_text_part2": {
+        "description": ""
+      },
+      "bottom_text_part2":" تسجيل الدخول بدلًا",
+      "@drop_governorate_val1": {
+        "description": ""
+      },
+      "drop_governorate_val1":"صنعاء",
+      "@drop_governorate_val2": {
+        "description": ""
+      },
+      "drop_governorate_val2":"إب",
+      "@drop_governorate_val3": {
+        "description": ""
+      },
+      "drop_governorate_val3":"تعز",
+      "@drop_grade_val1": {
+        "description": ""
+      },
+      "drop_grade_val1":"الصف التاسع",
+      "@drop_grade_val2": {
+        "description": ""
+      },
+      "drop_grade_val2":"الصف الثاني عشر",
+      "@drop_depatment_val1": {
+        "description": ""
+      },
+      "drop_depatment_val1":"اللغة الإنجليزية",
+      "@male": {
+        "description": ""
+      },
+      "male":"ذكر",
+      "@female": {
+        "description": ""
+      },
+      "female":"أنثى",
+      "@drop_depatment_val2": {
+        "description": ""
+      },
+      "drop_depatment_val2":"اللغة العربية",
+      "@submit": {
+        "description": "This is start of verification page"
+      },
+      "submit":"تقديم",
+      "@otp": {
+        "description": ""
+      },
+      "otp":"رمز التحقق",
+      "@explaination_text": {
+        "description": ""
+      },
+      "explaination_text":"قمنا بإرسال رمز التحقق إلى رقم هاتفك",
+      "@first_header_home": {
+        "description": "This is the start of the home Page"
+      },
+      "first_header_home":"مرحبًا يوسف",
+  
+      "@part_one_subHeader": {
+        "description": ""
+      },
+      "part_one_subHeader":"لم يتم ",
+  
+      "@changing_subHeader": {
+        "description": ""
+      },
+      "changing_subHeader":"لم تقم بالخضوع",
+  
+      "@part_two_subHeader": {
+        "description": ""
+      },
+      "part_two_subHeader":" لأي اختبار بعد",
+        "@score": {
+          "description": ""
+        },
+        "score": "0 نقطة",
+      
+        "@name_league": {
+          "description": ""
+        },
+        "name_league": "الدوري الفضي",
+      
+        "@history_heading": {
+          "description": ""
+        },
+        "history_heading": "تاريخ الاختبارات الخاص بك",
+      
+        "@not_taken_exams_home_page": {
+          "description": ""
+        },
+        "not_taken_exams_home_page": "لم تقم بخوض أي اختبارات بعد",
+      
+        "@subject_one": {
+          "description": "This is the start of the Curriculum Page"
+        },
+        "subject_one": "القرآن الكريم",
+      
+        "@subject_two": {
+          "description": ""
+        },
+        "subject_two": "التربية الإسلامية",
+      
+        "@subject_three": {
+          "description": ""
+        },
+        "subject_three": "اللغة العربية",
+      
+        "@subject_four": {
+          "description": ""
+        },
+        "subject_four": "اللغة الإنجليزية",
+      
+        "@subject_five": {
+          "description": ""
+        },
+        "subject_five": "الكيمياء",
+      
+        "@subject_six": {
+          "description": ""
+        },
+        "subject_six": "الفيزياء",
+      
+        "@subject_seven": {
+          "description": ""
+        },
+        "subject_seven": "الأحياء",
+      
+        "@subject_eight": {
+          "description": ""
+        },
+        "subject_eight": "الرياضيات",
+      
+        "@not_taken_exams": {
+          "description": "This the start of leaderborad page"
+        },
+        "not_taken_exams": "لم تقم بخوض أي اختبار بعد. قم بخوض الاختبار للانضمام إلى لوحة القيادة والمنافسة مع الطلاب الآخرين",
+      
+        "@statistics": {
+          "description": "This the start of subject page"
+        },
+        "statistics": "الإحصائيات",
+      
+        "@chapters": {
+          "description": ""
+        },
+        "chapters": "الفصول",
+      
+        "@exams": {
+          "description": ""
+        },
+        "exams": "الاختبارات",
+      
+        "@confirm": {
+          "description": "This the start of run exam"
+        },
+        "confirm": "تأكيد",
+      
+        "@results": {
+          "description": "Test "
+        },
+        "results": "النتائج",
+        
+          "@practice_test": {
+            "description": "Test "
+          },
+          "practice_test": "اختبار تدريبي",
+        
+          "@question": {
+            "description": "Test "
+          },
+          "question": "سؤال",
+        
+          "@questions": {
+            "description": "Test "
+          },
+          "questions": "أسئلة",
+        
+          "@continueText": {
+            "description": ""
+          },
+          "continueText": "متابعة",
+        
+          "@unit_exams": {
+            "description": ""
+          },
+          "unit_exams": "اختبارات الوحدة",
+        
+          "@correct": {
+            "description": "the start of after exam"
+          },
+          "correct": "صحيح",
+        
+          "@wrong": {
+            "description": ""
+          },
+          "wrong": "خاطئ",
+        
+          "@back_to_subjects": {
+            "description": ""
+          },
+          "back_to_subjects": "العودة إلى المواضيع",
+        
+          "@review_answer": {
+            "description": ""
+          },
+          "review_answer": "مراجعة إجاباتك",
+        
+          "@explaination_on_boarding_1": {
+            "description": "The start of boarding screens"
+          },
+          "explaination_on_boarding_1": "تمكن من موادك الدراسية مع رفيقك الدراسي النهائي",
+        
+          "@welcome_to": {
+            "description": ""
+          },
+          "welcome_to": "مرحبًا في",
+        
+          "@falih": {
+            "description": ""
+          },
+          "falih": "فالح",
+        
+          "@learn": {
+            "description": ""
+          },
+          "learn": "تعلم",
+        
+          "@your": {
+            "description": ""
+          },
+          "your": "خطوتك",
+        
+          "@way": {
+            "description": ""
+          },
+          "way": "طريقتك",
+        
+          "@equip": {
+            "description": ""
+          },
+          "equip": "جهز",
+        
+          "@your_self": {
+            "description": ""
+          },
+          "your_self": "نفسك",
+        
+          "@with_the": {
+            "description": ""
+          },
+          "with_the": "مع",
+        
+          "@best_tools": {
+            "description": ""
+          },
+          "best_tools": "أفضل الأدوات",
+        
+          "@explaintion_number1": {
+            "description": "Start of the pre exam screen"
+          },
+          "explaintion_number1": "سيتم حساب الوقت أثناء الاختبار",
+        
+          "@explaintion_number2": {
+            "description": ""
+          },
+          "explaintion_number2": "يمكنك مواصلة الاختبار في أي وقت",
+        
+          "@start_exam": {
+            "description": ""
+          },
+          "start_exam": "ابدأ الاختبار",
+        
+          "@done": {
+            "description": ""
+          },
+          "done": "تم",
+        
+          "@subjects": {
+            "description": "Navigation_Menu folder"
+          },
+          "subjects": "المواد",
+        
+          "@home": {
+            "description": ""
+          },
+          "home": "الرئيسية",
+        
+          "@leaderBoard": {
+            "description": ""
+          },
+          "leaderBoard": "لوحة القيادة",
+        
+          "@notification": {
+            "description": ""
+          },
+          "notification": "الإشعار",
+        
+          "@update_profile": {
+            "description": ""
+          },
+          "update_profile": "تحديث الملف الشخصي",
+        
+          "@settings": {
+            "description": ""
+          },
+          "settings": "الإعدادات",
+        
+          "@no_question": {
+            "description": ""
+          },
+          "no_question": "لا يوجد أسئلة للعرض",
+        
+          "@no_password": {
+            "description": ""
+          },
+          "no_password": "لا يمكن ترك كلمة المرور فارغة",
+          
+            "@check_details": {
+              "description": ""
+            },
+            "check_details": "تفاصيل الدفع",
+          
+            "@plan_details": {
+              "description": ""
+            },
+            "plan_details": "تفاصيل الخطة",
+          
+            "@plan": {
+              "description": ""
+            },
+            "plan": "خطة",
+          
+            "@type": {
+              "description": ""
+            },
+            "type": "النوع:",
+          
+            "@no_plan_selected": {
+              "description": ""
+            },
+            "no_plan_selected": "لم يتم تحديد أي خطة",
+          
+            "@class_text": {
+              "description": ""
+            },
+            "class_text": "الصف:",
+          
+            "@section": {
+              "description": ""
+            },
+            "section": "القسم:",
+          
+            "@ry": {
+              "description": ""
+            },
+            "ry": "ر.ي",
+          
+            "@duration": {
+              "description": ""
+            },
+            "duration": "المدة:",
+          
+            "@days": {
+              "description": ""
+            },
+            "days": "أيام",
+          
+            "@unit_exam_limit": {
+              "description": ""
+            },
+            "unit_exam_limit": "حد اختبار الوحدة:",
+          
+            "@times": {
+              "description": ""
+            },
+            "times": "مرات",
+          
+            "@final_exam_limit": {
+              "description": ""
+            },
+            "final_exam_limit": "حد الاختبار النهائي:",
+          
+            "@price": {
+              "description": ""
+            },
+            "price": "السعر:",
+          
+            "@we_will_send": {
+              "description": ""
+            },
+            "we_will_send": "سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح",
+          
+            "@pay_for_plan": {
+              "description": ""
+            },
+            "pay_for_plan": "دفع للخطة",
+          
+            "@pay_completed": {
+              "description": ""
+            },
+            "pay_completed": "تم إكمال الدفع بنجاح",
+          
+            "@account_number": {
+              "description": ""
+            },
+            "account_number": "رقم الحساب",
+          
+            "@kurami_card": {
+              "description": ""
+            },
+            "kurami_card": "رقم بطاقة الكريمي",
+          
+            "@enter_account_number": {
+              "description": ""
+            },
+            "enter_account_number": "يرجى إدخال رقم الحساب",
+          
+            "@account_holder_number": {
+              "description": ""
+            },
+            "account_holder_number": "رقم المستخدم",
+          
+            "@enter_holder_number": {
+              "description": ""
+            },
+            "enter_holder_number": "يرجى إدخال اسم حامل البطاقة",
+          
+            "@enter_card_number": {
+              "description": ""
+            },
+            "enter_card_number": "يرجى إدخال رقم البطاقة",
+          
+            "@kuraimi": {
+              "description": ""
+            },
+            "kuraimi": "الكريمي",
+          
+            "@jaib": {
+              "description": ""
+            },
+            "jaib": "جيب",
+          
+            "@points": {
+              "description": ""
+            },
+            "points": "نقاط",
+          
+            "@exam_simulation": {
+              "description": ""
+            },
+            "exam_simulation": "هذا الاختبار هو محاكاة للاختبار النهائي",
+          
+            "@time_will_counted": {
+              "description": ""
+            },
+            "time_will_counted": "سيتم حساب الوقت أثناء الاختبار",
+          
+            "@you_can_continue": {
+              "description": ""
+            },
+            "you_can_continue": "يمكنك مواصلة الاختبار في أي وقت",
+          
+            "@start_taking_exam": {
+              "description": ""
+            },
+            "start_taking_exam": "ابدأ خوض الاختبار",
+          
+            "@account": {
+              "description": ""
+            },
+            "account": "الحساب",
+          
+            "@edit_profile": {
+              "description": ""
+            },
+            "edit_profile": "تعديل الملف الشخصي",
+          
+            "@privacy": {
+              "description": ""
+            },
+            "privacy": "الخصوصية",
+          
+            "@subscription_packages": {
+              "description": ""
+            },
+            "subscription_packages": "باقات الاشتراك",
+          
+            "@logout": {
+              "description": ""
+            },
+            "logout": "تسجيل الخروج",
+          
+            "@preferences": {
+              "description": ""
+            },
+            "preferences": "التفضيلات",
+          
+            "@dark_mode": {
+              "description": ""
+            },
+            "dark_mode": "وضع الظلام",
+          
+            "@language": {
+              "description": ""
+            },
+            "language": "اللغة"
+          
+          
+  
+      
   }
   

@@ -104,29 +104,6 @@ class LeaderBoardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // child: ListTile(
-                  //   leading: Icon(
-                  //     Icons.notifications_none,
-                  //     color: Color(0xFF743089),
-                  //     size: SizeConfig.screenWidth! * 0.11,
-                  //   ),
-                  //   titleAlignment: ListTileTitleAlignment.top,
-                  //   title: Center(
-                  //     child: Text(
-                  //       'Leaderboard',
-                  //       style: TextStyle(
-                  //         fontSize: SizeConfig.screenWidth! * 0.065,
-                  //         fontWeight: FontWeight.bold,
-                  //         color: Color(0xFF743089),
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   trailing: Icon(
-                  //     Icons.grid_view_rounded,
-                  //     color: Color(0xFF743089),
-                  //     size: SizeConfig.screenWidth! * 0.11,
-                  //   ),
-                  // ),
                 ),
                 TopLeaderboardSection(
                   topUsers: usersList.where((e) => e['rank'] < 4).toList(),

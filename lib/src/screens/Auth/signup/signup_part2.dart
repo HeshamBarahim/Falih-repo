@@ -103,7 +103,7 @@ class SignupPart2 extends StatelessWidget {
                       ),
                       myController: controller.password,
                       validator: (value) {
-                        if (value!.isEmpty) return 'password cannot be empty';
+                        if (value!.isEmpty) return S.of(context).no_password;
                         return null;
                       },
                     ),

@@ -31,7 +31,7 @@ class NotificationPage extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               title: Text(
-                'Notifications',
+                S.of(context).notification,
                 style: TextStyle(
                     fontSize: SizeConfig.screenWidth! * 0.059,
                     color: AppColors.mainColor,

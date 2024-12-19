@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/controller/settings_controller.dart';
@@ -26,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
-          'Settings',
+          S.of(context).settings,
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.059,
             color: fontColor_1,
@@ -56,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
             ProfileSection(
                 // profileImage: userController.profileImageUrl.value,
                 name: userController.user.value!.fullName,
-                email: userController.user.value!.phoneNo),
+                email: userController.user.value!.schoolName),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
 
             /// Preferences Section

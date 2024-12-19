@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class PaymentChoiceButton extends StatelessWidget {
                       size: SizeConfig.screenWidth! * 0.060,
                     ),
                     Text(
-                      'Kuraimi',
+                      S.of(context).kuraimi,
                       style: TextStyle(
                         fontSize: SizeConfig.screenWidth! * 0.038,
                         // color: paymentType == 0 ? Colors.white : Colors.black,
@@ -105,7 +106,7 @@ class PaymentChoiceButton extends StatelessWidget {
                       size: SizeConfig.screenWidth! * 0.060,
                     ),
                     Text(
-                      'Jaib',
+                      S.of(context).jaib,
                       style: TextStyle(
                         fontSize: SizeConfig.screenWidth! * 0.035,
                         color: kuraimiTextColor,

@@ -225,7 +225,11 @@
     "@question": {
       "description": "Test "
     },
-    "question":"Question",
+    "question":"Questions",
+    "@questions": {
+      "description": "Test "
+    },
+    "questions":"Questions",
     "@continueText": {
       "description": ""
     },
@@ -325,6 +329,172 @@
     "@update_profile": {
       "description": ""
     },
-    "update_profile":"Update Profile"
+    "update_profile":"Update Profile",
+    "@settings": {
+      "description": ""
+    },
+    "settings":"Settings",
+    "@no_question": {
+      "description": ""
+    },
+    "no_question":"No questions to display",
+    "@no_password": {
+      "description": ""
+    },
+    "no_password":"password cannot be empty",
+    "@check_details": {
+      "description": ""
+    },
+    "check_details":"Checkout Details",
+    "@plan_details": {
+      "description": ""
+    },
+    "plan_details":"Plan Details",
+    "@plan": {
+      "description": ""
+    },
+    "plan":"Plan",
+    "@type": {
+      "description": ""
+    },
+    "type":"Type:",
+    "@no_plan_selected": {
+      "description": ""
+    },
+    "no_plan_selected":"No Plan Selected",
+    "@class_text": {
+      "description": ""
+    },
+    "class_text":"Class:",
+    "@section": {
+      "description": ""
+    },
+    "section":"Section:",
+    "@ry": {
+      "description": ""
+    },
+    "ry":"r.y",
+    "@duration": {
+      "description": ""
+    },
+    "duration":"Duration:", 
+    "@days": {
+      "description": ""
+    },
+    "days":"days", 
+    "@unit_exam_limit": {
+      "description": ""
+    },
+    "unit_exam_limit":"Unit Exam Limit:", 
+    "@times": {
+      "description": ""
+    },
+    "times":"times",
+    "@final_exam_limit": {
+      "description": ""
+    },
+    "final_exam_limit":"Final Exam Limit:",
+    "@price": {
+      "description": ""
+    },
+    "price":"Price:",
+    "@we_will_send": {
+      "description": ""
+    },
+    "we_will_send":"We will send you an order details to your email after the successful payment",
+    "@pay_for_plan": {
+      "description": ""
+    },
+    "pay_for_plan":"Pay For The Plan",
+    "@pay_completed": {
+      "description": ""
+    },
+    "pay_completed":"Payment Successfully Completed",
+    "@account_number": {
+      "description": ""
+    },
+    "account_number":"Account Number",
+    "@kurami_card": {
+      "description": ""
+    },
+    "kurami_card":"Kuraimi Card Number",
+    "@enter_account_number": {
+      "description": ""
+    },
+    "enter_account_number":"Please Enter Your Account Number",
+    "@account_holder_number": {
+      "description": ""
+    },
+    "account_holder_number":"Holder Number",
+    "@enter_holder_number": {
+      "description": ""
+    },
+    "enter_holder_number":"Please Enter The Card Holder Name",
+    "@enter_card_number": {
+      "description": ""
+    },
+    "enter_card_number":"Please Enter Your Card Number",
+    "@kuraimi": {
+      "description": ""
+    },
+    "kuraimi":"Kuraimi",
+    "@jaib": {
+      "description": ""
+    },
+    "jaib":"Jaib",
+    "@points": {
+      "description": ""
+    },
+    "points":"Points",
+    "@exam_simulation": {
+      "description": ""
+    },
+    "exam_simulation":"This exam is a simulation of the final exam",
+    "@time_will_counted": {
+      "description": ""
+    },
+    "time_will_counted":"Time will be counted during the exam",
+    "@you_can_continue": {
+      "description": ""
+    },
+    "you_can_continue":"You can continue to take the exam anytime",
+    "@start_taking_exam": {
+      "description": ""
+    },
+    "start_taking_exam":"Start taking the exam",
+    "@account": {
+      "description": ""
+    },
+    "account":"Account",
+    "@edit_profile": {
+      "description": ""
+    },
+    "edit_profile":"Edit profile",
+    "@privacy": {
+      "description": ""
+    },
+    "privacy":"Privacy",
+    "@subscription_packages": {
+      "description": ""
+    },
+    "subscription_packages":"Subscription packages",
+    "@logout": {
+      "description": ""
+    },
+    "logout":"Logout",
+    "@preferences": {
+      "description": ""
+    },
+    "preferences":"Preferences",
+    "@dark_mode": {
+      "description": ""
+    },
+    "dark_mode":"Dark Mode",
+    "@language": {
+      "description": ""
+    },
+    "language":"Language"
+    
+
 
 }

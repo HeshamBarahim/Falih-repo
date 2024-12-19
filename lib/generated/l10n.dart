@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -584,8 +583,8 @@ class S {
   /// `results`
   String get results {
     return Intl.message(
-      'Results',
-      name: 'Results',
+      'results',
+      name: 'results',
       desc: 'Test ',
       args: [],
     );
@@ -601,11 +600,21 @@ class S {
     );
   }
 
-  /// `Question`
+  /// `Questions`
   String get question {
     return Intl.message(
-      'Question',
+      'Questions',
       name: 'question',
+      desc: 'Test ',
+      args: [],
+    );
+  }
+
+  /// `Questions`
+  String get questions {
+    return Intl.message(
+      'Questions',
+      name: 'questions',
       desc: 'Test ',
       args: [],
     );
@@ -624,8 +633,8 @@ class S {
   /// `unit_exams`
   String get unit_exams {
     return Intl.message(
-      'Unit Exams',
-      name: 'Unit Exams',
+      'unit_exams',
+      name: 'unit_exams',
       desc: '',
       args: [],
     );
@@ -851,11 +860,421 @@ class S {
     );
   }
 
-  /// `Update Profile:`
+  /// `Update Profile`
   String get update_profile {
     return Intl.message(
       'Update Profile',
       name: 'update_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No questions to display`
+  String get no_question {
+    return Intl.message(
+      'No questions to display',
+      name: 'no_question',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password cannot be empty`
+  String get no_password {
+    return Intl.message(
+      'password cannot be empty',
+      name: 'no_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout Details`
+  String get check_details {
+    return Intl.message(
+      'Checkout Details',
+      name: 'check_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plan Details`
+  String get plan_details {
+    return Intl.message(
+      'Plan Details',
+      name: 'plan_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plan`
+  String get plan {
+    return Intl.message(
+      'Plan',
+      name: 'plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type:`
+  String get type {
+    return Intl.message(
+      'Type:',
+      name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Plan Selected`
+  String get no_plan_selected {
+    return Intl.message(
+      'No Plan Selected',
+      name: 'no_plan_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class:`
+  String get class_text {
+    return Intl.message(
+      'Class:',
+      name: 'class_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Section:`
+  String get section {
+    return Intl.message(
+      'Section:',
+      name: 'section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `r.y`
+  String get ry {
+    return Intl.message(
+      'r.y',
+      name: 'ry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration:`
+  String get duration {
+    return Intl.message(
+      'Duration:',
+      name: 'duration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days`
+  String get days {
+    return Intl.message(
+      'days',
+      name: 'days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unit Exam Limit:`
+  String get unit_exam_limit {
+    return Intl.message(
+      'Unit Exam Limit:',
+      name: 'unit_exam_limit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `times`
+  String get times {
+    return Intl.message(
+      'times',
+      name: 'times',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Final Exam Limit:`
+  String get final_exam_limit {
+    return Intl.message(
+      'Final Exam Limit:',
+      name: 'final_exam_limit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price:`
+  String get price {
+    return Intl.message(
+      'Price:',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will send you an order details to your email after the successful payment`
+  String get we_will_send {
+    return Intl.message(
+      'We will send you an order details to your email after the successful payment',
+      name: 'we_will_send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay For The Plan`
+  String get pay_for_plan {
+    return Intl.message(
+      'Pay For The Plan',
+      name: 'pay_for_plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Successfully Completed`
+  String get pay_completed {
+    return Intl.message(
+      'Payment Successfully Completed',
+      name: 'pay_completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Number`
+  String get account_number {
+    return Intl.message(
+      'Account Number',
+      name: 'account_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuraimi Card Number`
+  String get kurami_card {
+    return Intl.message(
+      'Kuraimi Card Number',
+      name: 'kurami_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Your Account Number`
+  String get enter_account_number {
+    return Intl.message(
+      'Please Enter Your Account Number',
+      name: 'enter_account_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Holder Number`
+  String get account_holder_number {
+    return Intl.message(
+      'Holder Number',
+      name: 'account_holder_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter The Card Holder Name`
+  String get enter_holder_number {
+    return Intl.message(
+      'Please Enter The Card Holder Name',
+      name: 'enter_holder_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Your Card Number`
+  String get enter_card_number {
+    return Intl.message(
+      'Please Enter Your Card Number',
+      name: 'enter_card_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuraimi`
+  String get kuraimi {
+    return Intl.message(
+      'Kuraimi',
+      name: 'kuraimi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jaib`
+  String get jaib {
+    return Intl.message(
+      'Jaib',
+      name: 'jaib',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Points`
+  String get points {
+    return Intl.message(
+      'Points',
+      name: 'points',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This exam is a simulation of the final exam`
+  String get exam_simulation {
+    return Intl.message(
+      'This exam is a simulation of the final exam',
+      name: 'exam_simulation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time will be counted during the exam`
+  String get time_will_counted {
+    return Intl.message(
+      'Time will be counted during the exam',
+      name: 'time_will_counted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can continue to take the exam anytime`
+  String get you_can_continue {
+    return Intl.message(
+      'You can continue to take the exam anytime',
+      name: 'you_can_continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start taking the exam`
+  String get start_taking_exam {
+    return Intl.message(
+      'Start taking the exam',
+      name: 'start_taking_exam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit profile`
+  String get edit_profile {
+    return Intl.message(
+      'Edit profile',
+      name: 'edit_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy`
+  String get privacy {
+    return Intl.message(
+      'Privacy',
+      name: 'privacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription packages`
+  String get subscription_packages {
+    return Intl.message(
+      'Subscription packages',
+      name: 'subscription_packages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferences`
+  String get preferences {
+    return Intl.message(
+      'Preferences',
+      name: 'preferences',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Mode`
+  String get dark_mode {
+    return Intl.message(
+      'Dark Mode',
+      name: 'dark_mode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
       desc: '',
       args: [],
     );

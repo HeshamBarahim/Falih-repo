@@ -1,4 +1,7 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/settings_controller.dart';
+import 'package:falih/src/screens/home/home_page.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
@@ -24,11 +27,11 @@ class PreferencesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SettingsSection(
-      title: 'Preferences',
+      title: S.of(context).preferences,
       tiles: [
         SettingsTile(
           icon: Icons.dark_mode,
-          title: 'Dark Mode',
+          title: S.of(context).dark_mode,
           trailing: Obx(
             () => Switch(
               activeTrackColor: iconColor_2,
@@ -52,7 +55,7 @@ class PreferencesSection extends StatelessWidget {
         ),
         SettingsTile(
           icon: Icons.notifications,
-          title: 'Notifications',
+          title: S.of(context).notification,
           trailing: Switch(
             activeTrackColor: iconColor_2,
             activeColor: Colors.white,
@@ -65,14 +68,62 @@ class PreferencesSection extends StatelessWidget {
         ),
         SettingsTile(
           icon: Icons.language,
-          title: 'Language',
+          title: S.of(context).language,
           trailing: Icon(
             Icons.arrow_forward_ios,
             size: SizeConfig.screenWidth! * 0.063,
             color: iconColor_1,
           ),
           // Language Button Function
-          onTap: onTapLanguageFunction,
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: const Text('English'),
+                          onTap: () {
+                            settingsController.updateLanguage('en');
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: const Text('العربية'),
+                          onTap: () {
+                            settingsController.updateLanguage('ar');
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                });
+            // Get.dialog(AlertDialog(
+            //   title: Text(S.of(context).language),
+            //   content: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       ListTile(
+            //         title: const Text('English'),
+            //         onTap: () {
+            //           settingsController.updateLanguage('en');
+            //           Get.back(); // Close the dialog
+            //         },
+            //       ),
+            //       ListTile(
+            //         title: const Text('العربية'),
+            //         onTap: () {
+            //           settingsController.updateLanguage('ar');
+            //           Get.back(); // Close the dialog
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ));
+          },
         ),
       ],
     );

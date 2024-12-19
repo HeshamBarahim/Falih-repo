@@ -79,7 +79,7 @@ class ProfileController extends GetxController {
         : changeProfileImage =
             await ImagePicker().pickImage(source: ImageSource.camera);
     if (changeProfileImage != null) {
-      file = File(changeProfileImage!.path);
+      file = File(changeProfileImage.path);
       fileExtension = path.extension(changeProfileImage.path);
     }
 
@@ -91,7 +91,7 @@ class ProfileController extends GetxController {
     try {
       // Generate a unique filename using user ID and timestamp
       String userId = FirebaseAuth.instance.currentUser!.uid;
-      String fileName = '${userId}${fileExtension}';
+      String fileName = '$userId $fileExtension';
 
       // Reference to Firebase Storage
       // final storageRef2 = FirebaseStorage.instance.refFromURL();
