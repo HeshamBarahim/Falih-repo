@@ -51,7 +51,7 @@ class AuthenticationRepository extends GetxController {
   /// Setting initial screen
   setInitialScreen(User? user) async {
     if (user != null) {
-      Get.offAll(() => const MenuScreen());
+      Get.offAll(() => MenuScreen());
     } else {
       // Check if it's the user's first time, then navigate accordingly
       userStorage.writeIfNull('isFirstTime', true);

@@ -1,7 +1,9 @@
+import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/leaderboard_controller.dart';
+import '../../../controller/user_controller.dart';
 
 class TopLeaderboardSection extends StatelessWidget {
   TopLeaderboardSection({
@@ -22,6 +24,7 @@ class TopLeaderboardSection extends StatelessWidget {
       child: Row(
         children: topUserOrder.map((index) {
           final user = leaderboardController.usersList.value[index];
+          final UserController userController = UserController.instance;
 
           bool isMiddleUser = index == 0;
           bool isSecondUser = index == 1;
@@ -47,8 +50,8 @@ class TopLeaderboardSection extends StatelessWidget {
                             : screenHeight * 0.051),
                     decoration: BoxDecoration(
                       color: isMiddleUser
-                          ? const Color(0xFF743089)
-                          : const Color.fromARGB(255, 237, 237, 237),
+                          ? AppColors.mainColor
+                          : AppColors.lightenMainColor,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(isMiddleUser
                             ? screenWidth * 0.073
@@ -59,7 +62,7 @@ class TopLeaderboardSection extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.shade300,
+                          color: AppColors.darkMainColor,
                           offset: Offset(0, screenHeight * 0.005),
                           blurRadius: screenHeight * 0.01,
                         )
@@ -68,22 +71,21 @@ class TopLeaderboardSection extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          user.fullName,
+                          user.fullName.capitalize ?? "",
                           style: TextStyle(
                             fontSize: screenWidth * 0.035,
                             fontWeight: FontWeight.bold,
                             color: isMiddleUser
-                                ? Colors.white
-                                : const Color(0xFF743089),
+                                ? AppColors.secondaryColor
+                                : AppColors.mainColor,
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.003),
                         Text(
                           '${leaderboardController.userPoints[user.id] ?? 0} p',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.037,
-                            color: Colors.green,
-                            fontWeight: FontWeight.w900,
+                          style: const TextStyle(
+                            color: AppColors.successColor,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -95,13 +97,13 @@ class TopLeaderboardSection extends StatelessWidget {
                   children: [
                     Positioned(
                       top: isMiddleUser
-                          ? screenHeight * 0.009
+                          ? screenHeight * 0.027
                           : screenHeight * 0.06,
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: const Color(0xFF3CD797),
+                            color: AppColors.successColor,
                             width: screenWidth * 0.01,
                           ),
                         ),
@@ -109,8 +111,8 @@ class TopLeaderboardSection extends StatelessWidget {
                           radius: isMiddleUser
                               ? screenWidth * 0.1
                               : screenWidth * 0.085,
-                          backgroundImage:
-                              AssetImage('assets/images/placeholder.png'),
+                          backgroundImage: NetworkImage(
+                              userController.profileImageUrl.value),
                           onBackgroundImageError: (_, __) =>
                               const AssetImage('assets/images/placeholder.png'),
                         ),
@@ -118,7 +120,7 @@ class TopLeaderboardSection extends StatelessWidget {
                     ),
                     if (hasCrown)
                       Positioned(
-                        top: screenHeight * 0.0001,
+                        top: 0,
                         child: Image.asset(
                           'assets/images/crown_icon.png',
                           width: screenWidth * 0.085,
@@ -127,7 +129,7 @@ class TopLeaderboardSection extends StatelessWidget {
                     if (isMiddleUser || isSecondUser || isThirdUser)
                       Positioned(
                         top: isMiddleUser
-                            ? screenHeight * 0.10
+                            ? screenHeight * 0.118
                             : screenHeight * 0.14,
                         child: Transform.rotate(
                           angle: 38.5,
@@ -137,7 +139,7 @@ class TopLeaderboardSection extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: const Color(0xFF3CD797),
                               borderRadius:
-                                  BorderRadius.circular(screenWidth * 0.012),
+                              BorderRadius.circular(screenWidth * 0.012),
                             ),
                             child: Transform.rotate(
                               angle: 49.5,

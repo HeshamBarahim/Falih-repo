@@ -1,4 +1,5 @@
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,74 +12,6 @@ class LeaderBoardScreen extends StatelessWidget {
 
   LeaderBoardScreen({super.key});
 
-  final List<Map<String, dynamic>> usersList = [
-    {
-      "name": "Hisham",
-      "points": 1847,
-      "image": "assets/images/yousif.png",
-      "rank": 2
-    },
-    {
-      "name": "Yusif",
-      "points": 2430,
-      "image": "assets/images/yousif.png",
-      "rank": 1,
-    },
-    {
-      "name": "Sameer",
-      "points": 1674,
-      "image": "assets/images/yousif.png",
-      "rank": 3
-    },
-    {
-      "name": "Sebastian",
-      "points": 1124,
-      "image": "assets/images/yousif.png",
-      "rank": 4
-    },
-    {
-      "name": "You",
-      "points": 875,
-      "image": "assets/images/yousif.png",
-      "rank": 5
-    },
-    {
-      "name": "Natalie",
-      "points": 774,
-      "image": "assets/images/yousif.png",
-      "rank": 6
-    },
-    {
-      "name": "Serenity",
-      "points": 723,
-      "image": "assets/images/yousif.png",
-      "rank": 7
-    },
-    {
-      "name": "Hannah",
-      "points": 559,
-      "image": "assets/images/yousif.png",
-      "rank": 8
-    },
-    {
-      "name": "Mona",
-      "points": 550,
-      "image": "assets/images/yousif.png",
-      "rank": 9
-    },
-    {
-      "name": "Fatima",
-      "points": 490,
-      "image": "assets/images/yousif.png",
-      "rank": 10
-    },
-    {
-      "name": "Lena",
-      "points": 320,
-      "image": "assets/images/yousif.png",
-      "rank": 11
-    },
-  ];
   final controller = Get.put(LeaderboardController());
 
   @override
@@ -89,33 +22,14 @@ class LeaderBoardScreen extends StatelessWidget {
           ? const Expanded(child: Center(child: CircularProgressIndicator()))
           : Column(
               children: [
-                // Container(
-                //   padding: const EdgeInsets.symmetric(vertical: 5.0),
-                //   margin: EdgeInsets.symmetric(
-                //       horizontal: SizeConfig.screenWidth! * 0.03),
-                //   decoration: BoxDecoration(
-                //     color: const Color(0xFFFBF7FC),
-                //     borderRadius: BorderRadius.circular(15.0),
-                //     boxShadow: [
-                //       BoxShadow(
-                //         color: Colors.grey.shade300,
-                //         blurRadius: 50,
-                //         offset: const Offset(0, 5),
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 TopLeaderboardSection(),
                 Expanded(
                   child: Container(
                     // height: SizeConfig.screenHeight! * 0.38,
                     margin: const EdgeInsets.only(
                         left: 16, right: 16, top: 8, bottom: 70),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.04,
-                    ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFBF7FC),
+                      color: AppColors.secondaryColor,
                       borderRadius: BorderRadius.circular(25),
                       boxShadow: [
                         BoxShadow(
@@ -128,12 +42,18 @@ class LeaderBoardScreen extends StatelessWidget {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: controller.usersList.value
-                          // .where((e) => e['rank'] > 3)
-                          .map((user) => LeaderboardListSection(
-                              // image: e['image'],
-                              name: user.fullName,
-                              points: controller.userPoints[user.id] ?? 0))
-                          .toList(),
+                          .asMap()
+                          .entries
+                          .map((element) {
+                        final index = element.key; // The index of the user
+                        final user = element.value; // The user object
+
+                        return LeaderboardListSection(
+                            id: user.id ?? "",
+                            rank: index + 1,
+                            name: user.fullName,
+                            points: controller.userPoints[user.id] ?? 0);
+                      }).toList(),
                     ),
                   ),
                 ),

@@ -85,3 +85,72 @@ class LeaderboardController extends GetxController {
     return userPoints;
   }
 }
+
+// final List<Map<String, dynamic>> usersList = [
+//   {
+//     "name": "Hisham",
+//     "points": 1847,
+//     "image": "assets/images/yousif.png",
+//     "rank": 2
+//   },
+//   {
+//     "name": "Yusif",
+//     "points": 2430,
+//     "image": "assets/images/yousif.png",
+//     "rank": 1,
+//   },
+//   {
+//     "name": "Sameer",
+//     "points": 1674,
+//     "image": "assets/images/yousif.png",
+//     "rank": 3
+//   },
+//   {
+//     "name": "Sebastian",
+//     "points": 1124,
+//     "image": "assets/images/yousif.png",
+//     "rank": 4
+//   },
+//   {
+//     "name": "You",
+//     "points": 875,
+//     "image": "assets/images/yousif.png",
+//     "rank": 5
+//   },
+//   {
+//     "name": "Natalie",
+//     "points": 774,
+//     "image": "assets/images/yousif.png",
+//     "rank": 6
+//   },
+//   {
+//     "name": "Serenity",
+//     "points": 723,
+//     "image": "assets/images/yousif.png",
+//     "rank": 7
+//   },
+//   {
+//     "name": "Hannah",
+//     "points": 559,
+//     "image": "assets/images/yousif.png",
+//     "rank": 8
+//   },
+//   {
+//     "name": "Mona",
+//     "points": 550,
+//     "image": "assets/images/yousif.png",
+//     "rank": 9
+//   },
+//   {
+//     "name": "Fatima",
+//     "points": 490,
+//     "image": "assets/images/yousif.png",
+//     "rank": 10
+//   },
+//   {
+//     "name": "Lena",
+//     "points": 320,
+//     "image": "assets/images/yousif.png",
+//     "rank": 11
+//   },
+// ];

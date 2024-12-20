@@ -9,24 +9,14 @@ import 'package:rive/rive.dart' as rive;
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../curriculum/curriculum_page.dart';
-import '../home/home_page.dart';
-import '../leaderboard/leaderboard_screen.dart';
 import '../notification/notification_page.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
+import 'controller/nav_bar_controller.dart';
 import 'utils/rive_utils.dart';
 
 class MenuScreen extends StatelessWidget {
   MenuScreen({super.key});
-
-  late AnimationController _animationController;
-
-  late Animation<double> animation;
-
-  late Animation<double> scalAnimation;
-
-  late rive.SMIBool isSideBarClosed;
 
   bool isSideNavBarClosed = true;
 
@@ -34,10 +24,10 @@ class MenuScreen extends StatelessWidget {
 
   bool bottomNavBarVisability = true;
 
-  // @override
+  final controller = Get.put(NavBarController());
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
     SizeConfig().init(context);
     return WillPopScope(
       onWillPop: () async {
@@ -75,7 +65,7 @@ class MenuScreen extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: SizeConfig.screenWidth! * 0.17),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.transparent,
                     boxShadow: [
                       BoxShadow(
@@ -105,10 +95,10 @@ class MenuScreen extends StatelessWidget {
                                       .mainColor, // Selected label color
                                 );
                               }
-                              return TextStyle(
+                              return const TextStyle(
                                 fontSize: 0, // Font size for unselected labels
-                                color: const Color(
-                                    0xFFD2A8DF), // Unselected label color
+                                color:
+                                    Color(0xFFD2A8DF), // Unselected label color
                               );
                             },
                           ),
@@ -209,12 +199,16 @@ class MenuScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
                   ..setEntry(3, 2, 0.001)
-                  ..rotateY(animation.value - 30 * animation.value * pi / 180),
+                  ..rotateY(controller.animation.value -
+                      30 * controller.animation.value * pi / 180),
                 child: Transform.translate(
                   offset: Offset(
-                      animation.value * SizeConfig.screenWidth! * 0.62, 0),
+                      controller.animation.value *
+                          SizeConfig.screenWidth! *
+                          0.62,
+                      0),
                   child: Transform.scale(
-                    scale: scalAnimation.value,
+                    scale: controller.scaleAnimation.value,
                     child: Container(
                       child: Stack(
                         children: [
@@ -229,7 +223,7 @@ class MenuScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.grey,
                                     blurRadius: 0.9,
@@ -293,31 +287,33 @@ class MenuScreen extends StatelessWidget {
                   children: [
                     NavBarButton(
                       riveOnInit: (artboard) {
-                        rive.StateMachineController controller =
+                        rive.StateMachineController rive_controller =
                             RiveUtils.getRiveController(artboard,
                                 stateMachineName: "State Machine");
-                        isSideBarClosed =
-                            controller.findSMI("isOpen") as rive.SMIBool;
-                        isSideBarClosed.value = true;
+                        controller.isSideBarClosed =
+                            rive_controller.findSMI("isOpen") as rive.SMIBool;
+                        controller.isSideBarClosed.value = true;
                       },
                       press: () {
-                        isSideBarClosed.value = !isSideBarClosed.value;
+                        print("clicked");
+                        controller.isSideBarClosed.value =
+                            !controller.isSideBarClosed.value;
                         if (isSideNavBarClosed) {
-                          _animationController.forward();
+                          controller.animationController.forward();
                           // setState(() {
                           //   bottomNavBarVisability = false;
                           // });
                         } else {
-                          _animationController.reverse();
+                          controller.animationController.reverse();
 
-                          Future.delayed(Duration(milliseconds: 300), () {
+                          Future.delayed(const Duration(milliseconds: 300), () {
                             // setState(() {
                             //   bottomNavBarVisability = true;
                             // });
                           });
                         }
                         // setState(() {
-                        //   isSideNavBarClosed = isSideBarClosed.value;
+                        //   isSideNavBarClosed = controller.isSideBarClosed.value;
                         // });
                       },
                     ),
@@ -330,19 +326,4 @@ class MenuScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class NavigationController extends GetxController {
-  final Rx<int> selectedIndex = 1.obs;
-
-  final screens = [
-    CurriculumPage(),
-    HomePage(),
-    LeaderBoardScreen(),
-  ];
-  final screenTitle = [
-    S.current.subjects,
-    S.current.home,
-    S.current.leaderBoard
-  ];
 }
