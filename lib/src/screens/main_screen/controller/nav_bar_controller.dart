@@ -1,32 +1,44 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart' as rive;
 
-import '../data/side_menu_data_list.dart';
-import '../models/rive_asset.dart';
+class NavBarController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> animation;
+  late Animation<double> scalAnimation;
 
-class NavBarController extends GetxController {
-  RiveAsset selectedMenu = sideMenuDataList_1.first;
-  bool isProcess = false;
-
-  // var user;
+  late rive.SMIBool isSideBarClosed;
+  bool isSideNavBarClosed = true;
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    )..addListener(() {
+        update();
+      });
+    animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    scalAnimation = Tween<double>(begin: 1, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
     super.onInit();
     // user = await UserRepository.instance.getUserDetails();
   }
 
-  void selectMenu(RiveAsset menu) {
-    selectedMenu = menu;
-    update();
-  }
-
-  void startProcess() {
-    isProcess = true;
-    update();
-  }
-
-  void stopProcess() {
-    isProcess = false;
-    update();
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

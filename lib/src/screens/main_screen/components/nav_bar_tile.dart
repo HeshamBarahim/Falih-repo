@@ -1,3 +1,4 @@
+// navbar_tile
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import '../../../config/sizes.dart';
@@ -25,9 +26,8 @@ class NavBarTile extends StatelessWidget {
       children: [
         // Divider padding adjusted based on screen width
         Padding(
-          padding: EdgeInsets.only(
-              left: SizeConfig.screenWidth! * 0.02,
-              right: SizeConfig.screenWidth! * 0.02),
+          padding:
+              EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth! * 0.036),
           child: Divider(
             color: Colors.white24,
             height: SizeConfig.screenHeight! * 0.001,
@@ -40,7 +40,7 @@ class NavBarTile extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               curve: Curves.fastOutSlowIn,
               height: SizeConfig.screenHeight! *
-                  0.066, // Adjusted height based on screen
+                  0.072, // Adjusted height based on screen
               width: isActive
                   ? SizeConfig.screenWidth! * 0.7
                   : 0, // Adjust width dynamically
