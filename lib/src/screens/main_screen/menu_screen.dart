@@ -9,25 +9,66 @@ import 'package:rive/rive.dart' as rive;
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
+import '../curriculum/curriculum_page.dart';
+import '../home/home_page.dart';
+import '../leaderboard/leaderboard_screen.dart';
 import '../notification/notification_page.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
-import 'controller/nav_bar_controller.dart';
 import 'utils/rive_utils.dart';
 
-class MenuScreen extends StatelessWidget {
-  MenuScreen({super.key});
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
 
+  @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> animation;
+  late Animation<double> scalAnimation;
+
+  late rive.SMIBool isSideBarClosed;
   bool isSideNavBarClosed = true;
-
   DateTime? lastBackPressTime;
 
   bool bottomNavBarVisability = true;
 
-  final controller = Get.put(NavBarController());
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    )..addListener(() {
+        setState(() {});
+      });
+
+    animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    scalAnimation = Tween<double>(begin: 1, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.fastOutSlowIn,
+      ),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(NavigationController());
     SizeConfig().init(context);
     return WillPopScope(
       onWillPop: () async {
@@ -65,7 +106,7 @@ class MenuScreen extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: SizeConfig.screenWidth! * 0.17),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.transparent,
                     boxShadow: [
                       BoxShadow(
@@ -95,10 +136,10 @@ class MenuScreen extends StatelessWidget {
                                       .mainColor, // Selected label color
                                 );
                               }
-                              return const TextStyle(
+                              return TextStyle(
                                 fontSize: 0, // Font size for unselected labels
-                                color:
-                                    Color(0xFFD2A8DF), // Unselected label color
+                                color: const Color(
+                                    0xFFD2A8DF), // Unselected label color
                               );
                             },
                           ),
@@ -199,16 +240,12 @@ class MenuScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
                   ..setEntry(3, 2, 0.001)
-                  ..rotateY(controller.animation.value -
-                      30 * controller.animation.value * pi / 180),
+                  ..rotateY(animation.value - 30 * animation.value * pi / 180),
                 child: Transform.translate(
                   offset: Offset(
-                      controller.animation.value *
-                          SizeConfig.screenWidth! *
-                          0.62,
-                      0),
+                      animation.value * SizeConfig.screenWidth! * 0.62, 0),
                   child: Transform.scale(
-                    scale: controller.scaleAnimation.value,
+                    scale: scalAnimation.value,
                     child: Container(
                       child: Stack(
                         children: [
@@ -223,7 +260,7 @@ class MenuScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey,
                                     blurRadius: 0.9,
@@ -287,34 +324,32 @@ class MenuScreen extends StatelessWidget {
                   children: [
                     NavBarButton(
                       riveOnInit: (artboard) {
-                        rive.StateMachineController rive_controller =
+                        rive.StateMachineController controller =
                             RiveUtils.getRiveController(artboard,
                                 stateMachineName: "State Machine");
-                        controller.isSideBarClosed =
-                            rive_controller.findSMI("isOpen") as rive.SMIBool;
-                        controller.isSideBarClosed.value = true;
+                        isSideBarClosed =
+                            controller.findSMI("isOpen") as rive.SMIBool;
+                        isSideBarClosed.value = true;
                       },
                       press: () {
-                        print("clicked");
-                        controller.isSideBarClosed.value =
-                            !controller.isSideBarClosed.value;
+                        isSideBarClosed.value = !isSideBarClosed.value;
                         if (isSideNavBarClosed) {
-                          controller.animationController.forward();
-                          // setState(() {
-                          //   bottomNavBarVisability = false;
-                          // });
+                          _animationController.forward();
+                          setState(() {
+                            bottomNavBarVisability = false;
+                          });
                         } else {
-                          controller.animationController.reverse();
+                          _animationController.reverse();
 
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            // setState(() {
-                            //   bottomNavBarVisability = true;
-                            // });
+                          Future.delayed(Duration(milliseconds: 300), () {
+                            setState(() {
+                              bottomNavBarVisability = true;
+                            });
                           });
                         }
-                        // setState(() {
-                        //   isSideNavBarClosed = controller.isSideBarClosed.value;
-                        // });
+                        setState(() {
+                          isSideNavBarClosed = isSideBarClosed.value;
+                        });
                       },
                     ),
                   ],
@@ -326,4 +361,19 @@ class MenuScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class NavigationController extends GetxController {
+  final Rx<int> selectedIndex = 1.obs;
+
+  final screens = [
+    CurriculumPage(),
+    HomePage(),
+    LeaderBoardScreen(),
+  ];
+  final screenTitle = [
+    S.current.subjects,
+    S.current.home,
+    S.current.leaderBoard
+  ];
 }
