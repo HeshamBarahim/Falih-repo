@@ -8,6 +8,8 @@ import '../../leaderboard/leaderboard_screen.dart';
 class BottomNavBarController extends GetxController {
   final Rx<int> selectedIndex = 1.obs;
 
+  
+
   final screens = [
     CurriculumPage(),
     HomePage(),

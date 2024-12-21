@@ -13,32 +13,29 @@ class NavBarButton extends StatelessWidget {
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SafeArea(
-      child: GestureDetector(
-        onTap: press,
-        child: Container(
-          margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.04),
-          height: SizeConfig.screenHeight! * 0.05,
-          width: SizeConfig.screenHeight! * 0.05,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0, SizeConfig.screenHeight! * 0.005),
-                blurRadius: SizeConfig.screenHeight! * 0.01,
-              ),
-            ],
-          ),
-          child: RiveAnimation.asset(
-            "assets/RiveAssets/menu_button.riv",
-            onInit: riveOnInit,
-          ),
+    return GestureDetector(
+      onTap: press,
+      child: Container(
+        margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.04),
+        height: SizeConfig.screenHeight! * 0.05,
+        width: SizeConfig.screenHeight! * 0.049,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, SizeConfig.screenHeight! * 0.005),
+              blurRadius: SizeConfig.screenHeight! * 0.01,
+            ),
+          ],
+        ),
+        child: RiveAnimation.asset(
+          "assets/RiveAssets/menu_button.riv",
+          onInit: riveOnInit,
         ),
       ),
     );

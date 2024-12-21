@@ -13,6 +13,7 @@ import '../../../repository/authentication_repository/authentication_repository.
 import '../controller/nav_bar_controller.dart';
 import '../controller/nav_bar_tile_controller.dart';
 import '../data/side_menu_data_list.dart';
+import '../menu_screen.dart';
 import '../utils/rive_utils.dart';
 import 'nav_bar_info_card.dart';
 import 'nav_bar_tile.dart';
@@ -20,155 +21,157 @@ import 'nav_bar_tile.dart';
 class NavBar extends StatelessWidget {
   NavBar({super.key});
 
-  final navController = Get.put(NavBarController());
+  // final NavBarController navController = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Container(
-        width: SizeConfig.screenWidth! * 0.7,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF742f88),
-              Color(0xFF943dae),
-              Color(0xFFab59c5),
-              Color(0xFFbe7ed2),
-              Color(0xFFd1a4df),
-              Color(0xFFe4caed),
-              Color(0xFFf7effa),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+      body: GetBuilder<NavBarController>(
+        init: NavBarController(),
+        builder: (controller) => Container(
+          width: SizeConfig.screenWidth! * 0.7,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF742f88),
+                Color(0xFF943dae),
+                Color(0xFFab59c5),
+                Color(0xFFbe7ed2),
+                Color(0xFFd1a4df),
+                Color(0xFFe4caed),
+                Color(0xFFf7effa),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: GetBuilder<NavBarTileController>(
-            init: NavBarTileController(),
-            builder: (controller) {
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: SizeConfig.screenWidth! * 0.03,
-                        top: SizeConfig.screenHeight! * 0.01,
+          child: SafeArea(
+            child: GetBuilder<NavBarTileController>(
+              init: NavBarTileController(),
+              builder: (controller) {
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.screenWidth! * 0.03,
+                          top: SizeConfig.screenHeight! * 0.01,
+                        ),
+                        child: NavBarInfoCard(),
                       ),
-                      child: NavBarInfoCard(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.screenWidth! * 0.06,
-                          vertical: SizeConfig.screenHeight! * 0.01),
-                      child: Text(
-                        "BROWSE",
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: SizeConfig.screenHeight! * 0.018,
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.screenWidth! * 0.06,
+                            vertical: SizeConfig.screenHeight! * 0.01),
+                        child: Text(
+                          "BROWSE",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: SizeConfig.screenHeight! * 0.018,
+                          ),
                         ),
                       ),
-                    ),
-                    ...sideMenuDataList_1.map(
-                      (menu) => NavBarTile(
-                        menu: menu,
-                        riveonInit: (artBoard) {
-                          rive.StateMachineController stateMachineController =
-                              RiveUtils.getRiveController(artBoard,
-                                  stateMachineName: menu.stateMachineName);
-                          menu.input = stateMachineController.findSMI("active")
-                              as rive.SMIBool;
-                        },
-                        press: controller.isProcess
-                            ? () {}
-                            : () {
-                                controller.startProcess();
-                                menu.input!.change(true);
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  menu.input!.change(false);
+                      ...sideMenuDataList_1.map(
+                        (menu) => NavBarTile(
+                          menu: menu,
+                          riveonInit: (artBoard) {
+                            rive.StateMachineController controller =
+                                RiveUtils.getRiveController(artBoard,
+                                    stateMachineName: menu.stateMachineName);
+                            menu.input =
+                                controller.findSMI("active") as rive.SMIBool;
+                          },
+                          press: controller.isProcess
+                              ? () {}
+                              : () {
+                                  controller.startProcess();
+                                  menu.input!.change(true);
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () {
+                                    menu.input!.change(false);
 
-                                  if (menu.index == 0) {
-                                    controller.stopProcess();
-                                    navController.moveNavBar();
-                                    navController.selectedIndex.value = 1;
-                                    Get.back();
-                                    // Get.offAll(MenuScreen());
-                                  } else if (menu.index == 1) {
-                                    controller.stopProcess();
-                                    Get.to(EditProfileScreen());
-                                  } else if (menu.index == 2) {
-                                    controller.stopProcess();
-                                    Get.to(SubscriptionPlansScreen());
-                                  } else if (menu.index == 3) {
-                                    controller.stopProcess();
-                                    Get.to(const NotificationPage());
-                                  }
-                                });
-                                controller.selectMenu(menu);
-                              },
-                        isActive: controller.selectedMenu == menu,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: SizeConfig.screenWidth! * 0.06,
-                        top: SizeConfig.screenHeight! * 0.03,
-                        bottom: SizeConfig.screenHeight! * 0.01,
-                      ),
-                      child: Text(
-                        "HISTORY",
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: SizeConfig.screenHeight! * 0.018,
+                                    if (menu.index == 0) {
+                                      controller.stopProcess();
+                                      Get.offAll(const MenuScreen());
+                                    } else if (menu.index == 1) {
+                                      controller.stopProcess();
+                                      Get.to(EditProfileScreen());
+                                    } else if (menu.index == 2) {
+                                      controller.stopProcess();
+                                      Get.to(SubscriptionPlansScreen());
+                                    } else if (menu.index == 3) {
+                                      controller.stopProcess();
+                                      Get.to(NotificationPage());
+                                    }
+                                  });
+                                  controller.selectMenu(menu);
+                                },
+                          isActive: controller.selectedMenu == menu,
                         ),
                       ),
-                    ),
-                    ...sideMenuDataList_2.map(
-                      (menu) => NavBarTile(
-                        menu: menu,
-                        riveonInit: (artboard) {
-                          rive.StateMachineController stateMachineController =
-                              RiveUtils.getRiveController(artboard,
-                                  stateMachineName: menu.stateMachineName);
-                          menu.input = stateMachineController.findSMI("active")
-                              as rive.SMIBool;
-                        },
-                        press: controller.isProcess
-                            ? () => null
-                            : () {
-                                controller.startProcess();
-                                menu.input!.change(true);
-                                Future.delayed(const Duration(seconds: 1), () {
-                                  menu.input!.change(false);
-
-                                  if (menu.index == 0) {
-                                    controller.stopProcess();
-                                    // Get.to(ContactUsScreen());
-                                  } else if (menu.index == 1) {
-                                    controller.stopProcess();
-                                    Get.to(AboutUsScreen());
-                                  } else if (menu.index == 2) {
-                                    controller.stopProcess();
-                                    // navController.moveNavBar();
-                                    Get.to(SettingsScreen());
-                                  } else if (menu.index == 3) {
-                                    controller.stopProcess();
-                                    // Get.to(SettingsScreen());
-                                    AuthenticationRepository.instance
-                                        .logout(context);
-                                  }
-                                });
-                                controller.selectMenu(menu);
-                              },
-                        isActive: controller.selectedMenu == menu,
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.screenWidth! * 0.06,
+                          top: SizeConfig.screenHeight! * 0.03,
+                          bottom: SizeConfig.screenHeight! * 0.01,
+                        ),
+                        child: Text(
+                          "HISTORY",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: SizeConfig.screenHeight! * 0.018,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
+                      ...sideMenuDataList_2.map(
+                        (menu) => NavBarTile(
+                          menu: menu,
+                          riveonInit: (artboard) {
+                            rive.StateMachineController stateMachineController =
+                                RiveUtils.getRiveController(artboard,
+                                    stateMachineName: menu.stateMachineName);
+                            menu.input = stateMachineController
+                                .findSMI("active") as rive.SMIBool;
+                          },
+                          press: controller.isProcess
+                              ? () => null
+                              : () {
+                                  controller.startProcess();
+                                  menu.input!.change(true);
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () {
+                                    menu.input!.change(false);
+
+                                    if (menu.index == 0) {
+                                      controller.stopProcess();
+                                      // Get.to(ContactUsScreen());
+                                    } else if (menu.index == 1) {
+                                      controller.stopProcess();
+                                      Get.to(AboutUsScreen());
+                                    } else if (menu.index == 2) {
+                                      controller.stopProcess();
+                                      // navController.moveNavBar();
+                                      Get.to(SettingsScreen());
+                                    } else if (menu.index == 3) {
+                                      controller.stopProcess();
+                                      // Get.to(SettingsScreen());
+                                      AuthenticationRepository.instance
+                                          .logout(context);
+                                    }
+                                  });
+                                  controller.selectMenu(menu);
+                                },
+                          isActive: controller.selectedMenu == menu,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

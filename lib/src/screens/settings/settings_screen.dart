@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
             color: iconColor_1,
           ),
           onPressed: () {
-            navController.moveNavBar();
+            // navController.moveNavBar();
             Get.back();
           },
         ),

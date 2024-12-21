@@ -7,6 +7,13 @@ class NavBarTileController extends GetxController {
   RiveAsset selectedMenu = sideMenuDataList_1.first;
   bool isProcess = false;
 
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
+
+  
 
   void selectMenu(RiveAsset menu) {
     selectedMenu = menu;
@@ -22,4 +29,8 @@ class NavBarTileController extends GetxController {
     isProcess = false;
     update();
   }
+
+  
+
+  
 }
