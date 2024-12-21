@@ -1,7 +1,8 @@
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../config/sizes.dart';
 import '../../controller/subjects_controller.dart';
 
 class SubjectPage extends StatelessWidget {
@@ -11,44 +12,44 @@ class SubjectPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Column(
         children: [
-          // box who has the subject name and image
           Container(
-              padding: const EdgeInsets.all(20),
-              height: MediaQuery.sizeOf(context).height * 0.35,
-              decoration: BoxDecoration(
-                gradient: subjectController.color,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // show image and subject name
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                          child: Text(
+            padding: EdgeInsets.symmetric(
+                horizontal: SizeConfig.screenWidth! * 0.05),
+            height: SizeConfig.screenHeight! * 0.30,
+            decoration: BoxDecoration(
+              gradient: subjectController.color,
+            ),
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Text(
                         subjectController.name.value,
                         style: TextStyle(
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      )),
-                      Image.asset(
-                        subjectController.icon_path,
-                        // color: Colors.white,
-                        height: 150.h,
-                        width: 150.w,
-                      )
-                    ],
-                  ),
-                ],
-              )),
-          // const SizedBox(
-          //   height: 20,
-          // ),
+                          fontSize: SizeConfig.screenWidth! * 0.08,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                      subjectController.icon_path,
+                      height: SizeConfig.screenHeight! * 0.18,
+                      width: SizeConfig.screenWidth! * 0.3,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
           SubjectsLabels(),
         ],
       ),

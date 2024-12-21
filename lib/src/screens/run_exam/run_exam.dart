@@ -3,9 +3,9 @@ import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../config/sizes.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
 
@@ -16,7 +16,7 @@ class RunExam extends StatelessWidget {
   Widget build(BuildContext context) {
     final SubjectsController subjectController = Get.put(SubjectsController());
     final ExamController controller = Get.put(ExamController());
-
+    SizeConfig().init(context);
     return Scaffold(
       body: Obx(() {
         if (controller.questions.isEmpty) {
@@ -27,11 +27,9 @@ class RunExam extends StatelessWidget {
         final questionNumber = controller.questionIndex.value;
         final selectedAnswer =
             controller.selectedAnswers[controller.questionIndex.value];
-        // final SubjectsController subjectController =
-        //     Get.put(SubjectsController());
-        // print(subjectController.name);
+
         return Container(
-          padding: const EdgeInsets.all(25),
+          padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.06),
           height: double.infinity,
           decoration: BoxDecoration(gradient: subjectController.color),
           child: Column(
@@ -40,18 +38,16 @@ class RunExam extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  // Question box
+                  SizedBox(height: SizeConfig.screenHeight! * 0.12),
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(25),
+                        padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.06),
                         decoration: BoxDecoration(
-                            color: AppColors.secondaryColor,
-                            borderRadius: BorderRadius.circular(20)),
+                          color: AppColors.secondaryColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         child: Column(
                           children: [
                             Row(
@@ -59,111 +55,117 @@ class RunExam extends StatelessWidget {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.green),
-                                  width: 50,
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.green,
+                                  ),
+                                  width: SizeConfig.screenWidth! * 0.12,
                                   child: Center(
                                       child: Text(
                                           '${controller.trueAnswers.value}')),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.red),
-                                  width: 50,
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.red,
+                                  ),
+                                  width: SizeConfig.screenWidth! * 0.12,
                                   child: Center(
                                       child: Text(
                                           '${controller.falseAnswers.value}')),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            // Question number of 50
+                            SizedBox(height: SizeConfig.screenHeight! * 0.01),
                             Text(
                               "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
-                              style: const TextStyle(
-                                  color: AppColors.warningColor),
+                              style: TextStyle(color: AppColors.warningColor),
                             ),
-                            const SizedBox(
-                              height: 20,
+                            SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                            Text(
+                              question.questionText,
+                              style: TextStyle(fontSize: SizeConfig.screenHeight! * 0.025),
                             ),
-                            // Question Text
-                            Text(question.questionText),
                           ],
                         ),
                       ),
-                      // Circular for the number question
                       Align(
-                          alignment: Alignment.topCenter,
-                          child: Transform.translate(
-                            offset: const Offset(0, -30),
-                            child: Container(
-                                width: 75.w,
-                                height: 75.h,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: AppColors.secondaryColor),
-                                child: Center(
-                                    child: Text('${controller.score.value}'))),
-                          ))
+                        alignment: Alignment.topCenter,
+                        child: Transform.translate(
+                          offset: Offset(0, -SizeConfig.screenHeight! * 0.05),
+                          child: Container(
+                            width: SizeConfig.screenWidth! * 0.18,
+                            height: SizeConfig.screenWidth! * 0.18,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppColors.secondaryColor,
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${controller.score.value}',
+                                style:
+                                    TextStyle(fontSize: SizeConfig.screenHeight! * 0.025),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.04),
                   Container(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        children: [
-                          ...question.options.asMap().entries.map((entry) {
-                            int idx = entry.key;
-                            String option = entry.value;
-                            if (option == "") {
-                              return Container();
-                            }
-                            return Row(
-                              children: [
-                                MaterialButton(
-                                  onPressed: () {
-                                    controller.selectAnswer(idx);
-                                  },
-                                  child: Container(
-                                      width: 30.w,
-                                      height: 30.h,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          // Use the color based on whether this choice is selected
-                                          color: selectedAnswer == idx
-                                              ? AppColors.mainColor
-                                              : AppColors.choicesColor),
-                                      child: Center(
-                                        child: Text((idx + 1).toString()),
-                                      )),
+                    padding: EdgeInsets.only(bottom: SizeConfig.screenHeight! * 0.01),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      children: [
+                        ...question.options.asMap().entries.map((entry) {
+                          int idx = entry.key;
+                          String option = entry.value;
+                          if (option == "") {
+                            return Container();
+                          }
+                          return Row(
+                            children: [
+                              MaterialButton(
+                                onPressed: () {
+                                  controller.selectAnswer(idx);
+                                },
+                                child: Container(
+                                  width: SizeConfig.screenWidth! * 0.08,
+                                  height: SizeConfig.screenWidth! * 0.08,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: selectedAnswer == idx
+                                        ? AppColors.mainColor
+                                        : AppColors.choicesColor,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      (idx + 1).toString(),
+                                      style: TextStyle(
+                                          fontSize: SizeConfig.screenHeight! * 0.02),
+                                    ),
+                                  ),
                                 ),
-                                Text(option),
-                              ],
-                            );
-                          }).toList(),
-                        ],
-                      )),
-                  const SizedBox(
-                    height: 40,
+                              ),
+                              Text(option),
+                            ],
+                          );
+                        }).toList(),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.05),
                 ],
               ),
               Column(
                 children: [
-                  // AI button
                   GradientButton(
                     text: 'AI',
-                    height: 50,
-                    width: 100,
+                    height: SizeConfig.screenHeight! * 0.06,
+                    width: SizeConfig.screenWidth! * 0.25,
                     onClick: () {
                       controller.selectedAnswers[
                                   controller.questionIndex.value] !=
@@ -172,55 +174,24 @@ class RunExam extends StatelessWidget {
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
                               context: context,
-                              builder: (context) => AIBottomSheet())
+                              builder: (context) => AIBottomSheet(),
+                            )
                           : null;
                       controller.generateResponse(question.questionText);
                     },
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.015),
                   GradientButton(
                     text: S.of(context).continueText,
-                    height: 50,
-                    width: double.infinity,
+                    height: SizeConfig.screenHeight! * 0.06,
+                    width: SizeConfig.screenWidth!,
                     onClick: () {
                       controller.moveToAnotherQuestion(context);
                     },
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     controller.name.value = name;
-                  //     controller.color = color;
-                  //     Get.to(() => const AfterExam(), arguments: {
-                  //       "color": color,
-                  //       "name": name,
-                  //     });
-                  //   },
-                  //   child: Text('result page'),
-                  // ),
-                  // this dialog shuld be shown once the question finished
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     showDialog(
-                  //       context: context,
-                  //       builder: (context) => ResultDialog(
-                  //         reviewAnswer: 'reviewAnswer',
-                  //         numberOfQuestion: '50',
-                  //         score: '66',
-                  //         time: '16:14',
-                  //         trueAnswers: '23',
-                  //         wrongAnswers: '27',
-                  //       ),
-                  //     );
-                  //   },
-                  //   child: const Text('Dialog'),
-                  // )
+                  SizedBox(height: SizeConfig.screenHeight! * 0.06),
                 ],
-              )
+              ),
             ],
           ),
         );

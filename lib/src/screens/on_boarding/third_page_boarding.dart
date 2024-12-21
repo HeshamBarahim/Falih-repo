@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../config/sizes.dart';
 
 class ThirdPageBoarding extends StatelessWidget {
   const ThirdPageBoarding({super.key});
@@ -15,9 +16,10 @@ class ThirdPageBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final box = GetStorage();
+    SizeConfig().init(context);
     return Container(
       color: AppColors.bgScreen3,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.05),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
@@ -32,40 +34,53 @@ class ThirdPageBoarding extends StatelessWidget {
               children: [
                 Container(
                   decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  padding: const EdgeInsets.all(10.0),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.03),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.10,
+                        height: SizeConfig.screenHeight! * 0.1,
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        height: 250.h,
-                        width: 350.w,
+                        margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
+                        height: SizeConfig.screenHeight! * 0.3,
+                        width: SizeConfig.screenWidth! * 0.85,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(S.of(context).equip,
-                                style: TextStyle(
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold)),
-                            Text(S.of(context).your_self,
-                                style: TextStyle(
-                                    color: AppColors.bgScreen3,
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold)),
-                            Text(S.of(context).with_the,
-                                style: TextStyle(
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold)),
-                            Text(S.of(context).best_tools,
-                                style: TextStyle(
-                                    fontSize: 30.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.bgScreen3))
+                            Text(
+                              S.of(context).equip,
+                              style: TextStyle(
+                                fontSize: SizeConfig.screenHeight! * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              S.of(context).your_self,
+                              style: TextStyle(
+                                color: AppColors.bgScreen3,
+                                fontSize: SizeConfig.screenHeight! * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              S.of(context).with_the,
+                              style: TextStyle(
+                                fontSize: SizeConfig.screenHeight! * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              S.of(context).best_tools,
+                              style: TextStyle(
+                                fontSize: SizeConfig.screenHeight! * 0.04,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.bgScreen3,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -73,21 +88,20 @@ class ThirdPageBoarding extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: -20, // Distance from the top
-                  right: -60, // Distance from the right
+                  bottom: -SizeConfig.screenHeight! * 0.025,
+                  right: -SizeConfig.screenWidth! * 0.15,
                   child: Image.asset(
                     Images.onBoardingThree,
-                    width: 300.w,
-                    height: 300.h,
+                    width: SizeConfig.screenWidth! * 0.75,
+                    height: SizeConfig.screenHeight! * 0.35,
                   ),
-                )
+                ),
               ],
             ),
             BoardingButton(onClick: () {
-              // Save state to skip onboarding in the future
               box.write('hasSeenOnboarding', true);
               Get.offAll(() => Login());
-            })
+            }),
           ],
         ),
       ),

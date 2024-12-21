@@ -1,6 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../config/sizes.dart';
 
 class BoardingButton extends StatelessWidget {
   const BoardingButton({super.key, required this.onClick});
@@ -9,21 +10,28 @@ class BoardingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-      width: 250.w,
-      height: 60.h,
+      width: SizeConfig.screenWidth! * 0.6,
+      height: SizeConfig.screenHeight! * 0.07,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 3),
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          color: Colors.black.withOpacity(0.5)),
+        border: Border.all(color: Colors.white, width: SizeConfig.screenWidth! * 0.007),
+        borderRadius: BorderRadius.all(Radius.circular(SizeConfig.screenWidth! * 0.03)),
+        color: Colors.black.withOpacity(0.5),
+      ),
       child: MaterialButton(
-        height: 40.h,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        height: SizeConfig.screenHeight! * 0.05,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(SizeConfig.screenWidth! * 0.12),
+        ),
         textColor: Colors.white,
         onPressed: onClick,
         child: Text(
           S.of(context).next,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.screenWidth! * 0.05,
+          ),
         ),
       ),
     );

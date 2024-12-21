@@ -5,7 +5,6 @@ import 'package:falih/src/controller/exam_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -80,9 +79,10 @@ class SubjectsLabels extends StatelessWidget {
                                 Text(
                                   items[index].labelName,
                                   style: TextStyle(
-                                      color: AppColors.mainColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 10.sp),
+                                    color: AppColors.mainColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -159,7 +159,7 @@ class SubjectsLabels extends StatelessWidget {
             itemBuilder: (context, index) {
               final unit = units[index];
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
                     controller.resetExam();
@@ -169,7 +169,8 @@ class SubjectsLabels extends StatelessWidget {
                   child: Card(
                     color: const Color(0xFFFBF7FC),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -303,7 +304,8 @@ class SubjectsLabels extends StatelessWidget {
                   double roundedPercentage =
                       double.parse((percentage).toStringAsFixed(1));
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                     child: GestureDetector(
                       onTap: () {
                         // controller.resetExam();
@@ -319,7 +321,8 @@ class SubjectsLabels extends StatelessWidget {
                           ),
                           elevation: 5,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -389,8 +392,8 @@ class SubjectsLabels extends StatelessWidget {
                                         height: 8,
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 5.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 2.5),
                                         child: Text(
                                           "${examResult["examName"]}",
                                           style: const TextStyle(

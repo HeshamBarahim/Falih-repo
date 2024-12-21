@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/on_boarding/seconed_page_boarding.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/sizes.dart';
 
@@ -31,10 +30,10 @@ class FirstPageBoarding extends StatelessWidget {
                 horizontal: SizeConfig.screenWidth! * 0.04,
                 vertical: SizeConfig.screenHeight! * 0.01,
               ),
-              content: const Text(
+              content: Text(
                 'Press back again to exit The App',
                 style: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: SizeConfig.screenHeight! * 0.018,
                   color: Colors.white,
                 ),
               ),
@@ -47,7 +46,7 @@ class FirstPageBoarding extends StatelessWidget {
       },
       child: Container(
         color: AppColors.bgScreen1,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.05),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Column(
@@ -62,45 +61,50 @@ class FirstPageBoarding extends StatelessWidget {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    padding: const EdgeInsets.all(10.0),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    ),
+                    padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.03),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
                           child: Text(
                             S.of(context).welcome_to,
                             style: TextStyle(
-                                fontSize: 25.sp, fontWeight: FontWeight.bold),
+                              fontSize: SizeConfig.screenHeight! * 0.03,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
                           child: Text(
                             S.of(context).falih,
                             style: TextStyle(
-                                fontSize: 25.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.bgScreen1),
+                              fontSize: SizeConfig.screenHeight! * 0.03,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.bgScreen1,
+                            ),
                           ),
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: SizeConfig.screenHeight! * 0.02,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              margin: const EdgeInsets.only(left: 20),
-                              height: 200.h,
-                              width: 150.w,
+                              margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
+                              height: SizeConfig.screenHeight! * 0.25,
+                              width: SizeConfig.screenWidth! * 0.4,
                               child: Text(
                                 S.of(context).explaination_on_boarding_1,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 17.sp),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: SizeConfig.screenHeight! * 0.02,
+                                ),
                               ),
                             ),
                           ],
@@ -109,19 +113,19 @@ class FirstPageBoarding extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 20, // Distance from the top
-                    right: -80, // Distance from the right
+                    top: SizeConfig.screenHeight! * 0.02,
+                    right: -SizeConfig.screenWidth! * 0.2,
                     child: Image.asset(
                       Images.onBoardingOne,
-                      width: 300.w,
-                      height: 300.h,
+                      width: SizeConfig.screenWidth! * 0.75,
+                      height: SizeConfig.screenHeight! * 0.35,
                     ),
-                  )
+                  ),
                 ],
               ),
               BoardingButton(onClick: () {
                 Get.to(() => const SeconedPageBoarding());
-              })
+              }),
             ],
           ),
         ),

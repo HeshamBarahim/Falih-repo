@@ -10,7 +10,7 @@ import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
 import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 
 import '../../config/sizes.dart';

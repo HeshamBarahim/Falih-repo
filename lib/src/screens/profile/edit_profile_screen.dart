@@ -8,7 +8,7 @@ import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 
 import '../../config/const.dart';
@@ -168,7 +168,7 @@ class EditProfileScreen extends StatelessWidget {
                   Obx(() => profileController.isSavingData.value == false
                       ? GradientButton(
                           text: S.of(context).update_profile,
-                          height: 50.h,
+                          height: 50,
                           width: double.infinity,
                           onClick: () async {
                             if (profileController.formKey.currentState!
@@ -209,12 +209,6 @@ class EditProfileScreen extends StatelessWidget {
                 onTap: () {
                   profileController.saveImage();
                   Navigator.pop(context);
-                  // setState(() {
-                  //   imageType = 0;
-                  //   saveImage();
-                  //   userController.setProfileImageUrl(ProfileImgUrl!);
-                  //   Navigator.pop(context);
-                  // });
                 },
               ),
               ListTile(
@@ -228,13 +222,7 @@ class EditProfileScreen extends StatelessWidget {
                     fontSize: 16.0,
                   ),
                 ),
-                onTap: () {
-                  // setState(() {
-                  //   imageType = 1;
-                  //   saveImage();
-                  //   Navigator.pop(context);
-                  // });
-                },
+                onTap: () {},
               ),
             ],
           ),
@@ -242,32 +230,4 @@ class EditProfileScreen extends StatelessWidget {
       },
     );
   }
-
-// loadingDialog() {
-//   Future<void> _performLongRunningTask(BuildContext context) async {
-//     // Show loading dialog
-//     showDialog(
-//       context: context,
-//       barrierDismissible: false, // Prevent dismissing by tapping outside
-//       builder: (BuildContext context) {
-//         return const Dialog(
-//           child: Padding(
-//             padding: EdgeInsets.all(16.0),
-//             child: Row(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 CircularProgressIndicator(),
-//                 SizedBox(width: 16.0),
-//                 Text("Loading..."),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-//   // await Future.delayed(const Duration(seconds: 5));
-
-//   // Navigator.of(context).pop();
-// }
 }

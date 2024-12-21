@@ -40,7 +40,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: null
-  flutter_screenutil: null
   flutter_svg: null
   get: null
   get_storage: null
