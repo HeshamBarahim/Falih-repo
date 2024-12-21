@@ -29,24 +29,29 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   carousel_slider: null
-  cloud_firestore: null
   csv: null
+
+  ## -- ICON PACKAGES
   cupertino_icons: ^1.0.8
-  firebase_auth: null
-  firebase_core: null
-  firebase_storage: ^12.3.7
+
   flutter:
     sdk: flutter
+
+  ## -- Localization PACKAGES
   flutter_localizations:
     sdk: flutter
+  intl: null
+
+  ## -- Splash PACKAGES
   flutter_native_splash: null
-  flutter_svg: null
+
+  ## -- Get PACKAGES
   get: null
   get_storage: null
+
+  
   google_fonts: null
-  http: null
   image_picker: ^1.1.2
-  intl: null
   intl_utils: null
   path: ^1.9.0
   percent_indicator: null
@@ -54,6 +59,18 @@ dependencies:
   rive: null
   smooth_page_indicator: null
   cached_network_image:
+
+  ## -- FIREBASE PACKAGES
+  firebase_auth: null
+  firebase_core: null
+  firebase_storage: ^12.3.7
+  cloud_firestore: null
+
+  ## -- AWS PACKAGES
+  http: null
+
+
+
 
 dev_dependencies:
   flutter_lints: null
@@ -74,6 +91,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/on_boarding/
+    - assets/images/about_us/
     - assets/subjects_icons/
     - assets/csv_files/
     - assets/RiveAssets/

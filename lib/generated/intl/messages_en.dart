@@ -22,11 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about_us": MessageLookupByLibrary.simpleMessage("About us"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "account_holder_number":
             MessageLookupByLibrary.simpleMessage("Holder Number"),
         "account_number":
             MessageLookupByLibrary.simpleMessage("Account Number"),
+        "achieveTitle": MessageLookupByLibrary.simpleMessage(
+            "Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies."),
+        "achieve_your_best":
+            MessageLookupByLibrary.simpleMessage("Achieve Your Best"),
+        "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "back_to_home": MessageLookupByLibrary.simpleMessage("Back To Home"),
         "back_to_subjects":
             MessageLookupByLibrary.simpleMessage("Back To Subjects"),
         "best_tools": MessageLookupByLibrary.simpleMessage("Best Tools"),
@@ -40,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_details":
             MessageLookupByLibrary.simpleMessage("Checkout Details"),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
+        "compete_shine":
+            MessageLookupByLibrary.simpleMessage("Compete and Shine"),
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
@@ -56,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("class 9"),
         "drop_grade_val2": MessageLookupByLibrary.simpleMessage("class 12"),
         "duration": MessageLookupByLibrary.simpleMessage("Duration:"),
+        "easy_use": MessageLookupByLibrary.simpleMessage("Easy to Use"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "enter_account_number": MessageLookupByLibrary.simpleMessage(
             "Please Enter Your Account Number"),
@@ -120,7 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
         "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
             "You have not taken any tests yet"),
-        "notification": MessageLookupByLibrary.simpleMessage("Nontification:"),
+        "notification": MessageLookupByLibrary.simpleMessage("Nontification"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
@@ -138,8 +148,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy"),
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
+        "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),
         "resend_code": MessageLookupByLibrary.simpleMessage("Resend The Code"),
-        "results": MessageLookupByLibrary.simpleMessage("results"),
+        "results": MessageLookupByLibrary.simpleMessage("Results"),
         "review_answer":
             MessageLookupByLibrary.simpleMessage("Review Your Answers"),
         "ry": MessageLookupByLibrary.simpleMessage("r.y"),
@@ -153,14 +164,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),
         "step2_of_2": MessageLookupByLibrary.simpleMessage("step 2 of 2"),
+        "subTitle_compete": MessageLookupByLibrary.simpleMessage(
+            "Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more."),
+        "subTitle_easy": MessageLookupByLibrary.simpleMessage(
+            "Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps"),
+        "subTitle_quick": MessageLookupByLibrary.simpleMessage(
+            "With Falih, you don\'t have to wait. Get instant responses and comprehensive explanations to your questions."),
+        "subTitle_trusted": MessageLookupByLibrary.simpleMessage(
+            "Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority."),
         "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
-        "subject_four": MessageLookupByLibrary.simpleMessage("English"),
+        "subject_four":
+            MessageLookupByLibrary.simpleMessage("English Language"),
         "subject_one": MessageLookupByLibrary.simpleMessage("Quran Kareem"),
         "subject_seven": MessageLookupByLibrary.simpleMessage("Biology"),
         "subject_six": MessageLookupByLibrary.simpleMessage("Physics"),
-        "subject_three": MessageLookupByLibrary.simpleMessage("Arabic"),
-        "subject_two": MessageLookupByLibrary.simpleMessage("Islamic"),
+        "subject_three":
+            MessageLookupByLibrary.simpleMessage("Arabic Language"),
+        "subject_two":
+            MessageLookupByLibrary.simpleMessage("Islamic Education"),
         "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "subscription_packages":
@@ -170,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "times": MessageLookupByLibrary.simpleMessage("times"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
+        "trusted": MessageLookupByLibrary.simpleMessage("Trusted"),
         "type": MessageLookupByLibrary.simpleMessage("Type:"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),
@@ -185,6 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "you_can_continue": MessageLookupByLibrary.simpleMessage(
             "You can continue to take the exam anytime"),
         "your": MessageLookupByLibrary.simpleMessage("Your"),
+        "your_journey":
+            MessageLookupByLibrary.simpleMessage("Your Journey With Falih"),
         "your_self": MessageLookupByLibrary.simpleMessage("Yourself")
       };
 }

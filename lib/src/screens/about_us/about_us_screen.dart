@@ -1,3 +1,5 @@
+import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -44,25 +46,28 @@ class AboutUsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ShaderMask(
-                      shaderCallback: (bounds) => aboutUsScreenContoller
-                          .currentLinearGradientColor.value
-                          .createShader(bounds),
-                      child: IconButton(
-                        onPressed: () {
-                          Get.offAll(MenuScreen());
-                        },
-                        icon: const Icon(Icons.arrow_back),
-                        color: Colors.white,
-                        iconSize: SizeConfig.screenHeight! * 0.041,
-                      ),
+                    // ShaderMask(
+                    //   shaderCallback: (bounds) => aboutUsScreenContoller
+                    //       .currentLinearGradientColor.value
+                    //       .createShader(bounds),
+                    //   child: IconButton(
+                    //     onPressed: () {
+                    //       Get.offAll(MenuScreen());
+                    //     },
+                    //     icon: const Icon(Icons.arrow_back),
+                    //     color: Colors.white,
+                    //     iconSize: SizeConfig.screenHeight! * 0.041,
+                    //   ),
+                    // ),
+                    SizedBox(
+                      width: SizeConfig.screenWidth! * 0.10,
                     ),
                     ShaderMask(
                       shaderCallback: (bounds) => aboutUsScreenContoller
                           .currentLinearGradientColor.value
                           .createShader(bounds),
                       child: Text(
-                        'About Us',
+                        S.of(context).about_us,
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily:
@@ -72,17 +77,20 @@ class AboutUsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ShaderMask(
-                      shaderCallback: (bounds) => aboutUsScreenContoller
-                          .currentLinearGradientColor.value
-                          .createShader(bounds),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.notifications),
-                        color: Colors.white,
-                        iconSize: SizeConfig.screenHeight! * 0.041,
-                      ),
-                    ),
+                    SizedBox(
+                      width: SizeConfig.screenWidth! * 0.10,
+                    )
+                    // ShaderMask(
+                    //   shaderCallback: (bounds) => aboutUsScreenContoller
+                    //       .currentLinearGradientColor.value
+                    //       .createShader(bounds),
+                    //   child: IconButton(
+                    //     onPressed: () {},
+                    //     icon: const Icon(Icons.notifications),
+                    //     color: Colors.white,
+                    //     iconSize: SizeConfig.screenHeight! * 0.041,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -156,42 +164,47 @@ class AboutUsScreen extends StatelessWidget {
                                 OnBoardingViews(
                                   linearGradientColor: aboutUsScreenContoller
                                       .currentLinearGradientColor.value,
-                                  imgUrl: 'assets/images/logo_falih.png',
-                                  title: 'Easy to handle',
-                                  subTitle:
-                                      'Easy interfaces and an easy way to interact with it',
+                                  imgUrl: Images.classBoy,
+                                  width: SizeConfig.screenWidth! * 0.50,
+                                  height: SizeConfig.screenWidth! * 0.50,
+                                  title: S.of(context).easy_use,
+                                  subTitle: S.of(context).subTitle_easy,
                                 ),
                                 OnBoardingViews(
                                   linearGradientColor: aboutUsScreenContoller
                                       .currentLinearGradientColor.value,
-                                  imgUrl: 'assets/images/logo_falih.png',
-                                  title: 'trusted',
-                                  subTitle:
-                                      'Always honest and trustworthy in dealing With the client and always taking into account the client\'s circumstances',
+                                  imgUrl: Images.community,
+                                  width: SizeConfig.screenWidth! * 0.50,
+                                  height: SizeConfig.screenWidth! * 0.50,
+                                  title: S.of(context).trusted,
+                                  subTitle: S.of(context).subTitle_trusted,
                                 ),
                                 OnBoardingViews(
                                   linearGradientColor: aboutUsScreenContoller
                                       .currentLinearGradientColor.value,
-                                  imgUrl: 'assets/images/logo_falih.png',
-                                  title: 'Fast Delivery',
-                                  subTitle:
-                                      'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
+                                  imgUrl: Images.magicBook,
+                                  width: SizeConfig.screenWidth! * 0.50,
+                                  height: SizeConfig.screenWidth! * 0.50,
+                                  title: S.of(context).quick_access,
+                                  subTitle: S.of(context).subTitle_quick,
                                 ),
                                 OnBoardingViews(
                                   linearGradientColor: aboutUsScreenContoller
                                       .currentLinearGradientColor.value,
-                                  imgUrl: 'assets/images/logo_falih.png',
-                                  title: 'Fast Delivery',
-                                  subTitle:
-                                      'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
+                                  imgUrl: Images.achievement,
+                                  width: SizeConfig.screenWidth! * 0.50,
+                                  height: SizeConfig.screenWidth! * 0.50,
+                                  title: S.of(context).compete_shine,
+                                  subTitle: S.of(context).subTitle_compete,
                                 ),
                                 OnBoardingViews(
                                   linearGradientColor: aboutUsScreenContoller
                                       .currentLinearGradientColor.value,
-                                  imgUrl: 'assets/images/logo_falih.png',
-                                  title: 'Fast Delivery',
-                                  subTitle:
-                                      'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
+                                  imgUrl: Images.sucess,
+                                  width: SizeConfig.screenWidth! * 0.50,
+                                  height: SizeConfig.screenWidth! * 0.50,
+                                  title: S.of(context).achieve_your_best,
+                                  subTitle: S.of(context).achieveTitle,
                                 ),
                               ],
                             ),
@@ -217,7 +230,7 @@ class AboutUsScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'What\'s in Store For you',
+                        S.of(context).your_journey,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: SizeConfig.screenHeight! * 0.019,
@@ -253,7 +266,7 @@ class AboutUsScreen extends StatelessWidget {
                           SizeConfig.screenHeight! * 0.023),
                     ),
                     child: Text(
-                      'Next',
+                      S.of(context).next,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: SizeConfig.screenHeight! * 0.028,
@@ -287,7 +300,7 @@ class AboutUsScreen extends StatelessWidget {
                               SizeConfig.screenHeight! * 0.024),
                         ),
                         child: Text(
-                          'Back To Home',
+                          S.of(context).back_to_home,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: SizeConfig.screenHeight! * 0.028,
@@ -295,7 +308,7 @@ class AboutUsScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Get.back();
+                          Get.offAll(() => MenuScreen());
                         },
                       ),
                     ),
@@ -324,7 +337,7 @@ class AboutUsScreen extends StatelessWidget {
                                     SizeConfig.screenHeight! * 0.024),
                               ),
                               child: Text(
-                                'Back',
+                                S.of(context).back,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: SizeConfig.screenHeight! * 0.018,
@@ -386,7 +399,7 @@ class AboutUsScreen extends StatelessWidget {
                                     SizeConfig.screenHeight! * 0.024),
                               ),
                               child: Text(
-                                'Next',
+                                S.of(context).next,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: SizeConfig.screenHeight! * 0.018,
