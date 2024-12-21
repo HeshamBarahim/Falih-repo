@@ -1,23 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/images.dart';
+import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:falih/src/config/const.dart';
-import 'package:falih/src/config/sizes.dart';
 import 'package:get/get.dart';
 
 class ProfileSection extends StatelessWidget {
-  // final String profileImage;
-  final String name;
-  final String email;
-
-  ProfileSection(
-      {super.key,
-      // required this.profileImage,
-      required this.name,
-      required this.email});
+  ProfileSection({
+    super.key,
+  });
 
   final UserController userController = Get.find<UserController>();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -46,7 +41,7 @@ class ProfileSection extends StatelessWidget {
               })),
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
-            name,
+            userController.user.value?.fullName ?? "",
             style: TextStyle(
               // fontSize: SizeConfig.screenHeight! * 0.026,
               fontSize: SizeConfig.screenWidth! * 0.053,
@@ -56,7 +51,7 @@ class ProfileSection extends StatelessWidget {
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.006),
           Text(
-            email,
+            userController.user.value?.schoolName ?? "",
             style: TextStyle(
               // fontSize: SizeConfig.screenHeight! * 0.019,
               fontSize: SizeConfig.screenWidth! * 0.039,

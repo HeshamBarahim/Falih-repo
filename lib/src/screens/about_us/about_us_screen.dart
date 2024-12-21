@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../config/sizes.dart';
@@ -153,35 +154,35 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             children: [
                               OnBoardingViews(
                                 linearGradientColor: currentLinearGradientColor,
-                                imgUrl: 'assets/images/onBoarding_img_3.png',
+                                imgUrl: 'assets/images/logo_falih.png',
                                 title: 'Easy to handle',
                                 subTitle:
                                     'Easy interfaces and an easy way to interact with it',
                               ),
                               OnBoardingViews(
                                 linearGradientColor: currentLinearGradientColor,
-                                imgUrl: 'assets/images/onBoarding_img_1.png',
+                                imgUrl: 'assets/images/logo_falih.png',
                                 title: 'trusted',
                                 subTitle:
                                     'Always honest and trustworthy in dealing With the client and always taking into account the client\'s circumstances',
                               ),
                               OnBoardingViews(
                                 linearGradientColor: currentLinearGradientColor,
-                                imgUrl: 'assets/images/onBoarding_img_2.png',
+                                imgUrl: 'assets/images/logo_falih.png',
                                 title: 'Fast Delivery',
                                 subTitle:
                                     'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
                               ),
                               OnBoardingViews(
                                 linearGradientColor: currentLinearGradientColor,
-                                imgUrl: 'assets/images/onBoarding_img_1.png',
+                                imgUrl: 'assets/images/logo_falih.png',
                                 title: 'Fast Delivery',
                                 subTitle:
                                     'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
                               ),
                               OnBoardingViews(
                                 linearGradientColor: currentLinearGradientColor,
-                                imgUrl: 'assets/images/onBoarding_img_3.png',
+                                imgUrl: 'assets/images/logo_falih.png',
                                 title: 'Fast Delivery',
                                 subTitle:
                                     'Fast Deleviry To Your Location Where Ever It Was And Within A fewer Time Than Any Body Else',
@@ -282,7 +283,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                     ),
                   ),
                 )
