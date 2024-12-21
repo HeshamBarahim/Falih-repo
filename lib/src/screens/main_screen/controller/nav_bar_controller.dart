@@ -14,17 +14,16 @@ class NavBarController extends GetxController
   late AnimationController animationController;
   late Animation<double> animation;
   late Animation<double> scalAnimation;
-  late rive.SMIBool? isSideBarClosed;
+  rive.SMIBool? isSideBarClosed;
 
-  bool bottomNavBarVisability = true;
-  bool isSideNavBarClosed = true;
+  var bottomNavBarVisability = true.obs;
+  var isSideNavBarClosed = true.obs;
+  var lastBackPressTime;
 
-  int selectedIndex = 1;
-  ////////////
+  var selectedIndex = 1.obs;
+
   @override
   Future<void> onInit() async {
-    // TODO: implement onInit
-
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -44,7 +43,6 @@ class NavBarController extends GetxController
       ),
     );
     super.onInit();
-    // user = await UserRepository.instance.getUserDetails();
   }
 
   @override
@@ -64,42 +62,39 @@ class NavBarController extends GetxController
   }
 
   void onChangeIndex(int index) {
-    selectedIndex = index;
+    selectedIndex.value = index;
     update();
   }
 
   void showBottomNavBar() {
-    bottomNavBarVisability = true;
+    bottomNavBarVisability.value = true;
     update();
   }
 
   void hideBottomNavBar() {
-    bottomNavBarVisability = false;
+    bottomNavBarVisability.value = false;
     update();
   }
 
   void moveNavBar() {
     isSideBarClosed?.value = !isSideBarClosed!.value;
-    if (isSideNavBarClosed) {
+    if (isSideNavBarClosed.value) {
       animationController.forward();
 
-      bottomNavBarVisability = false;
+      bottomNavBarVisability.value = false;
     } else {
       animationController.reverse();
-      bottomNavBarVisability = true;
+      bottomNavBarVisability.value = true;
     }
-    isSideNavBarClosed = isSideBarClosed!.value;
+    isSideNavBarClosed.value = isSideBarClosed!.value;
     update();
   }
 
   void closeNavBar() {
-    isSideNavBarClosed = isSideBarClosed!.value;
+    isSideNavBarClosed.value = isSideBarClosed!.value;
     update();
   }
 
-  void refresh() {
-    update();
-  }
 
   final screens = [
     CurriculumPage(),

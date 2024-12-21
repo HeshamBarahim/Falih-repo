@@ -1,7 +1,7 @@
-// menu_screen_2
 import 'dart:math';
 
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/screens/main_screen/controller/nav_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
@@ -9,73 +9,26 @@ import 'package:rive/rive.dart' as rive;
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../curriculum/curriculum_page.dart';
-import '../home/home_page.dart';
-import '../leaderboard/leaderboard_screen.dart';
 import '../notification/notification_page.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
 import 'utils/rive_utils.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({super.key});
+class MenuScreen extends StatelessWidget {
+  MenuScreen({super.key});
 
-  @override
-  State<MenuScreen> createState() => _MenuScreenState();
-}
-
-class _MenuScreenState extends State<MenuScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> animation;
-  late Animation<double> scalAnimation;
-
-  late rive.SMIBool isSideBarClosed;
-  bool isSideNavBarClosed = true;
-  DateTime? lastBackPressTime;
-
-  bool bottomNavBarVisability = true;
-
-  @override
-  void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    )..addListener(() {
-        setState(() {});
-      });
-
-    animation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    scalAnimation = Tween<double>(begin: 1, end: 0.8).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
+  final controller = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
     SizeConfig().init(context);
     return WillPopScope(
       onWillPop: () async {
         DateTime now = DateTime.now();
-        if (lastBackPressTime == null ||
-            now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-          lastBackPressTime = now;
+        if (controller.lastBackPressTime == null ||
+            now.difference(controller.lastBackPressTime!) >
+                const Duration(seconds: 2)) {
+          controller.lastBackPressTime = now;
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -100,13 +53,13 @@ class _MenuScreenState extends State<MenuScreen>
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        bottomNavigationBar: bottomNavBarVisability
+        bottomNavigationBar: controller.bottomNavBarVisability.value
             ? Padding(
-                padding: const EdgeInsets.only(bottom: 15.0),
+                padding: const EdgeInsets.only(bottom: 16.0),
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       horizontal: SizeConfig.screenWidth! * 0.17),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.transparent,
                     boxShadow: [
                       BoxShadow(
@@ -136,10 +89,10 @@ class _MenuScreenState extends State<MenuScreen>
                                       .mainColor, // Selected label color
                                 );
                               }
-                              return TextStyle(
+                              return const TextStyle(
                                 fontSize: 0, // Font size for unselected labels
-                                color: const Color(
-                                    0xFFD2A8DF), // Unselected label color
+                                color:
+                                    Color(0xFFD2A8DF), // Unselected label color
                               );
                             },
                           ),
@@ -214,39 +167,45 @@ class _MenuScreenState extends State<MenuScreen>
               end: Alignment.bottomLeft,
             ),
           ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                      image: AssetImage(Images.backgroundImageOfAuth),
-                      fit: BoxFit.cover,
-                      opacity: 0.2,
+          child: Obx(
+            () => Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                        image: AssetImage(Images.backgroundImageOfAuth),
+                        fit: BoxFit.cover,
+                        opacity: 0.2,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.fastOutSlowIn,
-                width: SizeConfig.screenWidth! * 0.7,
-                left: isSideNavBarClosed ? -SizeConfig.screenWidth! * 0.7 : 0,
-                height: SizeConfig.screenHeight!,
-                child: NavBar(),
-              ),
-              Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001)
-                  ..rotateY(animation.value - 30 * animation.value * pi / 180),
-                child: Transform.translate(
-                  offset: Offset(
-                      animation.value * SizeConfig.screenWidth! * 0.62, 0),
-                  child: Transform.scale(
-                    scale: scalAnimation.value,
-                    child: Container(
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.fastOutSlowIn,
+                  width: SizeConfig.screenWidth! * 0.7,
+                  left: controller.isSideNavBarClosed.value
+                      ? -SizeConfig.screenWidth! * 0.7
+                      : 0,
+                  height: SizeConfig.screenHeight!,
+                  child: NavBar(),
+                ),
+                Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001)
+                    ..rotateY(controller.animation.value -
+                        30 * controller.animation.value * pi / 180),
+                  child: Transform.translate(
+                    offset: Offset(
+                        controller.animation.value *
+                            SizeConfig.screenWidth! *
+                            0.62,
+                        0),
+                    child: Transform.scale(
+                      scale: controller.scalAnimation.value,
                       child: Stack(
                         children: [
                           Padding(
@@ -260,7 +219,7 @@ class _MenuScreenState extends State<MenuScreen>
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.grey,
                                     blurRadius: 0.9,
@@ -314,66 +273,52 @@ class _MenuScreenState extends State<MenuScreen>
                     ),
                   ),
                 ),
-              ),
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.fastOutSlowIn,
-                left: isSideNavBarClosed ? 0 : SizeConfig.screenWidth! * 0.54,
-                top: SizeConfig.screenHeight! * 0.027,
-                child: Row(
-                  children: [
-                    NavBarButton(
-                      riveOnInit: (artboard) {
-                        rive.StateMachineController controller =
-                            RiveUtils.getRiveController(artboard,
-                                stateMachineName: "State Machine");
-                        isSideBarClosed =
-                            controller.findSMI("isOpen") as rive.SMIBool;
-                        isSideBarClosed.value = true;
-                      },
-                      press: () {
-                        isSideBarClosed.value = !isSideBarClosed.value;
-                        if (isSideNavBarClosed) {
-                          _animationController.forward();
-                          setState(() {
-                            bottomNavBarVisability = false;
-                          });
-                        } else {
-                          _animationController.reverse();
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 600),
+                  curve: Curves.fastOutSlowIn,
+                  left: controller.isSideNavBarClosed.value
+                      ? 0
+                      : SizeConfig.screenWidth! * 0.54,
+                  top: SizeConfig.screenHeight! * 0.027,
+                  child: Row(
+                    children: [
+                      NavBarButton(
+                        riveOnInit: (artboard) {
+                          rive.StateMachineController riveController =
+                              RiveUtils.getRiveController(artboard,
+                                  stateMachineName: "State Machine");
+                          controller.isSideBarClosed =
+                              riveController.findSMI("isOpen") as rive.SMIBool;
+                          controller.isSideBarClosed?.value = true;
+                          controller.animationController.forward();
+                        },
+                        press: () {
+                          controller.isSideNavBarClosed.value =
+                              !controller.isSideBarClosed!.value;
 
-                          Future.delayed(Duration(milliseconds: 300), () {
-                            setState(() {
-                              bottomNavBarVisability = true;
+                          if (controller.isSideNavBarClosed.value) {
+                            controller.animationController.forward();
+                            controller.bottomNavBarVisability.value = false;
+                          } else {
+                            controller.animationController.reverse();
+
+                            Future.delayed(const Duration(milliseconds: 300),
+                                () {
+                              controller.bottomNavBarVisability.value = true;
                             });
-                          });
-                        }
-                        setState(() {
-                          isSideNavBarClosed = isSideBarClosed.value;
-                        });
-                      },
-                    ),
-                  ],
+                          }
+                          controller.isSideBarClosed?.value =
+                              !controller.isSideBarClosed!.value;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-class NavigationController extends GetxController {
-  final Rx<int> selectedIndex = 1.obs;
-
-  final screens = [
-    CurriculumPage(),
-    HomePage(),
-    LeaderBoardScreen(),
-  ];
-  final screenTitle = [
-    S.current.subjects,
-    S.current.home,
-    S.current.leaderBoard
-  ];
 }

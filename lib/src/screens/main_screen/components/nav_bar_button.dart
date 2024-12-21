@@ -13,7 +13,6 @@ class NavBarButton extends StatelessWidget {
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;
 
-  bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
