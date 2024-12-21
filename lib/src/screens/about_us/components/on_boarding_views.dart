@@ -7,13 +7,17 @@ class OnBoardingViews extends StatelessWidget {
   final String imgUrl;
   final String title;
   final String subTitle;
+  final double width;
+  final double height;
 
   const OnBoardingViews(
       {super.key,
       required this.linearGradientColor,
       required this.imgUrl,
       required this.title,
-      required this.subTitle});
+      required this.subTitle,
+      required this.width,
+      required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,8 @@ class OnBoardingViews extends StatelessWidget {
             Image.asset(
               imgUrl,
               fit: BoxFit.cover,
-              width: SizeConfig.screenWidth!,
+              width: width,
+              height: height,
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.03),
             Container(

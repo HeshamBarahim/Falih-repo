@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -581,11 +580,11 @@ class S {
     );
   }
 
-  /// `results`
+  /// `Results`
   String get results {
     return Intl.message(
       'Results',
-      name: 'Results',
+      name: 'results',
       desc: 'Test ',
       args: [],
     );
@@ -634,8 +633,8 @@ class S {
   /// `unit_exams`
   String get unit_exams {
     return Intl.message(
-      'Unit Exam',
-      name: 'Unit Exam',
+      'unit_exams',
+      name: 'unit_exams',
       desc: '',
       args: [],
     );
@@ -851,10 +850,10 @@ class S {
     );
   }
 
-  /// `Nontification:`
+  /// `Nontification`
   String get notification {
     return Intl.message(
-      'Nontification:',
+      'Nontification',
       name: 'notification',
       desc: '',
       args: [],
@@ -1276,6 +1275,146 @@ class S {
     return Intl.message(
       'Language',
       name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About us`
+  String get about_us {
+    return Intl.message(
+      'About us',
+      name: 'about_us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easy to Use`
+  String get easy_use {
+    return Intl.message(
+      'Easy to Use',
+      name: 'easy_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps`
+  String get subTitle_easy {
+    return Intl.message(
+      'Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps',
+      name: 'subTitle_easy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trusted`
+  String get trusted {
+    return Intl.message(
+      'Trusted',
+      name: 'trusted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority.`
+  String get subTitle_trusted {
+    return Intl.message(
+      'Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority.',
+      name: 'subTitle_trusted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick Access`
+  String get quick_access {
+    return Intl.message(
+      'Quick Access',
+      name: 'quick_access',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With Falih, you don't have to wait. Get instant responses and comprehensive explanations to your questions.`
+  String get subTitle_quick {
+    return Intl.message(
+      'With Falih, you don\'t have to wait. Get instant responses and comprehensive explanations to your questions.',
+      name: 'subTitle_quick',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Compete and Shine`
+  String get compete_shine {
+    return Intl.message(
+      'Compete and Shine',
+      name: 'compete_shine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more.`
+  String get subTitle_compete {
+    return Intl.message(
+      'Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more.',
+      name: 'subTitle_compete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Achieve Your Best`
+  String get achieve_your_best {
+    return Intl.message(
+      'Achieve Your Best',
+      name: 'achieve_your_best',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies.`
+  String get achieveTitle {
+    return Intl.message(
+      'Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies.',
+      name: 'achieveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Journey With Falih`
+  String get your_journey {
+    return Intl.message(
+      'Your Journey With Falih',
+      name: 'your_journey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back To Home`
+  String get back_to_home {
+    return Intl.message(
+      'Back To Home',
+      name: 'back_to_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
       desc: '',
       args: [],
     );

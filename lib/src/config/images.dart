@@ -36,4 +36,12 @@ class Images {
 
   // custom dialog
   static const String silverMedal = 'assets/images/silver_medal.png';
+
+  // about us page
+  static const String achievement = 'assets/images/about_us/achievement.png';
+  static const String classBoy = 'assets/images/about_us/class_room_boy.png';
+  static const String magicBook = 'assets/images/about_us/magic_book.png';
+  static const String community =
+      'assets/images/about_us/protect_community.png';
+  static const String sucess = 'assets/images/about_us/sucess.png';
 }

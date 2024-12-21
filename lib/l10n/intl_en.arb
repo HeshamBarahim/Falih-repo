@@ -497,5 +497,58 @@
     "@about_us": {
       "description": ""
     },
-    "about_us":"About us"
+    "about_us":"About us",
+    "@easy_use": {
+      "description": ""
+    },
+    "easy_use":"Easy to Use",
+    "@subTitle_easy": {
+      "description": ""
+    },
+    "subTitle_easy":"Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps",
+    "@trusted": {
+      "description": ""
+    },
+    "trusted":"Trusted",
+    "@subTitle_trusted": {
+      "description": ""
+    },
+    "subTitle_trusted":"Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority.",
+    "@quick_access": {
+      "description": ""
+    },
+    "quick_access":"Quick Access",
+    "@subTitle_quick": {
+      "description": ""
+    },
+    "subTitle_quick":"With Falih, you don't have to wait. Get instant responses and comprehensive explanations to your questions.",
+    "@compete_shine": {
+      "description": ""
+    },
+    "compete_shine":"Compete and Shine",
+    "@subTitle_compete": {
+      "description": ""
+    },
+    "subTitle_compete":"Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more.",
+    "@achieve_your_best": {
+      "description": ""
+    },
+    "achieve_your_best":"Achieve Your Best",
+    "@achieveTitle": {
+      "description": ""
+    },
+    "achieveTitle":"Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies.",
+    "@your_journey": {
+      "description": ""
+    },
+    "your_journey":"Your Journey With Falih",
+    "@back_to_home": {
+      "description": ""
+    },
+    "back_to_home":"Back To Home",
+    "@back": {
+      "description": ""
+    },
+    "back":"Back"
+
 }
