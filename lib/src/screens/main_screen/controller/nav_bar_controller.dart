@@ -10,13 +10,12 @@ import '../utils/rive_utils.dart';
 
 class NavBarController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  ////////////
   late AnimationController animationController;
   late Animation<double> animation;
-  late Animation<double> scalAnimation;
+  late Animation<double> scaleAnimation;
   rive.SMIBool? isSideBarClosed;
 
-  var bottomNavBarVisability = true.obs;
+  var bottomNavBarVisibility = true.obs;
   var isSideNavBarClosed = true.obs;
   var lastBackPressTime;
 
@@ -36,7 +35,7 @@ class NavBarController extends GetxController
         curve: Curves.fastOutSlowIn,
       ),
     );
-    scalAnimation = Tween<double>(begin: 1, end: 0.8).animate(
+    scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(
       CurvedAnimation(
         parent: animationController,
         curve: Curves.fastOutSlowIn,
@@ -67,34 +66,35 @@ class NavBarController extends GetxController
   }
 
   void showBottomNavBar() {
-    bottomNavBarVisability.value = true;
+    bottomNavBarVisibility.value = true;
     update();
   }
 
   void hideBottomNavBar() {
-    bottomNavBarVisability.value = false;
+    bottomNavBarVisibility.value = false;
     update();
   }
 
   void moveNavBar() {
-    isSideBarClosed?.value = !isSideBarClosed!.value;
+    isSideNavBarClosed.value = !isSideBarClosed!.value;
+
     if (isSideNavBarClosed.value) {
       animationController.forward();
-
-      bottomNavBarVisability.value = false;
+      bottomNavBarVisibility.value = false;
     } else {
       animationController.reverse();
-      bottomNavBarVisability.value = true;
+
+      Future.delayed(const Duration(milliseconds: 300), () {
+        bottomNavBarVisibility.value = true;
+      });
     }
-    isSideNavBarClosed.value = isSideBarClosed!.value;
-    update();
+    isSideBarClosed?.value = !isSideBarClosed!.value;
   }
 
   void closeNavBar() {
     isSideNavBarClosed.value = isSideBarClosed!.value;
     update();
   }
-
 
   final screens = [
     CurriculumPage(),

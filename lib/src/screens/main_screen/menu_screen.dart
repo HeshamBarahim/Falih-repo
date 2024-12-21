@@ -53,7 +53,7 @@ class MenuScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        bottomNavigationBar: controller.bottomNavBarVisability.value
+        bottomNavigationBar: controller.bottomNavBarVisibility.value
             ? Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Container(
@@ -205,7 +205,7 @@ class MenuScreen extends StatelessWidget {
                             0.62,
                         0),
                     child: Transform.scale(
-                      scale: controller.scalAnimation.value,
+                      scale: controller.scaleAnimation.value,
                       child: Stack(
                         children: [
                           Padding(
@@ -290,25 +290,11 @@ class MenuScreen extends StatelessWidget {
                           controller.isSideBarClosed =
                               riveController.findSMI("isOpen") as rive.SMIBool;
                           controller.isSideBarClosed?.value = true;
+                          print(controller.isSideBarClosed?.value);
                           controller.animationController.forward();
                         },
                         press: () {
-                          controller.isSideNavBarClosed.value =
-                              !controller.isSideBarClosed!.value;
-
-                          if (controller.isSideNavBarClosed.value) {
-                            controller.animationController.forward();
-                            controller.bottomNavBarVisability.value = false;
-                          } else {
-                            controller.animationController.reverse();
-
-                            Future.delayed(const Duration(milliseconds: 300),
-                                () {
-                              controller.bottomNavBarVisability.value = true;
-                            });
-                          }
-                          controller.isSideBarClosed?.value =
-                              !controller.isSideBarClosed!.value;
+                          controller.moveNavBar();
                         },
                       ),
                     ],

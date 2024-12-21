@@ -1,6 +1,5 @@
 // navbar
 import 'package:falih/src/screens/about_us/about_us_screen.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen.dart';
@@ -11,6 +10,7 @@ import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
+import '../controller/nav_bar_controller.dart';
 import '../controller/nav_bar_tile_controller.dart';
 import '../data/side_menu_data_list.dart';
 import '../utils/rive_utils.dart';
@@ -20,6 +20,7 @@ import 'nav_bar_tile.dart';
 class NavBar extends StatelessWidget {
   NavBar({super.key});
 
+  final navController = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,10 @@ class NavBar extends StatelessWidget {
 
                                   if (menu.index == 0) {
                                     controller.stopProcess();
-                                    Get.offAll(MenuScreen());
+                                    navController.moveNavBar();
+                                    navController.selectedIndex.value = 1;
+                                    Get.back();
+                                    // Get.offAll(MenuScreen());
                                   } else if (menu.index == 1) {
                                     controller.stopProcess();
                                     Get.to(EditProfileScreen());
@@ -99,7 +103,7 @@ class NavBar extends StatelessWidget {
                                     Get.to(SubscriptionPlansScreen());
                                   } else if (menu.index == 3) {
                                     controller.stopProcess();
-                                    Get.to(NotificationPage());
+                                    Get.to(const NotificationPage());
                                   }
                                 });
                                 controller.selectMenu(menu);
@@ -144,9 +148,10 @@ class NavBar extends StatelessWidget {
                                     // Get.to(ContactUsScreen());
                                   } else if (menu.index == 1) {
                                     controller.stopProcess();
-                                    Get.to(AboutUsScreen());
+                                    Get.to(const AboutUsScreen());
                                   } else if (menu.index == 2) {
                                     controller.stopProcess();
+                                    // navController.moveNavBar();
                                     Get.to(SettingsScreen());
                                   } else if (menu.index == 3) {
                                     controller.stopProcess();

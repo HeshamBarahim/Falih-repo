@@ -53,7 +53,7 @@ class NotificationPage extends StatelessWidget {
               padding: const EdgeInsets.all(25),
               itemCount: 6 + 1,
               itemBuilder: (context, index) {
-                return NotificationContainer(); // Notification items
+                return const NotificationContainer(); // Notification items
               },
             ),
           )),

@@ -7,13 +7,6 @@ class NavBarTileController extends GetxController {
   RiveAsset selectedMenu = sideMenuDataList_1.first;
   bool isProcess = false;
 
-  // var user;
-  @override
-  Future<void> onInit() async {
-    // TODO: implement onInit
-    super.onInit();
-    // user = await UserRepository.instance.getUserDetails();
-  }
 
   void selectMenu(RiveAsset menu) {
     selectedMenu = menu;
