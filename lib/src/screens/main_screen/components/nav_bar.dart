@@ -148,7 +148,7 @@ class NavBar extends StatelessWidget {
                                     // Get.to(ContactUsScreen());
                                   } else if (menu.index == 1) {
                                     controller.stopProcess();
-                                    Get.to(const AboutUsScreen());
+                                    Get.to(AboutUsScreen());
                                   } else if (menu.index == 2) {
                                     controller.stopProcess();
                                     // navController.moveNavBar();
