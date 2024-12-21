@@ -325,7 +325,7 @@
     "@notification": {
       "description": ""
     },
-    "notification":"Nontification:",
+    "notification":"Nontification",
     "@update_profile": {
       "description": ""
     },
@@ -493,8 +493,9 @@
     "@language": {
       "description": ""
     },
-    "language":"Language"
-    
-
-
+    "language":"Language",
+    "@about_us": {
+      "description": ""
+    },
+    "about_us":"About us"
 }

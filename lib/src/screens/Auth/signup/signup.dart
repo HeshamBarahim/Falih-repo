@@ -264,8 +264,7 @@ class Signup extends StatelessWidget {
                               ),
                               GradientText(
                                 text: S.of(context).bottom_text_part2,
-                                route: '/login',
-                                // route: Login(),
+                                route: () => Login(),
                               ),
                             ],
                           ),

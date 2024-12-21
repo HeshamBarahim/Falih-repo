@@ -120,7 +120,7 @@ class FirstPageBoarding extends StatelessWidget {
                 ],
               ),
               BoardingButton(onClick: () {
-                Get.to(() => SeconedPageBoarding());
+                Get.to(() => const SeconedPageBoarding());
               })
             ],
           ),
