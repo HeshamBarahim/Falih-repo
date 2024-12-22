@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
+import '../data/side_menu_data_list.dart';
+import '../models/rive_asset.dart';
 import '../utils/rive_utils.dart';
 
 class NavBarController extends GetxController with GetTickerProviderStateMixin {
@@ -19,6 +21,9 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
 
   // RxBool bottomNavBarVisability = true.obs;
   bool bottomNavBarVisability = true;
+
+  RiveAsset selectedMenu = sideMenuDataList_1.first;
+  bool isProcess = false;
 
   @override
   void onInit() {
@@ -78,7 +83,20 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
     update();
   }
 
-  
+  void selectMenu(RiveAsset menu) {
+    selectedMenu = menu;
+    update();
+  }
+
+  void startProcess() {
+    isProcess = true;
+    update();
+  }
+
+  void stopProcess() {
+    isProcess = false;
+    update();
+  }
 
   // void onShowBottomNavBar() {
   //   bottomNavBarVisability = false;

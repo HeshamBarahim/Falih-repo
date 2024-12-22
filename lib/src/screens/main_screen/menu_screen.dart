@@ -28,6 +28,7 @@ class _MenuScreenState extends State<MenuScreen>
 
   final BottomNavBarController bottomNavBarController =
       BottomNavBarController();
+  final NavBarController navBarController = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {

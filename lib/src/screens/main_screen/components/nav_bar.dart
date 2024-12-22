@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../../config/sizes.dart';
+import '../../../controller/profile_controller.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
-import '../controller/nav_bar_tile_controller.dart';
 import '../data/side_menu_data_list.dart';
 import '../menu_screen.dart';
 import '../utils/rive_utils.dart';
@@ -22,6 +22,8 @@ class NavBar extends StatelessWidget {
   NavBar({super.key});
 
   // final NavBarController navController = Get.put(NavBarController());
+  final ProfileController profileController = Get.put(ProfileController());
+  final NavBarController navBarController = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +50,8 @@ class NavBar extends StatelessWidget {
             ),
           ),
           child: SafeArea(
-            child: GetBuilder<NavBarTileController>(
-              init: NavBarTileController(),
+            child: GetBuilder<NavBarController>(
+              init: NavBarController(),
               builder: (controller) {
                 return SingleChildScrollView(
                   child: Column(
@@ -95,7 +97,7 @@ class NavBar extends StatelessWidget {
 
                                     if (menu.index == 0) {
                                       controller.stopProcess();
-                                      Get.offAll(const MenuScreen());
+                                      Get.offAll(MenuScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
                                       Get.to(EditProfileScreen());
