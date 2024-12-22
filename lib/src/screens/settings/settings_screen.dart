@@ -6,16 +6,14 @@ import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../main_screen/controller/nav_bar_controller.dart';
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
+  const SettingsScreen({super.key});
 
   static const String sc_route = '/settings-screen-2';
-  final navController = Get.put(NavBarController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,6 @@ class SettingsScreen extends StatelessWidget {
             color: iconColor_1,
           ),
           onPressed: () {
-            // navController.moveNavBar();
             Get.back();
           },
         ),

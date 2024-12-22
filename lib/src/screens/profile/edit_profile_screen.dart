@@ -8,7 +8,6 @@ import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../config/const.dart';
@@ -50,12 +49,12 @@ class EditProfileScreen extends StatelessWidget {
                         backgroundColor: Colors.grey[200],
                         child: Obx(
                           () => ClipOval(
-                            child: profileController.profileImgUrl.value != null
+                            child: userController.profileImageUrl.value != null
                                 ? CachedNetworkImage(
                                     key: ValueKey(
-                                        profileController.profileImgUrl.value),
+                                        userController.profileImageUrl.value),
                                     imageUrl:
-                                        profileController.profileImgUrl.value!,
+                                        userController.profileImageUrl.value!,
                                     placeholder: (context, url) =>
                                         const CircularProgressIndicator(),
                                     errorWidget: (context, url, error) =>

@@ -100,13 +100,13 @@ class NavBar extends StatelessWidget {
                                       Get.offAll(MenuScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.to(EditProfileScreen());
+                                      Get.to(() => EditProfileScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
-                                      Get.to(SubscriptionPlansScreen());
+                                      Get.to(() => SubscriptionPlansScreen());
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
-                                      Get.to(NotificationPage());
+                                      Get.to(() => const NotificationPage());
                                     }
                                   });
                                   controller.selectMenu(menu);
@@ -149,17 +149,17 @@ class NavBar extends StatelessWidget {
 
                                     if (menu.index == 0) {
                                       controller.stopProcess();
-                                      // Get.to(ContactUsScreen());
+                                      // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.to(AboutUsScreen());
+                                      Get.to(() => AboutUsScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
                                       // navController.moveNavBar();
-                                      Get.to(SettingsScreen());
+                                      Get.to(() => const SettingsScreen());
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
-                                      // Get.to(SettingsScreen());
+                                      // Get.to(() => SettingsScreen());
                                       AuthenticationRepository.instance
                                           .logout(context);
                                     }

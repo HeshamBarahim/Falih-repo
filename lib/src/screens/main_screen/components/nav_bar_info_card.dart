@@ -17,54 +17,56 @@ class NavBarInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SizedBox(
-        height: 70.0,
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Obx(
-              () => ClipOval(
-                child: userController.profileImageUrl.value != null
-                    ? CachedNetworkImage(
-                        key: ValueKey(userController.profileImageUrl.value),
-                        imageUrl: userController.profileImageUrl.value!,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
-                        width: SizeConfig.screenWidth! * 0.20,
-                      )
-                    : Image.asset(
-                        Images.test,
-                        fit: BoxFit.cover,
-                        width: SizeConfig.screenWidth! * 0.20,
-                      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Obx(
+            () => ClipOval(
+              child: userController.profileImageUrl.value.isNotEmpty
+                  ? CachedNetworkImage(
+                      key: ValueKey(userController.profileImageUrl.value),
+                      imageUrl: userController.profileImageUrl.value!,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      fit: BoxFit.cover,
+                      width: SizeConfig.screenWidth! * 0.20,
+                      height: SizeConfig.screenWidth! * 0.20,
+                    )
+                  : Image.asset(
+                      Images.test,
+                      fit: BoxFit.cover,
+                      width: SizeConfig.screenWidth! * 0.20,
+                    ),
+            ),
+          ),
+          SizedBox(width: SizeConfig.screenWidth! * 0.02),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                userController.user.value?.fullName.capitalize ?? "user",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.screenHeight! * 0.019,
+                ),
               ),
-            ),
-            SizedBox(width: SizeConfig.screenWidth! * 0.02),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  userController.user.value?.fullName.capitalize ?? "user",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: SizeConfig.screenHeight! * 0.019,
-                  ),
+              Text(
+                userController.user.value?.schoolName.capitalize ?? "",
+                // userController.user.value?.schoolName ?? "user",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: SizeConfig.screenHeight! * 0.014,
                 ),
-                Text(
-                  userController.user.value?.schoolName.capitalize ?? "",
-                  // userController.user.value?.schoolName ?? "user",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: SizeConfig.screenHeight! * 0.014,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ));
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

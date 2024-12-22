@@ -19,7 +19,7 @@ class LeaderBoardScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Obx(
       () => controller.isLoading.value
-          ? const Expanded(child: Center(child: CircularProgressIndicator()))
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
                 TopLeaderboardSection(),

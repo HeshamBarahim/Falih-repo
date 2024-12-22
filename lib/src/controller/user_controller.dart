@@ -1,5 +1,6 @@
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
@@ -13,6 +14,7 @@ class UserController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     user.value = await UserRepository.instance.getUserDetails();
+    getProfileImage();
   }
 
   void setUser(UserModel userData) {
@@ -21,6 +23,17 @@ class UserController extends GetxController {
 
   void setProfileImageUrl(String url) {
     profileImageUrl.value = url;
+  }
+
+  void getProfileImage() async {
+    try {
+      profileImageUrl.value = await FirebaseStorage.instance
+          .refFromURL('gs://falih-1.firebasestorage.app')
+          .child('user_profile_images/${user.value?.id}.jpg')
+          .getDownloadURL();
+    } catch (e) {
+      print("No image fetched");
+    }
   }
 
   UserModel? get currentUser => user.value;

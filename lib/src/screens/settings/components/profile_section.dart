@@ -23,7 +23,7 @@ class ProfileSection extends StatelessWidget {
               radius: SizeConfig.screenWidth! * 0.12,
               backgroundColor: Colors.grey[200],
               child: Obx(() {
-                if (userController.profileImageUrl.isEmpty) {
+                if (userController.profileImageUrl.value.isEmpty) {
                   return ClipOval(
                     child: Image.asset(Images.test),
                   );

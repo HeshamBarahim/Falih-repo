@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/leaderboard_controller.dart';
-import '../../../controller/user_controller.dart';
 
 class TopLeaderboardSection extends StatelessWidget {
   TopLeaderboardSection({
@@ -24,7 +23,6 @@ class TopLeaderboardSection extends StatelessWidget {
       child: Row(
         children: topUserOrder.map((index) {
           final user = leaderboardController.usersList.value[index];
-          final UserController userController = UserController.instance;
 
           bool isMiddleUser = index == 0;
           bool isSecondUser = index == 1;
@@ -112,7 +110,9 @@ class TopLeaderboardSection extends StatelessWidget {
                               ? screenWidth * 0.1
                               : screenWidth * 0.085,
                           backgroundImage: NetworkImage(
-                              userController.profileImageUrl.value),
+                              leaderboardController.topUsersProfile[
+                                  user.id]! // Resolves to the download URL
+                              ),
                           onBackgroundImageError: (_, __) =>
                               const AssetImage('assets/images/placeholder.png'),
                         ),

@@ -39,37 +39,12 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getProfileImage();
     fullName.text = userController.user.value!.fullName;
     schoolName.text = userController.user.value!.schoolName;
     phoneNo.text = userController.user.value!.phoneNo;
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
     selectedGrade.value = userController.user.value!.selectedGrade;
     selectedGender.value = userController.user.value!.selectedGender;
-  }
-
-  void getProfileImage() async {
-    try {
-      profileImgUrl.value = await FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$userId.png')
-          .getDownloadURL();
-
-      // Update UserController
-      userController.setProfileImageUrl(profileImgUrl.value!);
-    } catch (e) {
-      try {
-        profileImgUrl.value = await FirebaseStorage.instance
-            .refFromURL('gs://falih-1.firebasestorage.app')
-            .child('user_profile_images/$userId.jpg')
-            .getDownloadURL();
-
-        // Update UserController
-        userController.setProfileImageUrl(profileImgUrl.value!);
-      } catch (error) {
-        profileImgUrl.value = null;
-      }
-    }
   }
 
   saveImage() async {

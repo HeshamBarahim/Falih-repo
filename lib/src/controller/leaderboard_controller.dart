@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 import '../models/user_model.dart';
@@ -10,6 +11,7 @@ class LeaderboardController extends GetxController {
   RxList<UserModel> usersList = <UserModel>[].obs;
   final _db = FirebaseFirestore.instance;
   Map<String, int> userPoints = <String, int>{}.obs;
+  Map<String, String> topUsersProfile = <String, String>{}.obs;
 
   @override
   Future<void> onInit() async {
@@ -22,6 +24,7 @@ class LeaderboardController extends GetxController {
       int pointsB = userPoints[b.id] ?? 0;
       return pointsB.compareTo(pointsA); // Sort in descending order
     });
+    await fetchProfileImages();
     isLoading.value = false;
   }
 
@@ -81,76 +84,23 @@ class LeaderboardController extends GetxController {
 
       userPoints[userId] = (userPoints[userId] ?? 0) + pointsEarned;
     }
-    print(userPoints);
     return userPoints;
   }
-}
 
-// final List<Map<String, dynamic>> usersList = [
-//   {
-//     "name": "Hisham",
-//     "points": 1847,
-//     "image": "assets/images/yousif.png",
-//     "rank": 2
-//   },
-//   {
-//     "name": "Yusif",
-//     "points": 2430,
-//     "image": "assets/images/yousif.png",
-//     "rank": 1,
-//   },
-//   {
-//     "name": "Sameer",
-//     "points": 1674,
-//     "image": "assets/images/yousif.png",
-//     "rank": 3
-//   },
-//   {
-//     "name": "Sebastian",
-//     "points": 1124,
-//     "image": "assets/images/yousif.png",
-//     "rank": 4
-//   },
-//   {
-//     "name": "You",
-//     "points": 875,
-//     "image": "assets/images/yousif.png",
-//     "rank": 5
-//   },
-//   {
-//     "name": "Natalie",
-//     "points": 774,
-//     "image": "assets/images/yousif.png",
-//     "rank": 6
-//   },
-//   {
-//     "name": "Serenity",
-//     "points": 723,
-//     "image": "assets/images/yousif.png",
-//     "rank": 7
-//   },
-//   {
-//     "name": "Hannah",
-//     "points": 559,
-//     "image": "assets/images/yousif.png",
-//     "rank": 8
-//   },
-//   {
-//     "name": "Mona",
-//     "points": 550,
-//     "image": "assets/images/yousif.png",
-//     "rank": 9
-//   },
-//   {
-//     "name": "Fatima",
-//     "points": 490,
-//     "image": "assets/images/yousif.png",
-//     "rank": 10
-//   },
-//   {
-//     "name": "Lena",
-//     "points": 320,
-//     "image": "assets/images/yousif.png",
-//     "rank": 11
-//   },
-// ];
+  Future<void> fetchProfileImages() async {
+    for (var user in usersList.getRange(0, 3)) {
+      try {
+        String url = await FirebaseStorage.instance
+            .refFromURL('gs://falih-1.firebasestorage.app')
+            .child('user_profile_images/${user.id}.jpg')
+            .getDownloadURL();
+        topUsersProfile[user.id ?? ""] = url; // Store URL in the map
+      } catch (e) {
+        // Handle errors (e.g., missing image)
+        print("No Image because: ${e.toString()}");
+        topUsersProfile[user.id ?? ""] =
+            ''; // Fallback to a default or empty URL
+      }
+    }
+  }
+}
