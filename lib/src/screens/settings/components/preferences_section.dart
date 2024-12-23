@@ -44,10 +44,8 @@ class PreferencesSection extends StatelessWidget {
                 settingsController.toggleDarkMode(val);
                 if (val) {
                   Get.changeTheme(ThemeData.dark());
-                  print('dark on');
                 } else {
                   Get.changeTheme(ThemeData.light());
-                  print('dark off');
                 }
               },
             ),
@@ -59,7 +57,7 @@ class PreferencesSection extends StatelessWidget {
           trailing: Switch(
             activeTrackColor: iconColor_2,
             activeColor: Colors.white,
-            inactiveTrackColor: Color(0xFFBBA3C2),
+            inactiveTrackColor: const Color(0xFFBBA3C2),
             inactiveThumbColor: Colors.white,
             value: false,
             // Notifications toggle Button Function
@@ -101,28 +99,6 @@ class PreferencesSection extends StatelessWidget {
                     ),
                   );
                 });
-            // Get.dialog(AlertDialog(
-            //   title: Text(S.of(context).language),
-            //   content: Column(
-            //     mainAxisSize: MainAxisSize.min,
-            //     children: [
-            //       ListTile(
-            //         title: const Text('English'),
-            //         onTap: () {
-            //           settingsController.updateLanguage('en');
-            //           Get.back(); // Close the dialog
-            //         },
-            //       ),
-            //       ListTile(
-            //         title: const Text('العربية'),
-            //         onTap: () {
-            //           settingsController.updateLanguage('ar');
-            //           Get.back(); // Close the dialog
-            //         },
-            //       ),
-            //     ],
-            //   ),
-            // ));
           },
         ),
       ],

@@ -19,6 +19,15 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final closeButton = S.of(context).close;
+    //  Current language code
+    final locale = Localizations.localeOf(context).languageCode;
+    // Check if the language is Arabic
+    final isArabic = locale == 'ar';
+    // Choose the file based on the language
+    final privacyFile =
+        isArabic ? 'privacy_policy_ar.md' : 'privacy_policy_en.md';
+    final termsFile =
+        isArabic ? 'terms_conditions_ar.md' : 'terms_conditions_en.md';
     SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -80,7 +89,7 @@ class SettingsScreen extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return MdDialogs(
-                        mdFileName: 'privacy_policy.md',
+                        mdFileName: privacyFile,
                         buttonText: closeButton,
                       );
                     });
@@ -91,7 +100,7 @@ class SettingsScreen extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return MdDialogs(
-                        mdFileName: 'terms_conditions.md',
+                        mdFileName: termsFile,
                         buttonText: closeButton,
                       );
                     });
