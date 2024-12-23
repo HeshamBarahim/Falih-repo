@@ -13,6 +13,7 @@ class SignUpController extends GetxController {
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   // TextField Controllers to get data from TextFields
+  final profile = TextEditingController();
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
@@ -31,7 +32,7 @@ class SignUpController extends GetxController {
 
   /// Register New User using ither PhoneEmail and password
   Future<void> createUser(BuildContext context) async {
-    loadingDialogController.openLoadingDialog(context);
+    loadingDialogController.showLoadingDialog(context);
     try {
       isLoading.value = true;
       if (!signupFormKey.currentState!.validate()) {

@@ -32,7 +32,7 @@ class LoginController extends GetxController {
         isLoading.value = false;
         return;
       }
-      loadingDialogController.openLoadingDialog(context);
+      loadingDialogController.showLoadingDialog(context);
 
       final auth = AuthenticationRepository.instance;
       await auth.loginWithEmailAndPassword(fakeEmail, password.text.trim());

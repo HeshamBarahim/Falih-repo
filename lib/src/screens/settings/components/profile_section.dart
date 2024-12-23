@@ -6,12 +6,15 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/profile_controller.dart';
+
 class ProfileSection extends StatelessWidget {
   ProfileSection({
     super.key,
   });
 
   final UserController userController = Get.find<UserController>();
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +22,36 @@ class ProfileSection extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          CircleAvatar(
-              radius: SizeConfig.screenWidth! * 0.12,
-              backgroundColor: Colors.grey[200],
-              child: Obx(() {
-                if (userController.profileImageUrl.isEmpty) {
-                  return ClipOval(
-                    child: Image.asset(Images.test),
-                  );
-                }
-                return ClipOval(
-                    child: CachedNetworkImage(
-                  imageUrl: userController.profileImageUrl.value,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.cover,
-                  width: SizeConfig.screenWidth! * 0.282,
-                  height: SizeConfig.screenWidth! * 0.282,
-                ));
-              })),
+          GetBuilder<ProfileController>(
+            init: ProfileController(),
+            builder: (controller) => ClipOval(
+              child: controller.isProfileImgLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: SizeConfig.screenWidth! * 0.008,
+                        strokeAlign: SizeConfig.screenWidth! * 0.003,
+                      ),
+                    )
+                  : controller.profileImgUrl != null
+                      ? CachedNetworkImage(
+                          key: ValueKey(controller.profileImgUrl),
+                          imageUrl: controller.profileImgUrl!,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          fit: BoxFit.cover,
+                          width: SizeConfig.screenWidth! * 0.282,
+                          height: SizeConfig.screenWidth! * 0.282,
+                        )
+                      : Image.asset(
+                          Images.test,
+                          fit: BoxFit.cover,
+                          width: SizeConfig.screenWidth! * 0.282,
+                          height: SizeConfig.screenWidth! * 0.282,
+                        ),
+            ),
+          ),
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
             userController.user.value?.fullName ?? "",
