@@ -46,8 +46,7 @@ class ProfileController extends GetxController {
   bool isProfileImgLoading = true;
 
   @override
-  void onInit() {
-    super.onInit();
+  void onInit() async {
     // profileImgUrl.text = userController.user.value!.profileImgUrl;
     fullName.text = userController.user.value!.fullName;
     schoolName.text = userController.user.value!.schoolName;
@@ -57,8 +56,10 @@ class ProfileController extends GetxController {
     selectedGender.value = userController.user.value!.selectedGender;
     getProfileImage();
 
-    // getProfileImage();
+    super.onInit();
   }
+
+  // Future<void> getVariables() async {}
 
   ImagePickerDialog(BuildContext context) {
     showDialog(

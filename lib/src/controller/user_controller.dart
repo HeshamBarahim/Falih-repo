@@ -12,9 +12,9 @@ class UserController extends GetxController {
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
-    super.onInit();
     user.value = await UserRepository.instance.getUserDetails();
     // getProfileImage();
+    super.onInit();
   }
 
   void setUser(UserModel userData) {
