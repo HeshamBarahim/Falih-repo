@@ -42,6 +42,7 @@ class ProfileController extends GetxController {
   String? profileImgUrl;
 
   String userId = FirebaseAuth.instance.currentUser!.uid;
+
   bool isProfileImgLoading = true;
 
   @override
@@ -145,6 +146,12 @@ class ProfileController extends GetxController {
 
       // Retrieve the download URL
       profileImgUrl = await storageRef.getDownloadURL();
+
+      // Add Image Url To FireBase
+      // await addImageProfile(
+      //   userProfileImgUrl: 'user_profile_images/$userId',
+      // );
+
       loadingDialogController.closeLoadingDialog(Get.context!);
 
       update();
@@ -158,14 +165,14 @@ class ProfileController extends GetxController {
   getProfileImage() async {
     try {
       isProfileImgLoading = true;
-
       update();
+
       profileImgUrl = await FirebaseStorage.instance
           .refFromURL('gs://falih-1.firebasestorage.app')
           .child('user_profile_images/$userId')
           .getDownloadURL();
-      isProfileImgLoading = false;
 
+      isProfileImgLoading = false;
       update();
     } catch (e) {
       print(e);

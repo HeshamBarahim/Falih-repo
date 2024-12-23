@@ -37,7 +37,7 @@ class SignUpController extends GetxController {
       isLoading.value = true;
       if (!signupFormKey.currentState!.validate()) {
         isLoading.value = false;
-        loadingDialogController.closeLoadingDialog(context);
+        loadingDialogController.closeLoadingDialog(Get.context!);
         return;
       }
 
@@ -66,9 +66,9 @@ class SignUpController extends GetxController {
       await auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
       await UserRepository.instance.createUser(user);
       auth.setInitialScreen(auth.firebaseUser);
-      loadingDialogController.closeLoadingDialog(context);
+      loadingDialogController.closeLoadingDialog(Get.context!);
     } catch (e) {
-      loadingDialogController.closeLoadingDialog(context);
+      loadingDialogController.closeLoadingDialog(Get.context!);
       isLoading.value = false;
       Get.snackbar("Error", e.toString(),
           snackPosition: SnackPosition.BOTTOM,

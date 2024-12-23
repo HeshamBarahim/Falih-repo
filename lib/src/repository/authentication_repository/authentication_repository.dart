@@ -121,17 +121,17 @@ class AuthenticationRepository extends GetxController {
     await Future.delayed(const Duration(seconds: 1), () async {
       try {
         await FirebaseAuth.instance.signOut();
-        loadingDialogController.closeLoadingDialog(context);
+        loadingDialogController.closeLoadingDialog(Get.context!);
 
         Get.offAll(() => Login());
       } on FirebaseAuthException catch (e) {
-        loadingDialogController.closeLoadingDialog(context);
+        loadingDialogController.closeLoadingDialog(Get.context!);
         throw e.message!;
       } on FormatException catch (e) {
-        loadingDialogController.closeLoadingDialog(context);
+        loadingDialogController.closeLoadingDialog(Get.context!);
         throw e.message;
       } catch (e) {
-        loadingDialogController.closeLoadingDialog(context);
+        loadingDialogController.closeLoadingDialog(Get.context!);
         throw 'Unable to logout. Try again.';
       }
     });
