@@ -21,28 +21,16 @@ import '../../config/const.dart';
 import '../../config/sizes.dart';
 import '../../controller/loading_dialog_controller.dart';
 
-class EditProfileScreen extends StatefulWidget {
+class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
-  @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends State<EditProfileScreen> {
   final UserController userController = Get.put(UserController());
 
   final ProfileController profileController = Get.put(ProfileController());
 
-  final LoadingDialogController loadingDialogController =
-      Get.put(LoadingDialogController());
+  // final LoadingDialogController
 
   // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   getProfileImage();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

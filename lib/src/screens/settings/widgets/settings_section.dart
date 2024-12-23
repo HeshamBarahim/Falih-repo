@@ -38,7 +38,7 @@ class SettingsSection extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: SizeConfig.screenHeight! * 0.01185),
+        SizedBox(height: SizeConfig.screenHeight! * 0.002),
         Column(children: tiles),
       ],
     );

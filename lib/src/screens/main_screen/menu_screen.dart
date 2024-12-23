@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../../controller/user_controller.dart';
 import '../notification/notification_page.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
@@ -27,11 +26,9 @@ class _MenuScreenState extends State<MenuScreen>
     with SingleTickerProviderStateMixin {
   DateTime? lastBackPressTime;
 
-  // final BottomNavBarController bottomNavBarController =
-  //     BottomNavBarController();
+  final BottomNavBarController bottomNavBarController =
+      BottomNavBarController();
   final NavBarController navBarController = Get.put(NavBarController());
-
-  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -156,14 +153,17 @@ class _MenuScreenState extends State<MenuScreen>
                                     SizedBox(
                                         width: SizeConfig.screenWidth! * 0.12),
                                     Center(
-                                      child: Text(
-                                        controller.screenTitle[
-                                            controller.selectedIndex],
-                                        style: TextStyle(
-                                          color: AppColors.mainColor,
-                                          fontSize:
-                                              SizeConfig.screenHeight! * 0.032,
-                                          fontWeight: FontWeight.bold,
+                                      child: Obx(
+                                        () => Text(
+                                          bottomNavBarController.screenTitle[
+                                              bottomNavBarController
+                                                  .selectedIndex.value],
+                                          style: TextStyle(
+                                            color: AppColors.mainColor,
+                                            fontSize: SizeConfig.screenHeight! *
+                                                0.032,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -185,7 +185,8 @@ class _MenuScreenState extends State<MenuScreen>
                           Padding(
                             padding: EdgeInsets.only(
                                 top: SizeConfig.screenHeight! * 0.12),
-                            child: controller.screens[controller.selectedIndex],
+                            child: Obx(() => bottomNavBarController.screens[
+                                bottomNavBarController.selectedIndex.value]),
                           ),
                         ],
                       ),
@@ -234,80 +235,84 @@ class _MenuScreenState extends State<MenuScreen>
                         ),
                       ],
                     ),
-                    child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(SizeConfig.screenWidth! * 0.07),
-                      child: NavigationBarTheme(
-                        data: NavigationBarThemeData(
-                          indicatorColor: AppColors.choicesColor,
-                          backgroundColor: AppColors.moreLightenMainColor,
-                          labelTextStyle:
-                              MaterialStateProperty.resolveWith<TextStyle>(
-                            (states) {
-                              if (states.contains(MaterialState.selected)) {
+                    child: Obx(
+                      () => ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            SizeConfig.screenWidth! * 0.07),
+                        child: NavigationBarTheme(
+                          data: NavigationBarThemeData(
+                            indicatorColor: AppColors.choicesColor,
+                            backgroundColor: AppColors.moreLightenMainColor,
+                            labelTextStyle:
+                                MaterialStateProperty.resolveWith<TextStyle>(
+                              (states) {
+                                if (states.contains(MaterialState.selected)) {
+                                  return TextStyle(
+                                    fontSize: SizeConfig.screenWidth! *
+                                        0.029, // Font size for selected labels
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors
+                                        .mainColor, // Selected label color
+                                  );
+                                }
                                 return TextStyle(
-                                  fontSize: SizeConfig.screenWidth! *
-                                      0.029, // Font size for selected labels
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors
-                                      .mainColor, // Selected label color
+                                  fontSize:
+                                      0, // Font size for unselected labels
+                                  color: const Color(
+                                      0xFFD2A8DF), // Unselected label color
                                 );
-                              }
-                              return TextStyle(
-                                fontSize: 0, // Font size for unselected labels
-                                color: const Color(
-                                    0xFFD2A8DF), // Unselected label color
-                              );
-                            },
+                              },
+                            ),
                           ),
-                        ),
-                        child: NavigationBar(
-                          elevation: 0,
-                          selectedIndex: controller.selectedIndex,
-                          onDestinationSelected: (index) {
-                            controller.changeCurrentPage(index);
-                          },
-                          destinations: [
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.menu_book,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
+                          child: NavigationBar(
+                            elevation: 0,
+                            selectedIndex:
+                                bottomNavBarController.selectedIndex.value,
+                            onDestinationSelected: (index) =>
+                                bottomNavBarController.selectedIndex.value =
+                                    index,
+                            destinations: [
+                              NavigationDestination(
+                                selectedIcon: Icon(
+                                  Icons.menu_book,
+                                  color: AppColors.mainColor,
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                icon: Icon(
+                                  Icons.menu_book_outlined,
+                                  color: const Color(0xFFD2A8DF),
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                label: S.of(context).subjects,
                               ),
-                              icon: Icon(
-                                Icons.menu_book_outlined,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
+                              NavigationDestination(
+                                selectedIcon: Icon(
+                                  Icons.home,
+                                  color: AppColors.mainColor,
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                icon: Icon(
+                                  Icons.home,
+                                  color: const Color(0xFFD2A8DF),
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                label: S.of(context).home,
                               ),
-                              label: S.of(context).subjects,
-                            ),
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.home,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
+                              NavigationDestination(
+                                selectedIcon: Icon(
+                                  Icons.leaderboard_outlined,
+                                  color: AppColors.mainColor,
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                icon: Icon(
+                                  Icons.leaderboard_outlined,
+                                  color: const Color(0xFFD2A8DF),
+                                  size: SizeConfig.screenHeight! * 0.04,
+                                ),
+                                label: S.of(context).leaderBoard,
                               ),
-                              icon: Icon(
-                                Icons.home,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              label: S.of(context).home,
-                            ),
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.leaderboard_outlined,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              icon: Icon(
-                                Icons.leaderboard_outlined,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              label: S.of(context).leaderBoard,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

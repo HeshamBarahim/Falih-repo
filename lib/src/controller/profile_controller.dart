@@ -132,7 +132,7 @@ class ProfileController extends GetxController {
     }
 
     try {
-      loadingDialogController.showLoadingDialog(context);
+      loadingDialogController.showLoadingDialog(Get.context!);
       // Generate a unique filename using user ID and timestamp
       // Reference to Firebase Storage
       // final storageRef2 = FirebaseStorage.instance.refFromURL();
@@ -145,7 +145,7 @@ class ProfileController extends GetxController {
 
       // Retrieve the download URL
       profileImgUrl = await storageRef.getDownloadURL();
-      loadingDialogController.closeLoadingDialog(context);
+      loadingDialogController.closeLoadingDialog(Get.context!);
 
       update();
 
