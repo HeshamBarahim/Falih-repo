@@ -64,7 +64,7 @@ class AccountSection extends StatelessWidget {
           ],
         ),
 
-        SizedBox(height: SizeConfig.screenHeight! * 0.024),
+        SizedBox(height: SizeConfig.screenHeight! * 0.015),
 
         /// Logout Button
         SettingsTile(

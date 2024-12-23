@@ -44,65 +44,70 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.04),
+        padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.screenWidth! * 0.04,
+            vertical: SizeConfig.screenHeight! * 0.026),
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: secondaryBackgroundColor_2,
         ),
-        child: Column(
-          children: [
-            // Profile Section
-            SizedBox(height: SizeConfig.screenHeight! * 0.095),
-            ProfileSection(),
-            SizedBox(height: SizeConfig.screenHeight! * 0.026),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Profile Section
+              SizedBox(height: SizeConfig.screenHeight! * 0.095),
+              ProfileSection(),
+              SizedBox(height: SizeConfig.screenHeight! * 0.026),
 
-            /// Preferences Section
-            PreferencesSection(
-              // Dark Mode toggle Button Function
-              // Toggle the theme using the controller
+              /// Preferences Section
+              PreferencesSection(
+                // Dark Mode toggle Button Function
+                // Toggle the theme using the controller
 
-              onChangeDarkModeFunction: (val) {},
-              // Notifications toggle Button Function
-              onChangeNotificationsFunction: (val) {},
-              // Language Button Function
-              onTapLanguageFunction: () {},
-            ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.004),
+                onChangeDarkModeFunction: (val) {},
+                // Notifications toggle Button Function
+                onChangeNotificationsFunction: (val) {},
+                // Language Button Function
+                onTapLanguageFunction: () {},
+              ),
+              SizedBox(height: SizeConfig.screenHeight! * 0.004),
 
-            /// Account Section
-            AccountSection(
-              // About Button Function
-              onTapEditProfileFunction: () {
-                Get.to(() => EditProfileScreen());
-              },
-              // Privacy Button Function
-              onTapPrivacyFunction: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return MdDialogs(
-                        mdFileName: 'privacy_policy.md',
-                        buttonText: closeButton,
-                      );
-                    });
-              },
-              // Terms & Conditions Button Function
-              onTapTerms_ConditionsFunction: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return MdDialogs(
-                        mdFileName: 'terms_conditions.md',
-                        buttonText: closeButton,
-                      );
-                    });
-              },
+              /// Account Section
+              AccountSection(
+                // About Button Function
+                onTapEditProfileFunction: () {
+                  Get.to(() => EditProfileScreen());
+                },
+                // Privacy Button Function
+                onTapPrivacyFunction: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return MdDialogs(
+                          mdFileName: 'privacy_policy.md',
+                          buttonText: closeButton,
+                        );
+                      });
+                },
+                // Terms & Conditions Button Function
+                onTapTerms_ConditionsFunction: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return MdDialogs(
+                          mdFileName: 'terms_conditions.md',
+                          buttonText: closeButton,
+                        );
+                      });
+                },
 
-              /// Logout Button
-              onTapLogoutFunction: () {
-                AuthenticationRepository.instance.logout(context);
-              },
-            ),
-          ],
+                /// Logout Button
+                onTapLogoutFunction: () {
+                  AuthenticationRepository.instance.logout(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
