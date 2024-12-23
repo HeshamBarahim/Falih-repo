@@ -28,17 +28,18 @@ class AccountSection extends StatelessWidget {
         SettingsSection(
           title: S.of(context).account,
           tiles: [
+            // Edit profile
             SettingsTile(
-              icon: Icons.info,
+              icon: Icons.person,
               title: S.of(context).edit_profile,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
-              // About Button Function
               onTap: onTapEditProfileFunction,
             ),
+            // Privacy
             SettingsTile(
               icon: Icons.privacy_tip,
               title: S.of(context).privacy,
@@ -47,18 +48,17 @@ class AccountSection extends StatelessWidget {
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
-              // Privacy Button Function
               onTap: onTapPrivacyFunction,
             ),
+            // Terms & Conditions
             SettingsTile(
-              icon: Icons.add_to_queue_outlined,
-              title: S.of(context).subscription_packages,
+              icon: Icons.info,
+              title: S.of(context).terms_conditions,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
-              // Terms & Conditions Button Function
               onTap: onTapTerms_ConditionsFunction,
             ),
           ],

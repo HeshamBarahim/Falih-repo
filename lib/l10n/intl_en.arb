@@ -549,6 +549,14 @@
     "@back": {
       "description": ""
     },
-    "back":"Back"
+    "back":"Back",
+    "@close": {
+      "description": ""
+    },
+    "close":"Close",
+    "@terms_conditions": {
+      "description": ""
+    },
+    "terms_conditions":"Terms && Conditions"
 
 }

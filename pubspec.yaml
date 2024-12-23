@@ -59,6 +59,7 @@ dependencies:
   rive: null
   smooth_page_indicator: null
   cached_network_image:
+  flutter_markdown: ^0.7.4+3
 
   ## -- FIREBASE PACKAGES
   firebase_auth: null
@@ -95,6 +96,7 @@ flutter:
     - assets/subjects_icons/
     - assets/csv_files/
     - assets/RiveAssets/
+    - assets/md_files/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

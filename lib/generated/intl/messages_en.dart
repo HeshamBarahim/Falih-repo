@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_details":
             MessageLookupByLibrary.simpleMessage("Checkout Details"),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compete_shine":
             MessageLookupByLibrary.simpleMessage("Compete and Shine"),
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
@@ -187,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("Subscription packages"),
+        "terms_conditions":
+            MessageLookupByLibrary.simpleMessage("Terms && Conditions"),
         "time_will_counted": MessageLookupByLibrary.simpleMessage(
             "Time will be counted during the exam"),
         "times": MessageLookupByLibrary.simpleMessage("times"),

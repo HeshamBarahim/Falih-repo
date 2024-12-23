@@ -2,6 +2,7 @@ import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/screens/md_dialogs/md_dialogs.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final closeButton = S.of(context).close;
     SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -76,9 +78,27 @@ class SettingsScreen extends StatelessWidget {
                 Get.to(() => EditProfileScreen());
               },
               // Privacy Button Function
-              onTapPrivacyFunction: () {},
+              onTapPrivacyFunction: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return MdDialogs(
+                        mdFileName: 'privacy_policy.md',
+                        buttonText: closeButton,
+                      );
+                    });
+              },
               // Terms & Conditions Button Function
-              onTapTerms_ConditionsFunction: () {},
+              onTapTerms_ConditionsFunction: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return MdDialogs(
+                        mdFileName: 'terms_conditions.md',
+                        buttonText: closeButton,
+                      );
+                    });
+              },
 
               /// Logout Button
               onTapLogoutFunction: () {
