@@ -11,14 +11,19 @@ import 'package:path/path.dart' as path;
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
 import '../screens/main_screen/menu_screen.dart';
+import 'loading_dialog_controller.dart';
 
 class ProfileController extends GetxController {
   final UserController userController = Get.put(UserController());
   final showPassword = false.obs;
   // bool isLoadingImg = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final LoadingDialogController loadingDialogController =
+      LoadingDialogController();
 
   // TextField Controllers to get data from TextFields
+
+  // final profileImgUrl = Rxn<String>();
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
@@ -31,24 +36,85 @@ class ProfileController extends GetxController {
   var isSavingData = false.obs;
 
   int imageType = 0;
+
   File? file;
-  var profileImgUrl = Rxn<String>();
-  String? fileExtension;
+
+  String? profileImgUrl;
+
   String userId = FirebaseAuth.instance.currentUser!.uid;
+  bool isProfileImgLoading = true;
 
   @override
   void onInit() {
     super.onInit();
+    // profileImgUrl.text = userController.user.value!.profileImgUrl;
     fullName.text = userController.user.value!.fullName;
     schoolName.text = userController.user.value!.schoolName;
     phoneNo.text = userController.user.value!.phoneNo;
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
     selectedGrade.value = userController.user.value!.selectedGrade;
     selectedGender.value = userController.user.value!.selectedGender;
+    getProfileImage();
+
+    // getProfileImage();
   }
 
-  saveImage() async {
+  ImagePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.image,
+                  size: 25.0,
+                ),
+                title: const Text(
+                  'Upload Image',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  imageType = 0;
+                  saveImage(context);
+                  Navigator.pop(context);
+
+                  update();
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.camera_alt,
+                  size: 25.0,
+                ),
+                title: const Text(
+                  'Take Photo',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  imageType = 1;
+                  saveImage(context);
+                  Navigator.pop(context);
+
+                  update();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  saveImage(BuildContext context) async {
     final XFile? changeProfileImage;
+
     imageType == 0
         ? changeProfileImage =
             await ImagePicker().pickImage(source: ImageSource.gallery)
@@ -56,8 +122,9 @@ class ProfileController extends GetxController {
             await ImagePicker().pickImage(source: ImageSource.camera);
     if (changeProfileImage != null) {
       file = File(changeProfileImage.path);
-      fileExtension = path.extension(changeProfileImage.path);
     }
+    // setState(() {});
+    update();
 
     if (file == null) {
       Get.snackbar("Error", "No image selected");
@@ -65,27 +132,43 @@ class ProfileController extends GetxController {
     }
 
     try {
+      loadingDialogController.showLoadingDialog(context);
       // Generate a unique filename using user ID and timestamp
-      String userId = FirebaseAuth.instance.currentUser!.uid;
-      String fileName = '$userId $fileExtension';
-
       // Reference to Firebase Storage
       // final storageRef2 = FirebaseStorage.instance.refFromURL();
       final storageRef = FirebaseStorage.instance
           .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$fileName');
+          .child('user_profile_images/$userId');
 
       // Upload the file
       await storageRef.putFile(file!);
 
       // Retrieve the download URL
-      profileImgUrl.value = await storageRef.getDownloadURL();
-      // Update UserController
-      userController.setProfileImageUrl(profileImgUrl.value!);
+      profileImgUrl = await storageRef.getDownloadURL();
+      loadingDialogController.closeLoadingDialog(context);
+
+      update();
 
       Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
       Get.snackbar("Error", "Failed to upload image: $e");
+    }
+  }
+
+  getProfileImage() async {
+    try {
+      isProfileImgLoading = true;
+
+      update();
+      profileImgUrl = await FirebaseStorage.instance
+          .refFromURL('gs://falih-1.firebasestorage.app')
+          .child('user_profile_images/$userId')
+          .getDownloadURL();
+      isProfileImgLoading = false;
+
+      update();
+    } catch (e) {
+      print(e);
     }
   }
 

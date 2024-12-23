@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
+import '../../../../generated/l10n.dart';
+import '../../curriculum/curriculum_page.dart';
+import '../../home/home_page.dart';
+import '../../leaderboard/leaderboard_screen.dart';
 import '../data/side_menu_data_list.dart';
 import '../models/rive_asset.dart';
 import '../utils/rive_utils.dart';
@@ -23,7 +27,21 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
   bool bottomNavBarVisability = true;
 
   RiveAsset selectedMenu = sideMenuDataList_1.first;
+
   bool isProcess = false;
+
+  int selectedIndex = 1;
+
+  final screens = [
+    CurriculumPage(),
+    HomePage(),
+    LeaderBoardScreen(),
+  ];
+  final screenTitle = [
+    S.current.subjects,
+    S.current.home,
+    S.current.leaderBoard
+  ];
 
   @override
   void onInit() {
@@ -53,6 +71,11 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
   void dispose() {
     _animationController.dispose();
     super.dispose();
+  }
+
+  void changeCurrentPage(int index) {
+    selectedIndex = index;
+    update();
   }
 
   void onPressriveOnInit(rive.Artboard artboard) {

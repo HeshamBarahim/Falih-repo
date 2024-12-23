@@ -14,12 +14,14 @@ import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:get/get.dart';
 
 import '../../config/sizes.dart';
+import '../../controller/profile_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController controller = Get.put(HomeController());
   final UserController userController = Get.put(UserController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,30 +64,37 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Circular avatar for the photo
-                        CircleAvatar(
-                          radius: SizeConfig.screenWidth! *
-                              0.12, // Adjusting avatar size based on screen width
-                          backgroundColor: Colors.grey[200],
-                          child: Obx(() {
-                            if (userController.profileImageUrl.isEmpty) {
-                              return ClipOval(
-                                child: Image.asset(Images.test),
-                              );
-                            }
-                            return ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl: userController.profileImageUrl.value,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                fit: BoxFit.cover,
-                                width: SizeConfig.screenWidth! *
-                                    0.282, // Adjust image size
-                                height: SizeConfig.screenWidth! * 0.282,
-                              ),
-                            );
-                          }),
+                        GetBuilder<ProfileController>(
+                          init: ProfileController(),
+                          builder: (controller) => ClipOval(
+                            child: controller.isProfileImgLoading
+                                ? Center(
+                                    child: CircularProgressIndicator(
+                                      strokeWidth:
+                                          SizeConfig.screenWidth! * 0.008,
+                                      strokeAlign:
+                                          SizeConfig.screenWidth! * 0.003,
+                                    ),
+                                  )
+                                : controller.profileImgUrl != null
+                                    ? CachedNetworkImage(
+                                        key: ValueKey(controller.profileImgUrl),
+                                        imageUrl: controller.profileImgUrl!,
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        fit: BoxFit.cover,
+                                        width: SizeConfig.screenWidth! * 0.282,
+                                        height: SizeConfig.screenWidth! * 0.282,
+                                      )
+                                    : Image.asset(
+                                        Images.test,
+                                        fit: BoxFit.cover,
+                                        width: SizeConfig.screenWidth! * 0.282,
+                                        height: SizeConfig.screenWidth! * 0.282,
+                                      ),
+                          ),
                         ),
                         SizedBox(
                             width: SizeConfig.screenWidth! *

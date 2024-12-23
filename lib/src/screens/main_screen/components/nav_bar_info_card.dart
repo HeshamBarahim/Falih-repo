@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../config/images.dart';
 import '../../../config/sizes.dart';
+import '../../../controller/profile_controller.dart';
 import '../../../controller/user_controller.dart';
 
 class NavBarInfoCard extends StatelessWidget {
@@ -12,6 +13,7 @@ class NavBarInfoCard extends StatelessWidget {
     super.key,
   });
 
+  final ProfileController profileController = Get.put(ProfileController());
   final UserController userController = Get.find<UserController>();
 
   @override
@@ -22,25 +24,55 @@ class NavBarInfoCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Obx(
-            () => ClipOval(
-              child: userController.profileImageUrl.value.isNotEmpty
-                  ? CachedNetworkImage(
-                      key: ValueKey(userController.profileImageUrl.value),
-                      imageUrl: userController.profileImageUrl.value!,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      fit: BoxFit.cover,
-                      width: SizeConfig.screenWidth! * 0.20,
-                      height: SizeConfig.screenWidth! * 0.20,
+          // Obx(
+          //   () => ClipOval(
+          //     child: profileController.profileImageUrl.value.isNotEmpty
+          //         ? CachedNetworkImage(
+          //             key: ValueKey(profileController.profileImageUrl.value),
+          //             imageUrl: profileController.profileImageUrl.value,
+          //             placeholder: (context, url) =>
+          //                 const CircularProgressIndicator(),
+          //             errorWidget: (context, url, error) =>
+          //                 const Icon(Icons.error),
+          //             fit: BoxFit.cover,
+          //             width: SizeConfig.screenWidth! * 0.20,
+          //             height: SizeConfig.screenWidth! * 0.20,
+          //           )
+          //         : Image.asset(
+          //             Images.test,
+          //             fit: BoxFit.cover,
+          //             width: SizeConfig.screenWidth! * 0.20,
+          //           ),
+          //   ),
+          // ),
+          GetBuilder<ProfileController>(
+            init: ProfileController(),
+            builder: (controller) => ClipOval(
+              child: controller.isProfileImgLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: SizeConfig.screenWidth! * 0.008,
+                        strokeAlign: SizeConfig.screenWidth! * 0.002,
+                      ),
                     )
-                  : Image.asset(
-                      Images.test,
-                      fit: BoxFit.cover,
-                      width: SizeConfig.screenWidth! * 0.20,
-                    ),
+                  : controller.profileImgUrl != null
+                      ? CachedNetworkImage(
+                          key: ValueKey(controller.profileImgUrl),
+                          imageUrl: controller.profileImgUrl!,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          fit: BoxFit.cover,
+                          width: SizeConfig.screenWidth! * 0.212,
+                          height: SizeConfig.screenWidth! * 0.212,
+                        )
+                      : Image.asset(
+                          Images.test,
+                          fit: BoxFit.cover,
+                          width: SizeConfig.screenWidth! * 0.212,
+                          height: SizeConfig.screenWidth! * 0.212,
+                        ),
             ),
           ),
           SizedBox(width: SizeConfig.screenWidth! * 0.02),

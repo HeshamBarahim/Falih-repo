@@ -7,34 +7,34 @@ class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   late var user = Rxn<UserModel>();
-  var profileImageUrl = ''.obs;
+  // var profileImageUrl = ''.obs;
 
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
     user.value = await UserRepository.instance.getUserDetails();
-    getProfileImage();
+    // getProfileImage();
   }
 
   void setUser(UserModel userData) {
     user.value = userData;
   }
 
-  void setProfileImageUrl(String url) {
-    profileImageUrl.value = url;
-  }
+  // void setProfileImageUrl(String url) {
+  //   profileImageUrl.value = url;
+  // }
 
-  void getProfileImage() async {
-    try {
-      profileImageUrl.value = await FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/${user.value?.id}.jpg')
-          .getDownloadURL();
-    } catch (e) {
-      print("No image fetched");
-    }
-  }
+  // void getProfileImage() async {
+  //   try {
+  //     profileImageUrl.value = await FirebaseStorage.instance
+  //         .refFromURL('gs://falih-1.firebasestorage.app')
+  //         .child('user_profile_images/${user.value?.id}')
+  //         .getDownloadURL();
+  //   } catch (e) {
+  //     print("No image fetched");
+  //   }
+  // }
 
   UserModel? get currentUser => user.value;
 

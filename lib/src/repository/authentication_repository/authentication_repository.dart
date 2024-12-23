@@ -117,7 +117,7 @@ class AuthenticationRepository extends GetxController {
 
   // LogoutUser
   Future<void> logout(BuildContext context) async {
-    loadingDialogController.openLoadingDialog(context);
+    loadingDialogController.showLoadingDialog(context);
     await Future.delayed(const Duration(seconds: 1), () async {
       try {
         await FirebaseAuth.instance.signOut();

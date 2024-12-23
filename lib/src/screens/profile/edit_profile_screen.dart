@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
@@ -7,17 +9,39 @@ import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../config/const.dart';
 import '../../config/sizes.dart';
+import '../../controller/loading_dialog_controller.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({super.key});
 
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
   final UserController userController = Get.put(UserController());
+
   final ProfileController profileController = Get.put(ProfileController());
+
+  final LoadingDialogController loadingDialogController =
+      Get.put(LoadingDialogController());
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   getProfileImage();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +59,29 @@ class EditProfileScreen extends StatelessWidget {
                     const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
                     BlendMode.lighten))),
         child: Form(
-            key: profileController.formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(height: MediaQuery.sizeOf(context).height * .10),
-                  Stack(
+          key: profileController.formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(height: MediaQuery.sizeOf(context).height * .10),
+                GetBuilder<ProfileController>(
+                  init: ProfileController(),
+                  builder: (controller) => Stack(
                     children: [
-                      CircleAvatar(
-                        radius: SizeConfig.screenWidth! * 0.141,
-                        backgroundColor: Colors.grey[200],
-                        child: Obx(
-                          () => ClipOval(
-                            child: userController.profileImageUrl.value != null
+                      ClipOval(
+                        child: controller.isProfileImgLoading
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: SizeConfig.screenWidth! * 0.008,
+                                  strokeAlign: SizeConfig.screenWidth! * 0.003,
+                                ),
+                              )
+                            : controller.profileImgUrl != null
                                 ? CachedNetworkImage(
-                                    key: ValueKey(
-                                        userController.profileImageUrl.value),
-                                    imageUrl:
-                                        userController.profileImageUrl.value!,
+                                    key: ValueKey(controller.profileImgUrl),
+                                    imageUrl: controller.profileImgUrl!,
                                     placeholder: (context, url) =>
                                         const CircularProgressIndicator(),
                                     errorWidget: (context, url, error) =>
@@ -69,8 +96,6 @@ class EditProfileScreen extends StatelessWidget {
                                     width: SizeConfig.screenWidth! * 0.282,
                                     height: SizeConfig.screenWidth! * 0.282,
                                   ),
-                          ),
-                        ),
                       ),
                       Positioned(
                         bottom: 0,
@@ -81,7 +106,7 @@ class EditProfileScreen extends StatelessWidget {
                           child: IconButton(
                             splashColor: Colors.black,
                             onPressed: () {
-                              imagePickerDialog(context);
+                              controller.ImagePickerDialog(context);
                             },
                             style: IconButton.styleFrom(
                               backgroundColor: iconColor_2,
@@ -96,75 +121,81 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * .10),
-                  Column(
-                    children: [
-                      CustomTextForm(
-                          hintText: S.of(context).hint_text_username,
-                          prefixIcon: const Icon(Icons.person),
-                          myController: profileController.fullName,
-                          validator: Helper.validatefullName),
-                      CustomTextForm(
-                          hintText: S.of(context).hint_text_School,
-                          prefixIcon: const Icon(Icons.home_work_outlined),
-                          myController: profileController.schoolName,
-                          validator: Helper.validateSchoolName),
-                      CustomDropDownForm(
-                        onChanged: (newValue) {
-                          profileController.selectedGovernorate.value =
-                              newValue;
-                        },
-                        selectedValue:
-                            profileController.selectedGovernorate.value,
-                        hintText: S.of(context).hint_text_Governorate,
-                        prefixIcon: const Icon(Icons.location_pin),
-                        list: [
-                          DropdownMenuItem(
-                              value: "Sana'a",
-                              child: Text(S.of(context).drop_governorate_val1)),
-                          DropdownMenuItem(
-                              value: 'Taiz',
-                              child: Text(S.of(context).drop_governorate_val2)),
-                          DropdownMenuItem(
-                              value: 'Ibb',
-                              child: Text(S.of(context).drop_governorate_val3)),
-                        ],
-                      ),
-                      CustomDropDownForm(
-                        onChanged: (newValue) {
-                          profileController.selectedGrade.value = newValue;
-                        },
-                        selectedValue: profileController.selectedGrade.value,
-                        hintText: S.of(context).hint_text_Grade,
-                        prefixIcon: const Icon(Icons.school),
-                        list: [
-                          DropdownMenuItem(
-                              value: "9",
-                              child: Text(S.of(context).drop_grade_val1)),
-                          DropdownMenuItem(
-                              value: '12',
-                              child: Text(S.of(context).drop_grade_val2)),
-                        ],
-                      ),
-                      CustomDropDownForm(
-                        onChanged: (newValue) {
-                          profileController.selectedGender.value = newValue;
-                        },
-                        selectedValue: profileController.selectedGender.value,
-                        hintText: S.of(context).male,
-                        prefixIcon: const Icon(Icons.person_pin_rounded),
-                        list: [
-                          DropdownMenuItem(
-                              value: "Male", child: Text(S.of(context).male)),
-                          DropdownMenuItem(
-                              value: 'Female',
-                              child: Text(S.of(context).female)),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * .10),
-                  Obx(() => profileController.isSavingData.value == false
+                ),
+                SizedBox(height: MediaQuery.sizeOf(context).height * .10),
+                Column(
+                  children: [
+                    CustomTextForm(
+                        hintText: S.of(context).hint_text_username,
+                        prefixIcon: const Icon(Icons.person),
+                        myController: profileController.fullName,
+                        validator: Helper.validatefullName),
+                    CustomTextForm(
+                        hintText: S.of(context).hint_text_School,
+                        prefixIcon: const Icon(Icons.home_work_outlined),
+                        myController: profileController.schoolName,
+                        validator: Helper.validateSchoolName),
+                    CustomDropDownForm(
+                      onChanged: (newValue) {
+                        profileController.selectedGovernorate.value = newValue;
+                      },
+                      selectedValue:
+                          profileController.selectedGovernorate.value,
+                      hintText: S.of(context).hint_text_Governorate,
+                      prefixIcon: const Icon(Icons.location_pin),
+                      list: [
+                        DropdownMenuItem(
+                            value: "Sana'a",
+                            child: Text(S.of(context).drop_governorate_val1)),
+                        DropdownMenuItem(
+                            value: 'Taiz',
+                            child: Text(S.of(context).drop_governorate_val2)),
+                        DropdownMenuItem(
+                            value: 'Ibb',
+                            child: Text(S.of(context).drop_governorate_val3)),
+                      ],
+                    ),
+                    CustomDropDownForm(
+                      hintText: 'hintText',
+                      prefixIcon: Icon(Icons.abc),
+                      list: [],
+                      onChanged: (val) {},
+                    ),
+                    // CustomDropDownForm(
+                    //   onChanged: (newValue) {
+                    //     profileController.selectedGrade.value = newValue;
+                    //   },
+                    //   selectedValue: profileController.selectedGrade.value,
+                    //   hintText: S.of(context).hint_text_Grade,
+                    //   prefixIcon: const Icon(Icons.school),
+                    //   list: [
+                    //     DropdownMenuItem(
+                    //         value: "9",
+                    //         child: Text(S.of(context).drop_grade_val1)),
+                    //     DropdownMenuItem(
+                    //         value: '12',
+                    //         child: Text(S.of(context).drop_grade_val2)),
+                    //   ],
+                    // ),
+                    CustomDropDownForm(
+                      onChanged: (newValue) {
+                        profileController.selectedGender.value = newValue;
+                      },
+                      selectedValue: profileController.selectedGender.value,
+                      hintText: S.of(context).male,
+                      prefixIcon: const Icon(Icons.person_pin_rounded),
+                      list: [
+                        DropdownMenuItem(
+                            value: "Male", child: Text(S.of(context).male)),
+                        DropdownMenuItem(
+                            value: 'Female', child: Text(S.of(context).female)),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.sizeOf(context).height * .10),
+                Obx(
+                  () => profileController.isSavingData.value == false
                       ? GradientButton(
                           text: S.of(context).update_profile,
                           height: 50,
@@ -178,55 +209,13 @@ class EditProfileScreen extends StatelessWidget {
                         )
                       : const Center(
                           child: CircularProgressIndicator(),
-                        ))
-                ],
-              ),
-            )),
-      ),
-    );
-  }
-
-  void imagePickerDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(
-                  Icons.image,
-                  size: 25.0,
+                        ),
                 ),
-                title: const Text(
-                  'Upload Image',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ),
-                onTap: () {
-                  profileController.saveImage();
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.camera_alt,
-                  size: 25.0,
-                ),
-                title: const Text(
-                  'Take Photo',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ],
+              ],
+            ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
