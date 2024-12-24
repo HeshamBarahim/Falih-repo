@@ -44,9 +44,9 @@ class LoginController extends GetxController {
       UserController.instance.setUser(user);
       // Set the initial screen
       auth.setInitialScreen(auth.firebaseUser);
-      loadingDialogController.closeLoadingDialog(context);
+      loadingDialogController.closeLoadingDialog(Get.context!);
     } catch (e) {
-      loadingDialogController.closeLoadingDialog(context);
+      loadingDialogController.closeLoadingDialog(Get.context!);
 
       isLoading.value = false;
       Helper.errorSnackBar(title: "Oh Snap", message: e.toString());
