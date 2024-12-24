@@ -1,4 +1,5 @@
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

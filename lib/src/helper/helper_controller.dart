@@ -48,6 +48,34 @@ class Helper extends GetxController {
     return null;
   }
 
+  static String? validateGovernorate(value) {
+    if (value == null || value.isEmpty) {
+      return "You should choose a Governorate";
+    }
+    return null;
+  }
+
+  static String? validateGrade(value) {
+    if (value == null || value.isEmpty) {
+      return "You should choose a Grade";
+    }
+    return null;
+  }
+
+  static String? validateDepartment(value) {
+    if (value == null || value.isEmpty) {
+      return "You should choose a Department";
+    }
+    return null;
+  }
+
+  static String? validateGender(value) {
+    if (value == null || value.isEmpty) {
+      return "You should choose a Gender";
+    }
+    return null;
+  }
+
   /* -- ============= SNACK-BARS ================ -- */
 
   static successSnackBar({required title, message}) {

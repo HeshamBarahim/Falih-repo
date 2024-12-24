@@ -44,4 +44,7 @@ class Images {
   static const String community =
       'assets/images/about_us/protect_community.png';
   static const String sucess = 'assets/images/about_us/sucess.png';
+
+  // Falih
+  static const String falih = 'assets/images/falih.png';
 }

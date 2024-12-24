@@ -9,6 +9,21 @@ import 'loading_dialog_controller.dart';
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
+  // Tracks the current page
+  var currentPageIndex = 1.obs;
+
+  void goToNextPage() {
+    if (currentPageIndex.value < 2) {
+      currentPageIndex.value++;
+    }
+  }
+
+  void goToPreviousPage() {
+    if (currentPageIndex.value > 1) {
+      currentPageIndex.value--;
+    }
+  }
+
   final showPassword = false.obs;
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 

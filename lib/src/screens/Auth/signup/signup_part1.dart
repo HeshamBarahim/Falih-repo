@@ -12,11 +12,12 @@ import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 
 import '../../../config/sizes.dart';
 
-class Signup extends StatelessWidget {
-  Signup({super.key});
+class SignupPart1 extends StatelessWidget {
+  SignupPart1({super.key});
 
   String error = '';
-  final SignUpController controller = Get.put(SignUpController());
+  final SignUpController controller =
+      Get.put(SignUpController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,9 @@ class Signup extends StatelessWidget {
                           Container(
                             color: Colors.transparent,
                             child: Image.asset(
-                              Images.logoFalih,
+                              Images.falih,
                               width: SizeConfig.screenWidth! * 0.5,
-                              height: SizeConfig.screenHeight! * 0.16,
+                              height: SizeConfig.screenHeight! * 0.2,
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -105,6 +106,7 @@ class Signup extends StatelessWidget {
                             validator: Helper.validateSchoolName,
                           ),
                           CustomDropDownForm(
+                            validator: Helper.validateGovernorate,
                             onChanged: (newValue) {
                               controller.selectedGovernorate.value = newValue;
                             },
@@ -145,6 +147,7 @@ class Signup extends StatelessWidget {
                             ],
                           ),
                           CustomDropDownForm(
+                            validator: Helper.validateGrade,
                             onChanged: (newValue) {
                               controller.selectedGrade.value = newValue;
                             },
@@ -175,80 +178,20 @@ class Signup extends StatelessWidget {
                               ),
                             ],
                           ),
-                          CustomDropDownForm(
-                            onChanged: (newValue) {
-                              controller.selectedDepartment.value = newValue;
-                            },
-                            selectedValue: controller.selectedDepartment.value,
-                            hintText: S.of(context).hint_text_department,
-                            prefixIcon: Icon(
-                              Icons.home_work_outlined,
-                              size: SizeConfig.screenWidth! * 0.06,
-                            ),
-                            list: [
-                              DropdownMenuItem(
-                                value: "En",
-                                child: Text(
-                                  S.of(context).drop_depatment_val1,
-                                  style: TextStyle(
-                                      fontSize:
-                                          SizeConfig.screenWidth! * 0.035),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'Ar',
-                                child: Text(
-                                  S.of(context).drop_depatment_val2,
-                                  style: TextStyle(
-                                      fontSize:
-                                          SizeConfig.screenWidth! * 0.035),
-                                ),
-                              ),
-                            ],
-                          ),
-                          CustomDropDownForm(
-                            onChanged: (newValue) {
-                              controller.selectedGender.value = newValue;
-                            },
-                            selectedValue: controller.selectedGender.value,
-                            hintText: S.of(context).male,
-                            prefixIcon: Icon(
-                              Icons.home_work_outlined,
-                              size: SizeConfig.screenWidth! * 0.06,
-                            ),
-                            list: [
-                              DropdownMenuItem(
-                                value: "Male",
-                                child: Text(S.of(context).male),
-                              ),
-                              DropdownMenuItem(
-                                value: 'Female',
-                                child: Text(
-                                  S.of(context).female,
-                                  style: TextStyle(
-                                      fontSize:
-                                          SizeConfig.screenWidth! * 0.035),
-                                ),
-                              ),
-                            ],
-                          ),
-                          CustomTextForm(
-                            hintText: S.of(context).hint_text_confirm,
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              size: SizeConfig.screenWidth! * 0.06,
-                            ),
-                            myController: controller.password,
-                            validator: Helper.validatePassword,
-                          ),
                         ],
                       ),
                       SizedBox(height: SizeConfig.screenHeight! * 0.03),
                       Column(
                         children: [
                           NextButton(
+                            // funtion: () {
+                            //   controller.createUser(context);
+                            // },
                             funtion: () {
-                              controller.createUser(context);
+                              if (controller.signupFormKey.currentState!
+                                  .validate()) {
+                                controller.goToNextPage();
+                              }
                             },
                           ),
                           SizedBox(height: SizeConfig.screenHeight! * 0.01),

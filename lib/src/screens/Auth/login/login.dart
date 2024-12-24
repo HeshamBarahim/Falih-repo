@@ -1,6 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/helper/helper_controller.dart';
+import 'package:falih/src/screens/Auth/signup/singup.dart';
 import 'package:flutter/material.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
@@ -8,10 +9,9 @@ import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:get/get.dart';
 import 'package:falih/src/controller/login_controller.dart';
-
 import '../../../config/sizes.dart';
 import '../../../controller/loading_dialog_controller.dart';
-import '../signup/signup.dart';
+import '../signup/signup_part1.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -88,9 +88,9 @@ class Login extends StatelessWidget {
                               Container(
                                 color: Colors.transparent,
                                 child: Image.asset(
-                                  Images.logoFalih,
-                                  width: SizeConfig.screenWidth! * 0.46,
-                                  height: SizeConfig.screenHeight! * 0.18,
+                                  Images.falih,
+                                  width: SizeConfig.screenWidth! * 0.5,
+                                  height: SizeConfig.screenHeight! * 0.2,
                                   fit: BoxFit.contain,
                                 ),
                               ),

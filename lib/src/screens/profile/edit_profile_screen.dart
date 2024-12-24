@@ -124,6 +124,7 @@ class EditProfileScreen extends StatelessWidget {
                         myController: profileController.schoolName,
                         validator: Helper.validateSchoolName),
                     CustomDropDownForm(
+                      validator: Helper.validateGovernorate,
                       onChanged: (newValue) {
                         profileController.selectedGovernorate.value = newValue;
                       },
@@ -144,6 +145,7 @@ class EditProfileScreen extends StatelessWidget {
                       ],
                     ),
                     CustomDropDownForm(
+                      validator: Helper.validateGrade,
                       hintText: 'hintText',
                       prefixIcon: Icon(Icons.abc),
                       list: [],
@@ -166,6 +168,7 @@ class EditProfileScreen extends StatelessWidget {
                     //   ],
                     // ),
                     CustomDropDownForm(
+                      validator: Helper.validateGrade,
                       onChanged: (newValue) {
                         profileController.selectedGender.value = newValue;
                       },

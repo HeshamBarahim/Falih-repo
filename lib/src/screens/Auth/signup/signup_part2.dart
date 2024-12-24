@@ -1,5 +1,9 @@
+import 'package:falih/src/config/const.dart';
+import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
-import 'package:falih/src/screens/Auth/signup/signup.dart';
+import 'package:falih/src/screens/Auth/signup/signup_part1.dart';
+import 'package:falih/src/screens/Auth/signup/singup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
@@ -10,13 +14,13 @@ import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-
 import '../../../config/sizes.dart';
 
 class SignupPart2 extends StatelessWidget {
   SignupPart2({super.key});
 
-  final SignUpController controller = Get.put(SignUpController());
+  final SignUpController controller =
+      Get.put(SignUpController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +46,21 @@ class SignupPart2 extends StatelessWidget {
               vertical: SizeConfig.screenHeight! * 0.02,
             ),
             child: Scaffold(
+              extendBodyBehindAppBar: true,
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                centerTitle: true,
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: SizeConfig.screenWidth! * 0.100,
+                    color: AppColors.mainColor,
+                  ),
+                  onPressed: () {
+                    controller.goToPreviousPage();
+                  },
+                ),
+              ),
               backgroundColor: Colors.transparent,
               body: SingleChildScrollView(
                 child: Column(
@@ -51,7 +70,7 @@ class SignupPart2 extends StatelessWidget {
                     Container(
                       color: Colors.transparent,
                       child: Image.asset(
-                        Images.logoFalih,
+                        Images.falih,
                         width: SizeConfig.screenWidth! * 0.5,
                         height: SizeConfig.screenHeight! * 0.2,
                         fit: BoxFit.contain,
@@ -76,23 +95,58 @@ class SignupPart2 extends StatelessWidget {
                     ),
                     SizedBox(height: SizeConfig.screenHeight! * 0.015),
                     CustomDropDownForm(
+                      validator: Helper.validateDepartment,
                       onChanged: (newValue) {
-                        controller.selectedGovernorate.value = newValue;
+                        controller.selectedDepartment.value = newValue;
                       },
-                      selectedValue: controller.selectedGovernorate.value,
-                      hintText: S.of(context).hint_text_Grade,
+                      selectedValue: controller.selectedDepartment.value,
+                      hintText: S.of(context).hint_text_department,
                       prefixIcon: Icon(
-                        Icons.location_pin,
-                        size: SizeConfig.screenHeight! * 0.03,
+                        Icons.home_work_outlined,
+                        size: SizeConfig.screenWidth! * 0.06,
                       ),
                       list: [
                         DropdownMenuItem(
-                          value: "one",
-                          child: Text(S.of(context).drop_grade_val1),
+                          value: "En",
+                          child: Text(
+                            S.of(context).drop_depatment_val1,
+                            style: TextStyle(
+                                fontSize: SizeConfig.screenWidth! * 0.035),
+                          ),
                         ),
                         DropdownMenuItem(
-                          value: 'Two',
-                          child: Text(S.of(context).drop_grade_val2),
+                          value: 'Ar',
+                          child: Text(
+                            S.of(context).drop_depatment_val2,
+                            style: TextStyle(
+                                fontSize: SizeConfig.screenWidth! * 0.035),
+                          ),
+                        ),
+                      ],
+                    ),
+                    CustomDropDownForm(
+                      validator: Helper.validateGender,
+                      onChanged: (newValue) {
+                        controller.selectedGender.value = newValue;
+                      },
+                      selectedValue: controller.selectedGender.value,
+                      hintText: S.of(context).male,
+                      prefixIcon: Icon(
+                        Icons.home_work_outlined,
+                        size: SizeConfig.screenWidth! * 0.06,
+                      ),
+                      list: [
+                        DropdownMenuItem(
+                          value: "Male",
+                          child: Text(S.of(context).male),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Female',
+                          child: Text(
+                            S.of(context).female,
+                            style: TextStyle(
+                                fontSize: SizeConfig.screenWidth! * 0.035),
+                          ),
                         ),
                       ],
                     ),
@@ -100,46 +154,19 @@ class SignupPart2 extends StatelessWidget {
                       hintText: S.of(context).hint_text_confirm,
                       prefixIcon: Icon(
                         Icons.lock,
-                        size: SizeConfig.screenHeight! * 0.03,
+                        size: SizeConfig.screenWidth! * 0.06,
                       ),
                       myController: controller.password,
-                      validator: (value) {
-                        if (value!.isEmpty) return S.of(context).no_password;
-                        return null;
-                      },
+                      validator: Helper.validatePassword,
                     ),
-                    CustomTextForm(
-                      hintText: S.of(context).hint_text_confirm,
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        size: SizeConfig.screenHeight! * 0.03,
-                      ),
-                      myController: controller.password,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'confirm password cannot be empty';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: SizeConfig.screenHeight! * 0.015),
-                    Obx(() => Row(
-                          children: [
-                            Checkbox(
-                              value: controller.isChecked.value,
-                              onChanged: (bool? value) {
-                                controller.toggleCheckbox(value!);
-                              },
-                            ),
-                            const CustomRichText(),
-                          ],
-                        )),
                     SizedBox(height: SizeConfig.screenHeight! * 0.05),
                     GradientButton(
-                      text: S.of(context).create_account,
+                      text: S.of(context).title_signup,
                       height: SizeConfig.screenHeight! * 0.06,
                       width: double.infinity,
-                      onClick: () {},
+                      onClick: () {
+                        controller.createUser(context);
+                      },
                     ),
                     SizedBox(height: SizeConfig.screenHeight! * 0.03),
                     Row(
