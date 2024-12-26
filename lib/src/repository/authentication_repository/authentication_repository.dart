@@ -9,7 +9,6 @@ import '../../controller/loading_dialog_controller.dart';
 import '../../screens/on_boarding/first_page_boarding.dart';
 import 'exceptions/t_exceptions.dart';
 
-/// -- README(Docs[6]) -- Bindings
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
@@ -17,8 +16,8 @@ class AuthenticationRepository extends GetxController {
   late final Rx<User?> _firebaseUser;
   final _auth = FirebaseAuth.instance;
   final _phoneVerificationId = ''.obs;
-  final userStorage =
-      GetStorage(); // Use this to store data locally (e.g. OnBoarding)
+  // Use this to store data locally
+  final userStorage = GetStorage();
 
   /// Getters
   User? get firebaseUser => _firebaseUser.value;
@@ -69,8 +68,7 @@ class AuthenticationRepository extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      final result =
-          TExceptions.fromCode(e.code); // Throw custom [message] variable
+      final result = TExceptions.fromCode(e.code);
       throw result.message;
     } catch (_) {
       const result = TExceptions();

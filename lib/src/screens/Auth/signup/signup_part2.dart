@@ -4,6 +4,8 @@ import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/Auth/signup/signup_part1.dart';
 import 'package:falih/src/screens/Auth/signup/singup.dart';
+import 'package:falih/src/screens/md_dialogs/md_dialogs.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
@@ -24,6 +26,16 @@ class SignupPart2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final closeButton = S.of(context).close;
+    //  Current language code
+    final locale = Localizations.localeOf(context).languageCode;
+    // Check if the language is Arabic
+    final isArabic = locale == 'ar';
+    // Choose the file based on the language
+    final privacyFile =
+        isArabic ? 'privacy_policy_ar.md' : 'privacy_policy_en.md';
+    final termsFile =
+        isArabic ? 'terms_conditions_ar.md' : 'terms_conditions_en.md';
     SizeConfig().init(context);
     return Stack(
       children: [
@@ -158,6 +170,63 @@ class SignupPart2 extends StatelessWidget {
                       ),
                       myController: controller.password,
                       validator: Helper.validatePassword,
+                    ),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                    Row(
+                      children: [
+                        Obx(() => Checkbox(
+                            value: controller.isChecked.value,
+                            onChanged: (value) =>
+                                controller.toggleCheckbox(value!))),
+                        Expanded(
+                            child: RichText(
+                                text: TextSpan(
+                          text:
+                              "By clicking on ‘Create Account,’ you’re agreeing to the app ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            height: 1.5,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "Terms of Service",
+                              style: TextStyle(
+                                  color: AppColors.warningColor,
+                                  fontWeight: FontWeight.bold),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return MdDialogs(
+                                        mdFileName: termsFile,
+                                        buttonText: closeButton,
+                                      );
+                                    }),
+                            ),
+                            TextSpan(
+                              text: " and ",
+                            ),
+                            TextSpan(
+                              text: "Privacy Policy",
+                              style: TextStyle(
+                                  color: AppColors.warningColor,
+                                  fontWeight: FontWeight.bold),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return MdDialogs(
+                                        mdFileName: privacyFile,
+                                        buttonText: closeButton,
+                                      );
+                                    }),
+                            ),
+                            TextSpan(
+                              text: ".",
+                            ),
+                          ],
+                        )))
+                      ],
                     ),
                     SizedBox(height: SizeConfig.screenHeight! * 0.05),
                     GradientButton(
