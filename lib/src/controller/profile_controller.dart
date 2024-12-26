@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -10,6 +11,7 @@ import 'package:path/path.dart' as path;
 
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
+import '../repository/user_repository/user_repository.dart';
 import '../screens/main_screen/menu_screen.dart';
 import 'loading_dialog_controller.dart';
 
@@ -29,6 +31,8 @@ class ProfileController extends GetxController {
   final phoneNo = TextEditingController();
   final schoolName = TextEditingController();
 
+  var userProfileImgUrl = Rxn<String>();
+
   var selectedGovernorate = Rxn<String>();
   var selectedGrade = Rxn<String>();
   var selectedDepartment = Rxn<String>();
@@ -39,27 +43,36 @@ class ProfileController extends GetxController {
 
   File? file;
 
-  String? profileImgUrl;
-
   String userId = FirebaseAuth.instance.currentUser!.uid;
 
   bool isProfileImgLoading = true;
 
+  // bool isProfileImgLoading = true;
+
+  int imgInit = 0;
+
+  String? profileImgUrl;
+
   @override
   void onInit() async {
-    // profileImgUrl.text = userController.user.value!.profileImgUrl;
+    isProfileImgLoading = true;
+    update();
+    await getVariables();
+    isProfileImgLoading = false;
+    update();
+
+    super.onInit();
+  }
+
+  Future<void> getVariables() async {
+    userProfileImgUrl.value = userController.user.value!.userProfileImgUrl;
     fullName.text = userController.user.value!.fullName;
     schoolName.text = userController.user.value!.schoolName;
     phoneNo.text = userController.user.value!.phoneNo;
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
     selectedGrade.value = userController.user.value!.selectedGrade;
     selectedGender.value = userController.user.value!.selectedGender;
-    getProfileImage();
-
-    super.onInit();
   }
-
-  // Future<void> getVariables() async {}
 
   ImagePickerDialog(BuildContext context) {
     showDialog(
@@ -132,7 +145,6 @@ class ProfileController extends GetxController {
       Get.snackbar("Error", "No image selected");
       return;
     }
-
     try {
       loadingDialogController.showLoadingDialog(Get.context!);
       // Generate a unique filename using user ID and timestamp
@@ -149,34 +161,64 @@ class ProfileController extends GetxController {
       profileImgUrl = await storageRef.getDownloadURL();
 
       // Add Image Url To FireBase
-      // await addImageProfile(
-      //   userProfileImgUrl: 'user_profile_images/$userId',
-      // );
+      await edituserProfileImgUrl(profileImgUrl!);
 
-      loadingDialogController.closeLoadingDialog(Get.context!);
-
+      await updateUserProfileImgUrl(profileImgUrl!);
       update();
+      loadingDialogController.closeLoadingDialog(Get.context!);
 
       Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
+      loadingDialogController.closeLoadingDialog(Get.context!);
       Get.snackbar("Error", "Failed to upload image: $e");
     }
   }
 
-  getProfileImage() async {
+  Future<void> edituserProfileImgUrl(String url) async {
+    CollectionReference imgUrlCollection =
+        FirebaseFirestore.instance.collection('users');
+
+    await imgUrlCollection
+        .doc(userId)
+        .update({'userProfileImgUrl': url})
+        .then((value) => print("Note Edited"))
+        .catchError((error) {
+          print("Failed to Edit Note: $error");
+        });
+    update();
+  }
+
+  Future<void> updateUserProfileImgUrl(String url) async {
     try {
-      isProfileImgLoading = true;
-      update();
+      isSavingData.value = true;
+      final updatedUser = UserModel(
+          id: userController.user.value?.id,
+          userProfileImgUrl: url,
+          fullName: userController.user.value!.fullName,
+          phoneNo: userController.user.value!.phoneNo,
+          fakeEmail: userController.user.value!.fakeEmail,
+          schoolName: userController.user.value!.schoolName,
+          selectedGovernorate: userController.user.value!.selectedGovernorate,
+          selectedGrade: userController.user.value!.selectedGrade,
+          selectedGender: userController.user.value!.selectedGender,
+          selectedDepartment: userController.user.value!.selectedDepartment);
 
-      profileImgUrl = await FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$userId')
-          .getDownloadURL();
+      await userController.updateUser(updatedUser);
 
-      isProfileImgLoading = false;
-      update();
+      await userController.updateUser(updatedUser);
+      Helper.successSnackBar(
+        title: "Success",
+        message: "Profile Image updated successfully!",
+      );
+      isSavingData.value = false;
+      Get.offAll(() => MenuScreen());
     } catch (e) {
-      print(e);
+      Helper.errorSnackBar(
+        title: "Update Failed",
+        message: e.toString().isNotEmpty
+            ? e.toString()
+            : "An unexpected error occurred. Please try again.",
+      );
     }
   }
 
@@ -185,9 +227,10 @@ class ProfileController extends GetxController {
       isSavingData.value = true;
       final updatedUser = UserModel(
         id: userController.user.value?.id,
+        userProfileImgUrl: userController.user.value!.userProfileImgUrl,
         fullName: fullName.text.trim(),
-        phoneNo: userController.user.value?.phoneNo ?? '',
-        fakeEmail: userController.user.value?.fakeEmail ?? '',
+        phoneNo: userController.user.value!.phoneNo,
+        fakeEmail: userController.user.value!.fakeEmail,
         schoolName: schoolName.text.trim(),
         selectedGovernorate: userController.user.value?.selectedGovernorate,
         selectedGrade: userController.user.value?.selectedGrade,

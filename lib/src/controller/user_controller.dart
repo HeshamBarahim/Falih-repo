@@ -1,9 +1,12 @@
-import 'package:falih/src/models/user_model.dart';
-import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:get/get.dart';
+
+import '../models/user_model.dart';
+import '../repository/user_repository/user_repository.dart';
+// import './profile_controller.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
+  // final ProfileController profileController = Get.put(ProfileController());
 
   late var user = Rxn<UserModel>();
   // var profileImageUrl = ''.obs;
@@ -19,6 +22,8 @@ class UserController extends GetxController {
   void setUser(UserModel userData) {
     user.value = userData;
   }
+
+  // Future<void> setUserForProfileController() async {}
 
   UserModel? get currentUser => user.value;
 

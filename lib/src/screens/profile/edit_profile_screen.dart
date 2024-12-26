@@ -24,9 +24,8 @@ import '../../controller/loading_dialog_controller.dart';
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
-  final UserController userController = Get.put(UserController());
-
   final ProfileController profileController = Get.put(ProfileController());
+  final UserController userController = Get.put(UserController());
 
   // final LoadingDialogController
 
@@ -38,14 +37,16 @@ class EditProfileScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: const AssetImage(
-                  Images.backgroundImageOfAuth,
-                ),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-                    BlendMode.lighten))),
+          image: DecorationImage(
+            image: const AssetImage(
+              Images.backgroundImageOfAuth,
+            ),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+                const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
+                BlendMode.lighten),
+          ),
+        ),
         child: Form(
           key: profileController.formKey,
           child: SingleChildScrollView(
@@ -58,32 +59,40 @@ class EditProfileScreen extends StatelessWidget {
                   init: ProfileController(),
                   builder: (controller) => Stack(
                     children: [
-                      ClipOval(
-                        child: controller.isProfileImgLoading
-                            ? Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: SizeConfig.screenWidth! * 0.008,
-                                  strokeAlign: SizeConfig.screenWidth! * 0.003,
-                                ),
-                              )
-                            : controller.profileImgUrl != null
-                                ? CachedNetworkImage(
-                                    key: ValueKey(controller.profileImgUrl),
-                                    imageUrl: controller.profileImgUrl!,
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                    fit: BoxFit.cover,
-                                    width: SizeConfig.screenWidth! * 0.282,
-                                    height: SizeConfig.screenWidth! * 0.282,
-                                  )
-                                : Image.asset(
-                                    Images.test,
-                                    fit: BoxFit.cover,
-                                    width: SizeConfig.screenWidth! * 0.282,
-                                    height: SizeConfig.screenWidth! * 0.282,
+                      CircleAvatar(
+                        radius: SizeConfig.screenWidth! * 0.151,
+                        backgroundColor: Colors.grey[200],
+                        child: ClipOval(
+                          child: controller.isProfileImgLoading
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth:
+                                        SizeConfig.screenWidth! * 0.008,
+                                    strokeAlign:
+                                        SizeConfig.screenWidth! * 0.003,
                                   ),
+                                )
+                              : controller.userProfileImgUrl.value != ''
+                                  ? CachedNetworkImage(
+                                      key: ValueKey(
+                                          controller.userProfileImgUrl),
+                                      imageUrl:
+                                          controller.userProfileImgUrl.value!,
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      fit: BoxFit.cover,
+                                      width: SizeConfig.screenWidth! * 0.282,
+                                      // height: SizeConfig.screenWidth! * 0.282,
+                                    )
+                                  : Image.asset(
+                                      Images.test,
+                                      fit: BoxFit.cover,
+                                      width: SizeConfig.screenWidth! * 0.282,
+                                      height: SizeConfig.screenWidth! * 0.282,
+                                    ),
+                        ),
                       ),
                       Positioned(
                         bottom: 0,
@@ -144,13 +153,13 @@ class EditProfileScreen extends StatelessWidget {
                             child: Text(S.of(context).drop_governorate_val3)),
                       ],
                     ),
-                    CustomDropDownForm(
-                      validator: Helper.validateGrade,
-                      hintText: 'hintText',
-                      prefixIcon: Icon(Icons.abc),
-                      list: [],
-                      onChanged: (val) {},
-                    ),
+                    // CustomDropDownForm(
+                    //   validator: Helper.validateGrade,
+                    //   hintText: 'hintText',
+                    //   prefixIcon: Icon(Icons.abc),
+                    //   list: [],
+                    //   onChanged: (val) {},
+                    // ),
                     // CustomDropDownForm(
                     //   onChanged: (newValue) {
                     //     profileController.selectedGrade.value = newValue;

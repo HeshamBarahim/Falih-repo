@@ -66,6 +66,7 @@ class SignUpController extends GetxController {
 
       // Get User and Pass it to Controller
       final user = UserModel(
+        userProfileImgUrl: '',
         password: password.text.trim(),
         fullName: fullName.text.trim(),
         phoneNo: phoneNo.text.trim(),
