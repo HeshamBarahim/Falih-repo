@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   final String? id;
+  final String? userProfileImgUrl;
   final String fullName;
   final String phoneNo;
   final String fakeEmail;
@@ -18,6 +19,7 @@ class UserModel {
   const UserModel({
     this.id,
     this.password,
+    this.userProfileImgUrl,
     required this.fullName,
     required this.phoneNo,
     required this.fakeEmail,
@@ -31,6 +33,7 @@ class UserModel {
   // convert model to Json structure so that you can use it to store data in Firebase
   toJson() {
     return {
+      'userProfileImgUrl': userProfileImgUrl,
       "FullName": fullName,
       "Phone": phoneNo,
       "fakeEmail": fakeEmail,
@@ -45,6 +48,7 @@ class UserModel {
   /// Empty Constructor for UserModel
   static UserModel empty() => const UserModel(
         id: '',
+        userProfileImgUrl: '',
         fullName: '',
         phoneNo: '',
         fakeEmail: '',
@@ -65,6 +69,7 @@ class UserModel {
     final data = document.data()!;
     return UserModel(
       id: document.id,
+      userProfileImgUrl: data['userProfileImgUrl'] ?? '',
       fullName: data["FullName"] ?? '',
       phoneNo: data["Phone"] ?? '',
       fakeEmail: data["Fake Email"] ?? '',

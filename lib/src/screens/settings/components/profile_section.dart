@@ -22,36 +22,36 @@ class ProfileSection extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          GetBuilder<ProfileController>(
-            init: ProfileController(),
-            builder: (controller) => ClipOval(
-              child: controller.isProfileImgLoading
-                  ? Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: SizeConfig.screenWidth! * 0.008,
-                        strokeAlign: SizeConfig.screenWidth! * 0.003,
-                      ),
-                    )
-                  : controller.profileImgUrl != null
-                      ? CachedNetworkImage(
-                          key: ValueKey(controller.profileImgUrl),
-                          imageUrl: controller.profileImgUrl!,
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          fit: BoxFit.cover,
-                          width: SizeConfig.screenWidth! * 0.282,
-                          height: SizeConfig.screenWidth! * 0.282,
-                        )
-                      : Image.asset(
-                          Images.test,
-                          fit: BoxFit.cover,
-                          width: SizeConfig.screenWidth! * 0.282,
-                          height: SizeConfig.screenWidth! * 0.282,
-                        ),
-            ),
-          ),
+          // GetBuilder<ProfileController>(
+          //   init: ProfileController(),
+          //   builder: (controller) => ClipOval(
+          //     child: controller.isProfileImgLoading
+          //         ? Center(
+          //             child: CircularProgressIndicator(
+          //               strokeWidth: SizeConfig.screenWidth! * 0.008,
+          //               strokeAlign: SizeConfig.screenWidth! * 0.003,
+          //             ),
+          //           )
+          //         : controller.userProfileImgUrl != null
+          //             ? CachedNetworkImage(
+          //                 key: ValueKey(controller.userProfileImgUrl),
+          //                 imageUrl: controller.userProfileImgUrl.value!,
+          //                 placeholder: (context, url) =>
+          //                     const CircularProgressIndicator(),
+          //                 errorWidget: (context, url, error) =>
+          //                     const Icon(Icons.error),
+          //                 fit: BoxFit.cover,
+          //                 width: SizeConfig.screenWidth! * 0.282,
+          //                 height: SizeConfig.screenWidth! * 0.282,
+          //               )
+          //             : Image.asset(
+          //                 Images.test,
+          //                 fit: BoxFit.cover,
+          //                 width: SizeConfig.screenWidth! * 0.282,
+          //                 height: SizeConfig.screenWidth! * 0.282,
+          //               ),
+          //   ),
+          // ),
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
             userController.user.value?.fullName ?? "",
