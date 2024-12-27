@@ -60,7 +60,7 @@ class EditProfileScreen extends StatelessWidget {
                   builder: (controller) => Stack(
                     children: [
                       CircleAvatar(
-                        radius: SizeConfig.screenWidth! * 0.151,
+                        radius: SizeConfig.screenWidth! * 0.141,
                         backgroundColor: Colors.grey[200],
                         child: ClipOval(
                           child: controller.isProfileImgLoading
@@ -84,7 +84,7 @@ class EditProfileScreen extends StatelessWidget {
                                           const Icon(Icons.error),
                                       fit: BoxFit.cover,
                                       width: SizeConfig.screenWidth! * 0.282,
-                                      // height: SizeConfig.screenWidth! * 0.282,
+                                      height: SizeConfig.screenWidth! * 0.282,
                                     )
                                   : Image.asset(
                                       Images.test,

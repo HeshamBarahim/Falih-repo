@@ -14,7 +14,6 @@ class ProfileSection extends StatelessWidget {
   });
 
   final UserController userController = Get.find<UserController>();
-  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +51,41 @@ class ProfileSection extends StatelessWidget {
           //               ),
           //   ),
           // ),
+          GetBuilder<ProfileController>(
+            init: ProfileController(),
+            builder: (controller) => CircleAvatar(
+              radius: SizeConfig.screenWidth! * 0.141,
+              backgroundColor: Colors.grey[200],
+              child: ClipOval(
+                child: controller.isProfileImgLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: SizeConfig.screenWidth! * 0.008,
+                          strokeAlign: SizeConfig.screenWidth! * 0.003,
+                        ),
+                      )
+                    : controller.userProfileImgUrl.value != ''
+                        ? CachedNetworkImage(
+                            key: ValueKey(controller.userProfileImgUrl),
+                            imageUrl: controller.userProfileImgUrl.value!,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                            width: SizeConfig.screenWidth! * 0.282,
+                            height: SizeConfig.screenWidth! * 0.282,
+                          )
+                        : Image.asset(
+                            Images.test,
+                            fit: BoxFit.cover,
+                            width: SizeConfig.screenWidth! * 0.282,
+                            height: SizeConfig.screenWidth! * 0.282,
+                          ),
+              ),
+            ),
+          ),
+
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
             userController.user.value?.fullName ?? "",

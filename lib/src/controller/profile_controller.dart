@@ -167,7 +167,7 @@ class ProfileController extends GetxController {
       update();
       loadingDialogController.closeLoadingDialog(Get.context!);
 
-      Get.snackbar("Success", "Image uploaded successfully");
+      // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
       Get.snackbar("Error", "Failed to upload image: $e");

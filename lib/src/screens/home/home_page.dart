@@ -13,15 +13,15 @@ import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 
 import 'package:get/get.dart';
 
+import '../../config/const.dart';
 import '../../config/sizes.dart';
 import '../../controller/profile_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final HomeController controller = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController());
   final UserController userController = Get.put(UserController());
-  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,41 +64,49 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Circular avatar for the photo
-                        ////////////////////////////
-                        // GetBuilder<ProfileController>(
-                        //   init: ProfileController(),
-                        //   builder: (controller) => ClipOval(
-                        //     child: controller.isProfileImgLoading
-                        //         ? Center(
-                        //             child: CircularProgressIndicator(
-                        //               strokeWidth:
-                        //                   SizeConfig.screenWidth! * 0.008,
-                        //               strokeAlign:
-                        //                   SizeConfig.screenWidth! * 0.003,
-                        //             ),
-                        //           )
-                        //         : controller.userProfileImgUrl != null
-                        //             ? CachedNetworkImage(
-                        //                 key: ValueKey(
-                        //                     controller.userProfileImgUrl),
-                        //                 imageUrl:
-                        //                     controller.userProfileImgUrl.value!,
-                        //                 placeholder: (context, url) =>
-                        //                     const CircularProgressIndicator(),
-                        //                 errorWidget: (context, url, error) =>
-                        //                     const Icon(Icons.error),
-                        //                 fit: BoxFit.cover,
-                        //                 width: SizeConfig.screenWidth! * 0.282,
-                        //                 height: SizeConfig.screenWidth! * 0.282,
-                        //               )
-                        //             : Image.asset(
-                        //                 Images.test,
-                        //                 fit: BoxFit.cover,
-                        //                 width: SizeConfig.screenWidth! * 0.282,
-                        //                 height: SizeConfig.screenWidth! * 0.282,
-                        //               ),
-                        //   ),
-                        // ),
+                        GetBuilder<ProfileController>(
+                          init: ProfileController(),
+                          builder: (controller) => CircleAvatar(
+                            radius: SizeConfig.screenWidth! * 0.141,
+                            backgroundColor: Colors.grey[200],
+                            child: ClipOval(
+                              child: controller.isProfileImgLoading
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth:
+                                            SizeConfig.screenWidth! * 0.008,
+                                        strokeAlign:
+                                            SizeConfig.screenWidth! * 0.003,
+                                      ),
+                                    )
+                                  : controller.userProfileImgUrl.value != ''
+                                      ? CachedNetworkImage(
+                                          key: ValueKey(
+                                              controller.userProfileImgUrl),
+                                          imageUrl: controller
+                                              .userProfileImgUrl.value!,
+                                          placeholder: (context, url) =>
+                                              const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                          fit: BoxFit.cover,
+                                          width:
+                                              SizeConfig.screenWidth! * 0.282,
+                                          height:
+                                              SizeConfig.screenWidth! * 0.282,
+                                        )
+                                      : Image.asset(
+                                          Images.test,
+                                          fit: BoxFit.cover,
+                                          width:
+                                              SizeConfig.screenWidth! * 0.282,
+                                          height:
+                                              SizeConfig.screenWidth! * 0.282,
+                                        ),
+                            ),
+                          ),
+                        ),
+
                         SizedBox(
                             width: SizeConfig.screenWidth! *
                                 0.03), // Spacing adjusted based on screen width
@@ -130,7 +138,7 @@ class HomePage extends StatelessWidget {
                               0.65, // Adjust width dynamically
                           height: SizeConfig.screenHeight! *
                               0.02, // Adjust height dynamically
-                          progress: controller.percentage.value,
+                          progress: homeController.percentage.value,
                         )),
                   ],
                 ),
@@ -140,7 +148,7 @@ class HomePage extends StatelessWidget {
               // Image and indicator slider
               Obx(() => CustomCarousel(
                     // Convert String paths to Image widgets
-                    images: controller.images
+                    images: homeController.images
                         .map((imagePath) => Image.asset(imagePath))
                         .toList(),
                   )),

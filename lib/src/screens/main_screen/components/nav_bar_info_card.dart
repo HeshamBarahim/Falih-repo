@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/const.dart';
 import '../../../config/images.dart';
 import '../../../config/sizes.dart';
 import '../../../controller/profile_controller.dart';
@@ -13,7 +14,6 @@ class NavBarInfoCard extends StatelessWidget {
     super.key,
   });
 
-  final ProfileController profileController = Get.put(ProfileController());
   final UserController userController = Get.find<UserController>();
 
   @override
@@ -76,6 +76,41 @@ class NavBarInfoCard extends StatelessWidget {
           //               ),
           //   ),
           // ),
+          GetBuilder<ProfileController>(
+            init: ProfileController(),
+            builder: (controller) => CircleAvatar(
+              radius: SizeConfig.screenWidth! * 0.11,
+              backgroundColor: Colors.grey[200],
+              child: ClipOval(
+                child: controller.isProfileImgLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: SizeConfig.screenWidth! * 0.008,
+                          strokeAlign: SizeConfig.screenWidth! * 0.003,
+                        ),
+                      )
+                    : controller.userProfileImgUrl.value != ''
+                        ? CachedNetworkImage(
+                            key: ValueKey(controller.userProfileImgUrl),
+                            imageUrl: controller.userProfileImgUrl.value!,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                            width: SizeConfig.screenWidth! * 0.22,
+                            height: SizeConfig.screenWidth! * 0.22,
+                          )
+                        : Image.asset(
+                            Images.test,
+                            fit: BoxFit.cover,
+                            width: SizeConfig.screenWidth! * 0.282,
+                            height: SizeConfig.screenWidth! * 0.282,
+                          ),
+              ),
+            ),
+          ),
+
           SizedBox(width: SizeConfig.screenWidth! * 0.02),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
