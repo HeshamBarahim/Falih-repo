@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/main.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
@@ -64,13 +65,12 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Circular avatar for the photo
-                        GetBuilder<ProfileController>(
-                          init: ProfileController(),
-                          builder: (controller) => CircleAvatar(
+                        Obx(
+                          () => CircleAvatar(
                             radius: SizeConfig.screenWidth! * 0.141,
                             backgroundColor: Colors.grey[200],
                             child: ClipOval(
-                              child: controller.isProfileImgLoading
+                              child: userController.isProfileImgLoading.value
                                   ? Center(
                                       child: CircularProgressIndicator(
                                         strokeWidth:
@@ -79,12 +79,14 @@ class HomePage extends StatelessWidget {
                                             SizeConfig.screenWidth! * 0.003,
                                       ),
                                     )
-                                  : controller.userProfileImgUrl.value != ''
+                                  : userController
+                                              .user.value!.userProfileImgUrl !=
+                                          ''
                                       ? CachedNetworkImage(
-                                          key: ValueKey(
-                                              controller.userProfileImgUrl),
-                                          imageUrl: controller
-                                              .userProfileImgUrl.value!,
+                                          key: ValueKey(userController
+                                              .user.value!.userProfileImgUrl),
+                                          imageUrl: userController
+                                              .user.value!.userProfileImgUrl!,
                                           placeholder: (context, url) =>
                                               const CircularProgressIndicator(),
                                           errorWidget: (context, url, error) =>

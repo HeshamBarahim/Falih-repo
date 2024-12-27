@@ -51,23 +51,24 @@ class ProfileSection extends StatelessWidget {
           //               ),
           //   ),
           // ),
-          GetBuilder<ProfileController>(
-            init: ProfileController(),
-            builder: (controller) => CircleAvatar(
+          Obx(
+            () => CircleAvatar(
               radius: SizeConfig.screenWidth! * 0.141,
               backgroundColor: Colors.grey[200],
               child: ClipOval(
-                child: controller.isProfileImgLoading
+                child: userController.isProfileImgLoading.value
                     ? Center(
                         child: CircularProgressIndicator(
                           strokeWidth: SizeConfig.screenWidth! * 0.008,
                           strokeAlign: SizeConfig.screenWidth! * 0.003,
                         ),
                       )
-                    : controller.userProfileImgUrl.value != ''
+                    : userController.user.value!.userProfileImgUrl != ''
                         ? CachedNetworkImage(
-                            key: ValueKey(controller.userProfileImgUrl),
-                            imageUrl: controller.userProfileImgUrl.value!,
+                            key: ValueKey(
+                                userController.user.value!.userProfileImgUrl),
+                            imageUrl:
+                                userController.user.value!.userProfileImgUrl!,
                             placeholder: (context, url) =>
                                 const CircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
