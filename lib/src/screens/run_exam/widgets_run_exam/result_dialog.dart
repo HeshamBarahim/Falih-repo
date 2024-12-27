@@ -1,10 +1,12 @@
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/leaderboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../controller/exam_controller.dart';
+import '../../../controller/home_controller.dart';
 import '../../after_exam/after_exam.dart';
 
 class ResultDialog extends StatelessWidget {
@@ -14,7 +16,11 @@ class ResultDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext _context) {
+    final HomeController homeController = Get.find<HomeController>();
+
     final ExamController controller = Get.put(ExamController());
+    final LeaderboardController leaderboardController =
+        Get.find<LeaderboardController>();
 
     return Dialog(
       child: Builder(builder: (_) {
@@ -140,16 +146,17 @@ class ResultDialog extends StatelessWidget {
                 height: 10,
               ),
               InkWell(
-                  onTap: () {
+                  onTap: () async {
                     final ExamController controller =
                         Get.find<ExamController>();
                     controller.saveExamResult();
                     Navigator.pop(_context);
                     Get.back();
                     Get.back();
-                    // Get.offAll(
-                    //   () => SubjectPage(),
-                    // );
+
+                    await leaderboardController.fetchAllUsersData();
+                    leaderboardController.fetchUserPointsAndRank();
+                    homeController.fetchAllUserExamHistory();
                   },
                   child: Container(
                       width: 200,

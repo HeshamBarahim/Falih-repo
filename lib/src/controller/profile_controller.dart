@@ -7,11 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
 
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
-import '../repository/user_repository/user_repository.dart';
 import '../screens/main_screen/menu_screen.dart';
 import 'loading_dialog_controller.dart';
 
@@ -181,7 +179,7 @@ class ProfileController extends GetxController {
     await imgUrlCollection
         .doc(userId)
         .update({'userProfileImgUrl': url})
-        .then((value) => print("Note Edited"))
+        .then((value) => print("Image Edited"))
         .catchError((error) {
           print("Failed to Edit Note: $error");
         });

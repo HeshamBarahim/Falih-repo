@@ -2,34 +2,27 @@ import 'package:get/get.dart';
 
 import '../models/user_model.dart';
 import '../repository/user_repository/user_repository.dart';
-// import './profile_controller.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
-  // final ProfileController profileController = Get.put(ProfileController());
-  RxBool isProfileImgLoading = true.obs;
 
   late var user = Rxn<UserModel>();
-  // var profileImageUrl = ''.obs;
 
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
-    isProfileImgLoading.value = true;
-    user.value = await UserRepository.instance.getUserDetails();
+    try {
+      user.value = await UserRepository.instance.getUserDetails();
+    } catch (e) {
+      print(e.toString());
+    }
     // getProfileImage();
-    Future.delayed(Duration(seconds: 5), () {
-      isProfileImgLoading.value = false;
-    });
-
     super.onInit();
   }
 
   void setUser(UserModel userData) {
     user.value = userData;
   }
-
-  // Future<void> setUserForProfileController() async {}
 
   UserModel? get currentUser => user.value;
 

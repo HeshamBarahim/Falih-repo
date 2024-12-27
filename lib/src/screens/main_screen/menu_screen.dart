@@ -8,14 +8,10 @@ import 'package:get/get.dart';
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../../controller/profile_controller.dart';
-import '../../controller/user_controller.dart';
 import '../notification/notification_page.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
-import 'controller/bottom_navigation_bar_controller.dart';
 import 'controller/nav_bar_controller.dart';
-import 'utils/rive_utils.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -28,16 +24,8 @@ class _MenuScreenState extends State<MenuScreen>
     with SingleTickerProviderStateMixin {
   DateTime? lastBackPressTime;
 
-  // final BottomNavBarController bottomNavBarController =
-  //     BottomNavBarController();
-  final NavBarController navBarController = Get.put(NavBarController());
-
-  final UserController userController = Get.put(UserController());
-  final ProfileController profileController = Get.put(ProfileController());
-
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(NavigationController());
     SizeConfig().init(context);
     return WillPopScope(
       onWillPop: () async {
@@ -140,7 +128,7 @@ class _MenuScreenState extends State<MenuScreen>
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.grey,
                                     blurRadius: 0.9,

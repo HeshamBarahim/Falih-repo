@@ -19,7 +19,7 @@ class SubjectPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.screenWidth! * 0.05),
-            height: SizeConfig.screenHeight! * 0.30,
+            height: SizeConfig.screenHeight! * 0.33,
             decoration: BoxDecoration(
               gradient: subjectController.color,
             ),

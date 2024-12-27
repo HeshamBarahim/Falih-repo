@@ -20,6 +20,7 @@ class ExamController extends GetxController {
   var falseAnswers = 0.obs;
   var examType = "".obs;
   var examTime = 0.obs;
+  var unitQuestionsCount = 10.obs;
   var isFinalExam = false.obs;
   var isGeneratingResponse = false.obs;
   var generatedResponse = "".obs;
@@ -32,11 +33,13 @@ class ExamController extends GetxController {
 
   void setUnitQuestions(List<dynamic> questionData) {
     final List<Exam> loadedQuestions = questionData.map((data) {
-      // print(data);
       return Exam.fromMap(data as Map<String, dynamic>);
-    }).toList();
-    questions.assignAll(loadedQuestions);
-    selectedAnswers.assignAll(List<int?>.filled(loadedQuestions.length, null));
+    }).toList()
+      ..shuffle();
+    questions
+        .assignAll(loadedQuestions.take(unitQuestionsCount.value).toList());
+    selectedAnswers
+        .assignAll(List<int?>.filled(unitQuestionsCount.value, null));
   }
 
   void setExamQuestions() {
@@ -153,15 +156,10 @@ class ExamController extends GetxController {
               .options[questions[questionIndex.value].correctAnswerIndex]
         }),
       );
-      // Used for debugging
 
-      // print(
-      //     'question' + questionText + 'userChoice: ' + questions[questionIndex.value].options[selectedAnswers[questionIndex.value]!] + "  choices: " + questions[questionIndex.value].options.toString() + "correctAnswer: " + questions[questionIndex.value].options[questions[questionIndex.value].correctAnswerIndex]
-      // );
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         generatedResponse.value = data['generation'];
-        print("Answer: ${data['generation']}");
         isGeneratingResponse.value = false;
       } else {
         print("Error: ${response.statusCode}");

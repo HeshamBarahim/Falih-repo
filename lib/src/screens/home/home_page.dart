@@ -1,27 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:falih/main.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
-import 'package:falih/src/screens/home/widgets_home/custom_carousel.dart';
-import 'package:falih/src/screens/home/widgets_home/custom_progress_bar.dart';
-import 'package:falih/src/screens/settings/settings_screen.dart';
+import 'package:falih/src/screens/home/widgets_home/advertise_img_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
-
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import '../../config/const.dart';
 import '../../config/sizes.dart';
-import '../../controller/profile_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final HomeController homeController = Get.put(HomeController());
+  final HomeController controller = Get.put(HomeController());
   final UserController userController = Get.put(UserController());
 
   @override
@@ -32,23 +28,158 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth! * 0.02,
-            vertical: SizeConfig.screenHeight! * 0.01),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(
             horizontal: SizeConfig.screenWidth! * 0.03,
-            vertical: SizeConfig.screenHeight! * 0.01,
-          ),
+            vertical: SizeConfig.screenHeight! * 0.02),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // The heading profile
               Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.screenWidth! * 0.04,
-                    vertical: SizeConfig.screenHeight! * 0.02),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.screenWidth! * 0.04,
+                      vertical: SizeConfig.screenHeight! * 0.02),
+                  decoration: BoxDecoration(
+                    color: AppColors.darkMainColor, // Container color
+                    borderRadius: BorderRadius.circular(12), // Rounded corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.mainColor.withOpacity(0.5),
+                        // Shadow color
+                        spreadRadius: 2,
+                        // Spread of the shadow
+                        blurRadius: 10,
+                        // Blur effect
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: Obx(
+                    () => controller.isLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  userController
+                                              .user.value?.userProfileImgUrl !=
+                                          null
+                                      ? ClipOval(
+                                          child: CachedNetworkImage(
+                                            key: ValueKey(userController.user
+                                                    .value?.userProfileImgUrl ??
+                                                ""),
+                                            imageUrl: userController.user.value!
+                                                    .userProfileImgUrl ??
+                                                "",
+                                            placeholder: (context, url) =>
+                                                const CircularProgressIndicator(),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error),
+                                            fit: BoxFit.cover,
+                                            width:
+                                                SizeConfig.screenWidth! * 0.282,
+                                            height:
+                                                SizeConfig.screenWidth! * 0.282,
+                                          ),
+                                        )
+                                      : Image.asset(
+                                          Images.test,
+                                          fit: BoxFit.cover,
+                                          width:
+                                              SizeConfig.screenWidth! * 0.282,
+                                          height:
+                                              SizeConfig.screenWidth! * 0.282,
+                                        ),
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                      width: SizeConfig.screenWidth! * 0.03),
+                                  // Spacing adjusted based on screen width
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Hi, ${userController.currentUser!.fullName}",
+                                        style: const TextStyle(
+                                            color: AppColors.secondaryColor,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                          height:
+                                              SizeConfig.screenHeight! * 0.01),
+                                      Text(
+                                        'Rank: #${controller.rank.value}',
+                                        style: const TextStyle(
+                                            color: AppColors.secondaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Overall points: ${controller.point.value} / ${controller.maxPoint.value}",
+                                        style: const TextStyle(
+                                            color: AppColors.secondaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "This month points: ${controller.point.value}",
+                                        style: const TextStyle(
+                                            color: AppColors.secondaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                              // const UserPointsProgressBar(),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: LinearProgressIndicator(
+                                      value: controller.point.value /
+                                          controller.maxPoint.value,
+                                      // Bind progress value
+                                      backgroundColor: AppColors.mainColor,
+                                      color: AppColors.secondaryColor,
+                                      minHeight: 10,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                      style: const TextStyle(
+                                          color: AppColors.secondaryColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                  )),
+              SizedBox(
+                  height: SizeConfig.screenHeight! * 0.03), // Adjusted spacing
+              // Image and indicator slider
+              AdvertiseImgsCarousel(),
+              SizedBox(
+                  height: SizeConfig.screenHeight! * 0.02), // Adjusted spacing
+              // History part
+              Container(
                 decoration: BoxDecoration(
-                  color: AppColors.secondaryColor, // Container color
+                  color: AppColors.darkMainColor, // Container color
                   borderRadius: BorderRadius.circular(12), // Rounded corners
                   boxShadow: [
                     BoxShadow(
@@ -59,138 +190,196 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Circular avatar for the photo
-                        Obx(
-                          () => CircleAvatar(
-                            radius: SizeConfig.screenWidth! * 0.141,
-                            backgroundColor: Colors.grey[200],
-                            child: ClipOval(
-                              child: userController.isProfileImgLoading.value
-                                  ? Center(
-                                      child: CircularProgressIndicator(
-                                        strokeWidth:
-                                            SizeConfig.screenWidth! * 0.008,
-                                        strokeAlign:
-                                            SizeConfig.screenWidth! * 0.003,
-                                      ),
-                                    )
-                                  : userController
-                                              .user.value!.userProfileImgUrl !=
-                                          ''
-                                      ? CachedNetworkImage(
-                                          key: ValueKey(userController
-                                              .user.value!.userProfileImgUrl),
-                                          imageUrl: userController
-                                              .user.value!.userProfileImgUrl!,
-                                          placeholder: (context, url) =>
-                                              const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                          fit: BoxFit.cover,
-                                          width:
-                                              SizeConfig.screenWidth! * 0.282,
-                                          height:
-                                              SizeConfig.screenWidth! * 0.282,
-                                        )
-                                      : Image.asset(
-                                          Images.test,
-                                          fit: BoxFit.cover,
-                                          width:
-                                              SizeConfig.screenWidth! * 0.282,
-                                          height:
-                                              SizeConfig.screenWidth! * 0.282,
-                                        ),
-                            ),
-                          ),
-                        ),
-
-                        SizedBox(
-                            width: SizeConfig.screenWidth! *
-                                0.03), // Spacing adjusted based on screen width
-                        // Information about the user and his rank
-                        Obx(
-                          () => userController.currentUser == null
-                              ? const Text("User data not available.")
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        "Hi, ${userController.currentUser!.fullName}"),
-                                    SizedBox(
-                                        height: SizeConfig.screenHeight! *
-                                            0.01), // Adjust spacing based on screen height
-                                    const Text('#3 Rank'),
-                                    const Text("2,639/5,999 Points"),
-                                  ],
-                                ),
-                        )
-                      ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Your Test History",
+                    style: TextStyle(
+                      color: AppColors.secondaryColor,
+                      fontSize: SizeConfig.screenHeight! *
+                          0.025, // Adjusted font size based on screen height
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(
-                        height: SizeConfig.screenHeight! *
-                            0.03), // Adjusted spacing
-                    // Progress bar
-                    Obx(() => CustomProgressBar(
-                          width: SizeConfig.screenWidth! *
-                              0.65, // Adjust width dynamically
-                          height: SizeConfig.screenHeight! *
-                              0.02, // Adjust height dynamically
-                          progress: homeController.percentage.value,
-                        )),
-                  ],
-                ),
-              ),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.03), // Adjusted spacing
-              // Image and indicator slider
-              Obx(() => CustomCarousel(
-                    // Convert String paths to Image widgets
-                    images: homeController.images
-                        .map((imagePath) => Image.asset(imagePath))
-                        .toList(),
-                  )),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.02), // Adjusted spacing
-              // History part
-              Text(
-                "Your Test History",
-                style: TextStyle(
-                  color: Color(0xFF743089),
-                  fontSize: SizeConfig.screenHeight! *
-                      0.025, // Adjusted font size based on screen height
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.02), // Adjusted spacing
-              ElevatedButton(
-                onPressed: exportData,
-                child: Text(
-                  'export CSV',
-                  style: TextStyle(
-                    color: Color(0xFF743089),
-                    fontSize:
-                        SizeConfig.screenHeight! * 0.022, // Adjusted font size
                   ),
                 ),
               ),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.02), // Adjusted spacing
-              ElevatedButton(
-                onPressed: () => Get.to(() => SettingsScreen()),
-                child: Text(
-                  'go to settings',
-                  style: TextStyle(
-                    color: Color(0xFF743089),
-                    fontSize:
-                        SizeConfig.screenHeight! * 0.022, // Adjusted font size
-                  ),
-                ),
+              SizedBox(height: SizeConfig.screenHeight! * 0.02),
+
+              Obx(
+                () => controller.userExamHistoryIsLoading.value
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.zero,
+                        itemCount: controller.userExamHistory.length,
+                        itemBuilder: (context, index) {
+                          final examResult = controller.userExamHistory[index];
+                          double percentage = (examResult["correctAnswers"] /
+                              examResult["totalQuestions"]);
+                          double roundedPercentage =
+                              double.parse((percentage).toStringAsFixed(1));
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                // controller.resetExam();
+                                // controller.setUnitQuestions(examResult["questions"]);
+                                // Get.to(() => const PreExam());
+                              },
+                              child: SizedBox(
+                                height: 100,
+                                child: Card(
+                                  color: AppColors.secondaryColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  elevation: 5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0, vertical: 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        // const CircleAvatar(),
+                                        CircularPercentIndicator(
+                                          radius: 30.0,
+                                          animation: true,
+                                          animationDuration: 1200,
+                                          lineWidth: 5.0,
+                                          percent: roundedPercentage,
+                                          center: Text(
+                                              "${roundedPercentage * 100}%"),
+                                          progressColor: (examResult[
+                                                          "correctAnswers"] /
+                                                      examResult[
+                                                          "totalQuestions"]) >
+                                                  0.5
+                                              ? Colors.green
+                                              : Colors.red,
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              (examResult["correctAnswers"] /
+                                                          examResult[
+                                                              "totalQuestions"]) >
+                                                      0.5
+                                                  ? Container(
+                                                      decoration: const BoxDecoration(
+                                                          color: AppColors
+                                                              .successBoxColor,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      20))),
+                                                      child: const Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              horizontal: 8.0),
+                                                          child: Text("Passed",
+                                                              style: TextStyle(
+                                                                  color: AppColors.successColor,
+                                                                  fontWeight: FontWeight.w500,
+                                                                  fontSize: 14))))
+                                                  : Container(
+                                                      decoration: const BoxDecoration(
+                                                          color: AppColors
+                                                              .errorBoxColor,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      child: const Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    8.0),
+                                                        child: Text("Failed",
+                                                            style: TextStyle(
+                                                                color: AppColors
+                                                                    .errorColor,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 14)),
+                                                      ),
+                                                    ),
+                                              const SizedBox(
+                                                height: 8,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 2.5),
+                                                child: Text(
+                                                  "${examResult["examName"]}",
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Correct Answers: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                              style: const TextStyle(
+                                                color: Color(0xFF3CD797),
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            Text(
+                                              "On: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              textAlign: TextAlign.right,
+                                            ),
+                                            Text(
+                                              "${examResult["points"]} points",
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        const Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 20,
+                                          color: Color(0xFF743089),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
               ),
             ],
           ),
