@@ -64,37 +64,39 @@ class HomePage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  userController
-                                              .user.value?.userProfileImgUrl !=
-                                          null
-                                      ? ClipOval(
-                                          child: CachedNetworkImage(
-                                            key: ValueKey(userController.user
-                                                    .value?.userProfileImgUrl ??
-                                                ""),
-                                            imageUrl: userController.user.value!
-                                                    .userProfileImgUrl ??
-                                                "",
-                                            placeholder: (context, url) =>
-                                                const CircularProgressIndicator(),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    const Icon(Icons.error),
-                                            fit: BoxFit.cover,
-                                            width:
-                                                SizeConfig.screenWidth! * 0.282,
-                                            height:
-                                                SizeConfig.screenWidth! * 0.282,
-                                          ),
-                                        )
-                                      : Image.asset(
-                                          Images.test,
-                                          fit: BoxFit.cover,
-                                          width:
-                                              SizeConfig.screenWidth! * 0.282,
-                                          height:
-                                              SizeConfig.screenWidth! * 0.282,
-                                        ),
+                                  CircleAvatar(
+                                    radius: SizeConfig.screenWidth! * 0.141,
+                                    backgroundColor: Colors.grey[200],
+                                    child: ClipOval(
+                                      child: userController.user.value!
+                                                  .userProfileImgUrl !=
+                                              ''
+                                          ? CachedNetworkImage(
+                                              key: ValueKey(userController.user
+                                                  .value!.userProfileImgUrl),
+                                              imageUrl: userController.user
+                                                  .value!.userProfileImgUrl!,
+                                              placeholder: (context, url) =>
+                                                  const CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                              fit: BoxFit.cover,
+                                              width: SizeConfig.screenWidth! *
+                                                  0.282,
+                                              height: SizeConfig.screenWidth! *
+                                                  0.282,
+                                            )
+                                          : Image.asset(
+                                              Images.test,
+                                              fit: BoxFit.cover,
+                                              width: SizeConfig.screenWidth! *
+                                                  0.282,
+                                              height: SizeConfig.screenWidth! *
+                                                  0.282,
+                                            ),
+                                    ),
+                                  ),
                                   //   ),
                                   // ),
                                   SizedBox(
@@ -117,23 +119,26 @@ class HomePage extends StatelessWidget {
                                       Text(
                                         'Rank: #${controller.rank.value}',
                                         style: const TextStyle(
-                                            color: AppColors.secondaryColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
+                                          color: AppColors.secondaryColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       Text(
                                         "Overall points: ${controller.point.value} / ${controller.maxPoint.value}",
                                         style: const TextStyle(
-                                            color: AppColors.secondaryColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
+                                          color: AppColors.secondaryColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       Text(
                                         "This month points: ${controller.point.value}",
                                         style: const TextStyle(
-                                            color: AppColors.secondaryColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
+                                          color: AppColors.secondaryColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ],
                                   ),

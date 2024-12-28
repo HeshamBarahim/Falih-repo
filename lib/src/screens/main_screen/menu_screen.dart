@@ -13,15 +13,9 @@ import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
 import 'controller/nav_bar_controller.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({super.key});
+class MenuScreen extends StatelessWidget {
+  MenuScreen({super.key});
 
-  @override
-  State<MenuScreen> createState() => _MenuScreenState();
-}
-
-class _MenuScreenState extends State<MenuScreen>
-    with SingleTickerProviderStateMixin {
   DateTime? lastBackPressTime;
 
   @override
