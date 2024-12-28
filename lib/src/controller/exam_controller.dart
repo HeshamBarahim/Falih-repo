@@ -27,9 +27,12 @@ class ExamController extends GetxController {
   late List<dynamic> units;
   var questions = <Exam>[].obs;
   var selectedAnswers = <int?>[].obs; // List to store selected answer indices
+  late DateTime startTime;
+  DateTime? endTime;
+  var timeTaken = ''.obs; // To store the formatted time taken
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final SubjectsController subjectController = Get.put(SubjectsController());
+  final SubjectsController subjectController = Get.find<SubjectsController>();
 
   void setUnitQuestions(List<dynamic> questionData) {
     final List<Exam> loadedQuestions = questionData.map((data) {
@@ -111,7 +114,8 @@ class ExamController extends GetxController {
     if (questionIndex.value < questions.length - 1) {
       questionIndex.value++;
     } else {
-      // Get.to(() => ResultsPage(score: score.value));
+      stopTimer();
+
       showDialog(
         context: context,
         builder: (_) => ResultDialog(
@@ -130,6 +134,8 @@ class ExamController extends GetxController {
     falseAnswers.value = 0;
     trueAnswers.value = 0;
     isFinalExam.value = false;
+    endTime = null;
+    timeTaken.value = '';
   }
 
   generateResponse(String questionText) async {
@@ -215,6 +221,7 @@ class ExamController extends GetxController {
         'correctAnswers': trueAnswers.value,
         'wrongAnswers': falseAnswers.value,
         'points': points,
+        'timeTaken': timeTaken.value,
         'date': Timestamp.now(),
         'answers': selectedAnswers,
       };
@@ -270,5 +277,22 @@ class ExamController extends GetxController {
             : 0;
 
     return points;
+  }
+
+  void stopTimer() {
+    if (endTime == null) {
+      endTime = DateTime.now();
+      // Calculate the difference
+      Duration? duration = endTime?.difference(startTime);
+
+      // Format the duration into hours, minutes, and seconds
+      int? hours = duration?.inHours;
+      int minutes = duration!.inMinutes % 60;
+      int seconds = duration!.inSeconds % 60;
+
+      timeTaken.value = "${hours.toString().padLeft(2, '0')}:"
+          "${minutes.toString().padLeft(2, '0')}:"
+          "${seconds.toString().padLeft(2, '0')}";
+    }
   }
 }
