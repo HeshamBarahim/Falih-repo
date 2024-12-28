@@ -35,8 +35,16 @@ class HomeController extends GetxController {
         .get();
     userExamHistory.addAll(userExamsSnapshot.docs.map((doc) {
       final examData = doc.data() as Map<String, dynamic>;
-      return examData; // Return the modified map
+      return examData;
     }));
+
+    // Sort by a specific field, e.g., "examDate"
+    userExamHistory.sort((a, b) {
+      final dateA = a['date'];
+      final dateB = b['date'];
+      return dateB.compareTo(dateA);
+    });
+
     userExamHistoryIsLoading.value = false;
   }
 }
