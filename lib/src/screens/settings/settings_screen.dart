@@ -7,6 +7,7 @@ import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../main_screen/menu_screen.dart';
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
@@ -29,93 +30,102 @@ class SettingsScreen extends StatelessWidget {
     final termsFile =
         isArabic ? 'terms_conditions_ar.md' : 'terms_conditions_en.md';
     SizeConfig().init(context);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text(
-          S.of(context).settings,
-          style: TextStyle(
-            fontSize: SizeConfig.screenWidth! * 0.059,
-            color: fontColor_1,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          // Navigate to the menu screen when the user tries to pop
+          Get.offAll(MenuScreen());
+        }
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Text(
+            S.of(context).settings,
+            style: TextStyle(
+              fontSize: SizeConfig.screenWidth! * 0.059,
+              color: fontColor_1,
+            ),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              size: SizeConfig.screenWidth! * 0.078,
+              color: iconColor_1,
+            ),
+            onPressed: () {
+              Get.offAll(MenuScreen());
+            },
           ),
         ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            size: SizeConfig.screenWidth! * 0.078,
-            color: iconColor_1,
+        body: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: SizeConfig.screenWidth! * 0.04,
+              vertical: SizeConfig.screenHeight! * 0.026),
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: secondaryBackgroundColor_2,
           ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth! * 0.04,
-            vertical: SizeConfig.screenHeight! * 0.026),
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: secondaryBackgroundColor_2,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Profile Section
-              SizedBox(height: SizeConfig.screenHeight! * 0.095),
-              ProfileSection(),
-              SizedBox(height: SizeConfig.screenHeight! * 0.026),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // Profile Section
+                SizedBox(height: SizeConfig.screenHeight! * 0.095),
+                ProfileSection(),
+                SizedBox(height: SizeConfig.screenHeight! * 0.026),
 
-              /// Preferences Section
-              PreferencesSection(
-                // Dark Mode toggle Button Function
-                // Toggle the theme using the controller
+                /// Preferences Section
+                PreferencesSection(
+                  // Dark Mode toggle Button Function
+                  // Toggle the theme using the controller
 
-                onChangeDarkModeFunction: (val) {},
-                // Notifications toggle Button Function
-                onChangeNotificationsFunction: (val) {},
-                // Language Button Function
-                onTapLanguageFunction: () {},
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.004),
+                  onChangeDarkModeFunction: (val) {},
+                  // Notifications toggle Button Function
+                  onChangeNotificationsFunction: (val) {},
+                  // Language Button Function
+                  onTapLanguageFunction: () {},
+                ),
+                SizedBox(height: SizeConfig.screenHeight! * 0.004),
 
-              /// Account Section
-              AccountSection(
-                // About Button Function
-                onTapEditProfileFunction: () {
-                  Get.to(() => EditProfileScreen());
-                },
-                // Privacy Button Function
-                onTapPrivacyFunction: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return MdDialogs(
-                          mdFileName: privacyFile,
-                          buttonText: closeButton,
-                        );
-                      });
-                },
-                // Terms & Conditions Button Function
-                onTapTerms_ConditionsFunction: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return MdDialogs(
-                          mdFileName: termsFile,
-                          buttonText: closeButton,
-                        );
-                      });
-                },
+                /// Account Section
+                AccountSection(
+                  // About Button Function
+                  onTapEditProfileFunction: () {
+                    Get.to(() => EditProfileScreen());
+                  },
+                  // Privacy Button Function
+                  onTapPrivacyFunction: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return MdDialogs(
+                            mdFileName: privacyFile,
+                            buttonText: closeButton,
+                          );
+                        });
+                  },
+                  // Terms & Conditions Button Function
+                  onTapTerms_ConditionsFunction: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return MdDialogs(
+                            mdFileName: termsFile,
+                            buttonText: closeButton,
+                          );
+                        });
+                  },
 
-                /// Logout Button
-                onTapLogoutFunction: () {
-                  AuthenticationRepository.instance.logout(context);
-                },
-              ),
-            ],
+                  /// Logout Button
+                  onTapLogoutFunction: () {
+                    AuthenticationRepository.instance.logout(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

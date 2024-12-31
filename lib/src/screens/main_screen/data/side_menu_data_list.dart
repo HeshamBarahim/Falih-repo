@@ -20,13 +20,6 @@ List<RiveAsset> sideMenuDataList_1 = [
     stateMachineName: "STAR_Interactivity",
     title: "Subscription",
   ),
-  RiveAsset(
-    "assets/RiveAssets/icons.riv",
-    index: 3,
-    artboard: "BELL",
-    stateMachineName: "BELL_Interactivity",
-    title: "Notification",
-  ),
 ];
 
 List<RiveAsset> sideMenuDataList_2 = [

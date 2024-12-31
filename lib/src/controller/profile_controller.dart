@@ -190,7 +190,7 @@ class ProfileController extends GetxController {
     try {
       isSavingData.value = true;
       final updatedUser = UserModel(
-          id: userController.user.value?.id,
+          id: userController.user.value!.id,
           userProfileImgUrl: url,
           fullName: userController.user.value!.fullName,
           phoneNo: userController.user.value!.phoneNo,
@@ -209,7 +209,11 @@ class ProfileController extends GetxController {
         message: "Profile Image updated successfully!",
       );
       isSavingData.value = false;
-      Get.offAll(() => MenuScreen());
+      // Get.offAll(() => MenuScreen());
+      // Get.offAll(MenuScreen());
+      userProfileImgUrl.value = url;
+      update();
+
     } catch (e) {
       Helper.errorSnackBar(
         title: "Update Failed",

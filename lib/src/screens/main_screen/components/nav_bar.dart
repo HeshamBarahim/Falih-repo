@@ -93,15 +93,14 @@ class NavBar extends StatelessWidget {
                                     if (menu.index == 0) {
                                       controller.stopProcess();
                                       Get.off(MenuScreen());
+                                      // Get.offAll(MenuScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.to(() => EditProfileScreen());
+
+                                      Get.off(() => EditProfileScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
-                                      Get.to(() => SubscriptionPlansScreen());
-                                    } else if (menu.index == 3) {
-                                      controller.stopProcess();
-                                      Get.to(() => const NotificationPage());
+                                      Get.off(() => SubscriptionPlansScreen());
                                     }
                                   });
                                   controller.selectMenu(menu);
@@ -147,11 +146,11 @@ class NavBar extends StatelessWidget {
                                       // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.to(() => AboutUsScreen());
+                                      Get.off(() => AboutUsScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
                                       // navController.moveNavBar();
-                                      Get.to(() => const SettingsScreen());
+                                      Get.off(() => const SettingsScreen());
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
                                       // Get.to(() => SettingsScreen());

@@ -11,14 +11,13 @@ class LoadingDialogController extends GetxController {
       barrierDismissible: false, // Prevent dismissing by tapping outside
       builder: (BuildContext context) {
         SizeConfig().init(context);
-        return WillPopScope(
-          onWillPop: () async {
-            Get.snackbar("Error", "Wait For The Prosess");
-            // Future.delayed(
-            //   Duration(seconds: 3),
-            //   () {},
-            // );
-            return false;
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) {
+              // Navigate to the menu screen when the user tries to pop
+              Get.snackbar("Error", "Wait For The Prosess");
+            }
           },
           child: Dialog(
             child: Padding(
