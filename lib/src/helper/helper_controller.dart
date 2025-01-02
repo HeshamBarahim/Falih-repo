@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,7 +6,7 @@ class Helper extends GetxController {
   /* -- ============= VALIDATIONS ================ -- */
 
   static String? validatePhoneNumber(value) {
-    if (value == null || value.isEmpty) return "Phone Numbers cannot be empty";
+    if (value == null || value.isEmpty) return S.current.phone_cant_be_empty;
 
     String pattern = r'^\d{9}$';
     RegExp regex = RegExp(pattern);

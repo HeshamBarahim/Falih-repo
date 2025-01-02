@@ -557,6 +557,64 @@
     "@terms_conditions": {
       "description": ""
     },
-    "terms_conditions":"Terms && Conditions"
+    "terms_conditions":"Terms && Conditions",
+    "@and": {
+      "description": ""
+    },
+    "and":" and ",
+    "@privacy_policy": {
+      "description": ""
+    },
+    "privacy_policy":"Privacy Policy",
+    "@agreeing_message": {
+      "description": ""
+    },
+    "agreeing_message":"By clicking on ‘Create Account,’ you’re agreeing to the app ",
+    "@phone_cant_be_empty": {
+      "description": ""
+    },
+    "phone_cant_be_empty":"Phone Numbers cannot be empty",
+    "@passwrod_cant_be_empty": {
+      "description": ""
+    },
+    "passwrod_cant_be_empty":"Password cannot be empty",
+    "@passwrod_must_be": {
+      "description": ""
+    },
+    "passwrod_must_be":"Password must be 6 characters at least",
+    "@school_cant_be_empty": {
+      "description": ""
+    },
+    "school_cant_be_empty":"School Name cannot be empty",
+    "@school_must_be": {
+      "description": ""
+    },
+    "school_must_be":"School Name must be valid",
+    "@name_cant_be_empty": {
+      "description": ""
+    },
+    "name_cant_be_empty":"Name cannot be empty",
+    "@name_must_be": {
+      "description": ""
+    },
+    "name_must_be":"User Name must be valid",
+    "@should_choose_governorate": {
+      "description": ""
+    },
+    "should_choose_governorate":"You should choose a Governorate",
+    "@should_choose_grade": {
+      "description": ""
+    },
+    "should_choose_grade":"You should choose a Grade",
+    "@should_choose_department": {
+      "description": ""
+    },
+    "should_choose_department":"You should choose a Department",
+    "@should_choose_gender": {
+      "description": ""
+    },
+    "should_choose_gender":"You should choose a Gender"
+    
+
 
 }

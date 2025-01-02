@@ -92,7 +92,7 @@ class CurriculumPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
+                          SizedBox(
                             width: SizeConfig.screenWidth! * 0.165,
                             child: Image.asset(
                               subject['icon'],

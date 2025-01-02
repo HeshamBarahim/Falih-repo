@@ -32,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies."),
         "achieve_your_best":
             MessageLookupByLibrary.simpleMessage("Achieve Your Best"),
+        "agreeing_message": MessageLookupByLibrary.simpleMessage(
+            "By clicking on ‘Create Account,’ you’re agreeing to the app "),
+        "and": MessageLookupByLibrary.simpleMessage(" and "),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "back_to_home": MessageLookupByLibrary.simpleMessage("Back To Home"),
         "back_to_subjects":
@@ -117,7 +120,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
+        "name_cant_be_empty":
+            MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
+        "name_must_be":
+            MessageLookupByLibrary.simpleMessage("User Name must be valid"),
         "next": MessageLookupByLibrary.simpleMessage("next"),
         "no_password":
             MessageLookupByLibrary.simpleMessage("password cannot be empty"),
@@ -136,10 +143,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
+        "passwrod_cant_be_empty":
+            MessageLookupByLibrary.simpleMessage("Password cannot be empty"),
+        "passwrod_must_be": MessageLookupByLibrary.simpleMessage(
+            "Password must be 6 characters at least"),
         "pay_completed": MessageLookupByLibrary.simpleMessage(
             "Payment Successfully Completed"),
         "pay_for_plan":
             MessageLookupByLibrary.simpleMessage("Pay For The Plan"),
+        "phone_cant_be_empty": MessageLookupByLibrary.simpleMessage(
+            "Phone Numbers cannot be empty"),
         "plan": MessageLookupByLibrary.simpleMessage("Plan"),
         "plan_details": MessageLookupByLibrary.simpleMessage("Plan Details"),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
@@ -147,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "price": MessageLookupByLibrary.simpleMessage("Price:"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy"),
+        "privacy_policy":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
         "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),
@@ -155,9 +170,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "review_answer":
             MessageLookupByLibrary.simpleMessage("Review Your Answers"),
         "ry": MessageLookupByLibrary.simpleMessage("r.y"),
+        "school_cant_be_empty":
+            MessageLookupByLibrary.simpleMessage("School Name cannot be empty"),
+        "school_must_be":
+            MessageLookupByLibrary.simpleMessage("School Name must be valid"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "section": MessageLookupByLibrary.simpleMessage("Section:"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "should_choose_department": MessageLookupByLibrary.simpleMessage(
+            "You should choose a Department"),
+        "should_choose_gender":
+            MessageLookupByLibrary.simpleMessage("You should choose a Gender"),
+        "should_choose_governorate": MessageLookupByLibrary.simpleMessage(
+            "You should choose a Governorate"),
+        "should_choose_grade":
+            MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
         "start_exam":
             MessageLookupByLibrary.simpleMessage("Start Taking The Exam"),
         "start_taking_exam":

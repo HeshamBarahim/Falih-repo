@@ -40,7 +40,7 @@ class CustomDropDownForm extends StatelessWidget {
           prefixIcon: prefixIcon,
           prefixIconColor: AppColors.mainColor,
           contentPadding:
-              EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(

@@ -1439,6 +1439,146 @@ class S {
       args: [],
     );
   }
+
+  /// ` and `
+  String get and {
+    return Intl.message(
+      ' and ',
+      name: 'and',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacy_policy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacy_policy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By clicking on ‘Create Account,’ you’re agreeing to the app `
+  String get agreeing_message {
+    return Intl.message(
+      'By clicking on ‘Create Account,’ you’re agreeing to the app ',
+      name: 'agreeing_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Numbers cannot be empty`
+  String get phone_cant_be_empty {
+    return Intl.message(
+      'Phone Numbers cannot be empty',
+      name: 'phone_cant_be_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password cannot be empty`
+  String get passwrod_cant_be_empty {
+    return Intl.message(
+      'Password cannot be empty',
+      name: 'passwrod_cant_be_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be 6 characters at least`
+  String get passwrod_must_be {
+    return Intl.message(
+      'Password must be 6 characters at least',
+      name: 'passwrod_must_be',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `School Name cannot be empty`
+  String get school_cant_be_empty {
+    return Intl.message(
+      'School Name cannot be empty',
+      name: 'school_cant_be_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `School Name must be valid`
+  String get school_must_be {
+    return Intl.message(
+      'School Name must be valid',
+      name: 'school_must_be',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name cannot be empty`
+  String get name_cant_be_empty {
+    return Intl.message(
+      'Name cannot be empty',
+      name: 'name_cant_be_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Name must be valid`
+  String get name_must_be {
+    return Intl.message(
+      'User Name must be valid',
+      name: 'name_must_be',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Governorate`
+  String get should_choose_governorate {
+    return Intl.message(
+      'You should choose a Governorate',
+      name: 'should_choose_governorate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Grade`
+  String get should_choose_grade {
+    return Intl.message(
+      'You should choose a Grade',
+      name: 'should_choose_grade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Department`
+  String get should_choose_department {
+    return Intl.message(
+      'You should choose a Department',
+      name: 'should_choose_department',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Gender`
+  String get should_choose_gender {
+    return Intl.message(
+      'You should choose a Gender',
+      name: 'should_choose_gender',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
