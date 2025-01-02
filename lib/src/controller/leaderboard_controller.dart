@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:get/get.dart';
 
 import '../models/user_model.dart';
 import '../repository/user_repository/user_repository.dart';
+import 'home_controller.dart';
 
 class LeaderboardController extends GetxController {
   int selectedIndex = 2;
@@ -13,9 +14,18 @@ class LeaderboardController extends GetxController {
   Map<String, int> userPoints = <String, int>{}.obs;
   Map<String, String> topUsersProfile = <String, String>{}.obs;
 
+  final HomeController controller = Get.put(HomeController());
+  final UserController userController = Get.put(UserController());
+
   @override
   Future<void> onInit() async {
+    await fetchAllUsersData();
+    fetchUserPointsAndRank();
     super.onInit();
+  }
+
+  Future<void> fetchAllUsersData() async {
+    controller.isLoading.value = true;
     usersList.value = await UserRepository.instance.allUsers();
     userPoints = await aggregatePointsByUser();
 
@@ -24,7 +34,15 @@ class LeaderboardController extends GetxController {
       int pointsB = userPoints[b.id] ?? 0;
       return pointsB.compareTo(pointsA); // Sort in descending order
     });
-    await fetchProfileImages();
+  }
+
+  void fetchUserPointsAndRank() {
+    controller.rank.value = (usersList
+            .indexWhere((user) => user.id == userController.user.value?.id)) +
+        1;
+    controller.point.value = userPoints[userController.user.value?.id] ?? 0;
+
+    controller.isLoading.value = false;
     isLoading.value = false;
   }
 
@@ -78,8 +96,7 @@ class LeaderboardController extends GetxController {
     final Map<String, int> userPoints = {};
 
     for (var exam in exams) {
-      final String userId = exam[
-          'userId']; // Add `userId` in your `userExams` document data if not present.
+      final String userId = exam['userId'];
       final int pointsEarned = exam['points'];
 
       userPoints[userId] = (userPoints[userId] ?? 0) + pointsEarned;
@@ -90,11 +107,8 @@ class LeaderboardController extends GetxController {
   Future<void> fetchProfileImages() async {
     for (var user in usersList.getRange(0, 3)) {
       try {
-        String url = await FirebaseStorage.instance
-            .refFromURL('gs://falih-1.firebasestorage.app')
-            .child('user_profile_images/${user.id}.jpg')
-            .getDownloadURL();
-        topUsersProfile[user.id ?? ""] = url; // Store URL in the map
+        topUsersProfile[user.id ?? ""] =
+            user.userProfileImgUrl!; // Store URL in the map
       } catch (e) {
         // Handle errors (e.g., missing image)
         print("No Image because: ${e.toString()}");

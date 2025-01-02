@@ -85,6 +85,7 @@ class PreExam extends StatelessWidget {
               height: 50,
               width: double.infinity,
               onClick: () {
+                controller.startTime = DateTime.now();
                 Get.to(() => const RunExam());
               },
             ),

@@ -109,10 +109,8 @@ class TopLeaderboardSection extends StatelessWidget {
                           radius: isMiddleUser
                               ? screenWidth * 0.1
                               : screenWidth * 0.085,
-                          backgroundImage: NetworkImage(
-                              leaderboardController.topUsersProfile[
-                                  user.id]! // Resolves to the download URL
-                              ),
+                          backgroundImage:
+                              NetworkImage(user.userProfileImgUrl ?? ""),
                           onBackgroundImageError: (_, __) =>
                               const AssetImage('assets/images/placeholder.png'),
                         ),
@@ -139,7 +137,7 @@ class TopLeaderboardSection extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: const Color(0xFF3CD797),
                               borderRadius:
-                              BorderRadius.circular(screenWidth * 0.012),
+                                  BorderRadius.circular(screenWidth * 0.012),
                             ),
                             child: Transform.rotate(
                               angle: 49.5,

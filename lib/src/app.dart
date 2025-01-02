@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -53,6 +54,7 @@ class App extends StatelessWidget {
           //     name: '/',
           //     page: () =>
           //         hasSeenOnboarding ? Login() : const FirstPageBoarding()),
+          // GetPage(name: 'MenuScreen.sc_route', page: () => MenuScreen()),
           // GetPage(name: '/signup', page: () => Signup()),
           // GetPage(name: '/', page: () => HomePage()),
           // GetPage(name: '/', page: () => CheckoutScreen()),

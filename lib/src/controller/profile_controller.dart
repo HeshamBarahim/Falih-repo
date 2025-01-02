@@ -7,11 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
 
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
-import '../repository/user_repository/user_repository.dart';
 import '../screens/main_screen/menu_screen.dart';
 import 'loading_dialog_controller.dart';
 
@@ -167,7 +165,7 @@ class ProfileController extends GetxController {
       update();
       loadingDialogController.closeLoadingDialog(Get.context!);
 
-      Get.snackbar("Success", "Image uploaded successfully");
+      // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
       Get.snackbar("Error", "Failed to upload image: $e");
@@ -181,7 +179,7 @@ class ProfileController extends GetxController {
     await imgUrlCollection
         .doc(userId)
         .update({'userProfileImgUrl': url})
-        .then((value) => print("Note Edited"))
+        .then((value) => print("Image Edited"))
         .catchError((error) {
           print("Failed to Edit Note: $error");
         });
@@ -192,7 +190,7 @@ class ProfileController extends GetxController {
     try {
       isSavingData.value = true;
       final updatedUser = UserModel(
-          id: userController.user.value?.id,
+          id: userController.user.value!.id,
           userProfileImgUrl: url,
           fullName: userController.user.value!.fullName,
           phoneNo: userController.user.value!.phoneNo,
@@ -211,7 +209,11 @@ class ProfileController extends GetxController {
         message: "Profile Image updated successfully!",
       );
       isSavingData.value = false;
-      Get.offAll(() => MenuScreen());
+      // Get.offAll(() => MenuScreen());
+      // Get.offAll(MenuScreen());
+      userProfileImgUrl.value = url;
+      update();
+
     } catch (e) {
       Helper.errorSnackBar(
         title: "Update Failed",

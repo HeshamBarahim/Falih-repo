@@ -19,6 +19,9 @@ class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
+  // final CheckConnectionController checkConnectionController =
+  //     CheckConnectionController();
+  // final NetworkController networkController = Get.find<NetworkController>();
 
   DateTime? lastBackPressTime;
 
@@ -159,8 +162,11 @@ class Login extends StatelessWidget {
                                 text: S.of(context).login,
                                 height: SizeConfig.screenHeight! * 0.06,
                                 width: double.infinity,
-                                onClick: () {
-                                  loginController.login(context);
+                                // onClick: () {},
+                                onClick: () async {
+                                  // var isConnected =
+                                  //     await checkConnectionController.checkInternetConnection();
+                                  loginController.login(Get.context!);
                                 },
                               ),
                               SizedBox(

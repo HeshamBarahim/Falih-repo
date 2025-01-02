@@ -9,6 +9,8 @@ import 'package:get_storage/get_storage.dart';
 
 import 'firebase_options.dart';
 import 'src/app.dart';
+// import 'src/controller/network_controller.dart';
+import 'src/controller/network_controller_real_time.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +20,8 @@ main() async {
   // Initialize GetStorage
   await GetStorage.init();
   // Clear the cache
+  // Get.put(NetworkController());
+  Get.put(NetworkControllerRealTime());
 
   runApp(const MyApp());
 }
