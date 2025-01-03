@@ -3,10 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../config/const.dart';
 import '../../../config/images.dart';
 import '../../../config/sizes.dart';
-import '../../../controller/profile_controller.dart';
 import '../../../controller/user_controller.dart';
 
 class NavBarInfoCard extends StatelessWidget {
@@ -24,33 +22,34 @@ class NavBarInfoCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Obx(
-            () => CircleAvatar(
+          Obx(() {
+            final user = userController.user.value;
+            if (user == null ||
+                user.userProfileImgUrl == null ||
+                user.userProfileImgUrl!.isEmpty) {
+              return Image.asset(
+                Images.test,
+                fit: BoxFit.cover,
+                width: SizeConfig.screenWidth! * 0.282,
+                height: SizeConfig.screenWidth! * 0.282,
+              );
+            }
+            return CircleAvatar(
               radius: SizeConfig.screenWidth! * 0.11,
               backgroundColor: Colors.grey[200],
               child: ClipOval(
-                child: userController.user.value!.userProfileImgUrl != ''
-                    ? CachedNetworkImage(
-                        key: ValueKey(
-                            userController.user.value!.userProfileImgUrl),
-                        imageUrl: userController.user.value!.userProfileImgUrl!,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
-                        width: SizeConfig.screenWidth! * 0.282,
-                        height: SizeConfig.screenWidth! * 0.282,
-                      )
-                    : Image.asset(
-                        Images.test,
-                        fit: BoxFit.cover,
-                        width: SizeConfig.screenWidth! * 0.282,
-                        height: SizeConfig.screenWidth! * 0.282,
-                      ),
-              ),
-            ),
-          ),
+                  child: CachedNetworkImage(
+                key: ValueKey(userController.user.value!.userProfileImgUrl),
+                imageUrl: userController.user.value!.userProfileImgUrl!,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                fit: BoxFit.cover,
+                width: SizeConfig.screenWidth! * 0.282,
+                height: SizeConfig.screenWidth! * 0.282,
+              )),
+            );
+          }),
           SizedBox(width: SizeConfig.screenWidth! * 0.02),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
