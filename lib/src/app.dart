@@ -1,7 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -22,7 +21,8 @@ class App extends StatelessWidget {
       if (!authRepo.isAuthCheckComplete.value) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Login(), // Show loading screen while auth check is in progress
+          home:
+              SplashScreen(), // Show loading screen while auth check is in progress
         );
       }
       return GetMaterialApp(
@@ -33,7 +33,8 @@ class App extends StatelessWidget {
               .apply(bodyColor: AppColors.mainColor),
         ),
         locale: Get.locale,
-        fallbackLocale: const Locale('en'), // Fallback to English
+        fallbackLocale: const Locale('en'),
+        // Fallback to English
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: Login(),
+        home: SplashScreen(),
         // Show loading screen while auth check is in progress
 
         initialRoute: "/splash",
@@ -72,7 +73,7 @@ class App extends StatelessWidget {
   }
 }
 
-// cheack if the current state is arabic
+// check if the current state is arabic
 bool isArabic() {
   return Intl.getCurrentLocale() == 'ar';
 }

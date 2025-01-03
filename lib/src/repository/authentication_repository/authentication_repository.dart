@@ -40,24 +40,28 @@ class AuthenticationRepository extends GetxController {
   void onReady() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
-    // FlutterNativeSplash.remove();
-    setInitialScreen(_firebaseUser.value);
-    isAuthCheckComplete.value = true; // Mark auth check as complete
-
-    // ever(_firebaseUser, _setInitialScreen);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setInitialScreen(_firebaseUser.value);
+      isAuthCheckComplete.value = true;
+    });
   }
 
   /// Setting initial screen
   setInitialScreen(User? user) async {
+    await Future.delayed(
+        const Duration(milliseconds: 100)); // Delay to ensure proper navigation
+
     if (user != null) {
       Get.offAll(() => MenuScreen());
     } else {
-      // Check if it's the user's first time, then navigate accordingly
       userStorage.writeIfNull('isFirstTime', true);
-      print(userStorage.read('isFirstTime'));
-      userStorage.read('isFirstTime') != true
-          ? Get.offAll(() => Login())
-          : Get.offAll(() => FirstPageBoarding());
+
+      bool isFirstTime = userStorage.read('isFirstTime') ?? true;
+      if (isFirstTime) {
+        Get.offAll(() => FirstPageBoarding());
+      } else {
+        Get.offAll(() => Login());
+      }
     }
   }
 
