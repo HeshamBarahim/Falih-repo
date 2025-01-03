@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -814,8 +813,8 @@ class S {
   /// `done`
   String get done {
     return Intl.message(
-      'Done',
-      name: 'Done',
+      'done',
+      name: 'done',
       desc: '',
       args: [],
     );
@@ -1576,6 +1575,56 @@ class S {
     return Intl.message(
       'You should choose a Gender',
       name: 'should_choose_gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse`
+  String get browse {
+    return Intl.message(
+      'Browse',
+      name: 'browse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription`
+  String get Subscription {
+    return Intl.message(
+      'Subscription',
+      name: 'Subscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contact_us {
+    return Intl.message(
+      'Contact Us',
+      name: 'contact_us',
       desc: '',
       args: [],
     );

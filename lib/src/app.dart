@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/main_screen/menu_screen.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,7 @@ class App extends StatelessWidget {
       if (!authRepo.isAuthCheckComplete.value) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home:
-              SplashScreen(), // Show loading screen while auth check is in progress
+          home: Login(), // Show loading screen while auth check is in progress
         );
       }
       return GetMaterialApp(
@@ -41,12 +41,12 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: SplashScreen(),
+        home: Login(),
         // Show loading screen while auth check is in progress
 
         initialRoute: "/splash",
         // Set the initial route
-        unknownRoute: GetPage(name: '/signup', page: () => SplashScreen()),
+        unknownRoute: GetPage(name: '/signup', page: () => Login()),
 
         getPages: [
           //  routes here

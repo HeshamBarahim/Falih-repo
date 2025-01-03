@@ -1,4 +1,5 @@
 // navbar
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/screens/about_us/about_us_screen.dart';
 import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
@@ -64,7 +65,7 @@ class NavBar extends StatelessWidget {
                             horizontal: SizeConfig.screenWidth! * 0.06,
                             vertical: SizeConfig.screenHeight! * 0.01),
                         child: Text(
-                          "BROWSE",
+                          S.of(context).browse,
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: SizeConfig.screenHeight! * 0.018,
@@ -115,7 +116,7 @@ class NavBar extends StatelessWidget {
                           bottom: SizeConfig.screenHeight! * 0.01,
                         ),
                         child: Text(
-                          "HISTORY",
+                          S.of(context).history,
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: SizeConfig.screenHeight! * 0.018,

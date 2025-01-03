@@ -362,7 +362,7 @@
           "@leaderBoard": {
             "description": ""
           },
-          "leaderBoard": "لوحة القيادة",
+          "leaderBoard": "لوحة الصدارة",
         
           "@notification": {
             "description": ""
@@ -577,10 +577,148 @@
             "@language": {
               "description": ""
             },
-            "language": "اللغة"
-          
-          
-  
-      
+            "language": "اللغة",
+            "@about_us": {
+              "description": ""
+            },
+            "about_us": "من نحن",
+              "@easy_use": {
+                "description": ""
+              },
+              "easy_use": "سهل الاستخدام",
+              "@subTitle_easy": {
+                "description": ""
+              },
+              "subTitle_easy": "مصمم خصيصًا للطلاب، يوفر فالح واجهة بسيطة تجعل التنقل سهلًا. ابحث عن كل ما تحتاجه بضغطة زر.",
+              "@trusted": {
+                "description": ""
+              },
+              "trusted": "موثوق",
+              "@subTitle_trusted": {
+                "description": ""
+              },
+              "subTitle_trusted": "انضم إلى مجتمع متزايد من المتعلمين الذين يعتمدون على فالح للحصول على إجابات دقيقة ومساعدة مدعومة بالذكاء الاصطناعي. نجاحك هو أولويتنا.",
+              "@quick_access": {
+                "description": ""
+              },
+              "quick_access": "الوصول السريع",
+              "@subTitle_quick": {
+                "description": ""
+              },
+              "subTitle_quick": "مع فالح، لن تضطر للانتظار. احصل على إجابات فورية وتفسيرات شاملة لأسئلتك.",
+              "@compete_shine": {
+                "description": ""
+              },
+              "compete_shine": "تنافس وتألق",
+              "@subTitle_compete": {
+                "description": ""
+              },
+              "subTitle_compete": "تحدى نفسك وارتقِ في لوحة المتصدرين! يجعل فالح التعلم ممتعًا مع المنافسة الودية، مما يساعدك على الحفاظ على حماسك وتحقيق المزيد.",
+              "@achieve_your_best": {
+                "description": ""
+              },
+              "achieve_your_best": "حقق أفضل ما لديك",
+              "@achieveTitle": {
+                "description": ""
+              },
+              "achieveTitle": "تجاوز حل الأسئلة. مع فالح، استكشف أدوات مدعومة بالذكاء الاصطناعي تعزز فهمك وتساعدك على التفوق في دراستك.",
+              "@your_journey": {
+                "description": ""
+              },
+              "your_journey": "رحلتك مع فالح",
+              "@back_to_home": {
+                "description": ""
+              },
+              "back_to_home": "العودة إلى الصفحة الرئيسية",
+              "@back": {
+                "description": ""
+              },
+              "back": "عودة",
+              "@close": {
+                "description": ""
+              },
+              "close": "إغلاق",
+              "@terms_conditions": {
+                "description": ""
+              },
+              "terms_conditions": "الشروط والأحكام",
+              "@and": {
+                "description": ""
+              },
+              "and": " و ",
+              "@privacy_policy": {
+                "description": ""
+              },
+              "privacy_policy": "سياسة الخصوصية",
+              "@agreeing_message": {
+                "description": ""
+              },
+              "agreeing_message": "بالنقر على 'إنشاء حساب'، فإنك توافق على ",
+              "@phone_cant_be_empty": {
+                "description": ""
+              },
+              "phone_cant_be_empty": "لا يمكن أن يكون رقم الهاتف فارغًا",
+              "@passwrod_cant_be_empty": {
+                "description": ""
+              },
+              "passwrod_cant_be_empty": "لا يمكن أن تكون كلمة المرور فارغة",
+              "@passwrod_must_be": {
+                "description": ""
+              },
+              "passwrod_must_be": "يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل",
+              "@school_cant_be_empty": {
+                "description": ""
+              },
+              "school_cant_be_empty": "لا يمكن أن يكون اسم المدرسة فارغًا",
+              "@school_must_be": {
+                "description": ""
+              },
+              "school_must_be": "يجب أن يكون اسم المدرسة صالحًا",
+              "@name_cant_be_empty": {
+                "description": ""
+              },
+              "name_cant_be_empty": "لا يمكن أن يكون الاسم فارغًا",
+              "@name_must_be": {
+                "description": ""
+              },
+              "name_must_be": "يجب أن يكون اسم المستخدم صالحًا",
+              "@should_choose_governorate": {
+                "description": ""
+              },
+              "should_choose_governorate": "يجب اختيار المحافظة",
+              "@should_choose_grade": {
+                "description": ""
+              },
+              "should_choose_grade": "يجب اختيار الصف الدراسي",
+              "@should_choose_department": {
+                "description": ""
+              },
+              "should_choose_department": "يجب اختيار القسم",
+              "@should_choose_gender": {
+                "description": ""
+              },
+              "should_choose_gender": "يجب اختيار الجنس",
+              "@browse": {
+                "description": ""
+              },
+                "browse": "تصفح",
+                "@history": {
+                  "description": ""
+                },
+                "history": "السجل",
+                "@profile": {
+                  "description": ""
+                },
+                "profile": "الملف الشخصي",
+                "@Subscription": {
+                  "description": ""
+                },
+                "Subscription": "الاشتراك",
+                "@contact_us": {
+                  "description": ""
+                },
+                "contact_us": "اتصل بنا"
+              
+              
   }
   

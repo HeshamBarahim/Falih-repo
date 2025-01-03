@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Subscription": MessageLookupByLibrary.simpleMessage("Subscription"),
         "about_us": MessageLookupByLibrary.simpleMessage("About us"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "account_holder_number":
@@ -44,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Have an account? "),
         "bottom_text_part2":
             MessageLookupByLibrary.simpleMessage(" Login instead"),
+        "browse": MessageLookupByLibrary.simpleMessage("Browse"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage(" not taken "),
         "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
@@ -54,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "compete_shine":
             MessageLookupByLibrary.simpleMessage("Compete and Shine"),
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
+        "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
         "create_account":
@@ -107,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "history_heading":
             MessageLookupByLibrary.simpleMessage("Your test histroy"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -162,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy"),
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
         "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),

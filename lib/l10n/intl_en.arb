@@ -613,8 +613,25 @@
     "@should_choose_gender": {
       "description": ""
     },
-    "should_choose_gender":"You should choose a Gender"
-    
-
-
+    "should_choose_gender":"You should choose a Gender",
+    "@browse": {
+      "description": ""
+    },
+    "browse":"Browse",
+    "@history": {
+      "description": ""
+    },
+    "history":"History",
+    "@profile": {
+      "description": ""
+    },
+    "profile":"Profile",
+    "@Subscription": {
+      "description": ""
+    },
+    "Subscription":"Subscription",
+    "@contact_us": {
+      "description": ""
+    },
+    "contact_us":"Contact Us"
 }
