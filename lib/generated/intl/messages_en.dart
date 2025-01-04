@@ -59,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
+        "correct_answers":
+            MessageLookupByLibrary.simpleMessage("Correct Answers"),
         "create_account":
             MessageLookupByLibrary.simpleMessage(" Create an Account"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
@@ -92,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Time will be counted during the exam"),
         "explaintion_number2": MessageLookupByLibrary.simpleMessage(
             "You can continue take exam anytime"),
+        "failed": MessageLookupByLibrary.simpleMessage("Failed"),
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "final_exam_limit":
@@ -99,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "hi": MessageLookupByLibrary.simpleMessage("hi"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("Governorate"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("Grade"),
@@ -143,10 +147,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
             "You have not taken any tests yet"),
         "notification": MessageLookupByLibrary.simpleMessage("Nontification"),
+        "on": MessageLookupByLibrary.simpleMessage("On"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
+        "over_all_points":
+            MessageLookupByLibrary.simpleMessage("Overall points"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("You have "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" any tests yet"),
+        "passed": MessageLookupByLibrary.simpleMessage("Passed"),
         "passwrod_cant_be_empty":
             MessageLookupByLibrary.simpleMessage("Password cannot be empty"),
         "passwrod_must_be": MessageLookupByLibrary.simpleMessage(
@@ -170,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
         "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),
+        "rank": MessageLookupByLibrary.simpleMessage("Rank"),
         "resend_code": MessageLookupByLibrary.simpleMessage("Resend The Code"),
         "results": MessageLookupByLibrary.simpleMessage("Results"),
         "review_answer":
@@ -222,6 +231,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Subscription packages"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("Terms && Conditions"),
+        "this_month_points":
+            MessageLookupByLibrary.simpleMessage("This month points"),
         "time_will_counted": MessageLookupByLibrary.simpleMessage(
             "Time will be counted during the exam"),
         "times": MessageLookupByLibrary.simpleMessage("times"),
@@ -245,6 +256,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "your": MessageLookupByLibrary.simpleMessage("Your"),
         "your_journey":
             MessageLookupByLibrary.simpleMessage("Your Journey With Falih"),
+        "your_latest_exams":
+            MessageLookupByLibrary.simpleMessage("Your latest Exams"),
         "your_self": MessageLookupByLibrary.simpleMessage("Yourself")
       };
 }

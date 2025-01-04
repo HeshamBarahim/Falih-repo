@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
@@ -107,7 +108,7 @@ class HomePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Hi, ${userController.currentUser!.fullName}",
+                                        "${S.of(context).hi}, ${userController.currentUser!.fullName}",
                                         style: const TextStyle(
                                             color: AppColors.secondaryColor,
                                             fontSize: 24,
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
                                           height:
                                               SizeConfig.screenHeight! * 0.01),
                                       Text(
-                                        'Rank: #${controller.rank.value}',
+                                        "${S.of(context).rank}: #${controller.rank.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -125,7 +126,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "Overall points: ${controller.point.value} / ${controller.maxPoint.value}",
+                                        "${S.of(context).over_all_points}: ${controller.point.value} / ${controller.maxPoint.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -133,7 +134,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "This month points: ${controller.point.value}",
+                                        "${S.of(context).this_month_points}: ${controller.point.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -198,7 +199,7 @@ class HomePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Your latest Exams",
+                    S.of(context).your_latest_exams,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: SizeConfig.screenHeight! *
@@ -211,7 +212,7 @@ class HomePage extends StatelessWidget {
               SizedBox(height: SizeConfig.screenHeight! * 0.02),
 
               Obx(
-                    () => controller.userExamHistoryIsLoading.value
+                () => controller.userExamHistoryIsLoading.value
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
@@ -290,13 +291,13 @@ class HomePage extends StatelessWidget {
                                                                 BorderRadius.all(
                                                                     Radius.circular(
                                                                         20))),
-                                                        child: const Padding(
+                                                        child: Padding(
                                                             padding:
-                                                                EdgeInsets.symmetric(
+                                                                const EdgeInsets.symmetric(
                                                                     horizontal:
                                                                         8.0),
-                                                            child: Text("Passed",
-                                                                style: TextStyle(
+                                                            child: Text(S.of(context).passed,
+                                                                style: const TextStyle(
                                                                     color: AppColors.successColor,
                                                                     fontWeight: FontWeight.w500,
                                                                     fontSize: 14))))
@@ -309,13 +310,17 @@ class HomePage extends StatelessWidget {
                                                                     .all(Radius
                                                                         .circular(
                                                                             20))),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
                                                                   horizontal:
                                                                       8.0),
-                                                          child: Text("Failed",
-                                                              style: TextStyle(
+                                                          child: Text(
+                                                              S
+                                                                  .of(context)
+                                                                  .failed,
+                                                              style: const TextStyle(
                                                                   color: AppColors
                                                                       .errorColor,
                                                                   fontWeight:
@@ -354,7 +359,7 @@ class HomePage extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Correct Answers: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                                "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
                                                 style: const TextStyle(
                                                   color: Color(0xFF3CD797),
                                                   fontWeight: FontWeight.w500,
@@ -362,13 +367,13 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "On: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                                "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
                                                 textAlign: TextAlign.right,
                                               ),
                                               Text(
-                                                "${examResult["points"]} points",
+                                                "${examResult["points"]} ${S.of(context).points}",
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
                                                 textAlign: TextAlign.right,

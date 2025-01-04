@@ -717,8 +717,45 @@
                 "@contact_us": {
                   "description": ""
                 },
-                "contact_us": "اتصل بنا"
+                "contact_us": "اتصل بنا",
+                "@hi": {
+                  "description": ""
+                },
+                  "hi": "مرحباً",
+                  "@rank": {
+                    "description": ""
+                  },
+                  "rank": "الترتيب",
+                  "@over_all_points": {
+                    "description": ""
+                  },
+                  "over_all_points": "إجمالي النقاط",
+                  "@this_month_points": {
+                    "description": ""
+                  },
+                  "this_month_points": "نقاط هذا الشهر",
+                  "@your_latest_exams": {
+                    "description": ""
+                  },
+                  "your_latest_exams": "آخر الامتحانات الخاصة بك",
+                  "@passed": {
+                    "description": ""
+                  },
+                  "passed": "ناجح",
+                  "@failed": {
+                    "description": ""
+                  },
+                  "failed": "راسب",
+                  "@correct_answers": {
+                    "description": ""
+                  },
+                  "correct_answers": "الإجابات الصحيحة",
+                  "@on": {
+                    "description": ""
+                  },
+                  "on": "في"
+                }
+                
               
               
-  }
   

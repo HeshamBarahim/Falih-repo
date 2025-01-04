@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contact_us": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "continueText": MessageLookupByLibrary.simpleMessage("متابعة"),
         "correct": MessageLookupByLibrary.simpleMessage("صحيح"),
+        "correct_answers":
+            MessageLookupByLibrary.simpleMessage("الإجابات الصحيحة"),
         "create_account": MessageLookupByLibrary.simpleMessage(" إنشاء حساب"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("وضع الظلام"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
@@ -93,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "سيتم حساب الوقت أثناء الاختبار"),
         "explaintion_number2": MessageLookupByLibrary.simpleMessage(
             "يمكنك مواصلة الاختبار في أي وقت"),
+        "failed": MessageLookupByLibrary.simpleMessage("راسب"),
         "falih": MessageLookupByLibrary.simpleMessage("فالح"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
         "final_exam_limit":
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مرحبًا يوسف"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "hi": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("المحافظة"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("الصف"),
@@ -146,10 +150,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_taken_exams_home_page":
             MessageLookupByLibrary.simpleMessage("لم تقم بخوض أي اختبارات بعد"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعار"),
+        "on": MessageLookupByLibrary.simpleMessage("في"),
         "otp": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
+        "over_all_points":
+            MessageLookupByLibrary.simpleMessage("إجمالي النقاط"),
         "part_one_subHeader": MessageLookupByLibrary.simpleMessage("لم يتم "),
         "part_two_subHeader":
             MessageLookupByLibrary.simpleMessage(" لأي اختبار بعد"),
+        "passed": MessageLookupByLibrary.simpleMessage("ناجح"),
         "passwrod_cant_be_empty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن تكون كلمة المرور فارغة"),
         "passwrod_must_be": MessageLookupByLibrary.simpleMessage(
@@ -172,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "question": MessageLookupByLibrary.simpleMessage("سؤال"),
         "questions": MessageLookupByLibrary.simpleMessage("أسئلة"),
         "quick_access": MessageLookupByLibrary.simpleMessage("الوصول السريع"),
+        "rank": MessageLookupByLibrary.simpleMessage("الترتيب"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
         "review_answer": MessageLookupByLibrary.simpleMessage("مراجعة إجاباتك"),
         "ry": MessageLookupByLibrary.simpleMessage("ر.ي"),
@@ -220,6 +229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("باقات الاشتراك"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "this_month_points":
+            MessageLookupByLibrary.simpleMessage("نقاط هذا الشهر"),
         "time_will_counted": MessageLookupByLibrary.simpleMessage(
             "سيتم حساب الوقت أثناء الاختبار"),
         "times": MessageLookupByLibrary.simpleMessage("مرات"),
@@ -242,6 +253,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكنك مواصلة الاختبار في أي وقت"),
         "your": MessageLookupByLibrary.simpleMessage("خطوتك"),
         "your_journey": MessageLookupByLibrary.simpleMessage("رحلتك مع فالح"),
+        "your_latest_exams":
+            MessageLookupByLibrary.simpleMessage("آخر الامتحانات الخاصة بك"),
         "your_self": MessageLookupByLibrary.simpleMessage("نفسك")
       };
 }
