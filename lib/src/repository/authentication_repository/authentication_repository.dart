@@ -49,7 +49,7 @@ class AuthenticationRepository extends GetxController {
   /// Setting initial screen
   setInitialScreen(User? user) async {
     await Future.delayed(
-        const Duration(milliseconds: 100)); // Delay to ensure proper navigation
+        const Duration(seconds: 4)); // Delay to ensure proper navigation
 
     if (user != null) {
       Get.offAll(() => MenuScreen());

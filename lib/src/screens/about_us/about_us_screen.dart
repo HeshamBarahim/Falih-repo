@@ -6,7 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../main_screen/menu_screen.dart';
+8import '../main_screen/menu_screen.dart';
 import 'components/on_boarding_views.dart';
 import 'controller/about_us_screen_contoller.dart';
 
