@@ -633,5 +633,41 @@
     "@contact_us": {
       "description": ""
     },
-    "contact_us":"Contact Us"
+    "contact_us":"Contact Us",
+    "@hi": {
+      "description": ""
+    },
+    "hi":"hi",
+    "@rank": {
+      "description": ""
+    },
+    "rank":"Rank",
+    "@over_all_points": {
+      "description": ""
+    },
+    "over_all_points":"Overall points",
+    "@this_month_points": {
+      "description": ""
+    },
+    "this_month_points":"This month points",
+    "@your_latest_exams": {
+      "description": ""
+    },
+    "your_latest_exams":"Your latest Exams",
+    "@passed": {
+      "description": ""
+    },
+    "passed":"Passed",
+    "@failed": {
+      "description": ""
+    },
+    "failed":"Failed",
+    "@correct_answers": {
+      "description": ""
+    },
+    "correct_answers":"Correct Answers",
+    "@on": {
+      "description": ""
+    },
+    "on":"On"
 }

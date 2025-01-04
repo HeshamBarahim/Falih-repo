@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
@@ -107,7 +108,7 @@ class HomePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Hi, ${userController.currentUser!.fullName}",
+                                        "${S.of(context).hi}, ${userController.currentUser!.fullName}",
                                         style: const TextStyle(
                                             color: AppColors.secondaryColor,
                                             fontSize: 24,
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
                                           height:
                                               SizeConfig.screenHeight! * 0.01),
                                       Text(
-                                        'Rank: #${controller.rank.value}',
+                                        "${S.of(context).rank}: #${controller.rank.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -125,7 +126,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "Overall points: ${controller.overallPoints.value}",
+                                        "${S.of(context).over_all_points}: ${controller.point.value} / ${controller.maxPoint.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -133,7 +134,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "This month points: ${controller.point.value}",
+                                        "${S.of(context).this_month_points}: ${controller.point.value}",
                                         style: const TextStyle(
                                           color: AppColors.secondaryColor,
                                           fontSize: 16,
@@ -198,11 +199,11 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Your latest Exams",
-                    style: TextStyle(
+                    S.of(context).your_latest_exams,
+                    style: const TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -212,9 +213,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: SizeConfig.screenHeight! * 0.02),
 
-              Obx(
-                    () =>
-                    controller.userExamHistoryIsLoading.value
+              Obx(() => controller.userExamHistoryIsLoading.value
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
@@ -246,9 +245,9 @@ class HomePage extends StatelessWidget {
                                   (examResult["correctAnswers"] /
                                       examResult["totalQuestions"]);
                               double roundedPercentage =
-                                double.parse((percentage).toStringAsFixed(1));
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
+                                  double.parse((percentage).toStringAsFixed(1));
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 8.0, vertical: 2.0),
                                 child: GestureDetector(
                                   onTap: () {
@@ -343,61 +342,60 @@ class HomePage extends StatelessWidget {
                                                                       fontWeight: FontWeight.w500,
                                                                       fontSize: 12))))
                                                       : Container(
-                                                        decoration: const BoxDecoration(
-                                                            color: AppColors
-                                                                .errorBoxColor,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
+                                                          decoration: const BoxDecoration(
+                                                              color: AppColors
+                                                                  .errorBoxColor,
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          20))),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
                                                                     horizontal:
                                                                         8.0),
                                                             child: Text(
-                                                                "Failed",
-                                                                style: TextStyle(
+                                                                S
+                                                                    .of(context)
+                                                                    .failed,
+                                                                style: const TextStyle(
                                                                     color: AppColors
                                                                         .errorColor,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500,
                                                                     fontSize:
-                                                                        12)),
+                                                                        14)),
                                                           ),
                                                         ),
-                                                  // Text(
-                                                  //   "${examResult["examName"]}",
-                                                  //   style: const TextStyle(
-                                                  //     fontSize: 12,
-                                                  //     fontWeight:
-                                                  //         FontWeight.w700,
-                                                  //   ),
-                                                  // ),
-                                                  Text(
-                                                    examResult["examType"] ==
-                                                            "UnitExam"
-                                                        ? "Unit Exam"
-                                                        : "Final Exam",
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
+                                                  const SizedBox(
+                                                    height: 8,
                                                   ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 2.5),
+                                                    child: Text(
+                                                      "${examResult["examName"]}",
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  )
                                                 ],
+                                              ),
                                             ),
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Correct Answers: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                                  "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
                                                   style: const TextStyle(
                                                     color: Color(0xFF3CD797),
                                                     fontWeight: FontWeight.w500,
@@ -405,38 +403,36 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${examResult["points"]} points",
+                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
                                                 ),
                                                 Text(
-                                                  DateFormat('MMM d, y h:mm a')
-                                                      .format(examResult["date"]
-                                                          .toDate()),
+                                                  "${examResult["points"]} ${S.of(context).points}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
                                                 ),
                                               ],
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_forward_ios,
+                                            ),
+                                            const Icon(
+                                              Icons.arrow_forward_ios,
                                               size: 20,
                                               color: AppColors.darkMainColor,
                                             )
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                    )),
+                              );
+                            },
+                          ),
+                        )),
             ],
           ),
         ),

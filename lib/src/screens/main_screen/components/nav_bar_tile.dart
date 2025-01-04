@@ -69,7 +69,7 @@ class NavBarTile extends StatelessWidget {
                 ),
               ),
               title: Text(
-                menu.title,
+                menu.title(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: SizeConfig.screenHeight! *

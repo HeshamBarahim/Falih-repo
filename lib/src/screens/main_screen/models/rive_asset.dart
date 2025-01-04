@@ -2,8 +2,9 @@ import 'package:rive/rive.dart';
 
 class RiveAsset {
   int index;
-  final String artboard, stateMachineName, title, src;
+  final String artboard, stateMachineName, src;
   late SMIBool? input;
+  final String Function() title;
 
   RiveAsset(this.src,
       {required this.index,

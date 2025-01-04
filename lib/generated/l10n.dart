@@ -1629,6 +1629,96 @@ class S {
       args: [],
     );
   }
+
+  /// `hi`
+  String get hi {
+    return Intl.message(
+      'hi',
+      name: 'hi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rank`
+  String get rank {
+    return Intl.message(
+      'Rank',
+      name: 'rank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overall points`
+  String get over_all_points {
+    return Intl.message(
+      'Overall points',
+      name: 'over_all_points',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This month points`
+  String get this_month_points {
+    return Intl.message(
+      'This month points',
+      name: 'this_month_points',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your latest Exams`
+  String get your_latest_exams {
+    return Intl.message(
+      'Your latest Exams',
+      name: 'your_latest_exams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passed`
+  String get passed {
+    return Intl.message(
+      'Passed',
+      name: 'passed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correct Answers`
+  String get correct_answers {
+    return Intl.message(
+      'Correct Answers',
+      name: 'correct_answers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `On`
+  String get on {
+    return Intl.message(
+      'On',
+      name: 'on',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
