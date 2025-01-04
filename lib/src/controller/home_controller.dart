@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   var isLoading = true.obs;
   var userExamHistoryIsLoading = true.obs;
   var carouselCurrentIndex = 0.obs;
+  var overallPoints = 0.obs;
   var point = 0.obs;
   var rank = 0.obs;
   var maxPoint = 500.obs;
@@ -27,6 +28,8 @@ class HomeController extends GetxController {
 
   Future<void> fetchAllUserExamHistory() async {
     userExamHistoryIsLoading.value = true;
+    overallPoints.value = 0;
+
     var user = UserController.instance.user.value;
     final QuerySnapshot userExamsSnapshot = await _db
         .collection('exams')
@@ -35,6 +38,7 @@ class HomeController extends GetxController {
         .get();
     userExamHistory.addAll(userExamsSnapshot.docs.map((doc) {
       final examData = doc.data() as Map<String, dynamic>;
+      overallPoints += examData["points"] ?? 0;
       return examData;
     }));
 
@@ -44,7 +48,6 @@ class HomeController extends GetxController {
       final dateB = b['date'];
       return dateB.compareTo(dateA);
     });
-
     userExamHistoryIsLoading.value = false;
   }
 }
