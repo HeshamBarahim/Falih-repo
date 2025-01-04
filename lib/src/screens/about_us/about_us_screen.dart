@@ -6,7 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-8import '../main_screen/menu_screen.dart';
+import '../main_screen/main_screen.dart';
 import 'components/on_boarding_views.dart';
 import 'controller/about_us_screen_contoller.dart';
 
@@ -26,7 +26,7 @@ class AboutUsScreen extends StatelessWidget {
         onPopInvokedWithResult: (didPop, result) {
           if (!didPop) {
             // Navigate to the menu screen when the user tries to pop
-            Get.offAll(MenuScreen());
+            Get.offAll(MainScreen());
           }
         },
         child: Scaffold(
@@ -322,7 +322,7 @@ class AboutUsScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Get.offAll(() => MenuScreen());
+                            Get.offAll(() => MainScreen());
                           },
                         ),
                       ),

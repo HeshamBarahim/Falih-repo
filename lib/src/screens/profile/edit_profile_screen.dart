@@ -9,7 +9,7 @@ import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class EditProfileScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MenuScreen());
+          Get.offAll(MainScreen());
         }
       },
       child: Scaffold(

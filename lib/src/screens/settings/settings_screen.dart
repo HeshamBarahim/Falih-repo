@@ -7,7 +7,7 @@ import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../main_screen/menu_screen.dart';
+import '../main_screen/main_screen.dart';
 import 'components/accounts_section.dart';
 import 'components/preferences_section.dart';
 import 'components/profile_section.dart';
@@ -35,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MenuScreen());
+          Get.offAll(MainScreen());
         }
       },
       child: Scaffold(
@@ -57,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
               color: iconColor_1,
             ),
             onPressed: () {
-              Get.offAll(MenuScreen());
+              Get.offAll(MainScreen());
             },
           ),
         ),

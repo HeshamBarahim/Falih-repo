@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
-import '../screens/main_screen/menu_screen.dart';
+import '../screens/main_screen/main_screen.dart';
 import 'loading_dialog_controller.dart';
 
 class ProfileController extends GetxController {
@@ -213,7 +213,6 @@ class ProfileController extends GetxController {
       // Get.offAll(MenuScreen());
       userProfileImgUrl.value = url;
       update();
-
     } catch (e) {
       Helper.errorSnackBar(
         title: "Update Failed",
@@ -246,7 +245,7 @@ class ProfileController extends GetxController {
         message: "Profile updated successfully!",
       );
       isSavingData.value = false;
-      Get.offAll(() => MenuScreen());
+      Get.offAll(() => MainScreen());
     } catch (e) {
       Helper.errorSnackBar(
         title: "Update Failed",

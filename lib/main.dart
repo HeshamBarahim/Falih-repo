@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
@@ -24,6 +25,12 @@ main() async {
   Get.put(NetworkControllerRealTime());
 
   runApp(const MyApp());
+
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => const MyApp(),
+  //   ),
+  // );
 }
 
 Future<void> initDependencies() async {

@@ -9,12 +9,13 @@ import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
 import '../notification/notification_page.dart';
+import 'components/bottom_nav_bar.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
 import 'controller/nav_bar_controller.dart';
 
-class MenuScreen extends StatelessWidget {
-  MenuScreen({super.key});
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
 
   DateTime? lastBackPressTime;
 
@@ -203,99 +204,11 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: controller.bottomNavBarVisability
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.screenWidth! * 0.17),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 15,
-                          offset: Offset(5, 9),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(SizeConfig.screenWidth! * 0.07),
-                      child: NavigationBarTheme(
-                        data: NavigationBarThemeData(
-                          indicatorColor: AppColors.choicesColor,
-                          backgroundColor: AppColors.moreLightenMainColor,
-                          labelTextStyle:
-                              MaterialStateProperty.resolveWith<TextStyle>(
-                            (states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return TextStyle(
-                                  fontSize: SizeConfig.screenWidth! *
-                                      0.029, // Font size for selected labels
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors
-                                      .mainColor, // Selected label color
-                                );
-                              }
-                              return TextStyle(
-                                fontSize: 0, // Font size for unselected labels
-                                color: const Color(
-                                    0xFFD2A8DF), // Unselected label color
-                              );
-                            },
-                          ),
-                        ),
-                        child: NavigationBar(
-                          elevation: 0,
-                          selectedIndex: controller.selectedIndex,
-                          onDestinationSelected: (index) {
-                            controller.changeCurrentPage(index);
-                          },
-                          destinations: [
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.menu_book,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              icon: Icon(
-                                Icons.menu_book_outlined,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              label: S.of(context).subjects,
-                            ),
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.home,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              icon: Icon(
-                                Icons.home,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              label: S.of(context).home,
-                            ),
-                            NavigationDestination(
-                              selectedIcon: Icon(
-                                Icons.leaderboard_outlined,
-                                color: AppColors.mainColor,
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              icon: Icon(
-                                Icons.leaderboard_outlined,
-                                color: const Color(0xFFD2A8DF),
-                                size: SizeConfig.screenHeight! * 0.04,
-                              ),
-                              label: S.of(context).leaderBoard,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+              ? BottomNavBar(
+                  selectedIndex: controller.selectedIndex,
+                  onDestinationSelected: (index) {
+                    controller.changeCurrentPage(index!);
+                  },
                 )
               : null,
         ),
