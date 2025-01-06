@@ -13,7 +13,7 @@ import '../../../config/sizes.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
-import '../menu_screen.dart';
+import '../main_screen.dart';
 import '../utils/rive_utils.dart';
 import 'nav_bar_info_card.dart';
 import 'nav_bar_tile.dart';
@@ -93,7 +93,7 @@ class NavBar extends StatelessWidget {
 
                                     if (menu.index == 0) {
                                       controller.stopProcess();
-                                      Get.off(MenuScreen());
+                                      Get.off(MainScreen());
                                       // Get.offAll(MenuScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();

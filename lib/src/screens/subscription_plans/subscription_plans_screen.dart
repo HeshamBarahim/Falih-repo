@@ -7,7 +7,7 @@ import 'package:falih/src/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../main_screen/menu_screen.dart';
+import '../main_screen/main_screen.dart';
 import 'components/body.dart';
 import 'components/footer.dart';
 import 'components/header.dart';
@@ -27,7 +27,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MenuScreen());
+          Get.offAll(MainScreen());
         }
       },
       child: Scaffold(
@@ -47,7 +47,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Navigator.pop(context);
-                    Get.offAll(MenuScreen());
+                    Get.offAll(MainScreen());
                   },
                 ),
                 SizedBox(height: SizeConfig.screenHeight! * 0.018),

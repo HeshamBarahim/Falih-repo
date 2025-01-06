@@ -1,5 +1,5 @@
 import 'package:falih/src/screens/Auth/login/login.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,10 +49,10 @@ class AuthenticationRepository extends GetxController {
   /// Setting initial screen
   setInitialScreen(User? user) async {
     await Future.delayed(
-        const Duration(milliseconds: 100)); // Delay to ensure proper navigation
+        const Duration(seconds: 4)); // Delay to ensure proper navigation
 
     if (user != null) {
-      Get.offAll(() => MenuScreen());
+      Get.offAll(() => MainScreen());
     } else {
       userStorage.writeIfNull('isFirstTime', true);
 

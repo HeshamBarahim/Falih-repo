@@ -1,7 +1,7 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/screens/home/home_page.dart';
-import 'package:falih/src/screens/main_screen/menu_screen.dart';
+import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:falih/src/config/const.dart';
