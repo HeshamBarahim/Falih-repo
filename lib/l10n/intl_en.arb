@@ -701,5 +701,22 @@
     "@u_should_choose_gender": {
       "description": ""
     },
-    "u_should_choose_gender":"You should choose a Gender"
+    "u_should_choose_gender":"You should choose a Gender",
+    "@go_get_some_exams": {
+      "description": ""
+    },
+    "go_get_some_exams": "Go get some exams",
+    "@rules_prizes": {
+      "description": ""
+    },
+    "rules_prizes": "Rules && Prizes",
+    "@no_exams_yet": {
+      "description": ""
+    },
+    "no_exams_yet": "No exams yet, go and take one",
+    "@still_no_chapters": {
+      "description": ""
+    },
+    "still_no_chapters": "Still no chapters"
+    
 }

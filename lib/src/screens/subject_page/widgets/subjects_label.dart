@@ -132,8 +132,8 @@ class SubjectsLabels extends StatelessWidget {
           } else if (!snapshot.hasData ||
               !snapshot.data!.exists ||
               snapshot.data!.data()!.isEmpty) {
-            return const Expanded(
-                child: Center(child: Text('Still no chapters')));
+            return Expanded(
+                child: Center(child: Text(S.of(context).still_no_chapters)));
           }
 
           final subjectData = snapshot.data!.data() as Map<String, dynamic>;
@@ -247,8 +247,8 @@ class SubjectsLabels extends StatelessWidget {
           return data["examName"] == subjectName.value;
         }).toList();
         if (filteredExams.isEmpty) {
-          return const Expanded(
-              child: Center(child: Text('No exams yet, go and take one')));
+          return Expanded(
+              child: Center(child: Text(S.of(context).no_exams_yet)));
         }
         return Expanded(
           child: ListView.builder(

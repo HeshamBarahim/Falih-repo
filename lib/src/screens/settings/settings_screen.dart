@@ -109,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
                         });
                   },
                   // Terms & Conditions Button Function
-                  onTapTerms_ConditionsFunction: () {
+                  onTapTermsConditionsFunction: () {
                     showDialog(
                         context: context,
                         builder: (context) {

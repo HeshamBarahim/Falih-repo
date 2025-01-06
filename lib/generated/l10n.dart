@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Welcome Back`
+  /// `مرحبا بك من جديد`
   String get title_login {
     return Intl.message(
-      'Welcome Back',
+      'مرحبا بك من جديد',
       name: 'title_login',
       desc: 'This is the Start of the login page',
       args: [],
@@ -70,1731 +70,1771 @@ class S {
     );
   }
 
-  /// `Password`
+  /// `كلمة المرور`
   String get hint_text_password {
     return Intl.message(
-      'Password',
+      'كلمة المرور',
       name: 'hint_text_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Forget Password?`
+  /// `نسيت كلمة المرور؟`
   String get forget_password {
     return Intl.message(
-      'Forget Password?',
+      'نسيت كلمة المرور؟',
       name: 'forget_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Login`
+  /// `تسجيل الدخول`
   String get login {
     return Intl.message(
-      'Login',
+      'تسجيل الدخول',
       name: 'login',
       desc: '',
       args: [],
     );
   }
 
-  /// `Not registerd yet? `
+  /// `لم تقم بالتسجيل بعد؟ `
   String get not_registerd {
     return Intl.message(
-      'Not registerd yet? ',
+      'لم تقم بالتسجيل بعد؟ ',
       name: 'not_registerd',
       desc: '',
       args: [],
     );
   }
 
-  /// ` Create an Account`
+  /// ` إنشاء حساب`
   String get create_account {
     return Intl.message(
-      ' Create an Account',
+      ' إنشاء حساب',
       name: 'create_account',
       desc: '',
       args: [],
     );
   }
 
-  /// `step 1 of 2`
+  /// `الخطوة 1 من 2`
   String get step1_of_2 {
     return Intl.message(
-      'step 1 of 2',
+      'الخطوة 1 من 2',
       name: 'step1_of_2',
       desc: '',
       args: [],
     );
   }
 
-  /// `step 2 of 2`
+  /// `الخطوة 2 من 2`
   String get step2_of_2 {
     return Intl.message(
-      'step 2 of 2',
+      'الخطوة 2 من 2',
       name: 'step2_of_2',
       desc: '',
       args: [],
     );
   }
 
-  /// ` Create Account`
+  /// `إنشاء حساب`
   String get title_signup {
     return Intl.message(
-      ' Create Account',
+      'إنشاء حساب',
       name: 'title_signup',
       desc: 'This is the start of the sign up Page',
       args: [],
     );
   }
 
-  /// `Full Name`
+  /// `الاسم الكامل`
   String get hint_text_username {
     return Intl.message(
-      'Full Name',
+      'الاسم الكامل',
       name: 'hint_text_username',
       desc: '',
       args: [],
     );
   }
 
-  /// `Governorate`
+  /// `المحافظة`
   String get hint_text_Governorate {
     return Intl.message(
-      'Governorate',
+      'المحافظة',
       name: 'hint_text_Governorate',
       desc: '',
       args: [],
     );
   }
 
-  /// `next`
+  /// `التالي`
   String get next {
     return Intl.message(
-      'next',
+      'التالي',
       name: 'next',
       desc: '',
       args: [],
     );
   }
 
-  /// `School Name`
+  /// `اسم المدرسة`
   String get hint_text_School {
     return Intl.message(
-      'School Name',
+      'اسم المدرسة',
       name: 'hint_text_School',
       desc: '',
       args: [],
     );
   }
 
-  /// `Grade`
+  /// `الصف`
   String get hint_text_Grade {
     return Intl.message(
-      'Grade',
+      'الصف',
       name: 'hint_text_Grade',
       desc: '',
       args: [],
     );
   }
 
-  /// `Department`
+  /// `القسم`
   String get hint_text_department {
     return Intl.message(
-      'Department',
+      'القسم',
       name: 'hint_text_department',
       desc: '',
       args: [],
     );
   }
 
-  /// `Confirm Password`
+  /// `تأكيد كلمة المرور`
   String get hint_text_confirm {
     return Intl.message(
-      'Confirm Password',
+      'تأكيد كلمة المرور',
       name: 'hint_text_confirm',
       desc: '',
       args: [],
     );
   }
 
-  /// `Have an account? `
+  /// `لديك حساب؟ `
   String get bottom_text_part1 {
     return Intl.message(
-      'Have an account? ',
+      'لديك حساب؟ ',
       name: 'bottom_text_part1',
       desc: '',
       args: [],
     );
   }
 
-  /// ` Login instead`
+  /// ` تسجيل الدخول `
   String get bottom_text_part2 {
     return Intl.message(
-      ' Login instead',
+      ' تسجيل الدخول ',
       name: 'bottom_text_part2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sanaa`
+  /// `صنعاء`
   String get drop_governorate_val1 {
     return Intl.message(
-      'Sanaa',
+      'صنعاء',
       name: 'drop_governorate_val1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ibb`
+  /// `إب`
   String get drop_governorate_val2 {
     return Intl.message(
-      'Ibb',
+      'إب',
       name: 'drop_governorate_val2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Taiz`
+  /// `تعز`
   String get drop_governorate_val3 {
     return Intl.message(
-      'Taiz',
+      'تعز',
       name: 'drop_governorate_val3',
       desc: '',
       args: [],
     );
   }
 
-  /// `class 9`
+  /// `الصف التاسع`
   String get drop_grade_val1 {
     return Intl.message(
-      'class 9',
+      'الصف التاسع',
       name: 'drop_grade_val1',
       desc: '',
       args: [],
     );
   }
 
-  /// `class 12`
+  /// `الصف الثاني عشر`
   String get drop_grade_val2 {
     return Intl.message(
-      'class 12',
+      'الصف الثاني عشر',
       name: 'drop_grade_val2',
       desc: '',
       args: [],
     );
   }
 
-  /// `English`
+  /// `اللغة الإنجليزية`
   String get drop_depatment_val1 {
     return Intl.message(
-      'English',
+      'اللغة الإنجليزية',
       name: 'drop_depatment_val1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Male`
+  /// `ذكر`
   String get male {
     return Intl.message(
-      'Male',
+      'ذكر',
       name: 'male',
       desc: '',
       args: [],
     );
   }
 
-  /// `Female`
+  /// `أنثى`
   String get female {
     return Intl.message(
-      'Female',
+      'أنثى',
       name: 'female',
       desc: '',
       args: [],
     );
   }
 
-  /// `Arabic`
+  /// `اللغة العربية`
   String get drop_depatment_val2 {
     return Intl.message(
-      'Arabic',
+      'اللغة العربية',
       name: 'drop_depatment_val2',
       desc: '',
       args: [],
     );
   }
 
-  /// `submit`
+  /// `تقديم`
   String get submit {
     return Intl.message(
-      'submit',
+      'تقديم',
       name: 'submit',
       desc: 'This is start of verification page',
       args: [],
     );
   }
 
-  /// `OTP`
+  /// `رمز التحقق`
   String get otp {
     return Intl.message(
-      'OTP',
+      'رمز التحقق',
       name: 'otp',
       desc: '',
       args: [],
     );
   }
 
-  /// `We have sent OTP code verification to your Phone Number`
+  /// `قمنا بإرسال رمز التحقق إلى رقم هاتفك`
   String get explaination_text {
     return Intl.message(
-      'We have sent OTP code verification to your Phone Number',
+      'قمنا بإرسال رمز التحقق إلى رقم هاتفك',
       name: 'explaination_text',
       desc: '',
       args: [],
     );
   }
 
-  /// `Resend The Code`
-  String get resend_code {
-    return Intl.message(
-      'Resend The Code',
-      name: 'resend_code',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Hi Yousif,`
+  /// `مرحبًا يوسف`
   String get first_header_home {
     return Intl.message(
-      'Hi Yousif,',
+      'مرحبًا يوسف',
       name: 'first_header_home',
       desc: 'This is the start of the home Page',
       args: [],
     );
   }
 
-  /// `You have `
+  /// `لم يتم `
   String get part_one_subHeader {
     return Intl.message(
-      'You have ',
+      'لم يتم ',
       name: 'part_one_subHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// ` not taken `
+  /// `لم تقم بالخضوع`
   String get changing_subHeader {
     return Intl.message(
-      ' not taken ',
+      'لم تقم بالخضوع',
       name: 'changing_subHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// ` any tests yet`
+  /// ` لأي اختبار بعد`
   String get part_two_subHeader {
     return Intl.message(
-      ' any tests yet',
+      ' لأي اختبار بعد',
       name: 'part_two_subHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `0 points`
+  /// `0 نقطة`
   String get score {
     return Intl.message(
-      '0 points',
+      '0 نقطة',
       name: 'score',
       desc: '',
       args: [],
     );
   }
 
-  /// `Silvery League`
+  /// `الدوري الفضي`
   String get name_league {
     return Intl.message(
-      'Silvery League',
+      'الدوري الفضي',
       name: 'name_league',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your test histroy`
+  /// `تاريخ الاختبارات الخاص بك`
   String get history_heading {
     return Intl.message(
-      'Your test histroy',
+      'تاريخ الاختبارات الخاص بك',
       name: 'history_heading',
       desc: '',
       args: [],
     );
   }
 
-  /// `You have not taken any tests yet`
+  /// `لم تقم بخوض أي اختبارات بعد`
   String get not_taken_exams_home_page {
     return Intl.message(
-      'You have not taken any tests yet',
+      'لم تقم بخوض أي اختبارات بعد',
       name: 'not_taken_exams_home_page',
       desc: '',
       args: [],
     );
   }
 
-  /// `Quran Kareem`
+  /// `القرآن الكريم`
   String get subject_one {
     return Intl.message(
-      'Quran Kareem',
+      'القرآن الكريم',
       name: 'subject_one',
       desc: 'This is the start of the Curriculum Page',
       args: [],
     );
   }
 
-  /// `Islamic Education`
+  /// `التربية الإسلامية`
   String get subject_two {
     return Intl.message(
-      'Islamic Education',
+      'التربية الإسلامية',
       name: 'subject_two',
       desc: '',
       args: [],
     );
   }
 
-  /// `Arabic Language`
+  /// `اللغة العربية`
   String get subject_three {
     return Intl.message(
-      'Arabic Language',
+      'اللغة العربية',
       name: 'subject_three',
       desc: '',
       args: [],
     );
   }
 
-  /// `English Language`
+  /// `اللغة الإنجليزية`
   String get subject_four {
     return Intl.message(
-      'English Language',
+      'اللغة الإنجليزية',
       name: 'subject_four',
       desc: '',
       args: [],
     );
   }
 
-  /// `Chemistry`
+  /// `الكيمياء`
   String get subject_five {
     return Intl.message(
-      'Chemistry',
+      'الكيمياء',
       name: 'subject_five',
       desc: '',
       args: [],
     );
   }
 
-  /// `Physics`
+  /// `الفيزياء`
   String get subject_six {
     return Intl.message(
-      'Physics',
+      'الفيزياء',
       name: 'subject_six',
       desc: '',
       args: [],
     );
   }
 
-  /// `Biology`
+  /// `الأحياء`
   String get subject_seven {
     return Intl.message(
-      'Biology',
+      'الأحياء',
       name: 'subject_seven',
       desc: '',
       args: [],
     );
   }
 
-  /// `Math`
+  /// `الرياضيات`
   String get subject_eight {
     return Intl.message(
-      'Math',
+      'الرياضيات',
       name: 'subject_eight',
       desc: '',
       args: [],
     );
   }
 
-  /// `you have not taken any test yet take a test to join the leaderboard and compete with other students`
+  /// `لم تقم بخوض أي اختبار بعد. قم بخوض الاختبار للانضمام إلى لوحة القيادة والمنافسة مع الطلاب الآخرين`
   String get not_taken_exams {
     return Intl.message(
-      'you have not taken any test yet take a test to join the leaderboard and compete with other students',
+      'لم تقم بخوض أي اختبار بعد. قم بخوض الاختبار للانضمام إلى لوحة القيادة والمنافسة مع الطلاب الآخرين',
       name: 'not_taken_exams',
       desc: 'This the start of leaderborad page',
       args: [],
     );
   }
 
-  /// `Statistics`
+  /// `الإحصائيات`
   String get statistics {
     return Intl.message(
-      'Statistics',
+      'الإحصائيات',
       name: 'statistics',
       desc: 'This the start of subject page',
       args: [],
     );
   }
 
-  /// `Chapters`
+  /// `الفصول`
   String get chapters {
     return Intl.message(
-      'Chapters',
+      'الفصول',
       name: 'chapters',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exams`
+  /// `الاختبارات`
   String get exams {
     return Intl.message(
-      'Exams',
+      'الاختبارات',
       name: 'exams',
       desc: '',
       args: [],
     );
   }
 
-  /// `confirm`
+  /// `تأكيد`
   String get confirm {
     return Intl.message(
-      'confirm',
+      'تأكيد',
       name: 'confirm',
       desc: 'This the start of run exam',
       args: [],
     );
   }
 
-  /// `Results`
+  /// `النتائج`
   String get results {
     return Intl.message(
-      'Results',
+      'النتائج',
       name: 'results',
       desc: 'Test ',
       args: [],
     );
   }
 
-  /// `results`
+  /// `اختبار تدريبي`
   String get practice_test {
     return Intl.message(
-      'results',
+      'اختبار تدريبي',
       name: 'practice_test',
       desc: 'Test ',
       args: [],
     );
   }
 
-  /// `Questions`
+  /// `سؤال`
   String get question {
     return Intl.message(
-      'Questions',
+      'سؤال',
       name: 'question',
       desc: 'Test ',
       args: [],
     );
   }
 
-  /// `Questions`
+  /// `أسئلة`
   String get questions {
     return Intl.message(
-      'Questions',
+      'أسئلة',
       name: 'questions',
       desc: 'Test ',
       args: [],
     );
   }
 
-  /// `Continue`
+  /// `متابعة`
   String get continueText {
     return Intl.message(
-      'Continue',
+      'متابعة',
       name: 'continueText',
       desc: '',
       args: [],
     );
   }
 
-  /// `unit_exams`
+  /// `اختبارات الوحدة`
   String get unit_exams {
     return Intl.message(
-      'unit_exams',
+      'اختبارات الوحدة',
       name: 'unit_exams',
       desc: '',
       args: [],
     );
   }
 
-  /// `Correct`
+  /// `صحيح`
   String get correct {
     return Intl.message(
-      'Correct',
+      'صحيح',
       name: 'correct',
       desc: 'the start of after exam',
       args: [],
     );
   }
 
-  /// `Wrong`
+  /// `خاطئ`
   String get wrong {
     return Intl.message(
-      'Wrong',
+      'خاطئ',
       name: 'wrong',
       desc: '',
       args: [],
     );
   }
 
-  /// `Back To Subjects`
+  /// `العودة إلى المواضيع`
   String get back_to_subjects {
     return Intl.message(
-      'Back To Subjects',
+      'العودة إلى المواضيع',
       name: 'back_to_subjects',
       desc: '',
       args: [],
     );
   }
 
-  /// `Review Your Answers`
+  /// `مراجعة إجاباتك`
   String get review_answer {
     return Intl.message(
-      'Review Your Answers',
+      'مراجعة إجاباتك',
       name: 'review_answer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Master School Subjects with Your Ultimate Study Companion.`
+  /// `تمكن من موادك الدراسية مع رفيقك الدراسي النهائي`
   String get explaination_on_boarding_1 {
     return Intl.message(
-      'Master School Subjects with Your Ultimate Study Companion.',
+      'تمكن من موادك الدراسية مع رفيقك الدراسي النهائي',
       name: 'explaination_on_boarding_1',
       desc: 'The start of boarding screens',
       args: [],
     );
   }
 
-  /// `Welcome To`
+  /// `مرحبًا في`
   String get welcome_to {
     return Intl.message(
-      'Welcome To',
+      'مرحبًا في',
       name: 'welcome_to',
       desc: '',
       args: [],
     );
   }
 
-  /// `Falih`
+  /// `فالح`
   String get falih {
     return Intl.message(
-      'Falih',
+      'فالح',
       name: 'falih',
       desc: '',
       args: [],
     );
   }
 
-  /// `Learn`
+  /// `تعلم`
   String get learn {
     return Intl.message(
-      'Learn',
+      'تعلم',
       name: 'learn',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your`
+  /// `خطوتك`
   String get your {
     return Intl.message(
-      'Your',
+      'خطوتك',
       name: 'your',
       desc: '',
       args: [],
     );
   }
 
-  /// `way`
+  /// `طريقتك`
   String get way {
     return Intl.message(
-      'way',
+      'طريقتك',
       name: 'way',
       desc: '',
       args: [],
     );
   }
 
-  /// `Equip`
+  /// `جهز`
   String get equip {
     return Intl.message(
-      'Equip',
+      'جهز',
       name: 'equip',
       desc: '',
       args: [],
     );
   }
 
-  /// `Yourself`
+  /// `نفسك`
   String get your_self {
     return Intl.message(
-      'Yourself',
+      'نفسك',
       name: 'your_self',
       desc: '',
       args: [],
     );
   }
 
-  /// `With The`
+  /// `مع`
   String get with_the {
     return Intl.message(
-      'With The',
+      'مع',
       name: 'with_the',
       desc: '',
       args: [],
     );
   }
 
-  /// `Best Tools`
+  /// `أفضل الأدوات`
   String get best_tools {
     return Intl.message(
-      'Best Tools',
+      'أفضل الأدوات',
       name: 'best_tools',
       desc: '',
       args: [],
     );
   }
 
-  /// `Time will be counted during the exam`
+  /// `سيتم حساب الوقت أثناء الاختبار`
   String get explaintion_number1 {
     return Intl.message(
-      'Time will be counted during the exam',
+      'سيتم حساب الوقت أثناء الاختبار',
       name: 'explaintion_number1',
       desc: 'Start of the pre exam screen',
       args: [],
     );
   }
 
-  /// `You can continue take exam anytime`
+  /// `يمكنك مواصلة الاختبار في أي وقت`
   String get explaintion_number2 {
     return Intl.message(
-      'You can continue take exam anytime',
+      'يمكنك مواصلة الاختبار في أي وقت',
       name: 'explaintion_number2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Start Taking The Exam`
+  /// `ابدأ الاختبار`
   String get start_exam {
     return Intl.message(
-      'Start Taking The Exam',
+      'ابدأ الاختبار',
       name: 'start_exam',
       desc: '',
       args: [],
     );
   }
 
-  /// `done`
+  /// `تم`
   String get done {
     return Intl.message(
-      'done',
+      'تم',
       name: 'done',
       desc: '',
       args: [],
     );
   }
 
-  /// `Subjects`
+  /// `المواد`
   String get subjects {
     return Intl.message(
-      'Subjects',
+      'المواد',
       name: 'subjects',
       desc: 'Navigation_Menu folder',
       args: [],
     );
   }
 
-  /// `Home`
+  /// `الرئيسية`
   String get home {
     return Intl.message(
-      'Home',
+      'الرئيسية',
       name: 'home',
       desc: '',
       args: [],
     );
   }
 
-  /// `LeaderBoard`
+  /// `لوحة الصدارة`
   String get leaderBoard {
     return Intl.message(
-      'LeaderBoard',
+      'لوحة الصدارة',
       name: 'leaderBoard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nontification`
+  /// `الإشعار`
   String get notification {
     return Intl.message(
-      'Nontification',
+      'الإشعار',
       name: 'notification',
       desc: '',
       args: [],
     );
   }
 
-  /// `Update Profile`
+  /// `تحديث الملف الشخصي`
   String get update_profile {
     return Intl.message(
-      'Update Profile',
+      'تحديث الملف الشخصي',
       name: 'update_profile',
       desc: '',
       args: [],
     );
   }
 
-  /// `Settings`
+  /// `الإعدادات`
   String get settings {
     return Intl.message(
-      'Settings',
+      'الإعدادات',
       name: 'settings',
       desc: '',
       args: [],
     );
   }
 
-  /// `No questions to display`
+  /// `لا يوجد أسئلة للعرض`
   String get no_question {
     return Intl.message(
-      'No questions to display',
+      'لا يوجد أسئلة للعرض',
       name: 'no_question',
       desc: '',
       args: [],
     );
   }
 
-  /// `password cannot be empty`
+  /// `لا يمكن ترك كلمة المرور فارغة`
   String get no_password {
     return Intl.message(
-      'password cannot be empty',
+      'لا يمكن ترك كلمة المرور فارغة',
       name: 'no_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Checkout Details`
+  /// `تفاصيل الدفع`
   String get check_details {
     return Intl.message(
-      'Checkout Details',
+      'تفاصيل الدفع',
       name: 'check_details',
       desc: '',
       args: [],
     );
   }
 
-  /// `Plan Details`
+  /// `تفاصيل الخطة`
   String get plan_details {
     return Intl.message(
-      'Plan Details',
+      'تفاصيل الخطة',
       name: 'plan_details',
       desc: '',
       args: [],
     );
   }
 
-  /// `Plan`
+  /// `خطة`
   String get plan {
     return Intl.message(
-      'Plan',
+      'خطة',
       name: 'plan',
       desc: '',
       args: [],
     );
   }
 
-  /// `Type:`
+  /// `النوع:`
   String get type {
     return Intl.message(
-      'Type:',
+      'النوع:',
       name: 'type',
       desc: '',
       args: [],
     );
   }
 
-  /// `No Plan Selected`
+  /// `لم يتم تحديد أي خطة`
   String get no_plan_selected {
     return Intl.message(
-      'No Plan Selected',
+      'لم يتم تحديد أي خطة',
       name: 'no_plan_selected',
       desc: '',
       args: [],
     );
   }
 
-  /// `Class:`
+  /// `الصف:`
   String get class_text {
     return Intl.message(
-      'Class:',
+      'الصف:',
       name: 'class_text',
       desc: '',
       args: [],
     );
   }
 
-  /// `Section:`
+  /// `القسم:`
   String get section {
     return Intl.message(
-      'Section:',
+      'القسم:',
       name: 'section',
       desc: '',
       args: [],
     );
   }
 
-  /// `r.y`
+  /// `ر.ي`
   String get ry {
     return Intl.message(
-      'r.y',
+      'ر.ي',
       name: 'ry',
       desc: '',
       args: [],
     );
   }
 
-  /// `Duration:`
+  /// `المدة:`
   String get duration {
     return Intl.message(
-      'Duration:',
+      'المدة:',
       name: 'duration',
       desc: '',
       args: [],
     );
   }
 
-  /// `days`
+  /// `أيام`
   String get days {
     return Intl.message(
-      'days',
+      'أيام',
       name: 'days',
       desc: '',
       args: [],
     );
   }
 
-  /// `Unit Exam Limit:`
+  /// `حد اختبار الوحدة:`
   String get unit_exam_limit {
     return Intl.message(
-      'Unit Exam Limit:',
+      'حد اختبار الوحدة:',
       name: 'unit_exam_limit',
       desc: '',
       args: [],
     );
   }
 
-  /// `times`
+  /// `مرات`
   String get times {
     return Intl.message(
-      'times',
+      'مرات',
       name: 'times',
       desc: '',
       args: [],
     );
   }
 
-  /// `Final Exam Limit:`
+  /// `حد الاختبار النهائي:`
   String get final_exam_limit {
     return Intl.message(
-      'Final Exam Limit:',
+      'حد الاختبار النهائي:',
       name: 'final_exam_limit',
       desc: '',
       args: [],
     );
   }
 
-  /// `Price:`
+  /// `السعر:`
   String get price {
     return Intl.message(
-      'Price:',
+      'السعر:',
       name: 'price',
       desc: '',
       args: [],
     );
   }
 
-  /// `We will send you an order details to your email after the successful payment`
+  /// `سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح`
   String get we_will_send {
     return Intl.message(
-      'We will send you an order details to your email after the successful payment',
+      'سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح',
       name: 'we_will_send',
       desc: '',
       args: [],
     );
   }
 
-  /// `Pay For The Plan`
+  /// `دفع للخطة`
   String get pay_for_plan {
     return Intl.message(
-      'Pay For The Plan',
+      'دفع للخطة',
       name: 'pay_for_plan',
       desc: '',
       args: [],
     );
   }
 
-  /// `Payment Successfully Completed`
+  /// `تم إكمال الدفع بنجاح`
   String get pay_completed {
     return Intl.message(
-      'Payment Successfully Completed',
+      'تم إكمال الدفع بنجاح',
       name: 'pay_completed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Account Number`
+  /// `رقم الحساب`
   String get account_number {
     return Intl.message(
-      'Account Number',
+      'رقم الحساب',
       name: 'account_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Kuraimi Card Number`
+  /// `رقم بطاقة الكريمي`
   String get kurami_card {
     return Intl.message(
-      'Kuraimi Card Number',
+      'رقم بطاقة الكريمي',
       name: 'kurami_card',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please Enter Your Account Number`
+  /// `يرجى إدخال رقم الحساب`
   String get enter_account_number {
     return Intl.message(
-      'Please Enter Your Account Number',
+      'يرجى إدخال رقم الحساب',
       name: 'enter_account_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Holder Number`
+  /// `رقم المستخدم`
   String get account_holder_number {
     return Intl.message(
-      'Holder Number',
+      'رقم المستخدم',
       name: 'account_holder_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please Enter The Card Holder Name`
+  /// `يرجى إدخال اسم حامل البطاقة`
   String get enter_holder_number {
     return Intl.message(
-      'Please Enter The Card Holder Name',
+      'يرجى إدخال اسم حامل البطاقة',
       name: 'enter_holder_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please Enter Your Card Number`
+  /// `يرجى إدخال رقم البطاقة`
   String get enter_card_number {
     return Intl.message(
-      'Please Enter Your Card Number',
+      'يرجى إدخال رقم البطاقة',
       name: 'enter_card_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Kuraimi`
+  /// `الكريمي`
   String get kuraimi {
     return Intl.message(
-      'Kuraimi',
+      'الكريمي',
       name: 'kuraimi',
       desc: '',
       args: [],
     );
   }
 
-  /// `Jaib`
+  /// `جيب`
   String get jaib {
     return Intl.message(
-      'Jaib',
+      'جيب',
       name: 'jaib',
       desc: '',
       args: [],
     );
   }
 
-  /// `Points`
+  /// `نقاط`
   String get points {
     return Intl.message(
-      'Points',
+      'نقاط',
       name: 'points',
       desc: '',
       args: [],
     );
   }
 
-  /// `This exam is a simulation of the final exam`
+  /// `هذا الاختبار هو محاكاة للاختبار النهائي`
   String get exam_simulation {
     return Intl.message(
-      'This exam is a simulation of the final exam',
+      'هذا الاختبار هو محاكاة للاختبار النهائي',
       name: 'exam_simulation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Time will be counted during the exam`
+  /// `سيتم حساب الوقت أثناء الاختبار`
   String get time_will_counted {
     return Intl.message(
-      'Time will be counted during the exam',
+      'سيتم حساب الوقت أثناء الاختبار',
       name: 'time_will_counted',
       desc: '',
       args: [],
     );
   }
 
-  /// `You can continue to take the exam anytime`
+  /// `يمكنك مواصلة الاختبار في أي وقت`
   String get you_can_continue {
     return Intl.message(
-      'You can continue to take the exam anytime',
+      'يمكنك مواصلة الاختبار في أي وقت',
       name: 'you_can_continue',
       desc: '',
       args: [],
     );
   }
 
-  /// `Start taking the exam`
+  /// `ابدأ خوض الاختبار`
   String get start_taking_exam {
     return Intl.message(
-      'Start taking the exam',
+      'ابدأ خوض الاختبار',
       name: 'start_taking_exam',
       desc: '',
       args: [],
     );
   }
 
-  /// `Account`
+  /// `الحساب`
   String get account {
     return Intl.message(
-      'Account',
+      'الحساب',
       name: 'account',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit profile`
+  /// `تعديل الملف الشخصي`
   String get edit_profile {
     return Intl.message(
-      'Edit profile',
+      'تعديل الملف الشخصي',
       name: 'edit_profile',
       desc: '',
       args: [],
     );
   }
 
-  /// `Privacy`
+  /// `الخصوصية`
   String get privacy {
     return Intl.message(
-      'Privacy',
+      'الخصوصية',
       name: 'privacy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Subscription packages`
+  /// `باقات الاشتراك`
   String get subscription_packages {
     return Intl.message(
-      'Subscription packages',
+      'باقات الاشتراك',
       name: 'subscription_packages',
       desc: '',
       args: [],
     );
   }
 
-  /// `Logout`
+  /// `تسجيل الخروج`
   String get logout {
     return Intl.message(
-      'Logout',
+      'تسجيل الخروج',
       name: 'logout',
       desc: '',
       args: [],
     );
   }
 
-  /// `Preferences`
+  /// `التفضيلات`
   String get preferences {
     return Intl.message(
-      'Preferences',
+      'التفضيلات',
       name: 'preferences',
       desc: '',
       args: [],
     );
   }
 
-  /// `Dark Mode`
+  /// `وضع الظلام`
   String get dark_mode {
     return Intl.message(
-      'Dark Mode',
+      'وضع الظلام',
       name: 'dark_mode',
       desc: '',
       args: [],
     );
   }
 
-  /// `Language`
+  /// `اللغة`
   String get language {
     return Intl.message(
-      'Language',
+      'اللغة',
       name: 'language',
       desc: '',
       args: [],
     );
   }
 
-  /// `About us`
+  /// `من نحن`
   String get about_us {
     return Intl.message(
-      'About us',
+      'من نحن',
       name: 'about_us',
       desc: '',
       args: [],
     );
   }
 
-  /// `Easy to Use`
+  /// `سهل الاستخدام`
   String get easy_use {
     return Intl.message(
-      'Easy to Use',
+      'سهل الاستخدام',
       name: 'easy_use',
       desc: '',
       args: [],
     );
   }
 
-  /// `Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps`
+  /// `مصمم خصيصًا للطلاب، يوفر فالح واجهة بسيطة تجعل التنقل سهلًا. ابحث عن كل ما تحتاجه بضغطة زر.`
   String get subTitle_easy {
     return Intl.message(
-      'Designed with students in mind, Falih offers an intuitive interface that makes navigation effortless. Find everything you need with just a few taps',
+      'مصمم خصيصًا للطلاب، يوفر فالح واجهة بسيطة تجعل التنقل سهلًا. ابحث عن كل ما تحتاجه بضغطة زر.',
       name: 'subTitle_easy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Trusted`
+  /// `موثوق`
   String get trusted {
     return Intl.message(
-      'Trusted',
+      'موثوق',
       name: 'trusted',
       desc: '',
       args: [],
     );
   }
 
-  /// `Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority.`
+  /// `انضم إلى مجتمع متزايد من المتعلمين الذين يعتمدون على فالح للحصول على إجابات دقيقة ومساعدة مدعومة بالذكاء الاصطناعي. نجاحك هو أولويتنا.`
   String get subTitle_trusted {
     return Intl.message(
-      'Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority.',
+      'انضم إلى مجتمع متزايد من المتعلمين الذين يعتمدون على فالح للحصول على إجابات دقيقة ومساعدة مدعومة بالذكاء الاصطناعي. نجاحك هو أولويتنا.',
       name: 'subTitle_trusted',
       desc: '',
       args: [],
     );
   }
 
-  /// `Quick Access`
+  /// `الوصول السريع`
   String get quick_access {
     return Intl.message(
-      'Quick Access',
+      'الوصول السريع',
       name: 'quick_access',
       desc: '',
       args: [],
     );
   }
 
-  /// `With Falih, you don't have to wait. Get instant responses and comprehensive explanations to your questions.`
+  /// `مع فالح، لن تضطر للانتظار. احصل على إجابات فورية وتفسيرات شاملة لأسئلتك.`
   String get subTitle_quick {
     return Intl.message(
-      'With Falih, you don\'t have to wait. Get instant responses and comprehensive explanations to your questions.',
+      'مع فالح، لن تضطر للانتظار. احصل على إجابات فورية وتفسيرات شاملة لأسئلتك.',
       name: 'subTitle_quick',
       desc: '',
       args: [],
     );
   }
 
-  /// `Compete and Shine`
+  /// `تنافس وتألق`
   String get compete_shine {
     return Intl.message(
-      'Compete and Shine',
+      'تنافس وتألق',
       name: 'compete_shine',
       desc: '',
       args: [],
     );
   }
 
-  /// `Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more.`
+  /// `تحدى نفسك وارتقِ في لوحة المتصدرين! يجعل فالح التعلم ممتعًا مع المنافسة الودية، مما يساعدك على الحفاظ على حماسك وتحقيق المزيد.`
   String get subTitle_compete {
     return Intl.message(
-      'Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more.',
+      'تحدى نفسك وارتقِ في لوحة المتصدرين! يجعل فالح التعلم ممتعًا مع المنافسة الودية، مما يساعدك على الحفاظ على حماسك وتحقيق المزيد.',
       name: 'subTitle_compete',
       desc: '',
       args: [],
     );
   }
 
-  /// `Achieve Your Best`
+  /// `حقق أفضل ما لديك`
   String get achieve_your_best {
     return Intl.message(
-      'Achieve Your Best',
+      'حقق أفضل ما لديك',
       name: 'achieve_your_best',
       desc: '',
       args: [],
     );
   }
 
-  /// `Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies.`
+  /// `تجاوز حل الأسئلة. مع فالح، استكشف أدوات مدعومة بالذكاء الاصطناعي تعزز فهمك وتساعدك على التفوق في دراستك.`
   String get achieveTitle {
     return Intl.message(
-      'Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies.',
+      'تجاوز حل الأسئلة. مع فالح، استكشف أدوات مدعومة بالذكاء الاصطناعي تعزز فهمك وتساعدك على التفوق في دراستك.',
       name: 'achieveTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your Journey With Falih`
+  /// `رحلتك مع فالح`
   String get your_journey {
     return Intl.message(
-      'Your Journey With Falih',
+      'رحلتك مع فالح',
       name: 'your_journey',
       desc: '',
       args: [],
     );
   }
 
-  /// `Back To Home`
+  /// `العودة إلى الصفحة الرئيسية`
   String get back_to_home {
     return Intl.message(
-      'Back To Home',
+      'العودة إلى الصفحة الرئيسية',
       name: 'back_to_home',
       desc: '',
       args: [],
     );
   }
 
-  /// `Back`
+  /// `عودة`
   String get back {
     return Intl.message(
-      'Back',
+      'عودة',
       name: 'back',
       desc: '',
       args: [],
     );
   }
 
-  /// `Close`
+  /// `إغلاق`
   String get close {
     return Intl.message(
-      'Close',
+      'إغلاق',
       name: 'close',
       desc: '',
       args: [],
     );
   }
 
-  /// `Terms && Conditions`
+  /// `الشروط والأحكام`
   String get terms_conditions {
     return Intl.message(
-      'Terms && Conditions',
+      'الشروط والأحكام',
       name: 'terms_conditions',
       desc: '',
       args: [],
     );
   }
 
-  /// ` and `
+  /// ` و `
   String get and {
     return Intl.message(
-      ' and ',
+      ' و ',
       name: 'and',
       desc: '',
       args: [],
     );
   }
 
-  /// `Privacy Policy`
+  /// `سياسة الخصوصية`
   String get privacy_policy {
     return Intl.message(
-      'Privacy Policy',
+      'سياسة الخصوصية',
       name: 'privacy_policy',
       desc: '',
       args: [],
     );
   }
 
-  /// `By clicking on ‘Create Account,’ you’re agreeing to the app `
+  /// `بالنقر على 'إنشاء حساب'، فإنك توافق على `
   String get agreeing_message {
     return Intl.message(
-      'By clicking on ‘Create Account,’ you’re agreeing to the app ',
+      'بالنقر على \'إنشاء حساب\'، فإنك توافق على ',
       name: 'agreeing_message',
       desc: '',
       args: [],
     );
   }
 
-  /// `Phone Numbers cannot be empty`
+  /// `لا يمكن أن يكون رقم الهاتف فارغًا`
   String get phone_cant_be_empty {
     return Intl.message(
-      'Phone Numbers cannot be empty',
+      'لا يمكن أن يكون رقم الهاتف فارغًا',
       name: 'phone_cant_be_empty',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password cannot be empty`
+  /// `لا يمكن أن تكون كلمة المرور فارغة`
   String get passwrod_cant_be_empty {
     return Intl.message(
-      'Password cannot be empty',
+      'لا يمكن أن تكون كلمة المرور فارغة',
       name: 'passwrod_cant_be_empty',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password must be 6 characters at least`
+  /// `يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل`
   String get passwrod_must_be {
     return Intl.message(
-      'Password must be 6 characters at least',
+      'يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل',
       name: 'passwrod_must_be',
       desc: '',
       args: [],
     );
   }
 
-  /// `School Name cannot be empty`
+  /// `لا يمكن أن يكون اسم المدرسة فارغًا`
   String get school_cant_be_empty {
     return Intl.message(
-      'School Name cannot be empty',
+      'لا يمكن أن يكون اسم المدرسة فارغًا',
       name: 'school_cant_be_empty',
       desc: '',
       args: [],
     );
   }
 
-  /// `School Name must be valid`
+  /// `يجب أن يكون اسم المدرسة صالحًا`
   String get school_must_be {
     return Intl.message(
-      'School Name must be valid',
+      'يجب أن يكون اسم المدرسة صالحًا',
       name: 'school_must_be',
       desc: '',
       args: [],
     );
   }
 
-  /// `Name cannot be empty`
+  /// `لا يمكن أن يكون الاسم فارغًا`
   String get name_cant_be_empty {
     return Intl.message(
-      'Name cannot be empty',
+      'لا يمكن أن يكون الاسم فارغًا',
       name: 'name_cant_be_empty',
       desc: '',
       args: [],
     );
   }
 
-  /// `User Name must be valid`
+  /// `يجب أن يكون اسم المستخدم صالحًا`
   String get name_must_be {
     return Intl.message(
-      'User Name must be valid',
+      'يجب أن يكون اسم المستخدم صالحًا',
       name: 'name_must_be',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Governorate`
+  /// `يجب اختيار المحافظة`
   String get should_choose_governorate {
     return Intl.message(
-      'You should choose a Governorate',
+      'يجب اختيار المحافظة',
       name: 'should_choose_governorate',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Grade`
+  /// `يجب اختيار الصف الدراسي`
   String get should_choose_grade {
     return Intl.message(
-      'You should choose a Grade',
+      'يجب اختيار الصف الدراسي',
       name: 'should_choose_grade',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Department`
+  /// `يجب اختيار القسم`
   String get should_choose_department {
     return Intl.message(
-      'You should choose a Department',
+      'يجب اختيار القسم',
       name: 'should_choose_department',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Gender`
+  /// `يجب اختيار الجنس`
   String get should_choose_gender {
     return Intl.message(
-      'You should choose a Gender',
+      'يجب اختيار الجنس',
       name: 'should_choose_gender',
       desc: '',
       args: [],
     );
   }
 
-  /// `Browse`
+  /// `تصفح`
   String get browse {
     return Intl.message(
-      'Browse',
+      'تصفح',
       name: 'browse',
       desc: '',
       args: [],
     );
   }
 
-  /// `History`
+  /// `السجل`
   String get history {
     return Intl.message(
-      'History',
+      'السجل',
       name: 'history',
       desc: '',
       args: [],
     );
   }
 
-  /// `Profile`
+  /// `الملف الشخصي`
   String get profile {
     return Intl.message(
-      'Profile',
+      'الملف الشخصي',
       name: 'profile',
       desc: '',
       args: [],
     );
   }
 
-  /// `Subscription`
+  /// `الاشتراك`
   String get Subscription {
     return Intl.message(
-      'Subscription',
+      'الاشتراك',
       name: 'Subscription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Contact Us`
+  /// `اتصل بنا`
   String get contact_us {
     return Intl.message(
-      'Contact Us',
+      'اتصل بنا',
       name: 'contact_us',
       desc: '',
       args: [],
     );
   }
 
-  /// `hi`
+  /// `مرحباً`
   String get hi {
     return Intl.message(
-      'hi',
+      'مرحباً',
       name: 'hi',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rank`
+  /// `الترتيب`
   String get rank {
     return Intl.message(
-      'Rank',
+      'الترتيب',
       name: 'rank',
       desc: '',
       args: [],
     );
   }
 
-  /// `Overall points`
+  /// `إجمالي النقاط`
   String get over_all_points {
     return Intl.message(
-      'Overall points',
+      'إجمالي النقاط',
       name: 'over_all_points',
       desc: '',
       args: [],
     );
   }
 
-  /// `This month points`
+  /// `نقاط هذا الشهر`
   String get this_month_points {
     return Intl.message(
-      'This month points',
+      'نقاط هذا الشهر',
       name: 'this_month_points',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your latest Exams`
+  /// `آخر الامتحانات الخاصة بك`
   String get your_latest_exams {
     return Intl.message(
-      'Your latest Exams',
+      'آخر الامتحانات الخاصة بك',
       name: 'your_latest_exams',
       desc: '',
       args: [],
     );
   }
 
-  /// `Passed`
+  /// `ناجح`
   String get passed {
     return Intl.message(
-      'Passed',
+      'ناجح',
       name: 'passed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Failed`
+  /// `راسب`
   String get failed {
     return Intl.message(
-      'Failed',
+      'راسب',
       name: 'failed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Correct Answers`
+  /// `الإجابات الصحيحة`
   String get correct_answers {
     return Intl.message(
-      'Correct Answers',
+      'الإجابات الصحيحة',
       name: 'correct_answers',
       desc: '',
       args: [],
     );
   }
 
-  /// `On`
+  /// `في`
   String get on {
     return Intl.message(
-      'On',
+      'في',
       name: 'on',
       desc: '',
       args: [],
     );
   }
 
-  /// `Class`
+  /// `الصف`
   String get grade {
     return Intl.message(
-      'Class',
+      'الصف',
       name: 'grade',
       desc: '',
       args: [],
     );
   }
 
-  /// `User data not available`
+  /// `بيانات المستخدم غير متوفرة`
   String get user_data_not_available {
     return Intl.message(
-      'User data not available',
+      'بيانات المستخدم غير متوفرة',
       name: 'user_data_not_available',
       desc: '',
       args: [],
     );
   }
 
-  /// `Press back again to exit The App`
+  /// `اضغط مرة أخرى للخروج من التطبيق`
   String get press_back_again {
     return Intl.message(
-      'Press back again to exit The App',
+      'اضغط مرة أخرى للخروج من التطبيق',
       name: 'press_back_again',
       desc: '',
       args: [],
     );
   }
 
-  /// `Checkout`
+  /// `الدفع`
   String get check_out {
     return Intl.message(
-      'Checkout',
+      'الدفع',
       name: 'check_out',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Governorate`
+  /// `يجب عليك اختيار المحافظة`
   String get u_should_choose_governorate {
     return Intl.message(
-      'You should choose a Governorate',
+      'يجب عليك اختيار المحافظة',
       name: 'u_should_choose_governorate',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Grade`
+  /// `يجب عليك اختيار الصف`
   String get u_should_choose_grade {
     return Intl.message(
-      'You should choose a Grade',
+      'يجب عليك اختيار الصف',
       name: 'u_should_choose_grade',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Department`
+  /// `يجب عليك اختيار القسم`
   String get u_should_choose_department {
     return Intl.message(
-      'You should choose a Department',
+      'يجب عليك اختيار القسم',
       name: 'u_should_choose_department',
       desc: '',
       args: [],
     );
   }
 
-  /// `You should choose a Gender`
+  /// `يجب عليك اختيار النوع`
   String get u_should_choose_gender {
     return Intl.message(
-      'You should choose a Gender',
+      'يجب عليك اختيار النوع',
       name: 'u_should_choose_gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اذهب واحصل على بعض الامتحانات`
+  String get go_get_some_exams {
+    return Intl.message(
+      'اذهب واحصل على بعض الامتحانات',
+      name: 'go_get_some_exams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `القواعد والجوائز`
+  String get rules_prizes {
+    return Intl.message(
+      'القواعد والجوائز',
+      name: 'rules_prizes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا توجد امتحانات بعد، اذهب وخذ واحدًا`
+  String get no_exams_yet {
+    return Intl.message(
+      'لا توجد امتحانات بعد، اذهب وخذ واحدًا',
+      name: 'no_exams_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا توجد فصول حتى الآن`
+  String get still_no_chapters {
+    return Intl.message(
+      'لا توجد فصول حتى الآن',
+      name: 'still_no_chapters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إعادة إرسال الكود`
+  String get resend_code {
+    return Intl.message(
+      'إعادة إرسال الكود',
+      name: 'resend_code',
       desc: '',
       args: [],
     );
@@ -1806,8 +1846,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ar'),
+      Locale.fromSubtags(languageCode: 'en'),
     ];
   }
 

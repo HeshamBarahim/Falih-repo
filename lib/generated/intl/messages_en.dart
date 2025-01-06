@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "go_get_some_exams":
+            MessageLookupByLibrary.simpleMessage("Go get some exams"),
         "grade": MessageLookupByLibrary.simpleMessage("Class"),
         "hi": MessageLookupByLibrary.simpleMessage("hi"),
         "hint_text_Governorate":
@@ -136,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name_must_be":
             MessageLookupByLibrary.simpleMessage("User Name must be valid"),
         "next": MessageLookupByLibrary.simpleMessage("next"),
+        "no_exams_yet": MessageLookupByLibrary.simpleMessage(
+            "No exams yet, go and take one"),
         "no_password":
             MessageLookupByLibrary.simpleMessage("password cannot be empty"),
         "no_plan_selected":
@@ -187,6 +191,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "results": MessageLookupByLibrary.simpleMessage("Results"),
         "review_answer":
             MessageLookupByLibrary.simpleMessage("Review Your Answers"),
+        "rules_prizes": MessageLookupByLibrary.simpleMessage("Rules && Prizes"),
         "ry": MessageLookupByLibrary.simpleMessage("r.y"),
         "school_cant_be_empty":
             MessageLookupByLibrary.simpleMessage("School Name cannot be empty"),
@@ -210,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("step 1 of 2"),
         "step2_of_2": MessageLookupByLibrary.simpleMessage("step 2 of 2"),
+        "still_no_chapters":
+            MessageLookupByLibrary.simpleMessage("Still no chapters"),
         "subTitle_compete": MessageLookupByLibrary.simpleMessage(
             "Challenge yourself and climb the leaderboard! Falih makes learning exciting with friendly competition, helping you stay motivated and achieve more."),
         "subTitle_easy": MessageLookupByLibrary.simpleMessage(

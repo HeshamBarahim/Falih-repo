@@ -1,4 +1,5 @@
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
@@ -32,8 +33,9 @@ class App extends StatelessWidget {
           textTheme: GoogleFonts.montserratAlternatesTextTheme()
               .apply(bodyColor: AppColors.mainColor),
         ),
-        locale: Get.locale,
-        fallbackLocale: const Locale('en'),
+        // Bind locale from SettingsController
+        locale: Get.find<SettingsController>().locale.value,
+        fallbackLocale: const Locale('ar'),
         // Fallback to English
         localizationsDelegates: const [
           S.delegate,

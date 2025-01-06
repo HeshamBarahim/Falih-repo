@@ -26,7 +26,7 @@ class SettingsSection extends StatelessWidget {
             horizontal: SizeConfig.screenWidth! * 0.0195,
             vertical: SizeConfig.screenHeight! * 0.00237,
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: labelsColor,
           ),
           child: Text(

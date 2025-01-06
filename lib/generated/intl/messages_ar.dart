@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bottom_text_part1":
             MessageLookupByLibrary.simpleMessage("لديك حساب؟ "),
         "bottom_text_part2":
-            MessageLookupByLibrary.simpleMessage(" تسجيل الدخول بدلًا"),
+            MessageLookupByLibrary.simpleMessage(" تسجيل الدخول "),
         "browse": MessageLookupByLibrary.simpleMessage("تصفح"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage("لم تقم بالخضوع"),
@@ -105,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مرحبًا يوسف"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "go_get_some_exams": MessageLookupByLibrary.simpleMessage(
+            "اذهب واحصل على بعض الامتحانات"),
         "grade": MessageLookupByLibrary.simpleMessage("الصف"),
         "hi": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "hint_text_Governorate":
@@ -139,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المستخدم صالحًا"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "no_exams_yet": MessageLookupByLibrary.simpleMessage(
+            "لا توجد امتحانات بعد، اذهب وخذ واحدًا"),
         "no_password": MessageLookupByLibrary.simpleMessage(
             "لا يمكن ترك كلمة المرور فارغة"),
         "no_plan_selected":
@@ -185,8 +189,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "questions": MessageLookupByLibrary.simpleMessage("أسئلة"),
         "quick_access": MessageLookupByLibrary.simpleMessage("الوصول السريع"),
         "rank": MessageLookupByLibrary.simpleMessage("الترتيب"),
+        "resend_code":
+            MessageLookupByLibrary.simpleMessage("إعادة إرسال الكود"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
         "review_answer": MessageLookupByLibrary.simpleMessage("مراجعة إجاباتك"),
+        "rules_prizes":
+            MessageLookupByLibrary.simpleMessage("القواعد والجوائز"),
         "ry": MessageLookupByLibrary.simpleMessage("ر.ي"),
         "school_cant_be_empty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يكون اسم المدرسة فارغًا"),
@@ -209,6 +217,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("الإحصائيات"),
         "step1_of_2": MessageLookupByLibrary.simpleMessage("الخطوة 1 من 2"),
         "step2_of_2": MessageLookupByLibrary.simpleMessage("الخطوة 2 من 2"),
+        "still_no_chapters":
+            MessageLookupByLibrary.simpleMessage("لا توجد فصول حتى الآن"),
         "subTitle_compete": MessageLookupByLibrary.simpleMessage(
             "تحدى نفسك وارتقِ في لوحة المتصدرين! يجعل فالح التعلم ممتعًا مع المنافسة الودية، مما يساعدك على الحفاظ على حماسك وتحقيق المزيد."),
         "subTitle_easy": MessageLookupByLibrary.simpleMessage(

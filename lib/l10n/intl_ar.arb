@@ -76,7 +76,7 @@
       "@bottom_text_part2": {
         "description": ""
       },
-      "bottom_text_part2":" تسجيل الدخول بدلًا",
+      "bottom_text_part2":" تسجيل الدخول ",
       "@drop_governorate_val1": {
         "description": ""
       },
@@ -785,8 +785,29 @@
 "@u_should_choose_gender": {
   "description": ""
 },
-"u_should_choose_gender": "يجب عليك اختيار النوع"
+"u_should_choose_gender": "يجب عليك اختيار النوع",
+"@go_get_some_exams": {
+    "description": ""
+  },
+  "go_get_some_exams": "اذهب واحصل على بعض الامتحانات",
+  "@rules_prizes": {
+    "description": ""
+  },
+  "rules_prizes": "القواعد والجوائز",
+  "@no_exams_yet": {
+    "description": ""
+  },
+  "no_exams_yet": "لا توجد امتحانات بعد، اذهب وخذ واحدًا",
+  "@still_no_chapters": {
+    "description": ""
+  },
+  "still_no_chapters": "لا توجد فصول حتى الآن",
+  "@resend_code": {
+    "description": ""
+  },
+  "resend_code": "إعادة إرسال الكود"
 }
+
                 
               
               

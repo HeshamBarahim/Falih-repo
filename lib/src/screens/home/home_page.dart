@@ -218,12 +218,12 @@ class HomePage extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     )
                   : controller.userExamHistory.isEmpty
-                      ? const Center(
+                      ? Center(
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Go get some exams",
-                              style: TextStyle(
+                              S.of(context).go_get_some_exams,
+                              style: const TextStyle(
                                 color: AppColors.darkMainColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

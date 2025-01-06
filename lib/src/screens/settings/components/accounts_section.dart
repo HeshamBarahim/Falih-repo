@@ -9,7 +9,7 @@ import '../widgets/settings_tile.dart';
 class AccountSection extends StatelessWidget {
   final VoidCallback onTapEditProfileFunction;
   final VoidCallback onTapPrivacyFunction;
-  final VoidCallback onTapTerms_ConditionsFunction;
+  final VoidCallback onTapTermsConditionsFunction;
   final VoidCallback onTapLogoutFunction;
   final VoidCallback onRulesAndPrizes;
 
@@ -17,7 +17,7 @@ class AccountSection extends StatelessWidget {
       {super.key,
       required this.onTapEditProfileFunction,
       required this.onTapPrivacyFunction,
-      required this.onTapTerms_ConditionsFunction,
+      required this.onTapTermsConditionsFunction,
       required this.onTapLogoutFunction,
       required this.onRulesAndPrizes});
 
@@ -61,18 +61,18 @@ class AccountSection extends StatelessWidget {
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
-              onTap: onTapTerms_ConditionsFunction,
+              onTap: onTapTermsConditionsFunction,
             ),
             // Rules && Prizes
             SettingsTile(
               icon: Icons.question_mark,
-              title: "Rules && Prizes",
+              title: S.of(context).rules_prizes,
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
                 color: iconColor_1,
               ),
-              onTap: onTapTerms_ConditionsFunction,
+              onTap: onTapTermsConditionsFunction,
             ),
           ],
         ),

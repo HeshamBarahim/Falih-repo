@@ -16,7 +16,7 @@ class SettingsController extends GetxController {
     super.onInit();
     // Load stored settings
     isDarkMode.value = _storage.read('isDarkMode') ?? false;
-    locale.value = Locale(_storage.read('locale') ?? 'en');
+    locale.value = Locale(_storage.read('locale') ?? 'ar');
     Get.updateLocale(locale.value);
   }
 
