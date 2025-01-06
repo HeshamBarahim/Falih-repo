@@ -1939,6 +1939,86 @@ class S {
       args: [],
     );
   }
+
+  /// `التقط صورة`
+  String get take_photo {
+    return Intl.message(
+      'التقط صورة',
+      name: 'take_photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لم يتم تحديد صورة`
+  String get no_image_selected {
+    return Intl.message(
+      'لم يتم تحديد صورة',
+      name: 'no_image_selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فشل في رفع الصورة`
+  String get failed_upload_image {
+    return Intl.message(
+      'فشل في رفع الصورة',
+      name: 'failed_upload_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تحديث صورة الملف الشخصي بنجاح!`
+  String get profile_image_updated_successfully {
+    return Intl.message(
+      'تم تحديث صورة الملف الشخصي بنجاح!',
+      name: 'profile_image_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فشل التحديث`
+  String get updated_failed {
+    return Intl.message(
+      'فشل التحديث',
+      name: 'updated_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.`
+  String get unexpected_error_occured {
+    return Intl.message(
+      'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
+      name: 'unexpected_error_occured',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تحديث الملف الشخصي بنجاح!`
+  String get profile_updated_successfully {
+    return Intl.message(
+      'تم تحديث الملف الشخصي بنجاح!',
+      name: 'profile_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `رفع صورة`
+  String get upload_image {
+    return Intl.message(
+      'رفع صورة',
+      name: 'upload_image',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

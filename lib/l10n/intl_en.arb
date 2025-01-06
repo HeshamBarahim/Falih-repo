@@ -757,6 +757,37 @@
     "@failed_to_save_exam": {
       "description": ""
     },
-    "failed_to_save_exam": "Failed to save exam result:"
-    
+    "failed_to_save_exam": "Failed to save exam result:",
+    "@take_photo": {
+      "description": ""
+    },
+    "take_photo": "Take Photo",
+    "@no_image_selected": {
+      "description": ""
+    },
+    "no_image_selected": "No image selected",
+    "@failed_upload_image": {
+      "description": ""
+    },
+    "failed_upload_image": "Failed to upload image",
+    "@profile_image_updated_successfully": {
+      "description": ""
+    },
+    "profile_image_updated_successfully": "Profile Image updated successfully!",
+    "@updated_failed": {
+      "description": ""
+    },
+    "updated_failed": "Update Failed",
+    "@unexpected_error_occured": {
+      "description": ""
+    },
+    "unexpected_error_occured": "An unexpected error occurred. Please try again.",
+    "@profile_updated_successfully": {
+      "description": ""
+    },
+    "profile_updated_successfully": "Profile updated successfully!",
+    "@upload_image": {
+      "description": ""
+    },
+    "upload_image": "Upload Image"
 }

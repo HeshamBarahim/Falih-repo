@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "failed": MessageLookupByLibrary.simpleMessage("Failed"),
         "failed_to_save_exam":
             MessageLookupByLibrary.simpleMessage("Failed to save exam result:"),
+        "failed_upload_image":
+            MessageLookupByLibrary.simpleMessage("Failed to upload image"),
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "final_exam_limit":
@@ -147,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("next"),
         "no_exams_yet": MessageLookupByLibrary.simpleMessage(
             "No exams yet, go and take one"),
+        "no_image_selected":
+            MessageLookupByLibrary.simpleMessage("No image selected"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No Internet Connection"),
         "no_password":
@@ -197,6 +201,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "profile_image_updated_successfully":
+            MessageLookupByLibrary.simpleMessage(
+                "Profile Image updated successfully!"),
+        "profile_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "Profile updated successfully!"),
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
         "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),
@@ -255,6 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("Subscription packages"),
         "success": MessageLookupByLibrary.simpleMessage("Success"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("Terms && Conditions"),
         "this_month_points":
@@ -279,11 +289,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "You should choose a Governorate"),
         "u_should_choose_grade":
             MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
+        "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
+            "An unexpected error occurred. Please try again."),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("Update Profile"),
+        "updated_failed": MessageLookupByLibrary.simpleMessage("Update Failed"),
+        "upload_image": MessageLookupByLibrary.simpleMessage("Upload Image"),
         "user_data_not_available":
             MessageLookupByLibrary.simpleMessage("User data not available"),
         "way": MessageLookupByLibrary.simpleMessage("way"),

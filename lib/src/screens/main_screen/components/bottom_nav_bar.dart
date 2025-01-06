@@ -37,9 +37,9 @@ class BottomNavBar extends StatelessWidget {
             data: NavigationBarThemeData(
               indicatorColor: AppColors.choicesColor,
               backgroundColor: AppColors.moreLightenMainColor,
-              labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+              labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
                 (states) {
-                  if (states.contains(MaterialState.selected)) {
+                  if (states.contains(WidgetState.selected)) {
                     return TextStyle(
                       fontSize: SizeConfig.screenWidth! *
                           0.029, // Font size for selected labels

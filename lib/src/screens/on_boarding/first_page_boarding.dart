@@ -1,3 +1,4 @@
+import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
@@ -6,13 +7,13 @@ import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/on_boarding/seconed_page_boarding.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
-
 import '../../config/sizes.dart';
 
 class FirstPageBoarding extends StatelessWidget {
   FirstPageBoarding({super.key});
 
-  DateTime? lastBackPressTime;
+  final BackPressController backPressController =
+      Get.put(BackPressController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,8 @@ class FirstPageBoarding extends StatelessWidget {
     return PopScope(
       canPop: false, // Ensures controlled back navigation
       onPopInvokedWithResult: (didPop, result) async {
-        DateTime now = DateTime.now();
         if (!didPop) {
-          if (lastBackPressTime == null ||
-              now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-            lastBackPressTime = now;
+          if (!backPressController.shouldExit()) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 behavior: SnackBarBehavior.floating,

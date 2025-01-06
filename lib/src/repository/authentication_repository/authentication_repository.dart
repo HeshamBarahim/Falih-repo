@@ -52,7 +52,7 @@ class AuthenticationRepository extends GetxController {
         const Duration(seconds: 4)); // Delay to ensure proper navigation
 
     if (user != null) {
-      Get.offAll(() => MainScreen());
+      Get.offAll(() => const MainScreen());
     } else {
       userStorage.writeIfNull('isFirstTime', true);
 

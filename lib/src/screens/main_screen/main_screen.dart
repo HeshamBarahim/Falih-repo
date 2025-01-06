@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +15,10 @@ import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
 import 'controller/nav_bar_controller.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+final BackPressController backPressController = Get.put(BackPressController());
 
-  DateTime? lastBackPressTime;
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,8 @@ class MainScreen extends StatelessWidget {
     return PopScope(
       canPop: false, // Ensures controlled back navigation
       onPopInvokedWithResult: (didPop, result) async {
-        DateTime now = DateTime.now();
         if (!didPop) {
-          if (lastBackPressTime == null ||
-              now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-            lastBackPressTime = now;
+          if (!backPressController.shouldExit()) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 behavior: SnackBarBehavior.floating,

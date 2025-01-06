@@ -27,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MainScreen());
+          Get.offAll(const MainScreen());
         }
       },
       child: Scaffold(
@@ -106,7 +106,7 @@ class EditProfileScreen extends StatelessWidget {
                               child: IconButton(
                                 splashColor: Colors.black,
                                 onPressed: () {
-                                  controller.ImagePickerDialog(context);
+                                  controller.imagePickerDialog(context);
                                 },
                                 style: IconButton.styleFrom(
                                   backgroundColor: iconColor_2,

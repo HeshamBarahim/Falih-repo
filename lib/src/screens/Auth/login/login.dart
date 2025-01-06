@@ -1,5 +1,6 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/signup/singup.dart';
 import 'package:flutter/material.dart';
@@ -19,19 +20,16 @@ class Login extends StatelessWidget {
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
-  DateTime? lastBackPressTime;
-
+  final BackPressController backPressController =
+      Get.put(BackPressController());
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return PopScope(
-      canPop: false, // Ensures controlled back navigation
+      canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        DateTime now = DateTime.now();
         if (!didPop) {
-          if (lastBackPressTime == null ||
-              now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-            lastBackPressTime = now;
+          if (!backPressController.shouldExit()) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 behavior: SnackBarBehavior.floating,

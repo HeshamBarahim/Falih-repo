@@ -104,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "failed": MessageLookupByLibrary.simpleMessage("راسب"),
         "failed_to_save_exam":
             MessageLookupByLibrary.simpleMessage("فشل في حفظ نتيجة الامتحان:"),
+        "failed_upload_image":
+            MessageLookupByLibrary.simpleMessage("فشل في رفع الصورة"),
         "falih": MessageLookupByLibrary.simpleMessage("فالح"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
         "final_exam_limit":
@@ -150,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no_exams_yet": MessageLookupByLibrary.simpleMessage(
             "لا توجد امتحانات بعد، اذهب وخذ واحدًا"),
+        "no_image_selected":
+            MessageLookupByLibrary.simpleMessage("لم يتم تحديد صورة"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "no_password": MessageLookupByLibrary.simpleMessage(
@@ -199,6 +203,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "profile_image_updated_successfully":
+            MessageLookupByLibrary.simpleMessage(
+                "تم تحديث صورة الملف الشخصي بنجاح!"),
+        "profile_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "تم تحديث الملف الشخصي بنجاح!"),
         "question": MessageLookupByLibrary.simpleMessage("سؤال"),
         "questions": MessageLookupByLibrary.simpleMessage("أسئلة"),
         "quick_access": MessageLookupByLibrary.simpleMessage("الوصول السريع"),
@@ -256,6 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("باقات الاشتراك"),
         "success": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
+        "take_photo": MessageLookupByLibrary.simpleMessage("التقط صورة"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "this_month_points":
@@ -279,11 +289,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار المحافظة"),
         "u_should_choose_grade":
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار الصف"),
+        "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد اختبار الوحدة:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("اختبارات الوحدة"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
+        "updated_failed": MessageLookupByLibrary.simpleMessage("فشل التحديث"),
+        "upload_image": MessageLookupByLibrary.simpleMessage("رفع صورة"),
         "user_data_not_available":
             MessageLookupByLibrary.simpleMessage("بيانات المستخدم غير متوفرة"),
         "way": MessageLookupByLibrary.simpleMessage("طريقتك"),

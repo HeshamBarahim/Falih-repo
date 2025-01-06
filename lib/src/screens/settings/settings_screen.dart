@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MainScreen());
+          Get.offAll(const MainScreen());
         }
       },
       child: Scaffold(
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
               color: iconColor_1,
             ),
             onPressed: () {
-              Get.offAll(MainScreen());
+              Get.offAll(const MainScreen());
             },
           ),
         ),

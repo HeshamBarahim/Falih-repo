@@ -27,7 +27,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MainScreen());
+          Get.offAll(const MainScreen());
         }
       },
       child: Scaffold(
@@ -47,7 +47,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Navigator.pop(context);
-                    Get.offAll(MainScreen());
+                    Get.offAll(const MainScreen());
                   },
                 ),
                 SizedBox(height: SizeConfig.screenHeight! * 0.018),

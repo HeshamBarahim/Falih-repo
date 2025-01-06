@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -72,7 +73,7 @@ class ProfileController extends GetxController {
     selectedGender.value = userController.user.value!.selectedGender;
   }
 
-  ImagePickerDialog(BuildContext context) {
+  imagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -85,9 +86,9 @@ class ProfileController extends GetxController {
                   Icons.image,
                   size: 25.0,
                 ),
-                title: const Text(
-                  'Upload Image',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).upload_image,
+                  style: const TextStyle(
                     fontSize: 16.0,
                   ),
                 ),
@@ -104,9 +105,9 @@ class ProfileController extends GetxController {
                   Icons.camera_alt,
                   size: 25.0,
                 ),
-                title: const Text(
-                  'Take Photo',
-                  style: TextStyle(
+                title: Text(
+                  S.of(context).take_photo,
+                  style: const TextStyle(
                     fontSize: 16.0,
                   ),
                 ),
@@ -140,7 +141,7 @@ class ProfileController extends GetxController {
     update();
 
     if (file == null) {
-      Get.snackbar("Error", "No image selected");
+      Get.snackbar(S.current.error, S.current.no_image_selected);
       return;
     }
     try {
@@ -168,7 +169,7 @@ class ProfileController extends GetxController {
       // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
-      Get.snackbar("Error", "Failed to upload image: $e");
+      Get.snackbar(S.current.error, "${S.current.failed_upload_image}: $e");
     }
   }
 
@@ -205,8 +206,8 @@ class ProfileController extends GetxController {
 
       await userController.updateUser(updatedUser);
       Helper.successSnackBar(
-        title: "Success",
-        message: "Profile Image updated successfully!",
+        title: S.current.success,
+        message: S.current.profile_image_updated_successfully,
       );
       isSavingData.value = false;
       // Get.offAll(() => MenuScreen());
@@ -215,10 +216,10 @@ class ProfileController extends GetxController {
       update();
     } catch (e) {
       Helper.errorSnackBar(
-        title: "Update Failed",
+        title: S.current.updated_failed,
         message: e.toString().isNotEmpty
             ? e.toString()
-            : "An unexpected error occurred. Please try again.",
+            : S.current.unexpected_error_occured,
       );
     }
   }
@@ -241,17 +242,17 @@ class ProfileController extends GetxController {
 
       await userController.updateUser(updatedUser);
       Helper.successSnackBar(
-        title: "Success",
-        message: "Profile updated successfully!",
+        title: S.current.success,
+        message: S.current.profile_updated_successfully,
       );
       isSavingData.value = false;
-      Get.offAll(() => MainScreen());
+      Get.offAll(() => const MainScreen());
     } catch (e) {
       Helper.errorSnackBar(
-        title: "Update Failed",
+        title: S.current.updated_failed,
         message: e.toString().isNotEmpty
             ? e.toString()
-            : "An unexpected error occurred. Please try again.",
+            : S.current.unexpected_error_occured,
       );
     }
   }
