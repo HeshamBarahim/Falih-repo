@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:falih/src/controller/login_controller.dart';
 import '../../../config/sizes.dart';
 import '../../../controller/loading_dialog_controller.dart';
-import '../signup/signup_part1.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -19,9 +18,6 @@ class Login extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
-  // final CheckConnectionController checkConnectionController =
-  //     CheckConnectionController();
-  // final NetworkController networkController = Get.find<NetworkController>();
 
   DateTime? lastBackPressTime;
 

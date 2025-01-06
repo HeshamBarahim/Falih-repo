@@ -1,10 +1,8 @@
-import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:get/get.dart';
 
 class MdDialogs extends StatelessWidget {
   final double radius;

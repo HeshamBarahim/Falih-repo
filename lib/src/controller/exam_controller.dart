@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
@@ -48,11 +49,13 @@ class ExamController extends GetxController {
   void setExamQuestions() {
     isFinalExam.value = true;
     // Calculate the total number of questions in all units
-    var totalUnitsQuestions =
-        units.fold(0, (sum, unit) => sum + unit["questions"].length as int);
+    var totalUnitsQuestions = units.fold(
+        0,
+        (sumOfQuestions, unit) =>
+            sumOfQuestions + unit["questions"].length as int);
     // print(totalUnitsQuestions);
 
-    List<dynamic> selected_50_Questions =
+    List<dynamic> selected50Questions =
         []; // General list to store selected questions from all units
 
     for (var unit in units) {
@@ -64,7 +67,7 @@ class ExamController extends GetxController {
       // Calculate the number of questions to take from this unit (based on a 50-question target)
       int selectedQuestionsCount = (unitPercentage * 50 / 100).round();
       print(
-          "Unit percentage: ${unitPercentage}, selected questions: $selectedQuestionsCount");
+          "Unit percentage: $unitPercentage, selected questions: $selectedQuestionsCount");
 
       //  Shuffle the questions and then take the required count
       final random = Random();
@@ -74,13 +77,13 @@ class ExamController extends GetxController {
           shuffledQuestions.take(selectedQuestionsCount).toList();
 
       // Add selected questions from the current unit to the general list
-      selected_50_Questions.addAll(selectedQuestions);
+      selected50Questions.addAll(selectedQuestions);
     }
     // Questions from all units
-    selected_50_Questions = List.from(selected_50_Questions)..shuffle(Random());
-    print("Total selected questions: ${selected_50_Questions.length}");
+    selected50Questions = List.from(selected50Questions)..shuffle(Random());
+    print("Total selected questions: ${selected50Questions.length}");
 
-    final List<Exam> loadedQuestions = selected_50_Questions.map((data) {
+    final List<Exam> loadedQuestions = selected50Questions.map((data) {
       return Exam.fromMap(data as Map<String, dynamic>);
     }).toList();
     questions.assignAll(loadedQuestions);
@@ -95,7 +98,8 @@ class ExamController extends GetxController {
   void moveToAnotherQuestion(BuildContext context) {
     // Check if the current question has an answer selected
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar("Alert", "Please select an answer before proceeding.");
+      Get.snackbar(
+          "Alert", S.of(context).please_select_answer_before_proceeding);
       return;
     } else {
       if ((questionIndex.value <= questions.length - 1) &&
@@ -140,7 +144,7 @@ class ExamController extends GetxController {
 
   generateResponse(String questionText) async {
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar("Alert", "Please select an answer to use the AI.");
+      Get.snackbar("Alert", S.current.please_select_answer_to_use_ai);
       return;
     } else {
       isGeneratingResponse.value = true;
@@ -236,15 +240,15 @@ class ExamController extends GetxController {
           .set(examResult);
 
       Get.snackbar(
-        'Success',
-        'Exam result saved successfully!',
+        S.current.success,
+        S.current.exam_result_saved_successfully,
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 3),
       );
     } catch (error) {
       Get.snackbar(
-        'Error',
-        'Failed to save exam result: $error',
+        S.current.error,
+        "${S.current.failed_to_save_exam} $error",
         snackPosition: SnackPosition.BOTTOM,
         colorText: Colors.red,
         backgroundColor: Colors.white,
@@ -288,7 +292,7 @@ class ExamController extends GetxController {
       // Format the duration into hours, minutes, and seconds
       int? hours = duration?.inHours;
       int minutes = duration!.inMinutes % 60;
-      int seconds = duration!.inSeconds % 60;
+      int seconds = duration.inSeconds % 60;
 
       timeTaken.value = "${hours.toString().padLeft(2, '0')}:"
           "${minutes.toString().padLeft(2, '0')}:"

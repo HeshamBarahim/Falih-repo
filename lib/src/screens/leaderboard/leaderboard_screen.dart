@@ -8,7 +8,7 @@ import 'components/leaderboard_list_section.dart';
 import 'components/top_leaderboard_section.dart';
 
 class LeaderBoardScreen extends StatelessWidget {
-  static const String sc_route = '/leader-board-screen';
+  static const String scRoute = '/leader-board-screen';
 
   LeaderBoardScreen({super.key});
 
@@ -41,10 +41,8 @@ class LeaderBoardScreen extends StatelessWidget {
                     ),
                     child: ListView(
                       padding: EdgeInsets.zero,
-                      children: controller.usersList.value
-                          .asMap()
-                          .entries
-                          .map((element) {
+                      children:
+                          controller.usersList.asMap().entries.map((element) {
                         final index = element.key; // The index of the user
                         final user = element.value; // The user object
 

@@ -1839,6 +1839,106 @@ class S {
       args: [],
     );
   }
+
+  /// `لا يوجد اتصال بالإنترنت`
+  String get no_internet_connection {
+    return Intl.message(
+      'لا يوجد اتصال بالإنترنت',
+      name: 'no_internet_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أنت غير متصل بالإنترنت.`
+  String get u_are_disconnected_from_the_internet {
+    return Intl.message(
+      'أنت غير متصل بالإنترنت.',
+      name: 'u_are_disconnected_from_the_internet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `متصل بالإنترنت`
+  String get connected_to_the_internet {
+    return Intl.message(
+      'متصل بالإنترنت',
+      name: 'connected_to_the_internet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أنت الآن متصل بالإنترنت.`
+  String get u_are_now_connected_to_internet {
+    return Intl.message(
+      'أنت الآن متصل بالإنترنت.',
+      name: 'u_are_now_connected_to_internet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `يرجى اختيار إجابة قبل المتابعة.`
+  String get please_select_answer_before_proceeding {
+    return Intl.message(
+      'يرجى اختيار إجابة قبل المتابعة.',
+      name: 'please_select_answer_before_proceeding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `يرجى اختيار إجابة لاستخدام الذكاء الاصطناعي.`
+  String get please_select_answer_to_use_ai {
+    return Intl.message(
+      'يرجى اختيار إجابة لاستخدام الذكاء الاصطناعي.',
+      name: 'please_select_answer_to_use_ai',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم بنجاح`
+  String get success {
+    return Intl.message(
+      'تم بنجاح',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم حفظ نتيجة الامتحان بنجاح!`
+  String get exam_result_saved_successfully {
+    return Intl.message(
+      'تم حفظ نتيجة الامتحان بنجاح!',
+      name: 'exam_result_saved_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطأ`
+  String get error {
+    return Intl.message(
+      'خطأ',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فشل في حفظ نتيجة الامتحان:`
+  String get failed_to_save_exam {
+    return Intl.message(
+      'فشل في حفظ نتيجة الامتحان:',
+      name: 'failed_to_save_exam',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

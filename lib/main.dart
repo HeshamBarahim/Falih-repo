@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: App(),
     );

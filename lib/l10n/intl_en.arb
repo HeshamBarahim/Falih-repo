@@ -717,6 +717,46 @@
     "@still_no_chapters": {
       "description": ""
     },
-    "still_no_chapters": "Still no chapters"
+    "still_no_chapters": "Still no chapters",
+    "@no_internet_connection": {
+      "description": ""
+    },
+    "no_internet_connection": "No Internet Connection",
+    "@u_are_disconnected_from_the_internet": {
+      "description": ""
+    },
+    "u_are_disconnected_from_the_internet": "You are disconnected from the internet.",
+    "@connected_to_the_internet": {
+      "description": ""
+    },
+    "connected_to_the_internet": "Connected to the Internet",
+    "@u_are_now_connected_to_internet": {
+      "description": ""
+    },
+    "u_are_now_connected_to_internet": "You are now connected to the internet.",
+    "@please_select_answer_before_proceeding": {
+      "description": ""
+    },
+    "please_select_answer_before_proceeding": "Please select an answer before proceeding.",
+    "@please_select_answer_to_use_ai": {
+      "description": ""
+    },
+    "please_select_answer_to_use_ai": "Please select an answer to use the AI.",
+    "@success": {
+      "description": ""
+    },
+    "success": "Success",
+    "@exam_result_saved_successfully": {
+      "description": ""
+    },
+    "exam_result_saved_successfully": "Exam result saved successfully!",
+    "@error": {
+      "description": ""
+    },
+    "error": "Error",
+    "@failed_to_save_exam": {
+      "description": ""
+    },
+    "failed_to_save_exam": "Failed to save exam result:"
     
 }

@@ -17,7 +17,7 @@ class Header extends StatelessWidget {
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.058,
             fontWeight: FontWeight.bold,
-            color: Color(0xFFFBF7FC),
+            color: const Color(0xFFFBF7FC),
           ),
         ),
         SizedBox(height: SizeConfig.screenHeight! * 0.012),

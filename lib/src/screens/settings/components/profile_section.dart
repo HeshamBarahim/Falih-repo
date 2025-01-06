@@ -6,8 +6,6 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/profile_controller.dart';
-
 class ProfileSection extends StatelessWidget {
   ProfileSection({
     super.key,

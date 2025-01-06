@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
@@ -101,12 +100,12 @@ class LoginController extends GetxController {
               isProcessing.value = false;
             }
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.wifi_off_rounded,
             color: Color(0xFFFFFFFF),
             size: 45.0,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
         );
       }
     }

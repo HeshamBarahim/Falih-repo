@@ -11,16 +11,15 @@ import 'controller/date_picker_controller.dart';
 import 'controller/payment_choice_controller.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  static const String sc_route = '/checkout-screen';
+  static const String scRoute = '/checkout-screen';
 
   CheckoutScreen({super.key});
 
   final PaymentChoiceController controller = Get.put(PaymentChoiceController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _cardNumber = TextEditingController();
   final TextEditingController _cardHolderName = TextEditingController();
-  final TextEditingController _cvv_cvcNumber = TextEditingController();
+  final TextEditingController _cvvCvcNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class CheckoutScreen extends StatelessWidget {
                         formKey: _formKey,
                         cardNumber: _cardHolderName,
                         cardHolderName: _cardHolderName,
-                        cvv_cvcNumber: _cvv_cvcNumber,
+                        cvvCvcNumber: _cvvCvcNumber,
                         datePicker: GetBuilder<DatePickerController>(
                           init: DatePickerController(),
                           builder: (controller) {

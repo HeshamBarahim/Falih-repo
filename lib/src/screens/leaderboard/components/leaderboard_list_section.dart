@@ -69,7 +69,7 @@ class LeaderboardListSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name?.capitalize ?? "",
+                    name.capitalize ?? "",
                     style: TextStyle(
                       fontSize: SizeConfig.screenWidth! * 0.035,
                       fontWeight: FontWeight.bold,

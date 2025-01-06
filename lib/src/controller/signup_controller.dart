@@ -4,14 +4,10 @@ import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'network_controller.dart';
 import 'loading_dialog_controller.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
-
-  
 
   // Tracks the current page to mangage the split screens of signup
   var currentPageIndex = 1.obs;

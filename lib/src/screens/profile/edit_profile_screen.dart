@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
@@ -10,17 +8,10 @@ import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/main_screen/main_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 import '../../config/const.dart';
 import '../../config/sizes.dart';
-import '../../controller/loading_dialog_controller.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});

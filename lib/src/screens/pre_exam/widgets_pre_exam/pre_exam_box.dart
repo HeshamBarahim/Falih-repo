@@ -27,7 +27,8 @@ class PreExamBox extends StatelessWidget {
                 children: [
                   Text(
                     S.of(context).questions,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -52,7 +53,8 @@ class PreExamBox extends StatelessWidget {
                 children: [
                   Text(
                     S.of(context).points,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(
                     decoration: BoxDecoration(

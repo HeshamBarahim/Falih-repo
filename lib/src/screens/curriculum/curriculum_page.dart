@@ -81,7 +81,7 @@ class CurriculumPage extends StatelessWidget {
                     onTap: () {
                       subjectController.name.value = subject['name'];
                       subjectController.color = subject['color'];
-                      subjectController.icon_path = subject['icon'];
+                      subjectController.iconPath = subject['icon'];
                       Get.to(() => SubjectPage());
                     },
                     child: Container(

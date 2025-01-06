@@ -1,7 +1,6 @@
 // navbar
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/screens/about_us/about_us_screen.dart';
-import 'package:falih/src/screens/notification/notification_page.dart';
 import 'package:falih/src/screens/profile/edit_profile_screen.dart';
 import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
@@ -134,7 +133,7 @@ class NavBar extends StatelessWidget {
                                 .findSMI("active") as rive.SMIBool;
                           },
                           press: controller.isProcess
-                              ? () => null
+                              ? () => ()
                               : () {
                                   controller.startProcess();
                                   menu.input!.change(true);

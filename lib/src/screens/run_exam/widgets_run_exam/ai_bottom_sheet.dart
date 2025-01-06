@@ -16,7 +16,7 @@ class AIBottomSheet extends StatelessWidget {
       initialChildSize: 0.9,
       minChildSize: 0.5,
       maxChildSize: 0.9,
-      builder: (_, _controller) => Container(
+      builder: (_, scrollController) => Container(
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
@@ -27,7 +27,7 @@ class AIBottomSheet extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             return ListView(
-              controller: _controller,
+              controller: scrollController,
               children: [
                 Text(
                   controller.generatedResponse.value,

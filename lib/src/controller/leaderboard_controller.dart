@@ -63,7 +63,7 @@ class LeaderboardController extends GetxController {
 
   Future<List<Map<String, dynamic>>> fetchExamsForCurrentMonth() async {
     final List<String> userIds =
-        usersList.value.map((doc) => doc.id).cast<String>().toList();
+        usersList.map((doc) => doc.id).cast<String>().toList();
     final List<Map<String, dynamic>> exams = [];
 
     final DateTime startOfMonth =
@@ -71,7 +71,7 @@ class LeaderboardController extends GetxController {
     final DateTime endOfMonth =
         DateTime(DateTime.now().year, DateTime.now().month + 1, 0, 23, 59, 59);
 
-    for (final userId in userIds!) {
+    for (final userId in userIds) {
       final QuerySnapshot userExamsSnapshot = await _db
           .collection('exams')
           .doc(userId)

@@ -15,7 +15,7 @@ import 'components/profile_section.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static const String sc_route = '/settings-screen-2';
+  static const String scRoute = '/settings-screen-2';
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,8 @@ class SubjectsLabels extends StatelessWidget {
   final SubjectsController subjectController = Get.put(SubjectsController());
   final ExamController controller = Get.put(ExamController());
 
+  SubjectsLabels({super.key});
+
   @override
   Widget build(BuildContext context) {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;

@@ -4,11 +4,11 @@ import 'package:rive/rive.dart';
 import '../../../config/sizes.dart';
 
 class NavBarButton extends StatelessWidget {
-  NavBarButton({
-    Key? key,
+  const NavBarButton({
+    super.key,
     required this.press,
     required this.riveOnInit,
-  }) : super(key: key);
+  });
 
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;

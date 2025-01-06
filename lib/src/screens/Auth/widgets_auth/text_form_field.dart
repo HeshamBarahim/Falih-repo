@@ -41,21 +41,21 @@ class CustomTextForm extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.borderColor),
+                borderSide: const BorderSide(color: AppColors.borderColor),
                 borderRadius: BorderRadius.all(
                     Radius.circular(SizeConfig.screenWidth! * 0.0486))),
             errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.warningColor),
+                borderSide: const BorderSide(color: AppColors.warningColor),
                 borderRadius:
                     BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
             focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
+                borderSide: const BorderSide(color: Colors.red),
                 borderRadius:
                     BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
             enabledBorder: OutlineInputBorder(
                 borderRadius:
                     BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
-                borderSide: BorderSide(color: Color(0xFF9A9393)))),
+                borderSide: const BorderSide(color: Color(0xFF9A9393)))),
       ),
     );
   }

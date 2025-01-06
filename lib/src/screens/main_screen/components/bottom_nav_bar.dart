@@ -6,7 +6,7 @@ import '../../../config/themes.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
-  final int? Function(int?)? onDestinationSelected;
+  final void Function(int?)? onDestinationSelected;
 
   const BottomNavBar(
       {super.key,
@@ -21,7 +21,7 @@ class BottomNavBar extends StatelessWidget {
       child: Container(
         margin:
             EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth! * 0.17),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.transparent,
           boxShadow: [
             BoxShadow(
@@ -47,9 +47,9 @@ class BottomNavBar extends StatelessWidget {
                       color: AppColors.mainColor, // Selected label color
                     );
                   }
-                  return TextStyle(
+                  return const TextStyle(
                     fontSize: 0, // Font size for unselected labels
-                    color: const Color(0xFFD2A8DF), // Unselected label color
+                    color: Color(0xFFD2A8DF), // Unselected label color
                   );
                 },
               ),

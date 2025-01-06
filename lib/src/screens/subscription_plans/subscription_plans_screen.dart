@@ -15,7 +15,7 @@ import 'components/header.dart';
 class SubscriptionPlansScreen extends StatelessWidget {
   SubscriptionPlansScreen({super.key});
 
-  static const String SUBSCRIPTION_ROUTE = '/subscription-screen';
+  static const String subscriptionRoute = '/subscription-screen';
   final SubscriptionPlansController controller =
       Get.put(SubscriptionPlansController());
 

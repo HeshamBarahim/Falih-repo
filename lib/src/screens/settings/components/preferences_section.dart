@@ -1,9 +1,6 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/settings_controller.dart';
-import 'package:falih/src/screens/home/home_page.dart';
-import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:get/get.dart';
@@ -11,8 +8,8 @@ import '../widgets/settings_section.dart';
 import '../widgets/settings_tile.dart';
 
 class PreferencesSection extends StatelessWidget {
-  final bool? Function(bool) onChangeDarkModeFunction;
-  final bool? Function(bool?) onChangeNotificationsFunction;
+  final void Function(bool) onChangeDarkModeFunction;
+  final void Function(bool?) onChangeNotificationsFunction;
   final VoidCallback onTapLanguageFunction;
 
   PreferencesSection(

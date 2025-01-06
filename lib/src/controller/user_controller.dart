@@ -10,7 +10,6 @@ class UserController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    // TODO: implement onInit
     try {
       user.value = await UserRepository.instance.getUserDetails();
     } catch (e) {

@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "compete_shine":
             MessageLookupByLibrary.simpleMessage("Compete and Shine"),
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
+        "connected_to_the_internet":
+            MessageLookupByLibrary.simpleMessage("Connected to the Internet"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),
@@ -84,6 +86,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_holder_number": MessageLookupByLibrary.simpleMessage(
             "Please Enter The Card Holder Name"),
         "equip": MessageLookupByLibrary.simpleMessage("Equip"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "exam_result_saved_successfully": MessageLookupByLibrary.simpleMessage(
+            "Exam result saved successfully!"),
         "exam_simulation": MessageLookupByLibrary.simpleMessage(
             "This exam is a simulation of the final exam"),
         "exams": MessageLookupByLibrary.simpleMessage("Exams"),
@@ -96,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "explaintion_number2": MessageLookupByLibrary.simpleMessage(
             "You can continue take exam anytime"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed"),
+        "failed_to_save_exam":
+            MessageLookupByLibrary.simpleMessage("Failed to save exam result:"),
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "final_exam_limit":
@@ -140,6 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("next"),
         "no_exams_yet": MessageLookupByLibrary.simpleMessage(
             "No exams yet, go and take one"),
+        "no_internet_connection":
+            MessageLookupByLibrary.simpleMessage("No Internet Connection"),
         "no_password":
             MessageLookupByLibrary.simpleMessage("password cannot be empty"),
         "no_plan_selected":
@@ -173,6 +182,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Phone Numbers cannot be empty"),
         "plan": MessageLookupByLibrary.simpleMessage("Plan"),
         "plan_details": MessageLookupByLibrary.simpleMessage("Plan Details"),
+        "please_select_answer_before_proceeding":
+            MessageLookupByLibrary.simpleMessage(
+                "Please select an answer before proceeding."),
+        "please_select_answer_to_use_ai": MessageLookupByLibrary.simpleMessage(
+            "Please select an answer to use the AI."),
         "points": MessageLookupByLibrary.simpleMessage("Points"),
         "practice_test": MessageLookupByLibrary.simpleMessage("results"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
@@ -240,6 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("Subscription packages"),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("Terms && Conditions"),
         "this_month_points":
@@ -251,6 +266,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "trusted": MessageLookupByLibrary.simpleMessage("Trusted"),
         "type": MessageLookupByLibrary.simpleMessage("Type:"),
+        "u_are_disconnected_from_the_internet":
+            MessageLookupByLibrary.simpleMessage(
+                "You are disconnected from the internet."),
+        "u_are_now_connected_to_internet": MessageLookupByLibrary.simpleMessage(
+            "You are now connected to the internet."),
         "u_should_choose_department": MessageLookupByLibrary.simpleMessage(
             "You should choose a Department"),
         "u_should_choose_gender":

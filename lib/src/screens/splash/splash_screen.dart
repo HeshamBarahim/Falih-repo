@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/splash_controller.dart';
-import '../../repository/authentication_repository/authentication_repository.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  static const String sc_route = '/splash-screen';
+  static const String scRoute = '/splash-screen';
 
   @override
   Widget build(BuildContext context) {

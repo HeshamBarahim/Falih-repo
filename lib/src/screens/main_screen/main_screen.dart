@@ -84,7 +84,7 @@ class MainScreen extends StatelessWidget {
                       ? -SizeConfig.screenWidth! * 0.7
                       : 0,
                   height: SizeConfig.screenHeight!,
-                  child: NavBar(),
+                  child: const NavBar(),
                 ),
                 Transform(
                   alignment: Alignment.center,
@@ -157,7 +157,7 @@ class MainScreen extends StatelessWidget {
                                     ),
                                     IconButton(
                                       onPressed: () {
-                                        Get.to(() => NotificationPage());
+                                        Get.to(() => const NotificationPage());
                                       },
                                       icon: Icon(
                                         Icons.notifications,

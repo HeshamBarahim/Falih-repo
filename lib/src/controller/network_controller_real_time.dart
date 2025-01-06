@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -34,13 +35,13 @@ class NetworkControllerRealTime extends GetxController {
       // Show snackbar if previously connected
       if (previousConnectionState) {
         Get.snackbar(
-          'No Internet Connection',
-          'You are disconnected from the internet.',
+          S.current.no_internet_connection,
+          S.current.u_are_disconnected_from_the_internet,
           backgroundColor: Colors.red.shade600,
           colorText: Colors.white,
           snackPosition: SnackPosition.TOP,
-          duration: Duration(seconds: 4),
-          icon: Icon(Icons.wifi_off, color: Colors.white),
+          duration: const Duration(seconds: 4),
+          icon: const Icon(Icons.wifi_off, color: Colors.white),
         );
       }
     } else {
@@ -53,13 +54,13 @@ class NetworkControllerRealTime extends GetxController {
           // Show snackbar if previously disconnected
           if (!previousConnectionState) {
             Get.snackbar(
-              'Connected to the Internet',
-              'You are now connected to the internet.',
+              S.current.connected_to_the_internet,
+              S.current.u_are_now_connected_to_internet,
               backgroundColor: Colors.green.shade600,
               colorText: Colors.white,
               snackPosition: SnackPosition.TOP,
-              duration: Duration(seconds: 4),
-              icon: Icon(Icons.wifi, color: Colors.white),
+              duration: const Duration(seconds: 4),
+              icon: const Icon(Icons.wifi, color: Colors.white),
             );
           }
         } else {
@@ -71,13 +72,13 @@ class NetworkControllerRealTime extends GetxController {
         // Show snackbar if previously connected
         if (previousConnectionState) {
           Get.snackbar(
-            'No Internet Connection',
-            'You are disconnected from the internet.',
+            S.current.no_internet_connection,
+            S.current.u_are_disconnected_from_the_internet,
             backgroundColor: Colors.red.shade600,
             colorText: Colors.white,
             snackPosition: SnackPosition.TOP,
-            duration: Duration(seconds: 4),
-            icon: Icon(Icons.wifi_off, color: Colors.white),
+            duration: const Duration(seconds: 4),
+            icon: const Icon(Icons.wifi_off, color: Colors.white),
           );
         }
       }

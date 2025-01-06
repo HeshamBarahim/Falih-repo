@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "connected_to_the_internet":
+            MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
         "contact_us": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "continueText": MessageLookupByLibrary.simpleMessage("متابعة"),
         "correct": MessageLookupByLibrary.simpleMessage("صحيح"),
@@ -85,6 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_holder_number":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسم حامل البطاقة"),
         "equip": MessageLookupByLibrary.simpleMessage("جهز"),
+        "error": MessageLookupByLibrary.simpleMessage("خطأ"),
+        "exam_result_saved_successfully": MessageLookupByLibrary.simpleMessage(
+            "تم حفظ نتيجة الامتحان بنجاح!"),
         "exam_simulation": MessageLookupByLibrary.simpleMessage(
             "هذا الاختبار هو محاكاة للاختبار النهائي"),
         "exams": MessageLookupByLibrary.simpleMessage("الاختبارات"),
@@ -97,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "explaintion_number2": MessageLookupByLibrary.simpleMessage(
             "يمكنك مواصلة الاختبار في أي وقت"),
         "failed": MessageLookupByLibrary.simpleMessage("راسب"),
+        "failed_to_save_exam":
+            MessageLookupByLibrary.simpleMessage("فشل في حفظ نتيجة الامتحان:"),
         "falih": MessageLookupByLibrary.simpleMessage("فالح"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
         "final_exam_limit":
@@ -143,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no_exams_yet": MessageLookupByLibrary.simpleMessage(
             "لا توجد امتحانات بعد، اذهب وخذ واحدًا"),
+        "no_internet_connection":
+            MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "no_password": MessageLookupByLibrary.simpleMessage(
             "لا يمكن ترك كلمة المرور فارغة"),
         "no_plan_selected":
@@ -175,6 +184,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا يمكن أن يكون رقم الهاتف فارغًا"),
         "plan": MessageLookupByLibrary.simpleMessage("خطة"),
         "plan_details": MessageLookupByLibrary.simpleMessage("تفاصيل الخطة"),
+        "please_select_answer_before_proceeding":
+            MessageLookupByLibrary.simpleMessage(
+                "يرجى اختيار إجابة قبل المتابعة."),
+        "please_select_answer_to_use_ai": MessageLookupByLibrary.simpleMessage(
+            "يرجى اختيار إجابة لاستخدام الذكاء الاصطناعي."),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "practice_test": MessageLookupByLibrary.simpleMessage("اختبار تدريبي"),
         "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
@@ -241,6 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit": MessageLookupByLibrary.simpleMessage("تقديم"),
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("باقات الاشتراك"),
+        "success": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
         "terms_conditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "this_month_points":
@@ -252,6 +267,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "trusted": MessageLookupByLibrary.simpleMessage("موثوق"),
         "type": MessageLookupByLibrary.simpleMessage("النوع:"),
+        "u_are_disconnected_from_the_internet":
+            MessageLookupByLibrary.simpleMessage("أنت غير متصل بالإنترنت."),
+        "u_are_now_connected_to_internet":
+            MessageLookupByLibrary.simpleMessage("أنت الآن متصل بالإنترنت."),
         "u_should_choose_department":
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار القسم"),
         "u_should_choose_gender":

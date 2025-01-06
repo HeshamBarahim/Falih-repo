@@ -14,7 +14,7 @@ class ResultDialog extends StatelessWidget {
   const ResultDialog({super.key, required this.context});
 
   @override
-  Widget build(BuildContext _context) {
+  Widget build(BuildContext context) {
     final HomeController homeController = Get.find<HomeController>();
     final ExamController controller = Get.find<ExamController>();
     final LeaderboardController leaderboardController =
@@ -214,7 +214,7 @@ class ResultDialog extends StatelessWidget {
               // Review Answer Button
               InkWell(
                 onTap: () {
-                  Navigator.pop(_context);
+                  Navigator.pop(context);
                   Get.to(() => const AfterExam());
                 },
                 borderRadius: BorderRadius.circular(16),
@@ -261,7 +261,7 @@ class ResultDialog extends StatelessWidget {
                 onTap: () async {
                   final ExamController controller = Get.find<ExamController>();
                   controller.saveExamResult();
-                  Navigator.pop(_context);
+                  Navigator.pop(context);
                   Get.back();
                   Get.back();
                   await leaderboardController.fetchAllUsersData();

@@ -64,7 +64,7 @@ class NotificationContainer extends StatelessWidget {
                           color: AppColors.subHeaderNotTaken,
                           fontSize: SizeConfig.screenWidth! * 0.030),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text('2024-12-07',

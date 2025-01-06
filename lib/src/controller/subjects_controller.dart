@@ -5,7 +5,7 @@ class SubjectsController extends GetxController {
   var selectedIndex = 0.obs; // Observable index for the selected item
   var name = "".obs;
   late LinearGradient color;
-  late String icon_path;
+  late String iconPath;
 
   // Function to change the selected index
   void changeSelectedIndex(int index) {

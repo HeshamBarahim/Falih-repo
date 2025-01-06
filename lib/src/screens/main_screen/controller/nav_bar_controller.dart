@@ -94,7 +94,7 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
       update();
     } else {
       _animationController.reverse();
-      Future.delayed(Duration(milliseconds: 300), () async {
+      Future.delayed(const Duration(milliseconds: 300), () async {
         bottomNavBarVisability = true;
         update();
       });

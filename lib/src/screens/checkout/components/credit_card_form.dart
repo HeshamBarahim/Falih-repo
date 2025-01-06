@@ -12,7 +12,7 @@ class CreditCardForm extends StatelessWidget {
 
   final TextEditingController cardHolderName;
 
-  final TextEditingController cvv_cvcNumber;
+  final TextEditingController cvvCvcNumber;
 
   final Widget datePicker;
 
@@ -21,7 +21,7 @@ class CreditCardForm extends StatelessWidget {
       required this.formKey,
       required this.cardNumber,
       required this.cardHolderName,
-      required this.cvv_cvcNumber,
+      required this.cvvCvcNumber,
       required this.datePicker});
 
   @override

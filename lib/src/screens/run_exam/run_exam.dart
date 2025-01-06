@@ -78,12 +78,14 @@ class RunExam extends StatelessWidget {
                             SizedBox(height: SizeConfig.screenHeight! * 0.01),
                             Text(
                               "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
-                              style: TextStyle(color: AppColors.warningColor),
+                              style: const TextStyle(
+                                  color: AppColors.warningColor),
                             ),
                             SizedBox(height: SizeConfig.screenHeight! * 0.03),
                             Text(
                               question.questionText,
-                              style: TextStyle(fontSize: SizeConfig.screenHeight! * 0.025),
+                              style: TextStyle(
+                                  fontSize: SizeConfig.screenHeight! * 0.025),
                             ),
                           ],
                         ),
@@ -102,8 +104,8 @@ class RunExam extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 '${controller.score.value}',
-                                style:
-                                    TextStyle(fontSize: SizeConfig.screenHeight! * 0.025),
+                                style: TextStyle(
+                                    fontSize: SizeConfig.screenHeight! * 0.025),
                               ),
                             ),
                           ),
@@ -113,7 +115,8 @@ class RunExam extends StatelessWidget {
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.04),
                   Container(
-                    padding: EdgeInsets.only(bottom: SizeConfig.screenHeight! * 0.01),
+                    padding: EdgeInsets.only(
+                        bottom: SizeConfig.screenHeight! * 0.01),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -145,7 +148,8 @@ class RunExam extends StatelessWidget {
                                     child: Text(
                                       (idx + 1).toString(),
                                       style: TextStyle(
-                                          fontSize: SizeConfig.screenHeight! * 0.02),
+                                          fontSize:
+                                              SizeConfig.screenHeight! * 0.02),
                                     ),
                                   ),
                                 ),
@@ -153,7 +157,7 @@ class RunExam extends StatelessWidget {
                               Text(option),
                             ],
                           );
-                        }).toList(),
+                        }),
                       ],
                     ),
                   ),

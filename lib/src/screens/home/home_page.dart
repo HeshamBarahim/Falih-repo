@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
-import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
+// import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/home/widgets_home/advertise_img_carousel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
+// import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -440,35 +440,35 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Function to convert UTF-16 LE bytes to a UTF-8 string
-  String convertUtf16ToUtf8(Uint8List bytes) {
-    StringBuffer buffer = StringBuffer();
-    for (int i = 0; i < bytes.length; i += 2) {
-      int charCode = bytes[i] + (bytes[i + 1] << 8);
-      buffer.writeCharCode(charCode);
-    }
-    return buffer.toString(); // No need to encode again, return UTF-16 string
-  }
+//   // Function to convert UTF-16 LE bytes to a UTF-8 string
+//   String convertUtf16ToUtf8(Uint8List bytes) {
+//     StringBuffer buffer = StringBuffer();
+//     for (int i = 0; i < bytes.length; i += 2) {
+//       int charCode = bytes[i] + (bytes[i + 1] << 8);
+//       buffer.writeCharCode(charCode);
+//     }
+//     return buffer.toString(); // No need to encode again, return UTF-16 string
+//   }
 
-  void exportData() async {
-    final CollectionReference subjectsCollection =
-        FirebaseFirestore.instance.collection("subjects_ar_12");
+//   void exportData() async {
+//     final CollectionReference subjectsCollection =
+//         FirebaseFirestore.instance.collection("subjects_ar_12");
 
-    try {
-      final uid = AuthenticationRepository.instance.getUserID;
-      print(uid); // Prints the user's UID
-      final email = AuthenticationRepository.instance.getUserEmail;
-      print(email); // Prints the user's email address
-      final name = AuthenticationRepository.instance.getDisplayName;
-      print("Welcome, $name!");
-      final getPhoneNo = AuthenticationRepository.instance.getPhoneNo;
-      print(getPhoneNo); // Prints the user's email address
-      final phone = AuthenticationRepository.instance.getPhoneNo;
-      print(phone);
+//     try {
+//       final uid = AuthenticationRepository.instance.getUserID;
+//       print(uid); // Prints the user's UID
+//       final email = AuthenticationRepository.instance.getUserEmail;
+//       print(email); // Prints the user's email address
+//       final name = AuthenticationRepository.instance.getDisplayName;
+//       print("Welcome, $name!");
+//       final getPhoneNo = AuthenticationRepository.instance.getPhoneNo;
+//       print(getPhoneNo); // Prints the user's email address
+//       final phone = AuthenticationRepository.instance.getPhoneNo;
+//       print(phone);
 
-      // Additional code for exporting data (commented out for brevity)
-    } catch (e) {
-      print("Error exporting data: $e");
-    }
-  }
+//       // Additional code for exporting data (commented out for brevity)
+//     } catch (e) {
+//       print("Error exporting data: $e");
+//     }
+//   }
 }

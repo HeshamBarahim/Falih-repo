@@ -40,7 +40,7 @@ class SubjectPage extends StatelessWidget {
                       ),
                     ),
                     Image.asset(
-                      subjectController.icon_path,
+                      subjectController.iconPath,
                       height: SizeConfig.screenHeight! * 0.18,
                       width: SizeConfig.screenWidth! * 0.3,
                     ),

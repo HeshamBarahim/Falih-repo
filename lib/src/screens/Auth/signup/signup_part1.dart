@@ -15,7 +15,7 @@ import '../../../config/sizes.dart';
 class SignupPart1 extends StatelessWidget {
   SignupPart1({super.key});
 
-  String error = '';
+  final String error = '';
   final SignUpController controller =
       Get.put(SignUpController(), permanent: false);
 

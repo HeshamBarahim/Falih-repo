@@ -6,12 +6,12 @@ import '../models/rive_asset.dart';
 
 class NavBarTile extends StatelessWidget {
   const NavBarTile({
-    Key? key,
+    super.key,
     required this.menu,
     required this.press,
     required this.riveonInit,
     required this.isActive,
-  }) : super(key: key);
+  });
 
   final RiveAsset menu;
   final VoidCallback press;

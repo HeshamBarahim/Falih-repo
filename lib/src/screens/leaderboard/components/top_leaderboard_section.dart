@@ -22,7 +22,7 @@ class TopLeaderboardSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: topUserOrder.map((index) {
-          final user = leaderboardController.usersList.value[index];
+          final user = leaderboardController.usersList[index];
 
           bool isMiddleUser = index == 0;
           bool isSecondUser = index == 1;

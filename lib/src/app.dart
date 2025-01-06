@@ -20,7 +20,7 @@ class App extends StatelessWidget {
     return Obx(() {
       // Check if auth check is complete
       if (!authRepo.isAuthCheckComplete.value) {
-        return GetMaterialApp(
+        return const GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home:
               SplashScreen(), // Show loading screen while auth check is in progress
@@ -44,14 +44,14 @@ class App extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: SplashScreen(),
+        home: const SplashScreen(),
         // Show loading screen while auth check is in progress
 
         initialRoute: "/splash",
         // Set the initial route
         unknownRoute: GetPage(name: '/signup', page: () => Login()),
 
-        getPages: [
+        getPages: const [
           //  routes here
           // GetPage(
           //     name: '/',
