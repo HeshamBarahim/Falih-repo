@@ -38,7 +38,7 @@ class AboutUsScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(
                       horizontal: SizeConfig.screenWidth! * 0.02),
                   decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
+                    color: const Color(0xFFFFFFFF),
                     borderRadius:
                         BorderRadius.circular(SizeConfig.screenHeight! * 0.023),
                     boxShadow: [
@@ -54,19 +54,6 @@ class AboutUsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // ShaderMask(
-                      //   shaderCallback: (bounds) => aboutUsScreenContoller
-                      //       .currentLinearGradientColor.value
-                      //       .createShader(bounds),
-                      //   child: IconButton(
-                      //     onPressed: () {
-                      //       Get.offAll(MenuScreen());
-                      //     },
-                      //     icon: const Icon(Icons.arrow_back),
-                      //     color: Colors.white,
-                      //     iconSize: SizeConfig.screenHeight! * 0.041,
-                      //   ),
-                      // ),
                       SizedBox(
                         width: SizeConfig.screenWidth! * 0.10,
                       ),
@@ -88,17 +75,6 @@ class AboutUsScreen extends StatelessWidget {
                       SizedBox(
                         width: SizeConfig.screenWidth! * 0.10,
                       )
-                      // ShaderMask(
-                      //   shaderCallback: (bounds) => aboutUsScreenContoller
-                      //       .currentLinearGradientColor.value
-                      //       .createShader(bounds),
-                      //   child: IconButton(
-                      //     onPressed: () {},
-                      //     icon: const Icon(Icons.notifications),
-                      //     color: Colors.white,
-                      //     iconSize: SizeConfig.screenHeight! * 0.041,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

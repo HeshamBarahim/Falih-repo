@@ -753,8 +753,40 @@
                   "@on": {
                     "description": ""
                   },
-                  "on": "في"
-                }
+                  "on": "في",
+                "@grade": {
+  "description": ""
+},
+"grade": "الصف",
+"@user_data_not_available": {
+  "description": ""
+},
+"user_data_not_available": "بيانات المستخدم غير متوفرة",
+"@press_back_again": {
+  "description": ""
+},
+"press_back_again": "اضغط مرة أخرى للخروج من التطبيق",
+"@check_out": {
+  "description": ""
+},
+"check_out": "الدفع",
+"@u_should_choose_governorate": {
+  "description": ""
+},
+"u_should_choose_governorate": "يجب عليك اختيار المحافظة",
+"@u_should_choose_grade": {
+  "description": ""
+},
+"u_should_choose_grade": "يجب عليك اختيار الصف",
+"@u_should_choose_department": {
+  "description": ""
+},
+"u_should_choose_department": "يجب عليك اختيار القسم",
+"@u_should_choose_gender": {
+  "description": ""
+},
+"u_should_choose_gender": "يجب عليك اختيار النوع"
+}
                 
               
               

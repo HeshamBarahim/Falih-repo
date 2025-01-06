@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/curriculum_controller.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
@@ -28,7 +29,7 @@ class CurriculumPage extends StatelessWidget {
           Obx(
             () => userController.currentUser == null
                 ? Text(
-                    "User data not available.",
+                    "${S.of(context).user_data_not_available}.",
                     style: TextStyle(
                       fontSize: SizeConfig.screenWidth! * 0.04,
                     ),
@@ -41,7 +42,7 @@ class CurriculumPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Class: ${userController.currentUser!.selectedGrade}',
+                          "${S.of(context).grade}: ${userController.currentUser!.selectedGrade}",
                           style: TextStyle(
                             fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,

@@ -28,178 +28,182 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return
-        // WillPopScope(
-        // onWillPop: () async {
-        //   DateTime now = DateTime.now();
-        //   if (lastBackPressTime == null ||
-        //       now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-        //     lastBackPressTime = now;
-        //     ScaffoldMessenger.of(context).showSnackBar(
-        //       SnackBar(
-        //         behavior: SnackBarBehavior.floating,
-        //         margin: EdgeInsets.symmetric(
-        //           horizontal: SizeConfig.screenWidth! * 0.04,
-        //           vertical: SizeConfig.screenHeight! * 0.01,
-        //         ),
-        //         content: const Text(
-        //           'Press back again to exit The App',
-        //           style: TextStyle(
-        //             fontSize: 13.0,
-        //             color: Colors.white,
-        //           ),
-        //         ),
-        //         duration: const Duration(seconds: 2),
-        //       ),
-        //     );
-        //     return false;
-        //   }
-        //   return true;
-        // },
-        // child:
-        Scaffold(
-      body: Stack(
-        children: [
-          Form(
-            key: loginController.loginFormKey,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(
-                  image: const AssetImage(
-                    Images.backgroundImageOfAuth,
-                  ),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                    const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-                    BlendMode.lighten,
+    return PopScope(
+      canPop: false, // Ensures controlled back navigation
+      onPopInvokedWithResult: (didPop, result) async {
+        DateTime now = DateTime.now();
+        if (!didPop) {
+          if (lastBackPressTime == null ||
+              now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
+            lastBackPressTime = now;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.screenWidth! * 0.04,
+                  vertical: SizeConfig.screenHeight! * 0.01,
+                ),
+                content: Text(
+                  S.of(context).press_back_again,
+                  style: const TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.white,
                   ),
                 ),
+                duration: const Duration(seconds: 2),
               ),
-              padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.05,
-                  vertical: SizeConfig.screenHeight! * 0.0243),
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                Images.falih,
-                                width: SizeConfig.screenWidth! * 0.5,
-                                height: SizeConfig.screenHeight! * 0.2,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: SizeConfig.screenWidth! * 0.02,
-                                    vertical:
-                                        SizeConfig.screenHeight! * 0.00975),
-                                child: Text(
-                                  S.of(context).title_login,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: SizeConfig.screenHeight! * 0.03,
-                                  ),
+            );
+          } else {
+            Navigator.of(context).pop(result);
+          }
+        }
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Form(
+              key: loginController.loginFormKey,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: const AssetImage(
+                      Images.backgroundImageOfAuth,
+                    ),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
+                      BlendMode.lighten,
+                    ),
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.screenWidth! * 0.05,
+                    vertical: SizeConfig.screenHeight! * 0.0243),
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: SafeArea(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                color: Colors.transparent,
+                                child: Image.asset(
+                                  Images.falih,
+                                  width: SizeConfig.screenWidth! * 0.5,
+                                  height: SizeConfig.screenHeight! * 0.2,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
-                            ),
-                            CustomTextForm(
-                              myController: loginController.email,
-                              hintText: S.of(context).hint_text_phone,
-                              prefixIcon: Icon(
-                                Icons.phone_android,
-                                size: SizeConfig.screenHeight! * 0.03,
-                              ),
-                              validator: Helper.validatePhoneNumber,
-                            ),
-                            CustomTextForm(
-                              hintText: S.of(context).hint_text_password,
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                size: SizeConfig.screenHeight! * 0.03,
-                              ),
-                              myController: loginController.password,
-                              validator: Helper.validatePassword,
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: SizeConfig.screenWidth! * 0.02,
-                                    vertical:
-                                        SizeConfig.screenHeight! * 0.00975),
-                                child: InkWell(
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal:
+                                          SizeConfig.screenWidth! * 0.02,
+                                      vertical:
+                                          SizeConfig.screenHeight! * 0.00975),
                                   child: Text(
-                                    S.of(context).forget_password,
+                                    S.of(context).title_login,
                                     style: TextStyle(
-                                      color: AppColors.warningColor,
-                                      fontSize:
-                                          SizeConfig.screenHeight! * 0.018,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: SizeConfig.screenHeight! * 0.03,
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: SizeConfig.screenHeight! * 0.15),
-                        Column(
-                          children: [
-                            GradientButton(
-                              text: S.of(context).login,
-                              height: SizeConfig.screenHeight! * 0.06,
-                              width: double.infinity,
-                              // onClick: () {},
-                              onClick: () async {
-                                // var isConnected =
-                                //     await checkConnectionController.checkInternetConnection();
-                                loginController.login(Get.context!);
-                              },
-                            ),
-                            SizedBox(
-                              height: SizeConfig.screenHeight! * 0.03,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  S.of(context).not_registerd,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: SizeConfig.screenHeight! * 0.018,
+                              CustomTextForm(
+                                myController: loginController.email,
+                                hintText: S.of(context).hint_text_phone,
+                                prefixIcon: Icon(
+                                  Icons.phone_android,
+                                  size: SizeConfig.screenHeight! * 0.03,
+                                ),
+                                validator: Helper.validatePhoneNumber,
+                              ),
+                              CustomTextForm(
+                                hintText: S.of(context).hint_text_password,
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  size: SizeConfig.screenHeight! * 0.03,
+                                ),
+                                myController: loginController.password,
+                                validator: Helper.validatePassword,
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal:
+                                          SizeConfig.screenWidth! * 0.02,
+                                      vertical:
+                                          SizeConfig.screenHeight! * 0.00975),
+                                  child: InkWell(
+                                    child: Text(
+                                      S.of(context).forget_password,
+                                      style: TextStyle(
+                                        color: AppColors.warningColor,
+                                        fontSize:
+                                            SizeConfig.screenHeight! * 0.018,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                GradientText(
-                                  text: S.of(context).create_account,
-                                  route: () => Signup(),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: SizeConfig.screenHeight! * 0.15),
+                          Column(
+                            children: [
+                              GradientButton(
+                                text: S.of(context).login,
+                                height: SizeConfig.screenHeight! * 0.06,
+                                width: double.infinity,
+                                // onClick: () {},
+                                onClick: () async {
+                                  // var isConnected =
+                                  //     await checkConnectionController.checkInternetConnection();
+                                  loginController.login(Get.context!);
+                                },
+                              ),
+                              SizedBox(
+                                height: SizeConfig.screenHeight! * 0.03,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    S.of(context).not_registerd,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize:
+                                          SizeConfig.screenHeight! * 0.018,
+                                    ),
+                                  ),
+                                  GradientText(
+                                    text: S.of(context).create_account,
+                                    route: () => Signup(),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      // ),
     );
   }
 }

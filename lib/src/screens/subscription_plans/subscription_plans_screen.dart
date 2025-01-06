@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
@@ -81,7 +82,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
                             }
                           : null,
                       child: Text(
-                        "Checkout",
+                        S.of(context).check_out,
                         style: TextStyle(
                           fontSize: SizeConfig.screenWidth! * 0.043,
                           fontWeight: FontWeight.bold,

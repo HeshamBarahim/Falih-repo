@@ -669,5 +669,37 @@
     "@on": {
       "description": ""
     },
-    "on":"On"
+    "on":"On",
+    "@grade": {
+      "description": ""
+    },
+    "grade":"Class",
+    "@user_data_not_available": {
+      "description": ""
+    },
+    "user_data_not_available":"User data not available",
+    "@press_back_again": {
+      "description": ""
+    },
+    "press_back_again":"Press back again to exit The App",
+    "@check_out": {
+      "description": ""
+    },
+    "check_out":"Checkout",
+    "@u_should_choose_governorate": {
+      "description": ""
+    },
+    "u_should_choose_governorate":"You should choose a Governorate",
+    "@u_should_choose_grade": {
+      "description": ""
+    },
+    "u_should_choose_grade":"You should choose a Grade",
+    "@u_should_choose_department": {
+      "description": ""
+    },
+    "u_should_choose_department":"You should choose a Department",
+    "@u_should_choose_gender": {
+      "description": ""
+    },
+    "u_should_choose_gender":"You should choose a Gender"
 }

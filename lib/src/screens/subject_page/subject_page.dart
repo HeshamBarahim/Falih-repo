@@ -1,7 +1,6 @@
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../config/sizes.dart';
 import '../../controller/subjects_controller.dart';
 

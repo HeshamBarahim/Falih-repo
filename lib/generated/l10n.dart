@@ -1719,6 +1719,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Class`
+  String get grade {
+    return Intl.message(
+      'Class',
+      name: 'grade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User data not available`
+  String get user_data_not_available {
+    return Intl.message(
+      'User data not available',
+      name: 'user_data_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Press back again to exit The App`
+  String get press_back_again {
+    return Intl.message(
+      'Press back again to exit The App',
+      name: 'press_back_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get check_out {
+    return Intl.message(
+      'Checkout',
+      name: 'check_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Governorate`
+  String get u_should_choose_governorate {
+    return Intl.message(
+      'You should choose a Governorate',
+      name: 'u_should_choose_governorate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Grade`
+  String get u_should_choose_grade {
+    return Intl.message(
+      'You should choose a Grade',
+      name: 'u_should_choose_grade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Department`
+  String get u_should_choose_department {
+    return Intl.message(
+      'You should choose a Department',
+      name: 'u_should_choose_department',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should choose a Gender`
+  String get u_should_choose_gender {
+    return Intl.message(
+      'You should choose a Gender',
+      name: 'u_should_choose_gender',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

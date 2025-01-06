@@ -29,6 +29,7 @@ class SettingsScreen extends StatelessWidget {
         isArabic ? 'privacy_policy_ar.md' : 'privacy_policy_en.md';
     final termsFile =
         isArabic ? 'terms_conditions_ar.md' : 'terms_conditions_en.md';
+    final rulesFile = isArabic ? 'rules_prizes_ar.md' : 'rules_prizes_en.md';
     SizeConfig().init(context);
     return PopScope(
       canPop: false,
@@ -114,6 +115,17 @@ class SettingsScreen extends StatelessWidget {
                         builder: (context) {
                           return MdDialogs(
                             mdFileName: termsFile,
+                            buttonText: closeButton,
+                          );
+                        });
+                  },
+                  // Rules & Prizes Button Function
+                  onRulesAndPrizes: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return MdDialogs(
+                            mdFileName: rulesFile,
                             buttonText: closeButton,
                           );
                         });

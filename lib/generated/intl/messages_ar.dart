@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم تقم بالخضوع"),
         "chapters": MessageLookupByLibrary.simpleMessage("الفصول"),
         "check_details": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
+        "check_out": MessageLookupByLibrary.simpleMessage("الدفع"),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),
@@ -104,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مرحبًا يوسف"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "grade": MessageLookupByLibrary.simpleMessage("الصف"),
         "hi": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("المحافظة"),
@@ -172,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "practice_test": MessageLookupByLibrary.simpleMessage("اختبار تدريبي"),
         "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
+        "press_back_again": MessageLookupByLibrary.simpleMessage(
+            "اضغط مرة أخرى للخروج من التطبيق"),
         "price": MessageLookupByLibrary.simpleMessage("السعر:"),
         "privacy": MessageLookupByLibrary.simpleMessage("الخصوصية"),
         "privacy_policy":
@@ -238,11 +242,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "trusted": MessageLookupByLibrary.simpleMessage("موثوق"),
         "type": MessageLookupByLibrary.simpleMessage("النوع:"),
+        "u_should_choose_department":
+            MessageLookupByLibrary.simpleMessage("يجب عليك اختيار القسم"),
+        "u_should_choose_gender":
+            MessageLookupByLibrary.simpleMessage("يجب عليك اختيار النوع"),
+        "u_should_choose_governorate":
+            MessageLookupByLibrary.simpleMessage("يجب عليك اختيار المحافظة"),
+        "u_should_choose_grade":
+            MessageLookupByLibrary.simpleMessage("يجب عليك اختيار الصف"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد اختبار الوحدة:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("اختبارات الوحدة"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
+        "user_data_not_available":
+            MessageLookupByLibrary.simpleMessage("بيانات المستخدم غير متوفرة"),
         "way": MessageLookupByLibrary.simpleMessage("طريقتك"),
         "we_will_send": MessageLookupByLibrary.simpleMessage(
             "سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح"),

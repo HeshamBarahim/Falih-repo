@@ -21,32 +21,35 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false, // Ensures controlled back navigation
+      onPopInvokedWithResult: (didPop, result) async {
         DateTime now = DateTime.now();
-        if (lastBackPressTime == null ||
-            now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
-          lastBackPressTime = now;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(
-                horizontal: SizeConfig.screenWidth! * 0.04,
-                vertical: SizeConfig.screenHeight! * 0.01,
-              ),
-              content: Text(
-                'Press back again to exit The App',
-                style: TextStyle(
-                  fontSize: SizeConfig.screenHeight! * 0.015,
-                  color: Colors.white,
+        if (!didPop) {
+          if (lastBackPressTime == null ||
+              now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
+            lastBackPressTime = now;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.screenWidth! * 0.04,
+                  vertical: SizeConfig.screenHeight! * 0.01,
                 ),
+                content: Text(
+                  S.of(context).press_back_again,
+                  style: const TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.white,
+                  ),
+                ),
+                duration: const Duration(seconds: 2),
               ),
-              duration: const Duration(seconds: 2),
-            ),
-          );
-          return false;
+            );
+          } else {
+            Navigator.of(context).pop(result);
+          }
         }
-        return true;
       },
       child: GetBuilder<NavBarController>(
         init: NavBarController(),

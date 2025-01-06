@@ -17,62 +17,62 @@ class Helper extends GetxController {
   }
 
   static String? validatePassword(value) {
-    if (value == null || value.isEmpty) return 'Password cannot be empty';
+    if (value == null || value.isEmpty) return S.current.passwrod_cant_be_empty;
 
     String pattern = r'^.{6,}$';
     RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
-      return 'Password must be 6 characters at least';
+      return S.current.passwrod_must_be;
     }
     return null;
   }
 
   static String? validateSchoolName(value) {
-    if (value == null || value.isEmpty) return "School Name cannot be empty";
+    if (value == null || value.isEmpty) return S.current.school_cant_be_empty;
 
-    String pattern = r"^[a-zA-Z\s.'-]{2,}$";
+    String pattern = r"^[a-zA-Z\u0600-\u06FF\s.'-]{2,}$";
     RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
-      return 'School Name must be valid';
+      return S.current.school_must_be;
     }
     return null;
   }
 
   static String? validatefullName(value) {
-    if (value == null || value.isEmpty) return "Name cannot be empty";
+    if (value == null || value.isEmpty) return S.current.name_cant_be_empty;
 
-    String pattern = r"^[a-zA-Z\s.'-]{2,}$";
+    String pattern = r"^[a-zA-Z\u0600-\u06FF\s.'-]{2,}$";
     RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
-      return 'User Name must be valid';
+      return S.current.name_must_be;
     }
     return null;
   }
 
   static String? validateGovernorate(value) {
     if (value == null || value.isEmpty) {
-      return "You should choose a Governorate";
+      return S.current.u_should_choose_governorate;
     }
     return null;
   }
 
   static String? validateGrade(value) {
     if (value == null || value.isEmpty) {
-      return "You should choose a Grade";
+      return S.current.u_should_choose_grade;
     }
     return null;
   }
 
   static String? validateDepartment(value) {
     if (value == null || value.isEmpty) {
-      return "You should choose a Department";
+      return S.current.u_should_choose_department;
     }
     return null;
   }
 
   static String? validateGender(value) {
     if (value == null || value.isEmpty) {
-      return "You should choose a Gender";
+      return S.current.u_should_choose_gender;
     }
     return null;
   }

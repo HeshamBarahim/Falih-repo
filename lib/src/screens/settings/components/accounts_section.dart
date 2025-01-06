@@ -11,13 +11,15 @@ class AccountSection extends StatelessWidget {
   final VoidCallback onTapPrivacyFunction;
   final VoidCallback onTapTerms_ConditionsFunction;
   final VoidCallback onTapLogoutFunction;
+  final VoidCallback onRulesAndPrizes;
 
   const AccountSection(
       {super.key,
       required this.onTapEditProfileFunction,
       required this.onTapPrivacyFunction,
       required this.onTapTerms_ConditionsFunction,
-      required this.onTapLogoutFunction});
+      required this.onTapLogoutFunction,
+      required this.onRulesAndPrizes});
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +63,19 @@ class AccountSection extends StatelessWidget {
               ),
               onTap: onTapTerms_ConditionsFunction,
             ),
+            // Rules && Prizes
+            SettingsTile(
+              icon: Icons.question_mark,
+              title: "Rules && Prizes",
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: SizeConfig.screenWidth! * 0.063,
+                color: iconColor_1,
+              ),
+              onTap: onTapTerms_ConditionsFunction,
+            ),
           ],
         ),
-
-        SizedBox(height: SizeConfig.screenHeight! * 0.015),
 
         /// Logout Button
         SettingsTile(

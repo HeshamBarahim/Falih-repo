@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
         "check_details":
             MessageLookupByLibrary.simpleMessage("Checkout Details"),
+        "check_out": MessageLookupByLibrary.simpleMessage("Checkout"),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compete_shine":
@@ -102,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "grade": MessageLookupByLibrary.simpleMessage("Class"),
         "hi": MessageLookupByLibrary.simpleMessage("hi"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("Governorate"),
@@ -170,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "points": MessageLookupByLibrary.simpleMessage("Points"),
         "practice_test": MessageLookupByLibrary.simpleMessage("results"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
+        "press_back_again": MessageLookupByLibrary.simpleMessage(
+            "Press back again to exit The App"),
         "price": MessageLookupByLibrary.simpleMessage("Price:"),
         "privacy": MessageLookupByLibrary.simpleMessage("Privacy"),
         "privacy_policy":
@@ -240,11 +244,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "trusted": MessageLookupByLibrary.simpleMessage("Trusted"),
         "type": MessageLookupByLibrary.simpleMessage("Type:"),
+        "u_should_choose_department": MessageLookupByLibrary.simpleMessage(
+            "You should choose a Department"),
+        "u_should_choose_gender":
+            MessageLookupByLibrary.simpleMessage("You should choose a Gender"),
+        "u_should_choose_governorate": MessageLookupByLibrary.simpleMessage(
+            "You should choose a Governorate"),
+        "u_should_choose_grade":
+            MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("Update Profile"),
+        "user_data_not_available":
+            MessageLookupByLibrary.simpleMessage("User data not available"),
         "way": MessageLookupByLibrary.simpleMessage("way"),
         "we_will_send": MessageLookupByLibrary.simpleMessage(
             "We will send you an order details to your email after the successful payment"),
