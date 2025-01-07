@@ -15,6 +15,10 @@ class SeconedPageBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    //  Current language code
+    final locale = Localizations.localeOf(context).languageCode;
+    // Check if the language is Arabic
+    final isArabic = locale == 'ar';
     return Container(
       color: AppColors.bgScreen2,
       padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.05),
@@ -43,7 +47,8 @@ class SeconedPageBoarding extends StatelessWidget {
                         height: SizeConfig.screenHeight! * 0.1,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
+                        margin: EdgeInsets.only(
+                            left: SizeConfig.screenWidth! * 0.05),
                         height: SizeConfig.screenHeight! * 0.3,
                         width: SizeConfig.screenWidth! * 0.85,
                         child: Column(
@@ -79,7 +84,9 @@ class SeconedPageBoarding extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: -SizeConfig.screenHeight! * 0.02,
-                  right: -SizeConfig.screenWidth! * 0.02,
+                  right: isArabic
+                      ? SizeConfig.screenWidth! * 0.3
+                      : -SizeConfig.screenWidth! * 0.02,
                   child: Image.asset(
                     Images.onBoardingTwo,
                     width: SizeConfig.screenWidth! * 0.75,

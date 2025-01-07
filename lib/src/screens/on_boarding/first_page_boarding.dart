@@ -17,6 +17,10 @@ class FirstPageBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //  Current language code
+    final locale = Localizations.localeOf(context).languageCode;
+    // Check if the language is Arabic
+    final isArabic = locale == 'ar';
     SizeConfig().init(context);
     return PopScope(
       canPop: false, // Ensures controlled back navigation
@@ -118,7 +122,9 @@ class FirstPageBoarding extends StatelessWidget {
                   ),
                   Positioned(
                     top: SizeConfig.screenHeight! * 0.02,
-                    right: -SizeConfig.screenWidth! * 0.2,
+                    right: isArabic
+                        ? SizeConfig.screenWidth! * 0.3
+                        : -SizeConfig.screenWidth! * 0.2,
                     child: Image.asset(
                       Images.onBoardingOne,
                       width: SizeConfig.screenWidth! * 0.75,

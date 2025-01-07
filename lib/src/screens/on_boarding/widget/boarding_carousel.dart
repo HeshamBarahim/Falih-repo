@@ -34,6 +34,7 @@ class BoardingCarousel extends StatelessWidget {
               color: sColor),
         ),
         Container(
+          margin: const EdgeInsets.only(right: 15),
           height: 20,
           width: 20,
           decoration: BoxDecoration(
