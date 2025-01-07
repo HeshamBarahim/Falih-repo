@@ -64,10 +64,12 @@ class HomePage extends StatelessWidget {
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   CircleAvatar(
-                                    radius: SizeConfig.screenWidth! * 0.141,
-                                    backgroundColor: Colors.grey[200],
+                                    radius: SizeConfig.screenWidth! * 0.13,
+                                    backgroundColor: AppColors.darkMainColor,
                                     child: ClipOval(
                                       child: userController.user.value!
                                                   .userProfileImgUrl !=
@@ -98,50 +100,51 @@ class HomePage extends StatelessWidget {
                                             ),
                                     ),
                                   ),
-                                  //   ),
-                                  // ),
-                                  SizedBox(
-                                      width: SizeConfig.screenWidth! * 0.03),
-                                  // Spacing adjusted based on screen width
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${S.of(context).hi}, ${userController.currentUser!.fullName}",
-                                        style: const TextStyle(
-                                            color: AppColors.secondaryColor,
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${S.of(context).hi}, ${userController.currentUser!.fullName.split(" ")[0]}",
+                                            style: const TextStyle(
+                                                color: AppColors.secondaryColor,
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                              height: SizeConfig.screenHeight! *
+                                                  0.01),
+                                          Text(
+                                            "${S.of(context).rank}: #${controller.rank.value}",
+                                            style: const TextStyle(
+                                              color: AppColors.secondaryColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
+                                            style: const TextStyle(
+                                              color: AppColors.secondaryColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${S.of(context).this_month_points}: ${controller.point.value}",
+                                            style: const TextStyle(
+                                              color: AppColors.secondaryColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(
-                                          height:
-                                              SizeConfig.screenHeight! * 0.01),
-                                      Text(
-                                        "${S.of(context).rank}: #${controller.rank.value}",
-                                        style: const TextStyle(
-                                          color: AppColors.secondaryColor,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${S.of(context).over_all_points}: ${controller.point.value} / ${controller.maxPoint.value}",
-                                        style: const TextStyle(
-                                          color: AppColors.secondaryColor,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${S.of(context).this_month_points}: ${controller.point.value}",
-                                        style: const TextStyle(
-                                          color: AppColors.secondaryColor,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ],
                               ),
