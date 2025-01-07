@@ -65,7 +65,7 @@ class AccountSection extends StatelessWidget {
             ),
             // Rules && Prizes
             SettingsTile(
-              icon: Icons.question_mark,
+              icon: Icons.view_list_rounded,
               title: S.of(context).rules_prizes,
               trailing: Icon(
                 Icons.arrow_forward_ios,

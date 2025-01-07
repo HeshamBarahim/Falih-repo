@@ -28,34 +28,60 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
+  ## -- Image PACKAGES
+  image_picker: ^1.1.2
   cached_network_image: null
-  carousel_slider: null
-  cloud_firestore: null
+
+  ## -- AWS PACKAGES
+  http: null
   connectivity_plus: ^6.1.1
-  csv: null
+
+  
+  carousel_slider: null
+  
+
+  ## -- ICON PACKAGES
   cupertino_icons: ^1.0.8
-  device_preview: ^1.2.0
+  flutter_native_splash: null
+
+  ## -- Localization PACKAGES
+  flutter_localizations:
+    sdk: flutter
+  intl: null
+  intl_utils: null
+
+  ## -- Get PACKAGES
+  get: null
+  get_storage: null
+
+  ## -- About Us PACKAGES
+  smooth_page_indicator: null
+
+  csv: null
+  
+  ## -- FIREBASE PACKAGES
   firebase_auth: null
   firebase_core: null
   firebase_storage: ^12.3.7
+  cloud_firestore: null
+
+
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+ 
   flutter_markdown: ^0.7.4+3
-  flutter_native_splash: null
-  get: null
-  get_storage: null
+  device_preview: ^1.2.0
+
   google_fonts: null
-  http: null
-  image_picker: ^1.1.2
-  intl: null
-  intl_utils: null
+  
+ 
+
   path: ^1.9.0
   percent_indicator: null
   pinput: null
   rive: null
-  smooth_page_indicator: null
+  
 
 dev_dependencies:
   flutter_lints: null
