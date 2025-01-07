@@ -249,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "subTitle_trusted": MessageLookupByLibrary.simpleMessage(
             "Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority."),
         "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
+        "subject_nine": MessageLookupByLibrary.simpleMessage("Social Studies"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
         "subject_four":
             MessageLookupByLibrary.simpleMessage("English Language"),

@@ -28,9 +28,11 @@ class Images {
   static const String physicsIcon = 'assets/subjects_icons/physics_icon.png';
   static const String biologyIcon = 'assets/subjects_icons/biology_icon.png';
   static const String mathIcon = 'assets/subjects_icons/math_icon.png';
+  static const String socialStudiesIcon = 'assets/subjects_icons/math_icon.png';
 
   // leaderboard page
   static const String goldenMedal = 'assets/images/gold_medal.png';
+
   // static const String silverMedal = 'assets/images/silver_medal.png';
   static const String bronzeMedal = 'assets/images/bronze_medal.png';
 

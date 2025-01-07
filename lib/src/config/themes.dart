@@ -62,6 +62,10 @@ class AppColors {
     Color(0xFF548AD8),
     Color(0XFF8A4BD3),
   ]);
+  static const LinearGradient socialStudiesColor = LinearGradient(colors: [
+    Color(0xFFF7910F),
+    Color(0XFFA33162),
+  ]);
 
   static const LinearGradient aboutUsViewsBorderColor_1 = LinearGradient(
     colors: [

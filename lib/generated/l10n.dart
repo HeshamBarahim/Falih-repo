@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -515,6 +516,16 @@ class S {
     return Intl.message(
       'الرياضيات',
       name: 'subject_eight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الاجتماعيات`
+  String get subject_nine {
+    return Intl.message(
+      'الاجتماعيات',
+      name: 'subject_nine',
       desc: '',
       args: [],
     );

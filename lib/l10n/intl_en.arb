@@ -194,8 +194,9 @@
       "description": ""
     },
     "subject_eight":"Math",
+    "subject_nine":"Social Studies",
     "@not_taken_exams": {
-      "description": "This the start of leaderborad page"
+      "description": "This the start of leaderboard page"
     },
     "not_taken_exams":"you have not taken any test yet take a test to join the leaderboard and compete with other students",
     "@statistics": {

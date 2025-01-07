@@ -1,8 +1,5 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/controller/curriculum_controller.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
-import 'package:falih/src/controller/user_controller.dart';
-import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/subject_page/subject_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,22 +9,19 @@ import '../../config/sizes.dart';
 class CurriculumPage extends StatelessWidget {
   CurriculumPage({super.key});
 
-  final CurriculumController controller = Get.put(CurriculumController());
   final SubjectsController subjectController = Get.put(SubjectsController());
-  final authRepo = AuthenticationRepository.instance;
-  final UserController userController = UserController.instance;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.screenWidth! * 0.04,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
       ),
       child: Column(
         children: [
           Obx(
-            () => userController.currentUser == null
+            () => subjectController.userController.currentUser == null
                 ? Text(
                     "${S.of(context).user_data_not_available}.",
                     style: TextStyle(
@@ -42,14 +36,14 @@ class CurriculumPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${S.of(context).grade}: ${userController.currentUser!.selectedGrade}",
+                          "${S.of(context).grade}: ${subjectController.userController.currentUser!.selectedGrade}",
                           style: TextStyle(
                             fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          '${userController.currentUser!.selectedDepartment}',
+                          '${subjectController.userController.currentUser!.selectedDepartment}',
                           style: TextStyle(
                             fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,
@@ -61,9 +55,7 @@ class CurriculumPage extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.097,
-                  vertical: SizeConfig.screenHeight! * 0.0059),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 100),
               child: GridView.builder(
                 padding: EdgeInsets.zero,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -74,11 +66,12 @@ class CurriculumPage extends StatelessWidget {
                   childAspectRatio: SizeConfig.screenWidth! /
                       (SizeConfig.screenHeight! / 1.4),
                 ),
-                itemCount: controller.subjects.length,
+                itemCount: subjectController.subjects.length,
                 itemBuilder: (context, index) {
-                  final subject = controller.subjects[index];
+                  final subject = subjectController.subjects[index];
                   return GestureDetector(
                     onTap: () {
+                      subjectController.id.value = subject['id'];
                       subjectController.name.value = subject['name'];
                       subjectController.color = subject['color'];
                       subjectController.iconPath = subject['icon'];
