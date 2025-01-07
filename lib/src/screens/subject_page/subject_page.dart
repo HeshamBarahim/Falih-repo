@@ -1,6 +1,7 @@
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../config/sizes.dart';
 import '../../controller/subjects_controller.dart';
 
@@ -31,7 +32,7 @@ class SubjectPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        subjectController.name.value,
+                        subjectController.name.value.capitalizeFirst ?? "",
                         style: TextStyle(
                           fontSize: SizeConfig.screenWidth! * 0.08,
                           fontWeight: FontWeight.bold,

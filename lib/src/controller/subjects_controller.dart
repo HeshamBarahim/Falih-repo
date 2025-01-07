@@ -2,12 +2,29 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../generated/l10n.dart';
+import '../config/images.dart';
+import '../config/themes.dart';
+
 class SubjectsController extends GetxController {
   var selectedIndex = 0.obs; // Observable index for the selected item
+  var selectedSectionIndex = 0.obs; // Observable index for the selected item
   var name = "".obs;
   var id = "".obs;
   late LinearGradient color;
   late String iconPath;
+  var subjects = <Map<String, dynamic>>[].obs;
+  final UserController userController = UserController.instance;
+  final subjectSections = {
+    "social_studies": ["geography", "history", "nationalism"],
+    "science": ["physics", "biology", "chemistry"]
+  };
+
+  @override
+  void onInit() {
+    loadSubjects();
+    super.onInit();
+  }
 
   // Function to change the selected index
   void changeSelectedIndex(int index) {

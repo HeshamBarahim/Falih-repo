@@ -33,6 +33,7 @@ class SubjectsLabels extends StatelessWidget {
       SubjectsLabelsData(S.of(context).results, Icons.stacked_line_chart, ''),
     ];
 
+    print(subjectController.subjectSections[subjectController.id.value]);
     return Expanded(
       child: Transform.translate(
         offset: Offset(0, -screenHeight * 0.07), // Push up based on height
@@ -88,6 +89,68 @@ class SubjectsLabels extends StatelessWidget {
                 ),
               ),
             ),
+            subjectController.subjectSections[subjectController.id.value] !=
+                    null
+                ? Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(
+                        subjectController
+                            .subjectSections[subjectController.id.value]!
+                            .length,
+                        (index) {
+                          return InkWell(
+                            onTap: () {
+                              subjectController
+                                  .changeSelectedSectionIndex(index);
+                            },
+                            child: Obx(() => Container(
+                                  height: screenHeight * 0.06,
+                                  width: screenWidth * 0.3,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: screenHeight * 0.01,
+                                      horizontal: screenWidth * 0.02),
+                                  decoration: BoxDecoration(
+                                    color: subjectController
+                                                .selectedSectionIndex.value ==
+                                            index
+                                        ? AppColors.darkMainColor
+                                        : AppColors.lightenMainColor,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        subjectController
+                                                .subjectSections[
+                                                    subjectController
+                                                        .id.value]![index]
+                                                .capitalizeFirst ??
+                                            "",
+                                        style: TextStyle(
+                                          color: subjectController
+                                                      .selectedSectionIndex
+                                                      .value ==
+                                                  index
+                                              ? AppColors.lightenMainColor
+                                              : AppColors.darkMainColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: screenHeight * 0.015,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                : Container(),
             Obx(() {
               if (subjectController.selectedIndex.value == 0) {
                 return _buildUnitsExams(firestore, context);
@@ -106,17 +169,17 @@ class SubjectsLabels extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     controller.examType.value = "UnitExam";
-    var subjectName = subjectController.name;
-    if (subjectName.value == "Islamic Education") {
-      subjectName.value = "islamic";
-    } else if (subjectName.value == "Quran Kareem") {
-      subjectName.value = "Quran";
-    } else if (subjectName.value == "Arabic Language") {
-      subjectName.value = "arabic";
-    } else if (subjectName.value == "English Language") {
-      subjectName.value = "english";
-    }
     var user = UserController.instance.user.value;
+    var subjectName = subjectController.id.value;
+
+    if (user?.selectedGrade == "9" && subjectName == "social_studies") {
+      subjectName = subjectController.subjectSections[subjectController
+          .id.value]![subjectController.selectedSectionIndex.value];
+    } else if (user?.selectedGrade == "9" && subjectName == "science") {
+      subjectName = subjectController.subjectSections[subjectController
+          .id.value]![subjectController.selectedSectionIndex.value];
+    }
+
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: firestore
             .collection(
@@ -215,17 +278,16 @@ class SubjectsLabels extends StatelessWidget {
   }
 
   Widget _buildResultsContent(FirebaseFirestore firestore) {
-    var subjectName = subjectController.name;
-    if (subjectName.value == "Islamic Education") {
-      subjectName.value = "Islamic";
-    } else if (subjectName.value == "Quran Kareem") {
-      subjectName.value = "Quran";
-    } else if (subjectName.value == "Arabic Language") {
-      subjectName.value = "Arabic";
-    } else if (subjectName.value == "English Language") {
-      subjectName.value = "English";
-    }
     var user = UserController.instance.user.value;
+    var subjectName = subjectController.id.value;
+
+    if (user?.selectedGrade == "9" && subjectName == "social_studies") {
+      subjectName = subjectController.subjectSections[subjectController
+          .id.value]![subjectController.selectedSectionIndex.value];
+    } else if (user?.selectedGrade == "9" && subjectName == "science") {
+      subjectName = subjectController.subjectSections[subjectController
+          .id.value]![subjectController.selectedSectionIndex.value];
+    }
 
     return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
       future: firestore
@@ -246,7 +308,7 @@ class SubjectsLabels extends StatelessWidget {
         final examResults = snapshot.data!.docs;
         final filteredExams = examResults.where((doc) {
           final data = doc.data(); // Ensure the data is cast as a map
-          return data["examName"] == subjectName.value;
+          return data["examName"].toString().toLowerCase() == subjectName;
         }).toList();
         if (filteredExams.isEmpty) {
           return Expanded(
@@ -257,7 +319,7 @@ class SubjectsLabels extends StatelessWidget {
             padding: EdgeInsets.zero,
             itemCount: filteredExams.length,
             itemBuilder: (context, index) {
-              final examResult = examResults[index];
+              final examResult = filteredExams[index];
               double percentage =
                   (examResult["correctAnswers"] / examResult["totalQuestions"]);
               double roundedPercentage =
