@@ -37,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.cover,
               onLoaded: (p0) {
                 Future.delayed(p0.duration, () {
-                  
                   // Navigator.pushReplacement(
                   //   context,
                   //   MaterialPageRoute(builder: (context) => HomeScreen()),

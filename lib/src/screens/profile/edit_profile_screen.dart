@@ -167,22 +167,23 @@ class EditProfileScreen extends StatelessWidget {
                         //   list: [],
                         //   onChanged: (val) {},
                         // ),
-                        // CustomDropDownForm(
-                        //   onChanged: (newValue) {
-                        //     profileController.selectedGrade.value = newValue;
-                        //   },
-                        //   selectedValue: profileController.selectedGrade.value,
-                        //   hintText: S.of(context).hint_text_Grade,
-                        //   prefixIcon: const Icon(Icons.school),
-                        //   list: [
-                        //     DropdownMenuItem(
-                        //         value: "9",
-                        //         child: Text(S.of(context).drop_grade_val1)),
-                        //     DropdownMenuItem(
-                        //         value: '12',
-                        //         child: Text(S.of(context).drop_grade_val2)),
-                        //   ],
-                        // ),
+                        CustomDropDownForm(
+                          validator: Helper.validateGrade,
+                          onChanged: (newValue) {
+                            profileController.selectedGrade.value = newValue;
+                          },
+                          selectedValue: profileController.selectedGrade.value,
+                          hintText: S.of(context).hint_text_Grade,
+                          prefixIcon: const Icon(Icons.school),
+                          list: [
+                            DropdownMenuItem(
+                                value: "9",
+                                child: Text(S.of(context).drop_grade_val1)),
+                            DropdownMenuItem(
+                                value: '12',
+                                child: Text(S.of(context).drop_grade_val2)),
+                          ],
+                        ),
                         CustomDropDownForm(
                           validator: Helper.validateGrade,
                           onChanged: (newValue) {
