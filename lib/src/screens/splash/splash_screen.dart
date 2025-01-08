@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/splash_controller.dart';
+import '../../repository/authentication_repository/authentication_repository.dart';
+import 'package:lottie/lottie.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
-  static const String scRoute = '/splash-screen';
+  static const String sc_route = '/splash-screen';
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
   Widget build(BuildContext context) {
-    final SplashController splashController = Get.put(SplashController());
+    // final SplashController splashController = Get.put(SplashController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -25,12 +32,18 @@ class SplashScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Center(
-            child: FadeTransition(
-              opacity: splashController.fadingAnimation!,
-              child: Image.asset(
-                'assets/images/logo_falih.png',
-                fit: BoxFit.cover,
-              ),
+            child: LottieBuilder.asset(
+              'assets/splash_animation/splash_View.json',
+              fit: BoxFit.cover,
+              onLoaded: (p0) {
+                Future.delayed(p0.duration, () {
+                  
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  // );
+                });
+              },
             ),
           ),
         ),
