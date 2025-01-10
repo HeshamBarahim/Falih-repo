@@ -21,7 +21,7 @@ class CurriculumPage extends StatelessWidget {
       child: Column(
         children: [
           Obx(
-            () => subjectController.userController.currentUser == null
+            () => subjectController.user.value == null
                 ? Text(
                     "${S.of(context).user_data_not_available}.",
                     style: TextStyle(
@@ -36,14 +36,14 @@ class CurriculumPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${S.of(context).grade}: ${subjectController.userController.currentUser!.selectedGrade}",
+                          "${S.of(context).grade}: ${subjectController.user!.value?.selectedGrade}",
                           style: TextStyle(
                             fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          '${subjectController.userController.currentUser!.selectedDepartment}',
+                          '${subjectController.user!.value?.selectedDepartment}',
                           style: TextStyle(
                             fontSize: SizeConfig.screenWidth! * 0.05,
                             fontWeight: FontWeight.bold,

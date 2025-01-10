@@ -14,10 +14,18 @@ class SubjectsController extends GetxController {
   late LinearGradient color;
   late String iconPath;
   var subjects = <Map<String, dynamic>>[].obs;
-  final UserController userController = UserController.instance;
+  var user = UserController.instance.user.value.obs;
+
   final subjectSections = {
-    "social_studies": ["geography", "history", "nationalism"],
-    "science": ["physics", "biology", "chemistry"]
+    "9": {
+      "social_studies": ["geography", "history", "nationalism"],
+      "science": ["physics", "biology", "chemistry"]
+    },
+    "12": {
+      "social_studies": ["geography", "history", "nationalism"],
+      "science": ["physics", "biology", "chemistry"],
+      "islamic": ["iman", "fiqh", "hadith", "seerah"]
+    },
   };
 
   @override
@@ -36,50 +44,58 @@ class SubjectsController extends GetxController {
   }
 
   void loadSubjects() {
-    if (userController.user.value?.selectedGrade == "12") {
+    if (user.value?.selectedGrade == "12") {
       subjects.assignAll([
         {
+          'id': "quran",
           'name': S.current.subject_one,
           'color': AppColors.quranColor,
           'icon': Images.quranIcon,
         },
         {
+          'id': "islamic",
           'name': S.current.subject_two,
           'color': AppColors.islamicColor,
           'icon': Images.islamicIcon
         },
         {
+          'id': "arabic",
           'name': S.current.subject_three,
           'color': AppColors.arabicColor,
           'icon': Images.arabicIcon
         },
         {
+          'id': "english",
           'name': S.current.subject_four,
           'color': AppColors.englisColor,
           'icon': Images.englishIcon
         },
         {
+          'id': "chemistry",
           'name': S.current.subject_five,
           'color': AppColors.chemistyColor,
           'icon': Images.chemistryIcon
         },
         {
+          'id': "physics",
           'name': S.current.subject_six,
           'color': AppColors.physicsColor,
           'icon': Images.physicsIcon
         },
         {
+          'id': "biology",
           'name': S.current.subject_seven,
           'color': AppColors.biologyColor,
           'icon': Images.biologyIcon
         },
         {
+          'id': "math",
           'name': S.current.subject_eight,
           'color': AppColors.mathColor,
           'icon': Images.mathIcon
         },
       ]);
-    } else if (userController.user.value?.selectedGrade == "9") {
+    } else if (user.value?.selectedGrade == "9") {
       subjects.assignAll([
         {
           'id': "quran",

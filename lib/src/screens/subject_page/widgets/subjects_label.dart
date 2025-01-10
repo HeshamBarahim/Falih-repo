@@ -23,7 +23,6 @@ class SubjectsLabels extends StatelessWidget {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
 
     final List<SubjectsLabelsData> items = [
       SubjectsLabelsData(
@@ -33,21 +32,18 @@ class SubjectsLabels extends StatelessWidget {
       SubjectsLabelsData(S.of(context).results, Icons.stacked_line_chart, ''),
     ];
 
-    print(subjectController.subjectSections[subjectController.id.value]);
     return Expanded(
       child: Transform.translate(
-        offset: Offset(0, -screenHeight * 0.07), // Push up based on height
+        offset: Offset(0, -screenHeight * 0.060), // Push up based on height
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: screenHeight * 0.01),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(
-                  items.length,
-                  (index) {
-                    return InkWell(
+            Row(
+              children: List.generate(
+                items.length,
+                (index) {
+                  return Expanded(
+                    child: InkWell(
                       onTap: () {
                         if (index == 1) {
                           controller.examType.value = "FinalExam";
@@ -57,68 +53,82 @@ class SubjectsLabels extends StatelessWidget {
                         }
                         subjectController.changeSelectedIndex(index);
                       },
-                      child: Obx(() => Container(
-                            height: screenHeight * 0.06,
-                            width: screenWidth * 0.3,
-                            padding: EdgeInsets.symmetric(
-                                vertical: screenHeight * 0.01,
-                                horizontal: screenWidth * 0.02),
-                            decoration: BoxDecoration(
-                              color:
-                                  subjectController.selectedIndex.value == index
-                                      ? AppColors.choicesColor
-                                      : Colors.white,
-                              borderRadius: BorderRadius.circular(30),
+                      child: Obx(
+                        () => Container(
+                          height: screenHeight * 0.06,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: subjectController.selectedIndex.value ==
+                                        index
+                                    ? AppColors.darkMainColor
+                                    : AppColors.lightenMainColor,
+                                width: 2.0,
+                              ),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  items[index].labelName,
-                                  style: TextStyle(
-                                    color: AppColors.mainColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: screenHeight * 0.015,
-                                  ),
+                            color:
+                                subjectController.selectedIndex.value == index
+                                    ? AppColors.choicesColor
+                                    : Colors.white,
+                            // borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                items[index].labelName,
+                                style: TextStyle(
+                                  color: AppColors.mainColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenHeight * 0.015,
                                 ),
-                              ],
-                            ),
-                          )),
-                    );
-                  },
-                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
-            subjectController.subjectSections[subjectController.id.value] !=
+            subjectController.subjectSections[subjectController.user?.value
+                        ?.selectedGrade]?[subjectController.id.value] !=
                     null
-                ? Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(
-                        subjectController
-                            .subjectSections[subjectController.id.value]!
-                            .length,
-                        (index) {
-                          return InkWell(
+                ? Row(
+                    children: List.generate(
+                      subjectController
+                              .subjectSections[subjectController.user?.value
+                                  ?.selectedGrade]?[subjectController.id.value]!
+                              .length ??
+                          0,
+                      (index) {
+                        return Expanded(
+                          child: InkWell(
                             onTap: () {
                               subjectController
                                   .changeSelectedSectionIndex(index);
                             },
                             child: Obx(() => Container(
                                   height: screenHeight * 0.06,
-                                  width: screenWidth * 0.3,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: screenHeight * 0.01,
-                                      horizontal: screenWidth * 0.02),
                                   decoration: BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                        color: subjectController
+                                                    .selectedSectionIndex
+                                                    .value ==
+                                                index
+                                            ? AppColors.darkMainColor
+                                            : AppColors.lightenMainColor,
+                                        width: 2.0,
+                                      ),
+                                    ),
                                     color: subjectController
                                                 .selectedSectionIndex.value ==
                                             index
-                                        ? AppColors.darkMainColor
-                                        : AppColors.lightenMainColor,
-                                    borderRadius: BorderRadius.circular(30),
+                                        ? AppColors.choicesColor
+                                        : Colors.white,
+                                    // borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
@@ -127,17 +137,14 @@ class SubjectsLabels extends StatelessWidget {
                                       Text(
                                         subjectController
                                                 .subjectSections[
-                                                    subjectController
+                                                    subjectController.user
+                                                        ?.value?.selectedGrade]
+                                                    ?[subjectController
                                                         .id.value]![index]
-                                                .capitalizeFirst ??
+                                                ?.capitalizeFirst ??
                                             "",
                                         style: TextStyle(
-                                          color: subjectController
-                                                      .selectedSectionIndex
-                                                      .value ==
-                                                  index
-                                              ? AppColors.lightenMainColor
-                                              : AppColors.darkMainColor,
+                                          color: AppColors.darkMainColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: screenHeight * 0.015,
                                         ),
@@ -145,9 +152,9 @@ class SubjectsLabels extends StatelessWidget {
                                     ],
                                   ),
                                 )),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   )
                 : Container(),
@@ -169,23 +176,34 @@ class SubjectsLabels extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     controller.examType.value = "UnitExam";
-    var user = UserController.instance.user.value;
-    var subjectName = subjectController.id.value;
+    String? subjectName = subjectController.id.value;
 
-    if (user?.selectedGrade == "9" && subjectName == "social_studies") {
-      subjectName = subjectController.subjectSections[subjectController
-          .id.value]![subjectController.selectedSectionIndex.value];
-    } else if (user?.selectedGrade == "9" && subjectName == "science") {
-      subjectName = subjectController.subjectSections[subjectController
-          .id.value]![subjectController.selectedSectionIndex.value];
+    if (subjectController.user?.value?.selectedGrade == "9" &&
+        subjectName == "social_studies") {
+      subjectName = subjectController
+                  .subjectSections[subjectController.user?.value?.selectedGrade]
+              ?[subjectController.id.value]![
+          subjectController.selectedSectionIndex.value];
+    } else if (subjectController.user?.value?.selectedGrade == "9" &&
+        subjectName == "science") {
+      subjectName = subjectController
+                  .subjectSections[subjectController.user?.value?.selectedGrade]
+              ?[subjectController.id.value]![
+          subjectController.selectedSectionIndex.value];
+    } else if (subjectController.user?.value?.selectedGrade == "12" &&
+        subjectName == "islamic") {
+      subjectName = subjectController
+                  .subjectSections[subjectController.user?.value?.selectedGrade]
+              ?[subjectController.id.value]![
+          subjectController.selectedSectionIndex.value];
     }
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: firestore
             .collection(
-                'subjects_${user?.selectedDepartment.toString().toLowerCase()}_${user?.selectedGrade.toString().toLowerCase()}')
+                'subjects_${subjectController.user?.value?.selectedDepartment.toString().toLowerCase()}_${subjectController.user?.value?.selectedGrade.toString().toLowerCase()}')
             .doc(
-                "${subjectName.toLowerCase()}_${user?.selectedGrade.toString().toLowerCase()}")
+                "${subjectName?.toLowerCase()}_${subjectController.user?.value?.selectedGrade.toString().toLowerCase()}")
             .get(),
         builder: (BuildContext context,
             AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
@@ -279,20 +297,26 @@ class SubjectsLabels extends StatelessWidget {
 
   Widget _buildResultsContent(FirebaseFirestore firestore) {
     var user = UserController.instance.user.value;
-    var subjectName = subjectController.id.value;
+    String? subjectName = subjectController.id.value;
 
-    if (user?.selectedGrade == "9" && subjectName == "social_studies") {
-      subjectName = subjectController.subjectSections[subjectController
-          .id.value]![subjectController.selectedSectionIndex.value];
-    } else if (user?.selectedGrade == "9" && subjectName == "science") {
-      subjectName = subjectController.subjectSections[subjectController
-          .id.value]![subjectController.selectedSectionIndex.value];
+    if (subjectController.user?.value?.selectedGrade == "9" &&
+        subjectName == "social_studies") {
+      subjectName = subjectController
+                  .subjectSections[subjectController.user?.value?.selectedGrade]
+              ?[subjectController.id.value]![
+          subjectController.selectedSectionIndex.value];
+    } else if (subjectController.user?.value?.selectedGrade == "9" &&
+        subjectName == "science") {
+      subjectName = subjectController
+                  .subjectSections[subjectController.user?.value?.selectedGrade]
+              ?[subjectController.id.value]![
+          subjectController.selectedSectionIndex.value];
     }
 
     return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
       future: firestore
           .collection('exams')
-          .doc(user?.id)
+          .doc(subjectController.user?.value?.id)
           .collection('userExams')
           .get(),
       builder: (BuildContext context,
