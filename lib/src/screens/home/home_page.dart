@@ -41,11 +41,15 @@ class HomePage extends StatelessWidget {
                       horizontal: SizeConfig.screenWidth! * 0.04,
                       vertical: SizeConfig.screenHeight! * 0.02),
                   decoration: BoxDecoration(
-                    color: AppColors.darkMainColor, // Container color
+                    border: Border.all(
+                      color: AppColors.mainColor, // Border color
+                      width: 2.0, // Border width
+                    ),
+                    color: AppColors.moreLightenMainColor, // Container color
                     borderRadius: BorderRadius.circular(12), // Rounded corners
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.mainColor.withOpacity(0.5),
+                        color: AppColors.darkMainColor.withOpacity(0.5),
                         // Shadow color
                         spreadRadius: 2,
                         // Spread of the shadow
@@ -111,7 +115,7 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             "${S.of(context).hi}, ${userController.currentUser!.fullName.split(" ")[0]}",
                                             style: const TextStyle(
-                                                color: AppColors.secondaryColor,
+                                                color: AppColors.darkMainColor,
                                                 fontSize: 24,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -121,7 +125,7 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             "${S.of(context).rank}: #${controller.rank.value}",
                                             style: const TextStyle(
-                                              color: AppColors.secondaryColor,
+                                              color: AppColors.darkMainColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -129,7 +133,7 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
                                             style: const TextStyle(
-                                              color: AppColors.secondaryColor,
+                                              color: AppColors.darkMainColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -137,7 +141,7 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             "${S.of(context).this_month_points}: ${controller.point.value}",
                                             style: const TextStyle(
-                                              color: AppColors.secondaryColor,
+                                              color: AppColors.darkMainColor,
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -149,7 +153,6 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                              // const UserPointsProgressBar(),
                               Row(
                                 children: [
                                   Expanded(
@@ -158,19 +161,19 @@ class HomePage extends StatelessWidget {
                                           controller.maxPoint.value,
                                       // Bind progress value
                                       backgroundColor: AppColors.mainColor,
-                                      color: AppColors.secondaryColor,
+                                      color: AppColors.lightenMainColor,
                                       minHeight: 10,
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 15,
+                                    width: 10,
                                   ),
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
                                       '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
                                       style: const TextStyle(
-                                          color: AppColors.secondaryColor,
+                                          color: AppColors.darkMainColor,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )

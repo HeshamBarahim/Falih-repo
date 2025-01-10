@@ -19,13 +19,6 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  // test the list images for ads
-  var images = [
-    'assets/images/test_ads.png',
-    'assets/images/test_ads.png',
-    'assets/images/test_ads.png',
-  ].obs;
-
   Future<void> fetchAllUserExamHistory() async {
     userExamHistoryIsLoading.value = true;
     overallPoints.value = 0;

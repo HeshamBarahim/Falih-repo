@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../config/images.dart';
 import '../../../controller/home_controller.dart';
 
 class AdvertiseImgsCarousel extends StatelessWidget {
@@ -28,8 +29,16 @@ class AdvertiseImgsCarousel extends StatelessWidget {
               onPageChanged: (index, reason) {
                 controller.carouselCurrentIndex.value = index;
               }),
-          items: controller.images
-              .map((imagePath) => Image.asset(imagePath))
+          items: Images.home_carousel_images
+              .map((imagePath) => ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.fill, // Ensures the image fills the space
+                    width: double.infinity, // Takes full width of the carousel
+                    height:
+                        double.infinity, // Takes full height of the carousel
+                  )))
               .toList(),
         ),
         SizedBox(
@@ -39,7 +48,7 @@ class AdvertiseImgsCarousel extends StatelessWidget {
           () => Center(
             child: AnimatedSmoothIndicator(
               activeIndex: controller.carouselCurrentIndex.value,
-              count: controller.images.length,
+              count: Images.home_carousel_images.length,
               effect: const WormEffect(
                   dotHeight: 6,
                   dotWidth: 6,

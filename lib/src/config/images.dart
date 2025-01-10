@@ -49,4 +49,11 @@ class Images {
 
   // Falih
   static const String falih = 'assets/images/falih.png';
+
+  // Home page carousel imager
+  static const home_carousel_images = [
+    'assets/images/home_carousel_img/falih_1.png',
+    'assets/images/home_carousel_img/falih_2.png',
+    'assets/images/home_carousel_img/falih_3.png',
+  ];
 }
