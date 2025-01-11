@@ -37,6 +37,7 @@ dependencies:
   device_preview: ^1.2.0
   firebase_auth: null
   firebase_core: null
+  firebase_messaging: ^15.2.0
   firebase_storage: ^12.3.7
   flutter:
     sdk: flutter
@@ -84,7 +85,6 @@ flutter:
     - assets/md_files/
     - assets/splash_animation/
     - assets/images/home_carousel_img/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

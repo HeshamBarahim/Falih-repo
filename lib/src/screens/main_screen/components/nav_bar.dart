@@ -92,7 +92,7 @@ class NavBar extends StatelessWidget {
 
                                     if (menu.index == 0) {
                                       controller.stopProcess();
-                                      Get.off(const MainScreen());
+                                      Get.off(MainScreen());
                                       // Get.offAll(MenuScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();

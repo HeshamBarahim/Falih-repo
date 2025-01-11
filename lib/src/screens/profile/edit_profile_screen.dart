@@ -27,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(const MainScreen());
+          Get.offAll(MainScreen());
         }
       },
       child: Scaffold(

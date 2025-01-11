@@ -16,41 +16,44 @@ import '../../../controller/loading_dialog_controller.dart';
 class Login extends StatelessWidget {
   Login({super.key});
 
+  DateTime? lastBackPressTime;
+
   final LoginController loginController = Get.put(LoginController());
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
   final BackPressController backPressController =
       Get.put(BackPressController());
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          if (!backPressController.shouldExit()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                behavior: SnackBarBehavior.floating,
-                margin: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.04,
-                  vertical: SizeConfig.screenHeight! * 0.01,
-                ),
-                content: Text(
-                  S.of(context).press_back_again,
-                  style: const TextStyle(
-                    fontSize: 13.0,
-                    color: Colors.white,
-                  ),
-                ),
-                duration: const Duration(seconds: 2),
+    return WillPopScope(
+      onWillPop: () async {
+        DateTime now = DateTime.now();
+        if (lastBackPressTime == null ||
+            now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
+          lastBackPressTime = now;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                horizontal: SizeConfig.screenWidth! * 0.04,
+                vertical: SizeConfig.screenHeight! * 0.01,
               ),
-            );
-          } else {
-            Navigator.of(context).pop(result);
-          }
+              content: Text(
+                'Press back again to exit The App',
+                style: TextStyle(
+                  fontSize: SizeConfig.screenHeight! * 0.015,
+                  color: Colors.white,
+                ),
+              ),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+          return false;
         }
+        return true;
       },
       child: Scaffold(
         body: Stack(

@@ -246,7 +246,7 @@ class ProfileController extends GetxController {
         message: S.current.profile_updated_successfully,
       );
       isSavingData.value = false;
-      Get.offAll(() => const MainScreen());
+      Get.offAll(() =>  MainScreen());
     } catch (e) {
       Helper.errorSnackBar(
         title: S.current.updated_failed,

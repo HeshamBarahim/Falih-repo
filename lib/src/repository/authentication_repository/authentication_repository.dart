@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -46,22 +48,54 @@ class AuthenticationRepository extends GetxController {
     });
   }
 
+  Future<void> saveDeviceToken() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final fcmToken = await FirebaseMessaging.instance.getToken();
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({
+        'deviceToken': fcmToken,
+      });
+    }
+  }
+
+  Future<void> checkDeviceAndLogoutOldDevice() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final currentToken = await FirebaseMessaging.instance.getToken();
+
+    final userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get();
+
+    final storedToken = userDoc['deviceToken'];
+
+    if (currentToken != storedToken) {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => Login());
+    }
+  }
+
   /// Setting initial screen
   setInitialScreen(User? user) async {
     await Future.delayed(
-        const Duration(seconds: 4)); // Delay to ensure proper navigation
+        const Duration(milliseconds: 100)); // Delay to ensure proper navigation
 
     if (user != null) {
-      Get.offAll(() => const MainScreen());
+      // Get.offAll(() => const MainScreen());
+      checkDeviceAndLogoutOldDevice();
     } else {
-      userStorage.writeIfNull('isFirstTime', true);
+      // userStorage.writeIfNull('isFirstTime', true);
 
-      bool isFirstTime = userStorage.read('isFirstTime') ?? true;
-      if (isFirstTime) {
-        Get.offAll(() => FirstPageBoarding());
-      } else {
-        Get.offAll(() => Login());
-      }
+      // bool isFirstTime = userStorage.read('isFirstTime') ?? true;
+      // if (isFirstTime) {
+      //   Get.offAll(() => FirstPageBoarding());
+      // } else {
+      //   Get.offAll(() => Login());
+      // }
     }
   }
 
@@ -71,6 +105,8 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(() => MainScreen());
+      await saveDeviceToken();
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);
       throw result.message;

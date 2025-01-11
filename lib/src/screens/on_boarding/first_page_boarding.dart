@@ -11,6 +11,7 @@ import '../../config/sizes.dart';
 
 class FirstPageBoarding extends StatelessWidget {
   FirstPageBoarding({super.key});
+  DateTime? lastBackPressTime;
 
   final BackPressController backPressController =
       Get.put(BackPressController());
@@ -22,32 +23,32 @@ class FirstPageBoarding extends StatelessWidget {
     // Check if the language is Arabic
     final isArabic = locale == 'ar';
     SizeConfig().init(context);
-    return PopScope(
-      canPop: false, // Ensures controlled back navigation
-      onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          if (!backPressController.shouldExit()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                behavior: SnackBarBehavior.floating,
-                margin: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.04,
-                  vertical: SizeConfig.screenHeight! * 0.01,
-                ),
-                content: Text(
-                  S.of(context).press_back_again,
-                  style: const TextStyle(
-                    fontSize: 13.0,
-                    color: Colors.white,
-                  ),
-                ),
-                duration: const Duration(seconds: 2),
+    return WillPopScope(
+      onWillPop: () async {
+        DateTime now = DateTime.now();
+        if (lastBackPressTime == null ||
+            now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
+          lastBackPressTime = now;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                horizontal: SizeConfig.screenWidth! * 0.04,
+                vertical: SizeConfig.screenHeight! * 0.01,
               ),
-            );
-          } else {
-            Navigator.of(context).pop(result);
-          }
+              content: Text(
+                'Press back again to exit The App',
+                style: TextStyle(
+                  fontSize: SizeConfig.screenHeight! * 0.015,
+                  color: Colors.white,
+                ),
+              ),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+          return false;
         }
+        return true;
       },
       child: Container(
         color: AppColors.bgScreen1,
