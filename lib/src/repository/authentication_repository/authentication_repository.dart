@@ -82,7 +82,7 @@ class AuthenticationRepository extends GetxController {
   /// Setting initial screen
   setInitialScreen(User? user) async {
     await Future.delayed(
-        const Duration(milliseconds: 100)); // Delay to ensure proper navigation
+        const Duration(milliseconds: 500)); // Delay to ensure proper navigation
 
     if (user != null) {
       // Get.offAll(() => const MainScreen());
@@ -105,7 +105,6 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAll(() => MainScreen());
       await saveDeviceToken();
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);

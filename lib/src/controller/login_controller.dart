@@ -5,6 +5,7 @@ import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/main_screen/main_screen.dart';
 import 'network_controller.dart';
 import 'loading_dialog_controller.dart';
 
@@ -62,7 +63,9 @@ class LoginController extends GetxController {
           UserController.instance.setUser(user);
           // Set the initial screen
           auth.setInitialScreen(auth.firebaseUser);
+
           loadingDialogController.closeLoadingDialog(Get.context!);
+          Get.offAll(() => MainScreen());
           isProcessing.value = false;
         } catch (e) {
           loadingDialogController.closeLoadingDialog(Get.context!);
