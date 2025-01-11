@@ -23,6 +23,7 @@ class FirstPageBoarding extends StatelessWidget {
     // Check if the language is Arabic
     final isArabic = locale == 'ar';
     SizeConfig().init(context);
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         DateTime now = DateTime.now();

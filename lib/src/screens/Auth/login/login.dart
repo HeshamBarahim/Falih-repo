@@ -28,6 +28,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         DateTime now = DateTime.now();
