@@ -1,5 +1,6 @@
 // Subjects_Label
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/src/controller/exam_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -7,14 +8,12 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../config/themes.dart';
-import '../../../controller/exam_controller.dart';
 import '../../../controller/subjects_controller.dart';
-import '../../../controller/user_controller.dart';
 import '../../pre_exam/pre_exam.dart';
 
 class SubjectsLabels extends StatelessWidget {
   final SubjectsController subjectController = Get.put(SubjectsController());
-  final ExamController controller = Get.put(ExamController());
+  final ExamController examController = Get.put(ExamController());
 
   SubjectsLabels({super.key});
 
@@ -46,9 +45,7 @@ class SubjectsLabels extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         if (index == 1) {
-                          controller.examType.value = "FinalExam";
-                          controller.setExamQuestions();
-                          Get.to(() => const PreExam());
+                          displayFinalExam(context);
                           return;
                         }
                         subjectController.changeSelectedIndex(index);
@@ -175,35 +172,17 @@ class SubjectsLabels extends StatelessWidget {
   Widget _buildUnitsExams(FirebaseFirestore firestore, BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    controller.examType.value = "UnitExam";
-    String? subjectName = subjectController.id.value;
-
-    if (subjectController.user?.value?.selectedGrade == "9" &&
-        subjectName == "social_studies") {
-      subjectName = subjectController
-                  .subjectSections[subjectController.user?.value?.selectedGrade]
-              ?[subjectController.id.value]![
-          subjectController.selectedSectionIndex.value];
-    } else if (subjectController.user?.value?.selectedGrade == "9" &&
-        subjectName == "science") {
-      subjectName = subjectController
-                  .subjectSections[subjectController.user?.value?.selectedGrade]
-              ?[subjectController.id.value]![
-          subjectController.selectedSectionIndex.value];
-    } else if (subjectController.user?.value?.selectedGrade == "12" &&
-        subjectName == "islamic") {
-      subjectName = subjectController
-                  .subjectSections[subjectController.user?.value?.selectedGrade]
-              ?[subjectController.id.value]![
-          subjectController.selectedSectionIndex.value];
-    }
+    subjectController
+        .subjectNameFetcher(subjectController.selectedSectionIndex.value);
+    examController.examName.value = subjectController.name.value;
+    examController.examType.value = "UnitExam";
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: firestore
             .collection(
                 'subjects_${subjectController.user?.value?.selectedDepartment.toString().toLowerCase()}_${subjectController.user?.value?.selectedGrade.toString().toLowerCase()}')
             .doc(
-                "${subjectName?.toLowerCase()}_${subjectController.user?.value?.selectedGrade.toString().toLowerCase()}")
+                "${subjectController.name.value?.toLowerCase()}_${subjectController.user?.value?.selectedGrade.toString().toLowerCase()}")
             .get(),
         builder: (BuildContext context,
             AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
@@ -221,7 +200,7 @@ class SubjectsLabels extends StatelessWidget {
 
           final subjectData = snapshot.data!.data() as Map<String, dynamic>;
           final units = subjectData['units'];
-          controller.units = units;
+          examController.units = units;
 
           return Expanded(
             child: ListView.builder(
@@ -234,8 +213,8 @@ class SubjectsLabels extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
                   child: GestureDetector(
                     onTap: () {
-                      controller.resetExam();
-                      controller.setUnitQuestions(unit["questions"]);
+                      examController.resetExam();
+                      examController.setUnitQuestions(unit["questions"]);
                       Get.to(() => const PreExam());
                     },
                     child: Card(
@@ -296,22 +275,8 @@ class SubjectsLabels extends StatelessWidget {
   }
 
   Widget _buildResultsContent(FirebaseFirestore firestore) {
-    var user = UserController.instance.user.value;
-    String? subjectName = subjectController.id.value;
-
-    if (subjectController.user?.value?.selectedGrade == "9" &&
-        subjectName == "social_studies") {
-      subjectName = subjectController
-                  .subjectSections[subjectController.user?.value?.selectedGrade]
-              ?[subjectController.id.value]![
-          subjectController.selectedSectionIndex.value];
-    } else if (subjectController.user?.value?.selectedGrade == "9" &&
-        subjectName == "science") {
-      subjectName = subjectController
-                  .subjectSections[subjectController.user?.value?.selectedGrade]
-              ?[subjectController.id.value]![
-          subjectController.selectedSectionIndex.value];
-    }
+    subjectController
+        .subjectNameFetcher(subjectController.selectedSectionIndex.value);
 
     return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
       future: firestore
@@ -332,7 +297,8 @@ class SubjectsLabels extends StatelessWidget {
         final examResults = snapshot.data!.docs;
         final filteredExams = examResults.where((doc) {
           final data = doc.data(); // Ensure the data is cast as a map
-          return data["examName"].toString().toLowerCase() == subjectName;
+          return data["examName"].toString().toLowerCase() ==
+              subjectController.name.value;
         }).toList();
         if (filteredExams.isEmpty) {
           return Expanded(
@@ -353,8 +319,8 @@ class SubjectsLabels extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 child: GestureDetector(
                   onTap: () {
-                    // controller.resetExam();
-                    // controller.setUnitQuestions(examResult["questions"]);
+                    // examController.resetExam();
+                    // examController.setUnitQuestions(examResult["questions"]);
                     // Get.to(() => const PreExam());
                   },
                   child: SizedBox(
@@ -491,6 +457,180 @@ class SubjectsLabels extends StatelessWidget {
         );
       },
     );
+  }
+
+  void displayFinalExam(context) {
+    if (subjectController.isSubjectWithSections()) {
+      int localSelectedIndex = subjectController.selectedSectionIndex.value;
+      showDialog(
+        context: context,
+        builder: (_) => Dialog(
+          child:
+              StatefulBuilder(builder: (BuildContext _, StateSetter setState) {
+            return Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Choose any section or select all",
+                      style: TextStyle(
+                        color: AppColors.darkMainColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => Column(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: List.generate(
+                              subjectController
+                                      .subjectSections[subjectController
+                                              .user?.value?.selectedGrade]![
+                                          subjectController.id.value]
+                                      ?.length ??
+                                  0, (index) {
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  localSelectedIndex = index;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.08,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: localSelectedIndex == index
+                                        ? AppColors.mainColor.withOpacity(0.50)
+                                        : AppColors.lightenMainColor
+                                            .withOpacity(0.50),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      subjectController
+                                              .subjectSections[subjectController
+                                                      .user
+                                                      ?.value
+                                                      ?.selectedGrade]![
+                                                  subjectController
+                                                      .id.value]![index]
+                                              .capitalizeFirst ??
+                                          "",
+                                      style: const TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              localSelectedIndex = -1;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: localSelectedIndex == -1
+                                    ? AppColors.mainColor.withOpacity(0.50)
+                                    : AppColors.lightenMainColor
+                                        .withOpacity(0.50),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "All",
+                                  style: TextStyle(
+                                    color: AppColors.mainColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () async {
+                        await subjectController
+                            .startFinalExam(localSelectedIndex);
+                        Navigator.pop(_);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: AppColors
+                                .mainColor, // Border color consistent with the theme
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.darkMainColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color:
+                                  AppColors.lightenMainColor.withOpacity(0.2),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          S.of(context).start_exam,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: AppColors.lightenMainColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
+      );
+    } else {
+      examController.examType.value = "FinalExam";
+      examController.setExamQuestions();
+      Get.to(() => const PreExam());
+    }
   }
 }
 

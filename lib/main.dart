@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'firebase_options.dart';
+import 'generated/l10n.dart';
 import 'src/app.dart';
-// import 'src/controller/network_controller.dart';
 import 'src/controller/network_controller_real_time.dart';
 
 main() async {
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      localizationsDelegates: [S.delegate],
       debugShowCheckedModeBanner: false,
       home: App(),
     );

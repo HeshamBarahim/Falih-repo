@@ -21,7 +21,7 @@ class ResultDialog extends StatelessWidget {
         Get.find<LeaderboardController>();
 
     return Dialog(
-      child: Builder(builder: (_) {
+      child: Builder(builder: (ctx) {
         return Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -242,7 +242,7 @@ class ResultDialog extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      S.of(context).review_answer,
+                      S.of(ctx).review_answer,
                       style: const TextStyle(
                         fontSize: 18, // Improved readability
                         color: AppColors.mainColor, // Consistent theme color

@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/controller/subjects_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ class ExamController extends GetxController {
   var trueAnswers = 0.obs;
   var falseAnswers = 0.obs;
   var examType = "".obs;
+  var examName = "".obs;
   var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
   var isFinalExam = false.obs;
@@ -33,7 +33,6 @@ class ExamController extends GetxController {
   var timeTaken = ''.obs; // To store the formatted time taken
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final SubjectsController subjectController = Get.find<SubjectsController>();
 
   void setUnitQuestions(List<dynamic> questionData) {
     final List<Exam> loadedQuestions = questionData.map((data) {
@@ -48,6 +47,7 @@ class ExamController extends GetxController {
 
   void setExamQuestions() {
     isFinalExam.value = true;
+
     // Calculate the total number of questions in all units
     var totalUnitsQuestions = units.fold(
         0,
@@ -217,7 +217,7 @@ class ExamController extends GetxController {
     try {
       UserModel? user = UserController.instance.user.value;
       final examResult = {
-        'examName': subjectController.name.value.capitalize,
+        'examName': examName.value,
         "grade": user?.selectedGrade,
         'examType': examType.value,
         'score': score.value,

@@ -15,21 +15,20 @@ class PreExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExamController controller = Get.put(ExamController());
-    final SubjectsController subjectController = Get.put(SubjectsController());
+    final ExamController controller = Get.find<ExamController>();
+    final SubjectsController subjectController = Get.find<SubjectsController>();
 
     return Scaffold(
       // appbar for the name of the subject
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
         child: CustomAppBar(
-          name: subjectController.name.value,
+          name: subjectController.name.value.capitalizeFirst ?? "",
           color: subjectController.color,
         ),
       ),
-      // container to set the backgroung gradinet color
       body: Container(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
