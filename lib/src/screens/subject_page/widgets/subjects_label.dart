@@ -93,66 +93,160 @@ class SubjectsLabels extends StatelessWidget {
                         ?.selectedGrade]?[subjectController.id.value] !=
                     null
                 ? Row(
-                    children: List.generate(
-                      subjectController
-                              .subjectSections[subjectController.user?.value
-                                  ?.selectedGrade]?[subjectController.id.value]!
-                              .length ??
-                          0,
-                      (index) {
-                        return Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              subjectController
-                                  .changeSelectedSectionIndex(index);
-                            },
-                            child: Obx(() => Container(
-                                  height: screenHeight * 0.06,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                        color: subjectController
-                                                    .selectedSectionIndex
-                                                    .value ==
-                                                index
-                                            ? AppColors.darkMainColor
-                                            : AppColors.lightenMainColor,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    color: subjectController
-                                                .selectedSectionIndex.value ==
-                                            index
-                                        ? AppColors.choicesColor
-                                        : Colors.white,
-                                    // borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        subjectController
-                                                .subjectSections[
-                                                    subjectController.user
-                                                        ?.value?.selectedGrade]
-                                                    ?[subjectController
-                                                        .id.value]![index]
-                                                ?.capitalizeFirst ??
-                                            "",
-                                        style: TextStyle(
-                                          color: AppColors.darkMainColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: screenHeight * 0.015,
+                    children: [
+                      Expanded(
+                        child: Row(children: [
+                          // List.generate widgets
+                          ...List.generate(
+                            subjectController
+                                    .subjectSections[subjectController
+                                            .user?.value?.selectedGrade]
+                                        ?[subjectController.id.value]!
+                                    .length ??
+                                0,
+                            (index) {
+                              return Expanded(
+                                flex: 1, // Same flex for all items
+                                child: InkWell(
+                                  onTap: () {
+                                    subjectController
+                                        .changeSelectedSectionIndex(index);
+                                  },
+                                  child: Obx(() => Container(
+                                        height: screenHeight * 0.06,
+                                        decoration: BoxDecoration(
+                                          border: Border(
+                                            top: BorderSide(
+                                              color: subjectController
+                                                          .selectedSectionIndex
+                                                          .value ==
+                                                      index
+                                                  ? AppColors.darkMainColor
+                                                  : AppColors.lightenMainColor,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          color: subjectController
+                                                      .selectedSectionIndex
+                                                      .value ==
+                                                  index
+                                              ? AppColors.choicesColor
+                                              : Colors.white,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                              subjectController
+                                                      .subjectSections[
+                                                          subjectController
+                                                              .user
+                                                              ?.value
+                                                              ?.selectedGrade]?[
+                                                          subjectController
+                                                              .id.value]![index]
+                                                      ?.capitalizeFirst ??
+                                                  "",
+                                              style: TextStyle(
+                                                color: AppColors.darkMainColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: screenHeight * 0.015,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
+                          // Button with the same size as the list items
+                          Obx(() => subjectController.selectedIndex.value == 2
+                              ? Expanded(
+                                  flex: 1, // Same flex as the list items
+                                  child: InkWell(
+                                    onTap: () {
+                                      print(subjectController
+                                          .subjectSections[subjectController
+                                                  .user.value?.selectedGrade]
+                                              ?[subjectController.id?.value]!
+                                          .length);
+                                      subjectController
+                                          .changeSelectedSectionIndex(
+                                              subjectController
+                                                      .subjectSections[
+                                                          subjectController
+                                                              .user
+                                                              .value
+                                                              ?.selectedGrade]?[
+                                                          subjectController
+                                                              .id?.value]!
+                                                      .length ??
+                                                  0);
+                                    },
+                                    child: Obx(() => Container(
+                                          height: screenHeight * 0.06,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              top: BorderSide(
+                                                color: subjectController
+                                                            .selectedSectionIndex
+                                                            .value ==
+                                                        subjectController
+                                                            .subjectSections[
+                                                                subjectController
+                                                                    .user
+                                                                    .value
+                                                                    ?.selectedGrade]
+                                                                ?[
+                                                                subjectController
+                                                                    .id?.value]!
+                                                            .length
+                                                    ? AppColors.darkMainColor
+                                                    : AppColors
+                                                        .lightenMainColor,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            color: subjectController
+                                                        .selectedSectionIndex
+                                                        .value ==
+                                                    subjectController
+                                                        .subjectSections[
+                                                            subjectController
+                                                                .user
+                                                                .value
+                                                                ?.selectedGrade]
+                                                            ?[subjectController
+                                                                .id?.value]!
+                                                        .length
+                                                ? AppColors.choicesColor
+                                                : Colors.white,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "All",
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColors.darkMainColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      screenHeight * 0.015,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                )
+                              : Container())
+                        ]),
+                      ),
+                    ],
                   )
                 : Container(),
             Obx(() {
@@ -278,6 +372,7 @@ class SubjectsLabels extends StatelessWidget {
     subjectController
         .subjectNameFetcher(subjectController.selectedSectionIndex.value);
 
+    // return Text("data");
     return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
       future: firestore
           .collection('exams')
@@ -296,7 +391,18 @@ class SubjectsLabels extends StatelessWidget {
         }
         final examResults = snapshot.data!.docs;
         final filteredExams = examResults.where((doc) {
-          final data = doc.data(); // Ensure the data is cast as a map
+          final data = doc.data();
+          print(subjectController.id.value);
+          final examName = data["examName"].toString().toLowerCase();
+          if (subjectController.name.value == "All") {
+            if (subjectController.subjectSections[subjectController
+                    .user.value?.selectedGrade]![subjectController.id?.value]!
+                .contains(examName)) {
+              return true;
+            } else if ([subjectController.id.value].contains(examName)) {
+              return true;
+            }
+          }
           return data["examName"].toString().toLowerCase() ==
               subjectController.name.value;
         }).toList();

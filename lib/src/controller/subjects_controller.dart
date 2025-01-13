@@ -49,7 +49,11 @@ class SubjectsController extends GetxController {
   }
 
   void subjectNameFetcher(int subjectIndex) {
-    if (user.value?.selectedGrade == "9" && id.value == "social_studies") {
+    if (subjectIndex ==
+        (subjectSections[user.value?.selectedGrade]?[id.value]!.length)) {
+      name.value = "All";
+    } else if (user.value?.selectedGrade == "9" &&
+        id.value == "social_studies") {
       name.value = subjectSections[user.value?.selectedGrade]
               ?[id.value]![subjectIndex] ??
           "";
@@ -200,9 +204,9 @@ class SubjectsController extends GetxController {
           in subjectSections[user.value?.selectedGrade]![id.value]!) {
         final DocumentSnapshot<Map<String, dynamic>> subjectSectionUnits = await _db
             .collection(
-                'subjects_${user?.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
+                'subjects_${user.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
             .doc(
-                "${sectionName.toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}")
+                "${sectionName.toLowerCase()}_${user.value?.selectedGrade.toString().toLowerCase()}")
             .get();
         final subjectData = subjectSectionUnits.data() as Map<String, dynamic>;
         final units = subjectData['units'];
@@ -223,9 +227,9 @@ class SubjectsController extends GetxController {
 
       final DocumentSnapshot<Map<String, dynamic>> subjectSectionUnits = await _db
           .collection(
-              'subjects_${user?.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
+              'subjects_${user.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
           .doc(
-              "${name.value?.toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}")
+              "${name.value.toLowerCase()}_${user.value?.selectedGrade.toString().toLowerCase()}")
           .get();
       final subjectData = subjectSectionUnits.data() as Map<String, dynamic>;
       final units = subjectData['units'];
