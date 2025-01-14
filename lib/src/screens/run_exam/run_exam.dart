@@ -49,7 +49,7 @@ class RunExam extends StatelessWidget {
                             border: Border.all(
                                 color: AppColors.mainColor, width: 2),
                             color: AppColors.choicesColor,
-                            borderRadius: BorderRadius.circular(24)),
+                            borderRadius: BorderRadius.circular(16)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -119,13 +119,17 @@ class RunExam extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     color: AppColors.darkMainColor, width: 3),
-                                borderRadius: BorderRadius.circular(24),
+                                borderRadius: BorderRadius.circular(50),
                                 color: AppColors.choicesColor),
                             child: Center(
-                              child: Text(
-                                '${controller.score.value}',
-                                style: TextStyle(
-                                    fontSize: SizeConfig.screenHeight! * 0.025),
+                              child: Obx(
+                                () => Text(
+                                  controller
+                                      .formatTime(controller.currentTime.value),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -177,12 +181,11 @@ class RunExam extends StatelessWidget {
                                     ),
                                     Text(
                                       option,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: selectedAnswer == idx
-                                              ? AppColors.choicesColor
-                                              : AppColors.choicesColor),
+                                          color:
+                                              AppColors.moreLightenMainColor),
                                     ),
                                   ],
                                 ),

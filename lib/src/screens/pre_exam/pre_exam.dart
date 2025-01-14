@@ -18,7 +18,6 @@ class PreExam extends StatelessWidget {
     final SubjectsController subjectController = Get.find<SubjectsController>();
 
     return Scaffold(
-      // appbar for the name of the subject
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
         child: AppBar(
@@ -117,6 +116,7 @@ class PreExam extends StatelessWidget {
               width: double.infinity,
               onClick: () {
                 controller.startTime = DateTime.now();
+                controller.startTimer();
                 Get.to(() => const RunExam());
               },
             ),

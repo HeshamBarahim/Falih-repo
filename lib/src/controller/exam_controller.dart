@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
@@ -28,8 +29,10 @@ class ExamController extends GetxController {
   late List<dynamic> units;
   var questions = <Exam>[].obs;
   var selectedAnswers = <int?>[].obs; // List to store selected answer indices
+  var currentTime = 0.obs; // Observable for time
   late DateTime startTime;
   DateTime? endTime;
+  late Timer timer;
   var timeTaken = ''.obs; // To store the formatted time taken
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -51,12 +54,12 @@ class ExamController extends GetxController {
     // Calculate the total number of questions in all units
     var totalUnitsQuestions = units.fold(
         0,
-        (sumOfQuestions, unit) =>
-            sumOfQuestions + unit["questions"].length as int);
+            (sumOfQuestions, unit) =>
+        sumOfQuestions + unit["questions"].length as int);
     // print(totalUnitsQuestions);
 
     List<dynamic> selected50Questions =
-        []; // General list to store selected questions from all units
+    []; // General list to store selected questions from all units
 
     for (var unit in units) {
       int unitQuestionCount = unit["questions"].length;
@@ -74,7 +77,7 @@ class ExamController extends GetxController {
       List<dynamic> shuffledQuestions = List.from(unit["questions"])
         ..shuffle(random);
       List<dynamic> selectedQuestions =
-          shuffledQuestions.take(selectedQuestionsCount).toList();
+      shuffledQuestions.take(selectedQuestionsCount).toList();
 
       // Add selected questions from the current unit to the general list
       selected50Questions.addAll(selectedQuestions);
@@ -145,7 +148,8 @@ class ExamController extends GetxController {
 
   generateResponse(String questionText) async {
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar("Alert", S.current.please_select_answer_to_use_ai);
+      Get.snackbar("إختيار إجابة", S.current.please_select_answer_to_use_ai,
+          backgroundColor: AppColors.lightenMainColor);
       return;
     } else {
       isGeneratingResponse.value = true;
@@ -196,7 +200,7 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-                selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
+        selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
             .map((entry) => entry.value)
             .toList();
       case 'incorrect':
@@ -204,8 +208,8 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-                selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
-                selectedAnswers[entry.key] != null)
+        selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
+            selectedAnswers[entry.key] != null)
             .map((entry) => entry.value)
             .toList();
       default:
@@ -271,9 +275,9 @@ class ExamController extends GetxController {
 
     // Perfect Score points for unit exam
     points +=
-        examType.value == "UnitExam" && questions.length == trueAnswers.value
-            ? 5
-            : 0;
+    examType.value == "UnitExam" && questions.length == trueAnswers.value
+        ? 5
+        : 0;
 
     // Perfect Score points for final exam
     points +=
@@ -284,7 +288,25 @@ class ExamController extends GetxController {
     return points;
   }
 
+  String formatTime(int seconds) {
+    // Format seconds into MM:SS
+    final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
+    final remainingSeconds = (seconds % 60).toString().padLeft(2, '0');
+    return '$minutes:$remainingSeconds';
+  }
+
+  void startTimer() {
+    // Start a timer that updates every second
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      currentTime.value++;
+    });
+  }
+
   void stopTimer() {
+    if (timer.isActive) {
+      timer.cancel();
+    }
+
     if (endTime == null) {
       endTime = DateTime.now();
       // Calculate the difference
@@ -299,5 +321,14 @@ class ExamController extends GetxController {
           "${minutes.toString().padLeft(2, '0')}:"
           "${seconds.toString().padLeft(2, '0')}";
     }
+  }
+
+  @override
+  void onClose() {
+    // Ensure the timer is cleaned up when the controller is disposed
+    if (timer.isActive) {
+      timer.cancel();
+    }
+    super.onClose();
   }
 }
