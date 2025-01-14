@@ -98,8 +98,9 @@ class ExamController extends GetxController {
   void moveToAnotherQuestion(BuildContext context) {
     // Check if the current question has an answer selected
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar(
-          "Alert", S.of(context).please_select_answer_before_proceeding);
+      Get.snackbar("يرجى اختيار إجابة",
+          S.of(context).please_select_answer_before_proceeding,
+          backgroundColor: AppColors.choicesColor);
       return;
     } else {
       if ((questionIndex.value <= questions.length - 1) &&

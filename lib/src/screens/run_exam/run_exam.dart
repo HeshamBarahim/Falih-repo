@@ -1,10 +1,10 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
@@ -29,7 +29,7 @@ class RunExam extends StatelessWidget {
             controller.selectedAnswers[controller.questionIndex.value];
 
         return Container(
-          padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.06),
+          padding: const EdgeInsets.all(16),
           height: double.infinity,
           decoration: BoxDecoration(gradient: subjectController.color),
           child: Column(
@@ -43,12 +43,15 @@ class RunExam extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.06),
+                        height: SizeConfig.screenHeight! * 0.28,
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: AppColors.secondaryColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                            border: Border.all(
+                                color: AppColors.mainColor, width: 2),
+                            color: AppColors.choicesColor,
+                            borderRadius: BorderRadius.circular(24)),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,8 +63,13 @@ class RunExam extends StatelessWidget {
                                   ),
                                   width: SizeConfig.screenWidth! * 0.12,
                                   child: Center(
-                                      child: Text(
-                                          '${controller.trueAnswers.value}')),
+                                    child: Text(
+                                      '${controller.trueAnswers.value}',
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -70,22 +78,33 @@ class RunExam extends StatelessWidget {
                                   ),
                                   width: SizeConfig.screenWidth! * 0.12,
                                   child: Center(
-                                      child: Text(
-                                          '${controller.falseAnswers.value}')),
+                                    child: Text(
+                                      '${controller.falseAnswers.value}',
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
                             SizedBox(height: SizeConfig.screenHeight! * 0.01),
-                            Text(
-                              "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
-                              style: const TextStyle(
-                                  color: AppColors.warningColor),
+                            Center(
+                              child: Text(
+                                "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
+                                style: const TextStyle(
+                                    color: AppColors.warningColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                             SizedBox(height: SizeConfig.screenHeight! * 0.03),
                             Text(
                               question.questionText,
-                              style: TextStyle(
-                                  fontSize: SizeConfig.screenHeight! * 0.025),
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
                             ),
                           ],
                         ),
@@ -98,9 +117,10 @@ class RunExam extends StatelessWidget {
                             width: SizeConfig.screenWidth! * 0.18,
                             height: SizeConfig.screenWidth! * 0.18,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.secondaryColor,
-                            ),
+                                border: Border.all(
+                                    color: AppColors.darkMainColor, width: 3),
+                                borderRadius: BorderRadius.circular(24),
+                                color: AppColors.choicesColor),
                             child: Center(
                               child: Text(
                                 '${controller.score.value}',
@@ -113,64 +133,103 @@ class RunExam extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.04),
-                  Container(
-                    padding: EdgeInsets.only(
-                        bottom: SizeConfig.screenHeight! * 0.01),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        ...question.options.asMap().entries.map((entry) {
-                          int idx = entry.key;
-                          String option = entry.value;
-                          if (option == "") {
-                            return Container();
-                          }
-                          return Row(
-                            children: [
-                              MaterialButton(
-                                onPressed: () {
-                                  controller.selectAnswer(idx);
-                                },
-                                child: Container(
-                                  width: SizeConfig.screenWidth! * 0.08,
-                                  height: SizeConfig.screenWidth! * 0.08,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: selectedAnswer == idx
-                                        ? AppColors.mainColor
-                                        : AppColors.choicesColor,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      (idx + 1).toString(),
-                                      style: TextStyle(
-                                          fontSize:
-                                              SizeConfig.screenHeight! * 0.02),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.02),
+                  Column(
+                    children: [
+                      ...question.options.asMap().entries.map((entry) {
+                        int idx = entry.key;
+                        String option = entry.value;
+                        if (option == "") {
+                          return Container();
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: InkWell(
+                            onTap: () {
+                              controller.selectAnswer(idx);
+                            },
+                            child: Container(
+                              height: SizeConfig.screenHeight! * 0.07,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: selectedAnswer == idx
+                                    ? AppColors.darkMainColor
+                                    : AppColors.mainColor.withOpacity(0.60),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: Row(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        (idx + 1).toString(),
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: selectedAnswer == idx
+                                                ? AppColors.choicesColor
+                                                : AppColors.choicesColor),
+                                      ),
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      option,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: selectedAnswer == idx
+                                              ? AppColors.choicesColor
+                                              : AppColors.choicesColor),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Text(option),
-                            ],
-                          );
-                        }),
-                      ],
-                    ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ],
                   ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.05),
                 ],
               ),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GradientButton(
-                    text: 'AI',
-                    height: SizeConfig.screenHeight! * 0.06,
-                    width: SizeConfig.screenWidth! * 0.25,
-                    onClick: () {
+                  InkWell(
+                    onTap: () {
+                      controller.moveToAnotherQuestion(context);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          color: AppColors.choicesColor),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              size: 28,
+                              Icons.navigate_before,
+                              color: AppColors.darkMainColor,
+                            ),
+                            Text(
+                              S.of(context).continueText,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.darkMainColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
                       controller.selectedAnswers[
                                   controller.questionIndex.value] !=
                               null
@@ -183,17 +242,23 @@ class RunExam extends StatelessWidget {
                           : null;
                       controller.generateResponse(question.questionText);
                     },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Colors.transparent,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: SizedBox(
+                          height: 64,
+                          width: 64,
+                          child: Image.asset(
+                            Images.falih,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.015),
-                  GradientButton(
-                    text: S.of(context).continueText,
-                    height: SizeConfig.screenHeight! * 0.06,
-                    width: SizeConfig.screenWidth!,
-                    onClick: () {
-                      controller.moveToAnotherQuestion(context);
-                    },
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.06),
                 ],
               ),
             ],
