@@ -87,10 +87,10 @@ class CurriculumPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 100),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: GridView.builder(
                       padding: EdgeInsets.zero,
+                      physics: const ClampingScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisExtent: SizeConfig.screenHeight! * 0.16,

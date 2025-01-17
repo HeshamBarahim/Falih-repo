@@ -1644,7 +1644,7 @@ class S {
   /// `مرحباً`
   String get hi {
     return Intl.message(
-      'مرحباً',
+      'مرحبا، ',
       name: 'hi',
       desc: '',
       args: [],

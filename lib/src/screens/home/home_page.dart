@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
-// import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/screens/home/widgets_home/advertise_img_carousel.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -23,14 +20,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Screen height and width from MediaQuery
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth! * 0.03,
-            vertical: SizeConfig.screenHeight! * 0.02),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +37,7 @@ class HomePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: AppColors.mainColor, // Border color
-                      width: 2.0, // Border width
+                      width: 1.5, // Border width
                     ),
                     color: AppColors.moreLightenMainColor, // Container color
                     borderRadius: BorderRadius.circular(12), // Rounded corners
@@ -60,9 +54,13 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   child: Obx(
-                    () => controller.isLoading.value
-                        ? const Center(
-                            child: CircularProgressIndicator(),
+                    () =>
+                    controller.isLoading.value
+                        ? SizedBox(
+                            height: SizeConfig.screenHeight! * 0.20,
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
                           )
                         : Column(
                             children: [
@@ -113,7 +111,7 @@ class HomePage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "${S.of(context).hi}, ${userController.currentUser!.fullName.split(" ")[0]}",
+                                            "${S.of(context).hi}${userController.currentUser!.fullName.split(" ")[0]}",
                                             style: const TextStyle(
                                                 color: AppColors.darkMainColor,
                                                 fontSize: 24,
@@ -153,32 +151,66 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: LinearProgressIndicator(
-                                      value: controller.point.value /
-                                          controller.maxPoint.value,
-                                      // Bind progress value
-                                      backgroundColor: AppColors.mainColor,
-                                      color: AppColors.lightenMainColor,
-                                      minHeight: 10,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                      style: const TextStyle(
-                                          color: AppColors.darkMainColor,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              )
+                              Get.locale?.languageCode == "Ar"
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                            value: controller.point.value /
+                                                controller.maxPoint.value,
+                                            // Bind progress value
+                                            backgroundColor:
+                                                AppColors.mainColor,
+                                            color: AppColors.lightenMainColor,
+                                            minHeight: 10,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                            style: const TextStyle(
+                                                color: AppColors.darkMainColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      // Aligns children to the end (right for LTR, left for RTL)
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                            style: const TextStyle(
+                                                color: AppColors.darkMainColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                            value: controller.point.value /
+                                                controller.maxPoint.value,
+                                            // Bind progress value
+                                            backgroundColor:
+                                                AppColors.mainColor,
+                                            color: AppColors.lightenMainColor,
+                                            minHeight: 10,
+                                          ),
+                                        ),
+                                      ],
+                                    )
                             ],
                           ),
                   )),
@@ -192,7 +224,7 @@ class HomePage extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.darkMainColor, // Container color
-                  borderRadius: BorderRadius.circular(12), // Rounded corners
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.mainColor.withOpacity(0.5),
@@ -230,7 +262,7 @@ class HomePage extends StatelessWidget {
                             child: Text(
                               S.of(context).go_get_some_exams,
                               style: const TextStyle(
-                                color: AppColors.darkMainColor,
+                                color: AppColors.mainColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -252,187 +284,149 @@ class HomePage extends StatelessWidget {
                                       examResult["totalQuestions"]);
                               double roundedPercentage =
                                   double.parse((percentage).toStringAsFixed(1));
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 2.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // controller.resetExam();
-                                    // controller.setUnitQuestions(examResult["questions"]);
-                                    // Get.to(() => const PreExam());
-                                  },
-                                  child: SizedBox(
-                                    height: SizeConfig.screenHeight! * 0.12,
-                                    child: Card(
-                                      color: AppColors.secondaryColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                              return Card(
+                                margin: const EdgeInsets.only(bottom: 12),
+                                color: AppColors.moreLightenMainColor,
+                                elevation: 10,
+                                shadowColor: AppColors.darkMainColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      CircularPercentIndicator(
+                                        radius: 30.0,
+                                        animation: true,
+                                        animationDuration: 1200,
+                                        lineWidth: 5.0,
+                                        percent: roundedPercentage,
+                                        center:
+                                            Text("${roundedPercentage * 100}%"),
+                                        progressColor:
+                                            (examResult["correctAnswers"] /
+                                                        examResult[
+                                                            "totalQuestions"]) >
+                                                    0.5
+                                                ? Colors.green
+                                                : Colors.red,
                                       ),
-                                      elevation: 5,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0, vertical: 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            CircularPercentIndicator(
-                                              radius: 30.0,
-                                              animation: true,
-                                              animationDuration: 1200,
-                                              lineWidth: 5.0,
-                                              percent: roundedPercentage,
-                                              center: Text(
-                                                  "${roundedPercentage * 100}%"),
-                                              progressColor: (examResult[
-                                                              "correctAnswers"] /
-                                                          examResult[
-                                                              "totalQuestions"]) >
-                                                      0.5
-                                                  ? Colors.green
-                                                  : Colors.red,
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  Container(
-                                                      decoration: const BoxDecoration(
-                                                          color: AppColors
-                                                              .lightenMainColor,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      20))),
-                                                      child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.symmetric(
-                                                                  horizontal:
-                                                                      8.0),
-                                                          child: Text(
-                                                              "${examResult["examName"]}",
-                                                              style: const TextStyle(
-                                                                  color: AppColors
-                                                                      .darkMainColor,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize: 12)))),
-                                                  (examResult["correctAnswers"] /
-                                                              examResult[
-                                                                  "totalQuestions"]) >
-                                                          0.5
-                                                      ? Container(
-                                                          decoration: const BoxDecoration(
-                                                              color: AppColors
-                                                                  .successBoxColor,
-                                                              borderRadius:
-                                                                  BorderRadius.all(
-                                                                      Radius.circular(
-                                                                          20))),
-                                                          child: const Padding(
-                                                              padding: EdgeInsets.symmetric(
-                                                                  horizontal:
-                                                                      8.0),
-                                                              child: Text("Passed",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.successColor,
-                                                                      fontWeight: FontWeight.w500,
-                                                                      fontSize: 12))))
-                                                      : Container(
-                                                          decoration: const BoxDecoration(
-                                                              color: AppColors
-                                                                  .errorBoxColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          20))),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        8.0),
-                                                            child: Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .failed,
-                                                                style: const TextStyle(
-                                                                    color: AppColors
-                                                                        .errorColor,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    fontSize:
-                                                                        14)),
-                                                          ),
-                                                        ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 2.5),
-                                                    child: Text(
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Container(
+                                              decoration: const BoxDecoration(
+                                                  color: AppColors
+                                                      .lightenMainColor,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(20))),
+                                              child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                          horizontal: 8.0),
+                                                  child: Text(
                                                       "${examResult["examName"]}",
                                                       style: const TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
-                                                  style: const TextStyle(
-                                                    color: Color(0xFF3CD797),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 14,
+                                                          color: AppColors
+                                                              .darkMainColor,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 12)))),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          (examResult["correctAnswers"] /
+                                                      examResult[
+                                                          "totalQuestions"]) >
+                                                  0.5
+                                              ? Container(
+                                                  decoration: const BoxDecoration(
+                                                      color: AppColors
+                                                          .successBoxColor,
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(20))),
+                                                  child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 8.0),
+                                                      child: Text("Passed",
+                                                          style: TextStyle(
+                                                              color: AppColors
+                                                                  .successColor,
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 12))))
+                                              : Container(
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          color: AppColors
+                                                              .errorBoxColor,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 8.0),
+                                                    child: Text(
+                                                        S.of(context).failed,
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .errorColor,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 12)),
                                                   ),
                                                 ),
-                                                Text(
-                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  textAlign: TextAlign.right,
-                                                ),
-                                                Text(
-                                                  "${examResult["points"]} ${S.of(context).points}",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  textAlign: TextAlign.right,
-                                                ),
-                                              ],
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            "${examResult["examType"]}",
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
                                             ),
-                                            const Icon(
-                                              Icons.arrow_forward_ios,
-                                              size: 20,
-                                              color: AppColors.darkMainColor,
-                                            )
-                                          ],
-                                        ),
+                                          )
+                                        ],
                                       ),
-                                    ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                            style: const TextStyle(
+                                              color: AppColors.shadowColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            textAlign: TextAlign.right,
+                                          ),
+                                          Text(
+                                            "${examResult["points"]} ${S.of(context).points}",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            textAlign: TextAlign.right,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ),
                               );
