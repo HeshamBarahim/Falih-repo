@@ -10,8 +10,8 @@ import '../screens/pre_exam/pre_exam.dart';
 import 'exam_controller.dart';
 
 class SubjectsController extends GetxController {
-  var selectedIndex = 0.obs; // Observable index for the selected item
-  var selectedSectionIndex = 0.obs; // Observable index for the selected item
+  var selectedIndex = 0.obs;
+  var selectedSectionIndex = 0.obs;
   var name = "".obs;
   var id = "".obs;
   late LinearGradient color;
@@ -19,22 +19,33 @@ class SubjectsController extends GetxController {
   var subjects = <Map<String, dynamic>>[].obs;
   var user = UserController.instance.user.value.obs;
   final _db = FirebaseFirestore.instance;
+  var curriculumGrade = "".obs;
+  var curriculumDepartment = "".obs;
   final ExamController _examController = Get.put(ExamController());
 
   final subjectSections = {
     "9": {
       "social_studies": ["geography", "history", "nationalism"],
-      "science": ["physics", "biology", "chemistry"]
-    },
-    "12": {
-      "social_studies": ["geography", "history", "nationalism"],
       "science": ["physics", "biology", "chemistry"],
       "islamic": ["iman", "fiqh", "hadith", "seerah"]
+    },
+    "12": {
+      "islamic": ["iman", "fiqh", "hadith", "seerah"],
+      "arabic": [
+        "grammar_morphology",
+        "literature_texts",
+        "reading",
+        "criticism"
+      ]
     },
   };
 
   @override
   void onInit() {
+    curriculumGrade.value = user.value?.selectedGrade ?? "";
+    curriculumDepartment.value = user.value?.selectedDepartment ?? "";
+    _examController.examGrade.value = curriculumGrade.value;
+    _examController.examDepartment.value = curriculumDepartment.value;
     loadSubjects();
     super.onInit();
   }
@@ -49,20 +60,28 @@ class SubjectsController extends GetxController {
   }
 
   void subjectNameFetcher(int subjectIndex) {
+    if (subjectSections[curriculumGrade.value]?[id.value] == null) {
+      name.value = id.value;
+      return;
+    }
+
     if (subjectIndex ==
-        (subjectSections[user.value?.selectedGrade]?[id.value]!.length)) {
+        (subjectSections[curriculumGrade.value]?[id.value]!.length)) {
       name.value = "All";
-    } else if (user.value?.selectedGrade == "9" &&
-        id.value == "social_studies") {
-      name.value = subjectSections[user.value?.selectedGrade]
+    } else if (curriculumGrade.value == "9" &&
+        (id.value == "social_studies" ||
+            id.value == "science" ||
+            id.value == "islamic")) {
+      name.value = subjectSections[curriculumGrade.value]
               ?[id.value]![subjectIndex] ??
           "";
-    } else if (user.value?.selectedGrade == "9" && id.value == "science") {
-      name.value = subjectSections[user.value?.selectedGrade]
+    } else if (curriculumGrade.value == "9" && id.value == "science") {
+      name.value = subjectSections[curriculumGrade.value]
               ?[id.value]![subjectIndex] ??
           "";
-    } else if (user.value?.selectedGrade == "12" && id.value == "islamic") {
-      name.value = subjectSections[user.value?.selectedGrade]
+    } else if (curriculumGrade.value == "12" &&
+        (id.value == "islamic" || id.value == "arabic")) {
+      name.value = subjectSections[curriculumGrade.value]
               ?[id.value]![subjectIndex] ??
           "";
     } else {
@@ -71,7 +90,7 @@ class SubjectsController extends GetxController {
   }
 
   void loadSubjects() {
-    if (user.value?.selectedGrade == "12") {
+    if (curriculumGrade.value == "12") {
       subjects.assignAll([
         {
           'id': "quran",
@@ -122,7 +141,7 @@ class SubjectsController extends GetxController {
           'icon': Images.mathIcon
         },
       ]);
-    } else if (user.value?.selectedGrade == "9") {
+    } else if (curriculumGrade.value == "9") {
       subjects.assignAll([
         {
           'id': "quran",
@@ -168,7 +187,7 @@ class SubjectsController extends GetxController {
         // },
         {
           'id': "science",
-          'name': "Science",
+          'name': S.current.science,
           'color': AppColors.biologyColor,
           'icon': Images.biologyIcon
         },
@@ -189,7 +208,7 @@ class SubjectsController extends GetxController {
   }
 
   bool isSubjectWithSections() {
-    if (subjectSections[user?.value?.selectedGrade]?[id.value] == null) {
+    if (subjectSections[curriculumGrade.value]?[id.value] == null) {
       return false;
     }
     return true;
@@ -201,12 +220,12 @@ class SubjectsController extends GetxController {
 
       List<Map<String, dynamic>> allSectionUnits = [];
       for (var sectionName
-          in subjectSections[user.value?.selectedGrade]![id.value]!) {
+          in subjectSections[curriculumGrade.value]![id.value]!) {
         final DocumentSnapshot<Map<String, dynamic>> subjectSectionUnits = await _db
             .collection(
-                'subjects_${user.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
+                'subjects_${curriculumDepartment.toString().toLowerCase()}_${curriculumGrade.value.toLowerCase()}')
             .doc(
-                "${sectionName.toLowerCase()}_${user.value?.selectedGrade.toString().toLowerCase()}")
+                "${sectionName.toLowerCase()}_${curriculumGrade.value.toString().toLowerCase()}")
             .get();
         final subjectData = subjectSectionUnits.data() as Map<String, dynamic>;
         final units = subjectData['units'];
@@ -227,9 +246,9 @@ class SubjectsController extends GetxController {
 
       final DocumentSnapshot<Map<String, dynamic>> subjectSectionUnits = await _db
           .collection(
-              'subjects_${user.value?.selectedDepartment.toString().toLowerCase()}_${user?.value?.selectedGrade.toString().toLowerCase()}')
+              'subjects_${curriculumDepartment.toString().toLowerCase()}_${curriculumGrade.value.toLowerCase()}')
           .doc(
-              "${name.value.toLowerCase()}_${user.value?.selectedGrade.toString().toLowerCase()}")
+              "${name.value.toLowerCase()}_${curriculumGrade.value.toString().toLowerCase()}")
           .get();
       final subjectData = subjectSectionUnits.data() as Map<String, dynamic>;
       final units = subjectData['units'];
@@ -239,5 +258,16 @@ class SubjectsController extends GetxController {
       _examController.setExamQuestions();
       Get.to(() => const PreExam());
     }
+  }
+
+  void changeCurriculumGrade(String grade) {
+    curriculumGrade.value = grade;
+    _examController.examGrade.value = curriculumGrade.value;
+    loadSubjects();
+  }
+
+  void changeCurriculumDepartment(String department) {
+    curriculumDepartment.value = department;
+    _examController.examDepartment.value = curriculumDepartment.value;
   }
 }

@@ -531,6 +531,16 @@ class S {
     );
   }
 
+  /// `العلوم`
+  String get science {
+    return Intl.message(
+      'العلوم',
+      name: 'science',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `لم تقم بخوض أي اختبار بعد. قم بخوض الاختبار للانضمام إلى لوحة القيادة والمنافسة مع الطلاب الآخرين`
   String get not_taken_exams {
     return Intl.message(

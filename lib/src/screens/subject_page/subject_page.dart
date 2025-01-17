@@ -17,35 +17,34 @@ class SubjectPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: SizeConfig.screenWidth! * 0.05),
-            height: SizeConfig.screenHeight! * 0.33,
+            height: SizeConfig.screenHeight! * 0.25,
             decoration: BoxDecoration(
               gradient: subjectController.color,
             ),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        subjectController.name.value.capitalizeFirst ?? "",
-                        style: TextStyle(
-                          fontSize: SizeConfig.screenWidth! * 0.08,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          subjectController.name.value.capitalizeFirst ?? "",
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    Image.asset(
-                      subjectController.iconPath,
-                      height: SizeConfig.screenHeight! * 0.18,
-                      width: SizeConfig.screenWidth! * 0.3,
-                    ),
-                  ],
+                      Image.asset(
+                        subjectController.iconPath,
+                        height: SizeConfig.screenHeight! * 0.10,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

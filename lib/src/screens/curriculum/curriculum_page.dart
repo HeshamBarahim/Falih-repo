@@ -14,104 +14,136 @@ class CurriculumPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
       ),
-      child: Column(
-        children: [
-          Obx(
-            () => subjectController.user.value == null
-                ? Text(
-                    "${S.of(context).user_data_not_available}.",
-                    style: TextStyle(
-                      fontSize: SizeConfig.screenWidth! * 0.04,
-                    ),
-                  )
-                : Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.02,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${S.of(context).grade}: ${subjectController.user!.value?.selectedGrade}",
-                          style: TextStyle(
-                            fontSize: SizeConfig.screenWidth! * 0.05,
-                            fontWeight: FontWeight.bold,
+      child: Obx(() => subjectController.user.value == null
+          ? Expanded(
+              child: Center(
+                child: Text(
+                  "${S.of(context).user_data_not_available}.",
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            )
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(
+                    8,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      DropdownButton<String>(
+                        value:
+                            "${S.of(context).grade}: ${subjectController.curriculumGrade}",
+                        onChanged: (String? newValue) {
+                          subjectController
+                              .changeCurriculumGrade(newValue!.split(" ")[1]);
+                        },
+                        items: [
+                          "${S.of(context).grade}: 9",
+                          "${S.of(context).grade}: 12"
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      DropdownButton<String>(
+                        value: "${subjectController.curriculumDepartment}",
+                        onChanged: (String? newValue) {
+                          subjectController
+                              .changeCurriculumDepartment(newValue!);
+                        },
+                        items: ["En", "Ar"]
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, bottom: 100),
+                    child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisExtent: SizeConfig.screenHeight! * 0.16,
+                        mainAxisSpacing: SizeConfig.screenHeight! * 0.013,
+                        crossAxisSpacing: SizeConfig.screenWidth! * 0.03,
+                        childAspectRatio: SizeConfig.screenWidth! /
+                            (SizeConfig.screenHeight! / 1.4),
+                      ),
+                      itemCount: subjectController.subjects.length,
+                      itemBuilder: (context, index) {
+                        final subject = subjectController.subjects[index];
+                        return GestureDetector(
+                          onTap: () {
+                            subjectController.id.value = subject['id'];
+                            subjectController.name.value = subject['name'];
+                            subjectController.color = subject['color'];
+                            subjectController.iconPath = subject['icon'];
+                            Get.to(() => SubjectPage());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: subject['color'],
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: SizeConfig.screenWidth! * 0.15,
+                                  child: Image.asset(
+                                    subject['icon'],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Text(
+                                  subject['name'],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${subjectController.user!.value?.selectedDepartment}',
-                          style: TextStyle(
-                            fontSize: SizeConfig.screenWidth! * 0.05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 100),
-              child: GridView.builder(
-                padding: EdgeInsets.zero,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: SizeConfig.screenHeight! * 0.16,
-                  mainAxisSpacing: SizeConfig.screenHeight! * 0.013,
-                  crossAxisSpacing: SizeConfig.screenWidth! * 0.03,
-                  childAspectRatio: SizeConfig.screenWidth! /
-                      (SizeConfig.screenHeight! / 1.4),
                 ),
-                itemCount: subjectController.subjects.length,
-                itemBuilder: (context, index) {
-                  final subject = subjectController.subjects[index];
-                  return GestureDetector(
-                    onTap: () {
-                      subjectController.id.value = subject['id'];
-                      subjectController.name.value = subject['name'];
-                      subjectController.color = subject['color'];
-                      subjectController.iconPath = subject['icon'];
-                      Get.to(() => SubjectPage());
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: subject['color'],
-                        borderRadius: BorderRadius.circular(
-                            SizeConfig.screenWidth! * 0.055),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: SizeConfig.screenWidth! * 0.165,
-                            child: Image.asset(
-                              subject['icon'],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          Text(
-                            subject['name'],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: SizeConfig.screenWidth! * 0.039,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
+              ],
+            )),
     );
   }
 }

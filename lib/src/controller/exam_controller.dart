@@ -19,8 +19,10 @@ class ExamController extends GetxController {
   var score = 0.obs;
   var trueAnswers = 0.obs;
   var falseAnswers = 0.obs;
-  var examType = "".obs;
   var examName = "".obs;
+  var examGrade = "".obs;
+  var examDepartment = "".obs;
+  var examType = "".obs;
   var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
   var isFinalExam = false.obs;
@@ -223,7 +225,8 @@ class ExamController extends GetxController {
       UserModel? user = UserController.instance.user.value;
       final examResult = {
         'examName': examName.value,
-        "grade": user?.selectedGrade,
+        "grade": examGrade.value,
+        "department": examDepartment.value,
         'examType': examType.value,
         'score': score.value,
         'totalQuestions': questions.length,
