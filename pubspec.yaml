@@ -48,6 +48,8 @@ dependencies:
   get: null
   get_storage: null
   google_fonts: null
+  googleapis: ^13.2.0
+  googleapis_auth: ^1.6.0
   http: null
   image_picker: ^1.1.2
   intl: null

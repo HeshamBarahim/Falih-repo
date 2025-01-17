@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 import 'generated/l10n.dart';
 import 'src/app.dart';
 import 'src/controller/network_controller_real_time.dart';
+import 'src/controller/notifications_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,6 @@ main() async {
   await GetStorage.init();
   // Clear the cache
   // Get.put(NetworkController());
-  Get.put(NetworkControllerRealTime());
 
   runApp(const MyApp());
 
@@ -33,6 +33,8 @@ main() async {
 }
 
 Future<void> initDependencies() async {
+  Get.put(NotificationsController());
+  Get.put(NetworkControllerRealTime());
   Get.put(AuthenticationRepository());
   Get.put(UserRepository());
   Get.put(UserController());
