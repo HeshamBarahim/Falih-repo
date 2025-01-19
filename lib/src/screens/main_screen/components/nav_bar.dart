@@ -12,7 +12,6 @@ import '../../../config/sizes.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
-import '../main_screen.dart';
 import '../utils/rive_utils.dart';
 import 'nav_bar_info_card.dart';
 import 'nav_bar_tile.dart';
@@ -92,15 +91,16 @@ class NavBar extends StatelessWidget {
 
                                     if (menu.index == 0) {
                                       controller.stopProcess();
-                                      Get.off(MainScreen());
-                                      // Get.offAll(MenuScreen());
+                                      controller.changeCurrentPage(1);
+                                      controller.onPressNavBarButton();
+                                      controller.onOpen();
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
 
-                                      Get.off(() => EditProfileScreen());
+                                      Get.to(() => EditProfileScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
-                                      Get.off(() => SubscriptionPlansScreen());
+                                      Get.to(() => SubscriptionPlansScreen());
                                     }
                                   });
                                   controller.selectMenu(menu);
@@ -146,14 +146,13 @@ class NavBar extends StatelessWidget {
                                       // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.off(() => AboutUsScreen());
+                                      Get.to(() => AboutUsScreen());
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
                                       // navController.moveNavBar();
-                                      Get.off(() => const SettingsScreen());
+                                      Get.to(() => const SettingsScreen());
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
-                                      // Get.to(() => SettingsScreen());
                                       AuthenticationRepository.instance
                                           .logout(context);
                                     }

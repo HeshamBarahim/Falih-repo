@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/profile_controller.dart';
-import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
-import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../config/const.dart';
 import '../../config/sizes.dart';
 
@@ -17,7 +16,6 @@ class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
 
   final ProfileController profileController = Get.put(ProfileController());
-  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +25,12 @@ class EditProfileScreen extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           // Navigate to the menu screen when the user tries to pop
-          Get.offAll(MainScreen());
+          Get.back();
         }
       },
       child: Scaffold(
         body: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(

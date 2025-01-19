@@ -1,7 +1,6 @@
 // menu_screen_2
 import 'dart:math';
 
-import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -196,8 +195,6 @@ class MainScreen extends StatelessWidget {
                       },
                       press: () {
                         controller.onPressNavBarButton();
-                        /////////////////////////
-
                         controller.onOpen();
                       },
                     ),
@@ -219,18 +216,3 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-
-// class NavigationController extends GetxController {
-//   final Rx<int> selectedIndex = 1.obs;
-
-//   final screens = [
-//     CurriculumPage(),
-//     HomePage(),
-//     LeaderBoardScreen(),
-//   ];
-//   final screenTitle = [
-//     S.current.subjects,
-//     S.current.home,
-//     S.current.leaderBoard
-//   ];
-// }

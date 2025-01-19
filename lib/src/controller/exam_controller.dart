@@ -329,8 +329,10 @@ class ExamController extends GetxController {
   @override
   void onClose() {
     // Ensure the timer is cleaned up when the controller is disposed
-    if (timer.isActive) {
-      timer.cancel();
+    if (timer != null) {
+      if (timer.isActive) {
+        timer.cancel();
+      }
     }
     super.onClose();
   }
