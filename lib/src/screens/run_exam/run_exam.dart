@@ -7,14 +7,12 @@ import 'package:get/get.dart';
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../controller/exam_controller.dart';
-import '../../controller/subjects_controller.dart';
 
 class RunExam extends StatelessWidget {
   const RunExam({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final SubjectsController subjectController = Get.put(SubjectsController());
     final ExamController controller = Get.put(ExamController());
     SizeConfig().init(context);
     return Scaffold(
@@ -31,7 +29,9 @@ class RunExam extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(16),
           height: double.infinity,
-          decoration: BoxDecoration(gradient: subjectController.color),
+          decoration: const BoxDecoration(
+            color: AppColors.lightenMainColor,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
@@ -46,10 +46,20 @@ class RunExam extends StatelessWidget {
                         height: SizeConfig.screenHeight! * 0.28,
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.mainColor, width: 2),
-                            color: AppColors.choicesColor,
-                            borderRadius: BorderRadius.circular(16)),
+                          border:
+                              Border.all(color: AppColors.mainColor, width: 2),
+                          color: AppColors.choicesColor,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.darkMainColor.withOpacity(0.2),
+                              blurRadius: 10,
+                              spreadRadius: 12,
+                              offset:
+                                  const Offset(0, 10), // Shadow position (x, y)
+                            ),
+                          ],
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -168,19 +178,29 @@ class RunExam extends StatelessWidget {
                                     Center(
                                       child: Text(
                                         (idx + 1).toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: selectedAnswer == idx
-                                                ? AppColors.choicesColor
-                                                : AppColors.choicesColor),
+                                            color: AppColors.choicesColor),
                                       ),
                                     ),
                                     const SizedBox(
                                       width: 10,
                                     ),
                                     Text(
-                                      option,
+                                      option.toLowerCase().trim() == "true" ||
+                                              (option.toLowerCase().trim() ==
+                                                  "false")
+                                          ? Get.locale?.languageCode == "ar"
+                                              ? option.toLowerCase().trim() ==
+                                                      "true"
+                                                  ? "صح"
+                                                  : "خطأ"
+                                              : option.toLowerCase().trim() ==
+                                                      "true"
+                                                  ? "True"
+                                                  : "False"
+                                          : option,
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -208,7 +228,7 @@ class RunExam extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
-                          color: AppColors.choicesColor),
+                          color: AppColors.darkMainColor),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
@@ -216,14 +236,14 @@ class RunExam extends StatelessWidget {
                             const Icon(
                               size: 28,
                               Icons.navigate_before,
-                              color: AppColors.darkMainColor,
+                              color: AppColors.moreLightenMainColor,
                             ),
                             Text(
                               S.of(context).continueText,
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.darkMainColor,
+                                color: AppColors.moreLightenMainColor,
                               ),
                             ),
                           ],

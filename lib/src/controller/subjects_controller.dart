@@ -27,7 +27,8 @@ class SubjectsController extends GetxController {
     "9": {
       "social_studies": ["geography", "history", "nationalism"],
       "science": ["physics", "biology", "chemistry"],
-      "islamic": ["iman", "fiqh", "hadith", "seerah"]
+      "islamic": ["iman", "fiqh", "hadith", "seerah"],
+      "quran": ["tafsir_alquran", "tajweed"]
     },
     "12": {
       "islamic": ["iman", "fiqh", "hadith", "seerah"],
@@ -36,7 +37,8 @@ class SubjectsController extends GetxController {
         "literature_texts",
         "reading",
         "criticism"
-      ]
+      ],
+      "quran": ["tafsir_alquran", "uloom_alquran", "tajweed"]
     },
   };
 
@@ -71,16 +73,15 @@ class SubjectsController extends GetxController {
     } else if (curriculumGrade.value == "9" &&
         (id.value == "social_studies" ||
             id.value == "science" ||
-            id.value == "islamic")) {
-      name.value = subjectSections[curriculumGrade.value]
-              ?[id.value]![subjectIndex] ??
-          "";
-    } else if (curriculumGrade.value == "9" && id.value == "science") {
+            id.value == "islamic" ||
+            id.value == "quran")) {
       name.value = subjectSections[curriculumGrade.value]
               ?[id.value]![subjectIndex] ??
           "";
     } else if (curriculumGrade.value == "12" &&
-        (id.value == "islamic" || id.value == "arabic")) {
+        (id.value == "islamic" ||
+            id.value == "arabic" ||
+            id.value == "quran")) {
       name.value = subjectSections[curriculumGrade.value]
               ?[id.value]![subjectIndex] ??
           "";

@@ -233,6 +233,9 @@ class SubjectsLabels extends StatelessWidget {
                   ],
                 )
               : Container(),
+          const SizedBox(
+            height: 5,
+          ),
           Obx(() {
             if (subjectController.selectedIndex.value == 0) {
               return _buildUnitsExams(firestore, context);
