@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -516,26 +515,6 @@ class S {
     return Intl.message(
       'الرياضيات',
       name: 'subject_eight',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `الاجتماعيات`
-  String get subject_nine {
-    return Intl.message(
-      'الاجتماعيات',
-      name: 'subject_nine',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `العلوم`
-  String get science {
-    return Intl.message(
-      'العلوم',
-      name: 'science',
       desc: '',
       args: [],
     );
@@ -1644,7 +1623,7 @@ class S {
   /// `مرحباً`
   String get hi {
     return Intl.message(
-      'مرحبا، ',
+      'مرحباً',
       name: 'hi',
       desc: '',
       args: [],
@@ -2036,6 +2015,246 @@ class S {
     return Intl.message(
       'رفع صورة',
       name: 'upload_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 أسئلة`
+  String get questions_10 {
+    return Intl.message(
+      '10 أسئلة',
+      name: 'questions_10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الفصل`
+  String get chapter {
+    return Intl.message(
+      'الفصل',
+      name: 'chapter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الكل`
+  String get all {
+    return Intl.message(
+      'الكل',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `بدون اسم`
+  String get no_name {
+    return Intl.message(
+      'بدون اسم',
+      name: 'no_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `علوم`
+  String get science {
+    return Intl.message(
+      'علوم',
+      name: 'science',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اجتماعيات`
+  String get subject_nine {
+    return Intl.message(
+      'اجتماعيات',
+      name: 'subject_nine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إعادة الاختبار`
+  String get restart {
+    return Intl.message(
+      'إعادة الاختبار',
+      name: 'restart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ر.ي ل `
+  String get ry_for {
+    return Intl.message(
+      'ر.ي ل ',
+      name: 'ry_for',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `القسم العربي`
+  String get arabic_section {
+    return Intl.message(
+      'القسم العربي',
+      name: 'arabic_section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `القسم الإنجليزي`
+  String get english_section {
+    return Intl.message(
+      'القسم الإنجليزي',
+      name: 'english_section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الاختبارات النهائية`
+  String get final_exams {
+    return Intl.message(
+      'الاختبارات النهائية',
+      name: 'final_exams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` من خلال الاشتراك، فإنك توافق على`
+  String get by_placing_this {
+    return Intl.message(
+      ' من خلال الاشتراك، فإنك توافق على',
+      name: 'by_placing_this',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` سيتم إعلامك قبل انتهاء فترة اشتراكك لتجديد أو تحديث الاشتراك. \n`
+  String get subscription_automatically_renews {
+    return Intl.message(
+      ' سيتم إعلامك قبل انتهاء فترة اشتراكك لتجديد أو تحديث الاشتراك. \n',
+      name: 'subscription_automatically_renews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `احصل على الباقة المميزة`
+  String get get_premium {
+    return Intl.message(
+      'احصل على الباقة المميزة',
+      name: 'get_premium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `افتح جميع إمكانيات فالح واستمتع\n`
+  String get unlock_of_the_power {
+    return Intl.message(
+      'افتح جميع إمكانيات فالح واستمتع\n',
+      name: 'unlock_of_the_power',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `بتجربة رقمية لم يسبق لها مثيل!`
+  String get enjoy_digital_experience {
+    return Intl.message(
+      'بتجربة رقمية لم يسبق لها مثيل!',
+      name: 'enjoy_digital_experience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة شهر واحد`
+  String get month_plan_1 {
+    return Intl.message(
+      'خطة شهر واحد',
+      name: 'month_plan_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة شهرين`
+  String get month_plan_2 {
+    return Intl.message(
+      'خطة شهرين',
+      name: 'month_plan_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة ثلاثة أشهر`
+  String get month_plan_3 {
+    return Intl.message(
+      'خطة ثلاثة أشهر',
+      name: 'month_plan_3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة الامتحانات المتقدمة`
+  String get advanced_exam_plan {
+    return Intl.message(
+      'خطة الامتحانات المتقدمة',
+      name: 'advanced_exam_plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة الامتحانات الأساسية`
+  String get basic_exam_plan {
+    return Intl.message(
+      'خطة الامتحانات الأساسية',
+      name: 'basic_exam_plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خطة الامتحانات القياسية`
+  String get standard_exam_plan {
+    return Intl.message(
+      'خطة الامتحانات القياسية',
+      name: 'standard_exam_plan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الامتحان النهائي`
+  String get final_exam {
+    return Intl.message(
+      'الامتحان النهائي',
+      name: 'final_exam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `امتحان الوحدة`
+  String get unit_exam {
+    return Intl.message(
+      'امتحان الوحدة',
+      name: 'unit_exam',
       desc: '',
       args: [],
     );

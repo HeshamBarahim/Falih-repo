@@ -33,21 +33,31 @@ class MessageLookup extends MessageLookupByLibrary {
             "Go beyond solving questions. With Falih, explore AI-driven tools that enhance your understanding and help you excel in your studies."),
         "achieve_your_best":
             MessageLookupByLibrary.simpleMessage("Achieve Your Best"),
+        "advanced_exam_plan":
+            MessageLookupByLibrary.simpleMessage("Advanced Exam Plan"),
         "agreeing_message": MessageLookupByLibrary.simpleMessage(
             "By clicking on ‘Create Account,’ you’re agreeing to the app "),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "and": MessageLookupByLibrary.simpleMessage(" and "),
+        "arabic_section":
+            MessageLookupByLibrary.simpleMessage("Arabic Section"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "back_to_home": MessageLookupByLibrary.simpleMessage("Back To Home"),
         "back_to_subjects":
             MessageLookupByLibrary.simpleMessage("Back To Subjects"),
+        "basic_exam_plan":
+            MessageLookupByLibrary.simpleMessage("Basic Exam Plan"),
         "best_tools": MessageLookupByLibrary.simpleMessage("Best Tools"),
         "bottom_text_part1":
             MessageLookupByLibrary.simpleMessage("Have an account? "),
         "bottom_text_part2":
             MessageLookupByLibrary.simpleMessage(" Login instead"),
         "browse": MessageLookupByLibrary.simpleMessage("Browse"),
+        "by_placing_this": MessageLookupByLibrary.simpleMessage(
+            "By subscribing, you agree to our"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage(" not taken "),
+        "chapter": MessageLookupByLibrary.simpleMessage("Chapter"),
         "chapters": MessageLookupByLibrary.simpleMessage("Chapters"),
         "check_details":
             MessageLookupByLibrary.simpleMessage("Checkout Details"),
@@ -79,6 +89,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "duration": MessageLookupByLibrary.simpleMessage("Duration:"),
         "easy_use": MessageLookupByLibrary.simpleMessage("Easy to Use"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+        "english_section":
+            MessageLookupByLibrary.simpleMessage("English Section"),
+        "enjoy_digital_experience": MessageLookupByLibrary.simpleMessage(
+            "enjoy digital experience like never before!"),
         "enter_account_number": MessageLookupByLibrary.simpleMessage(
             "Please Enter Your Account Number"),
         "enter_card_number": MessageLookupByLibrary.simpleMessage(
@@ -107,15 +121,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Failed to upload image"),
         "falih": MessageLookupByLibrary.simpleMessage("Falih"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
+        "final_exam": MessageLookupByLibrary.simpleMessage("Final Exam"),
         "final_exam_limit":
             MessageLookupByLibrary.simpleMessage("Final Exam Limit:"),
+        "final_exams": MessageLookupByLibrary.simpleMessage("Final Exams"),
         "first_header_home": MessageLookupByLibrary.simpleMessage("Hi Yousif,"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "get_premium": MessageLookupByLibrary.simpleMessage("Get Premium"),
         "go_get_some_exams":
             MessageLookupByLibrary.simpleMessage("Go get some exams"),
         "grade": MessageLookupByLibrary.simpleMessage("Class"),
-        "hi": MessageLookupByLibrary.simpleMessage("Hi, "),
+        "hi": MessageLookupByLibrary.simpleMessage("hi"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("Governorate"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("Grade"),
@@ -141,6 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
+        "month_plan_1": MessageLookupByLibrary.simpleMessage("1-Month Plan"),
+        "month_plan_2": MessageLookupByLibrary.simpleMessage("2-Month Plan"),
+        "month_plan_3": MessageLookupByLibrary.simpleMessage("3-Month Plan"),
         "name_cant_be_empty":
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
@@ -153,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No image selected"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No Internet Connection"),
+        "no_name": MessageLookupByLibrary.simpleMessage("No name"),
         "no_password":
             MessageLookupByLibrary.simpleMessage("password cannot be empty"),
         "no_plan_selected":
@@ -208,18 +229,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Profile updated successfully!"),
         "question": MessageLookupByLibrary.simpleMessage("Questions"),
         "questions": MessageLookupByLibrary.simpleMessage("Questions"),
+        "questions_10": MessageLookupByLibrary.simpleMessage("10 Questions"),
         "quick_access": MessageLookupByLibrary.simpleMessage("Quick Access"),
         "rank": MessageLookupByLibrary.simpleMessage("Rank"),
         "resend_code": MessageLookupByLibrary.simpleMessage("Resend The Code"),
+        "restart": MessageLookupByLibrary.simpleMessage("restart"),
         "results": MessageLookupByLibrary.simpleMessage("Results"),
         "review_answer":
             MessageLookupByLibrary.simpleMessage("Review Your Answers"),
         "rules_prizes": MessageLookupByLibrary.simpleMessage("Rules && Prizes"),
         "ry": MessageLookupByLibrary.simpleMessage("r.y"),
+        "ry_for": MessageLookupByLibrary.simpleMessage("r.y for"),
         "school_cant_be_empty":
             MessageLookupByLibrary.simpleMessage("School Name cannot be empty"),
         "school_must_be":
             MessageLookupByLibrary.simpleMessage("School Name must be valid"),
+        "science": MessageLookupByLibrary.simpleMessage("science"),
         "score": MessageLookupByLibrary.simpleMessage("0 points"),
         "section": MessageLookupByLibrary.simpleMessage("Section:"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -231,6 +256,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You should choose a Governorate"),
         "should_choose_grade":
             MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
+        "standard_exam_plan":
+            MessageLookupByLibrary.simpleMessage("Standard Exam Plan"),
         "start_exam":
             MessageLookupByLibrary.simpleMessage("Start Taking The Exam"),
         "start_taking_exam":
@@ -249,10 +276,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "subTitle_trusted": MessageLookupByLibrary.simpleMessage(
             "Join a growing community of learners who rely on Falih for accurate answers and AI-powered assistance. Your success is our priority."),
         "subject_eight": MessageLookupByLibrary.simpleMessage("Math"),
-        "subject_nine": MessageLookupByLibrary.simpleMessage("Social Studies"),
         "subject_five": MessageLookupByLibrary.simpleMessage("Chemistry"),
         "subject_four":
             MessageLookupByLibrary.simpleMessage("English Language"),
+        "subject_nine": MessageLookupByLibrary.simpleMessage("Social Studies"),
         "subject_one": MessageLookupByLibrary.simpleMessage("Quran Kareem"),
         "subject_seven": MessageLookupByLibrary.simpleMessage("Biology"),
         "subject_six": MessageLookupByLibrary.simpleMessage("Physics"),
@@ -262,6 +289,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Islamic Education"),
         "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
         "submit": MessageLookupByLibrary.simpleMessage("submit"),
+        "subscription_automatically_renews": MessageLookupByLibrary.simpleMessage(
+            " You will be notified before your subscription \n period ends to renew or update your subscription. \n"),
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("Subscription packages"),
         "success": MessageLookupByLibrary.simpleMessage("Success"),
@@ -292,9 +321,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
         "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
             "An unexpected error occurred. Please try again."),
+        "unit_exam": MessageLookupByLibrary.simpleMessage("Unit Exam"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
+        "unlock_of_the_power": MessageLookupByLibrary.simpleMessage(
+            "Unlock all the power of Falih and\n"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("Update Profile"),
         "updated_failed": MessageLookupByLibrary.simpleMessage("Update Failed"),

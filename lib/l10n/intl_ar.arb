@@ -877,7 +877,104 @@
         "@upload_image": {
           "description": ""
         },
-        "upload_image": "رفع صورة"
+        "upload_image": "رفع صورة",
+        "@questions_10": {
+  "description": ""
+},
+        "questions_10": "10 أسئلة",
+"@chapter": {
+  "description": ""
+},
+"chapter": "الفصل",
+"@all": {
+  "description": ""
+},
+"all": "الكل",
+"@no_name": {
+  "description": ""
+},
+"no_name": "بدون اسم",
+"@science": {
+  "description": ""
+},
+"science": "علوم",
+"@subject_nine": {
+  "description": ""
+},
+"subject_nine": "اجتماعيات",
+"@restart": {
+      "description": ""
+    },
+    "restart": "إعادة الاختبار",
+    "@ry_for": {
+      "description": ""
+    },
+    "ry_for": "ر.ي ل ",
+    "arabic_section": "القسم العربي",
+    "@arabic_section": {
+  "description": ""
+},
+"@english_section": {
+  "description": ""
+},
+"english_section": "القسم الإنجليزي",
+"@final_exams": {
+  "description": ""
+},
+"final_exams": "الاختبارات النهائية",
+"@by_placing_this": {
+  "description": ""
+},
+"by_placing_this": " من خلال الاشتراك، فإنك توافق على",
+"@subscription_automatically_renews": {
+  "description": ""
+},
+"subscription_automatically_renews": " سيتم إعلامك قبل انتهاء فترة اشتراكك لتجديد أو تحديث الاشتراك. \n",
+"@get_premium": {
+  "description": ""
+},
+"get_premium": "احصل على الباقة المميزة",
+"@unlock_of_the_power": {
+  "description": ""
+},
+"unlock_of_the_power": "افتح جميع إمكانيات فالح واستمتع\n",
+"@enjoy_digital_experience": {
+  "description": ""
+},
+"enjoy_digital_experience": "بتجربة رقمية لم يسبق لها مثيل!",
+"month_plan_1": "خطة شهر واحد",
+"@month_plan_1": {
+  "description": ""
+},
+"@month_plan_2": {
+  "description": ""
+},
+"month_plan_2": "خطة شهرين",
+"@month_plan_3": {
+  "description": ""
+},
+"month_plan_3": "خطة ثلاثة أشهر",
+"@advanced_exam_plan": {
+  "description": ""
+},
+"advanced_exam_plan": "خطة الامتحانات المتقدمة",
+"@basic_exam_plan": {
+  "description": ""
+},
+"basic_exam_plan": "خطة الامتحانات الأساسية",
+"@standard_exam_plan": {
+  "description": ""
+},
+"standard_exam_plan": "خطة الامتحانات القياسية",
+"@final_exam": {
+  "description": ""
+},
+"final_exam": "الامتحان النهائي",
+"@unit_exam": {
+  "description": ""
+},
+"unit_exam": "امتحان الوحدة"
+
       }
     
   

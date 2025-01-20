@@ -194,6 +194,9 @@
       "description": ""
     },
     "subject_eight":"Math",
+    "@subject_nine": {
+      "description": ""
+    },
     "subject_nine":"Social Studies",
     "@not_taken_exams": {
       "description": "This the start of leaderboard page"
@@ -790,5 +793,98 @@
     "@upload_image": {
       "description": ""
     },
-    "upload_image": "Upload Image"
+    "upload_image": "Upload Image",
+    "@questions_10": {
+      "description": ""
+    },
+    "questions_10": "10 Questions",
+    "@chapter": {
+      "description": ""
+    },
+    "chapter": "Chapter",
+    "@all": {
+      "description": ""
+    },
+    "all": "All",
+    "@no_name": {
+      "description": ""
+    },
+    "no_name": "No name",
+    "@science": {
+      "description": ""
+    },
+    "science": "science",
+    "@restart": {
+      "description": ""
+    },
+    "restart": "restart",
+    "@ry_for": {
+      "description": ""
+    },
+    "ry_for": "r.y for",
+    "@arabic_section": {
+      "description": ""
+    },
+    "arabic_section": "Arabic Section",
+    "@english_section": {
+      "description": ""
+    },
+    "english_section": "English Section",
+    "@final_exams": {
+      "description": ""
+    },
+    "final_exams": "Final Exams",
+    "@by_placing_this": {
+      "description": ""
+    },
+    "by_placing_this": "By subscribing, you agree to our",
+    "@subscription_automatically_renews": {
+      "description": ""
+    },
+    "subscription_automatically_renews": " You will be notified before your subscription \n period ends to renew or update your subscription. \n",
+    "@get_premium": {
+      "description": ""
+    },
+    "get_premium": "Get Premium",
+    "@unlock_of_the_power": {
+      "description": ""
+    },
+    "unlock_of_the_power": "Unlock all the power of Falih and\n",
+    "@enjoy_digital_experience": {
+      "description": ""
+    },
+    "enjoy_digital_experience": "enjoy digital experience like never before!",
+    "@month_plan_1": {
+      "description": ""
+    },
+    "month_plan_1": "1-Month Plan",
+    "@month_plan_2": {
+      "description": ""
+    },
+    "month_plan_2": "2-Month Plan",
+    "@month_plan_3": {
+      "description": ""
+    },
+    "month_plan_3": "3-Month Plan",
+    "@advanced_exam_plan": {
+      "description": ""
+    },
+    "advanced_exam_plan": "Advanced Exam Plan",
+    "@basic_exam_plan": {
+      "description": ""
+    },
+    "basic_exam_plan": "Basic Exam Plan",
+    "@standard_exam_plan": {
+      "description": ""
+    },
+    "standard_exam_plan": "Standard Exam Plan",
+    "@final_exam": {
+      "description": ""
+    },
+    "final_exam": "Final Exam",
+    "@unit_exam": {
+      "description": ""
+    },
+    "unit_exam": "Unit Exam"
+
 }

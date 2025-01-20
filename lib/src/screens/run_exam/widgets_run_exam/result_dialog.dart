@@ -194,10 +194,10 @@ class ResultDialog extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "Restart",
-                      style: TextStyle(
+                      S.of(context).restart,
+                      style: const TextStyle(
                         fontSize: 18,
                         // Slightly larger text for readability
                         color: AppColors.mainColor,

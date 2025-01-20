@@ -135,15 +135,15 @@ class SubjectsLabels extends StatelessWidget {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                            subjectController
-                                                    .subjectSections[
-                                                        subjectController
-                                                            .curriculumGrade
-                                                            .value]?[
-                                                        subjectController
-                                                            .id.value]![index]
-                                                    .capitalizeFirst ??
-                                                "",
+                                            getSectionDisplayName(
+                                                subjectController
+                                                                .subjectSections[
+                                                            subjectController
+                                                                .curriculumGrade
+                                                                .value]?[
+                                                        subjectController.id
+                                                            .value]?[index] ??
+                                                    ""),
                                             style: TextStyle(
                                               color: AppColors.darkMainColor,
                                               fontWeight: FontWeight.bold,
@@ -215,7 +215,7 @@ class SubjectsLabels extends StatelessWidget {
                                               MainAxisAlignment.spaceAround,
                                           children: [
                                             Text(
-                                              "All",
+                                              S.of(context).all,
                                               style: TextStyle(
                                                 color: AppColors.darkMainColor,
                                                 fontWeight: FontWeight.bold,
@@ -332,14 +332,14 @@ class SubjectsLabels extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Chapter: ${index + 1}",
+                                    "${S.of(context).chapter} ${index + 1}",
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                   Text(
-                                    unit["unitName"] ?? "No name",
+                                    unit["unitName"] ?? S.of(context).no_name,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     textAlign: TextAlign.right,
@@ -347,9 +347,9 @@ class SubjectsLabels extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const Text(
-                              "10 Questions",
-                              style: TextStyle(
+                            Text(
+                              S.of(context).questions_10,
+                              style: const TextStyle(
                                 color: AppColors.shadowColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -737,6 +737,47 @@ class SubjectsLabels extends StatelessWidget {
       examController.examType.value = "FinalExam";
       examController.setExamQuestions();
       Get.to(() => const PreExam());
+    }
+  }
+
+  String getSectionDisplayName(String key) {
+    switch (key) {
+      case "geography":
+        return "جغرافيا";
+      case "history":
+        return "تاريخ";
+      case "nationalism":
+        return "وطنية";
+      case "physics":
+        return S.current.subject_six;
+      case "biology":
+        return S.current.subject_seven;
+      case "chemistry":
+        return S.current.subject_five;
+      case "iman":
+        return "ُالإيمان";
+      case "fiqh":
+        return "الفقة";
+      case "hadith":
+        return "الحديث";
+      case "seerah":
+        return "السيرة";
+      case "grammar_morphology":
+        return "النحو والصرف";
+      case "literature_texts":
+        return "الأدب والنصوص";
+      case "reading":
+        return "القراءة";
+      case "criticism":
+        return "النقد";
+      case "tafsir_alquran":
+        return "الحفظ والتفسير";
+      case "uloom_alquran":
+        return "علوم القرآن";
+      case "tajweed":
+        return "التجويد";
+      default:
+        return key.capitalizeFirst ?? key;
     }
   }
 }

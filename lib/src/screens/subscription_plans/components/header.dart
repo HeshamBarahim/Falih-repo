@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class Header extends StatelessWidget {
       children: [
         // Header Text
         Text(
-          "Get Premium",
+          S.of(context).get_premium,
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.058,
             fontWeight: FontWeight.bold,
@@ -22,8 +23,7 @@ class Header extends StatelessWidget {
         ),
         SizedBox(height: SizeConfig.screenHeight! * 0.012),
         Text(
-          "Unlock all the power of this mobile tool and\n"
-          "enjoy digital experience like never before!",
+          "${S.of(context).unlock_of_the_power} ${S.of(context).enjoy_digital_experience}",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: SizeConfig.screenWidth! * 0.039,

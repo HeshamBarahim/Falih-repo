@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/controller/subscription_plans_controller.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class Body extends StatelessWidget {
                             : AppColors.darkMainColor, // Default color
                   ),
                   child: Text(
-                    'Arabic section',
+                    S.of(context).arabic_section,
                     style: TextStyle(
                         color: controller.selectedSection.value == "arabic"
                             ? AppColors.darkMainColor // Default color
@@ -69,7 +70,7 @@ class Body extends StatelessWidget {
                     // Default color
                   ),
                   child: Text(
-                    'English section',
+                    S.of(context).english_section,
                     style: TextStyle(
                         color: controller.selectedSection.value == "english"
                             ? AppColors.darkMainColor // Default color
@@ -115,7 +116,9 @@ class Body extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '${plan['name'] ?? "Plan Name"} - Class ${plan['class']}',
+                                // '${plan['name'] ?? "Plan Name"} - ${S.of(context).class_text} ${plan['class']}',
+                                '${getCustomPlanName(plan['id'])} - ${S.of(context).class_text} ${plan['class']}',
+
                                 maxLines: 2,
                                 softWrap: true,
                                 style: TextStyle(
@@ -131,7 +134,7 @@ class Body extends StatelessWidget {
                                   height: SizeConfig.screenHeight! * 0.012),
                               plan['durationInDays'] != 0
                                   ? Text(
-                                      "${plan['price'] ?? 0} r.y for ${plan['durationInDays'] ?? ''} Days",
+                                      "${plan['price'] ?? 0} ${S.of(context).ry_for} ${plan['durationInDays'] ?? ''} ${S.of(context).days}",
                                       style: TextStyle(
                                         color: controller.selectedPlan
                                                     .value?["id"] ==
@@ -143,7 +146,7 @@ class Body extends StatelessWidget {
                                       ),
                                     )
                                   : Text(
-                                      "${plan['price'] ?? 0} r.y for ${plan['unitExamLimit'] ?? ''} Unit Exams & ${plan['finalExamLimit'] ?? ''} Final Exams",
+                                      "${plan['price'] ?? 0} ${S.of(context).ry_for} ${plan['unitExamLimit'] ?? ''} ${S.of(context).unit_exams} & ${plan['finalExamLimit'] ?? ''} ${S.of(context).final_exams}",
                                       style: TextStyle(
                                         color: controller.selectedPlan
                                                     .value?["id"] ==
@@ -261,4 +264,61 @@ class Body extends StatelessWidget {
       // );
     });
   }
+
+  String getCustomPlanName(String id) {
+    switch (id) {
+      case "1-MonthDurationPlan12Arabic":
+        return S.current.month_plan_1;
+      case "1-MonthDurationPlan12English":
+        return S.current.month_plan_1;
+      case "1-MonthDurationPlan9Arabic":
+        return S.current.month_plan_1;
+      case "1-MonthDurationPlan9English":
+        return S.current.month_plan_1;
+      case "2-MonthDurationPlan12Arabic":
+        return S.current.month_plan_2;
+      case "2-MonthDurationPlan12English":
+        return S.current.month_plan_2;
+      case "2-MonthDurationPlan9Arabic":
+        return S.current.month_plan_2;
+      case "2-MonthDurationPlan9English":
+        return S.current.month_plan_2;
+      case "3-MonthDurationPlan12Arabic":
+        return S.current.month_plan_3;
+      case "3-MonthDurationPlan12English":
+        return S.current.month_plan_3;
+      case "3-MonthDurationPlan9Arabic":
+        return S.current.month_plan_3;
+      case "3-MonthDurationPlan9English":
+        return S.current.month_plan_3;
+      case "AdvancedExamPlan12Arabic":
+        return S.current.advanced_exam_plan;
+      case "AdvancedExamPlan12English":
+        return S.current.advanced_exam_plan;
+      case "AdvancedExamPlan9Arabic":
+        return S.current.advanced_exam_plan;
+      case "AdvancedExamPlan9English":
+        return S.current.advanced_exam_plan;
+      case "BasicExamPlan12Arabic":
+        return S.current.basic_exam_plan;
+      case "BasicExamPlan12English":
+        return S.current.basic_exam_plan;
+      case "BasicExamPlan9Arabic":
+        return S.current.basic_exam_plan;
+      case "BasicExamPlan9English":
+        return S.current.basic_exam_plan;
+      case "StandardExamPlan12Arabic":
+        return S.current.standard_exam_plan;
+      case "StandardExamPlan12English":
+        return S.current.standard_exam_plan;
+      case "StandardExamPlan9Arabic":
+        return S.current.standard_exam_plan;
+      case "StandardExamPlan9English":
+        return S.current.standard_exam_plan;
+
+      default:
+        return "Default Plan Name";
+    }
+  }
+  // 1-monthdurationplan12arabic
 }

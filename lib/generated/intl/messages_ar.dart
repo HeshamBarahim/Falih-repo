@@ -32,22 +32,31 @@ class MessageLookup extends MessageLookupByLibrary {
             "تجاوز حل الأسئلة. مع فالح، استكشف أدوات مدعومة بالذكاء الاصطناعي تعزز فهمك وتساعدك على التفوق في دراستك."),
         "achieve_your_best":
             MessageLookupByLibrary.simpleMessage("حقق أفضل ما لديك"),
+        "advanced_exam_plan":
+            MessageLookupByLibrary.simpleMessage("خطة الامتحانات المتقدمة"),
         "agreeing_message": MessageLookupByLibrary.simpleMessage(
             "بالنقر على \'إنشاء حساب\'، فإنك توافق على "),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "and": MessageLookupByLibrary.simpleMessage(" و "),
+        "arabic_section": MessageLookupByLibrary.simpleMessage("القسم العربي"),
         "back": MessageLookupByLibrary.simpleMessage("عودة"),
         "back_to_home":
             MessageLookupByLibrary.simpleMessage("العودة إلى الصفحة الرئيسية"),
         "back_to_subjects":
             MessageLookupByLibrary.simpleMessage("العودة إلى المواضيع"),
+        "basic_exam_plan":
+            MessageLookupByLibrary.simpleMessage("خطة الامتحانات الأساسية"),
         "best_tools": MessageLookupByLibrary.simpleMessage("أفضل الأدوات"),
         "bottom_text_part1":
             MessageLookupByLibrary.simpleMessage("لديك حساب؟ "),
         "bottom_text_part2":
             MessageLookupByLibrary.simpleMessage(" تسجيل الدخول "),
         "browse": MessageLookupByLibrary.simpleMessage("تصفح"),
+        "by_placing_this": MessageLookupByLibrary.simpleMessage(
+            " من خلال الاشتراك، فإنك توافق على"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage("لم تقم بالخضوع"),
+        "chapter": MessageLookupByLibrary.simpleMessage("الفصل"),
         "chapters": MessageLookupByLibrary.simpleMessage("الفصول"),
         "check_details": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
         "check_out": MessageLookupByLibrary.simpleMessage("الدفع"),
@@ -80,6 +89,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "easy_use": MessageLookupByLibrary.simpleMessage("سهل الاستخدام"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        "english_section":
+            MessageLookupByLibrary.simpleMessage("القسم الإنجليزي"),
+        "enjoy_digital_experience": MessageLookupByLibrary.simpleMessage(
+            "بتجربة رقمية لم يسبق لها مثيل!"),
         "enter_account_number":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم الحساب"),
         "enter_card_number":
@@ -108,16 +121,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل في رفع الصورة"),
         "falih": MessageLookupByLibrary.simpleMessage("فالح"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
+        "final_exam": MessageLookupByLibrary.simpleMessage("الامتحان النهائي"),
         "final_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد الاختبار النهائي:"),
+        "final_exams":
+            MessageLookupByLibrary.simpleMessage("الاختبارات النهائية"),
         "first_header_home":
             MessageLookupByLibrary.simpleMessage("مرحبًا يوسف"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "get_premium":
+            MessageLookupByLibrary.simpleMessage("احصل على الباقة المميزة"),
         "go_get_some_exams": MessageLookupByLibrary.simpleMessage(
             "اذهب واحصل على بعض الامتحانات"),
         "grade": MessageLookupByLibrary.simpleMessage("الصف"),
-        "hi": MessageLookupByLibrary.simpleMessage('مرحباً، '),
+        "hi": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("المحافظة"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("الصف"),
@@ -144,6 +162,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+        "month_plan_1": MessageLookupByLibrary.simpleMessage("خطة شهر واحد"),
+        "month_plan_2": MessageLookupByLibrary.simpleMessage("خطة شهرين"),
+        "month_plan_3": MessageLookupByLibrary.simpleMessage("خطة ثلاثة أشهر"),
         "name_cant_be_empty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يكون الاسم فارغًا"),
         "name_league": MessageLookupByLibrary.simpleMessage("الدوري الفضي"),
@@ -156,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم يتم تحديد صورة"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
+        "no_name": MessageLookupByLibrary.simpleMessage("بدون اسم"),
         "no_password": MessageLookupByLibrary.simpleMessage(
             "لا يمكن ترك كلمة المرور فارغة"),
         "no_plan_selected":
@@ -210,19 +232,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تحديث الملف الشخصي بنجاح!"),
         "question": MessageLookupByLibrary.simpleMessage("سؤال"),
         "questions": MessageLookupByLibrary.simpleMessage("أسئلة"),
+        "questions_10": MessageLookupByLibrary.simpleMessage("10 أسئلة"),
         "quick_access": MessageLookupByLibrary.simpleMessage("الوصول السريع"),
         "rank": MessageLookupByLibrary.simpleMessage("الترتيب"),
         "resend_code":
             MessageLookupByLibrary.simpleMessage("إعادة إرسال الكود"),
+        "restart": MessageLookupByLibrary.simpleMessage("إعادة الاختبار"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
         "review_answer": MessageLookupByLibrary.simpleMessage("مراجعة إجاباتك"),
         "rules_prizes":
             MessageLookupByLibrary.simpleMessage("القواعد والجوائز"),
         "ry": MessageLookupByLibrary.simpleMessage("ر.ي"),
+        "ry_for": MessageLookupByLibrary.simpleMessage("ر.ي ل "),
         "school_cant_be_empty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يكون اسم المدرسة فارغًا"),
         "school_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المدرسة صالحًا"),
+        "science": MessageLookupByLibrary.simpleMessage("علوم"),
         "score": MessageLookupByLibrary.simpleMessage("0 نقطة"),
         "section": MessageLookupByLibrary.simpleMessage("القسم:"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
@@ -234,6 +260,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يجب اختيار المحافظة"),
         "should_choose_grade":
             MessageLookupByLibrary.simpleMessage("يجب اختيار الصف الدراسي"),
+        "standard_exam_plan":
+            MessageLookupByLibrary.simpleMessage("خطة الامتحانات القياسية"),
         "start_exam": MessageLookupByLibrary.simpleMessage("ابدأ الاختبار"),
         "start_taking_exam":
             MessageLookupByLibrary.simpleMessage("ابدأ خوض الاختبار"),
@@ -254,6 +282,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "subject_five": MessageLookupByLibrary.simpleMessage("الكيمياء"),
         "subject_four":
             MessageLookupByLibrary.simpleMessage("اللغة الإنجليزية"),
+        "subject_nine": MessageLookupByLibrary.simpleMessage("اجتماعيات"),
         "subject_one": MessageLookupByLibrary.simpleMessage("القرآن الكريم"),
         "subject_seven": MessageLookupByLibrary.simpleMessage("الأحياء"),
         "subject_six": MessageLookupByLibrary.simpleMessage("الفيزياء"),
@@ -262,6 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("التربية الإسلامية"),
         "subjects": MessageLookupByLibrary.simpleMessage("المواد"),
         "submit": MessageLookupByLibrary.simpleMessage("تقديم"),
+        "subscription_automatically_renews": MessageLookupByLibrary.simpleMessage(
+            " سيتم إعلامك قبل انتهاء فترة اشتراكك لتجديد أو تحديث الاشتراك. \n"),
         "subscription_packages":
             MessageLookupByLibrary.simpleMessage("باقات الاشتراك"),
         "success": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
@@ -291,9 +322,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار الصف"),
         "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."),
+        "unit_exam": MessageLookupByLibrary.simpleMessage("امتحان الوحدة"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد اختبار الوحدة:"),
         "unit_exams": MessageLookupByLibrary.simpleMessage("اختبارات الوحدة"),
+        "unlock_of_the_power": MessageLookupByLibrary.simpleMessage(
+            "افتح جميع إمكانيات فالح واستمتع\n"),
         "update_profile":
             MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
         "updated_failed": MessageLookupByLibrary.simpleMessage("فشل التحديث"),
