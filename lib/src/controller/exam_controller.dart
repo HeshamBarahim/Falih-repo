@@ -31,10 +31,10 @@ class ExamController extends GetxController {
   late List<dynamic> units;
   var questions = <Exam>[].obs;
   var selectedAnswers = <int?>[].obs; // List to store selected answer indices
-  var currentTime = 0.obs; // Observable for time
-  late DateTime startTime;
+  var currentTime = 0.obs;
+  DateTime? startTime;
   DateTime? endTime;
-  late Timer timer;
+  Timer? timer;
   var timeTaken = ''.obs; // To store the formatted time taken
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -79,13 +79,44 @@ class ExamController extends GetxController {
       List<dynamic> shuffledQuestions = List.from(unit["questions"])
         ..shuffle(random);
       List<dynamic> selectedQuestions =
-      shuffledQuestions.take(selectedQuestionsCount).toList();
+          shuffledQuestions.take(selectedQuestionsCount).toList();
 
       // Add selected questions from the current unit to the general list
       selected50Questions.addAll(selectedQuestions);
     }
-    // Questions from all units
-    selected50Questions = List.from(selected50Questions)..shuffle(Random());
+
+    // If the total number of selected questions is less than 50, add the remaining questions
+    if (selected50Questions.length < 50) {
+      int remainingQuestions = 50 - selected50Questions.length;
+
+      // Sort units by the number of questions in descending order
+      units.sort(
+          (a, b) => b["questions"].length.compareTo(a["questions"].length));
+
+      for (var unit in units) {
+        if (remainingQuestions <= 0) break;
+
+        // Get the questions that haven't been selected yet
+        List<dynamic> remainingUnitQuestions = unit["questions"]
+            .where((question) => !selected50Questions.contains(question))
+            .toList();
+
+        // Shuffle the remaining questions and take the required count
+        final random = Random();
+        remainingUnitQuestions.shuffle(random);
+        List<dynamic> additionalQuestions =
+            remainingUnitQuestions.take(remainingQuestions).toList();
+
+        // Add the additional questions to the selected list
+        selected50Questions.addAll(additionalQuestions);
+
+        // Update the remaining questions count
+        remainingQuestions -= additionalQuestions.length;
+      }
+    }
+
+    // Shuffle the final list of selected questions
+    selected50Questions.shuffle(Random());
     print("Total selected questions: ${selected50Questions.length}");
 
     final List<Exam> loadedQuestions = selected50Questions.map((data) {
@@ -137,12 +168,19 @@ class ExamController extends GetxController {
 
   // Function to clear all data and reset the quiz
   void resetExam() {
+    stopTimer();
     questions.clear();
     selectedAnswers.clear();
     questionIndex.value = 0;
     score.value = 0;
     falseAnswers.value = 0;
     trueAnswers.value = 0;
+    questionIndex.value = 0;
+    examName.value = "";
+    examGrade.value = "";
+    examDepartment.value = "";
+    examType.value = "";
+    examTime.value = 0;
     isFinalExam.value = false;
     endTime = null;
     timeTaken.value = '';
@@ -247,6 +285,8 @@ class ExamController extends GetxController {
           .doc()
           .set(examResult);
 
+      resetExam();
+
       Get.snackbar(
         S.current.success,
         S.current.exam_result_saved_successfully,
@@ -306,14 +346,17 @@ class ExamController extends GetxController {
   }
 
   void stopTimer() {
-    if (timer.isActive) {
-      timer.cancel();
+    if (timer != null) {
+      if (timer!.isActive) {
+        timer?.cancel();
+        currentTime.value = 0;
+      }
     }
 
-    if (endTime == null) {
+    if (startTime != null && endTime == null) {
       endTime = DateTime.now();
       // Calculate the difference
-      Duration? duration = endTime?.difference(startTime);
+      Duration? duration = endTime?.difference(startTime!);
 
       // Format the duration into hours, minutes, and seconds
       int? hours = duration?.inHours;
@@ -330,8 +373,8 @@ class ExamController extends GetxController {
   void onClose() {
     // Ensure the timer is cleaned up when the controller is disposed
     if (timer != null) {
-      if (timer.isActive) {
-        timer.cancel();
+      if (timer!.isActive) {
+        timer?.cancel();
       }
     }
     super.onClose();

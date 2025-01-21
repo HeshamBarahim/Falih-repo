@@ -88,6 +88,8 @@ class SubjectsController extends GetxController {
     } else {
       name.value = id.value;
     }
+    _examController.examName.value = name.value;
+    _examController.examType.value = "UnitExam";
   }
 
   void loadSubjects() {
@@ -217,7 +219,7 @@ class SubjectsController extends GetxController {
 
   Future<void> startFinalExam(int subjectIndex) async {
     if (subjectIndex == -1) {
-      changeSelectedSectionIndex(0);
+      // changeSelectedSectionIndex(0);
 
       List<Map<String, dynamic>> allSectionUnits = [];
       for (var sectionName

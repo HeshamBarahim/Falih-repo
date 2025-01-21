@@ -15,7 +15,7 @@ class AfterExam extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    final ExamController controller = Get.put(ExamController());
+    final ExamController controller = Get.find<ExamController>();
     final SubjectsController subjectController = Get.put(SubjectsController());
 
     final List items = [
