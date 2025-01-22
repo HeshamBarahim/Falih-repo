@@ -1,3 +1,4 @@
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/screens/subject_page/widgets/subjects_label.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,10 @@ class SubjectPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          subjectController.name.value.capitalizeFirst ?? "",
+                          // subjectController.name.value.capitalizeFirst ?? "",
+                          getSectionDisplayName(
+                            subjectController.name.value,
+                          ),
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -53,5 +57,52 @@ class SubjectPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getSectionDisplayName(String key) {
+    // print("fksjgjgskgj $key");
+    switch (key) {
+      case "geography":
+        return "جغرافيا";
+      case "history":
+        return "تاريخ";
+      case "nationalism":
+        return "وطنية";
+      case "physics":
+        return S.current.subject_six;
+      case "biology":
+        return S.current.subject_seven;
+      case "chemistry":
+        return S.current.subject_five;
+      case "iman":
+        return "ُالإيمان";
+      case "fiqh":
+        return "الفقة";
+      case "hadith":
+        return "الحديث";
+      case "seerah":
+        return "السيرة";
+      case "grammar_morphology":
+        return "النحو والصرف";
+      case "literature_texts":
+        return "الأدب والنصوص";
+      case "reading":
+        return "القراءة";
+      case "criticism":
+        return "النقد";
+      case "tafsir_alquran":
+        return "الحفظ والتفسير";
+      case "uloom_alquran":
+        return "علوم القرآن";
+      case "tajweed":
+        return "التجويد";
+      case "quran":
+        return S.current.subject_one;
+      case "arabic":
+        return S.current.subject_three;
+
+      default:
+        return key.capitalizeFirst ?? key;
+    }
   }
 }

@@ -19,16 +19,16 @@ class AfterExam extends StatelessWidget {
     final SubjectsController subjectController = Get.put(SubjectsController());
 
     final List items = [
-      {'value': 'all', 'name': 'All'},
-      {'value': 'correct', 'name': 'Correct'},
-      {'value': 'incorrect', 'name': 'Wrong'},
+      {'value': 'all', 'name': S.of(context).all},
+      {'value': 'correct', 'name': S.of(context).correct},
+      {'value': 'incorrect', 'name': S.of(context).wrong},
     ];
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.08),
         child: CustomAppBar(
-          name: subjectController.name.value,
+          name: getSectionDisplayName(subjectController.name.value),
           color: subjectController.color,
         ),
       ),
@@ -67,7 +67,8 @@ class AfterExam extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "${items[index]['name']} ${controller.filteredQuestions.length}",
+                          // "${items[index]['name']} ${controller.filteredQuestions.length}",
+                          "${items[index]['name']}",
                           style: TextStyle(
                             fontSize: screenHeight * 0.018,
                             fontWeight: FontWeight.bold,
@@ -175,5 +176,52 @@ class AfterExam extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getSectionDisplayName(String key) {
+    // print("fksjgjgskgj $key");
+    switch (key) {
+      case "geography":
+        return "جغرافيا";
+      case "history":
+        return "تاريخ";
+      case "nationalism":
+        return "وطنية";
+      case "physics":
+        return S.current.subject_six;
+      case "biology":
+        return S.current.subject_seven;
+      case "chemistry":
+        return S.current.subject_five;
+      case "iman":
+        return "ُالإيمان";
+      case "fiqh":
+        return "الفقة";
+      case "hadith":
+        return "الحديث";
+      case "seerah":
+        return "السيرة";
+      case "grammar_morphology":
+        return "النحو والصرف";
+      case "literature_texts":
+        return "الأدب والنصوص";
+      case "reading":
+        return "القراءة";
+      case "criticism":
+        return "النقد";
+      case "tafsir_alquran":
+        return "الحفظ والتفسير";
+      case "uloom_alquran":
+        return "علوم القرآن";
+      case "tajweed":
+        return "التجويد";
+      case "quran":
+        return S.current.subject_one;
+      case "arabic":
+        return S.current.subject_three;
+
+      default:
+        return key.capitalizeFirst ?? key;
+    }
   }
 }

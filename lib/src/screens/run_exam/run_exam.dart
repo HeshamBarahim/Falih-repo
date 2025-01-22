@@ -48,7 +48,7 @@ class RunExam extends StatelessWidget {
                         decoration: BoxDecoration(
                           border:
                               Border.all(color: AppColors.mainColor, width: 2),
-                          color: AppColors.choicesColor,
+                          color: AppColors.customGrey,
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(

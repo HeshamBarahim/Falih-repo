@@ -462,7 +462,7 @@
             "@we_will_send": {
               "description": ""
             },
-            "we_will_send": "سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح",
+            "we_will_send": "سوف نرسل تفاصيل الطلب إلى رقم هاتفك بعد إكمال الدفع بنجاح",
           
             "@pay_for_plan": {
               "description": ""
@@ -769,7 +769,7 @@
 "@check_out": {
   "description": ""
 },
-"check_out": "الدفع",
+"check_out": "أكمل عملية الدفع",
 "@u_should_choose_governorate": {
   "description": ""
 },

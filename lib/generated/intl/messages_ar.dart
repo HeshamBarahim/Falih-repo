@@ -59,7 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chapter": MessageLookupByLibrary.simpleMessage("الفصل"),
         "chapters": MessageLookupByLibrary.simpleMessage("الفصول"),
         "check_details": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
-        "check_out": MessageLookupByLibrary.simpleMessage("الدفع"),
+        "check_out": MessageLookupByLibrary.simpleMessage("أكمل عملية الدفع"),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),
@@ -336,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بيانات المستخدم غير متوفرة"),
         "way": MessageLookupByLibrary.simpleMessage("طريقتك"),
         "we_will_send": MessageLookupByLibrary.simpleMessage(
-            "سوف نرسل تفاصيل الطلب إلى بريدك الإلكتروني بعد إكمال الدفع بنجاح"),
+            "سوف نرسل تفاصيل الطلب إلى رقم هاتفك بعد إكمال الدفع بنجاح"),
         "welcome_to": MessageLookupByLibrary.simpleMessage("مرحبًا في"),
         "with_the": MessageLookupByLibrary.simpleMessage("مع"),
         "wrong": MessageLookupByLibrary.simpleMessage("خاطئ"),

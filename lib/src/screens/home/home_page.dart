@@ -323,15 +323,17 @@ class HomePage extends StatelessWidget {
                                                   color: AppColors
                                                       .lightenMainColor,
                                                   borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20))),
+                                                      BorderRadius.all(Radius
+                                                          .circular(20))),
                                               child: Padding(
                                                   padding: const EdgeInsets
                                                       .symmetric(
                                                       horizontal: 8.0),
                                                   child: Text(
                                                       // "${examResult["examName"]}"
-                                                      "${getSectionDisplayName(examResult["examName"])}",
+                                                      getSectionDisplayName(
+                                                          examResult[
+                                                              "examName"]),
                                                       style: const TextStyle(
                                                           color: AppColors
                                                               .darkMainColor,
@@ -391,7 +393,8 @@ class HomePage extends StatelessWidget {
                                           ),
                                           Text(
                                             // "${examResult["examType"]}",
-                                            "${getTypeExamDisplayName(examResult["examType"])}",
+                                            getTypeExamDisplayName(
+                                                examResult["examType"]),
                                             style: const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700,
@@ -474,7 +477,7 @@ class HomePage extends StatelessWidget {
 //   }
 
   String getSectionDisplayName(String key) {
-    print("fksjgjgskgj $key");
+    // print("fksjgjgskgj $key");
     switch (key) {
       case "geography":
         return "جغرافيا";
