@@ -23,6 +23,7 @@ main() async {
   // Clear the cache
   // Get.put(NetworkController());
 
+  debugInvertOversizedImages = true; // Enable image debugging
   runApp(const MyApp());
 
   // runApp(

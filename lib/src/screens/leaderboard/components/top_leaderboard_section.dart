@@ -1,3 +1,4 @@
+import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -120,7 +121,7 @@ class TopLeaderboardSection extends StatelessWidget {
                       Positioned(
                         top: 0,
                         child: Image.asset(
-                          'assets/images/crown_icon.png',
+                          Images.crownIcon,
                           width: screenWidth * 0.085,
                         ),
                       ),

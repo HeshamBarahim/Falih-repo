@@ -366,7 +366,7 @@
           "@notification": {
             "description": ""
           },
-          "notification": "الإشعار",
+          "notification": "الإشعارات",
         
           "@update_profile": {
             "description": ""

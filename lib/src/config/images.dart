@@ -6,10 +6,14 @@ class Images {
       'assets/images/background_image_of_auth.png';
 
 // test profile
-  static const String test = 'assets/images/test.jpg';
+  static const String test = 'assets/images/person.jpg';
   static const String testAds = 'assets/images/test_ads.png';
 
-  // icons of subjects
+  // Crown icon on leaderBoard
+  static const String crownIcon = 'assets/images/crown_icon.png';
+
+  // image on subscription page
+  static const String subscriptionImage = 'assets/images/premium_icon.png';
 
   // On boarding Screen
   static const String onBoardingOne =
@@ -21,7 +25,7 @@ class Images {
 
   static const String quranIcon = 'assets/subjects_icons/quran_icon.png';
   static const String islamicIcon = 'assets/subjects_icons/islamic_icon.png';
-  static const String arabicIcon = 'assets/subjects_icons/arabic_icon.png';
+  static const String arabicIcon = 'assets/subjects_icons/arabic_icon2.png';
   static const String englishIcon = 'assets/subjects_icons/english_icon.png';
   static const String chemistryIcon =
       'assets/subjects_icons/chemistry_icon.png';
@@ -29,24 +33,15 @@ class Images {
   static const String biologyIcon = 'assets/subjects_icons/biology_icon.png';
   static const String mathIcon = 'assets/subjects_icons/math_icon.png';
   static const String socialStudiesIcon =
-      'assets/subjects_icons/map_on_board_.png';
-
-  // leaderboard page
-  static const String goldenMedal = 'assets/images/gold_medal.png';
-
-  // static const String silverMedal = 'assets/images/silver_medal.png';
-  static const String bronzeMedal = 'assets/images/bronze_medal.png';
-
-  // custom dialog
-  static const String silverMedal = 'assets/images/silver_medal.png';
+      'assets/subjects_icons/map_on_board.png';
 
   // about us page
   static const String achievement = 'assets/images/about_us/achievement.png';
   static const String classBoy = 'assets/images/about_us/class_room_boy.png';
-  static const String magicBook = 'assets/images/about_us/magic_book.png';
+  static const String magicBook = 'assets/images/about_us/magic_book_.png';
   static const String community =
-      'assets/images/about_us/protect_community.png';
-  static const String sucess = 'assets/images/about_us/sucess.png';
+      'assets/images/about_us/protect_community_.png';
+  static const String sucess = 'assets/images/about_us/sucess_.png';
 
   // Falih
   static const String falih = 'assets/images/falih.png';

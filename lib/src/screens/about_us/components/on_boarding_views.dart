@@ -49,8 +49,12 @@ class OnBoardingViews extends StatelessWidget {
               ),
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.02),
-            Image.asset(
-              imgUrl,
+            Image(
+              image: ResizeImage(
+                AssetImage(imgUrl),
+                width: width.toInt(),
+                height: height.toInt(),
+              ),
               fit: BoxFit.cover,
               width: width,
               height: height,

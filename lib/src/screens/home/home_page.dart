@@ -78,8 +78,8 @@ class HomePage extends StatelessWidget {
                                           ? CachedNetworkImage(
                                               key: ValueKey(userController.user
                                                   .value!.userProfileImgUrl),
-                                              imageUrl: userController.user
-                                                  .value!.userProfileImgUrl!,
+                                              imageUrl:
+                                                  "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
                                               placeholder: (context, url) =>
                                                   const CircularProgressIndicator(),
                                               errorWidget:
@@ -98,6 +98,14 @@ class HomePage extends StatelessWidget {
                                                   0.282,
                                               height: SizeConfig.screenWidth! *
                                                   0.282,
+                                              cacheWidth:
+                                                  (SizeConfig.screenWidth! *
+                                                          0.282)
+                                                      .toInt(),
+                                              cacheHeight:
+                                                  (SizeConfig.screenWidth! *
+                                                          0.282)
+                                                      .toInt(),
                                             ),
                                     ),
                                   ),

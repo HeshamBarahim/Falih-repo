@@ -192,7 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "لم تقم بخوض أي اختبار بعد. قم بخوض الاختبار للانضمام إلى لوحة القيادة والمنافسة مع الطلاب الآخرين"),
         "not_taken_exams_home_page":
             MessageLookupByLibrary.simpleMessage("لم تقم بخوض أي اختبارات بعد"),
-        "notification": MessageLookupByLibrary.simpleMessage("الإشعار"),
+        "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "on": MessageLookupByLibrary.simpleMessage("في"),
         "otp": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
         "over_all_points":

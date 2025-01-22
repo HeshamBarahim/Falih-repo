@@ -14,6 +14,8 @@ class AdvertiseImgsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayWidth = MediaQuery.of(context).size.width;
+    final displayHeight = displayWidth / 2;
     return Column(
       children: [
         CarouselSlider(
@@ -31,14 +33,18 @@ class AdvertiseImgsCarousel extends StatelessWidget {
               }),
           items: Images.homeCarouselImages
               .map((imagePath) => ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    imagePath,
-                    fit: BoxFit.fill, // Ensures the image fills the space
-                    width: double.infinity, // Takes full width of the carousel
-                    height:
-                        double.infinity, // Takes full height of the carousel
-                  )))
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image(
+                      image: ResizeImage(
+                        AssetImage(imagePath),
+                        width: displayWidth.toInt(),
+                        height: displayHeight.toInt(),
+                      ),
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                  ))
               .toList(),
         ),
         SizedBox(

@@ -1,4 +1,5 @@
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -37,9 +38,7 @@ class Header extends StatelessWidget {
         SizedBox(
           height: SizeConfig.screenHeight! * 0.145,
           child: Center(
-            child: Image.asset(
-              'assets/images/premium_icon.png',
-            ),
+            child: Image.asset(Images.subscriptionImage),
           ),
         ),
       ],

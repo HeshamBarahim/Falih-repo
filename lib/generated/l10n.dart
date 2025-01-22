@@ -840,10 +840,10 @@ class S {
     );
   }
 
-  /// `الإشعار`
+  /// `الإشعارات`
   String get notification {
     return Intl.message(
-      'الإشعار',
+      'الإشعارات',
       name: 'notification',
       desc: '',
       args: [],
