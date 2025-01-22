@@ -33,9 +33,8 @@ class CurriculumPage extends StatelessWidget {
           : Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(
-                    8,
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -104,6 +103,8 @@ class CurriculumPage extends StatelessWidget {
                         final subject = subjectController.subjects[index];
                         return GestureDetector(
                           onTap: () {
+                            subjectController.selectedIndex.value = 0;
+                            subjectController.selectedSectionIndex.value = 0;
                             subjectController.id.value = subject['id'];
                             subjectController.name.value = subject['name'];
                             subjectController.color = subject['color'];

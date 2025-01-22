@@ -13,7 +13,7 @@ class RunExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExamController controller = Get.put(ExamController());
+    final ExamController controller = Get.find<ExamController>();
     SizeConfig().init(context);
     return Scaffold(
       body: Obx(() {

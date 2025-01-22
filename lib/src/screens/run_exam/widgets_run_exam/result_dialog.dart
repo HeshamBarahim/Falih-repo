@@ -39,58 +39,6 @@ class ResultDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Medal and Restart Button Row
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     // Medal
-              //     Container(
-              //       width: 50,
-              //       height: 50,
-              //       decoration: BoxDecoration(
-              //         shape: BoxShape.circle,
-              //         border: Border.all(
-              //           color: AppColors.mainColor,
-              //           width: 4.0,
-              //         ),
-              //       ),
-              //       child: Center(
-              //         child: Text(
-              //           controller.questions.length.toString(),
-              //           style: const TextStyle(
-              //             fontSize: 18,
-              //             fontWeight: FontWeight.bold,
-              //             color: AppColors.mainColor,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //     // Restart Button
-              //     InkWell(
-              //       onTap: () {
-              //         // Restart logic
-              //       },
-              //       borderRadius: BorderRadius.circular(25),
-              //       child: Container(
-              //         padding: const EdgeInsets.all(8),
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           border: Border.all(
-              //             color: AppColors.mainColor,
-              //             width: 2,
-              //           ),
-              //         ),
-              //         child: const Icon(
-              //           Icons.restart_alt_rounded,
-              //           color: AppColors.mainColor,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(height: 20),
-
-              // Correct and Incorrect Answers Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -254,9 +202,6 @@ class ResultDialog extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              // Updated spacing for better alignment
-
-// Done Button
               InkWell(
                 onTap: () async {
                   final ExamController controller = Get.find<ExamController>();

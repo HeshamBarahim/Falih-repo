@@ -8,7 +8,7 @@ class AIBottomSheet extends StatelessWidget {
     super.key,
   });
 
-  final ExamController controller = Get.put(ExamController());
+  final ExamController controller = Get.find<ExamController>();
 
   @override
   Widget build(BuildContext context) {
