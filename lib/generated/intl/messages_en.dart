@@ -62,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_details":
             MessageLookupByLibrary.simpleMessage("Checkout Details"),
         "check_out": MessageLookupByLibrary.simpleMessage("Checkout"),
+        "choose_any_section": MessageLookupByLibrary.simpleMessage(
+            "Choose any section or select all"),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compete_shine":
@@ -105,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Exam result saved successfully!"),
         "exam_simulation": MessageLookupByLibrary.simpleMessage(
             "This exam is a simulation of the final exam"),
-        "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+        "exams": MessageLookupByLibrary.simpleMessage("Take the 50 questions"),
         "explaination_on_boarding_1": MessageLookupByLibrary.simpleMessage(
             "Master School Subjects with Your Ultimate Study Companion."),
         "explaination_text": MessageLookupByLibrary.simpleMessage(

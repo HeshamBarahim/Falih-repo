@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "chapters": MessageLookupByLibrary.simpleMessage("الفصول"),
         "check_details": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
         "check_out": MessageLookupByLibrary.simpleMessage("أكمل عملية الدفع"),
+        "choose_any_section": MessageLookupByLibrary.simpleMessage(
+            "اختر أي قسم أو أختبر المنهج كامل"),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),
@@ -105,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم حفظ نتيجة الامتحان بنجاح!"),
         "exam_simulation": MessageLookupByLibrary.simpleMessage(
             "هذا الاختبار هو محاكاة للاختبار النهائي"),
-        "exams": MessageLookupByLibrary.simpleMessage("الاختبارات"),
+        "exams": MessageLookupByLibrary.simpleMessage("اختبر ال50 سؤال"),
         "explaination_on_boarding_1": MessageLookupByLibrary.simpleMessage(
             "تمكن من موادك الدراسية مع رفيقك الدراسي النهائي"),
         "explaination_text": MessageLookupByLibrary.simpleMessage(

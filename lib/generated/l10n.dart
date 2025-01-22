@@ -550,10 +550,10 @@ class S {
     );
   }
 
-  /// `الاختبارات`
+  /// `اختبر ال50 سؤال`
   String get exams {
     return Intl.message(
-      'الاختبارات',
+      'اختبر ال50 سؤال',
       name: 'exams',
       desc: '',
       args: [],
@@ -2255,6 +2255,16 @@ class S {
     return Intl.message(
       'امتحان الوحدة',
       name: 'unit_exam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اختر أي قسم أو أختبر المنهج كامل`
+  String get choose_any_section {
+    return Intl.message(
+      'اختر أي قسم أو أختبر المنهج كامل',
+      name: 'choose_any_section',
       desc: '',
       args: [],
     );

@@ -218,11 +218,10 @@
           "description": ""
         },
         "chapters": "الفصول",
-      
         "@exams": {
           "description": ""
         },
-        "exams": "الاختبارات",
+        "exams": "اختبر ال50 سؤال",
       
         "@confirm": {
           "description": "This the start of run exam"
@@ -973,7 +972,11 @@
 "@unit_exam": {
   "description": ""
 },
-"unit_exam": "امتحان الوحدة"
+"unit_exam": "امتحان الوحدة",
+"@choose_any_section": {
+  "description": ""
+},
+"choose_any_section": "اختر أي قسم أو أختبر المنهج كامل"
 
       }
     

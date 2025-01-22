@@ -28,7 +28,8 @@ class Images {
   static const String physicsIcon = 'assets/subjects_icons/physics_icon.png';
   static const String biologyIcon = 'assets/subjects_icons/biology_icon.png';
   static const String mathIcon = 'assets/subjects_icons/math_icon.png';
-  static const String socialStudiesIcon = 'assets/subjects_icons/math_icon.png';
+  static const String socialStudiesIcon =
+      'assets/subjects_icons/map_on_board_.png';
 
   // leaderboard page
   static const String goldenMedal = 'assets/images/gold_medal.png';
@@ -51,7 +52,7 @@ class Images {
   static const String falih = 'assets/images/falih.png';
 
   // Home page carousel imager
-  static const home_carousel_images = [
+  static const homeCarouselImages = [
     'assets/images/home_carousel_img/falih_1_v2.png',
     'assets/images/home_carousel_img/falih_2_v2.png',
     'assets/images/home_carousel_img/falih_3_v2.png',

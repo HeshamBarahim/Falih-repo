@@ -213,7 +213,7 @@
     "@exams": {
       "description": ""
     },
-    "exams":"Exams",
+    "exams":"Take the 50 questions",
     "@confirm": {
       "description": "This the start of run exam"
     },
@@ -885,6 +885,11 @@
     "@unit_exam": {
       "description": ""
     },
-    "unit_exam": "Unit Exam"
+    "unit_exam": "Unit Exam",
+    "@choose_any_section": {
+      "description": ""
+    },
+    "choose_any_section": "Choose any section or select all"
+  
 
 }

@@ -464,7 +464,9 @@ class SubjectsLabels extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 2.5),
                                   child: Text(
-                                    "${examResult["examName"].toString().capitalizeFirst}",
+                                    // "${examResult["examName"].toString().capitalizeFirst}",
+                                    getSectionDisplayName(
+                                        examResult["examName"]),
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w700,
@@ -482,11 +484,11 @@ class SubjectsLabels extends StatelessWidget {
                                             color: AppColors.successBoxColor,
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(20))),
-                                        child: const Padding(
-                                            padding: EdgeInsets.symmetric(
+                                        child: Padding(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 8.0),
-                                            child: Text("Passed",
-                                                style: TextStyle(
+                                            child: Text(S.of(context).passed,
+                                                style: const TextStyle(
                                                     color:
                                                         AppColors.successColor,
                                                     fontWeight: FontWeight.w500,
@@ -496,11 +498,11 @@ class SubjectsLabels extends StatelessWidget {
                                             color: AppColors.errorBoxColor,
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(20))),
-                                        child: const Padding(
-                                          padding: EdgeInsets.symmetric(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
-                                          child: Text("Failed",
-                                              style: TextStyle(
+                                          child: Text(S.of(context).failed,
+                                              style: const TextStyle(
                                                   color: AppColors.errorColor,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14)),
@@ -510,7 +512,9 @@ class SubjectsLabels extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  "${examResult["examType"]}",
+                                  // "${examResult["examType"]}",
+                                  getTypeExamDisplayName(
+                                      examResult["examType"]),
                                   style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
@@ -582,102 +586,76 @@ class SubjectsLabels extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 4),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "Choose any section or select all",
-                          style: TextStyle(
-                            color: AppColors.darkMainColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      S.of(context).choose_any_section,
+                      style: const TextStyle(
+                        color: AppColors.darkMainColor,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Obx(
-                            () => Column(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: List.generate(
-                                  subjectController
+                    ),
+                  ),
+                  Obx(
+                    () => Column(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: List.generate(
+                              subjectController
                                       .subjectSections[subjectController
-                                      .curriculumGrade
-                                      .value]![subjectController.id.value]
+                                          .curriculumGrade
+                                          .value]![subjectController.id.value]
                                       ?.length ??
-                                      0, (index) {
-                                return InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      localSelectedIndex = index;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.08,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: localSelectedIndex == index
-                                            ? AppColors.mainColor.withOpacity(0.50)
-                                            : AppColors.lightenMainColor
-                                            .withOpacity(0.50),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          subjectController
-                                              .subjectSections[subjectController
-                                              .curriculumGrade.value]![
-                                          subjectController
-                                              .id.value]![index]
-                                              .capitalizeFirst ??
-                                              "",
-                                          style: const TextStyle(
-                                            color: AppColors.mainColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                            ),
-                            InkWell(
+                                  0, (index) {
+                            return InkWell(
                               onTap: () {
                                 setState(() {
-                                  localSelectedIndex = -1;
+                                  localSelectedIndex = index;
                                 });
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.08,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: localSelectedIndex == -1
+                                    color: localSelectedIndex == index
                                         ? AppColors.mainColor.withOpacity(0.50)
                                         : AppColors.lightenMainColor
-                                        .withOpacity(0.50),
+                                            .withOpacity(0.50),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
-                                      "All",
-                                      style: TextStyle(
+                                      // subjectController
+                                      //         .subjectSections[subjectController
+                                      //                 .curriculumGrade.value]![
+                                      //             subjectController
+                                      //                 .id.value]![index]
+                                      //         .capitalizeFirst ??
+                                      //     "",
+                                      getSectionDisplayName(subjectController
+                                                  .subjectSections[
+                                              subjectController
+                                                  .curriculumGrade.value]![
+                                          subjectController.id.value]![index]),
+
+                                      style: const TextStyle(
                                         color: AppColors.mainColor,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -685,55 +663,87 @@ class SubjectsLabels extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            );
+                          }),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () async {
-                            await subjectController
-                                .startFinalExam(localSelectedIndex);
-                            Navigator.pop(_);
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              localSelectedIndex = -1;
+                            });
                           },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 8),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 2,
-                                color: AppColors
-                                    .mainColor, // Border color consistent with the theme
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: localSelectedIndex == -1
+                                    ? AppColors.mainColor.withOpacity(0.50)
+                                    : AppColors.lightenMainColor
+                                        .withOpacity(0.50),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColors.darkMainColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                  AppColors.lightenMainColor.withOpacity(0.2),
-                                  blurRadius: 6,
-                                  offset: const Offset(0, 3),
+                              child: Center(
+                                child: Text(
+                                  S.of(context).all,
+                                  style: const TextStyle(
+                                    color: AppColors.mainColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ],
-                            ),
-                            child: Text(
-                              S.of(context).start_exam,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: AppColors.lightenMainColor,
-                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                );
-              }),
-            ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () async {
+                        await subjectController
+                            .startFinalExam(localSelectedIndex);
+                        Navigator.pop(_);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: AppColors
+                                .mainColor, // Border color consistent with the theme
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.darkMainColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color:
+                                  AppColors.lightenMainColor.withOpacity(0.2),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          S.of(context).start_exam,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: AppColors.lightenMainColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
       );
     } else {
       examController.examType.value = "FinalExam";
@@ -778,6 +788,19 @@ class SubjectsLabels extends StatelessWidget {
         return "علوم القرآن";
       case "tajweed":
         return "التجويد";
+      default:
+        return key.capitalizeFirst ?? key;
+    }
+  }
+
+  String getTypeExamDisplayName(String key) {
+    // print("Plan ID from Firebase: $key");
+    switch (key) {
+      case "FinalExam":
+        return S.current.final_exam;
+      case "UnitExam":
+        return S.current.unit_exam;
+
       default:
         return key.capitalizeFirst ?? key;
     }

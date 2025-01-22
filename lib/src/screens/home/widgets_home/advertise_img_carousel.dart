@@ -29,7 +29,7 @@ class AdvertiseImgsCarousel extends StatelessWidget {
               onPageChanged: (index, reason) {
                 controller.carouselCurrentIndex.value = index;
               }),
-          items: Images.home_carousel_images
+          items: Images.homeCarouselImages
               .map((imagePath) => ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
@@ -48,7 +48,7 @@ class AdvertiseImgsCarousel extends StatelessWidget {
           () => Center(
             child: AnimatedSmoothIndicator(
               activeIndex: controller.carouselCurrentIndex.value,
-              count: Images.home_carousel_images.length,
+              count: Images.homeCarouselImages.length,
               effect: const WormEffect(
                   dotHeight: 6,
                   dotWidth: 6,

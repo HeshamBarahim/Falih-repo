@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../controller/loading_dialog_controller.dart';
-import '../../screens/on_boarding/first_page_boarding.dart';
 import 'exceptions/t_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
