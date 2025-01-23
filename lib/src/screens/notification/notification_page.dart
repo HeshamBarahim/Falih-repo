@@ -4,6 +4,9 @@ import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/notification/widgets/notification_container.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/notifications_controller.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -11,8 +14,9 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Stack(children: [
-      Container(
+    return Stack(
+      children: [
+        Container(
           decoration: BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
@@ -49,14 +53,40 @@ class NotificationPage extends StatelessWidget {
                 },
               ),
             ),
-            body: ListView.builder(
-              padding: const EdgeInsets.all(25),
-              itemCount: 6 + 1,
-              itemBuilder: (context, index) {
-                return const NotificationContainer(); // Notification items
+            body: GetBuilder<NotificationsController>(
+              init: NotificationsController(),
+              builder: (controller) {
+                return controller.notificationsList.isNotEmpty
+                    ? ListView.builder(
+                        padding: const EdgeInsets.all(25),
+                        itemCount: controller.notificationsList.length,
+                        itemBuilder: (context, index) {
+                          return NotificationContainer(
+                            title: controller.notificationsList[index]['title'],
+                            subTitle: controller.notificationsList[index]
+                                ['subTitle'],
+                            date: controller.notificationsList[index]['date'],
+                            deleteNotification: () {
+                              controller.deleteNotification(
+                                  controller.notificationsList[index].id);
+                            },
+                          );
+                        },
+                      )
+                    : Center(
+                        child: Text(
+                          'There is No Notification',
+                          style: TextStyle(
+                            fontSize: SizeConfig.screenWidth! * 0.04,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
               },
             ),
-          )),
-    ]);
+          ),
+        ),
+      ],
+    );
   }
 }

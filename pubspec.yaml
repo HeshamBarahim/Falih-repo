@@ -82,7 +82,6 @@ flutter:
     - assets/images/on_boarding/
     - assets/images/about_us/
     - assets/subjects_icons/
-    - assets/csv_files/
     - assets/RiveAssets/
     - assets/md_files/
     - assets/splash_animation/

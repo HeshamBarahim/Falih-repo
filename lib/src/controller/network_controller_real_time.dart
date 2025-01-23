@@ -39,6 +39,7 @@ class NetworkControllerRealTime extends GetxController {
           S.current.u_are_disconnected_from_the_internet,
           backgroundColor: Colors.red.shade600,
           colorText: Colors.white,
+          dismissDirection: DismissDirection.endToStart,
           snackPosition: SnackPosition.TOP,
           duration: const Duration(seconds: 4),
           icon: const Icon(Icons.wifi_off, color: Colors.white),
@@ -56,6 +57,7 @@ class NetworkControllerRealTime extends GetxController {
             Get.snackbar(
               S.current.connected_to_the_internet,
               S.current.u_are_now_connected_to_internet,
+              dismissDirection: DismissDirection.endToStart,
               backgroundColor: Colors.green.shade600,
               colorText: Colors.white,
               snackPosition: SnackPosition.TOP,
@@ -75,6 +77,7 @@ class NetworkControllerRealTime extends GetxController {
             S.current.no_internet_connection,
             S.current.u_are_disconnected_from_the_internet,
             backgroundColor: Colors.red.shade600,
+            dismissDirection: DismissDirection.endToStart,
             colorText: Colors.white,
             snackPosition: SnackPosition.TOP,
             duration: const Duration(seconds: 4),

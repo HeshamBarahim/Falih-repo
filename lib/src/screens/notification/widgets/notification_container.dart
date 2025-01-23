@@ -2,9 +2,23 @@ import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:path/path.dart';
+
+import '../../../controller/notifications_controller.dart';
 
 class NotificationContainer extends StatelessWidget {
-  const NotificationContainer({super.key});
+  final String title;
+  final String subTitle;
+  final String date;
+  final VoidCallback deleteNotification;
+
+  const NotificationContainer(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.date,
+      required this.deleteNotification});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +46,10 @@ class NotificationContainer extends StatelessWidget {
         children: [
           // image part
           CircleAvatar(
-            radius: SizeConfig.screenWidth! * 0.070,
+            radius: SizeConfig.screenWidth! * 0.090,
             child: Image.asset(
-              Images.test,
+              Images.logoFalih,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(
@@ -47,7 +62,7 @@ class NotificationContainer extends StatelessWidget {
                 // Title
                 Center(
                   child: Text(
-                    'New Journey to Falih',
+                    title,
                     style: TextStyle(
                         color: AppColors.bgScreen1,
                         fontSize: SizeConfig.screenWidth! * 0.050,
@@ -56,27 +71,10 @@ class NotificationContainer extends StatelessWidget {
                 ),
                 // Time and Date
                 SizedBox(height: SizeConfig.screenHeight! * 0.005),
-                Row(
-                  children: [
-                    Text(
-                      '22:13',
-                      style: TextStyle(
-                          color: AppColors.subHeaderNotTaken,
-                          fontSize: SizeConfig.screenWidth! * 0.030),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text('2024-12-07',
-                        style: TextStyle(
-                            color: AppColors.subHeaderNotTaken,
-                            fontSize: SizeConfig.screenWidth! * 0.030))
-                  ],
-                ),
+                Text(date),
                 SizedBox(height: SizeConfig.screenHeight! * 0.005),
                 // Content of the Box
-                Text(
-                    'Join us to have fun and get more fun ... lets start the journey',
+                Text(subTitle,
                     style: TextStyle(
                         color: AppColors.mainColor,
                         fontSize: SizeConfig.screenWidth! * 0.040)),
@@ -85,12 +83,14 @@ class NotificationContainer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const SizedBox(),
-                    Text(
-                      'See More',
-                      style: TextStyle(
-                          color: AppColors.bgScreen1,
-                          fontSize: SizeConfig.screenWidth! * 0.040),
-                    ),
+                    IconButton(
+                      onPressed: deleteNotification,
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        size: SizeConfig.screenWidth! * 0.07,
+                      ),
+                    )
                   ],
                 )
               ],
