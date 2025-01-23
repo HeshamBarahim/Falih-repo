@@ -13,7 +13,8 @@ class NotificationsController extends GetxController {
     // TODO: implement onInit
     getNotificationsList();
     getNotificationsPermission();
-    foreGroundNotifications();
+    foreGroundNotificationsHandler();
+    backgroundNotificationsHandler();
     super.onInit();
   }
 
@@ -115,7 +116,7 @@ class NotificationsController extends GetxController {
     }
   }
 
-  Future<void> foreGroundNotifications() async {
+  Future<void> foreGroundNotificationsHandler() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       // print('Got a message whilst in the foreground! ${message.data}');
       // print('---------------------------------------------------------------');
@@ -140,8 +141,7 @@ class NotificationsController extends GetxController {
       addNotification(
         '${message.notification!.title}',
         '${message.notification!.body}',
-        '''${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - 
-          ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}''',
+        '${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}',
       );
     });
   }
@@ -152,8 +152,7 @@ class NotificationsController extends GetxController {
       addNotification(
         '${message.notification!.title}',
         '${message.notification!.body}',
-        '''${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - 
-          ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}''',
+        '${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}',
       );
     });
   }
