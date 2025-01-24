@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -2133,7 +2134,7 @@ class S {
   /// ` من خلال الاشتراك، فإنك توافق على`
   String get by_placing_this {
     return Intl.message(
-      ' من خلال الاشتراك، فإنك توافق على',
+      'من خلال الاشتراك، فإنك توافق على ',
       name: 'by_placing_this',
       desc: '',
       args: [],

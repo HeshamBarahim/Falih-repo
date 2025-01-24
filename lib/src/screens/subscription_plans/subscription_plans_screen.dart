@@ -1,5 +1,4 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/subscription_plans_controller.dart';
@@ -31,7 +30,8 @@ class SubscriptionPlansScreen extends StatelessWidget {
       },
       child: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(gradient: secondaryBackgroundColor_2),
+          decoration: const BoxDecoration(
+              gradient: AppColors.secondaryBackgroundColor_2),
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(

@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const LinearGradient secondaryBackgroundColor_2 = LinearGradient(
+    begin: Alignment.bottomRight,
+    end: Alignment.topLeft,
+    colors: [
+      Color(0xFF743089),
+      Color(0xFFBBA3C2),
+    ],
+
+    // transform: GradientRotation(),
+    stops: [0.0, 1.0],
+    transform: GradientRotation(171.6 * 3.14159 / 180),
+  );
+
   static const LinearGradient primaryGradients = LinearGradient(colors: [
     Color(0xFFF79334),
     Color(0xFFF33E62),

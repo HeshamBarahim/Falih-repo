@@ -1,7 +1,7 @@
+import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'package:falih/src/config/const.dart';
-import 'package:falih/src/config/sizes.dart';
+import '../../../config/themes.dart';
 
 class SettingsSection extends StatelessWidget {
   final String title;
@@ -20,21 +20,22 @@ class SettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: SizeConfig.screenHeight! * 0.0355,
           width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth! * 0.0195,
-            vertical: SizeConfig.screenHeight! * 0.00237,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
           ),
           decoration: const BoxDecoration(
-            color: labelsColor,
+            color: AppColors.mainColor,
           ),
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: SizeConfig.screenWidth! * 0.04375,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

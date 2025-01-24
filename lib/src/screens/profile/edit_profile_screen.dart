@@ -9,8 +9,8 @@ import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../config/const.dart';
 import '../../config/sizes.dart';
+import '../../config/themes.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
@@ -107,7 +107,7 @@ class EditProfileScreen extends StatelessWidget {
                                   controller.imagePickerDialog(context);
                                 },
                                 style: IconButton.styleFrom(
-                                  backgroundColor: iconColor_2,
+                                  backgroundColor: AppColors.mainColor,
                                 ),
                                 icon: Icon(
                                   Icons.edit,

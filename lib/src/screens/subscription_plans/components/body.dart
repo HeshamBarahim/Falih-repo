@@ -10,7 +10,7 @@ class Body extends StatelessWidget {
   Body({super.key});
 
   final SubscriptionPlansController controller =
-      Get.put(SubscriptionPlansController());
+      Get.find<SubscriptionPlansController>();
 
   @override
   Widget build(BuildContext context) {

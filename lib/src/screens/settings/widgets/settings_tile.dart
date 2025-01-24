@@ -1,7 +1,7 @@
+import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'package:falih/src/config/const.dart';
-import 'package:falih/src/config/sizes.dart';
+import '../../../config/themes.dart';
 
 class SettingsTile extends StatelessWidget {
   final IconData icon;
@@ -23,7 +23,7 @@ class SettingsTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: iconColor_1,
+        color: AppColors.secondaryColor,
         // size: screenHeight * 0.03,
         size: SizeConfig.screenWidth! * 0.062,
       ),
@@ -32,7 +32,7 @@ class SettingsTile extends StatelessWidget {
         style: TextStyle(
           // fontSize: screenHeight * 0.021,
           fontSize: SizeConfig.screenWidth! * 0.043,
-          color: fontColor_1,
+          color: AppColors.secondaryColor,
           fontWeight: FontWeight.bold,
         ),
       ),

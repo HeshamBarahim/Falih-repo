@@ -14,12 +14,8 @@ class CustomAgreeingCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final closeButton = S.of(context).close;
-    //  Current language code
     final locale = Localizations.localeOf(context).languageCode;
-    // Check if the language is Arabic
     final isArabic = locale == 'ar';
-    // Choose the file based on the language
     final privacyFile =
         isArabic ? 'privacy_policy_ar.md' : 'privacy_policy_en.md';
     final termsFile =
@@ -47,10 +43,7 @@ class CustomAgreeingCheck extends StatelessWidget {
                 ..onTap = () => showDialog(
                     context: context,
                     builder: (context) {
-                      return MdDialogs(
-                        mdFileName: termsFile,
-                        buttonText: closeButton,
-                      );
+                      return MdDialogs(mdFileName: termsFile);
                     }),
             ),
             TextSpan(
@@ -64,10 +57,7 @@ class CustomAgreeingCheck extends StatelessWidget {
                 ..onTap = () => showDialog(
                     context: context,
                     builder: (context) {
-                      return MdDialogs(
-                        mdFileName: privacyFile,
-                        buttonText: closeButton,
-                      );
+                      return MdDialogs(mdFileName: privacyFile);
                     }),
             ),
             const TextSpan(

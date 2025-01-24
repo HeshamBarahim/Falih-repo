@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../config/themes.dart';
 
 class ProfileSection extends StatelessWidget {
   ProfileSection({
@@ -53,7 +54,7 @@ class ProfileSection extends StatelessWidget {
               // fontSize: SizeConfig.screenHeight! * 0.026,
               fontSize: SizeConfig.screenWidth! * 0.053,
               fontWeight: FontWeight.bold,
-              color: fontColor_1,
+              color: AppColors.secondaryColor,
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.006),
@@ -62,7 +63,7 @@ class ProfileSection extends StatelessWidget {
             style: TextStyle(
               // fontSize: SizeConfig.screenHeight! * 0.019,
               fontSize: SizeConfig.screenWidth! * 0.039,
-              color: fontColor_1,
+              color: AppColors.secondaryColor,
             ),
           ),
         ],

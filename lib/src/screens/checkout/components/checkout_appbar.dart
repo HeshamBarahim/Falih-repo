@@ -1,5 +1,4 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/const.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/subscription_plans_controller.dart';
@@ -44,14 +43,12 @@ class CheckoutAppBar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ///
-              ///
               /// Back Button
               IconButton(
                 icon: Icon(
                   Icons.arrow_back,
                   size: SizeConfig.screenWidth! * 0.078,
-                  color: iconColor_2,
+                  color: AppColors.mainColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
