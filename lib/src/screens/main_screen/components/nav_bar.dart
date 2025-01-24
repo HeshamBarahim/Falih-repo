@@ -141,18 +141,17 @@ class NavBar extends StatelessWidget {
                                       () {
                                     menu.input!.change(false);
 
-                                    // if (menu.index == 0) {
-                                    //   controller.stopProcess();
-                                    //   // Get.to(() => ContactUsScreen());
-                                    // }
-                                    if (menu.index == 0) {
+                                   if (menu.index == 0) {
+                                      controller.stopProcess();
+                                      // Get.to(() => ContactUsScreen());
+                                    } else if (menu.index == 1) {
                                       controller.stopProcess();
                                       Get.to(() => AboutUsScreen());
-                                    } else if (menu.index == 1) {
+                                    } else if (menu.index == 2) {
                                       controller.stopProcess();
                                       // navController.moveNavBar();
                                       Get.to(() => const SettingsScreen());
-                                    } else if (menu.index == 2) {
+                                    } else if (menu.index == 3) {
                                       controller.stopProcess();
                                       AuthenticationRepository.instance
                                           .logout(context);
