@@ -1,21 +1,25 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../config/sizes.dart';
 
 class CustomTextForm extends StatelessWidget {
-  final String hintText;
-  final Widget prefixIcon;
   final TextEditingController myController;
   final String? Function(String?)? validator;
+  final TextInputType keyboardType;
+  final bool keyFormatter;
+  final String labelText;
+  final Widget prefixIcon;
 
-  const CustomTextForm({
-    super.key,
-    required this.hintText,
-    required this.prefixIcon,
-    required this.myController,
-    required this.validator,
-  });
+  const CustomTextForm(
+      {super.key,
+      required this.myController,
+      this.validator,
+      required this.keyboardType,
+      required this.keyFormatter,
+      required this.labelText,
+      required this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -25,37 +29,75 @@ class CustomTextForm extends StatelessWidget {
           vertical: SizeConfig.screenHeight! * 0.007,
           horizontal: SizeConfig.screenWidth! * 0.0097),
       child: TextFormField(
-        validator: validator,
+        // 1
         controller: myController,
+        // 2
+        validator: validator,
+        // 3
+        keyboardType: keyboardType,
+        obscureText:
+            keyboardType == TextInputType.visiblePassword ? true : false,
+        // 4
+        inputFormatters: keyFormatter == true
+            ? keyboardType == TextInputType.visiblePassword
+                ? [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    LengthLimitingTextInputFormatter(20),
+                  ]
+                : [
+                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                  ]
+            : null,
+        style: TextStyle(
+          fontSize: SizeConfig.screenWidth! * 0.038,
+          color: AppColors.mainColor,
+        ),
         decoration: InputDecoration(
-            hintText: hintText,
-            // hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.mainColor),
-            hintStyle: TextStyle(
-                fontSize: SizeConfig.screenWidth! * 0.03875,
-                color: AppColors.mainColor),
-            prefixIcon: prefixIcon,
-            prefixIconColor: AppColors.mainColor,
-            contentPadding: EdgeInsets.symmetric(
-                vertical: SizeConfig.screenHeight! * 0.00118,
-                horizontal: SizeConfig.screenWidth! * 0.048),
-            filled: true,
-            fillColor: Colors.white,
-            focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColors.borderColor),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(SizeConfig.screenWidth! * 0.0486))),
-            errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColors.warningColor),
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
-            focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.red),
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486)),
-            enabledBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
-                borderSide: const BorderSide(color: Color(0xFF9A9393)))),
+          filled: true,
+          fillColor: Colors.white,
+          // 5
+          // hintText: 'hintText',
+          // hintStyle: TextStyle(
+          //     fontSize: SizeConfig.screenWidth! * 0.03875, color: Colors.grey),
+          labelText: labelText,
+          labelStyle: TextStyle(
+              fontSize: SizeConfig.screenWidth! * 0.03875,
+              color: AppColors.mainColor),
+          errorStyle: TextStyle(
+              color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.03875),
+          prefixIcon: prefixIcon,
+          prefixIconColor: AppColors.mainColor,
+          contentPadding: EdgeInsets.symmetric(
+              vertical: SizeConfig.screenHeight! * 0.00118,
+              horizontal: SizeConfig.screenWidth! * 0.048),
+          enabledBorder: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+            borderSide: BorderSide(
+                color: AppColors.mainColor,
+                width: SizeConfig.screenWidth! * 0.0026),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: AppColors.mainColor,
+                width: SizeConfig.screenWidth! * 0.0046),
+            borderRadius: BorderRadius.all(
+              Radius.circular(SizeConfig.screenWidth! * 0.0486),
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: Colors.red, width: SizeConfig.screenWidth! * 0.0026),
+            borderRadius:
+                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: Colors.red, width: SizeConfig.screenWidth! * 0.0046),
+            borderRadius:
+                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+          ),
+        ),
       ),
     );
   }

@@ -71,6 +71,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "connected_to_the_internet":
             MessageLookupByLibrary.simpleMessage("Connected to the Internet"),
+        "logoutFromMoreThanOneDeviceTitle":
+            MessageLookupByLibrary.simpleMessage("Logout"),
+        "logoutFromMoreThanOneDevice": MessageLookupByLibrary.simpleMessage(
+            "You are logged out because you are connected to another device."),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "continueText": MessageLookupByLibrary.simpleMessage("Continue"),
         "correct": MessageLookupByLibrary.simpleMessage("Correct"),

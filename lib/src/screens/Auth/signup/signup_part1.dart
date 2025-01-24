@@ -11,6 +11,7 @@ import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 
 import '../../../config/sizes.dart';
+import '../../../config/themes.dart';
 
 class SignupPart1 extends StatelessWidget {
   SignupPart1({super.key});
@@ -79,31 +80,37 @@ class SignupPart1 extends StatelessWidget {
                           ),
                           SizedBox(height: SizeConfig.screenHeight! * 0.01),
                           CustomTextForm(
-                            hintText: S.of(context).hint_text_phone,
+                            keyFormatter: true,
+                            keyboardType: TextInputType.number,
+                            myController: controller.phoneNo,
+                            validator: Helper.validatePhoneNumber,
+                            labelText: S.of(context).hint_text_phone,
                             prefixIcon: Icon(
                               Icons.phone_android,
                               size: SizeConfig.screenWidth! * 0.06,
                             ),
-                            myController: controller.phoneNo,
-                            validator: Helper.validatePhoneNumber,
                           ),
                           CustomTextForm(
-                            hintText: S.of(context).hint_text_username,
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            myController: controller.fullName,
+                            validator: Helper.validatefullName,
+                            labelText: S.of(context).hint_text_username,
                             prefixIcon: Icon(
                               Icons.person,
                               size: SizeConfig.screenWidth! * 0.06,
                             ),
-                            myController: controller.fullName,
-                            validator: Helper.validatefullName,
                           ),
                           CustomTextForm(
-                            hintText: S.of(context).hint_text_School,
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            myController: controller.schoolName,
+                            validator: Helper.validateSchoolName,
+                            labelText: S.of(context).hint_text_School,
                             prefixIcon: Icon(
                               Icons.school,
                               size: SizeConfig.screenWidth! * 0.06,
                             ),
-                            myController: controller.schoolName,
-                            validator: Helper.validateSchoolName,
                           ),
                           CustomDropDownForm(
                             validator: Helper.validateGovernorate,
@@ -207,7 +214,7 @@ class SignupPart1 extends StatelessWidget {
                               ),
                               GradientText(
                                 text: S.of(context).bottom_text_part2,
-                                route: () => Login(),
+                                route: () => Get.back(),
                               ),
                             ],
                           ),

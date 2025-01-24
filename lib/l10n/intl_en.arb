@@ -734,6 +734,17 @@
       "description": ""
     },
     "connected_to_the_internet": "Connected to the Internet",
+
+    "@logoutFromMoreThanOneDeviceTitle": {
+      "description": ""
+    },
+    "logoutFromMoreThanOneDeviceTitle": "Logout",
+
+    "@logoutFromMoreThanOneDevice": {
+      "description": ""
+    },
+    "logoutFromMoreThanOneDevice": "You are logged out because you are connected to another device.",
+
     "@u_are_now_connected_to_internet": {
       "description": ""
     },

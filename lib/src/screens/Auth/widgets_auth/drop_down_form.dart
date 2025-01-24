@@ -45,7 +45,9 @@ class CustomDropDownForm extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius:
                 BorderRadius.circular(SizeConfig.screenHeight! * 0.02),
-            borderSide: const BorderSide(color: Color(0xFF9A9393)),
+            borderSide: BorderSide(
+                color: AppColors.mainColor,
+                width: SizeConfig.screenWidth! * 0.0026),
           ),
         ),
         icon: Icon(

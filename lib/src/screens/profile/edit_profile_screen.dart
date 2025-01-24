@@ -124,12 +124,16 @@ class EditProfileScreen extends StatelessWidget {
                     Column(
                       children: [
                         CustomTextForm(
-                            hintText: S.of(context).hint_text_username,
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            labelText: S.of(context).hint_text_username,
                             prefixIcon: const Icon(Icons.person),
                             myController: profileController.fullName,
                             validator: Helper.validatefullName),
                         CustomTextForm(
-                            hintText: S.of(context).hint_text_School,
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            labelText: S.of(context).hint_text_School,
                             prefixIcon: const Icon(Icons.home_work_outlined),
                             myController: profileController.schoolName,
                             validator: Helper.validateSchoolName),

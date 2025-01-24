@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../generated/l10n.dart';
 import '../../controller/loading_dialog_controller.dart';
 import 'exceptions/t_exceptions.dart';
 
@@ -74,6 +75,17 @@ class AuthenticationRepository extends GetxController {
 
     if (currentToken != storedToken) {
       await FirebaseAuth.instance.signOut();
+      Get.snackbar(
+        S.current.logoutFromMoreThanOneDeviceTitle,
+        // '${message.sentTime}',
+        S.current.logoutFromMoreThanOneDevice,
+        dismissDirection: DismissDirection.endToStart,
+        backgroundColor: Color(0xFFFFFFFF),
+        colorText: Color(0xFF742e89),
+        snackPosition: SnackPosition.TOP,
+        duration: const Duration(seconds: 4),
+        icon: const Icon(Icons.notifications, color: Color(0xFF742e89)),
+      );
       Get.offAll(() => Login());
     }
   }

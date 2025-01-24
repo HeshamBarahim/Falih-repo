@@ -148,13 +148,15 @@ class SignupPart2 extends StatelessWidget {
                       ],
                     ),
                     CustomTextForm(
-                      hintText: S.of(context).hint_text_confirm,
+                      keyFormatter: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      myController: controller.password,
+                      validator: Helper.validatePassword,
+                      labelText: S.of(context).hint_text_confirm,
                       prefixIcon: Icon(
                         Icons.lock,
                         size: SizeConfig.screenWidth! * 0.06,
                       ),
-                      myController: controller.password,
-                      validator: Helper.validatePassword,
                     ),
                     SizedBox(height: SizeConfig.screenHeight! * 0.03),
                     CustomAgreeingCheck(

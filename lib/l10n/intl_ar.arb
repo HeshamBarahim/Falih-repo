@@ -817,6 +817,17 @@
       "description": ""
     },
     "connected_to_the_internet": "متصل بالإنترنت",
+    
+    "@logoutFromMoreThanOneDeviceTitle": {
+      "description": ""
+    },
+    "logoutFromMoreThanOneDeviceTitle": "تسجيل الخروج",
+
+    "@logoutFromMoreThanOneDevice": {
+      "description": ""
+    },
+    "logoutFromMoreThanOneDevice": "تم تسجيل خروجك لانك متصل بجهاز اخر",
+
     "@u_are_now_connected_to_internet": {
       "description": ""
     },

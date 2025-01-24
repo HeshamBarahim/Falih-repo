@@ -27,11 +27,17 @@ class NavBarInfoCard extends StatelessWidget {
             if (user == null ||
                 user.userProfileImgUrl == null ||
                 user.userProfileImgUrl!.isEmpty) {
-              return Image.asset(
-                Images.test,
-                fit: BoxFit.cover,
-                width: SizeConfig.screenWidth! * 0.282,
-                height: SizeConfig.screenWidth! * 0.282,
+              return CircleAvatar(
+                radius: SizeConfig.screenWidth! * 0.11,
+                backgroundColor: Colors.grey[200],
+                child: ClipOval(
+                  child: Image.asset(
+                    Images.test,
+                    fit: BoxFit.cover,
+                    width: SizeConfig.screenWidth! * 0.282,
+                    height: SizeConfig.screenWidth! * 0.282,
+                  ),
+                ),
               );
             }
             return CircleAvatar(

@@ -1870,6 +1870,22 @@ class S {
       args: [],
     );
   }
+String get logoutFromMoreThanOneDeviceTitle {
+    return Intl.message(
+      'تسجيل الخروج',
+      name: 'logoutFromMoreThanOneDevice',
+      desc: '',
+      args: [],
+    );
+  }
+  String get logoutFromMoreThanOneDevice {
+    return Intl.message(
+      'تم تسجيل خروجك لانك متصل بجهاز اخر',
+      name: 'logoutFromMoreThanOneDevice',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `أنت الآن متصل بالإنترنت.`
   String get u_are_now_connected_to_internet {

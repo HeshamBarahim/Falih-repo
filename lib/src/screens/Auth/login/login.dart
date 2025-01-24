@@ -116,22 +116,26 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                               CustomTextForm(
+                                keyFormatter: true,
+                                keyboardType: TextInputType.number,
                                 myController: loginController.email,
-                                hintText: S.of(context).hint_text_phone,
+                                validator: Helper.validatePhoneNumber,
+                                labelText: S.of(context).hint_text_phone,
                                 prefixIcon: Icon(
                                   Icons.phone_android,
                                   size: SizeConfig.screenHeight! * 0.03,
                                 ),
-                                validator: Helper.validatePhoneNumber,
                               ),
                               CustomTextForm(
-                                hintText: S.of(context).hint_text_password,
+                                keyFormatter: true,
+                                keyboardType: TextInputType.visiblePassword,
+                                myController: loginController.password,
+                                validator: Helper.validatePassword,
+                                labelText: S.of(context).hint_text_password,
                                 prefixIcon: Icon(
                                   Icons.lock,
                                   size: SizeConfig.screenHeight! * 0.03,
                                 ),
-                                myController: loginController.password,
-                                validator: Helper.validatePassword,
                               ),
                               Align(
                                 alignment: Alignment.topLeft,
@@ -186,7 +190,7 @@ class Login extends StatelessWidget {
                                   ),
                                   GradientText(
                                     text: S.of(context).create_account,
-                                    route: () => Signup(),
+                                    route: () => Get.to(Signup()),
                                   ),
                                 ],
                               ),

@@ -18,7 +18,7 @@ class GradientText extends StatelessWidget {
     SizeConfig().init(context);
     return InkWell(
       onTap: () {
-        Get.to(route);
+        route();
       },
       child: Text(
         text,
