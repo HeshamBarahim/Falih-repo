@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   var maxPoint = 500.obs;
   final _db = FirebaseFirestore.instance;
   RxList<Map<String, dynamic>> userExamHistory = <Map<String, dynamic>>[].obs;
+  RxList<Map<String, dynamic>> visibleExams = <Map<String, dynamic>>[].obs;
+  final RxInt currentExamItemCount = 10.obs; // Reactive current item count
 
   @override
   Future<void> onInit() async {
@@ -41,6 +43,19 @@ class HomeController extends GetxController {
       final dateB = b['date'];
       return dateB.compareTo(dateA);
     });
+    visibleExams.value =
+        userExamHistory.take(currentExamItemCount.value).toList();
     userExamHistoryIsLoading.value = false;
+  }
+
+  void loadMore() {
+    // Increment the item count by 10 or up to the total list size
+    if (currentExamItemCount.value < userExamHistory.length) {
+      currentExamItemCount.value += 10;
+    }
+
+    // Reactive UI updates when currentItemCount changes
+    visibleExams.value =
+        userExamHistory.take(currentExamItemCount.value).toList();
   }
 }

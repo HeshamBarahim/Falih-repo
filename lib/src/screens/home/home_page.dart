@@ -221,12 +221,12 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                   )),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.03), // Adjusted spacing
+              SizedBox(height: SizeConfig.screenHeight! * 0.03),
+              // Adjusted spacing
               // Image and indicator slider
               AdvertiseImgsCarousel(),
-              SizedBox(
-                  height: SizeConfig.screenHeight! * 0.02), // Adjusted spacing
+              SizedBox(height: SizeConfig.screenHeight! * 0.02),
+              // Adjusted spacing
               // History part
               Container(
                 decoration: BoxDecoration(
@@ -257,194 +257,231 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: SizeConfig.screenHeight! * 0.02),
-
-              Obx(() => controller.userExamHistoryIsLoading.value
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : controller.userExamHistory.isEmpty
-                      ? Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              S.of(context).go_get_some_exams,
-                              style: const TextStyle(
-                                color: AppColors.mainColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(bottom: 80),
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
-                            itemCount: controller.userExamHistory.length,
-                            itemBuilder: (context, index) {
-                              final examResult =
-                                  controller.userExamHistory[index];
-                              double percentage =
-                                  (examResult["correctAnswers"] /
-                                      examResult["totalQuestions"]);
-                              double roundedPercentage =
-                                  double.parse((percentage).toStringAsFixed(1));
-                              return Card(
-                                margin: const EdgeInsets.only(bottom: 12),
-                                color: AppColors.moreLightenMainColor,
-                                elevation: 10,
-                                shadowColor: AppColors.darkMainColor,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 80),
+                child: Column(
+                  children: [
+                    Obx(() => controller.userExamHistoryIsLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : controller.visibleExams.isEmpty
+                            ? Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      CircularPercentIndicator(
-                                        radius: 30.0,
-                                        animation: true,
-                                        animationDuration: 1200,
-                                        lineWidth: 5.0,
-                                        percent: roundedPercentage,
-                                        center:
-                                            Text("${roundedPercentage * 100}%"),
-                                        progressColor:
-                                            (examResult["correctAnswers"] /
-                                                        examResult[
-                                                            "totalQuestions"]) >
-                                                    0.5
-                                                ? Colors.green
-                                                : Colors.red,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                              decoration: const BoxDecoration(
-                                                  color: AppColors
-                                                      .lightenMainColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(Radius
-                                                          .circular(20))),
-                                              child: Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 8.0),
-                                                  child: Text(
-                                                      // "${examResult["examName"]}"
-                                                      getSectionDisplayName(
-                                                          examResult[
-                                                              "examName"]),
-                                                      style: const TextStyle(
-                                                          color: AppColors
-                                                              .darkMainColor,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 12)))),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          (examResult["correctAnswers"] /
-                                                      examResult[
-                                                          "totalQuestions"]) >
-                                                  0.5
-                                              ? Container(
-                                                  decoration: const BoxDecoration(
-                                                      color: AppColors
-                                                          .successBoxColor,
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(20))),
-                                                  child: Padding(
-                                                      padding: const EdgeInsets.symmetric(
-                                                          horizontal: 8.0),
-                                                      child: Text(
-                                                          S.of(context).passed,
-                                                          style: const TextStyle(
-                                                              color: AppColors
-                                                                  .successColor,
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 12))))
-                                              : Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          color: AppColors
-                                                              .errorBoxColor,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          20))),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 8.0),
-                                                    child: Text(
-                                                        S.of(context).failed,
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .errorColor,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 12)),
-                                                  ),
-                                                ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            // "${examResult["examType"]}",
-                                            getTypeExamDisplayName(
-                                                examResult["examType"]),
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
-                                            style: const TextStyle(
-                                              color: AppColors.shadowColor,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                          Text(
-                                            "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "${examResult["points"]} ${S.of(context).points}",
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            textAlign: TextAlign.right,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    S.of(context).go_get_some_exams,
+                                    style: const TextStyle(
+                                      color: AppColors.mainColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        )),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.zero,
+                                  itemCount: controller.visibleExams.length,
+                                  itemBuilder: (context, index) {
+                                    final examResult =
+                                        controller.visibleExams[index];
+                                    double percentage =
+                                        (examResult["correctAnswers"] /
+                                            examResult["totalQuestions"]);
+                                    double roundedPercentage = double.parse(
+                                        (percentage).toStringAsFixed(1));
+                                    return Card(
+                                      margin: const EdgeInsets.only(bottom: 12),
+                                      color: AppColors.moreLightenMainColor,
+                                      elevation: 10,
+                                      shadowColor: AppColors.darkMainColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            CircularPercentIndicator(
+                                              radius: 30.0,
+                                              animation: true,
+                                              animationDuration: 1200,
+                                              lineWidth: 5.0,
+                                              percent: roundedPercentage,
+                                              center: Text(
+                                                  "${roundedPercentage * 100}%"),
+                                              progressColor: (examResult[
+                                                              "correctAnswers"] /
+                                                          examResult[
+                                                              "totalQuestions"]) >
+                                                      0.5
+                                                  ? Colors.green
+                                                  : Colors.red,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                    decoration: const BoxDecoration(
+                                                        color: AppColors
+                                                            .lightenMainColor,
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius
+                                                                    .circular(
+                                                                        20))),
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    8.0),
+                                                        child: Text(
+                                                            // "${examResult["examName"]}"
+                                                            getSectionDisplayName(
+                                                                examResult[
+                                                                    "examName"]),
+                                                            style: const TextStyle(
+                                                                color: AppColors
+                                                                    .darkMainColor,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize:
+                                                                    12)))),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                (examResult["correctAnswers"] /
+                                                            examResult[
+                                                                "totalQuestions"]) >
+                                                        0.5
+                                                    ? Container(
+                                                        decoration: const BoxDecoration(
+                                                            color: AppColors
+                                                                .successBoxColor,
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        20))),
+                                                        child: Padding(
+                                                            padding:
+                                                                const EdgeInsets.symmetric(
+                                                                    horizontal:
+                                                                        8.0),
+                                                            child: Text(S.of(context).passed,
+                                                                style: const TextStyle(
+                                                                    color: AppColors.successColor,
+                                                                    fontWeight: FontWeight.w500,
+                                                                    fontSize: 12))))
+                                                    : Container(
+                                                        decoration: const BoxDecoration(
+                                                            color: AppColors
+                                                                .errorBoxColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      8.0),
+                                                          child: Text(
+                                                              S
+                                                                  .of(context)
+                                                                  .failed,
+                                                              style: const TextStyle(
+                                                                  color: AppColors
+                                                                      .errorColor,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize:
+                                                                      12)),
+                                                        ),
+                                                      ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  // "${examResult["examType"]}",
+                                                  getTypeExamDisplayName(
+                                                      examResult["examType"]),
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "${S.of(context).correct_answers}: ${examResult["correctAnswers"]} / ${examResult["totalQuestions"]}",
+                                                  style: const TextStyle(
+                                                    color:
+                                                        AppColors.shadowColor,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                ),
+                                                Text(
+                                                  "${examResult["points"]} ${S.of(context).points}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              )),
+                    Obx(() {
+                      return controller.currentExamItemCount.value <
+                              controller.userExamHistory.length
+                          ? GestureDetector(
+                              onTap: controller.loadMore,
+                              child: const Text(
+                                'See More',
+                                style: TextStyle(
+                                  color: AppColors.mainColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ))
+                          : const SizedBox
+                              .shrink(); // Hide the button when all items are loaded
+                    }),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
