@@ -20,17 +20,7 @@ main() async {
   await initDependencies();
   // Initialize GetStorage
   await GetStorage.init();
-  // Clear the cache
-  // Get.put(NetworkController());
-
-  debugInvertOversizedImages = true; // Enable image debugging
   runApp(const MyApp());
-
-  // runApp(
-  //   DevicePreview(
-  //     builder: (context) => const MyApp(),
-  //   ),
-  // );
 }
 
 Future<void> initDependencies() async {

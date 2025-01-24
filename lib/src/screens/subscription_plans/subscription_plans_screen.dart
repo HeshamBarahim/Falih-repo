@@ -26,7 +26,6 @@ class SubscriptionPlansScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          // Navigate to the menu screen when the user tries to pop
           Get.back();
         }
       },
@@ -34,7 +33,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(gradient: secondaryBackgroundColor_2),
           child: Padding(
-            padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.05),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,11 +64,10 @@ class SubscriptionPlansScreen extends StatelessWidget {
                   () => Center(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        // was primary change it to primary
                         backgroundColor: AppColors.mainColor,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.screenWidth! * 0.17,
-                          vertical: SizeConfig.screenHeight! * 0.02,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
@@ -92,10 +90,7 @@ class SubscriptionPlansScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                SizedBox(height: SizeConfig.screenHeight! * 0.024),
-                // Footer
-                // Terms and Privacy
+                const Spacer(),
                 const Footer(),
               ],
             ),

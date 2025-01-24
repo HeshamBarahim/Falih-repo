@@ -1,18 +1,18 @@
 import 'package:falih/src/config/sizes.dart';
+import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:get/get.dart';
+
+import '../../../generated/l10n.dart';
 
 class MdDialogs extends StatelessWidget {
-  final double radius;
   final String mdFileName;
-  final String buttonText;
 
   MdDialogs({
-    this.radius = 8,
     required this.mdFileName,
-    required this.buttonText,
     super.key,
   }) : assert(mdFileName.contains('.md'),
             'The file must contain the .md extension');
@@ -21,7 +21,7 @@ class MdDialogs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
@@ -35,15 +35,40 @@ class MdDialogs extends StatelessWidget {
                 if (snapshot.hasError) {
                   return const Center(child: Text('Error loading content'));
                 }
-                return Markdown(data: snapshot.data ?? '');
+                return Directionality(
+                  textDirection: Get.locale?.languageCode == "ar"
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: Markdown(
+                    data: snapshot.data ?? '',
+                    styleSheet: MarkdownStyleSheet(
+                      h1Align: WrapAlignment.center,
+                      h1: const TextStyle(
+                          fontSize: 22.0, // Adjust the font size if needed
+                          color: AppColors.darkMainColor,
+                          fontWeight:
+                              FontWeight.bold // Optional: Change the text color
+                          ),
+                      h2: const TextStyle(
+                          fontSize: 20.0, // Adjust the font size if needed
+                          color: AppColors.mainColor,
+                          fontWeight:
+                              FontWeight.bold // Optional: Change the text color
+                          ),
+                    ),
+                  ),
+                );
               },
             ),
           ),
-          GradientButton(
-            text: buttonText,
-            height: SizeConfig.screenHeight! * 0.07,
-            width: SizeConfig.screenWidth! * 0.60,
-            onClick: () => Navigator.pop(context),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GradientButton(
+              text: S.of(context).close,
+              height: SizeConfig.screenHeight! * 0.07,
+              width: double.infinity,
+              onClick: () => Navigator.pop(context),
+            ),
           ),
         ],
       ),
