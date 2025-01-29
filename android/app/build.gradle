@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-    namespace = "com.falihTeam.falih"
+    namespace = "com.falih.app"
     compileSdkVersion 34
     ndkVersion "25.1.8937393"
 
@@ -30,14 +30,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.falih"
+        applicationId = "com.falih.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
 //        minSdk = flutter.minSdkVersion
         minSdkVersion 23
-        targetSdkVersion 31
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        targetSdkVersion 34
+        versionCode = 3
+        versionName = "1.0.2"
     }
     signingConfigs {
         release {

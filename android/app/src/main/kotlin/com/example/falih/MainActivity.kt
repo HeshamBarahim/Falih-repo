@@ -1,4 +1,4 @@
-package com.falihTeam.falih
+package com.falih.app
 
 import io.flutter.embedding.android.FlutterActivity
 

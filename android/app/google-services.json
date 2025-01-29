@@ -2,14 +2,33 @@
   "project_info": {
     "project_number": "374531194083",
     "project_id": "falih-1",
-    "storage_bucket": "falih-1.appspot.com"
+    "storage_bucket": "falih-1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:374531194083:android:c0507f6ae4c56157c099d6",
         "android_client_info": {
-          "package_name": "com.example.falih"
+          "package_name": "com.falih.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsf0-rFzXOGtWbzkTPFaWIJ01Md_BMeMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374531194083:android:687626128ce41f13c099d6",
+        "android_client_info": {
+          "package_name": "com.falihTeam.falih"
         }
       },
       "oauth_client": [],
