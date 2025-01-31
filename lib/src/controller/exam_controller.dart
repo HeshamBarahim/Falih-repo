@@ -25,7 +25,6 @@ class ExamController extends GetxController {
   var examType = "".obs;
   var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
-  var isFinalExam = false.obs;
   var isGeneratingResponse = false.obs;
   var hasChosenAnswer = false.obs;
   var generatedResponse = "".obs;
@@ -52,7 +51,6 @@ class ExamController extends GetxController {
   }
 
   void setExamQuestions() {
-    isFinalExam.value = true;
 
     // Calculate the total number of questions in all units
     var totalUnitsQuestions = units.fold(
@@ -233,6 +231,34 @@ class ExamController extends GetxController {
     }
   }
 
+  int getAnswerCount(String filterName) {
+    switch (filterName) {
+      case 'correct':
+        return questions
+            .asMap()
+            .entries
+            .where((entry) =>
+                selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
+            .map((entry) => entry.value)
+            .toList()
+            .length;
+      case 'incorrect':
+        return questions
+            .asMap()
+            .entries
+            .where((entry) =>
+                selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
+                selectedAnswers[entry.key] != null)
+            .map((entry) => entry.value)
+            .toList()
+            .length;
+      case 'all':
+        return questions.length;
+      default:
+        return questions.length;
+    }
+  }
+
   Future<void> saveExamResult() async {
     var points = calculateUserPoints();
     try {
@@ -350,9 +376,24 @@ class ExamController extends GetxController {
     examDepartment.value = "";
     examType.value = "";
     examTime.value = 0;
-    isFinalExam.value = false;
     endTime = null;
     timeTaken.value = '';
+    hasChosenAnswer.value = false;
+  }
+
+  void restartExam() {
+    stopTimer();
+    selectedAnswers
+        .assignAll(List<int?>.filled(unitQuestionsCount.value, null));
+    questionIndex.value = 0;
+    score.value = 0;
+    falseAnswers.value = 0;
+    trueAnswers.value = 0;
+    questionIndex.value = 0;
+    examTime.value = 0;
+    endTime = null;
+    timeTaken.value = '';
+    hasChosenAnswer.value = false;
   }
 
   @override

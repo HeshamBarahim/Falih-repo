@@ -119,7 +119,10 @@ class ResultDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: InkWell(
                         onTap: () {
-                          // TODO
+                          Navigator.pop(context);
+                          controller.restartExam();
+                          controller.startTime = DateTime.now();
+                          controller.startTimer();
                         },
                         borderRadius: BorderRadius.circular(16),
                         // Consistent border radius
@@ -145,10 +148,10 @@ class ResultDialog extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "إعادة",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 18,
                                 // Slightly larger text for readability
                                 color: AppColors.mainColor,
@@ -170,8 +173,6 @@ class ResultDialog extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: InkWell(
                         onTap: () async {
-                          final ExamController controller =
-                              Get.find<ExamController>();
                           controller.saveExamResult();
                           Navigator.pop(context);
                           Get.back();

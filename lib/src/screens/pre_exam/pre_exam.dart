@@ -60,28 +60,10 @@ class PreExam extends StatelessWidget {
                     border: Border.all(color: AppColors.choicesColor, width: 5),
                     color: AppColors.secondaryColor,
                     borderRadius: BorderRadius.circular(8)),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    controller.isFinalExam.value == true
-                        ? Row(
-                            children: [
-                              const Text("• ", style: TextStyle(fontSize: 20)),
-                              // Bullet symbol
-                              Expanded(
-                                child: Text(
-                                  S.of(context).exam_simulation,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.darkMainColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Container(),
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Text.rich(
@@ -111,7 +93,7 @@ class PreExam extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Text.rich(
@@ -141,7 +123,7 @@ class PreExam extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Text.rich(
@@ -171,7 +153,7 @@ class PreExam extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Text.rich(
