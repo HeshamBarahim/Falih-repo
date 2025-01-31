@@ -100,6 +100,8 @@ class SubjectPage extends StatelessWidget {
         return S.current.subject_one;
       case "arabic":
         return S.current.subject_three;
+      case "math":
+        return S.current.subject_eight;
 
       default:
         return key.capitalizeFirst ?? key;

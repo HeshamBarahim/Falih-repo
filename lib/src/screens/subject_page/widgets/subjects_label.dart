@@ -766,6 +766,8 @@ class SubjectsLabels extends StatelessWidget {
         return S.current.subject_seven;
       case "chemistry":
         return S.current.subject_five;
+      case "math":
+        return S.current.subject_eight;
       case "iman":
         return "ُالإيمان";
       case "fiqh":
