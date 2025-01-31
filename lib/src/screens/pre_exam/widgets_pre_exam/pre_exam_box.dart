@@ -1,4 +1,3 @@
-import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -26,10 +25,9 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    S.of(context).questions,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
+                  const Text(
+                    "مجموع الاسئلة",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -52,10 +50,9 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    S.of(context).points,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
+                  const Text(
+                    "إجمالي النقاط في الاختبار",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -64,7 +61,7 @@ class PreExamBox extends StatelessWidget {
                     width: 75,
                     child: Center(
                       child: Text(
-                        (questionCount * 2).toString(),
+                        questionCount == 10 ? "17" : "118",
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),

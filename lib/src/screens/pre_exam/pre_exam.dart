@@ -25,7 +25,6 @@ class PreExam extends StatelessWidget {
             decoration: BoxDecoration(gradient: subjectController.color),
           ),
           title: Text(
-            // subjectController.name.value.capitalizeFirst ?? "",
             getSectionDisplayName(subjectController.name.value),
             style: const TextStyle(
               fontSize: 20,
@@ -40,13 +39,21 @@ class PreExam extends StatelessWidget {
         decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             // box of the questions and points
             PreExamBox(questionCount: controller.questions.length),
             // box to set rules of the exam
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.0),
+              child: Text(
+                "القواعد:",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              ),
+            ),
             Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
@@ -74,35 +81,121 @@ class PreExam extends StatelessWidget {
                             ],
                           )
                         : Container(),
-                    Row(
+                    const Row(
                       children: [
-                        const Text("• ",
-                            style: TextStyle(
-                                fontSize: 40, color: AppColors.darkMainColor)),
-                        // Bullet symbol
                         Expanded(
-                          child: Text(
-                            S.of(context).time_will_counted,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.darkMainColor,
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "• ", // Bullet point
+                                  style: TextStyle(
+                                    fontSize: 30, // Increase bullet size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      "يجب التأكد من اختيار إجابة قبل الانتقال للسؤال التالي.",
+                                  // Your text
+                                  style: TextStyle(
+                                    fontSize: 18, // Regular text size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       children: [
-                        const Text("• ", style: TextStyle(fontSize: 40)),
-                        // Bullet symbol
                         Expanded(
-                          child: Text(
-                            S.of(context).you_can_continue,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.darkMainColor,
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "• ", // Bullet point
+                                  style: TextStyle(
+                                    fontSize: 30, // Increase bullet size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      "فالح، الاستاذ الذكي, سيتمكن من مساعدتك بعد اختيارك لإجابة.",
+                                  // Your text
+                                  style: TextStyle(
+                                    fontSize: 18, // Regular text size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        Expanded(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "• ", // Bullet point
+                                  style: TextStyle(
+                                    fontSize: 30, // Increase bullet size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      "إذا تكرّر السؤال، فهذا يعني أنه ظهر في عدة اختبارات سنوية.",
+                                  // Your text
+                                  style: TextStyle(
+                                    fontSize: 18, // Regular text size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Row(
+                      children: [
+                        Expanded(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "• ", // Bullet point
+                                  style: TextStyle(
+                                    fontSize: 30, // Increase bullet size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text:
+                                      "إذا خرج الطالب من الاختبار دون إكماله، فلن يتم احتساب أي نقطة.",
+                                  // Your text
+                                  style: TextStyle(
+                                    fontSize: 18, // Regular text size
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkMainColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
