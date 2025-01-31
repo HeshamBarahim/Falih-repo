@@ -62,13 +62,16 @@ class CurriculumPage extends StatelessWidget {
                         }).toList(),
                       ),
                       DropdownButton<String>(
-                        value: "${subjectController.curriculumDepartment}",
+                        value:
+                            "${S.of(context).hint_text_department}: ${subjectController.curriculumDepartment}",
                         onChanged: (String? newValue) {
-                          subjectController
-                              .changeCurriculumDepartment(newValue!);
+                          subjectController.changeCurriculumDepartment(
+                              newValue!.split(" ")[1]);
                         },
-                        items: ["En", "Ar"]
-                            .map<DropdownMenuItem<String>>((String value) {
+                        items: [
+                          "${S.of(context).hint_text_department}: En",
+                          "${S.of(context).hint_text_department}: Ar"
+                        ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(
