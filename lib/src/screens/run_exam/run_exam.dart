@@ -151,9 +151,6 @@ class RunExam extends StatelessWidget {
                                     : TextDirection.ltr,
                                 child: Text(
                                   question.questionText,
-                                  // textAlign: isArabic(question.questionText)
-                                  //     ? TextAlign.start
-                                  //     : TextAlign.end,
                                   style: const TextStyle(
                                     fontSize: 20,
                                   ),
@@ -212,6 +209,17 @@ class RunExam extends StatelessWidget {
                                   color: selectedAnswer == idx
                                       ? AppColors.darkMainColor
                                       : AppColors.mainColor.withOpacity(0.60),
+                                  border: Border.all(
+                                    color: selectedAnswer != null &&
+                                            question.correctAnswerIndex == idx
+                                        ? AppColors
+                                            .successColor // Border color when selected
+                                        : selectedAnswer == idx
+                                            ? AppColors.errorColor
+                                            : Colors.transparent,
+                                    // Border color when not selected
+                                    width: 2, // Adjust border width as needed
+                                  ),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(

@@ -28,6 +28,7 @@ class ExamController extends GetxController {
   var unitQuestionsCount = 10.obs;
   var isFinalExam = false.obs;
   var isGeneratingResponse = false.obs;
+  var hasChosenAnswer = false.obs;
   var generatedResponse = "".obs;
   late List<dynamic> units;
   var questions = <Exam>[].obs;
@@ -57,12 +58,12 @@ class ExamController extends GetxController {
     // Calculate the total number of questions in all units
     var totalUnitsQuestions = units.fold(
         0,
-            (sumOfQuestions, unit) =>
-        sumOfQuestions + unit["questions"].length as int);
+        (sumOfQuestions, unit) =>
+            sumOfQuestions + unit["questions"].length as int);
     // print(totalUnitsQuestions);
 
     List<dynamic> selected50Questions =
-    []; // General list to store selected questions from all units
+        []; // General list to store selected questions from all units
 
     for (var unit in units) {
       int unitQuestionCount = unit["questions"].length;
@@ -124,16 +125,20 @@ class ExamController extends GetxController {
   }
 
   void selectAnswer(int selectedIndex) {
-    selectedAnswers[questionIndex.value] =
-        selectedIndex; // Save selected answer
+    if (!hasChosenAnswer.value) {
+      selectedAnswers[questionIndex.value] =
+          selectedIndex; // Save selected answe
+      hasChosenAnswer.value = true;
+      return;
+    }
   }
 
   void moveToAnotherQuestion(BuildContext context) {
     // Check if the current question has an answer selected
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar("يرجى اختيار إجابة",
-          S.of(context).please_select_answer_before_proceeding,
-          backgroundColor: AppColors.choicesColor);
+      showInfoMessage(
+          title: "يرجى اختيار إجابة",
+          message: S.current.please_select_answer_before_proceeding);
       return;
     } else {
       if ((questionIndex.value <= questions.length - 1) &&
@@ -149,6 +154,7 @@ class ExamController extends GetxController {
         falseAnswers++;
       }
     }
+    hasChosenAnswer.value = false;
     if (questionIndex.value < questions.length - 1) {
       questionIndex.value++;
     } else {
@@ -163,30 +169,10 @@ class ExamController extends GetxController {
     }
   }
 
-  // Function to clear all data and reset the quiz
-  void resetExam() {
-    stopTimer();
-    questions.clear();
-    selectedAnswers.clear();
-    questionIndex.value = 0;
-    score.value = 0;
-    falseAnswers.value = 0;
-    trueAnswers.value = 0;
-    questionIndex.value = 0;
-    examName.value = "";
-    examGrade.value = "";
-    examDepartment.value = "";
-    examType.value = "";
-    examTime.value = 0;
-    isFinalExam.value = false;
-    endTime = null;
-    timeTaken.value = '';
-  }
-
   generateResponse(String questionText) async {
     if (selectedAnswers[questionIndex.value] == null) {
-      Get.snackbar("إختيار إجابة", S.current.please_select_answer_to_use_ai,
-          backgroundColor: AppColors.lightenMainColor);
+      showInfoMessage(
+          title: "فالح", message: S.current.please_select_answer_to_use_ai);
       return;
     } else {
       isGeneratingResponse.value = true;
@@ -237,7 +223,7 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-        selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
+                selectedAnswers[entry.key] == entry.value.correctAnswerIndex)
             .map((entry) => entry.value)
             .toList();
       case 'incorrect':
@@ -245,8 +231,8 @@ class ExamController extends GetxController {
             .asMap()
             .entries
             .where((entry) =>
-        selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
-            selectedAnswers[entry.key] != null)
+                selectedAnswers[entry.key] != entry.value.correctAnswerIndex &&
+                selectedAnswers[entry.key] != null)
             .map((entry) => entry.value)
             .toList();
       default:
@@ -284,21 +270,12 @@ class ExamController extends GetxController {
 
       resetExam();
 
-      Get.snackbar(
-        S.current.success,
-        S.current.exam_result_saved_successfully,
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 3),
-      );
+      showSuccessMessage(
+          title: S.current.success,
+          message: S.current.exam_result_saved_successfully,
+          snackPosition: SnackPosition.BOTTOM);
     } catch (error) {
-      Get.snackbar(
-        S.current.error,
-        "${S.current.failed_to_save_exam} $error",
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: Colors.red,
-        backgroundColor: Colors.white,
-        duration: const Duration(seconds: 3),
-      );
+      showErrorMessage(S.current.failed_to_save_exam);
     }
   }
 
@@ -315,9 +292,9 @@ class ExamController extends GetxController {
 
     // Perfect Score points for unit exam
     points +=
-    examType.value == "UnitExam" && questions.length == trueAnswers.value
-        ? 5
-        : 0;
+        examType.value == "UnitExam" && questions.length == trueAnswers.value
+            ? 5
+            : 0;
 
     // Perfect Score points for final exam
     points +=
@@ -364,6 +341,25 @@ class ExamController extends GetxController {
           "${minutes.toString().padLeft(2, '0')}:"
           "${seconds.toString().padLeft(2, '0')}";
     }
+  }
+
+  void resetExam() {
+    stopTimer();
+    questions.clear();
+    selectedAnswers.clear();
+    questionIndex.value = 0;
+    score.value = 0;
+    falseAnswers.value = 0;
+    trueAnswers.value = 0;
+    questionIndex.value = 0;
+    examName.value = "";
+    examGrade.value = "";
+    examDepartment.value = "";
+    examType.value = "";
+    examTime.value = 0;
+    isFinalExam.value = false;
+    endTime = null;
+    timeTaken.value = '';
   }
 
   @override

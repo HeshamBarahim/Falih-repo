@@ -220,7 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "يرجى اختيار إجابة قبل المتابعة."),
         "please_select_answer_to_use_ai": MessageLookupByLibrary.simpleMessage(
-            "يرجى اختيار إجابة لاستخدام الذكاء الاصطناعي."),
+            "اختر إجابة لأتمكن من مساعدتك."),
         "points": MessageLookupByLibrary.simpleMessage("نقاط"),
         "practice_test": MessageLookupByLibrary.simpleMessage("اختبار تدريبي"),
         "preferences": MessageLookupByLibrary.simpleMessage("التفضيلات"),
