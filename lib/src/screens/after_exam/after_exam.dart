@@ -1,6 +1,5 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/pre_exam/widgets_pre_exam/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +15,7 @@ class AfterExam extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     final ExamController controller = Get.find<ExamController>();
-    final SubjectsController subjectController = Get.put(SubjectsController());
+    final SubjectsController subjectController = Get.find<SubjectsController>();
 
     final List items = [
       {'value': 'all', 'name': S.of(context).all},
@@ -27,17 +26,20 @@ class AfterExam extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.08),
-        child: CustomAppBar(
-          name: getSectionDisplayName(subjectController.name.value),
-          color: subjectController.color,
+        child: AppBar(
+          title: Text(
+            getSectionDisplayName(subjectController.name.value),
+            style: const TextStyle(
+              color: AppColors.mainColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.06,
-          vertical: screenHeight * 0.03,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
         ),
-        decoration: BoxDecoration(gradient: subjectController.color),
         child: Column(
           children: [
             Row(
@@ -61,17 +63,20 @@ class AfterExam extends StatelessWidget {
                           color: AppColors.mainColor,
                         ),
                         color: controller.filter.value == items[index]['value']
-                            ? Colors.white
+                            ? AppColors.darkMainColor
                             : Colors.white.withOpacity(0.25),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
                         child: Text(
-                          // "${items[index]['name']} ${controller.filteredQuestions.length}",
-                          "${items[index]['name']}",
+                          "${items[index]['name']} ${controller.getAnswerCount(items[index]['value'])}",
                           style: TextStyle(
                             fontSize: screenHeight * 0.018,
                             fontWeight: FontWeight.bold,
+                            color:
+                                controller.filter.value == items[index]['value']
+                                    ? AppColors.secondaryColor
+                                    : AppColors.darkMainColor,
                           ),
                         ),
                       ),
@@ -106,9 +111,12 @@ class AfterExam extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: screenHeight * 0.02),
                       height: screenHeight * 0.25,
                       decoration: BoxDecoration(
-                        color: AppColors.secondaryColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                          color: AppColors.choicesColor.withOpacity(0.80),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: AppColors.mainColor,
+                            width: 1,
+                          )),
                       padding: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.05,
                         vertical: screenHeight * 0.02,
