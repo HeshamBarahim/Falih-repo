@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 import '../config/themes.dart';
 import '../constants/dialogs.dart';
 import '../models/exam_model.dart';
-import '../screens/run_exam/widgets_run_exam/result_dialog.dart';
 
 class ExamController extends GetxController {
   var questionIndex = 0.obs;
@@ -159,13 +158,7 @@ class ExamController extends GetxController {
       questionIndex.value++;
     } else {
       stopTimer();
-
-      showDialog(
-        context: context,
-        builder: (_) => ResultDialog(
-          context: context,
-        ),
-      );
+      showExamResult(context);
     }
   }
 

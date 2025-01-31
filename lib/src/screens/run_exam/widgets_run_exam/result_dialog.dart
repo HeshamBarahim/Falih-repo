@@ -111,143 +111,163 @@ class ResultDialog extends StatelessWidget {
               ),
 
               const SizedBox(height: 30),
-
-              InkWell(
-                onTap: () {
-                  // Add your onTap functionality here
-                },
-                borderRadius: BorderRadius.circular(16),
-                // Consistent border radius
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  // Slightly smaller for better balance
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  // Increased padding for better touch area
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: AppColors
-                          .mainColor, // Border color consistent with the theme
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    // Updated radius for modern design
-                    color: AppColors.mainColor.withOpacity(0.05),
-                    // Subtle background for visual appeal
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.mainColor.withOpacity(0.2),
-                        // Soft shadow for depth
-                        blurRadius: 6,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).restart,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        // Slightly larger text for readability
-                        color: AppColors.mainColor,
-                        // Consistent text color with theme
-                        fontWeight:
-                            FontWeight.w600, // Semi-bold for a cleaner look
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 10),
-              // Review Answer Button
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                  Get.to(() => const AfterExam());
-                },
-                borderRadius: BorderRadius.circular(16),
-                // Updated for consistency
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  // Balanced width
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  // Better touch area
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: AppColors.mainColor),
-                    // Consistent border style
-                    borderRadius: BorderRadius.circular(16),
-                    // Consistent border radius
-                    color: AppColors.mainColor.withOpacity(0.05),
-                    // Subtle background for improved look
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.mainColor.withOpacity(0.2),
-                        // Soft shadow for depth
-                        blurRadius: 6,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(ctx).review_answer,
-                      style: const TextStyle(
-                        fontSize: 18, // Improved readability
-                        color: AppColors.mainColor, // Consistent theme color
-                        fontWeight:
-                            FontWeight.w600, // Semi-bold for modern look
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: InkWell(
+                        onTap: () {
+                          // TODO
+                        },
+                        borderRadius: BorderRadius.circular(16),
+                        // Consistent border radius
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          // Increased padding for better touch area
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
+                              color: AppColors
+                                  .mainColor, // Border color consistent with the theme
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            // Updated radius for modern design
+                            color: AppColors.mainColor.withOpacity(0.05),
+                            // Subtle background for visual appeal
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.mainColor.withOpacity(0.2),
+                                // Soft shadow for depth
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              "إعادة",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                // Slightly larger text for readability
+                                color: AppColors.mainColor,
+                                // Consistent text color with theme
+                                fontWeight: FontWeight
+                                    .w600, // Semi-bold for a cleaner look
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              InkWell(
-                onTap: () async {
-                  final ExamController controller = Get.find<ExamController>();
-                  controller.saveExamResult();
-                  Navigator.pop(context);
-                  Get.back();
-                  Get.back();
-                  await leaderboardController.fetchAllUsersData();
-                  leaderboardController.fetchUserPointsAndRank();
-                  homeController.fetchAllUserExamHistory();
-                },
-                borderRadius: BorderRadius.circular(16),
-                // Updated for consistency
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  // Balanced width
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  // Better touch area
-                  decoration: BoxDecoration(
-                    color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(16),
-                    // Consistent border radius
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.mainColor.withOpacity(0.2),
-                        // Soft shadow for depth
-                        blurRadius: 6,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      S.of(context).done,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        // Improved readability
-                        color: AppColors.lightenMainColor,
-                        // High contrast for accessibility
-                        fontWeight:
-                            FontWeight.w600, // Semi-bold for modern look
+                  const SizedBox(height: 10),
+                  // Review Answer Button
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: InkWell(
+                        onTap: () async {
+                          final ExamController controller =
+                              Get.find<ExamController>();
+                          controller.saveExamResult();
+                          Navigator.pop(context);
+                          Get.back();
+                          Get.back();
+                          await leaderboardController.fetchAllUsersData();
+                          leaderboardController.fetchUserPointsAndRank();
+                          homeController.fetchAllUserExamHistory();
+                        },
+                        borderRadius: BorderRadius.circular(16),
+                        // Updated for consistency
+                        child: Container(
+                          // Balanced width
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          // Better touch area
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 2, color: AppColors.mainColor),
+                            color: AppColors.mainColor,
+                            borderRadius: BorderRadius.circular(12),
+                            // Consistent border radius
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.mainColor.withOpacity(0.2),
+                                // Soft shadow for depth
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              S.of(context).done,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                // Improved readability
+                                color: AppColors.lightenMainColor,
+                                // High contrast for accessibility
+                                fontWeight: FontWeight
+                                    .w600, // Semi-bold for modern look
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                  const SizedBox(height: 10),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                          Get.to(() => const AfterExam());
+                        },
+                        // Updated for consistency
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          // Better touch area
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 2, color: AppColors.mainColor),
+                            // Consistent border style
+                            borderRadius: BorderRadius.circular(12),
+                            // Consistent border radius
+                            color: AppColors.mainColor.withOpacity(0.05),
+                            // Subtle background for improved look
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.mainColor.withOpacity(0.2),
+                                // Soft shadow for depth
+                                blurRadius: 6,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "مراجعة",
+                              style: TextStyle(
+                                fontSize: 18,
+                                // Improved readability
+                                color: AppColors.mainColor,
+                                // Consistent theme color
+                                fontWeight: FontWeight
+                                    .w600, // Semi-bold for modern look
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         );
