@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 import '../generated/l10n.dart';
 
@@ -73,9 +72,4 @@ class App extends StatelessWidget {
       );
     });
   }
-}
-
-// check if the current state is arabic
-bool isArabic() {
-  return Intl.getCurrentLocale() == 'ar';
 }

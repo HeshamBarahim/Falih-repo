@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/themes.dart';
+import '../constants/dialogs.dart';
 import '../models/exam_model.dart';
 import '../screens/run_exam/widgets_run_exam/result_dialog.dart';
 
@@ -71,9 +72,6 @@ class ExamController extends GetxController {
 
       // Calculate the number of questions to take from this unit (based on a 50-question target)
       int selectedQuestionsCount = (unitPercentage * 50 / 100).round();
-      print(
-          "Unit percentage: $unitPercentage, selected questions: $selectedQuestionsCount");
-
       //  Shuffle the questions and then take the required count
       final random = Random();
       List<dynamic> shuffledQuestions = List.from(unit["questions"])
@@ -117,7 +115,6 @@ class ExamController extends GetxController {
 
     // Shuffle the final list of selected questions
     selected50Questions.shuffle(Random());
-    print("Total selected questions: ${selected50Questions.length}");
 
     final List<Exam> loadedQuestions = selected50Questions.map((data) {
       return Exam.fromMap(data as Map<String, dynamic>);
@@ -217,8 +214,8 @@ class ExamController extends GetxController {
         generatedResponse.value = data['generation'];
         isGeneratingResponse.value = false;
       } else {
-        print("Error: ${response.statusCode}");
-        print("Message: ${response.body}");
+        showErrorMessage("حدث خطأ, يرجى المحاولة مرة اخرى");
+        return;
       }
     }
   }
