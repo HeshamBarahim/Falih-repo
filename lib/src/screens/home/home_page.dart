@@ -79,12 +79,41 @@ class HomePage extends StatelessWidget {
                                               key: ValueKey(userController.user
                                                   .value!.userProfileImgUrl),
                                               imageUrl:
-                                                  "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                                                  "ss${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
                                               placeholder: (context, url) =>
                                                   const CircularProgressIndicator(),
                                               errorWidget:
-                                                  (context, url, error) =>
-                                                      const Icon(Icons.error),
+                                                  (context, url, error) {
+                                                String userName = userController
+                                                    .user.value!.fullName;
+                                                String initial = userName
+                                                        .isNotEmpty
+                                                    ? userName[0].toUpperCase()
+                                                    : "U";
+
+                                                return CircleAvatar(
+                                                  radius:
+                                                      (SizeConfig.screenWidth! *
+                                                          0.141),
+                                                  // Half of image size
+                                                  backgroundColor:
+                                                      AppColors.mainColor,
+                                                  // You can change the color
+                                                  child: Text(
+                                                    initial,
+                                                    style: TextStyle(
+                                                      fontSize: (SizeConfig
+                                                              .screenWidth! *
+                                                          0.08),
+                                                      // Responsive text size
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: AppColors
+                                                          .moreLightenMainColor,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                               fit: BoxFit.cover,
                                               width: SizeConfig.screenWidth! *
                                                   0.282,

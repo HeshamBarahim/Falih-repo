@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/sizes.dart';
 import '../../../controller/leaderboard_controller.dart';
 
 class TopLeaderboardSection extends StatelessWidget {
@@ -115,10 +117,44 @@ class TopLeaderboardSection extends StatelessWidget {
                           radius: isMiddleUser
                               ? screenWidth * 0.1
                               : screenWidth * 0.085,
-                          backgroundImage:
-                              NetworkImage(user.userProfileImgUrl ?? ""),
-                          onBackgroundImageError: (_, __) =>
-                              const AssetImage('assets/images/placeholder.png'),
+                          child: ClipOval(
+                            child: CachedNetworkImage(
+                              key: ValueKey(user.userProfileImgUrl),
+                              imageUrl:
+                                  "${user.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) {
+                                String userName = user.fullName;
+                                String initial = userName.isNotEmpty
+                                    ? userName[0].toUpperCase()
+                                    : "U";
+
+                                return CircleAvatar(
+                                  radius: (SizeConfig.screenWidth! * 0.141),
+                                  // Half of image size
+                                  backgroundColor: AppColors.mainColor,
+                                  // You can change the color
+                                  child: Text(
+                                    initial,
+                                    style: TextStyle(
+                                      fontSize: (SizeConfig.screenWidth! *
+                                          0.08), // Responsive text size
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.moreLightenMainColor,
+                                    ),
+                                  ),
+                                );
+                              },
+                              fit: BoxFit.cover,
+                              width: SizeConfig.screenWidth! * 0.282,
+                              height: SizeConfig.screenWidth! * 0.282,
+                            ),
+                          ),
+                          // backgroundImage:
+                          //     NetworkImage(user.userProfileImgUrl ?? ""),
+                          // onBackgroundImageError: (_, __) =>
+                          //     const AssetImage('assets/images/placeholder.png'),
                         ),
                       ),
                     ),
@@ -143,7 +179,7 @@ class TopLeaderboardSection extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: const Color(0xFF3CD797),
                               borderRadius:
-                                  BorderRadius.circular(screenWidth * 0.012),
+                              BorderRadius.circular(screenWidth * 0.012),
                             ),
                             child: Transform.rotate(
                               angle: 49.5,
