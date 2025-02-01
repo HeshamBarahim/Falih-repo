@@ -69,14 +69,19 @@ class TopLeaderboardSection extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          user.fullName.capitalize ?? "",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.035,
-                            fontWeight: FontWeight.bold,
-                            color: isMiddleUser
-                                ? AppColors.secondaryColor
-                                : AppColors.mainColor,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            user.fullName.split(" ")[0].capitalizeFirst ?? "",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.035,
+                              fontWeight: FontWeight.bold,
+                              color: isMiddleUser
+                                  ? AppColors.secondaryColor
+                                  : AppColors.mainColor,
+                            ),
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.003),

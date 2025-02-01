@@ -25,9 +25,8 @@ class LeaderBoardScreen extends StatelessWidget {
                 TopLeaderboardSection(),
                 Expanded(
                   child: Container(
-                    // height: SizeConfig.screenHeight! * 0.38,
                     margin: const EdgeInsets.only(
-                        left: 16, right: 16, top: 8, bottom: 70),
+                        left: 16, right: 16, top: 8, bottom: 85),
                     decoration: BoxDecoration(
                       color: AppColors.secondaryColor,
                       borderRadius: BorderRadius.circular(25),
@@ -49,7 +48,8 @@ class LeaderBoardScreen extends StatelessWidget {
                         return LeaderboardListSection(
                             id: user.id ?? "",
                             rank: index + 1,
-                            name: user.fullName,
+                            name: user.fullName.split(" ")[0].capitalizeFirst ??
+                                "",
                             points: controller.userPoints[user.id] ?? 0);
                       }).toList(),
                     ),
