@@ -64,6 +64,8 @@ class SubjectsController extends GetxController {
   void subjectNameFetcher(int subjectIndex) {
     if (subjectSections[curriculumGrade.value]?[id.value] == null) {
       name.value = id.value;
+      _examController.examName.value = name.value;
+      _examController.examType.value = "UnitExam";
       return;
     }
 
