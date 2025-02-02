@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../config/themes.dart';
 import '../constants/dialogs.dart';
 import '../models/exam_model.dart';
 
@@ -25,6 +24,7 @@ class ExamController extends GetxController {
   var examType = "".obs;
   var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
+  var filter = 'all'.obs;
   var isGeneratingResponse = false.obs;
   var hasChosenAnswer = false.obs;
   var generatedResponse = "".obs;
@@ -160,7 +160,7 @@ class ExamController extends GetxController {
     }
   }
 
-  generateResponse(String questionText) async {
+  void generateResponse(String questionText) async {
     if (selectedAnswers[questionIndex.value] == null) {
       showInfoMessage(
           title: "فالح", message: S.current.please_select_answer_to_use_ai);
@@ -196,15 +196,6 @@ class ExamController extends GetxController {
       }
     }
   }
-
-  Color getChoiceColor(int index) {
-    return index == questions[questionIndex.value].correctAnswerIndex
-        ? AppColors.mainColor
-        : AppColors.choicesColor;
-  }
-
-  // Filter type
-  var filter = 'all'.obs;
 
   //  To get filtered questions based on selected filter
   List<Exam> get filteredQuestions {
