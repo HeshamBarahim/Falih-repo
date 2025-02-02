@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                                               key: ValueKey(userController.user
                                                   .value!.userProfileImgUrl),
                                               imageUrl:
-                                                  "ss${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                                                  "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
                                               placeholder: (context, url) =>
                                                   const CircularProgressIndicator(),
                                               errorWidget:
