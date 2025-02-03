@@ -735,6 +735,11 @@
     },
     "connected_to_the_internet": "Connected to the Internet",
 
+    "@loading_text": {
+      "description": ""
+    },
+    "loading_text": "Loading...",
+
     "@logoutFromMoreThanOneDeviceTitle": {
       "description": ""
     },
@@ -797,6 +802,12 @@
       "description": ""
     },
     "unexpected_error_occured": "An unexpected error occurred. Please try again.",
+
+    "@wait_process_error": {
+          "description": ""
+    },
+    "wait_process_error": "Wait For The Prosess To Complete",
+
     "@profile_updated_successfully": {
       "description": ""
     },

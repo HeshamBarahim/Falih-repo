@@ -71,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "connected_to_the_internet":
             MessageLookupByLibrary.simpleMessage("Connected to the Internet"),
+            "loading_text":
+            MessageLookupByLibrary.simpleMessage("Loading..."),
         "logoutFromMoreThanOneDeviceTitle":
             MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutFromMoreThanOneDevice": MessageLookupByLibrary.simpleMessage(
@@ -327,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You should choose a Grade"),
         "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
             "An unexpected error occurred. Please try again."),
+        "wait_process_error": MessageLookupByLibrary.simpleMessage(
+            "Wait For The Prosess To Complete"),
         "unit_exam": MessageLookupByLibrary.simpleMessage("Unit Exam"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),

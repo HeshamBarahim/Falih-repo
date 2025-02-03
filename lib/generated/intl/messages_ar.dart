@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "connected_to_the_internet":
             MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
+            "loading_text":
+            MessageLookupByLibrary.simpleMessage("...جاري التحميل"),
             "logoutFromMoreThanOneDeviceTitle":
             MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
             "logoutFromMoreThanOneDevice":
@@ -328,6 +330,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار الصف"),
         "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."),
+        "wait_process_error": MessageLookupByLibrary.simpleMessage(
+            "انتظر حتى تكتمل العملية"),
         "unit_exam": MessageLookupByLibrary.simpleMessage("امتحان الوحدة"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد اختبار الوحدة:"),

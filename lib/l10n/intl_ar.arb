@@ -817,6 +817,11 @@
       "description": ""
     },
     "connected_to_the_internet": "متصل بالإنترنت",
+
+    "@loading_text": {
+      "description": ""
+    },
+    "loading_text": "...جاري التحميل",
     
     "@logoutFromMoreThanOneDeviceTitle": {
       "description": ""
@@ -880,6 +885,12 @@
           "description": ""
         },
         "unexpected_error_occured": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+        
+        "@wait_process_error": {
+          "description": ""
+        },
+        "wait_process_error": "انتظر حتى تكتمل العملية",
+        
         "@profile_updated_successfully": {
           "description": ""
         },

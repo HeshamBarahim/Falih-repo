@@ -1870,6 +1870,16 @@ class S {
       args: [],
     );
   }
+
+String get loading_text {
+    return Intl.message(
+      '...جاري التحميل',
+      name: 'loading_text',
+      desc: '',
+      args: [],
+    );
+  }
+
 String get logoutFromMoreThanOneDeviceTitle {
     return Intl.message(
       'تسجيل الخروج',
@@ -2012,6 +2022,15 @@ String get logoutFromMoreThanOneDeviceTitle {
     return Intl.message(
       'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
       name: 'unexpected_error_occured',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get wait_process_error {
+    return Intl.message(
+      'انتظر حتى تكتمل العملية',
+      name: 'wait_process_error',
       desc: '',
       args: [],
     );
