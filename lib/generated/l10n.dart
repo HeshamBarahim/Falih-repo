@@ -2036,6 +2036,15 @@ String get logoutFromMoreThanOneDeviceTitle {
     );
   }
 
+  String get passwords_doesnt_match {
+    return Intl.message(
+      'كلمات المرور غير متطابقة',
+      name: 'passwords_doesnt_match',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `تم تحديث الملف الشخصي بنجاح!`
   String get profile_updated_successfully {
     return Intl.message(

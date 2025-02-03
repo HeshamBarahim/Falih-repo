@@ -331,6 +331,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An unexpected error occurred. Please try again."),
         "wait_process_error": MessageLookupByLibrary.simpleMessage(
             "Wait For The Prosess To Complete"),
+        "passwords_doesnt_match": MessageLookupByLibrary.simpleMessage(
+            "Passwords Does Not Match"),
         "unit_exam": MessageLookupByLibrary.simpleMessage("Unit Exam"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),

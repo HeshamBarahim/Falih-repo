@@ -35,18 +35,12 @@ class CustomTextForm extends StatelessWidget {
         validator: validator,
         // 3
         keyboardType: keyboardType,
-        obscureText:
-            keyboardType == TextInputType.visiblePassword ? true : false,
+        
         // 4
         inputFormatters: keyFormatter == true
-            ? keyboardType == TextInputType.visiblePassword
-                ? [
-                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                    LengthLimitingTextInputFormatter(20),
-                  ]
-                : [
-                    FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                  ]
+            ? [
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ]
             : null,
         style: TextStyle(
           fontSize: SizeConfig.screenWidth! * 0.038,

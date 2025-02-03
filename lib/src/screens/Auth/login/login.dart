@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:falih/src/controller/login_controller.dart';
 import '../../../config/sizes.dart';
 import '../../../controller/loading_dialog_controller.dart';
+import '../../../controller/show_password_controller.dart';
+import '../widgets_auth/password_text_form_field.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -126,17 +128,32 @@ class Login extends StatelessWidget {
                                   size: SizeConfig.screenHeight! * 0.03,
                                 ),
                               ),
-                              CustomTextForm(
-                                keyFormatter: true,
-                                keyboardType: TextInputType.visiblePassword,
-                                myController: loginController.password,
-                                validator: Helper.validatePassword,
-                                labelText: S.of(context).hint_text_password,
-                                prefixIcon: Icon(
-                                  Icons.lock,
-                                  size: SizeConfig.screenHeight! * 0.03,
+                              GetBuilder<ShowPasswordController>(
+                                init: ShowPasswordController(),
+                                builder: (controller) => CustomPasswordTextForm(
+                                  myController: loginController.password,
+                                  validator: Helper.validatePassword,
+                                  labelText: S.of(context).hint_text_password,
+                                  prefixIcon: Icon(
+                                    Icons.lock,
+                                    size: SizeConfig.screenHeight! * 0.03,
+                                  ),
+                                  obscureText: controller.obText,
+                                  showPasswordFunction:
+                                      controller.showPasswordFunction,
                                 ),
                               ),
+                              // CustomTextForm(
+                              //   keyFormatter: true,
+                              //   keyboardType: TextInputType.visiblePassword,
+                              //   myController: loginController.password,
+                              //   validator: Helper.validatePassword,
+                              //   labelText: S.of(context).hint_text_password,
+                              //   prefixIcon: Icon(
+                              //     Icons.lock,
+                              //     size: SizeConfig.screenHeight! * 0.03,
+                              //   ),
+                              // ),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Container(

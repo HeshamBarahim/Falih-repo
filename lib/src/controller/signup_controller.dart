@@ -30,6 +30,7 @@ class SignUpController extends GetxController {
   // TextField Controllers to get data from TextFields
   final profile = TextEditingController();
   final password = TextEditingController();
+  final rePassword = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
   final schoolName = TextEditingController();

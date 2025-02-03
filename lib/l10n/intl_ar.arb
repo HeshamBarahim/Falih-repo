@@ -891,6 +891,11 @@
         },
         "wait_process_error": "انتظر حتى تكتمل العملية",
         
+        "@passwords_doesnt_match": {
+          "description": ""
+        },
+        "passwords_doesnt_match": "كلمات المرور غير متطابقة",
+
         "@profile_updated_successfully": {
           "description": ""
         },

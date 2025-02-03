@@ -12,6 +12,8 @@ import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
 import '../../../config/sizes.dart';
+import '../../../controller/show_password_controller.dart';
+import '../widgets_auth/password_text_form_field.dart';
 
 class SignupPart2 extends StatelessWidget {
   SignupPart2({super.key});
@@ -147,17 +149,66 @@ class SignupPart2 extends StatelessWidget {
                         ),
                       ],
                     ),
-                    CustomTextForm(
-                      keyFormatter: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      myController: controller.password,
-                      validator: Helper.validatePassword,
-                      labelText: S.of(context).hint_text_confirm,
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        size: SizeConfig.screenWidth! * 0.06,
+                    GetBuilder<ShowPasswordController>(
+                      init: ShowPasswordController(),
+                      builder: (showPasswordController) =>
+                          CustomPasswordTextForm(
+                        myController: controller.password,
+                        validator: Helper.validatePassword,
+                        labelText: S.of(context).hint_text_password,
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          size: SizeConfig.screenHeight! * 0.03,
+                        ),
+                        obscureText: showPasswordController.obText,
+                        showPasswordFunction:
+                            showPasswordController.showPasswordFunction,
                       ),
                     ),
+                    GetBuilder<ShowPasswordController>(
+                      init: ShowPasswordController(),
+                      builder: (showPasswordController) =>
+                          CustomPasswordTextForm(
+                        myController: controller.rePassword,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return S.current.passwrod_cant_be_empty;
+                          } else if (val != controller.password.text.trim()) {
+                            return S.current.passwords_doesnt_match;
+                          }
+                          return null;
+                        },
+                        labelText: S.of(context).hint_text_confirm,
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          size: SizeConfig.screenHeight! * 0.03,
+                        ),
+                        obscureText: showPasswordController.obText2,
+                        showPasswordFunction:
+                            showPasswordController.showPasswordFunction_2,
+                      ),
+                    ),
+                    // CustomTextForm(
+                    //   keyFormatter: true,
+                    //   keyboardType: TextInputType.visiblePassword,
+                    //   myController: controller.password,
+                    //   validator: Helper.validatePassword,
+                    //   prefixIcon: Icon(
+                    //     Icons.lock,
+                    //     size: SizeConfig.screenWidth! * 0.06,
+                    //   ),
+                    // ),
+                    // CustomTextForm(
+                    //   keyFormatter: true,
+                    //   keyboardType: TextInputType.visiblePassword,
+                    //   myController: controller.rePassword,
+                    //   validator:
+                    //   labelText: S.of(context).hint_text_confirm,
+                    //   prefixIcon: Icon(
+                    //     Icons.lock,
+                    //     size: SizeConfig.screenWidth! * 0.06,
+                    //   ),
+                    // ),
                     SizedBox(height: SizeConfig.screenHeight! * 0.03),
                     CustomAgreeingCheck(
                       onChange: (value) => controller.toggleCheckbox(value!),
