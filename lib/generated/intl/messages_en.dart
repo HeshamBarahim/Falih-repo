@@ -140,7 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "go_get_some_exams":
             MessageLookupByLibrary.simpleMessage("Go get some exams"),
         "grade": MessageLookupByLibrary.simpleMessage("Class"),
-        "hi": MessageLookupByLibrary.simpleMessage("hi"),
+        "hi": MessageLookupByLibrary.simpleMessage("Hi, "),
         "hint_text_Governorate":
             MessageLookupByLibrary.simpleMessage("Governorate"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("Grade"),

@@ -2,6 +2,7 @@ import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:get/get.dart';
 
 import '../../config/images.dart';
@@ -146,16 +147,11 @@ class RunExam extends StatelessWidget {
                               ),
                               SizedBox(height: SizeConfig.screenHeight! * 0.03),
                               Directionality(
-                                textDirection: isArabic(question.questionText)
-                                    ? TextDirection.rtl
-                                    : TextDirection.ltr,
-                                child: Text(
-                                  question.questionText,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
+                                  textDirection: isArabic(question.questionText)
+                                      ? TextDirection.rtl
+                                      : TextDirection.ltr,
+                                  child:
+                                      buildQuestionText(question.questionText)),
                             ],
                           ),
                         ),
@@ -339,6 +335,44 @@ class RunExam extends StatelessWidget {
             ),
           );
         }),
+      ),
+    );
+  }
+
+  Widget buildQuestionText(String question) {
+    // Detect if the question contains mathematical symbols
+    bool containsMath = question.contains(RegExp(r'[/√^]'));
+
+    return containsMath
+        ? buildMathQuestion(question)
+        : Text(
+            question,
+            style: const TextStyle(fontSize: 20),
+          );
+  }
+
+  buildMathQuestion(String question) {
+    // Replace slash by latex divisions
+    while (question.indexOf('/') > 0) {
+      int divisionIndex = question.indexOf('/');
+      divisionIndex = divisionIndex - 1;
+      question = question.replaceFirst("/", "");
+      question = question.substring(0, divisionIndex) +
+          r" \frac " +
+          question.substring(divisionIndex++);
+    }
+
+    // Replace root by latex root
+    while (question.indexOf('√') > 0) {
+      int rootIndex = question.indexOf('√');
+      rootIndex = rootIndex - 1;
+      question = question.replaceFirst("√", r" \sqrt ");
+    }
+
+    return Math.tex(
+      question,
+      textStyle: const TextStyle(
+        fontSize: 20,
       ),
     );
   }
