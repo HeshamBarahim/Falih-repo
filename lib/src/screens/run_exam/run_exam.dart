@@ -312,19 +312,13 @@ class RunExam extends StatelessWidget {
                             : null;
                         controller.generateResponse(question.questionText);
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          color: Colors.transparent,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: SizedBox(
-                            height: 64,
-                            width: 64,
-                            child: Image.asset(
-                              Images.falih,
-                            ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: SizedBox(
+                          height: 64,
+                          width: 64,
+                          child: Image.asset(
+                            Images.falih,
                           ),
                         ),
                       ),
