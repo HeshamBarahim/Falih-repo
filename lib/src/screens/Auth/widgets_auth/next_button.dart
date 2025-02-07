@@ -21,7 +21,7 @@ class NextButton extends StatelessWidget {
       height: SizeConfig.screenHeight! * 0.06,
       // minWidth: SizeConfig.screenWidth! * 0.8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(SizeConfig.screenWidth! * 0.121),
+        borderRadius: BorderRadius.circular(8),
       ),
       onPressed: funtion,
       child: Center(

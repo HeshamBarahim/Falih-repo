@@ -26,9 +26,8 @@ class CustomCheckButton extends StatelessWidget {
       width: width == 0 ? SizeConfig.screenWidth! * 0.7 : width,
       height: height == 0 ? SizeConfig.screenHeight! * 0.06 : height,
       decoration: BoxDecoration(
-        borderRadius:
-            BorderRadius.all(Radius.circular(SizeConfig.screenHeight! * 0.035)),
-        color: isChecked ? AppColors.mainColor : Colors.grey,
+        borderRadius: BorderRadius.circular(8),
+        color: isChecked ? AppColors.mainColor : AppColors.hintColor,
       ),
       child: MaterialButton(
         height: SizeConfig.screenHeight! * 0.06,

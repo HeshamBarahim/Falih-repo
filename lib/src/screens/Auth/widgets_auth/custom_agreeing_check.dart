@@ -22,17 +22,32 @@ class CustomAgreeingCheck extends StatelessWidget {
         isArabic ? 'terms_conditions_ar.md' : 'terms_conditions_en.md';
     return Row(
       children: [
-        Obx(() => Checkbox(
+        Obx(
+          () => CheckboxTheme(
+            data: CheckboxThemeData(
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(4), // Optional: Add border radius
+              ),
+              side: const BorderSide(
+                color: AppColors.hintColor, // Set your desired border color
+                width: 2.0, // Set the border width
+              ),
+            ),
+            child: Checkbox(
               value: value.value,
               onChanged: onChange,
-            )),
+            ),
+          ),
+        ),
         Expanded(
             child: RichText(
                 text: TextSpan(
           text: S.of(context).agreeing_message,
           style: const TextStyle(
-            color: Colors.black,
+            color: AppColors.hintColor,
             height: 1.5,
+            fontFamily: "ElMessiri",
           ),
           children: [
             TextSpan(
