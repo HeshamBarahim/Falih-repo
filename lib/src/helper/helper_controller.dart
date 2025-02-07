@@ -11,7 +11,7 @@ class Helper extends GetxController {
     if (int.tryParse(value) != null) {
       String pattern = r'^\d{9}$';
       RegExp regex = RegExp(pattern);
-      if (!regex.hasMatch(value)) {
+      if (!regex.hasMatch(value.trim())) {
         return 'Phone numbers must be valid';
       }
     }
