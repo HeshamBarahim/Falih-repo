@@ -141,7 +141,7 @@ class NavBar extends StatelessWidget {
                                       () {
                                     menu.input!.change(false);
 
-                                   if (menu.index == 0) {
+                                    if (menu.index == 0) {
                                       controller.stopProcess();
                                       // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
