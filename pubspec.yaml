@@ -44,6 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.7.4+3
+  flutter_math_fork: null
   flutter_native_splash: null
   get: null
   get_storage: null
@@ -60,7 +61,7 @@ dependencies:
   pinput: null
   rive: null
   smooth_page_indicator: null
-  flutter_math_fork:
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_launcher_icons: null

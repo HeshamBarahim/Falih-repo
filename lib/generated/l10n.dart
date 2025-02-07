@@ -60,6 +60,32 @@ class S {
       args: [],
     );
   }
+  String get cancel {
+  return Intl.message(
+    'إلغاء',
+    name: 'cancel',
+    desc: 'Cancel button text',
+    args: [],
+  );
+}
+
+String get whatsapp_open_denied {
+  return Intl.message(
+    'تم رفض مغادرة التطبيق وفتح الواتساب.',
+    name: 'whatsapp_open_denied',
+    desc: 'Message shown when the user denies opening WhatsApp',
+    args: [],
+  );
+}
+String get whatsapp_leave_warning {
+  return Intl.message(
+    'أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟',
+    name: 'whatsapp_leave_warning',
+    desc: 'Warning message before leaving the app to open WhatsApp',
+    args: [],
+  );
+}
+
 
   /// `+967`
   String get hint_text_phone {
@@ -70,6 +96,8 @@ class S {
       args: [],
     );
   }
+  
+
   String get hint_text_username_or_phone {
     return Intl.message(
       'ادخل اسم المسنخدم او رقم الهاتف',

@@ -4,6 +4,21 @@
         "description": "This is the Start of the login page"
       },
       "title_login": "مرحبا بك من جديد",
+      
+      "@cancel": {
+      "description": "Cancel button text"
+      },
+      "cancel": "إلغاء",
+
+      "@whatsapp_open_denied": {
+      "description": "Message shown when the user denies opening WhatsApp"
+      },
+      "whatsapp_open_denied": "تم رفض مغادرة التطبيق وفتح الواتساب.",
+      "@whatsapp_leave_warning": {
+    "description": "Warning message before leaving the app to open WhatsApp"
+  },
+  "whatsapp_leave_warning": "أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟",
+
       "@hint_text_phone": {
         "description": ""
       },
