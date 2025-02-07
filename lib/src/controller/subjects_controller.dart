@@ -44,8 +44,8 @@ class SubjectsController extends GetxController {
 
   @override
   void onInit() {
-    curriculumGrade.value = user.value?.selectedGrade ?? "";
-    curriculumDepartment.value = user.value?.selectedDepartment ?? "";
+    curriculumGrade.value = user.value?.selectedGrade ?? "9";
+    curriculumDepartment.value = user.value?.selectedDepartment ?? "En";
     _examController.examGrade.value = curriculumGrade.value;
     _examController.examDepartment.value = curriculumDepartment.value;
     loadSubjects();

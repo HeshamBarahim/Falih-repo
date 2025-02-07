@@ -6,7 +6,6 @@ import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -39,10 +38,9 @@ class NavBar extends StatelessWidget {
                 Color(0xFF742f88),
                 Color(0xFF943dae),
                 Color(0xFFab59c5),
-                Color(0xFFbe7ed2),
-                Color(0xFFd1a4df),
-                Color(0xFFe4caed),
-                Color(0xFFf7effa),
+                Color(0xFFab59c5),
+                Color(0xFFab59c5),
+                Color(0xFFab59c5),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -64,9 +62,7 @@ class NavBar extends StatelessWidget {
                         child: NavBarInfoCard(),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.screenWidth! * 0.06,
-                            vertical: SizeConfig.screenHeight! * 0.01),
+                        padding: const EdgeInsets.all(8),
                         child: Text(
                           S.of(context).browse,
                           style: TextStyle(
@@ -114,11 +110,7 @@ class NavBar extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.screenWidth! * 0.06,
-                          top: SizeConfig.screenHeight! * 0.03,
-                          bottom: SizeConfig.screenHeight! * 0.01,
-                        ),
+                        padding: const EdgeInsets.all(8),
                         child: Text(
                           S.of(context).history,
                           style: TextStyle(
