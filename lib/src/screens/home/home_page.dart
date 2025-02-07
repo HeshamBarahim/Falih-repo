@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/home_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
@@ -72,70 +71,45 @@ class HomePage extends StatelessWidget {
                                     radius: SizeConfig.screenWidth! * 0.13,
                                     backgroundColor: AppColors.darkMainColor,
                                     child: ClipOval(
-                                      child: userController.user.value!
-                                                  .userProfileImgUrl !=
-                                              ''
-                                          ? CachedNetworkImage(
-                                              key: ValueKey(userController.user
-                                                  .value!.userProfileImgUrl),
-                                              imageUrl:
-                                                  "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
-                                              placeholder: (context, url) =>
-                                                  const CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) {
-                                                String userName = userController
-                                                    .user.value!.fullName;
-                                                String initial = userName
-                                                        .isNotEmpty
-                                                    ? userName[0].toUpperCase()
-                                                    : "U";
+                                      child: CachedNetworkImage(
+                                        key: ValueKey(userController
+                                            .user.value!.userProfileImgUrl),
+                                        imageUrl:
+                                            "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) {
+                                          String userName = userController
+                                              .user.value!.fullName;
+                                          String initial = userName.isNotEmpty
+                                              ? userName[0].toUpperCase()
+                                              : "U";
 
-                                                return CircleAvatar(
-                                                  radius:
-                                                      (SizeConfig.screenWidth! *
-                                                          0.141),
-                                                  // Half of image size
-                                                  backgroundColor:
-                                                      AppColors.mainColor,
-                                                  // You can change the color
-                                                  child: Text(
-                                                    initial,
-                                                    style: TextStyle(
-                                                      fontSize: (SizeConfig
-                                                              .screenWidth! *
-                                                          0.08),
-                                                      // Responsive text size
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: AppColors
-                                                          .moreLightenMainColor,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              fit: BoxFit.cover,
-                                              width: SizeConfig.screenWidth! *
-                                                  0.282,
-                                              height: SizeConfig.screenWidth! *
-                                                  0.282,
-                                            )
-                                          : Image.asset(
-                                              Images.test,
-                                              fit: BoxFit.cover,
-                                              width: SizeConfig.screenWidth! *
-                                                  0.282,
-                                              height: SizeConfig.screenWidth! *
-                                                  0.282,
-                                              cacheWidth:
-                                                  (SizeConfig.screenWidth! *
-                                                          0.282)
-                                                      .toInt(),
-                                              cacheHeight:
-                                                  (SizeConfig.screenWidth! *
-                                                          0.282)
-                                                      .toInt(),
+                                          return CircleAvatar(
+                                            radius: (SizeConfig.screenWidth! *
+                                                0.141),
+                                            // Half of image size
+                                            backgroundColor:
+                                                AppColors.mainColor,
+                                            // You can change the color
+                                            child: Text(
+                                              initial,
+                                              style: TextStyle(
+                                                fontSize:
+                                                    (SizeConfig.screenWidth! *
+                                                        0.08),
+                                                // Responsive text size
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors
+                                                    .moreLightenMainColor,
+                                              ),
                                             ),
+                                          );
+                                        },
+                                        fit: BoxFit.cover,
+                                        width: SizeConfig.screenWidth! * 0.282,
+                                        height: SizeConfig.screenWidth! * 0.282,
+                                      ),
                                     ),
                                   ),
                                   Expanded(
