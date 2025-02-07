@@ -152,9 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_department": MessageLookupByLibrary.simpleMessage("القسم"),
         "hint_text_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور"),
-        "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
-        "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(
-            "ادخل اسم المسنخدم او رقم الهاتف"),
+        "hint_text_phone": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
+        "hint_text_username_or_phone":
+            MessageLookupByLibrary.simpleMessage("اسم المسنخدم او رقم الهاتف"),
         "hint_text_username":
             MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "history": MessageLookupByLibrary.simpleMessage("السجل"),

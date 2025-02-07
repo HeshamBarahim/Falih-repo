@@ -27,10 +27,8 @@ class CustomPasswordTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: SizeConfig.screenHeight! * 0.007,
-          horizontal: SizeConfig.screenWidth! * 0.0097),
+    return Padding(
+      padding: const EdgeInsets.all(8),
       child: TextFormField(
         // 1
         controller: myController,
@@ -58,7 +56,7 @@ class CustomPasswordTextForm extends StatelessWidget {
           labelText: labelText,
           labelStyle: TextStyle(
               fontSize: SizeConfig.screenWidth! * 0.03875,
-              color: AppColors.mainColor),
+              color: AppColors.hintColor),
           errorStyle: TextStyle(
               color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.03875),
           prefixIcon: prefixIcon,
@@ -75,8 +73,7 @@ class CustomPasswordTextForm extends StatelessWidget {
               vertical: SizeConfig.screenHeight! * 0.00118,
               horizontal: SizeConfig.screenWidth! * 0.048),
           enabledBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
                 color: AppColors.mainColor,
                 width: SizeConfig.screenWidth! * 0.0026),
@@ -92,14 +89,12 @@ class CustomPasswordTextForm extends StatelessWidget {
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: Colors.red, width: SizeConfig.screenWidth! * 0.0026),
-            borderRadius:
-                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+            borderRadius: BorderRadius.circular(16),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: Colors.red, width: SizeConfig.screenWidth! * 0.0046),
-            borderRadius:
-                BorderRadius.circular(SizeConfig.screenWidth! * 0.0486),
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
       ),

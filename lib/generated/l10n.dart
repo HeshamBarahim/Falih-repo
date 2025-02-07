@@ -100,7 +100,7 @@ String get whatsapp_leave_warning {
 
   String get hint_text_username_or_phone {
     return Intl.message(
-      'ادخل اسم المسنخدم او رقم الهاتف',
+      'اسم المسنخدم او رقم الهاتف',
       name: 'hint_text_username_or_phone',
       desc: '',
       args: [],

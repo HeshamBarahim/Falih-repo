@@ -1,15 +1,16 @@
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/back_press_controller.dart';
+import 'package:falih/src/controller/login_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
-import 'package:falih/src/screens/Auth/signup/singup.dart';
-import 'package:flutter/material.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
+import 'package:falih/src/screens/Auth/signup/signup.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
-import 'package:falih/src/config/images.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:falih/src/controller/login_controller.dart';
+
 import '../../../config/sizes.dart';
 import '../../../controller/loading_dialog_controller.dart';
 import '../../../controller/show_password_controller.dart';
@@ -30,9 +31,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    // ignore: deprecated_member_use
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) async {
         DateTime now = DateTime.now();
         if (lastBackPressTime == null ||
             now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
@@ -54,174 +54,115 @@ class Login extends StatelessWidget {
               duration: const Duration(seconds: 2),
             ),
           );
-          return false;
         }
-        return true;
       },
       child: Scaffold(
-        body: Stack(
-          children: [
-            Form(
-              key: loginController.loginFormKey,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    image: const AssetImage(
-                      Images.backgroundImageOfAuth,
-                    ),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                      const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-                      BlendMode.lighten,
-                    ),
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.screenWidth! * 0.05,
-                    vertical: SizeConfig.screenHeight! * 0.0243),
-                child: Scaffold(
-                  backgroundColor: Colors.transparent,
-                  body: SafeArea(
+        body: Form(
+          key: loginController.loginFormKey,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
                     child: SingleChildScrollView(
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.transparent,
-                                child: Image.asset(
-                                  Images.falih,
-                                  width: SizeConfig.screenWidth! * 0.5,
-                                  height: SizeConfig.screenHeight! * 0.2,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal:
-                                          SizeConfig.screenWidth! * 0.02,
-                                      vertical:
-                                          SizeConfig.screenHeight! * 0.00975),
-                                  child: Text(
-                                    S.of(context).title_login,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: SizeConfig.screenHeight! * 0.03,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              CustomTextForm(
-                                keyFormatter: false,
-                                keyboardType: TextInputType.text,
-                                myController: loginController.email,
-                                validator: Helper.validatePhoneNumber,
-                                labelText:
-                                    S.of(context).hint_text_username_or_phone,
-                                prefixIcon: Icon(
-                                  Icons.phone_android,
-                                  size: SizeConfig.screenHeight! * 0.03,
-                                ),
-                              ),
-                              GetBuilder<ShowPasswordController>(
-                                init: ShowPasswordController(),
-                                builder: (controller) => CustomPasswordTextForm(
-                                  myController: loginController.password,
-                                  validator: Helper.validatePassword,
-                                  labelText: S.of(context).hint_text_password,
-                                  prefixIcon: Icon(
-                                    Icons.lock,
-                                    size: SizeConfig.screenHeight! * 0.03,
-                                  ),
-                                  obscureText: controller.obText,
-                                  showPasswordFunction:
-                                      controller.showPasswordFunction,
-                                ),
-                              ),
-                              // CustomTextForm(
-                              //   keyFormatter: true,
-                              //   keyboardType: TextInputType.visiblePassword,
-                              //   myController: loginController.password,
-                              //   validator: Helper.validatePassword,
-                              //   labelText: S.of(context).hint_text_password,
-                              //   prefixIcon: Icon(
-                              //     Icons.lock,
-                              //     size: SizeConfig.screenHeight! * 0.03,
-                              //   ),
-                              // ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal:
-                                          SizeConfig.screenWidth! * 0.02,
-                                      vertical:
-                                          SizeConfig.screenHeight! * 0.00975),
-                                  child: InkWell(
-                                    child: Text(
-                                      S.of(context).forget_password,
-                                      style: TextStyle(
-                                        color: AppColors.warningColor,
-                                        fontSize:
-                                            SizeConfig.screenHeight! * 0.018,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          Center(
+                            child: Image.asset(
+                              Images.falih,
+                              width: SizeConfig.screenWidth! * 0.4,
+                              height: SizeConfig.screenWidth! * 0.4,
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                          SizedBox(height: SizeConfig.screenHeight! * 0.15),
-                          Column(
-                            children: [
-                              GradientButton(
-                                text: S.of(context).login,
-                                height: SizeConfig.screenHeight! * 0.06,
-                                width: double.infinity,
-                                // onClick: () {},
-                                onClick: () async {
-                                  // var isConnected =
-                                  //     await checkConnectionController.checkInternetConnection();
-                                  loginController.login(Get.context!);
-                                },
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: Text(
+                              S.of(context).title_login,
+                              style: const TextStyle(
+                                color: AppColors.darkMainColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 28,
                               ),
-                              SizedBox(
-                                height: SizeConfig.screenHeight! * 0.03,
+                            ),
+                          ),
+                          CustomTextForm(
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            myController: loginController.email,
+                            validator: Helper.validatePhoneNumber,
+                            labelText:
+                                S.of(context).hint_text_username_or_phone,
+                            prefixIcon: Icon(
+                              Icons.account_circle,
+                              size: SizeConfig.screenHeight! * 0.03,
+                            ),
+                          ),
+                          GetBuilder<ShowPasswordController>(
+                            init: ShowPasswordController(),
+                            builder: (controller) => CustomPasswordTextForm(
+                              myController: loginController.password,
+                              validator: Helper.validatePassword,
+                              labelText: S.of(context).hint_text_password,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                size: SizeConfig.screenHeight! * 0.03,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    S.of(context).not_registerd,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize:
-                                          SizeConfig.screenHeight! * 0.018,
-                                    ),
-                                  ),
-                                  GradientText(
-                                    text: S.of(context).create_account,
-                                    route: () => Get.to(Signup()),
-                                  ),
-                                ],
+                              obscureText: controller.obText,
+                              showPasswordFunction:
+                                  controller.showPasswordFunction,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: InkWell(
+                              child: Text(
+                                S.of(context).forget_password,
+                                style: const TextStyle(
+                                  color: AppColors.warningColor,
+                                  fontSize: 14,
+                                ),
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                ),
+                  GradientButton(
+                    text: S.of(context).login,
+                    height: SizeConfig.screenHeight! * 0.06,
+                    width: double.infinity,
+                    onClick: () async {
+                      loginController.login(Get.context!);
+                    },
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        S.of(context).not_registerd,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: SizeConfig.screenHeight! * 0.018,
+                        ),
+                      ),
+                      GradientText(
+                        text: S.of(context).create_account,
+                        route: () => Get.to(Signup()),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

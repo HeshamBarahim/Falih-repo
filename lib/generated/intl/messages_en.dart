@@ -149,7 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_department":
             MessageLookupByLibrary.simpleMessage("Department"),
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
-        "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
+        "hint_text_phone":
+            MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(

@@ -30,6 +30,7 @@ class AppColors {
   static const lightenMainColor = Color(0xFFE4CAEC);
   static const moreLightenMainColor = Color(0xFFF7F0FA);
 
+  static const hintColor = Color(0xFFA56CB3); // Lightened by ~30%
   static const shadowColor = Color(0xFF9A9393);
   static const subHeaderNotTaken = Color(0xFFD42A2A);
   static const borderColor = Color(0XFF9A9393);
