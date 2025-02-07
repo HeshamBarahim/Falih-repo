@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/profile_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
@@ -29,20 +28,8 @@ class EditProfileScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: Container(
+        body: Padding(
           padding: const EdgeInsets.all(16),
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: const AssetImage(
-                Images.backgroundImageOfAuth,
-              ),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
-                  BlendMode.lighten),
-            ),
-          ),
           child: SingleChildScrollView(
             child: Form(
               key: profileController.formKey,
@@ -57,42 +44,39 @@ class EditProfileScreen extends StatelessWidget {
                       builder: (controller) => Stack(
                         children: [
                           CircleAvatar(
-                            radius: SizeConfig.screenWidth! * 0.141,
-                            backgroundColor: Colors.grey[200],
+                            radius: SizeConfig.screenWidth! * 0.13,
+                            backgroundColor: AppColors.darkMainColor,
                             child: ClipOval(
-                              child: controller.isProfileImgLoading
-                                  ? Center(
-                                      child: CircularProgressIndicator(
-                                        strokeWidth:
-                                            SizeConfig.screenWidth! * 0.008,
-                                        strokeAlign:
-                                            SizeConfig.screenWidth! * 0.003,
+                              child: CachedNetworkImage(
+                                key: ValueKey(controller.fullName.text),
+                                imageUrl:
+                                    "${controller.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) {
+                                  String userName = controller.fullName.text;
+                                  String firstLetter = userName.isNotEmpty
+                                      ? userName[0].toUpperCase()
+                                      : "U";
+
+                                  return CircleAvatar(
+                                    radius: (SizeConfig.screenWidth! * 0.141),
+                                    backgroundColor: AppColors.mainColor,
+                                    child: Text(
+                                      firstLetter,
+                                      style: TextStyle(
+                                        fontSize:
+                                            (SizeConfig.screenWidth! * 0.08),
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.moreLightenMainColor,
                                       ),
-                                    )
-                                  : controller.userProfileImgUrl.value != ''
-                                      ? CachedNetworkImage(
-                                          key: ValueKey(
-                                              controller.userProfileImgUrl),
-                                          imageUrl: controller
-                                              .userProfileImgUrl.value!,
-                                          placeholder: (context, url) =>
-                                              const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                          fit: BoxFit.cover,
-                                          width:
-                                              SizeConfig.screenWidth! * 0.282,
-                                          height:
-                                              SizeConfig.screenWidth! * 0.282,
-                                        )
-                                      : Image.asset(
-                                          Images.test,
-                                          fit: BoxFit.cover,
-                                          width:
-                                              SizeConfig.screenWidth! * 0.282,
-                                          height:
-                                              SizeConfig.screenWidth! * 0.282,
-                                        ),
+                                    ),
+                                  );
+                                },
+                                fit: BoxFit.cover,
+                                width: SizeConfig.screenWidth! * 0.282,
+                                height: SizeConfig.screenWidth! * 0.282,
+                              ),
                             ),
                           ),
                           Positioned(
@@ -107,11 +91,17 @@ class EditProfileScreen extends StatelessWidget {
                                   controller.imagePickerDialog(context);
                                 },
                                 style: IconButton.styleFrom(
-                                  backgroundColor: AppColors.mainColor,
+                                  backgroundColor:
+                                      controller.userProfileImgUrl.value == ""
+                                          ? AppColors.lightenMainColor
+                                          : AppColors.mainColor,
                                 ),
                                 icon: Icon(
                                   Icons.edit,
-                                  color: Colors.white,
+                                  color:
+                                      controller.userProfileImgUrl.value == ""
+                                          ? AppColors.mainColor
+                                          : Colors.white,
                                   size: SizeConfig.screenWidth! * 0.044,
                                 ),
                               ),
@@ -150,25 +140,21 @@ class EditProfileScreen extends StatelessWidget {
                           list: [
                             DropdownMenuItem(
                                 value: "Sana'a",
-                                child:
-                                    Text(S.of(context).drop_governorate_val1)),
+                                child: Text(S.of(context).drop_governorate_val1,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                             DropdownMenuItem(
                                 value: 'Taiz',
-                                child:
-                                    Text(S.of(context).drop_governorate_val2)),
+                                child: Text(S.of(context).drop_governorate_val2,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                             DropdownMenuItem(
                                 value: 'Ibb',
-                                child:
-                                    Text(S.of(context).drop_governorate_val3)),
+                                child: Text(S.of(context).drop_governorate_val3,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                           ],
                         ),
-                        // CustomDropDownForm(
-                        //   validator: Helper.validateGrade,
-                        //   hintText: 'hintText',
-                        //   prefixIcon: Icon(Icons.abc),
-                        //   list: [],
-                        //   onChanged: (val) {},
-                        // ),
                         CustomDropDownForm(
                           validator: Helper.validateGrade,
                           onChanged: (newValue) {
@@ -180,10 +166,14 @@ class EditProfileScreen extends StatelessWidget {
                           list: [
                             DropdownMenuItem(
                                 value: "9",
-                                child: Text(S.of(context).drop_grade_val1)),
+                                child: Text(S.of(context).drop_grade_val1,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                             DropdownMenuItem(
                                 value: '12',
-                                child: Text(S.of(context).drop_grade_val2)),
+                                child: Text(S.of(context).drop_grade_val2,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                           ],
                         ),
                         CustomDropDownForm(
@@ -196,10 +186,17 @@ class EditProfileScreen extends StatelessWidget {
                           prefixIcon: const Icon(Icons.person_pin_rounded),
                           list: [
                             DropdownMenuItem(
-                                value: "Male", child: Text(S.of(context).male)),
+                                value: "Male",
+                                child: Text(
+                                  S.of(context).male,
+                                  style: const TextStyle(
+                                      color: AppColors.mainColor),
+                                )),
                             DropdownMenuItem(
                                 value: 'Female',
-                                child: Text(S.of(context).female)),
+                                child: Text(S.of(context).female,
+                                    style: const TextStyle(
+                                        color: AppColors.mainColor))),
                           ],
                         ),
                       ],
