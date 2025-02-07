@@ -5,21 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../config/sizes.dart';
+import '../../config/themes.dart';
+import '../../controller/user_controller.dart';
 
 class CurriculumPage extends StatelessWidget {
   CurriculumPage({super.key});
 
+  final UserController userController = Get.put(UserController());
   final SubjectsController subjectController = Get.put(SubjectsController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var user = userController.user.value;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
       ),
-      child: Obx(() => subjectController.user.value == null
+      child: Obx(() => user == null
           ? Expanded(
               child: Center(
                 child: Text(
@@ -54,8 +58,9 @@ class CurriculumPage extends StatelessWidget {
                             child: Text(
                               value,
                               style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.mainColor,
                               ),
                             ),
                           );
@@ -77,8 +82,9 @@ class CurriculumPage extends StatelessWidget {
                             child: Text(
                               value,
                               style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.mainColor,
                               ),
                             ),
                           );
