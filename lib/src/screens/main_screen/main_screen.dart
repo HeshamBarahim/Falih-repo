@@ -174,6 +174,21 @@ class MainScreen extends StatelessWidget {
                                 top: SizeConfig.screenHeight! * 0.12),
                             child: controller.screens[controller.selectedIndex],
                           ),
+                          controller.isSideNavBarClosed == false
+                              ? MaterialButton(
+                                  onPressed: () {
+                                    controller.stopProcess();
+                                    controller.changeCurrentPage(1);
+                                    controller.onPressNavBarButton();
+                                    controller.onOpen();
+                                  },
+                                  child: Container(
+                                    height: SizeConfig.screenHeight!,
+                                    width: SizeConfig.screenWidth!,
+                                    color: Colors.transparent,
+                                  ),
+                                )
+                              : SizedBox(),
                         ],
                       ),
                     ),
@@ -185,7 +200,7 @@ class MainScreen extends StatelessWidget {
                   left: controller.isSideNavBarClosed
                       ? 0
                       : SizeConfig.screenWidth! *
-                          0.54, // top: SizeConfig.screenHeight! * 0.06,
+                          0.60, // top: SizeConfig.screenHeight! * 0.06,
                   child: Padding(
                     padding:
                         EdgeInsets.only(top: SizeConfig.screenHeight! * 0.053),

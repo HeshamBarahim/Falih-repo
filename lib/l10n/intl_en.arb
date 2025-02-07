@@ -4,10 +4,30 @@
       "description": "This is the Start of the login page"
     },
     "title_login": "Welcome Back",
+  
+  "@cancel": {
+    "description": "Cancel button text"
+    },
+    "cancel": "Cancel",
+
+  "@whatsapp_open_denied": {
+    "description": "Message shown when the user denies opening WhatsApp"
+    },
+    "whatsapp_open_denied": "Leaving the app and opening WhatsApp was denied.",
+    
+    "@whatsapp_leave_warning": {
+    "description": "Warning message before leaving the app to open WhatsApp"
+  },
+  "whatsapp_leave_warning": "You are about to leave the app and open WhatsApp. Do you want to continue?",
+    
     "@hint_text_phone": {
       "description": ""
     },
     "hint_text_phone": "+967",
+     "@hint_text_username_or_phone": {
+        "description": ""
+      },
+      "hint_text_username_or_phone": "Enter user name or phone number",
     "@hint_text_password": {
       "description": ""
     },

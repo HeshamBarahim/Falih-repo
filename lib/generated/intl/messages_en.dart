@@ -71,8 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "connected_to_the_internet":
             MessageLookupByLibrary.simpleMessage("Connected to the Internet"),
-            "loading_text":
-            MessageLookupByLibrary.simpleMessage("Loading..."),
+        "loading_text": MessageLookupByLibrary.simpleMessage("Loading..."),
         "logoutFromMoreThanOneDeviceTitle":
             MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutFromMoreThanOneDevice": MessageLookupByLibrary.simpleMessage(
@@ -153,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
+        "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(
+            "Enter user name or phone number"),
         "history_heading":
             MessageLookupByLibrary.simpleMessage("Your test histroy"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -311,6 +312,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Time will be counted during the exam"),
         "times": MessageLookupByLibrary.simpleMessage("times"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
+            "Leaving the app and opening WhatsApp was denied."),
+             "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
+      "You are about to leave the app and open WhatsApp. Do you want to continue?"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "trusted": MessageLookupByLibrary.simpleMessage("Trusted"),
         "type": MessageLookupByLibrary.simpleMessage("Type:"),
@@ -331,8 +337,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An unexpected error occurred. Please try again."),
         "wait_process_error": MessageLookupByLibrary.simpleMessage(
             "Wait For The Prosess To Complete"),
-        "passwords_doesnt_match": MessageLookupByLibrary.simpleMessage(
-            "Passwords Does Not Match"),
+        "passwords_doesnt_match":
+            MessageLookupByLibrary.simpleMessage("Passwords Does Not Match"),
         "unit_exam": MessageLookupByLibrary.simpleMessage("Unit Exam"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),

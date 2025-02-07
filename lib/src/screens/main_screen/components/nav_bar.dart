@@ -6,9 +6,13 @@ import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:rive/rive.dart' as rive;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/sizes.dart';
+import '../../../config/themes.dart';
+import '../../../helper/helper_controller.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
@@ -18,6 +22,7 @@ import 'nav_bar_tile.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
+  final String phoneNumber = "+967772020501"; // Your WhatsApp number
 
   @override
   Widget build(BuildContext context) {
@@ -141,8 +146,84 @@ class NavBar extends StatelessWidget {
                                       () {
                                     menu.input!.change(false);
 
-                                   if (menu.index == 0) {
+                                    if (menu.index == 0) {
                                       controller.stopProcess();
+                                      // _openWhatsApp(context);
+                                      showDialog(
+                                        context: Get.context!,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Center(
+                                              child: Text(
+                                                S.current.confirm,
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      SizeConfig.screenHeight! *
+                                                          0.030,
+                                                  color:
+                                                      AppColors.darkMainColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                            // alignment: TextAlign.center,
+                                            content: Text(
+                                              S.current.whatsapp_leave_warning,
+                                              style: TextStyle(
+                                                fontSize:
+                                                    SizeConfig.screenHeight! *
+                                                        0.018,
+                                                color: AppColors.mainColor,
+                                              ),
+                                            ),
+                                            actions: [
+                                              MaterialButton(
+                                                onPressed: () async {
+                                                  Navigator.pop(context);
+                                                  final String url =
+                                                      "https://wa.me/$phoneNumber";
+
+                                                  final Uri uri =
+                                                      Uri.parse(url);
+                                                  await launchUrl(uri,
+                                                      mode: LaunchMode
+                                                          .externalApplication);
+                                                },
+                                                child: Text(
+                                                  S.current.continueText,
+                                                  style: TextStyle(
+                                                    fontSize: SizeConfig
+                                                            .screenHeight! *
+                                                        0.020,
+                                                    color:
+                                                        AppColors.darkMainColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              MaterialButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  Helper.errorSnackBar(
+                                                    title: S.current.error,
+                                                    message: S.current
+                                                        .whatsapp_open_denied,
+                                                  );
+                                                },
+                                                child: Text(
+                                                  S.current.cancel,
+                                                  style: TextStyle(
+                                                    fontSize: SizeConfig
+                                                            .screenHeight! *
+                                                        0.020,
+                                                    color:
+                                                        AppColors.darkMainColor,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        },
+                                      );
                                       // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
@@ -5,6 +6,7 @@ import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../generated/l10n.dart';
 import '../screens/main_screen/main_screen.dart';
 import 'network_controller.dart';
 import 'loading_dialog_controller.dart';
@@ -42,9 +44,23 @@ class LoginController extends GetxController {
       //   }
       await networkController.checkConnection();
       // print('Connected: ${networkController.isConnected.value}');
+      late final String fakeEmail;
 
       if (networkController.isConnected.value) {
-        final fakeEmail = '${email.text.trim()}@gmail.com';
+        if (int.tryParse(email.text.trim()) != null) {
+          fakeEmail = '${email.text.trim()}@gmail.com';
+        } else {
+          QuerySnapshot<Map<String, dynamic>> querySnapshot =
+              await FirebaseFirestore.instance
+                  .collection('users')
+                  .where('FullName', isEqualTo: email.text.trim())
+                  .limit(1)
+                  .get();
+          print(querySnapshot.docs.length);
+          if (querySnapshot.docs.isNotEmpty) {
+            fakeEmail = '${querySnapshot.docs[0]['Phone']}@gmail.com';
+          }
+        }
         try {
           if (!loginFormKey.currentState!.validate()) {
             isLoading.value = false;
@@ -70,7 +86,7 @@ class LoginController extends GetxController {
         } catch (e) {
           loadingDialogController.closeLoadingDialog(Get.context!);
 
-          Helper.errorSnackBar(title: "Oh Snap", message: e.toString());
+          Helper.errorSnackBar(title: S.current.error, message: e.toString());
           isProcessing.value = false;
         }
       } else {
@@ -93,7 +109,7 @@ class LoginController extends GetxController {
           //   ),
           // ),
           isDismissible: true,
-          dismissDirection: DismissDirection.endToStart,
+          dismissDirection: DismissDirection.horizontal,
           snackPosition: SnackPosition.TOP,
           shouldIconPulse: true,
           backgroundColor: Colors.red.shade600,

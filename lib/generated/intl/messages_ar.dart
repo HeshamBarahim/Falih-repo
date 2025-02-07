@@ -68,12 +68,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "connected_to_the_internet":
             MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
-            "loading_text":
-            MessageLookupByLibrary.simpleMessage("...جاري التحميل"),
-            "logoutFromMoreThanOneDeviceTitle":
+        "loading_text": MessageLookupByLibrary.simpleMessage("...جاري التحميل"),
+        "logoutFromMoreThanOneDeviceTitle":
             MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-            "logoutFromMoreThanOneDevice":
-            MessageLookupByLibrary.simpleMessage("تم تسجيل خروجك لانك متصل بجهاز اخر"),
+        "logoutFromMoreThanOneDevice": MessageLookupByLibrary.simpleMessage(
+            "تم تسجيل خروجك لانك متصل بجهاز اخر"),
         "contact_us": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "continueText": MessageLookupByLibrary.simpleMessage("متابعة"),
         "correct": MessageLookupByLibrary.simpleMessage("صحيح"),
@@ -154,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("+967"),
+        "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(
+            "ادخل اسم المسنخدم او رقم الهاتف"),
         "hint_text_username":
             MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "history": MessageLookupByLibrary.simpleMessage("السجل"),
@@ -313,6 +314,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "سيتم حساب الوقت أثناء الاختبار"),
         "times": MessageLookupByLibrary.simpleMessage("مرات"),
         "title_login": MessageLookupByLibrary.simpleMessage("مرحبا بك من جديد"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
+            "تم رفض مغادرة التطبيق وفتح الواتساب."),
+            "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
+      "أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟"),
         "title_signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "trusted": MessageLookupByLibrary.simpleMessage("موثوق"),
         "type": MessageLookupByLibrary.simpleMessage("النوع:"),
@@ -330,10 +336,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يجب عليك اختيار الصف"),
         "unexpected_error_occured": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."),
-        "wait_process_error": MessageLookupByLibrary.simpleMessage(
-            "انتظر حتى تكتمل العملية"),
-        "passwords_doesnt_match": MessageLookupByLibrary.simpleMessage(
-            "كلمات المرور غير متطابقة"),
+        "wait_process_error":
+            MessageLookupByLibrary.simpleMessage("انتظر حتى تكتمل العملية"),
+        "passwords_doesnt_match":
+            MessageLookupByLibrary.simpleMessage("كلمات المرور غير متطابقة"),
         "unit_exam": MessageLookupByLibrary.simpleMessage("امتحان الوحدة"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("حد اختبار الوحدة:"),

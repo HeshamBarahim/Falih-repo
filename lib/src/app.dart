@@ -21,16 +21,19 @@ class App extends StatelessWidget {
       if (!authRepo.isAuthCheckComplete.value) {
         return const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home:
-              SplashScreen(), // Show loading screen while auth check is in progress
+          // Show loading screen while auth check is in progress
+          home: SplashScreen(),
         );
       }
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: const Color(0xFFFFFFFF),
-          textTheme: GoogleFonts.montserratAlternatesTextTheme()
-              .apply(bodyColor: AppColors.mainColor),
+          primaryColor: Color(0xFFFFFFFF),
+          fontFamily: 'ElMessiri', // Set default font for the entire app
+
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(color: AppColors.mainColor),
+          ),
         ),
         // Bind locale from SettingsController
         locale: Get.find<SettingsController>().locale.value,

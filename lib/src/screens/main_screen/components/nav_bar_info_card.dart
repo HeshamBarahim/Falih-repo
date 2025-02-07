@@ -17,8 +17,11 @@ class NavBarInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: SizeConfig.screenHeight! * 0.01,
+      ),
+      margin: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth! * 0.035),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

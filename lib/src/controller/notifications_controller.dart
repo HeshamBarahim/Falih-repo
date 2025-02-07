@@ -131,7 +131,7 @@ class NotificationsController extends GetxController {
         '${message.notification!.title}',
         // '${message.sentTime}',
         '${message.notification!.body}',
-        dismissDirection: DismissDirection.endToStart,
+        dismissDirection: DismissDirection.horizontal,
         backgroundColor: Color(0xFFFFFFFF),
         colorText: Color(0xFF742e89),
         snackPosition: SnackPosition.TOP,
