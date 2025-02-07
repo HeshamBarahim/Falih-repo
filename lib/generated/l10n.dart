@@ -70,6 +70,15 @@ class S {
       args: [],
     );
   }
+  String get hint_text_username_or_phone {
+    return Intl.message(
+      'ادخل اسم المسنخدم او رقم الهاتف',
+      name: 'hint_text_username_or_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
 
   /// `كلمة المرور`
   String get hint_text_password {

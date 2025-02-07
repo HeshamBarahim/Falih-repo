@@ -118,11 +118,12 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                               CustomTextForm(
-                                keyFormatter: true,
-                                keyboardType: TextInputType.number,
+                                keyFormatter: false,
+                                keyboardType: TextInputType.text,
                                 myController: loginController.email,
                                 validator: Helper.validatePhoneNumber,
-                                labelText: S.of(context).hint_text_phone,
+                                labelText:
+                                    S.of(context).hint_text_username_or_phone,
                                 prefixIcon: Icon(
                                   Icons.phone_android,
                                   size: SizeConfig.screenHeight! * 0.03,

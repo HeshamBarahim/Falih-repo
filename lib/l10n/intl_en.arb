@@ -8,6 +8,10 @@
       "description": ""
     },
     "hint_text_phone": "+967",
+     "@hint_text_username_or_phone": {
+        "description": ""
+      },
+      "hint_text_username_or_phone": "Enter user name or phone number",
     "@hint_text_password": {
       "description": ""
     },

@@ -79,7 +79,7 @@ class AuthenticationRepository extends GetxController {
         S.current.logoutFromMoreThanOneDeviceTitle,
         // '${message.sentTime}',
         S.current.logoutFromMoreThanOneDevice,
-        dismissDirection: DismissDirection.endToStart,
+        dismissDirection: DismissDirection.horizontal,
         backgroundColor: Color(0xFFFFFFFF),
         colorText: Color(0xFF742e89),
         snackPosition: SnackPosition.TOP,

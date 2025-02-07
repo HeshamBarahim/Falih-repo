@@ -8,6 +8,11 @@
         "description": ""
       },
       "hint_text_phone": "+967",
+
+      "@hint_text_username_or_phone": {
+        "description": ""
+      },
+      "hint_text_username_or_phone": "ادخل اسم المسنخدم او رقم الهاتف",
       "@hint_text_password": {
         "description": ""
       },

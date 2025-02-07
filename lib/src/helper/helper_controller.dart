@@ -8,13 +8,34 @@ class Helper extends GetxController {
   static String? validatePhoneNumber(value) {
     if (value == null || value.isEmpty) return S.current.phone_cant_be_empty;
 
-    String pattern = r'^\d{9}$';
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return 'Phone numbers must be valid';
+    if (int.tryParse(value) != null) {
+      String pattern = r'^\d{9}$';
+      RegExp regex = RegExp(pattern);
+      if (!regex.hasMatch(value)) {
+        return 'Phone numbers must be valid';
+      }
     }
     return null;
   }
+
+  //   static String? validatePhoneNumber(
+  //     value, QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+  //   if (value == null || value.isEmpty) return S.current.phone_cant_be_empty;
+
+  //   if (int.tryParse(value) != null) {
+  //     String pattern = r'^\d{9}$';
+  //     RegExp regex = RegExp(pattern);
+  //     if (!regex.hasMatch(value)) {
+  //       return 'Phone numbers must be valid';
+  //     }
+  //   } else if (querySnapshot.docs.isEmpty) {
+  //     return 'UserName is Not Correct';
+  //   } //else {
+  //   //   return 'User numbers must be valid';
+  //   // }
+
+  //   return null;
+  // }
 
   static String? validatePassword(value) {
     if (value == null || value.isEmpty) return S.current.passwrod_cant_be_empty;
@@ -87,6 +108,7 @@ class Helper extends GetxController {
       shouldIconPulse: true,
       colorText: Colors.white,
       backgroundColor: Colors.green,
+      dismissDirection: DismissDirection.horizontal,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 6),
       margin: const EdgeInsets.all(10),
@@ -99,6 +121,7 @@ class Helper extends GetxController {
       message,
       isDismissible: true,
       shouldIconPulse: true,
+      dismissDirection: DismissDirection.horizontal,
       colorText: Colors.white,
       backgroundColor: Colors.orange,
       snackPosition: SnackPosition.BOTTOM,
@@ -111,6 +134,7 @@ class Helper extends GetxController {
     Get.snackbar(
       title,
       message,
+      dismissDirection: DismissDirection.horizontal,
       isDismissible: true,
       shouldIconPulse: true,
       colorText: Colors.white,
@@ -127,6 +151,7 @@ class Helper extends GetxController {
       message,
       isDismissible: true,
       colorText: Colors.white,
+      dismissDirection: DismissDirection.horizontal,
       backgroundColor: Colors.blueGrey,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 5),
