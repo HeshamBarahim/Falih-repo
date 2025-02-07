@@ -30,200 +30,193 @@ class HomePage extends StatelessWidget {
             children: [
               // The heading profile
               Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.04,
-                      vertical: SizeConfig.screenHeight! * 0.02),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColors.mainColor, // Border color
-                      width: 1.5, // Border width
-                    ),
-                    color: AppColors.moreLightenMainColor, // Container color
-                    borderRadius: BorderRadius.circular(12), // Rounded corners
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.darkMainColor.withOpacity(0.5),
-                        // Shadow color
-                        spreadRadius: 2,
-                        // Spread of the shadow
-                        blurRadius: 10,
-                        // Blur effect
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.screenWidth! * 0.04,
+                    vertical: SizeConfig.screenHeight! * 0.02),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.mainColor, // Border color
+                    width: 1.5, // Border width
                   ),
-                  child: Obx(
-                    () => controller.isLoading.value
-                        ? SizedBox(
-                            height: SizeConfig.screenHeight! * 0.20,
-                            child: const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          )
-                        : Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CircleAvatar(
-                                    radius: SizeConfig.screenWidth! * 0.13,
-                                    backgroundColor: AppColors.darkMainColor,
-                                    child: ClipOval(
-                                      child: CachedNetworkImage(
-                                        key: ValueKey(userController
-                                            .user.value!.userProfileImgUrl),
-                                        imageUrl:
-                                            "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
-                                        placeholder: (context, url) =>
-                                            const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) {
-                                          String userName = userController
-                                              .user.value!.fullName;
-                                          String initial = userName.isNotEmpty
-                                              ? userName[0].toUpperCase()
-                                              : "U";
+                  color: AppColors.moreLightenMainColor, // Container color
+                  borderRadius: BorderRadius.circular(12), // Rounded corners
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.darkMainColor.withOpacity(0.5),
+                      // Shadow color
+                      spreadRadius: 2,
+                      // Spread of the shadow
+                      blurRadius: 10,
+                      // Blur effect
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CircleAvatar(
+                          radius: SizeConfig.screenWidth! * 0.13,
+                          backgroundColor: AppColors.darkMainColor,
+                          child: ClipOval(
+                            child: CachedNetworkImage(
+                              key: ValueKey(
+                                  userController.user.value!.userProfileImgUrl),
+                              imageUrl:
+                                  "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) {
+                                String userName =
+                                    userController.user.value!.fullName;
+                                String initial = userName.isNotEmpty
+                                    ? userName[0].toUpperCase()
+                                    : "U";
 
-                                          return CircleAvatar(
-                                            radius: (SizeConfig.screenWidth! *
-                                                0.141),
-                                            // Half of image size
-                                            backgroundColor:
-                                                AppColors.mainColor,
-                                            // You can change the color
-                                            child: Text(
-                                              initial,
-                                              style: TextStyle(
-                                                fontSize:
-                                                    (SizeConfig.screenWidth! *
-                                                        0.08),
-                                                // Responsive text size
+                                return CircleAvatar(
+                                  radius: (SizeConfig.screenWidth! * 0.141),
+                                  // Half of image size
+                                  backgroundColor: AppColors.mainColor,
+                                  // You can change the color
+                                  child: Text(
+                                    initial,
+                                    style: TextStyle(
+                                      fontSize:
+                                          (SizeConfig.screenWidth! * 0.08),
+                                      // Responsive text size
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.moreLightenMainColor,
+                                    ),
+                                  ),
+                                );
+                              },
+                              fit: BoxFit.cover,
+                              width: SizeConfig.screenWidth! * 0.282,
+                              height: SizeConfig.screenWidth! * 0.282,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${S.of(context).hi}${userController.currentUser!.fullName.split(" ")[0]}",
+                                  style: const TextStyle(
+                                      color: AppColors.darkMainColor,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                    height: SizeConfig.screenHeight! * 0.01),
+                                Obx(
+                                  () => controller.isLoading.value
+                                      ? const SizedBox(
+                                          child: CircularProgressIndicator(),
+                                        )
+                                      : Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${S.of(context).rank}: #${controller.rank.value}",
+                                              style: const TextStyle(
+                                                color: AppColors.darkMainColor,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.bold,
-                                                color: AppColors
-                                                    .moreLightenMainColor,
                                               ),
                                             ),
-                                          );
-                                        },
-                                        fit: BoxFit.cover,
-                                        width: SizeConfig.screenWidth! * 0.282,
-                                        height: SizeConfig.screenWidth! * 0.282,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${S.of(context).hi}${userController.currentUser!.fullName.split(" ")[0]}",
-                                            style: const TextStyle(
+                                            Text(
+                                              "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
+                                              style: const TextStyle(
                                                 color: AppColors.darkMainColor,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                              height: SizeConfig.screenHeight! *
-                                                  0.01),
-                                          Text(
-                                            "${S.of(context).rank}: #${controller.rank.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Text(
-                                            "${S.of(context).this_month_points}: ${controller.point.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                              Get.locale?.languageCode == "Ar"
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: LinearProgressIndicator(
-                                            value: controller.point.value /
-                                                controller.maxPoint.value,
-                                            // Bind progress value
-                                            backgroundColor:
-                                                AppColors.mainColor,
-                                            color: AppColors.lightenMainColor,
-                                            minHeight: 10,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                            style: const TextStyle(
+                                            Text(
+                                              "${S.of(context).this_month_points}: ${controller.point.value}",
+                                              style: const TextStyle(
                                                 color: AppColors.darkMainColor,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  : Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      // Aligns children to the end (right for LTR, left for RTL)
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                            style: const TextStyle(
-                                                color: AppColors.darkMainColor,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: LinearProgressIndicator(
-                                            value: controller.point.value /
-                                                controller.maxPoint.value,
-                                            // Bind progress value
-                                            backgroundColor:
-                                                AppColors.mainColor,
-                                            color: AppColors.lightenMainColor,
-                                            minHeight: 10,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
-                  )),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                    Get.locale?.languageCode == "Ar"
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: LinearProgressIndicator(
+                                  value: controller.point.value /
+                                      controller.maxPoint.value,
+                                  // Bind progress value
+                                  backgroundColor: AppColors.mainColor,
+                                  color: AppColors.lightenMainColor,
+                                  minHeight: 10,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                  style: const TextStyle(
+                                      color: AppColors.darkMainColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            // Aligns children to the end (right for LTR, left for RTL)
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                  style: const TextStyle(
+                                      color: AppColors.darkMainColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: LinearProgressIndicator(
+                                  value: controller.point.value /
+                                      controller.maxPoint.value,
+                                  // Bind progress value
+                                  backgroundColor: AppColors.mainColor,
+                                  color: AppColors.lightenMainColor,
+                                  minHeight: 10,
+                                ),
+                              ),
+                            ],
+                          )
+                  ],
+                ),
+              ),
               SizedBox(height: SizeConfig.screenHeight! * 0.03),
               // Adjusted spacing
               // Image and indicator slider
@@ -313,10 +306,14 @@ class HomePage extends StatelessWidget {
                                               radius: 30.0,
                                               animation: true,
                                               animationDuration: 1200,
-                                              lineWidth: 5.0,
+                                              lineWidth: 4.0,
                                               percent: roundedPercentage,
                                               center: Text(
-                                                  "${roundedPercentage * 100}%"),
+                                                "${roundedPercentage * 100}%",
+                                                style: const TextStyle(
+                                                    fontSize: 12,
+                                                    color: AppColors.mainColor),
+                                              ),
                                               progressColor: (examResult[
                                                               "correctAnswers"] /
                                                           examResult[
@@ -418,10 +415,10 @@ class HomePage extends StatelessWidget {
                                                   height: 5,
                                                 ),
                                                 Text(
-                                                  // "${examResult["examType"]}",
                                                   getTypeExamDisplayName(
                                                       examResult["examType"]),
                                                   style: const TextStyle(
+                                                    color: AppColors.mainColor,
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w700,
                                                   ),
@@ -444,11 +441,14 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
+                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm a').format(examResult["date"].toDate())}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
+                                                  style: const TextStyle(
+                                                      color:
+                                                          AppColors.mainColor),
                                                 ),
                                                 Text(
                                                   "${examResult["points"]} ${S.of(context).points}",
@@ -456,6 +456,9 @@ class HomePage extends StatelessWidget {
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
+                                                  style: const TextStyle(
+                                                      color:
+                                                          AppColors.mainColor),
                                                 ),
                                               ],
                                             ),
