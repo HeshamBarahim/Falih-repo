@@ -17,14 +17,10 @@ import 'loading_dialog_controller.dart';
 class ProfileController extends GetxController {
   final UserController userController = Get.put(UserController());
   final showPassword = false.obs;
-  // bool isLoadingImg = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final LoadingDialogController loadingDialogController =
       LoadingDialogController();
 
-  // TextField Controllers to get data from TextFields
-
-  // final profileImgUrl = Rxn<String>();
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
@@ -71,6 +67,7 @@ class ProfileController extends GetxController {
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
     selectedGrade.value = userController.user.value!.selectedGrade;
     selectedGender.value = userController.user.value!.selectedGender;
+    selectedDepartment.value = userController.user.value!.selectedDepartment;
   }
 
   imagePickerDialog(BuildContext context) {
@@ -210,8 +207,6 @@ class ProfileController extends GetxController {
         message: S.current.profile_image_updated_successfully,
       );
       isSavingData.value = false;
-      // Get.offAll(() => MenuScreen());
-      // Get.offAll(MenuScreen());
       userProfileImgUrl.value = url;
       update();
     } catch (e) {
@@ -229,15 +224,15 @@ class ProfileController extends GetxController {
       isSavingData.value = true;
       final updatedUser = UserModel(
         id: userController.user.value?.id,
-        userProfileImgUrl: userController.user.value!.userProfileImgUrl,
+        userProfileImgUrl: userProfileImgUrl.value?.trim(),
         fullName: fullName.text.trim(),
-        phoneNo: userController.user.value!.phoneNo,
+        phoneNo: phoneNo.text.trim(),
         fakeEmail: userController.user.value!.fakeEmail,
         schoolName: schoolName.text.trim(),
-        selectedGovernorate: userController.user.value?.selectedGovernorate,
-        selectedGrade: userController.user.value?.selectedGrade,
-        selectedGender: userController.user.value?.selectedGender,
-        selectedDepartment: userController.user.value?.selectedDepartment,
+        selectedGovernorate: selectedGovernorate.value?.trim(),
+        selectedGrade: selectedGrade.value?.trim(),
+        selectedGender: selectedGender.value?.trim(),
+        selectedDepartment: selectedDepartment.value?.trim(),
       );
 
       await userController.updateUser(updatedUser);
