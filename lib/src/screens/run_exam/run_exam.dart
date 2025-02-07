@@ -339,10 +339,84 @@ class RunExam extends StatelessWidget {
 
     return containsMath
         ? buildMathQuestion(question)
-        : Text(
-            question,
-            style: const TextStyle(fontSize: 20),
+        : Expanded(
+            child: AutoSizeText(
+              question,
+              style: const TextStyle(
+                fontSize: 20,
+                color: AppColors.mainColor,
+              ),
+              minFontSize: 12, // Minimum size to shrink to
+            ),
           );
+  }
+
+  String formatFractions(String input) {
+    // First, replace fractions (e.g., 9/3) with LaTeX style \frac{numerator}{denominator}
+    input = input.replaceAllMapped(RegExp(r'(\d+)/(\d+)'), (match) {
+      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+    });
+
+    input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/(\d+)'), (match) {
+      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+    });
+
+    while (input.indexOf('/') > 0) {
+      int divisionIndex = input.indexOf('/');
+      divisionIndex = divisionIndex - 1;
+      input = input.replaceFirst("/", "");
+      input = r"\text {" +
+          input.substring(0, divisionIndex) +
+          r"} \frac " +
+          input.substring(divisionIndex, divisionIndex + 2) +
+          r"\text {" +
+          input.substring(divisionIndex + 2) +
+          r"}";
+    }
+
+    // Now handle complex numbers like "9-3i" and "1+3i"
+    // input = input.replaceAllMapped(RegExp(r'([0-9\-+]+)(i)'), (match) {
+    //   return match.group(1)! + r"\cdot i"; // Convert "9-3i" into "9-3\cdot i"
+    // });
+
+    // Optionally, you can format the entire complex number expression as a fraction (if applicable)
+    // Example: if the input is a complex number expression in the form of (a + bi)/(c + di)
+    input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/\(([^)]+)\)'), (match) {
+      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+    });
+
+    return input;
+  }
+
+  String formatDynamicEquation(String input) {
+    // This pattern identifies fractions (like \frac{num}{den})
+    RegExp fractionRegExp = RegExp(r'\\frac\{[^}]*\}\{[^}]*\}');
+
+    String result = '';
+    int lastIndex = 0;
+
+    // Loop through the input string and check for fractions and plain text
+    fractionRegExp.allMatches(input).forEach((match) {
+      // Add the part before the fraction as plain text
+      result += input.substring(lastIndex, match.start);
+
+      // Add the LaTeX math part (fraction) directly
+      result += match.group(0)!;
+
+      // Update the last index after the current match
+      lastIndex = match.end;
+    });
+
+    // Add the remaining plain text after the last fraction (or entire string if no fractions)
+    result += input.substring(lastIndex);
+
+    // Now wrap any non-fraction (plain text) part with \text{}
+    result =
+        result.replaceAllMapped(RegExp(r'([^\\frac][^\\]*)(?=\s|$)'), (match) {
+      return r"\text{" + match.group(0)! + "}";
+    });
+
+    return result;
   }
 
   buildMathQuestion(String question) {

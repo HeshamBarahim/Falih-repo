@@ -62,6 +62,7 @@ dependencies:
   rive: null
   smooth_page_indicator: null
   url_launcher: ^6.3.1
+  auto_size_text:
 
 dev_dependencies:
   flutter_launcher_icons: null
