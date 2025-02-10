@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
@@ -58,7 +59,7 @@ class RunExam extends StatelessWidget {
           final question = controller.questions[controller.questionIndex.value];
           final questionNumber = controller.questionIndex.value;
           final selectedAnswer =
-              controller.selectedAnswers[controller.questionIndex.value];
+          controller.selectedAnswers[controller.questionIndex.value];
 
           return Container(
             padding: const EdgeInsets.all(16),
@@ -101,7 +102,7 @@ class RunExam extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
@@ -151,7 +152,7 @@ class RunExam extends StatelessWidget {
                                       ? TextDirection.rtl
                                       : TextDirection.ltr,
                                   child:
-                                      buildQuestionText(question.questionText)),
+                                  buildQuestionText(question.questionText)),
                             ],
                           ),
                         ),
@@ -169,7 +170,7 @@ class RunExam extends StatelessWidget {
                                   color: AppColors.choicesColor),
                               child: Center(
                                 child: Obx(
-                                  () => Text(
+                                      () => Text(
                                     controller.formatTime(
                                         controller.currentTime.value),
                                     style: const TextStyle(
@@ -207,12 +208,12 @@ class RunExam extends StatelessWidget {
                                       : AppColors.mainColor.withOpacity(0.60),
                                   border: Border.all(
                                     color: selectedAnswer != null &&
-                                            question.correctAnswerIndex == idx
+                                        question.correctAnswerIndex == idx
                                         ? AppColors
-                                            .successColor // Border color when selected
+                                        .successColor // Border color when selected
                                         : selectedAnswer == idx
-                                            ? AppColors.errorColor
-                                            : Colors.transparent,
+                                        ? AppColors.errorColor
+                                        : Colors.transparent,
                                     // Border color when not selected
                                     width: 2, // Adjust border width as needed
                                   ),
@@ -236,23 +237,23 @@ class RunExam extends StatelessWidget {
                                       ),
                                       Text(
                                         option.toLowerCase().trim() == "true" ||
-                                                (option.toLowerCase().trim() ==
-                                                    "false")
+                                            (option.toLowerCase().trim() ==
+                                                "false")
                                             ? Get.locale?.languageCode == "ar"
-                                                ? option.toLowerCase().trim() ==
-                                                        "true"
-                                                    ? "صح"
-                                                    : "خطأ"
-                                                : option.toLowerCase().trim() ==
-                                                        "true"
-                                                    ? "True"
-                                                    : "False"
+                                            ? option.toLowerCase().trim() ==
+                                            "true"
+                                            ? "صح"
+                                            : "خطأ"
+                                            : option.toLowerCase().trim() ==
+                                            "true"
+                                            ? "True"
+                                            : "False"
                                             : option,
                                         style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                             color:
-                                                AppColors.moreLightenMainColor),
+                                            AppColors.moreLightenMainColor),
                                       ),
                                     ],
                                   ),
@@ -301,14 +302,14 @@ class RunExam extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         controller.selectedAnswers[
-                                    controller.questionIndex.value] !=
-                                null
+                        controller.questionIndex.value] !=
+                            null
                             ? showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (context) => AIBottomSheet(),
-                              )
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => AIBottomSheet(),
+                        )
                             : null;
                         controller.generateResponse(question.questionText);
                       },
@@ -336,24 +337,27 @@ class RunExam extends StatelessWidget {
   Widget buildQuestionText(String question) {
     // Detect if the question contains mathematical symbols
     bool containsMath = question.contains(RegExp(r'[/√^]'));
-
     return containsMath
         ? buildMathQuestion(question)
         : Expanded(
-            child: AutoSizeText(
-              question,
-              style: const TextStyle(
-                fontSize: 20,
-                color: AppColors.mainColor,
-              ),
-              minFontSize: 12, // Minimum size to shrink to
-            ),
-          );
+      child: AutoSizeText(
+        question,
+        style: const TextStyle(
+          fontSize: 20,
+          color: AppColors.mainColor,
+        ),
+        minFontSize: 12, // Minimum size to shrink to
+      ),
+    );
   }
 
   String formatFractions(String input) {
     // First, replace fractions (e.g., 9/3) with LaTeX style \frac{numerator}{denominator}
     input = input.replaceAllMapped(RegExp(r'(\d+)/(\d+)'), (match) {
+      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+    });
+
+    input = input.replaceAllMapped(RegExp(r'(-?[\dπ]+)\/([\dπ]+)'), (match) {
       return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
     });
 
@@ -365,13 +369,18 @@ class RunExam extends StatelessWidget {
       int divisionIndex = input.indexOf('/');
       divisionIndex = divisionIndex - 1;
       input = input.replaceFirst("/", "");
-      input = r"\text {" +
-          input.substring(0, divisionIndex) +
+      // input = r"\text {" +
+      input.substring(0, divisionIndex) +
           r"} \frac " +
           input.substring(divisionIndex, divisionIndex + 2) +
           r"\text {" +
-          input.substring(divisionIndex + 2) +
-          r"}";
+          input.substring(divisionIndex + 2);
+    }
+
+    while (input.indexOf('√') > 0) {
+      int rootIndex = input.indexOf('√');
+      rootIndex = rootIndex - 1;
+      input = input.replaceFirst("√", r" \sqrt");
     }
 
     // Now handle complex numbers like "9-3i" and "1+3i"
@@ -388,60 +397,95 @@ class RunExam extends StatelessWidget {
     return input;
   }
 
-  String formatDynamicEquation(String input) {
-    // This pattern identifies fractions (like \frac{num}{den})
-    RegExp fractionRegExp = RegExp(r'\\frac\{[^}]*\}\{[^}]*\}');
+  Widget buildMathQuestion(String question) {
+    // Replace root by latex root
+    print(question);
+    question = formatFractions(question);
+    question = question.replaceAll(' ', r'\,');
+    print("------------");
+    print(question);
 
-    String result = '';
-    int lastIndex = 0;
+    final maxWidth = SizeConfig.screenWidth! - 10;
+    final processedEquation = insertAllowBreakByCharCount(question, maxWidth);
+    print(processedEquation);
+    final longEq = Math.tex(
+      processedEquation,
+      mathStyle: MathStyle.display,
+      textStyle: const TextStyle(fontSize: 18, color: AppColors.mainColor),
+    );
 
-    // Loop through the input string and check for fractions and plain text
-    fractionRegExp.allMatches(input).forEach((match) {
-      // Add the part before the fraction as plain text
-      result += input.substring(lastIndex, match.start);
-
-      // Add the LaTeX math part (fraction) directly
-      result += match.group(0)!;
-
-      // Update the last index after the current match
-      lastIndex = match.end;
-    });
-
-    // Add the remaining plain text after the last fraction (or entire string if no fractions)
-    result += input.substring(lastIndex);
-
-    // Now wrap any non-fraction (plain text) part with \text{}
-    result =
-        result.replaceAllMapped(RegExp(r'([^\\frac][^\\]*)(?=\s|$)'), (match) {
-      return r"\text{" + match.group(0)! + "}";
-    });
-
-    return result;
+    return Wrap(
+      runSpacing: 15,
+      children: longEq.texBreak().parts,
+    );
   }
 
-  buildMathQuestion(String question) {
-    // Replace slash by latex divisions
-    while (question.indexOf('/') > 0) {
-      int divisionIndex = question.indexOf('/');
-      divisionIndex = divisionIndex - 1;
-      question = question.replaceFirst("/", "");
-      question = question.substring(0, divisionIndex) +
-          r" \frac " +
-          question.substring(divisionIndex++);
-    }
-
-    // Replace root by latex root
-    while (question.indexOf('√') > 0) {
-      int rootIndex = question.indexOf('√');
-      rootIndex = rootIndex - 1;
-      question = question.replaceFirst("√", r" \sqrt ");
-    }
-
-    return Math.tex(
-      question,
-      textStyle: const TextStyle(
-        fontSize: 20,
-      ),
+  int estimateCharsPerLine(String sample, double maxWidth) {
+    // Use a sample string that represents an average-case width.
+    const style = TextStyle(fontSize: 20, color: Colors.black);
+    final textPainter = TextPainter(
+      text: TextSpan(text: sample, style: style),
+      textDirection: TextDirection.ltr,
     );
+    textPainter.layout();
+
+    // Calculate average character width.
+    final avgCharWidth = textPainter.width / sample.length;
+    return (maxWidth / avgCharWidth).floor();
+  }
+
+  String insertAllowBreakByCharCount(String input, double maxWidth) {
+    final maxChars = estimateCharsPerLine(input, maxWidth);
+    StringBuffer buffer = StringBuffer();
+
+    int count = 0;
+    int lastSpaceIndex =
+        -1; // Track the index of the last space for a safe break.
+    bool inLaTeXCommand =
+        false; // To track whether we're inside a LaTeX command.
+
+    for (int i = 0; i < input.length; i++) {
+      final char = input[i];
+
+      // If we detect a LaTeX command, we skip over it without breaking.
+      if (char == '\\' && i + 1 < input.length && input[i + 1] == 'f') {
+        inLaTeXCommand = true; // Start of a LaTeX command (e.g., \frac, \sqrt)
+      } else if (inLaTeXCommand && char == '}') {
+        inLaTeXCommand = false; // End of the LaTeX command
+      }
+
+      // Only process non-LaTeX characters for word wrapping.
+      if (!inLaTeXCommand) {
+        buffer.write(char);
+        count++;
+
+        // If the current character is a space, record its index (in the output).
+        if (char == ' ') {
+          lastSpaceIndex = buffer.length;
+        }
+
+        // When we have reached the estimated maximum...
+        if (count >= maxChars) {
+          // If we have a recent space, insert \allowbreak there.
+          if (lastSpaceIndex != -1) {
+            String currentLine = buffer.toString();
+            currentLine = currentLine.replaceRange(
+                lastSpaceIndex - 1, lastSpaceIndex, " \\allowbreak ");
+            buffer = StringBuffer(currentLine);
+            count = 0;
+            lastSpaceIndex = -1;
+          } else {
+            // If no space found, insert \allowbreak immediately.
+            buffer.write(" \\allowbreak ");
+            count = 0;
+          }
+        }
+      } else {
+        // If inside LaTeX command, just append the character.
+        buffer.write(char);
+      }
+    }
+
+    return buffer.toString();
   }
 }
