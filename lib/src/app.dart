@@ -6,7 +6,6 @@ import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../generated/l10n.dart';
 
@@ -27,14 +26,7 @@ class App extends StatelessWidget {
       }
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Color(0xFFFFFFFF),
-          fontFamily: 'ElMessiri', // Set default font for the entire app
-
-          textTheme: TextTheme(
-            bodyLarge: TextStyle(color: AppColors.mainColor),
-          ),
-        ),
+        theme: appTheme,
         // Bind locale from SettingsController
         locale: Get.find<SettingsController>().locale.value,
         fallbackLocale: const Locale('ar'),

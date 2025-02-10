@@ -63,8 +63,9 @@ class HomePage extends StatelessWidget {
                           backgroundColor: AppColors.darkMainColor,
                           child: ClipOval(
                             child: CachedNetworkImage(
-                              key: ValueKey(
-                                  userController.user.value!.userProfileImgUrl),
+                              key: ValueKey(userController
+                                      .user.value?.userProfileImgUrl ??
+                                  ""),
                               imageUrl:
                                   "${userController.user.value!.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
                               placeholder: (context, url) =>

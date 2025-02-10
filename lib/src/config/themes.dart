@@ -129,3 +129,35 @@ class AppColors {
     end: Alignment.centerRight,
   );
 }
+
+final ThemeData appTheme = ThemeData(
+  primaryColor: AppColors.mainColor,
+  fontFamily: 'ElMessiri',
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      color: AppColors.mainColor, // Default color
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: AppColors.mainColor,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: AppColors.mainColor,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      color: AppColors.mainColor,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: AppColors.mainColor,
+    ),
+  ),
+);
