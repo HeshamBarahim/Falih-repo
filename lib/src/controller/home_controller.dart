@@ -22,6 +22,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> fetchAllUserExamHistory() async {
+    userExamHistory.clear();
     userExamHistoryIsLoading.value = true;
     overallPoints.value = 0;
 
