@@ -1,3 +1,4 @@
+import 'package:falih/src/constants/dialogs.dart';
 import 'package:get/get.dart';
 
 import '../models/user_model.dart';
@@ -13,7 +14,7 @@ class UserController extends GetxController {
     try {
       user.value = await UserRepository.instance.getUserDetails();
     } catch (e) {
-      print(e.toString());
+      showErrorMessage("لم يتم تحميل بياناتك");
     }
     // getProfileImage();
     super.onInit();
@@ -30,7 +31,7 @@ class UserController extends GetxController {
       await UserRepository.instance.updateUserRecord(updatedUser);
       setUser(updatedUser); // Update the local state with the new data
     } catch (e) {
-      print("Error updating user: $e");
+      showErrorMessage("لم يتم تحديث بياناتك بنجاح");
     }
   }
 }

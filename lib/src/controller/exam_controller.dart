@@ -22,7 +22,7 @@ class ExamController extends GetxController {
   var examGrade = "".obs;
   var examDepartment = "".obs;
   var examType = "".obs;
-  var examTime = 0.obs;
+  // var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
   var filter = 'all'.obs;
   var isGeneratingResponse = false.obs;
@@ -327,7 +327,6 @@ class ExamController extends GetxController {
 
   int calculateUserPoints() {
     int points = 0;
-
     // Attempting the Exam(Finishing the whole exam)
     points += examType.value == "UnitExam" ? 2 : 3;
 
@@ -398,11 +397,11 @@ class ExamController extends GetxController {
     falseAnswers.value = 0;
     trueAnswers.value = 0;
     questionIndex.value = 0;
-    examName.value = "";
-    examGrade.value = "";
-    examDepartment.value = "";
-    examType.value = "";
-    examTime.value = 0;
+    // examName.value = "";
+    // examGrade.value = "";
+    // examDepartment.value = "";
+    // examType.value = "";
+    // examTime.value = 0;
     endTime = null;
     timeTaken.value = '';
     hasChosenAnswer.value = false;
@@ -416,8 +415,7 @@ class ExamController extends GetxController {
     score.value = 0;
     falseAnswers.value = 0;
     trueAnswers.value = 0;
-    questionIndex.value = 0;
-    examTime.value = 0;
+    // examTime.value = 0;
     endTime = null;
     timeTaken.value = '';
     hasChosenAnswer.value = false;

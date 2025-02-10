@@ -111,7 +111,6 @@ class LeaderboardController extends GetxController {
             user.userProfileImgUrl!; // Store URL in the map
       } catch (e) {
         // Handle errors (e.g., missing image)
-        print("No Image because: ${e.toString()}");
         topUsersProfile[user.id ?? ""] =
             ''; // Fallback to a default or empty URL
       }

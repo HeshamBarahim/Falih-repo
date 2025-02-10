@@ -140,8 +140,6 @@ class AfterExam extends StatelessWidget {
                                 : "False"
                         : userAnswer;
 
-                    print(userAnswer);
-
                     return Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(

@@ -399,15 +399,15 @@ class RunExam extends StatelessWidget {
 
   Widget buildMathQuestion(String question) {
     // Replace root by latex root
-    print(question);
+    // print(question);
     question = formatFractions(question);
     question = question.replaceAll(' ', r'\,');
-    print("------------");
-    print(question);
+    // print("------------");
+    // print(question);
 
     final maxWidth = SizeConfig.screenWidth! - 10;
     final processedEquation = insertAllowBreakByCharCount(question, maxWidth);
-    print(processedEquation);
+    // print(processedEquation);
     final longEq = Math.tex(
       processedEquation,
       mathStyle: MathStyle.display,

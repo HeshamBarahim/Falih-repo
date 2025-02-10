@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import '../screens/main_screen/main_screen.dart';
-import 'network_controller.dart';
 import 'loading_dialog_controller.dart';
+import 'network_controller.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
@@ -56,7 +56,6 @@ class LoginController extends GetxController {
                   .where('FullName', isEqualTo: email.text.trim())
                   .limit(1)
                   .get();
-          print(querySnapshot.docs.length);
           if (querySnapshot.docs.isNotEmpty) {
             fakeEmail = '${querySnapshot.docs[0]['Phone']}@gmail.com';
           }

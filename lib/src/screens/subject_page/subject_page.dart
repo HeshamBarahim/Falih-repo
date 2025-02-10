@@ -60,7 +60,6 @@ class SubjectPage extends StatelessWidget {
   }
 
   String getSectionDisplayName(String key) {
-    // print("fksjgjgskgj $key");
     switch (key) {
       case "geography":
         return "جغرافيا";
