@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
             " من خلال الاشتراك، فإنك توافق على"),
         "changing_subHeader":
             MessageLookupByLibrary.simpleMessage("لم تقم بالخضوع"),
-        "chapter": MessageLookupByLibrary.simpleMessage("الفصل"),
+        "chapter": MessageLookupByLibrary.simpleMessage("الوحدة"),
         "chapters": MessageLookupByLibrary.simpleMessage("الفصول"),
         "check_details": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
         "check_out": MessageLookupByLibrary.simpleMessage("أكمل عملية الدفع"),

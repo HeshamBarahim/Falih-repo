@@ -329,17 +329,17 @@ class SubjectsLabels extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${S.of(context).chapter} ${index + 1}",
+                                    unit["unitName"] ?? S.of(context).no_name,
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
                                     ),
-                                  ),
-                                  Text(
-                                    unit["unitName"] ?? S.of(context).no_name,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     textAlign: TextAlign.right,
+                                  ),
+                                  Text(
+                                    "${S.of(context).chapter} ${index + 1}",
                                   ),
                                 ],
                               ),
@@ -642,19 +642,11 @@ class SubjectsLabels extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      // subjectController
-                                      //         .subjectSections[subjectController
-                                      //                 .curriculumGrade.value]![
-                                      //             subjectController
-                                      //                 .id.value]![index]
-                                      //         .capitalizeFirst ??
-                                      //     "",
                                       getSectionDisplayName(subjectController
                                                   .subjectSections[
                                               subjectController
                                                   .curriculumGrade.value]![
                                           subjectController.id.value]![index]),
-
                                       style: const TextStyle(
                                         color: AppColors.mainColor,
                                         fontWeight: FontWeight.bold,
@@ -706,6 +698,7 @@ class SubjectsLabels extends StatelessWidget {
                         await subjectController
                             .startFinalExam(localSelectedIndex);
                         Navigator.pop(_);
+                        subjectController.changeSelectedIndex(0);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

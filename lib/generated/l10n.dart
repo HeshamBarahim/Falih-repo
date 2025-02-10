@@ -2115,7 +2115,7 @@ String get logoutFromMoreThanOneDeviceTitle {
   /// `الفصل`
   String get chapter {
     return Intl.message(
-      'الفصل',
+      'الوحدة',
       name: 'chapter',
       desc: '',
       args: [],
