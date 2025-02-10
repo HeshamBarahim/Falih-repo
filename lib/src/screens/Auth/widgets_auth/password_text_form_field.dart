@@ -82,8 +82,8 @@ class CustomPasswordTextForm extends StatelessWidget {
             borderSide: BorderSide(
                 color: AppColors.mainColor,
                 width: SizeConfig.screenWidth! * 0.0046),
-            borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.screenWidth! * 0.0486),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(16),
             ),
           ),
           errorBorder: OutlineInputBorder(
