@@ -51,7 +51,6 @@ class ExamController extends GetxController {
   }
 
   void setExamQuestions() {
-
     // Calculate the total number of questions in all units
     var totalUnitsQuestions = units.fold(
         0,
@@ -167,6 +166,41 @@ class ExamController extends GetxController {
       return;
     } else {
       isGeneratingResponse.value = true;
+      var correctAnswer = questions[questionIndex.value]
+          .options[questions[questionIndex.value].correctAnswerIndex];
+      correctAnswer = correctAnswer.toLowerCase().trim() == "true" ||
+              (correctAnswer.toLowerCase().trim() == "false")
+          ? Get.locale?.languageCode == "ar"
+              ? correctAnswer.toLowerCase().trim() == "true"
+                  ? "صح"
+                  : "خطأ"
+              : correctAnswer.toLowerCase().trim() == "true"
+                  ? "True"
+                  : "False"
+          : correctAnswer;
+      if (questions[questionIndex.value].options[3] == "") {
+        questions[questionIndex.value].options[0] = Get.locale?.languageCode ==
+                "ar"
+            ? questions[questionIndex.value].options[0].toLowerCase().trim() ==
+                    "true"
+                ? "صح"
+                : "خطأ"
+            : questions[questionIndex.value].options[0].toLowerCase().trim() ==
+                    "true"
+                ? "True"
+                : "False";
+        questions[questionIndex.value].options[1] = Get.locale?.languageCode ==
+                "ar"
+            ? questions[questionIndex.value].options[1].toLowerCase().trim() ==
+                    "true"
+                ? "صح"
+                : "خطأ"
+            : questions[questionIndex.value].options[1].toLowerCase().trim() ==
+                    "true"
+                ? "True"
+                : "False";
+      }
+
       final url = Uri.parse(
           'https://9od4u0fk03.execute-api.us-east-1.amazonaws.com/prod'); // Replace with your actual API URL
 
@@ -181,13 +215,15 @@ class ExamController extends GetxController {
           'userChoice': questions[questionIndex.value]
               .options[selectedAnswers[questionIndex.value]!],
           "choices": questions[questionIndex.value].options,
-          "correctAnswer": questions[questionIndex.value]
-              .options[questions[questionIndex.value].correctAnswerIndex]
+          "correctAnswer": correctAnswer,
         }),
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+        data['generation'] =
+            data['generation'].toString().replaceAll(RegExp(r'\n+'), '\n\n');
+
         generatedResponse.value = data['generation'];
         isGeneratingResponse.value = false;
       } else {
