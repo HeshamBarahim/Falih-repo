@@ -22,6 +22,13 @@ class SubjectsController extends GetxController {
   var curriculumGrade = "".obs;
   var curriculumDepartment = "".obs;
   final ExamController _examController = Get.put(ExamController());
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  var isLoading = true.obs;
+  var isLoadingResults = true.obs;
+  var units = <dynamic>[].obs;
+  var resultExams = <QueryDocumentSnapshot<Map<String, dynamic>>>[].obs;
+
+  var errorMessage = ''.obs;
 
   final subjectSections = {
     "9": {
@@ -50,6 +57,73 @@ class SubjectsController extends GetxController {
     _examController.examDepartment.value = curriculumDepartment.value;
     loadSubjects();
     super.onInit();
+  }
+
+  void fetchUnits(
+      {required String curriculumDepartment,
+      required String curriculumGrade,
+      required String subjectName}) async {
+    try {
+      isLoading.value = true;
+      errorMessage.value = '';
+
+      final collectionName =
+          'subjects_${curriculumDepartment.toLowerCase()}_${curriculumGrade.toLowerCase()}';
+      final docName =
+          "${subjectName.toLowerCase()}_${curriculumGrade.toLowerCase()}";
+
+      final snapshot =
+          await _firestore.collection(collectionName).doc(docName).get();
+
+      if (snapshot.exists && snapshot.data() != null) {
+        units.value = snapshot.data()?['units'] ?? [];
+      } else {
+        errorMessage.value = 'No units found';
+      }
+    } catch (e) {
+      errorMessage.value = 'Error: $e';
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  void fetchResults() async {
+    try {
+      isLoadingResults.value = true;
+      errorMessage('');
+
+      final snapshot = await _firestore
+          .collection('exams')
+          .doc(user.value?.id)
+          .collection('userExams')
+          .get();
+
+      final examResults = snapshot.docs;
+      final filtered = examResults.where((doc) {
+        final data = doc.data();
+        final examName = data["examName"].toString().toLowerCase();
+        final examDepartment = data["department"].toString();
+        if (name.value == "All" &&
+            examDepartment == curriculumDepartment.value) {
+          if (subjectSections[curriculumGrade.value]![id.value]!
+              .contains(examName)) {
+            return true;
+          } else if ([id.value].contains(examName) &&
+              examDepartment == curriculumDepartment.value) {
+            return true;
+          }
+        }
+        return data["examName"].toString().toLowerCase() == name.value &&
+            examDepartment == curriculumDepartment.value;
+      }).toList();
+
+      filtered.sort((a, b) => b['date'].compareTo(a['date']));
+      resultExams.assignAll(filtered);
+    } catch (e) {
+      errorMessage(e.toString());
+    } finally {
+      isLoadingResults.value = false;
+    }
   }
 
   // Function to change the selected index

@@ -442,7 +442,7 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm a').format(examResult["date"].toDate())}",
+                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,

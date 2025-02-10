@@ -254,184 +254,154 @@ class SubjectsLabels extends StatelessWidget {
     subjectController
         .subjectNameFetcher(subjectController.selectedSectionIndex.value);
 
-    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        future: firestore
-            .collection(
-                'subjects_${subjectController.curriculumDepartment.value.toLowerCase()}_${subjectController.curriculumGrade.value.toLowerCase()}')
-            .doc(
-                "${subjectController.name.value.toLowerCase()}_${subjectController.curriculumGrade.value.toLowerCase()}")
-            .get(),
-        builder: (BuildContext context,
-            AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Expanded(
-                child: Center(child: CircularProgressIndicator()));
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData ||
-              !snapshot.data!.exists ||
-              snapshot.data!.data()!.isEmpty) {
-            return Expanded(
-                child: Center(child: Text(S.of(context).still_no_chapters)));
-          }
+    subjectController.fetchUnits(
+      curriculumDepartment: subjectController.curriculumDepartment.value,
+      curriculumGrade: subjectController.curriculumGrade.value,
+      subjectName: subjectController.name.value,
+    );
 
-          final subjectData = snapshot.data!.data() as Map<String, dynamic>;
-          final units = subjectData['units'];
-          examController.units = units;
+    return Obx(() {
+      if (subjectController.isLoading.value) {
+        return const Expanded(
+            child: Center(child: CircularProgressIndicator()));
+      }
+      if (subjectController.errorMessage.isNotEmpty) {
+        return Expanded(
+            child: Center(child: Text(subjectController.errorMessage.value)));
+      }
+      if (subjectController.units.isEmpty) {
+        return Expanded(
+            child: Center(child: Text(S.of(context).still_no_chapters)));
+      }
 
-          return Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: units.length, // Example count
-              itemBuilder: (context, index) {
-                final unit = units[index];
+      return Expanded(
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: subjectController.units.length, // Example count
+          itemBuilder: (context, index) {
+            final unit = subjectController.units[index];
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: GestureDetector(
-                    onTap: () {
-                      examController.resetExam();
-                      examController.setUnitQuestions(unit["questions"]);
-                      Get.to(() => const PreExam());
-                    },
-                    child: Card(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      color: AppColors.moreLightenMainColor,
-                      elevation: 10,
-                      shadowColor: AppColors.darkMainColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.12,
-                              height: MediaQuery.of(context).size.width * 0.12,
-                              // Ensure it's a perfect circle
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.darkMainColor,
-                              ),
-                              alignment: Alignment.center,
-                              // Centers the text
-                              child: Text(
-                                "${index + 1}",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors
-                                      .secondaryColor, // Add contrasting color for visibility
-                                ),
-                              ),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: GestureDetector(
+                onTap: () {
+                  examController.resetExam();
+                  examController.setUnitQuestions(unit["questions"]);
+                  Get.to(() => const PreExam());
+                },
+                child: Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  color: AppColors.moreLightenMainColor,
+                  elevation: 10,
+                  shadowColor: AppColors.darkMainColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          height: MediaQuery.of(context).size.width * 0.12,
+                          // Ensure it's a perfect circle
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.darkMainColor,
+                          ),
+                          alignment: Alignment.center,
+                          // Centers the text
+                          child: Text(
+                            "${index + 1}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors
+                                  .secondaryColor, // Add contrasting color for visibility
                             ),
-                            SizedBox(width: screenWidth * 0.05),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    unit["unitName"] ?? S.of(context).no_name,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    textAlign: TextAlign.right,
-                                  ),
-                                  Text(
-                                    "${S.of(context).chapter} ${index + 1}",
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text(
-                              S.of(context).questions_10,
-                              style: const TextStyle(
-                                color: AppColors.shadowColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(width: screenWidth * 0.01),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              size: screenHeight * 0.025,
-                              color: AppColors.darkMainColor,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        SizedBox(width: screenWidth * 0.05),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                unit["unitName"] ?? S.of(context).no_name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                textAlign: TextAlign.right,
+                              ),
+                              Text(
+                                "${S.of(context).chapter} ${index + 1}",
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          S.of(context).questions_10,
+                          style: const TextStyle(
+                            color: AppColors.shadowColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(width: screenWidth * 0.01),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: screenHeight * 0.025,
+                          color: AppColors.darkMainColor,
+                        ),
+                      ],
                     ),
                   ),
-                );
-              },
-            ),
-          );
-        });
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    });
   }
 
   Widget _buildResultsContent(FirebaseFirestore firestore) {
     subjectController
         .subjectNameFetcher(subjectController.selectedSectionIndex.value);
 
-    return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-      future: firestore
-          .collection('exams')
-          .doc(subjectController.user.value?.id)
-          .collection('userExams')
-          .get(),
-      builder: (BuildContext context,
-          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Expanded(
-              child: Center(child: CircularProgressIndicator()));
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data found'));
-        }
-        final examResults = snapshot.data!.docs;
-        final filteredExams = examResults.where((doc) {
-          final data = doc.data();
-          final examName = data["examName"].toString().toLowerCase();
-          if (subjectController.name.value == "All") {
-            if (subjectController.subjectSections[subjectController
-                    .curriculumGrade.value]![subjectController.id.value]!
-                .contains(examName)) {
-              return true;
-            } else if ([subjectController.id.value].contains(examName)) {
-              return true;
-            }
-          }
-          return data["examName"].toString().toLowerCase() ==
-              subjectController.name.value;
-        }).toList();
-        if (filteredExams.isEmpty) {
-          return Expanded(
-              child: Center(child: Text(S.of(context).no_exams_yet)));
-        }
-        filteredExams.sort((a, b) {
-          final dateA = a['date'];
-          final dateB = b['date'];
-          return dateB.compareTo(dateA);
-        });
+    subjectController.fetchResults();
+
+    return Obx(() {
+      if (subjectController.isLoadingResults.value) {
+        return const Expanded(
+          child: Center(child: CircularProgressIndicator()),
+        );
+      }
+      if (subjectController.errorMessage.isNotEmpty) {
+        return Center(child: Text('Error: ${subjectController.errorMessage}'));
+      }
+      if (subjectController.resultExams.isEmpty) {
         return Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: filteredExams.length,
-            itemBuilder: (context, index) {
-              final examResult = filteredExams[index];
-              double percentage =
-                  (examResult["correctAnswers"] / examResult["totalQuestions"]);
-              double roundedPercentage =
-                  double.parse((percentage).toStringAsFixed(1));
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Card(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    color: AppColors.moreLightenMainColor,
+          child: Center(child: Text(S.current.no_exams_yet)),
+        );
+      }
+      return Expanded(
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: subjectController.resultExams.length,
+          itemBuilder: (context, index) {
+            final examResult = subjectController.resultExams[index];
+            double percentage =
+                (examResult["correctAnswers"] / examResult["totalQuestions"]);
+            double roundedPercentage =
+                double.parse((percentage).toStringAsFixed(1));
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: GestureDetector(
+                onTap: () {},
+                child: Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  color: AppColors.moreLightenMainColor,
                     elevation: 10,
                     shadowColor: AppColors.darkMainColor,
                     child: Padding(
@@ -539,11 +509,11 @@ class SubjectsLabels extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "${S.of(context).on}: ${DateFormat('yyyy-MM-dd').format(examResult["date"].toDate())}",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                textAlign: TextAlign.right,
-                              ),
+                                "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              textAlign: TextAlign.right,
+                            ),
                               Text(
                                 "${examResult["points"]} ${S.of(context).points}",
                                 overflow: TextOverflow.ellipsis,
@@ -569,8 +539,7 @@ class SubjectsLabels extends StatelessWidget {
             },
           ),
         );
-      },
-    );
+    });
   }
 
   void displayFinalExam(context) {
