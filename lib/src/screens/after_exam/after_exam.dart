@@ -1,4 +1,5 @@
 import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/config/sizes.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class AfterExam extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.08),
         child: AppBar(
+          backgroundColor: AppColors.moreLightenMainColor,
           title: Text(
             getSectionDisplayName(subjectController.name.value),
             style: const TextStyle(
@@ -37,6 +39,7 @@ class AfterExam extends StatelessWidget {
         ),
       ),
       body: Container(
+        color: AppColors.moreLightenMainColor,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
         ),
@@ -50,7 +53,7 @@ class AfterExam extends StatelessWidget {
                     controller.filter.value = items[index]['value'];
                   },
                   child: Obx(
-                    () => Container(
+                        () => Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.03,
                         vertical: screenHeight * 0.012,
@@ -74,9 +77,9 @@ class AfterExam extends StatelessWidget {
                             fontSize: screenHeight * 0.018,
                             fontWeight: FontWeight.bold,
                             color:
-                                controller.filter.value == items[index]['value']
-                                    ? AppColors.secondaryColor
-                                    : AppColors.darkMainColor,
+                            controller.filter.value == items[index]['value']
+                                ? AppColors.secondaryColor
+                                : AppColors.darkMainColor,
                           ),
                         ),
                       ),
@@ -106,73 +109,144 @@ class AfterExam extends StatelessWidget {
                     final isCorrect = controller.selectedAnswers[
                             controller.questions.indexOf(question)] ==
                         question.correctAnswerIndex;
+                    var correctAnswer =
+                        question.options[question.correctAnswerIndex];
+
+                    correctAnswer =
+                        correctAnswer.toLowerCase().trim() == "true" ||
+                                (correctAnswer.toLowerCase().trim() == "false")
+                            ? Get.locale?.languageCode == "ar"
+                                ? correctAnswer.toLowerCase().trim() == "true"
+                                    ? "صح"
+                                    : "خطأ"
+                                : correctAnswer.toLowerCase().trim() == "true"
+                                    ? "True"
+                                    : "False"
+                            : correctAnswer;
+
+                    var userAnswer = question.options[
+                        controller.selectedAnswers[
+                                controller.questions.indexOf(question)] ??
+                            0];
+
+                    userAnswer = userAnswer.toLowerCase().trim() == "true" ||
+                            (userAnswer.toLowerCase().trim() == "false")
+                        ? Get.locale?.languageCode == "ar"
+                            ? userAnswer.toLowerCase().trim() == "true"
+                                ? "صح"
+                                : "خطأ"
+                            : userAnswer.toLowerCase().trim() == "true"
+                                ? "True"
+                                : "False"
+                        : userAnswer;
+
+                    print(userAnswer);
 
                     return Container(
-                      margin: EdgeInsets.only(bottom: screenHeight * 0.02),
-                      height: screenHeight * 0.25,
+                      margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
-                          color: AppColors.choicesColor.withOpacity(0.80),
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: AppColors.mainColor,
-                            width: 1,
-                          )),
+                        color: AppColors.darkMainColor.withOpacity(0.90),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(0, 4),
+                            blurRadius: 8,
+                          ),
+                        ],
+                        border: Border.all(
+                          color: AppColors.mainColor.withOpacity(0.4),
+                          width: 1,
+                        ),
+                      ),
                       padding: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.05,
-                        vertical: screenHeight * 0.02,
+                        vertical: screenHeight * 0.03,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "${S.of(context).question} ${controller.questions.indexOf(question) + 1}/${controller.questions.length}",
-                            style: TextStyle(
-                              color: AppColors.warningColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: screenHeight * 0.018,
-                            ),
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.1,
+                          // Question Number
+                          Center(
                             child: Text(
-                              question.questionText,
+                              "${S.of(context).question} ${controller.questions.indexOf(question) + 1}/${controller.questions.length}",
                               style: TextStyle(
-                                fontSize: screenHeight * 0.019,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 5,
-                            ),
-                          ),
-                          Container(
-                            width: screenWidth * 0.3,
-                            height: screenHeight * 0.05,
-                            alignment: Alignment.centerLeft,
-                            decoration: BoxDecoration(
-                              color: isCorrect
-                                  ? AppColors.successColor.withOpacity(0.25)
-                                  : Colors.red.withOpacity(0.25),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.07,
-                              vertical: screenHeight * 0.01,
-                            ),
-                            child: Center(
-                              child: Text(
-                                isCorrect
-                                    ? S.of(context).correct
-                                    : S.of(context).wrong,
-                                style: TextStyle(
-                                  color: isCorrect
-                                      ? AppColors.successColor
-                                      : Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenHeight * 0.018,
-                                ),
+                                color: AppColors.warningColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenHeight * 0.02,
+                                letterSpacing: 1.2,
                               ),
                             ),
                           ),
+                          SizedBox(height: screenHeight * 0.025),
+
+                          // Question Text
+                          Text(
+                            question.questionText,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: AppColors.secondaryColor,
+                              fontWeight: FontWeight.w600,
+                              height: 1.4,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 4,
+                          ),
+                          SizedBox(height: screenHeight * 0.02),
+
+                          // Your Answer
+                          isCorrect
+                              ? _buildAnswerText(
+                                  "إجابتك الصحيحة هي: $correctAnswer",
+                                  AppColors.successDarkColor,
+                                  isSelectedAnswer: false,
+                                )
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _buildAnswerText(
+                                      "إجابتك هي: $userAnswer",
+                                      AppColors.errorColor,
+                                      isSelectedAnswer: true,
+                                    ),
+                                    SizedBox(height: screenHeight * 0.015),
+
+                                    // Correct Answer
+                                    _buildAnswerText(
+                                      "الإجابة الصحيحة هي: $correctAnswer",
+                                      AppColors.successDarkColor,
+                                      isSelectedAnswer: false,
+                                    ),
+                                  ],
+                                )
+                          // SizedBox(height: screenHeight * 0.02),
+
+                          // Result Button (Correct or Wrong)
+                          // Container(
+                          //   width: screenWidth * 0.35,
+                          //   alignment: Alignment.center,
+                          //   decoration: BoxDecoration(
+                          //     color: isCorrect
+                          //         ? AppColors.successColor.withOpacity(0.2)
+                          //         : Colors.red.withOpacity(0.2),
+                          //     borderRadius: BorderRadius.circular(30),
+                          //   ),
+                          //   padding: EdgeInsets.symmetric(
+                          //     horizontal: screenWidth * 0.08,
+                          //     vertical: screenHeight * 0.015,
+                          //   ),
+                          //   child: Text(
+                          //     isCorrect ? S.of(context).correct : S.of(context).wrong,
+                          //     style: TextStyle(
+                          //       color: isCorrect
+                          //           ? AppColors.successColor
+                          //           : Colors.red,
+                          //       fontWeight: FontWeight.bold,
+                          //       fontSize: screenHeight * 0.02,
+                          //       letterSpacing: 1.2,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     );
@@ -182,6 +256,36 @@ class AfterExam extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildAnswerText(String answerText, Color textColor,
+      {bool isSelectedAnswer = true}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: isSelectedAnswer
+            ? Colors.red.withOpacity(0.1)
+            : Colors.green.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isSelectedAnswer ? Colors.red : AppColors.successColor,
+          width: 1.2,
+        ),
+      ),
+      padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.screenWidth! * 0.05,
+          vertical: SizeConfig.screenHeight! * 0.015),
+      child: Text(
+        answerText,
+        style: TextStyle(
+          fontSize: 16,
+          color: textColor,
+          fontWeight: FontWeight.w500,
+          height: 1.4,
+        ),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
       ),
     );
   }

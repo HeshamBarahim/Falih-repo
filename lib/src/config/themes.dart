@@ -24,6 +24,7 @@ class AppColors {
   static const darkMainColor = Color(0xFF532262);
   static const choicesColor = Color(0xFFE4CAEC);
   static const successColor = Color(0xFF3CD797);
+  static const successDarkColor = Color(0xFF319e71);
   static const errorColor = Color(0xFFFE2712);
   static const successBoxColor = Color(0x333CD797);
   static const errorBoxColor = Color(0x33FE2712);
