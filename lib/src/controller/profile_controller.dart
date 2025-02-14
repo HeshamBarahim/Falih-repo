@@ -189,8 +189,9 @@ class ProfileController extends GetxController {
       isSavingData.value = true;
       final updatedUser = UserModel(
           id: userController.user.value!.id,
-          userProfileImgUrl: url,
           fullName: userController.user.value!.fullName,
+          username: userController.user.value?.username ?? '',
+          userProfileImgUrl: url,
           phoneNo: userController.user.value!.phoneNo,
           fakeEmail: userController.user.value!.fakeEmail,
           schoolName: userController.user.value!.schoolName,
@@ -224,8 +225,9 @@ class ProfileController extends GetxController {
       isSavingData.value = true;
       final updatedUser = UserModel(
         id: userController.user.value?.id,
-        userProfileImgUrl: userProfileImgUrl.value?.trim(),
         fullName: fullName.text.trim(),
+        username: userController.user.value?.username ?? '',
+        userProfileImgUrl: userProfileImgUrl.value?.trim(),
         phoneNo: phoneNo.text.trim(),
         fakeEmail: userController.user.value!.fakeEmail,
         schoolName: schoolName.text.trim(),
@@ -241,7 +243,7 @@ class ProfileController extends GetxController {
         message: S.current.profile_updated_successfully,
       );
       isSavingData.value = false;
-      Get.offAll(() =>  MainScreen());
+      Get.offAll(() => MainScreen());
     } catch (e) {
       Helper.errorSnackBar(
         title: S.current.updated_failed,
