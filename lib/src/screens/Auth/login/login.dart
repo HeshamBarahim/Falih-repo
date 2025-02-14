@@ -1,7 +1,6 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:falih/src/controller/login_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/signup/signup.dart';
@@ -12,24 +11,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/sizes.dart';
-import '../../../controller/loading_dialog_controller.dart';
 import '../../../controller/show_password_controller.dart';
 import '../widgets_auth/password_text_form_field.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
 
-  DateTime? lastBackPressTime;
-
   final LoginController loginController = Get.put(LoginController());
-  final LoadingDialogController loadingDialogController =
-      Get.put(LoadingDialogController());
-
-  final BackPressController backPressController =
-      Get.put(BackPressController());
 
   @override
   Widget build(BuildContext context) {
+    DateTime? lastBackPressTime;
     SizeConfig().init(context);
     return PopScope(
       onPopInvokedWithResult: (didPop, result) async {
@@ -45,7 +37,7 @@ class Login extends StatelessWidget {
                 vertical: SizeConfig.screenHeight! * 0.01,
               ),
               content: Text(
-                'Press back again to exit The App',
+                S.current.press_back_again,
                 style: TextStyle(
                   fontSize: SizeConfig.screenHeight! * 0.015,
                   color: Colors.white,

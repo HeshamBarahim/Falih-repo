@@ -1,10 +1,10 @@
-// menu_screen_2
 import 'dart:math';
 
 import 'package:falih/src/controller/back_press_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../generated/l10n.dart';
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
@@ -17,11 +17,11 @@ import 'controller/nav_bar_controller.dart';
 final BackPressController backPressController = Get.put(BackPressController());
 
 class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
-  DateTime? lastBackPressTime;
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    DateTime? lastBackPressTime;
     SizeConfig().init(context);
     return PopScope(
       canPop: false, // Prevent default back navigation
@@ -40,7 +40,7 @@ class MainScreen extends StatelessWidget {
                 vertical: SizeConfig.screenHeight! * 0.01,
               ),
               content: Text(
-                'Press back again to exit The App',
+                S.current.press_back_again,
                 style: TextStyle(
                   fontSize: SizeConfig.screenHeight! * 0.015,
                   color: Colors.white,
@@ -53,7 +53,6 @@ class MainScreen extends StatelessWidget {
           // Allow pop if the back button is pressed again within 2 seconds
           Get.back();
         }
-        return true;
       },
       child: GetBuilder<NavBarController>(
         init: NavBarController(),
@@ -192,7 +191,7 @@ class MainScreen extends StatelessWidget {
                                     color: Colors.transparent,
                                   ),
                                 )
-                              : SizedBox(),
+                              : const SizedBox(),
                         ],
                       ),
                     ),
