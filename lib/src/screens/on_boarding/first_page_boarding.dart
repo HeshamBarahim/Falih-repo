@@ -10,22 +10,21 @@ import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
 import '../../config/sizes.dart';
 
 class FirstPageBoarding extends StatelessWidget {
-  FirstPageBoarding({super.key});
-  DateTime? lastBackPressTime;
-
-  final BackPressController backPressController =
-      Get.put(BackPressController());
+  const FirstPageBoarding({super.key});
 
   @override
   Widget build(BuildContext context) {
+    DateTime? lastBackPressTime;
     //  Current language code
     final locale = Localizations.localeOf(context).languageCode;
     // Check if the language is Arabic
     final isArabic = locale == 'ar';
     SizeConfig().init(context);
-    // ignore: deprecated_member_use
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false, // Prevent default back navigation
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+
         DateTime now = DateTime.now();
         if (lastBackPressTime == null ||
             now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
@@ -47,9 +46,9 @@ class FirstPageBoarding extends StatelessWidget {
               duration: const Duration(seconds: 2),
             ),
           );
-          return false;
+        } else {
+          Get.back();
         }
-        return true;
       },
       child: Container(
         color: AppColors.bgScreen1,

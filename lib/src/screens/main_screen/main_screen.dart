@@ -23,9 +23,11 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    // ignore: deprecated_member_use
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false, // Prevent default back navigation
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+
         DateTime now = DateTime.now();
         if (lastBackPressTime == null ||
             now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
@@ -47,7 +49,9 @@ class MainScreen extends StatelessWidget {
               duration: const Duration(seconds: 2),
             ),
           );
-          return false;
+        } else {
+          // Allow pop if the back button is pressed again within 2 seconds
+          Get.back();
         }
         return true;
       },
