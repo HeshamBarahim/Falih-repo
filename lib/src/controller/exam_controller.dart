@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 
 import '../constants/dialogs.dart';
 import '../models/exam_model.dart';
+import '../screens/pre_exam/pre_exam.dart';
 
 class ExamController extends GetxController {
   var questionIndex = 0.obs;
@@ -22,7 +23,6 @@ class ExamController extends GetxController {
   var examGrade = "".obs;
   var examDepartment = "".obs;
   var examType = "".obs;
-  // var examTime = 0.obs;
   var unitQuestionsCount = 10.obs;
   var filter = 'all'.obs;
   var isGeneratingResponse = false.obs;
@@ -40,14 +40,19 @@ class ExamController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   void setUnitQuestions(List<dynamic> questionData) {
-    final List<Exam> loadedQuestions = questionData.map((data) {
-      return Exam.fromMap(data as Map<String, dynamic>);
-    }).toList()
-      ..shuffle();
-    questions
-        .assignAll(loadedQuestions.take(unitQuestionsCount.value).toList());
-    selectedAnswers
-        .assignAll(List<int?>.filled(unitQuestionsCount.value, null));
+    try {
+      final List<Exam> loadedQuestions = questionData.map((data) {
+        return Exam.fromMap(data as Map<String, dynamic>);
+      }).toList()
+        ..shuffle();
+      questions
+          .assignAll(loadedQuestions.take(unitQuestionsCount.value).toList());
+      selectedAnswers
+          .assignAll(List<int?>.filled(unitQuestionsCount.value, null));
+      Get.to(() => const PreExam());
+    } catch (error) {
+      showErrorMessage("حدث خطأ, يرجى المحاولة مرة اخرى");
+    }
   }
 
   void setExamQuestions() {
@@ -169,7 +174,7 @@ class ExamController extends GetxController {
       var correctAnswer = questions[questionIndex.value]
           .options[questions[questionIndex.value].correctAnswerIndex];
       correctAnswer = correctAnswer.toLowerCase().trim() == "true" ||
-              (correctAnswer.toLowerCase().trim() == "false")
+          (correctAnswer.toLowerCase().trim() == "false")
           ? Get.locale?.languageCode == "ar"
               ? correctAnswer.toLowerCase().trim() == "true"
                   ? "صح"
