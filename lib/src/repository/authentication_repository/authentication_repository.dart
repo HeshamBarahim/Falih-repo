@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
-import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../generated/l10n.dart';
+import '../../config/themes.dart';
 import '../../controller/loading_dialog_controller.dart';
 import 'exceptions/t_exceptions.dart';
 
@@ -18,22 +19,12 @@ class AuthenticationRepository extends GetxController {
   late final Rx<User?> _firebaseUser;
   final _auth = FirebaseAuth.instance;
   final _phoneVerificationId = ''.obs;
-  // Use this to store data locally
-  final userStorage = GetStorage();
-
-  /// Getters
-  User? get firebaseUser => _firebaseUser.value;
-
-  String get getUserID => firebaseUser?.uid ?? "";
-
-  String get getUserEmail => firebaseUser?.email ?? "";
-
-  String get getDisplayName => firebaseUser?.displayName ?? "";
-
-  String get getPhoneNo => firebaseUser?.phoneNumber ?? "";
-
   RxBool isAuthCheckComplete = false.obs;
 
+  User? get firebaseUser => _firebaseUser.value;
+
+  // Use this to store data locally
+  final userStorage = GetStorage();
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
@@ -63,30 +54,36 @@ class AuthenticationRepository extends GetxController {
   }
 
   Future<void> checkDeviceAndLogoutOldDevice() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final currentToken = await FirebaseMessaging.instance.getToken();
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      final currentToken = await FirebaseMessaging.instance.getToken();
 
-    final userDoc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .get();
+      final userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user!.uid)
+          .get();
 
-    final storedToken = userDoc['deviceToken'];
+      final storedToken = userDoc['deviceToken'];
 
-    if (currentToken != storedToken) {
-      await FirebaseAuth.instance.signOut();
-      Get.snackbar(
-        S.current.logoutFromMoreThanOneDeviceTitle,
-        // '${message.sentTime}',
-        S.current.logoutFromMoreThanOneDevice,
-        dismissDirection: DismissDirection.horizontal,
-        backgroundColor: Color(0xFFFFFFFF),
-        colorText: Color(0xFF742e89),
-        snackPosition: SnackPosition.TOP,
-        duration: const Duration(seconds: 4),
-        icon: const Icon(Icons.notifications, color: Color(0xFF742e89)),
-      );
+      if (currentToken != storedToken) {
+        await FirebaseAuth.instance.signOut();
+        Get.snackbar(
+          S.current.logoutFromMoreThanOneDeviceTitle,
+          // '${message.sentTime}',
+          S.current.logoutFromMoreThanOneDevice,
+          dismissDirection: DismissDirection.horizontal,
+          backgroundColor: const Color(0xFFFFFFFF),
+          colorText: AppColors.mainColor,
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 4),
+          icon: const Icon(Icons.notifications, color: AppColors.mainColor),
+        );
+      }
+    } catch (e) {
+      showErrorMessage(S.current.unexpected_error_occured);
+      logout(Get.context!);
       Get.offAll(() => Login());
+      return;
     }
   }
 

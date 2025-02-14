@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
-import 'dart:io';
 
 class NetworkController extends GetxController {
   var isConnected = false.obs;
@@ -16,9 +17,10 @@ class NetworkController extends GetxController {
     });
   }
 
-  Future<void> checkConnection() async {
+  Future<bool> checkConnection() async {
     var result = await Connectivity().checkConnectivity();
     await _updateConnectionStatus(result);
+    return isConnected.value;
   }
 
   Future<void> _updateConnectionStatus(List<ConnectivityResult> results) async {

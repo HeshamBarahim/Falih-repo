@@ -60,32 +60,33 @@ class S {
       args: [],
     );
   }
+
   String get cancel {
-  return Intl.message(
-    'إلغاء',
-    name: 'cancel',
-    desc: 'Cancel button text',
-    args: [],
-  );
-}
+    return Intl.message(
+      'إلغاء',
+      name: 'cancel',
+      desc: 'Cancel button text',
+      args: [],
+    );
+  }
 
-String get whatsapp_open_denied {
-  return Intl.message(
-    'تم رفض مغادرة التطبيق وفتح الواتساب.',
-    name: 'whatsapp_open_denied',
-    desc: 'Message shown when the user denies opening WhatsApp',
-    args: [],
-  );
-}
-String get whatsapp_leave_warning {
-  return Intl.message(
-    'أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟',
-    name: 'whatsapp_leave_warning',
-    desc: 'Warning message before leaving the app to open WhatsApp',
-    args: [],
-  );
-}
+  String get whatsapp_open_denied {
+    return Intl.message(
+      'تم رفض مغادرة التطبيق وفتح الواتساب.',
+      name: 'whatsapp_open_denied',
+      desc: 'Message shown when the user denies opening WhatsApp',
+      args: [],
+    );
+  }
 
+  String get whatsapp_leave_warning {
+    return Intl.message(
+      'أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟',
+      name: 'whatsapp_leave_warning',
+      desc: 'Warning message before leaving the app to open WhatsApp',
+      args: [],
+    );
+  }
 
   /// `+967`
   String get hint_text_phone {
@@ -96,7 +97,6 @@ String get whatsapp_leave_warning {
       args: [],
     );
   }
-  
 
   String get hint_text_username_or_phone {
     return Intl.message(
@@ -106,7 +106,6 @@ String get whatsapp_leave_warning {
       args: [],
     );
   }
-
 
   /// `كلمة المرور`
   String get hint_text_password {
@@ -189,9 +188,19 @@ String get whatsapp_leave_warning {
   }
 
   /// `الاسم الكامل`
-  String get hint_text_username {
+  String get hint_text_full_name {
     return Intl.message(
       'الاسم الكامل',
+      name: 'hint_text_full_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اسم المستخدم`
+  String get hint_text_username {
+    return Intl.message(
+      'اسم المستخدم',
       name: 'hint_text_username',
       desc: '',
       args: [],
@@ -1768,6 +1777,16 @@ String get whatsapp_leave_warning {
     );
   }
 
+  /// `بيانات الدخول غير صحيحة. حاول مرة أخرى`
+  String get wrong_credentials {
+    return Intl.message(
+      "بيانات الدخول غير صحيحة. حاول مرة أخرى.",
+      name: 'wrong_credentials',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `اضغط مرة أخرى للخروج من التطبيق`
   String get press_back_again {
     return Intl.message(
@@ -1908,7 +1927,7 @@ String get whatsapp_leave_warning {
     );
   }
 
-String get loading_text {
+  String get loading_text {
     return Intl.message(
       '...جاري التحميل',
       name: 'loading_text',
@@ -1917,7 +1936,7 @@ String get loading_text {
     );
   }
 
-String get logoutFromMoreThanOneDeviceTitle {
+  String get logoutFromMoreThanOneDeviceTitle {
     return Intl.message(
       'تسجيل الخروج',
       name: 'logoutFromMoreThanOneDevice',
@@ -1925,6 +1944,7 @@ String get logoutFromMoreThanOneDeviceTitle {
       args: [],
     );
   }
+
   String get logoutFromMoreThanOneDevice {
     return Intl.message(
       'تم تسجيل خروجك لانك متصل بجهاز اخر',
@@ -2365,8 +2385,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

@@ -1,6 +1,7 @@
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:get/get.dart';
 
+import '../../generated/l10n.dart';
 import '../models/user_model.dart';
 import '../repository/user_repository/user_repository.dart';
 
@@ -14,7 +15,8 @@ class UserController extends GetxController {
     try {
       user.value = await UserRepository.instance.getUserDetails();
     } catch (e) {
-      showErrorMessage("لم يتم تحميل بياناتك");
+      showErrorMessage(S.current.unexpected_error_occured);
+      return;
     }
     // getProfileImage();
     super.onInit();

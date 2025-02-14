@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/splash_controller.dart';
-import '../../repository/authentication_repository/authentication_repository.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../repository/authentication_repository/authentication_repository.dart';
 import '../Auth/login/login.dart';
 import '../main_screen/main_screen.dart';
 import '../on_boarding/first_page_boarding.dart';
@@ -17,7 +16,6 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthenticationRepository auth = Get.put(AuthenticationRepository());
-    // final SplashController splashController = Get.put(SplashController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -41,14 +39,13 @@ class SplashScreen extends StatelessWidget {
                   final user = FirebaseAuth.instance.currentUser;
 
                   if (user != null) {
-                    Get.offAll(() =>  MainScreen());
+                    Get.offAll(() => const MainScreen());
                   } else {
-                    auth.userStorage.writeIfNull('isFirstTime', true);
-
                     bool isFirstTime =
                         auth.userStorage.read('isFirstTime') ?? true;
                     if (isFirstTime) {
-                      Get.offAll(() => FirstPageBoarding());
+                      auth.userStorage.write('isFirstTime', false);
+                      Get.offAll(() => const FirstPageBoarding());
                     } else {
                       Get.offAll(() => Login());
                     }

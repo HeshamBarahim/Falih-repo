@@ -26,10 +26,13 @@ class NotificationsController extends GetxController {
 
   Future<void> getNotificationsList() async {
     final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return;
+    }
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
         .instance
         .collection('users')
-        .doc(user!.uid)
+        .doc(user.uid)
         .collection('notifications')
         .get();
     // await Future.delayed(Duration(seconds: 2));

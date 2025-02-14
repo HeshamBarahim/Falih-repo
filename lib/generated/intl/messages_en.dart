@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Subscription": MessageLookupByLibrary.simpleMessage("Subscription"),
         "about_us": MessageLookupByLibrary.simpleMessage("About us"),
@@ -151,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
         "hint_text_phone":
             MessageLookupByLibrary.simpleMessage("Mobile Number"),
+        "hint_text_full_name":
+            MessageLookupByLibrary.simpleMessage("Full Name"),
         "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(
@@ -316,8 +319,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
             "Leaving the app and opening WhatsApp was denied."),
-             "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
-      "You are about to leave the app and open WhatsApp. Do you want to continue?"),
+        "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
+            "You are about to leave the app and open WhatsApp. Do you want to continue?"),
         "title_signup": MessageLookupByLibrary.simpleMessage(" Create Account"),
         "trusted": MessageLookupByLibrary.simpleMessage("Trusted"),
         "type": MessageLookupByLibrary.simpleMessage("Type:"),
@@ -358,6 +361,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome_to": MessageLookupByLibrary.simpleMessage("Welcome To"),
         "with_the": MessageLookupByLibrary.simpleMessage("With The"),
         "wrong": MessageLookupByLibrary.simpleMessage("Wrong"),
+        "wrong_credentials": MessageLookupByLibrary.simpleMessage(
+            "Incorrect credentials. Try again."),
         "you_can_continue": MessageLookupByLibrary.simpleMessage(
             "You can continue to take the exam anytime"),
         "your": MessageLookupByLibrary.simpleMessage("Your"),

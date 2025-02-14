@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Subscription": MessageLookupByLibrary.simpleMessage("الاشتراك"),
         "about_us": MessageLookupByLibrary.simpleMessage("من نحن"),
@@ -155,8 +156,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
         "hint_text_username_or_phone":
             MessageLookupByLibrary.simpleMessage("اسم المسنخدم او رقم الهاتف"),
-        "hint_text_username":
+        "hint_text_full_name":
             MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+        "hint_text_username":
+            MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "history": MessageLookupByLibrary.simpleMessage("السجل"),
         "history_heading":
             MessageLookupByLibrary.simpleMessage("تاريخ الاختبارات الخاص بك"),
@@ -317,8 +320,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
             "تم رفض مغادرة التطبيق وفتح الواتساب."),
-            "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
-      "أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟"),
+        "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
+            "أنت على وشك مغادرة التطبيق وفتح الواتساب. هل تريد المتابعة؟"),
         "title_signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "trusted": MessageLookupByLibrary.simpleMessage("موثوق"),
         "type": MessageLookupByLibrary.simpleMessage("النوع:"),
@@ -358,6 +361,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome_to": MessageLookupByLibrary.simpleMessage("مرحبًا في"),
         "with_the": MessageLookupByLibrary.simpleMessage("مع"),
         "wrong": MessageLookupByLibrary.simpleMessage("خاطئ"),
+        "wrong_credentials": MessageLookupByLibrary.simpleMessage(
+            "بياناتك غير صحيحة. حاول مرة أخرى."),
         "you_can_continue": MessageLookupByLibrary.simpleMessage(
             "يمكنك مواصلة الاختبار في أي وقت"),
         "your": MessageLookupByLibrary.simpleMessage("خطوتك"),
