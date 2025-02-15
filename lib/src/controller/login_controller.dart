@@ -114,7 +114,7 @@ class LoginController extends GetxController {
       // Fetch the associated phone number from Firestore
       final querySnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .where('Username', isEqualTo: username)
+          .where('UserName', isEqualTo: username)
           .limit(1)
           .get();
 

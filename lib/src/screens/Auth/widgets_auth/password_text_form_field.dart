@@ -58,7 +58,7 @@ class CustomPasswordTextForm extends StatelessWidget {
               fontSize: SizeConfig.screenWidth! * 0.03875,
               color: AppColors.hintColor),
           errorStyle: TextStyle(
-              color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.03875),
+              color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.02875),
           prefixIcon: prefixIcon,
           prefixIconColor: AppColors.mainColor,
           suffixIcon: IconButton(

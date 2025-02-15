@@ -4,7 +4,7 @@ class UserModel {
   final String? id;
   final String? userProfileImgUrl;
   final String fullName;
-  final String username;
+  final String? userName;
   final String phoneNo;
   final String fakeEmail;
   final String schoolName;
@@ -21,8 +21,8 @@ class UserModel {
     this.id,
     this.password,
     this.userProfileImgUrl,
+    this.userName,
     required this.fullName,
-    required this.username,
     required this.phoneNo,
     required this.fakeEmail,
     required this.schoolName,
@@ -35,9 +35,9 @@ class UserModel {
   // convert model to Json structure so that you can use it to store data in Firebase
   toJson() {
     return {
-      "FullName": fullName,
-      "Username": username,
       'userProfileImgUrl': userProfileImgUrl,
+      "FullName": fullName,
+      "UserName": userName,
       "Phone": phoneNo,
       "fakeEmail": fakeEmail,
       "School Name": schoolName,
@@ -50,10 +50,10 @@ class UserModel {
 
   /// Empty Constructor for UserModel
   static UserModel empty() => const UserModel(
-    id: '',
-        fullName: '',
-        username: '',
+        id: '',
         userProfileImgUrl: '',
+        fullName: '',
+        userName: '',
         phoneNo: '',
         fakeEmail: '',
         selectedGovernorate: '',
@@ -73,9 +73,9 @@ class UserModel {
     final data = document.data()!;
     return UserModel(
       id: document.id,
-      fullName: data["FullName"] ?? '',
-      username: data['username'] ?? '',
       userProfileImgUrl: data['userProfileImgUrl'] ?? '',
+      fullName: data["FullName"] ?? '',
+      userName: data["UserName"] ?? '',
       phoneNo: data["Phone"] ?? '',
       fakeEmail: data["Fake Email"] ?? '',
       selectedGovernorate: data["Governoroate"] ?? '',

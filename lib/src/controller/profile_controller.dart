@@ -190,7 +190,7 @@ class ProfileController extends GetxController {
       final updatedUser = UserModel(
           id: userController.user.value!.id,
           fullName: userController.user.value!.fullName,
-          username: userController.user.value?.username ?? '',
+          userName: userController.user.value?.userName ?? '',
           userProfileImgUrl: url,
           phoneNo: userController.user.value!.phoneNo,
           fakeEmail: userController.user.value!.fakeEmail,
@@ -226,7 +226,7 @@ class ProfileController extends GetxController {
       final updatedUser = UserModel(
         id: userController.user.value?.id,
         fullName: fullName.text.trim(),
-        username: userController.user.value?.username ?? '',
+        userName: userController.user.value?.userName ?? '',
         userProfileImgUrl: userProfileImgUrl.value?.trim(),
         phoneNo: phoneNo.text.trim(),
         fakeEmail: userController.user.value!.fakeEmail,

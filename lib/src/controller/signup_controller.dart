@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
@@ -6,6 +7,7 @@ import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
 
 class SignUpController extends GetxController {
@@ -16,7 +18,7 @@ class SignUpController extends GetxController {
   final password = TextEditingController();
   final rePassword = TextEditingController();
   final fullName = TextEditingController();
-  final username = TextEditingController();
+  final userName = TextEditingController();
   final phoneNo = TextEditingController();
   final schoolName = TextEditingController();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
@@ -29,6 +31,9 @@ class SignUpController extends GetxController {
   final UserRepository userRepository = Get.put(UserRepository());
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
+
+  RxBool userNameError = false.obs;
+  RxString userNameErrorMessage = S.current.username_already_exists.obs;
 
   /// Loader
   final isLoading = false.obs;
@@ -71,7 +76,7 @@ class SignUpController extends GetxController {
         userProfileImgUrl: '',
         password: password.text.trim(),
         fullName: fullName.text.trim(),
-        username: username.text.trim(),
+        userName: userName.text.trim(),
         phoneNo: phoneNo.text.trim(),
         fakeEmail: fakeEmail,
         schoolName: schoolName.text.trim(),
@@ -97,6 +102,32 @@ class SignUpController extends GetxController {
       Get.snackbar("Error", e.toString(),
           snackPosition: SnackPosition.BOTTOM,
           duration: const Duration(seconds: 5));
+    }
+  }
+
+  showUserNameErrorMessage() async {
+    try {
+      loadingDialogController.showLoadingDialog(Get.context!);
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .where('UserName', isEqualTo: userName.text.trim())
+              .limit(1)
+              .get();
+      loadingDialogController.closeLoadingDialog(Get.context!);
+
+      if (querySnapshot.docs.isNotEmpty) {
+        userNameError.value = true;
+      } else {
+        userNameError.value = false;
+        goToNextPage();
+      }
+    } on FirebaseException catch (e) {
+      // Re-throw Firestore exceptions to be handled in the main login method
+      rethrow;
+    } catch (e) {
+      // Handle other exceptions (e.g., invalid data format)
+      throw const FormatException('Invalid username or data format');
     }
   }
 

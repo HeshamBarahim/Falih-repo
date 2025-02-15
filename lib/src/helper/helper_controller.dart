@@ -70,6 +70,21 @@ class Helper extends GetxController {
     return null;
   }
 
+  static String? validateUsername(value) {
+    final RegExp usernameRegExp = RegExp(r'^[a-zA-Z0-9_]+$');
+    if (value.isEmpty) {
+      return S.current.username_cant_be_empty;
+    } else if (value.length <= 3) {
+      return S.current.username_too_short;
+    } else if (!usernameRegExp.hasMatch(value)) {
+      return S.current.username_invalid_chars;
+    } else if (value.contains(' ')) {
+      return S.current.username_no_spaces;
+    } else {
+      return null;
+    }
+  }
+
   static String? validateGovernorate(value) {
     if (value == null || value.isEmpty) {
       return S.current.u_should_choose_governorate;

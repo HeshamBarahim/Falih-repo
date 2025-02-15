@@ -7,15 +7,19 @@ import '../../../config/sizes.dart';
 class CustomTextForm extends StatelessWidget {
   final TextEditingController myController;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final TextInputType keyboardType;
   final bool keyFormatter;
   final String labelText;
+  final String? errorMessage;
   final Widget prefixIcon;
 
   const CustomTextForm(
       {super.key,
       required this.myController,
-      this.validator,
+      required this.validator,
+      this.onChanged,
+      this.errorMessage,
       required this.keyboardType,
       required this.keyFormatter,
       required this.labelText,
@@ -29,6 +33,12 @@ class CustomTextForm extends StatelessWidget {
       child: TextFormField(
         controller: myController,
         validator: validator,
+
+        /// Optional
+        onChanged: onChanged,
+
+        ///
+
         keyboardType: keyboardType,
         inputFormatters: keyFormatter == true
             ? [
@@ -48,8 +58,12 @@ class CustomTextForm extends StatelessWidget {
           //     fontSize: SizeConfig.screenWidth! * 0.03875, color: Colors.grey),
           labelText: labelText,
           labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
+          errorText: errorMessage,
           errorStyle: TextStyle(
-              color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.03875),
+            color: Colors.red,
+            fontSize: SizeConfig.screenWidth! * 0.02895,
+          ),
+
           prefixIcon: prefixIcon,
           prefixIconColor: AppColors.mainColor,
           contentPadding: EdgeInsets.symmetric(

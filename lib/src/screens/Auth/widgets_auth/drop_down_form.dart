@@ -42,7 +42,10 @@ class CustomDropDownForm extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
           filled: true,
+          
           fillColor: Colors.white,
+          errorStyle: TextStyle(
+              color: Colors.red, fontSize: SizeConfig.screenWidth! * 0.02875),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
