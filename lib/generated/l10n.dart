@@ -188,10 +188,10 @@ class S {
   }
 
   /// `الاسم الكامل`
-  String get hint_text_full_name {
+  String get hint_text_fullname {
     return Intl.message(
       'الاسم الكامل',
-      name: 'hint_text_full_name',
+      name: 'hint_text_fullname',
       desc: '',
       args: [],
     );
@@ -1566,6 +1566,53 @@ class S {
       args: [],
     );
   }
+
+  /// `لا يمكن أن يكون اسم المستخدم فارغًا`
+  String get username_cant_be_empty {
+    return Intl.message(
+      'لا يمكن أن يكون اسم المستخدم فارغًا',
+      name: 'username_cant_be_empty',
+      desc: '',
+      args: [],
+    );
+  }
+  String get username_already_exists {
+  return Intl.message(
+    'اسم المستخدم هذا موجود بالفعل',
+    name: 'username_already_exists',
+    desc: 'Displayed when the user tries to register with an already taken username',
+    args: [],
+  );
+}
+
+  
+  String get username_too_short {
+  return Intl.message(
+    'يجب أن يكون اسم المستخدم أطول من 3 أحرف',
+    name: 'username_too_short',
+    desc: 'Validation message for short username',
+    args: [],
+  );
+}
+
+String get username_invalid_chars {
+  return Intl.message(
+    'يسمح فقط بالأحرف، الأرقام، و (_)، بدون رموز أخرى أو مسافات',
+    name: 'username_invalid_chars',
+    desc: 'Validation message for invalid characters in username',
+    args: [],
+  );
+}
+
+String get username_no_spaces {
+  return Intl.message(
+    'لا يُسمح بالمسافات في اسم المستخدم',
+    name: 'username_no_spaces',
+    desc: 'Validation message for username containing spaces',
+    args: [],
+  );
+}
+
 
   /// `يجب أن يكون اسم المستخدم صالحًا`
   String get name_must_be {

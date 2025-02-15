@@ -49,22 +49,18 @@
     },
     "create_account":" Create an Account",
 
-    "@title_signup": {
-      "description": "This is the start of the sign up Page"
-    },
-    "step1_of_2":"step 1 of 2",
-    "@step1_of_2": {
-      "description": ""
-    },
-    "step2_of_2":"step 2 of 2",
-    "@step2_of_2": {
-      "description": ""
-    },
     "title_signup":" Create Account",
+    
+    "@hint_text_fullname": {
+      "description": ""
+    },
+    "hint_text_fullname":"Full Name",
+
     "@hint_text_username": {
       "description": ""
     },
-    "hint_text_username":"Full Name",
+    "hint_text_username":"User Name",
+    
     "@hint_text_Governorate": {
       "description": ""
     },
@@ -618,6 +614,34 @@
       "description": ""
     },
     "name_cant_be_empty":"Name cannot be empty",
+    "@username_cant_be_empty": {
+      "description": ""
+    },
+    "username_cant_be_empty":"Username cannot be empty",
+    
+    "@username_already_exists": {
+    "description": "Displayed when the user tries to register with an already taken username"
+    },
+    "username_already_exists": "Username already exists",
+    
+    {
+    "@usernameTooShort": {
+      "description": "Validation message for username length"
+    },
+    "usernameTooShort": "يجب أن يكون اسم المستخدم أطول من 3 أحرف",
+
+    "@usernameInvalidCharacters": {
+      "description": "Validation message for allowed username characters"
+    },
+    "usernameInvalidCharacters": "يسمح فقط بالأحرف، الأرقام، و (_)، بدون رموز أخرى أو مسافات",
+
+    "@usernameNoSpaces": {
+      "description": "Validation message for username spaces"
+    },
+    "usernameNoSpaces": "لا يُسمح بالمسافات في اسم المستخدم"
+  }
+
+
     "@name_must_be": {
       "description": ""
     },

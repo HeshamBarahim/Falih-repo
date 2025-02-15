@@ -152,9 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
         "hint_text_phone":
             MessageLookupByLibrary.simpleMessage("Mobile Number"),
-        "hint_text_full_name":
-            MessageLookupByLibrary.simpleMessage("Full Name"),
-        "hint_text_username": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "hint_text_fullname": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "hint_text_username": MessageLookupByLibrary.simpleMessage("User Name"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "hint_text_username_or_phone": MessageLookupByLibrary.simpleMessage(
             "Enter user name or phone number"),
@@ -176,6 +175,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "month_plan_3": MessageLookupByLibrary.simpleMessage("3-Month Plan"),
         "name_cant_be_empty":
             MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "username_cant_be_empty":
+            MessageLookupByLibrary.simpleMessage("Username cannot be empty"),
+        "username_already_exists":
+            MessageLookupByLibrary.simpleMessage("Username already exists"),
+        "usernameTooShort": MessageLookupByLibrary.simpleMessage(
+            "Username must be longer than 3 characters"),
+        "usernameInvalidCharacters": MessageLookupByLibrary.simpleMessage(
+            "Only letters, numbers, and (_) are allowed, no other symbols or spaces"),
+        "usernameNoSpaces": MessageLookupByLibrary.simpleMessage(
+            "Spaces are not allowed in the username"),
         "name_league": MessageLookupByLibrary.simpleMessage("Silvery League"),
         "name_must_be":
             MessageLookupByLibrary.simpleMessage("User Name must be valid"),

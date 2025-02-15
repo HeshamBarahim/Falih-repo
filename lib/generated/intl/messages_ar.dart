@@ -156,7 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
         "hint_text_username_or_phone":
             MessageLookupByLibrary.simpleMessage("اسم المسنخدم او رقم الهاتف"),
-        "hint_text_full_name":
+        "hint_text_fullname":
             MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "hint_text_username":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
@@ -179,10 +179,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "month_plan_3": MessageLookupByLibrary.simpleMessage("خطة ثلاثة أشهر"),
         "name_cant_be_empty": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يكون الاسم فارغًا"),
+        "username_cant_be_empty": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن أن يكون اسم المستخدم فارغًا"),
+        "username_already_exists": MessageLookupByLibrary.simpleMessage(
+            "اسم المستخدم هذا موجود بالفعل"),
         "name_league": MessageLookupByLibrary.simpleMessage("الدوري الفضي"),
         "name_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المستخدم صالحًا"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "usernameTooShort": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يكون اسم المستخدم أطول من 3 أحرف"),
+        "usernameInvalidCharacters": MessageLookupByLibrary.simpleMessage(
+            "يسمح فقط بالأحرف، الأرقام، و (_)، بدون رموز أخرى أو مسافات"),
+        "usernameNoSpaces": MessageLookupByLibrary.simpleMessage(
+            "لا يُسمح بالمسافات في اسم المستخدم"),
         "no_exams_yet": MessageLookupByLibrary.simpleMessage(
             "لا توجد امتحانات بعد، اذهب وخذ واحدًا"),
         "no_image_selected":

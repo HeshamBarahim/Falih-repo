@@ -49,22 +49,17 @@
       },
       "create_account":" إنشاء حساب",
   
-      "@title_signup": {
-        "description": "This is the start of the sign up Page"
-      },
-      "step1_of_2":"الخطوة 1 من 2",
-      "@step1_of_2": {
-        "description": ""
-      },
-      "step2_of_2":"الخطوة 2 من 2",
-      "@step2_of_2": {
-        "description": ""
-      },
       "title_signup":"إنشاء حساب",
+      "@hint_text_fullname": {
+        "description": ""
+      },
+      "hint_text_fullname":"الاسم الكامل",
+      
       "@hint_text_username": {
         "description": ""
       },
-      "hint_text_username":"الاسم الكامل",
+      "hint_text_username":"اسم المستخدم",
+
       "@hint_text_Governorate": {
         "description": ""
       },
@@ -697,6 +692,33 @@
                 "description": ""
               },
               "name_cant_be_empty": "لا يمكن أن يكون الاسم فارغًا",
+              "@username_cant_be_empty": {
+                "description": ""
+              },
+              "username_cant_be_empty": "لا يمكن أن يكون اسم المستخدم فارغًا",
+
+              "@username_already_exists": {
+                "description": "Displayed when the user tries to register with an already taken username"
+              },
+              "username_already_exists": "اسم المستخدم هذا موجود بالفعل",
+              
+              {
+              "@usernameTooShort": {
+                "description": "Validation message for username length"
+              },
+              "usernameTooShort": "Username must be longer than 3 characters",
+
+              "@usernameInvalidCharacters": {
+                "description": "Validation message for allowed username characters"
+              },
+              "usernameInvalidCharacters": "Only letters, numbers, and (_) are allowed, no other symbols or spaces",
+
+              "@usernameNoSpaces": {
+                "description": "Validation message for username spaces"
+              },
+              "usernameNoSpaces": "Spaces are not allowed in the username"
+            }
+
               "@name_must_be": {
                 "description": ""
               },
