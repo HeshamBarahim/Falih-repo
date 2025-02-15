@@ -10,6 +10,7 @@ import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../constants/functions.dart';
 import '../../controller/exam_controller.dart';
+import '../../controller/subjects_controller.dart';
 
 class RunExam extends StatelessWidget {
   const RunExam({super.key});
@@ -55,8 +56,8 @@ class RunExam extends StatelessWidget {
                     S.current.exit, textAlign: isRTL, // Align button text
                   ),
                 ),
-                  ],
-                ),
+              ],
+            ),
           );
 
           if (confirmExit == true) {
@@ -77,7 +78,7 @@ class RunExam extends StatelessWidget {
           final question = controller.questions[controller.questionIndex.value];
           final questionNumber = controller.questionIndex.value;
           final selectedAnswer =
-          controller.selectedAnswers[controller.questionIndex.value];
+              controller.selectedAnswers[controller.questionIndex.value];
 
           return Container(
             padding: const EdgeInsets.all(16),
@@ -120,7 +121,7 @@ class RunExam extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
@@ -170,7 +171,7 @@ class RunExam extends StatelessWidget {
                                       ? TextDirection.rtl
                                       : TextDirection.ltr,
                                   child:
-                                  buildQuestionText(question.questionText)),
+                                      buildQuestionText(question.questionText)),
                             ],
                           ),
                         ),
@@ -188,7 +189,7 @@ class RunExam extends StatelessWidget {
                                   color: AppColors.choicesColor),
                               child: Center(
                                 child: Obx(
-                                      () => Text(
+                                  () => Text(
                                     controller.formatTime(
                                         controller.currentTime.value),
                                     style: const TextStyle(
@@ -226,12 +227,12 @@ class RunExam extends StatelessWidget {
                                       : AppColors.mainColor.withOpacity(0.60),
                                   border: Border.all(
                                     color: selectedAnswer != null &&
-                                        question.correctAnswerIndex == idx
+                                            question.correctAnswerIndex == idx
                                         ? AppColors
-                                        .successColor // Border color when selected
+                                            .successColor // Border color when selected
                                         : selectedAnswer == idx
-                                        ? AppColors.errorColor
-                                        : Colors.transparent,
+                                            ? AppColors.errorColor
+                                            : Colors.transparent,
                                     // Border color when not selected
                                     width: 2, // Adjust border width as needed
                                   ),
@@ -255,8 +256,8 @@ class RunExam extends StatelessWidget {
                                       ),
                                       Text(
                                         option.toLowerCase().trim() == "true" ||
-                                            (option.toLowerCase().trim() ==
-                                                "false")
+                                                (option.toLowerCase().trim() ==
+                                                    "false")
                                             ? Get.locale?.languageCode == "ar"
                                                 ? option.toLowerCase().trim() ==
                                                         "true"
@@ -338,14 +339,14 @@ class RunExam extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         controller.selectedAnswers[
-                        controller.questionIndex.value] !=
-                            null
+                                    controller.questionIndex.value] !=
+                                null
                             ? showModalBottomSheet(
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          context: context,
-                          builder: (context) => AIBottomSheet(),
-                        )
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) => AIBottomSheet(),
+                              )
                             : null;
                         controller.generateResponse(question.questionText);
                       },
@@ -376,15 +377,15 @@ class RunExam extends StatelessWidget {
     return containsMath
         ? buildMathQuestion(question)
         : Expanded(
-      child: AutoSizeText(
-        question,
-        style: const TextStyle(
-          fontSize: 20,
-          color: AppColors.mainColor,
-        ),
-        minFontSize: 12, // Minimum size to shrink to
-      ),
-    );
+            child: AutoSizeText(
+              question,
+              style: const TextStyle(
+                fontSize: 20,
+                color: AppColors.mainColor,
+              ),
+              minFontSize: 12, // Minimum size to shrink to
+            ),
+          );
   }
 
   String formatFractions(String input) {
