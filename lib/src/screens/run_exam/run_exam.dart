@@ -22,29 +22,47 @@ class RunExam extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
         if (!didPop) {
+          final isRTL = Get.locale?.languageCode == "ar"
+              ? TextAlign.right
+              : TextAlign.left;
+
           bool confirmExit = await showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text("Exit Exam"),
-              content: const Text("Are you sure you want to exit the exam?"),
+              title: Text(
+                S.current.exit_exam, textAlign: isRTL,
+                style: const TextStyle(
+                    color: AppColors.darkMainColor), // Align button text
+              ),
+              content: Text(
+                S.current.exit_exam_warning,
+                textAlign: isRTL, // Align button text
+              ),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context, false),
                   // Stay in exam
-                  child: const Text("Cancel"),
+                  child: Text(
+                    S.current.cancel, textAlign: isRTL, // Align button text
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context, true); // Allow exit
                     Get.back(); // Pop the exam screen
                   },
-                  child: const Text("Exit"),
+                  child: Text(
+                    S.current.exit, textAlign: isRTL, // Align button text
+                  ),
                 ),
-              ],
-            ),
+                  ],
+                ),
           );
 
           if (confirmExit == true) {
+            final subjectsController = Get.find<SubjectsController>();
+            subjectsController.changeSelectedIndex(0);
+            subjectsController.changeSelectedSectionIndex(0);
             controller.resetExam();
             Get.back(); // Navigate back only if confirmed
           }
@@ -240,21 +258,39 @@ class RunExam extends StatelessWidget {
                                             (option.toLowerCase().trim() ==
                                                 "false")
                                             ? Get.locale?.languageCode == "ar"
-                                            ? option.toLowerCase().trim() ==
-                                            "true"
-                                            ? "صح"
-                                            : "خطأ"
-                                            : option.toLowerCase().trim() ==
-                                            "true"
-                                            ? "True"
-                                            : "False"
+                                                ? option.toLowerCase().trim() ==
+                                                        "true"
+                                                    ? "صح"
+                                                    : "خطأ"
+                                                : option.toLowerCase().trim() ==
+                                                        "true"
+                                                    ? "True"
+                                                    : "False"
                                             : option,
                                         style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                             color:
-                                            AppColors.moreLightenMainColor),
+                                                AppColors.moreLightenMainColor),
                                       ),
+                                      const Spacer(),
+                                      selectedAnswer != null &&
+                                              question.correctAnswerIndex == idx
+                                          ? const Icon(
+                                              Icons.check_circle, // True widget
+                                              color: AppColors.successColor,
+                                              // Green color for correct answer
+                                              size: 24,
+                                            )
+                                          : selectedAnswer == idx
+                                              ? const Icon(
+                                                  Icons.cancel, // X widget
+                                                  color: Colors.red,
+                                                  // Red color for incorrect answer
+                                                  size: 24,
+                                                )
+                                              : Container()
+                                      // Add space between the text and the widget
                                     ],
                                   ),
                                 ),

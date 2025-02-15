@@ -326,6 +326,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "times": MessageLookupByLibrary.simpleMessage("times"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "exit_exam": MessageLookupByLibrary.simpleMessage("Exit Exam"),
+        "exit_exam_warning": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to exit the exam?"),
         "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
             "Leaving the app and opening WhatsApp was denied."),
         "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(

@@ -328,6 +328,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "times": MessageLookupByLibrary.simpleMessage("مرات"),
         "title_login": MessageLookupByLibrary.simpleMessage("مرحبا بك من جديد"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "exit": MessageLookupByLibrary.simpleMessage("خروج"),
+        "exit_exam": MessageLookupByLibrary.simpleMessage("خروج من الاختبار"),
+        "exit_exam_warning": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من أنك تريد الخروج من الاختبار؟"),
         "whatsapp_open_denied": MessageLookupByLibrary.simpleMessage(
             "تم رفض مغادرة التطبيق وفتح الواتساب."),
         "whatsapp_leave_warning": MessageLookupByLibrary.simpleMessage(
