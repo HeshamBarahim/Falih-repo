@@ -70,6 +70,33 @@ class S {
     );
   }
 
+  String get exit {
+    return Intl.message(
+      'خروج',
+      name: 'exit',
+      desc: 'Cancel button text',
+      args: [],
+    );
+  }
+
+  String get exit_exam {
+    return Intl.message(
+      'خروج من الاختبار',
+      name: 'exit_exam',
+      desc: 'Cancel button text',
+      args: [],
+    );
+  }
+
+  String get exit_exam_warning {
+    return Intl.message(
+      "هل أنت متأكد من أنك تريد الخروج من الاختبار؟",
+      name: 'exit_exam_warning',
+      desc: 'Cancel button text',
+      args: [],
+    );
+  }
+
   String get whatsapp_open_denied {
     return Intl.message(
       'تم رفض مغادرة التطبيق وفتح الواتساب.',
