@@ -84,7 +84,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                           CustomTextForm(
-                            keyFormatter: false,
+                            keyFormatter: true,
                             keyboardType: TextInputType.text,
                             myController: loginController.email,
                             validator: Helper.validatePhoneNumber,
