@@ -1,0 +1,131 @@
+import 'package:falih/generated/l10n.dart';
+import 'package:falih/src/controller/signup_controller.dart';
+import '../../../config/sizes.dart';
+import 'package:falih/src/config/images.dart';
+import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/screens/Auth/widgets_auth/otp_boxes.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../controller/otp_controller.dart';
+
+class Otp extends StatelessWidget {
+  Otp({super.key});
+
+  final otpTextController = TextEditingController();
+  final otpController = Get.put(OtpController()); // Initialize the controller
+  final signupController =
+      Get.find<SignUpController>(); // Initialize the controller
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.darkMainColor,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SafeArea(
+          child: Obx(() => otpController.isSending.value == true
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    backgroundColor: AppColors.mainColor,
+                  ),
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        Images.falih,
+                        width: SizeConfig.screenWidth! * 0.4,
+                        height: SizeConfig.screenWidth! * 0.4,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Text(
+                      S.of(context).otp,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: SizeConfig.screenHeight! * 0.025,
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.01,
+                    ),
+                    Text(
+                      textAlign: TextAlign.center,
+                      S.of(context).explaination_text,
+                      style: TextStyle(
+                        fontSize: SizeConfig.screenHeight! * 0.017,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        signupController.phoneNo.text,
+                        // Replace with dynamic phone number
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: AppColors.successColor,
+                        ),
+                      ),
+                    ),
+                    Form(
+                      child: OtpBoxes(
+                        otp: otpTextController,
+                      ),
+                    ),
+                    Obx(() => Text(
+                          '${otpController.resendTimeout.value} seconds',
+                          style: TextStyle(
+                            fontSize: SizeConfig.screenHeight! * 0.017,
+                            color: AppColors.darkMainColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Didn\'t receive OTP?',
+                          style: TextStyle(color: AppColors.mainColor),
+                        ),
+                        Obx(() => TextButton(
+                              onPressed: otpController.canResendOtp.value
+                                  ? () {
+                                      otpController.resendOtp();
+                                    }
+                                  : null,
+                              child: Text(
+                                'Resend OTP',
+                                style: TextStyle(
+                                  color: otpController.canResendOtp.value
+                                      ? AppColors.mainColor
+                                      : Colors.grey,
+                                ),
+                              ),
+                            )),
+                      ],
+                    ),
+                  ],
+                )),
+        ),
+      ),
+    );
+  }
+}

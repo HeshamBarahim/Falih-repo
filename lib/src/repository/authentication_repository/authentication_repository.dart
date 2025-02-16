@@ -93,17 +93,9 @@ class AuthenticationRepository extends GetxController {
         const Duration(milliseconds: 500)); // Delay to ensure proper navigation
 
     if (user != null) {
-      // Get.offAll(() => const MainScreen());
       checkDeviceAndLogoutOldDevice();
     } else {
-      // userStorage.writeIfNull('isFirstTime', true);
-
-      // bool isFirstTime = userStorage.read('isFirstTime') ?? true;
-      // if (isFirstTime) {
-      //   Get.offAll(() => FirstPageBoarding());
-      // } else {
-      //   Get.offAll(() => Login());
-      // }
+      Get.offAll(() => Login());
     }
   }
 
@@ -113,7 +105,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      await saveDeviceToken();
+      // await saveDeviceToken();
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);
       throw result.message;

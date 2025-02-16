@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 import '../authentication_repository/exceptions/t_exceptions.dart';
@@ -23,6 +24,12 @@ class UserRepository extends GetxController {
 
       // Add user using uID as the document ID.
       await _db.collection("users").doc(uid).set(user.toJson());
+
+      // Update the device token separately
+      final fcmToken = await FirebaseMessaging.instance.getToken();
+      await _db.collection("users").doc(uid).update({
+        'deviceToken': fcmToken,
+      });
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);
       throw result.message;

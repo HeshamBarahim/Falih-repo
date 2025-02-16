@@ -3,7 +3,7 @@ import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
-import 'package:falih/src/screens/Auth/login/login.dart';
+import 'package:falih/src/screens/Auth/otp/otp_verification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -90,18 +90,15 @@ class SignUpController extends GetxController {
       final auth = AuthenticationRepository.instance;
       await auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
       await UserRepository.instance.createUser(user);
-      auth.setInitialScreen(auth.firebaseUser);
+      // auth.setInitialScreen(auth.firebaseUser);
       loadingDialogController.closeLoadingDialog(Get.context!);
       // Redirect to the login screen
-      showSuccessMessage(
-          message: "Account created successfully! Please log in.");
-      Get.offAll(() => Login());
+      showSuccessMessage(message: "Account created successfully!");
+      Get.offAll(() => OTPVerification());
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
       isLoading.value = false;
-      Get.snackbar("Error", e.toString(),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 5));
+      showErrorMessage("Failed to create account. Please try again.");
     }
   }
 
