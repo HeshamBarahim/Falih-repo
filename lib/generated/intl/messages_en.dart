@@ -95,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "drop_governorate_val4":
             MessageLookupByLibrary.simpleMessage("Al Hudaydah"),
         "drop_governorate_val5": MessageLookupByLibrary.simpleMessage("Amran"),
-        "drop_governorate_val6": MessageLookupByLibrary.simpleMessage("Lahj"),
+        "drop_governorate_val6": MessageLookupByLibrary.simpleMessage("Lahij"),
         "drop_governorate_val7": MessageLookupByLibrary.simpleMessage("Dhamar"),
         "drop_governorate_val8": MessageLookupByLibrary.simpleMessage("Raymah"),
         "drop_governorate_val9":

@@ -144,6 +144,87 @@ class SignupPart2 extends StatelessWidget {
                             fontSize: SizeConfig.screenWidth! * 0.035),
                       ),
                     ),
+                    DropdownMenuItem(
+                      value: 'Al Hudaydah',
+                      child: Text(
+                        S.of(context).drop_governorate_val4,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Amran',
+                      child: Text(
+                        S.of(context).drop_governorate_val5,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Lahij',
+                      child: Text(
+                        S.of(context).drop_governorate_val6,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Dhamar',
+                      child: Text(
+                        S.of(context).drop_governorate_val7,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Raymah',
+                      child: Text(
+                        S.of(context).drop_governorate_val8,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Al Mahwit',
+                      child: Text(
+                        S.of(context).drop_governorate_val9,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Hajjah',
+                      child: Text(
+                        S.of(context).drop_governorate_val10,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Sa\'dah',
+                      child: Text(
+                        S.of(context).drop_governorate_val11,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Al-Jawf',
+                      child: Text(
+                        S.of(context).drop_governorate_val12,
+                        style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.035),
+                      ),
+                    ),
                   ],
                 ),
                 CustomDropDownForm(
