@@ -1,18 +1,17 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/controller/signup_controller.dart';
-import '../../../config/sizes.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/Auth/widgets_auth/otp_boxes.dart';
+import 'package:falih/src/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/sizes.dart';
 import '../../../controller/otp_controller.dart';
+import '../widgets_auth/otp_boxes.dart';
 
-class Otp extends StatelessWidget {
-  Otp({super.key});
+class OTPVerification extends StatelessWidget {
+  OTPVerification({super.key});
 
-  final otpTextController = TextEditingController();
   final otpController = Get.put(OtpController()); // Initialize the controller
   final signupController =
       Get.find<SignUpController>(); // Initialize the controller
@@ -84,10 +83,8 @@ class Otp extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Form(
-                      child: OtpBoxes(
-                        otp: otpTextController,
-                      ),
+                    const Form(
+                      child: OtpPinPut(),
                     ),
                     Obx(() => Text(
                           '${otpController.resendTimeout.value} seconds',

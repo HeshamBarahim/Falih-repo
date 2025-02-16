@@ -16,18 +16,20 @@ class ResendCodeButton extends StatelessWidget {
       onTap: () {},
       child: Container(
         margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight! * 0.02),
-        height: SizeConfig.screenHeight! * 0.06,
-        width: SizeConfig.screenWidth! * 0.5,
+        width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(width: 2, color: AppColors.mainColor),
-          borderRadius: BorderRadius.circular(SizeConfig.screenWidth! * 0.1),
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(6.0),
           child: Text(
-            S.of(context).resend_code,
-            style: TextStyle(
+            S.current.resend_code,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: AppColors.darkMainColor,
               fontWeight: FontWeight.bold,
-              fontSize: SizeConfig.screenWidth! * 0.04,
+              fontSize: 24,
             ),
           ),
         ),
