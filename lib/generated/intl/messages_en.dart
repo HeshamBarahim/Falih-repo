@@ -89,9 +89,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "done": MessageLookupByLibrary.simpleMessage("done"),
         "drop_depatment_val1": MessageLookupByLibrary.simpleMessage("English"),
         "drop_depatment_val2": MessageLookupByLibrary.simpleMessage("Arabic"),
-        "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sanaa"),
-        "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("Ibb"),
-        "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Taiz"),
+        "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("Sana'a"),
+        "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("Taiz"),
+        "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("Ibb"),
+        "drop_governorate_val4":
+            MessageLookupByLibrary.simpleMessage("Al Hudaydah"),
+        "drop_governorate_val5": MessageLookupByLibrary.simpleMessage("Amran"),
+        "drop_governorate_val6": MessageLookupByLibrary.simpleMessage("Lahj"),
+        "drop_governorate_val7": MessageLookupByLibrary.simpleMessage("Dhamar"),
+        "drop_governorate_val8": MessageLookupByLibrary.simpleMessage("Raymah"),
+        "drop_governorate_val9":
+            MessageLookupByLibrary.simpleMessage("Al Mahwit"),
+        "drop_governorate_val10":
+            MessageLookupByLibrary.simpleMessage("Hajjah"),
+        "drop_governorate_val11":
+            MessageLookupByLibrary.simpleMessage("Sa'dah"),
+        "drop_governorate_val12":
+            MessageLookupByLibrary.simpleMessage("Al-Jawf"),
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("class 9"),
         "drop_grade_val2": MessageLookupByLibrary.simpleMessage("class 12"),
         "duration": MessageLookupByLibrary.simpleMessage("Duration:"),

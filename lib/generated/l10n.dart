@@ -314,6 +314,7 @@ class S {
     );
   }
 
+  /// `Sana'a`
   /// `صنعاء`
   String get drop_governorate_val1 {
     return Intl.message(
@@ -324,21 +325,122 @@ class S {
     );
   }
 
-  /// `إب`
+  /// `Taiz`
+  /// `تعز`
   String get drop_governorate_val2 {
     return Intl.message(
-      'إب',
+      'تعز',
       name: 'drop_governorate_val2',
       desc: '',
       args: [],
     );
   }
 
-  /// `تعز`
+  /// `Ibb`
+  /// `إب`
   String get drop_governorate_val3 {
     return Intl.message(
-      'تعز',
+      'إب',
       name: 'drop_governorate_val3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al Hudaydah`
+  /// `الحديدة`
+  String get drop_governorate_val4 {
+    return Intl.message(
+      'الحديدة',
+      name: 'drop_governorate_val4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amran`
+  /// `عمران`
+  String get drop_governorate_val5 {
+    return Intl.message(
+      'عمران',
+      name: 'drop_governorate_val5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lahij`
+  /// `لحج`
+  String get drop_governorate_val6 {
+    return Intl.message(
+      'لحج',
+      name: 'drop_governorate_val6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dhamar`
+  /// `ذمار`
+  String get drop_governorate_val7 {
+    return Intl.message(
+      'ذمار',
+      name: 'drop_governorate_val7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Raymah`
+  /// `ريمة`
+  String get drop_governorate_val8 {
+    return Intl.message(
+      'ريمة',
+      name: 'drop_governorate_val8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al Mahwit`
+  /// `المحويت`
+  String get drop_governorate_val9 {
+    return Intl.message(
+      'المحويت',
+      name: 'drop_governorate_val9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hajjah`
+  /// `حجة`
+  String get drop_governorate_val10 {
+    return Intl.message(
+      'حجة',
+      name: 'drop_governorate_val10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sa'dah`
+  /// `صعدة`
+  String get drop_governorate_val11 {
+    return Intl.message(
+      'صعدة',
+      name: 'drop_governorate_val11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al-Jawf`
+  /// `الجوف`
+  String get drop_governorate_val12 {
+    return Intl.message(
+      'الجوف',
+      name: 'drop_governorate_val12',
       desc: '',
       args: [],
     );
@@ -1603,43 +1705,43 @@ class S {
       args: [],
     );
   }
+
   String get username_already_exists {
-  return Intl.message(
-    'اسم المستخدم هذا موجود بالفعل',
-    name: 'username_already_exists',
-    desc: 'Displayed when the user tries to register with an already taken username',
-    args: [],
-  );
-}
+    return Intl.message(
+      'اسم المستخدم هذا موجود بالفعل',
+      name: 'username_already_exists',
+      desc:
+          'Displayed when the user tries to register with an already taken username',
+      args: [],
+    );
+  }
 
-  
   String get username_too_short {
-  return Intl.message(
-    'يجب أن يكون اسم المستخدم أطول من 3 أحرف',
-    name: 'username_too_short',
-    desc: 'Validation message for short username',
-    args: [],
-  );
-}
+    return Intl.message(
+      'يجب أن يكون اسم المستخدم أطول من 3 أحرف',
+      name: 'username_too_short',
+      desc: 'Validation message for short username',
+      args: [],
+    );
+  }
 
-String get username_invalid_chars {
-  return Intl.message(
-    'يسمح فقط بالأحرف، الأرقام، و (_)، بدون رموز أخرى أو مسافات',
-    name: 'username_invalid_chars',
-    desc: 'Validation message for invalid characters in username',
-    args: [],
-  );
-}
+  String get username_invalid_chars {
+    return Intl.message(
+      'يسمح فقط بالأحرف، الأرقام، و (_)، بدون رموز أخرى أو مسافات',
+      name: 'username_invalid_chars',
+      desc: 'Validation message for invalid characters in username',
+      args: [],
+    );
+  }
 
-String get username_no_spaces {
-  return Intl.message(
-    'لا يُسمح بالمسافات في اسم المستخدم',
-    name: 'username_no_spaces',
-    desc: 'Validation message for username containing spaces',
-    args: [],
-  );
-}
-
+  String get username_no_spaces {
+    return Intl.message(
+      'لا يُسمح بالمسافات في اسم المستخدم',
+      name: 'username_no_spaces',
+      desc: 'Validation message for username containing spaces',
+      args: [],
+    );
+  }
 
   /// `يجب أن يكون اسم المستخدم صالحًا`
   String get name_must_be {

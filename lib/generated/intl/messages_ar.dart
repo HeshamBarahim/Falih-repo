@@ -88,8 +88,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "drop_depatment_val2":
             MessageLookupByLibrary.simpleMessage("اللغة العربية"),
         "drop_governorate_val1": MessageLookupByLibrary.simpleMessage("صنعاء"),
-        "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("إب"),
-        "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("تعز"),
+        "drop_governorate_val2": MessageLookupByLibrary.simpleMessage("تعز"),
+        "drop_governorate_val3": MessageLookupByLibrary.simpleMessage("إب"),
+        "drop_governorate_val4":
+            MessageLookupByLibrary.simpleMessage("الحديدة"),
+        "drop_governorate_val5": MessageLookupByLibrary.simpleMessage("عمران"),
+        "drop_governorate_val6": MessageLookupByLibrary.simpleMessage("لحج"),
+        "drop_governorate_val7": MessageLookupByLibrary.simpleMessage("ذمار"),
+        "drop_governorate_val8": MessageLookupByLibrary.simpleMessage("ريمة"),
+        "drop_governorate_val9":
+            MessageLookupByLibrary.simpleMessage("المحويت"),
+        "drop_governorate_val10": MessageLookupByLibrary.simpleMessage("حجة"),
+        "drop_governorate_val11": MessageLookupByLibrary.simpleMessage("صعدة"),
+        "drop_governorate_val12": MessageLookupByLibrary.simpleMessage("الجوف"),
         "drop_grade_val1": MessageLookupByLibrary.simpleMessage("الصف التاسع"),
         "drop_grade_val2":
             MessageLookupByLibrary.simpleMessage("الصف الثاني عشر"),

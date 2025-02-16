@@ -92,18 +92,67 @@
         "description": ""
       },
       "bottom_text_part2":" تسجيل الدخول ",
+      
       "@drop_governorate_val1": {
         "description": ""
       },
       "drop_governorate_val1":"صنعاء",
+
       "@drop_governorate_val2": {
         "description": ""
       },
-      "drop_governorate_val2":"إب",
+      "drop_governorate_val2":"تعز",
+
       "@drop_governorate_val3": {
         "description": ""
       },
-      "drop_governorate_val3":"تعز",
+      "drop_governorate_val3":"إب",
+
+      "@drop_governorate_val4": {
+        "description": ""
+      },
+      "drop_governorate_val4":"الحديدة",
+
+      "@drop_governorate_val5": {
+        "description": ""
+      },
+      "drop_governorate_val5":"عمران",
+
+      "@drop_governorate_val6": {
+        "description": ""
+      },
+      "drop_governorate_val6":"لحج",
+
+      "@drop_governorate_val7": {
+        "description": ""
+      },
+      "drop_governorate_val7":"ذمار",
+
+      "@drop_governorate_val8": {
+        "description": ""
+      },
+      "drop_governorate_val8":"ريمة",
+
+      "@drop_governorate_val8": {
+        "description": ""
+      },
+      "drop_governorate_val8":"المحويت",
+
+      "@drop_governorate_val10": {
+        "description": ""
+      },
+      "drop_governorate_val10":"حجة",
+
+      "@drop_governorate_val11": {
+        "description": ""
+      },
+      "drop_governorate_val11":"صعدة",
+
+      "@drop_governorate_val12": {
+        "description": ""
+      },
+      "drop_governorate_val12":"الجوف",
+      
       "@drop_grade_val1": {
         "description": ""
       },

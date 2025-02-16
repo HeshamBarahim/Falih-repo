@@ -93,18 +93,67 @@
       "description": ""
     },
     "bottom_text_part2":" Login instead",
+    
     "@drop_governorate_val1": {
-      "description": ""
-    },
-    "drop_governorate_val1":"Sanaa",
-    "@drop_governorate_val2": {
-      "description": ""
-    },
-    "drop_governorate_val2":"Ibb",
-    "@drop_governorate_val3": {
-      "description": ""
-    },
-    "drop_governorate_val3":"Taiz",
+        "description": ""
+      },
+      "drop_governorate_val1":"Sana'a",
+
+      "@drop_governorate_val2": {
+        "description": ""
+      },
+      "drop_governorate_val2":"Taiz",
+
+      "@drop_governorate_val3": {
+        "description": ""
+      },
+      "drop_governorate_val3":"Ibb",
+
+      "@drop_governorate_val4": {
+        "description": ""
+      },
+      "drop_governorate_val4":"Al Hudaydah",
+
+      "@drop_governorate_val5": {
+        "description": ""
+      },
+      "drop_governorate_val5":"Amran",
+
+      "@drop_governorate_val6": {
+        "description": ""
+      },
+      "drop_governorate_val6":"Lahj",
+
+      "@drop_governorate_val7": {
+        "description": ""
+      },
+      "drop_governorate_val7":"Dhamar",
+
+      "@drop_governorate_val8": {
+        "description": ""
+      },
+      "drop_governorate_val8":"Raymah",
+
+      "@drop_governorate_val8": {
+        "description": ""
+      },
+      "drop_governorate_val8":"Al Mahwit",
+
+      "@drop_governorate_val10": {
+        "description": ""
+      },
+      "drop_governorate_val10":"Hajjah",
+
+      "@drop_governorate_val11": {
+        "description": ""
+      },
+      "drop_governorate_val11":"Sa'dah",
+
+      "@drop_governorate_val12": {
+        "description": ""
+      },
+      "drop_governorate_val12":"Al-Jawf",
+
     "@drop_grade_val1": {
       "description": ""
     },
