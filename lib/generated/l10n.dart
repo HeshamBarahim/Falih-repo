@@ -61,6 +61,26 @@ class S {
     );
   }
 
+  /// `البحث عن حسابك`
+  String get search_for_account {
+    return Intl.message(
+      'البحث عن حسابك',
+      name: 'search_for_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تغيير كلمة المرور`
+  String get change_password_text {
+    return Intl.message(
+      'تغيير كلمة المرور',
+      name: 'change_password_text',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get cancel {
     return Intl.message(
       'إلغاء',
@@ -125,6 +145,15 @@ class S {
     );
   }
 
+  // String get hint_text_phone2 {
+  //   return Intl.message(
+  //     'رقم الهاتف',
+  //     name: 'hint_text_phone2',
+  //     desc: '',
+  //     args: [],
+  //   );
+  // }
+
   String get hint_text_username_or_phone {
     return Intl.message(
       'اسم المسنخدم او رقم الهاتف',
@@ -139,6 +168,36 @@ class S {
     return Intl.message(
       'كلمة المرور',
       name: 'hint_text_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكيد كلمة المرور`
+  String get hint_text_password_confirm {
+    return Intl.message(
+      'تأكيد كلمة المرور',
+      name: 'hint_text_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور الجديدة`
+  String get hint_text_new_password {
+    return Intl.message(
+      'كلمة المرور الجديدة',
+      name: 'hint_text_new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكيد كلمة المرور الجديدة`
+  String get hint_text_new_password_confirm {
+    return Intl.message(
+      'تأكيد كلمة المرور الجديدة',
+      name: 'hint_text_new_password_confirm',
       desc: '',
       args: [],
     );
@@ -279,16 +338,6 @@ class S {
     return Intl.message(
       'القسم',
       name: 'hint_text_department',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `تأكيد كلمة المرور`
-  String get hint_text_confirm {
-    return Intl.message(
-      'تأكيد كلمة المرور',
-      name: 'hint_text_confirm',
       desc: '',
       args: [],
     );

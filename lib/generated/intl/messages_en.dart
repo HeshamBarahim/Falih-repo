@@ -159,11 +159,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Governorate"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("Grade"),
         "hint_text_School": MessageLookupByLibrary.simpleMessage("School Name"),
-        "hint_text_confirm":
-            MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "hint_text_department":
             MessageLookupByLibrary.simpleMessage("Department"),
         "hint_text_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "hint_text_password_confirm":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "hint_text_new_password":
+            MessageLookupByLibrary.simpleMessage("New Password"),
+        "hint_text_new_password_confirm":
+            MessageLookupByLibrary.simpleMessage("Confirm New Password"),
         "hint_text_phone":
             MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "hint_text_fullname": MessageLookupByLibrary.simpleMessage("Full Name"),
@@ -339,6 +343,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Time will be counted during the exam"),
         "times": MessageLookupByLibrary.simpleMessage("times"),
         "title_login": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+        "search_for_account":
+            MessageLookupByLibrary.simpleMessage("Search For Your Account"),
+        "change_password_text":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
         "exit_exam": MessageLookupByLibrary.simpleMessage("Exit Exam"),

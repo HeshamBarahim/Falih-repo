@@ -48,6 +48,15 @@ class Helper extends GetxController {
     return null;
   }
 
+  // static String? validateRePassword(value, passwordField) {
+  //   if (value == null || value.isEmpty) {
+  //     return S.current.passwrod_cant_be_empty;
+  //   } else if (value != passwordField) {
+  //     return S.current.passwords_doesnt_match;
+  //   }
+  //   return null;
+  // }
+
   static String? validateSchoolName(value) {
     if (value == null || value.isEmpty) return S.current.school_cant_be_empty;
 

@@ -1,9 +1,15 @@
 {
   "@@locale": "en",
+
   "@title_login": {
       "description": "This is the Start of the login page"
     },
     "title_login": "Welcome Back",
+
+  "@search_for_account": {
+        "description": "This is the Start of the login page"
+      },
+      "search_for_account": "Search For Your Account",  
   
   "@cancel": {
     "description": "Cancel button text"
@@ -81,10 +87,10 @@
       "description": ""
     },
     "hint_text_department":"Department",
-    "@hint_text_confirm": {
+    "@hint_text_password_confirm": {
       "description": ""
     },
-    "hint_text_confirm":"Confirm Password",
+    "hint_text_password_confirm":"Confirm Password",
     "@bottom_text_part1": {
       "description": ""
     },

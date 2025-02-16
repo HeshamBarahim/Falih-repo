@@ -159,11 +159,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المحافظة"),
         "hint_text_Grade": MessageLookupByLibrary.simpleMessage("الصف"),
         "hint_text_School": MessageLookupByLibrary.simpleMessage("اسم المدرسة"),
-        "hint_text_confirm":
-            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "hint_text_department": MessageLookupByLibrary.simpleMessage("القسم"),
         "hint_text_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "hint_text_password_confirm":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "hint_text_new_password":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "hint_text_new_password_confirm":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور الجديدة"),
         "hint_text_phone": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
         "hint_text_username_or_phone":
             MessageLookupByLibrary.simpleMessage("اسم المسنخدم او رقم الهاتف"),
@@ -338,6 +342,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "سيتم حساب الوقت أثناء الاختبار"),
         "times": MessageLookupByLibrary.simpleMessage("مرات"),
         "title_login": MessageLookupByLibrary.simpleMessage("مرحبا بك من جديد"),
+        "search_for_account":
+            MessageLookupByLibrary.simpleMessage("البحث عن حسابك"),
+        "change_password_text":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "exit": MessageLookupByLibrary.simpleMessage("خروج"),
         "exit_exam": MessageLookupByLibrary.simpleMessage("خروج من الاختبار"),

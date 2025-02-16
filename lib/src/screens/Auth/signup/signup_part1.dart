@@ -135,41 +135,42 @@ class SignupPart1 extends StatelessWidget {
                       ),
                       GetBuilder<ShowPasswordController>(
                         init: ShowPasswordController(),
-                        builder: (showPasswordController) =>
+                        builder: (showPasswordController) => Column(
+                          children: [
                             CustomPasswordTextForm(
-                          myController: controller.password,
-                          validator: Helper.validatePassword,
-                          labelText: S.of(context).hint_text_password,
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            size: SizeConfig.screenHeight! * 0.03,
-                          ),
-                          obscureText: showPasswordController.obText,
-                          showPasswordFunction:
-                              showPasswordController.showPasswordFunction,
-                        ),
-                      ),
-                      GetBuilder<ShowPasswordController>(
-                        init: ShowPasswordController(),
-                        builder: (showPasswordController) =>
+                              myController: controller.password,
+                              validator: Helper.validatePassword,
+                              labelText: S.of(context).hint_text_password,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                size: SizeConfig.screenHeight! * 0.03,
+                              ),
+                              obscureText: showPasswordController.obText,
+                              showPasswordFunction:
+                                  showPasswordController.showPasswordFunction,
+                            ),
                             CustomPasswordTextForm(
-                          myController: controller.rePassword,
-                          validator: (val) {
-                            if (val == null || val.isEmpty) {
-                              return S.current.passwrod_cant_be_empty;
-                            } else if (val != controller.password.text.trim()) {
-                              return S.current.passwords_doesnt_match;
-                            }
-                            return null;
-                          },
-                          labelText: S.of(context).hint_text_confirm,
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            size: SizeConfig.screenHeight! * 0.03,
-                          ),
-                          obscureText: showPasswordController.obText2,
-                          showPasswordFunction:
-                              showPasswordController.showPasswordFunction_2,
+                              myController: controller.rePassword,
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return S.current.passwrod_cant_be_empty;
+                                } else if (val !=
+                                    controller.password.text.trim()) {
+                                  return S.current.passwords_doesnt_match;
+                                }
+                                return null;
+                              },
+                              labelText:
+                                  S.of(context).hint_text_password_confirm,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                size: SizeConfig.screenHeight! * 0.03,
+                              ),
+                              obscureText: showPasswordController.obText2,
+                              showPasswordFunction:
+                                  showPasswordController.showPasswordFunction_2,
+                            ),
+                          ],
                         ),
                       ),
                     ],

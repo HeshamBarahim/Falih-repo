@@ -5,6 +5,11 @@
       },
       "title_login": "مرحبا بك من جديد",
       
+      "@search_for_account": {
+        "description": "This is the Start of the login page"
+      },
+      "search_for_account": "البحث عن حسابك",
+
       "@cancel": {
       "description": "Cancel button text"
       },
@@ -80,10 +85,10 @@
         "description": ""
       },
       "hint_text_department":"القسم",
-      "@hint_text_confirm": {
+      "@hint_text_password_confirm": {
         "description": ""
       },
-      "hint_text_confirm":"تأكيد كلمة المرور",
+      "hint_text_password_confirm":"تأكيد كلمة المرور",
       "@bottom_text_part1": {
         "description": ""
       },
