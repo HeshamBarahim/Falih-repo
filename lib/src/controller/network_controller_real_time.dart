@@ -57,9 +57,9 @@ class NetworkControllerRealTime extends GetxController {
             Get.snackbar(
               S.current.connected_to_the_internet,
               S.current.u_are_now_connected_to_internet,
-              dismissDirection: DismissDirection.horizontal,
               backgroundColor: Colors.green.shade600,
               colorText: Colors.white,
+              dismissDirection: DismissDirection.horizontal,
               snackPosition: SnackPosition.TOP,
               duration: const Duration(seconds: 4),
               icon: const Icon(Icons.wifi, color: Colors.white),
