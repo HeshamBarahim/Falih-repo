@@ -13,6 +13,8 @@ import 'loading_dialog_controller.dart';
 import 'network_controller.dart';
 
 class LoginController extends GetxController {
+  static LoginController get instance => Get.find();
+
   /// TextField Controllers to get data from TextFields
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();

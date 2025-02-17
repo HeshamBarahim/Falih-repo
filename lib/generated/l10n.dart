@@ -1765,6 +1765,16 @@ class S {
     );
   }
 
+  String get phone_number_not_exists {
+    return Intl.message(
+      'رقم الهاتف هذا غير موجود',
+      name: 'phone_number_not_exists',
+      desc:
+          'Displayed when the user tries to register with an already taken username',
+      args: [],
+    );
+  }
+
   String get username_too_short {
     return Intl.message(
       'يجب أن يكون اسم المستخدم أطول من 3 أحرف',

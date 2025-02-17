@@ -7,6 +7,7 @@ import '../../../config/sizes.dart';
 import '../../../config/themes.dart';
 import '../../../controller/forget_password_controller.dart';
 import '../../../helper/helper_controller.dart';
+import '../otp/otp_verification.dart';
 import '../widgets_auth/gradient_button.dart';
 import '../widgets_auth/text_form_field.dart';
 
@@ -71,17 +72,11 @@ class ForgotPassword extends StatelessWidget {
                             keyFormatter: true,
                             keyboardType: TextInputType.text,
                             myController: forgetPasswordController.email,
-                            validator: Helper.validatePhoneNumber,
-                            labelText: S.of(context).hint_text_phone,
-                            prefixIcon: Icon(
-                              Icons.account_circle,
-                              size: SizeConfig.screenHeight! * 0.03,
-                            ),
-                          ),
-                          CustomTextForm(
-                            keyFormatter: true,
-                            keyboardType: TextInputType.text,
-                            myController: forgetPasswordController.email,
+                            errorMessage:
+                                forgetPasswordController.phoneNumberError.value
+                                    ? forgetPasswordController
+                                        .phoneNumberErrorMessage.value
+                                    : null,
                             validator: Helper.validatePhoneNumber,
                             labelText: S.of(context).hint_text_phone,
                             prefixIcon: Icon(
@@ -100,8 +95,16 @@ class ForgotPassword extends StatelessWidget {
                       text: S.of(context).continueText,
                       height: SizeConfig.screenHeight! * 0.06,
                       width: double.infinity,
-                      onClick: () async {
+                      onClick: () {
+                        // if (forgetPasswordController
+                        //     .forgetPasswordFormKey.currentState!
+                        //     .validate()) {}
                         // loginController.login(Get.context!);
+                        // forgetPasswordController.checkPhoneNumber(() {
+                        //   Get.offAll(() => OTPVerification(
+                        //       controller: forgetPasswordController));
+                        // });
+                        forgetPasswordController.checkPhoneNumber();
                       },
                     ),
                   ),

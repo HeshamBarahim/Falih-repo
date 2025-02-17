@@ -198,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا يمكن أن يكون اسم المستخدم فارغًا"),
         "username_already_exists": MessageLookupByLibrary.simpleMessage(
             "اسم المستخدم هذا موجود بالفعل"),
+        "phone_number_not_exists": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف هذا غير موجود"),
         "name_league": MessageLookupByLibrary.simpleMessage("الدوري الفضي"),
         "name_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المستخدم صالحًا"),

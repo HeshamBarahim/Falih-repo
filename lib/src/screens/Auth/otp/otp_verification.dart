@@ -1,7 +1,6 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,11 +9,14 @@ import '../../../controller/otp_controller.dart';
 import '../widgets_auth/otp_boxes.dart';
 
 class OTPVerification extends StatelessWidget {
-  OTPVerification({super.key});
+  OTPVerification({super.key, required this.controller});
+
+  // final otpController = Get.put(OtpController()); // Initialize the controller
+  // final signupController =
+  //     Get.find<SignUpController>(); // Initialize the controller
 
   final otpController = Get.put(OtpController()); // Initialize the controller
-  final signupController =
-      Get.find<SignUpController>(); // Initialize the controller
+  late final controller; // Initialize the controller
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class OTPVerification extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        signupController.phoneNo.text,
+                        controller.phoneNo.text,
                         // Replace with dynamic phone number
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,

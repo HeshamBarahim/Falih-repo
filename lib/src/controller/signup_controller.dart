@@ -79,6 +79,7 @@ class SignUpController extends GetxController {
         userName: userName.text.trim(),
         phoneNo: phoneNo.text.trim(),
         fakeEmail: fakeEmail,
+        isVerified: 'false',
         schoolName: schoolName.text.trim(),
         selectedGovernorate: selectedGovernorate.value,
         selectedGrade: selectedGrade.value,
@@ -94,7 +95,8 @@ class SignUpController extends GetxController {
       loadingDialogController.closeLoadingDialog(Get.context!);
       // Redirect to the login screen
       showSuccessMessage(message: "Account created successfully!");
-      Get.offAll(() => OTPVerification());
+      Get.offAll(
+          () => OTPVerification(controller: Get.find<SignUpController>()));
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
       isLoading.value = false;

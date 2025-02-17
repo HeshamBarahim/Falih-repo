@@ -7,6 +7,7 @@ class UserModel {
   final String? userName;
   final String phoneNo;
   final String fakeEmail;
+  final String? isVerified;
   final String schoolName;
   final String? selectedGovernorate;
   final String? selectedGrade;
@@ -25,6 +26,7 @@ class UserModel {
     required this.fullName,
     required this.phoneNo,
     required this.fakeEmail,
+    this.isVerified,
     required this.schoolName,
     required this.selectedGovernorate,
     required this.selectedGrade,
@@ -40,6 +42,7 @@ class UserModel {
       "UserName": userName,
       "Phone": phoneNo,
       "fakeEmail": fakeEmail,
+      "IsVerified": isVerified,
       "School Name": schoolName,
       "Governoroate": selectedGovernorate,
       "Grade": selectedGrade,
@@ -56,6 +59,7 @@ class UserModel {
         userName: '',
         phoneNo: '',
         fakeEmail: '',
+        isVerified: '',
         selectedGovernorate: '',
         schoolName: '',
         selectedGrade: '',
@@ -78,6 +82,7 @@ class UserModel {
       userName: data["UserName"] ?? '',
       phoneNo: data["Phone"] ?? '',
       fakeEmail: data["Fake Email"] ?? '',
+      isVerified: data["IsVerified"] ?? '',
       selectedGovernorate: data["Governoroate"] ?? '',
       schoolName: data["School Name"] ?? '',
       selectedGrade: data["Grade"] ?? '',

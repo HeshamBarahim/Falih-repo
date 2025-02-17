@@ -197,6 +197,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Username cannot be empty"),
         "username_already_exists":
             MessageLookupByLibrary.simpleMessage("Username already exists"),
+        "phone_number_not_exists": MessageLookupByLibrary.simpleMessage(
+            "This Phone Number Doesn\'t Exist"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
             "Username must be longer than 3 characters"),
         "usernameInvalidCharacters": MessageLookupByLibrary.simpleMessage(
