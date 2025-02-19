@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
+import 'otp_controller.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -95,8 +96,11 @@ class SignUpController extends GetxController {
       loadingDialogController.closeLoadingDialog(Get.context!);
       // Redirect to the login screen
       showSuccessMessage(message: "Account created successfully!");
-      Get.offAll(
-          () => OTPVerification(controller: Get.find<SignUpController>()));
+
+      final otpController = Get.put(OtpController(phoneNo.text.trim()));
+      otpController.determineControllerType(1);
+
+      Get.offAll(() => OTPVerification());
     } catch (e) {
       loadingDialogController.closeLoadingDialog(Get.context!);
       isLoading.value = false;

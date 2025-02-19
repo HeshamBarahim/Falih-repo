@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
-import 'package:falih/src/controller/signup_controller.dart';
 import 'package:falih/src/screens/Auth/forgot_password/change_password.dart';
 import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,30 +12,24 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../repository/authentication_repository/authentication_repository.dart';
-import 'forget_password_controller.dart';
 import 'loading_dialog_controller.dart';
-import 'login_controller.dart';
 
 class OtpController extends GetxController {
   final otpTextController = TextEditingController();
+  var phoneNo = "".obs;
   var resendTimeout = 60.obs; // Resend timeout in seconds
   var canResendOtp = false.obs; // Whether the user can resend OTP
   var generatedOtp = ''.obs; // Dynamically generated OTP
-  Timer? _resendTimer;
-
   var isSending = false.obs; // Loading state
-  final signupController =
-      Get.find<SignUpController>(); // Initialize the SignUpController
-  final loginController =
-      Get.find<LoginController>(); // Initialize the LoginController
-
-  final forgetPasswordController = Get.find<
-      ForgetPasswordController>(); // Initialize the ForgetPasswordController
+  final RxInt controllerType = 1.obs;
+  Timer? _resendTimer;
 
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
-  final RxInt controllerType = 1.obs;
+  OtpController(String phoneNumber) {
+    phoneNo.value = phoneNumber;
+  }
 
   @override
   void onInit() {
@@ -64,30 +57,22 @@ class OtpController extends GetxController {
     generatedOtp.value = (100000 + random.nextInt(900000)).toString();
     print('Generated OTP: ${generatedOtp.value}'); // For debugging
     // Call your API to send the OTP here
-    sendOtpToWhatsApp(
-      generatedOtp.value,
-      controllerType.value == 1
-          ? signupController.phoneNo.text.trim()
-          : controllerType.value == 2
-              ? loginController.email.text.trim()
-              : forgetPasswordController.email.text.trim(),
-    );
+    sendOtpToWhatsApp(generatedOtp.value);
   }
 
   // Simulate sending OTP via API
-  Future<void> sendOtpToWhatsApp(String otp, String textField) async {
+  Future<void> sendOtpToWhatsApp(String otp) async {
     // Replace with your API call
     print('Sending OTP to WhatsApp: $otp');
-
     try {
       final response = await http.post(
-        Uri.parse('http://3.145.168.89:3000/api/sendText'),
+        Uri.parse('http://13.59.209.136:3000/api/sendText'),
         headers: {
           'accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
-          "chatId": "967$textField",
+          "chatId": "967${phoneNo.value}",
           "reply_to": null,
           "text": """عزيزي العميل،
 رمز التحقق الخاص بك لتطبيق فالح هو $otp. يرجى عدم مشاركته مع أي شخص.
@@ -98,13 +83,15 @@ class OtpController extends GetxController {
           "session": "default"
         }),
       );
-
+      print(response.body);
       if (response.statusCode == 201) {
         isSending.value = false;
       } else {
+        Get.back();
         showErrorMessage('Failed to send OTP. Please try again.');
       }
     } catch (e) {
+      Get.back();
       showErrorMessage('Failed to send OTP. Please try again.');
     } finally {
       isSending.value = false;
@@ -139,22 +126,22 @@ class OtpController extends GetxController {
       showSuccessMessage(message: "OTP verified successfully.");
       loadingDialogController.showLoadingDialog(Get.context!);
 
-      final user = FirebaseAuth.instance.currentUser;
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user!.uid)
-          .update({
-        'IsVerified': 'true',
-      });
-      final auth = AuthenticationRepository.instance;
-      await auth.setInitialScreen(auth.firebaseUser);
-      loadingDialogController.closeLoadingDialog(Get.context!);
-
       if (controllerType.value == 1) {
+        final user = FirebaseAuth.instance.currentUser;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user!.uid)
+            .update({
+          'IsVerified': 'true',
+        });
+        final auth = AuthenticationRepository.instance;
+        await auth.setInitialScreen(auth.firebaseUser);
+        loadingDialogController.closeLoadingDialog(Get.context!);
+
         Get.offAll(() => const MainScreen());
       } else if (controllerType.value == 2) {
-        // Get.offAll(() => const MainScreen());
-      } else if (controllerType.value == 3) {
+        loadingDialogController.closeLoadingDialog(Get.context!);
+
         Get.offAll(() => ChangePassword());
       }
     } else {
