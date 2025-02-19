@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../config/images.dart';
 import '../../../config/themes.dart';
@@ -27,9 +28,14 @@ class AIBottomSheet extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Obx(() {
                 if (controller.isGeneratingResponse.value) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return Column(
+              return Center(
+                child: AspectRatio(
+                  aspectRatio: 1, // 1:1 ratio (square), adjust as needed
+                  child: Lottie.asset(Images.thinkingAnimation),
+                ),
+              );
+            }
+            return Column(
                   children: [
                     Container(
                       width: 150, // Width of the line

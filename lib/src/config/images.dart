@@ -53,4 +53,7 @@ class Images {
     'assets/images/home_carousel_img/falih_3_v2.png',
     'assets/images/home_carousel_img/falih_4_v2.png',
   ];
+
+  static const emptyAnimation = "assets/animations/empty.json";
+  static const thinkingAnimation = "assets/animations/thinking.json";
 }

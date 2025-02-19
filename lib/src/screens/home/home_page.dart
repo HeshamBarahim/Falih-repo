@@ -7,8 +7,10 @@ import 'package:falih/src/screens/home/widgets_home/advertise_img_carousel.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../../config/images.dart';
 import '../../config/sizes.dart';
 
 class HomePage extends StatelessWidget {
@@ -264,18 +266,25 @@ class HomePage extends StatelessWidget {
                           )
                         : controller.visibleExams.isEmpty
                             ? Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    S.of(context).go_get_some_exams,
-                                    style: const TextStyle(
-                                      color: AppColors.mainColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                child: AspectRatio(
+                                  aspectRatio:
+                                      1, // 1:1 ratio (square), adjust as needed
+                                  child: Lottie.asset(Images.emptyAnimation),
                                 ),
                               )
+                            // ? Center(
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.all(8.0),
+                            //       child: Text(
+                            //         S.of(context).go_get_some_exams,
+                            //         style: const TextStyle(
+                            //           color: AppColors.mainColor,
+                            //           fontSize: 18,
+                            //           fontWeight: FontWeight.bold,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   )
                             : Padding(
                                 padding: const EdgeInsets.only(bottom: 20),
                                 child: ListView.builder(
