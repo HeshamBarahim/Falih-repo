@@ -7,7 +7,6 @@ import '../../../config/sizes.dart';
 import '../../../config/themes.dart';
 import '../../../controller/forget_password_controller.dart';
 import '../../../helper/helper_controller.dart';
-import '../otp/otp_verification.dart';
 import '../widgets_auth/gradient_button.dart';
 import '../widgets_auth/text_form_field.dart';
 
@@ -71,7 +70,7 @@ class ForgotPassword extends StatelessWidget {
                           CustomTextForm(
                             keyFormatter: true,
                             keyboardType: TextInputType.text,
-                            myController: forgetPasswordController.email,
+                            myController: forgetPasswordController.phoneNumber,
                             errorMessage:
                                 forgetPasswordController.phoneNumberError.value
                                     ? forgetPasswordController
@@ -96,14 +95,6 @@ class ForgotPassword extends StatelessWidget {
                       height: SizeConfig.screenHeight! * 0.06,
                       width: double.infinity,
                       onClick: () {
-                        // if (forgetPasswordController
-                        //     .forgetPasswordFormKey.currentState!
-                        //     .validate()) {}
-                        // loginController.login(Get.context!);
-                        // forgetPasswordController.checkPhoneNumber(() {
-                        //   Get.offAll(() => OTPVerification(
-                        //       controller: forgetPasswordController));
-                        // });
                         forgetPasswordController.checkPhoneNumber();
                       },
                     ),

@@ -65,19 +65,26 @@ class AuthenticationRepository extends GetxController {
 
       final storedToken = userDoc['deviceToken'];
 
-      if (currentToken != storedToken) {
-        await FirebaseAuth.instance.signOut();
-        Get.snackbar(
-          S.current.logoutFromMoreThanOneDeviceTitle,
-          // '${message.sentTime}',
-          S.current.logoutFromMoreThanOneDevice,
-          dismissDirection: DismissDirection.horizontal,
-          backgroundColor: const Color(0xFFFFFFFF),
-          colorText: AppColors.mainColor,
-          snackPosition: SnackPosition.TOP,
-          duration: const Duration(seconds: 4),
-          icon: const Icon(Icons.notifications, color: AppColors.mainColor),
-        );
+      final userData = userDoc.data();
+
+      // Check if the 'deviceToken' field exists
+      if (userData != null && userData.containsKey('deviceToken')) {
+        if (currentToken != storedToken) {
+          await FirebaseAuth.instance.signOut();
+          Get.snackbar(
+            S.current.logoutFromMoreThanOneDeviceTitle,
+            S.current.logoutFromMoreThanOneDevice,
+            dismissDirection: DismissDirection.horizontal,
+            backgroundColor: const Color(0xFFFFFFFF),
+            colorText: AppColors.mainColor,
+            snackPosition: SnackPosition.TOP,
+            duration: const Duration(seconds: 4),
+            icon: const Icon(Icons.notifications, color: AppColors.mainColor),
+          );
+          saveDeviceToken();
+        }
+      } else {
+        saveDeviceToken();
       }
     } catch (e) {
       showErrorMessage(S.current.unexpected_error_occured);
@@ -105,7 +112,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      // await saveDeviceToken();
+      await saveDeviceToken();
     } on FirebaseAuthException catch (e) {
       final result = TExceptions.fromCode(e.code);
       throw result.message;

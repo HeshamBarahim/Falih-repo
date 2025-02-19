@@ -9,14 +9,9 @@ import '../../../controller/otp_controller.dart';
 import '../widgets_auth/otp_boxes.dart';
 
 class OTPVerification extends StatelessWidget {
-  OTPVerification({super.key, required this.controller});
+  OTPVerification({super.key});
 
-  // final otpController = Get.put(OtpController()); // Initialize the controller
-  // final signupController =
-  //     Get.find<SignUpController>(); // Initialize the controller
-
-  final otpController = Get.put(OtpController()); // Initialize the controller
-  late final controller; // Initialize the controller
+  final otpController = Get.find<OtpController>(); // Initialize the controller
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +34,7 @@ class OTPVerification extends StatelessWidget {
         child: SafeArea(
           child: Obx(() => otpController.isSending.value == true
               ? const Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: AppColors.mainColor,
-                  ),
+            child: CircularProgressIndicator(),
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +69,7 @@ class OTPVerification extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        controller.phoneNo.text,
+                        otpController.phoneNo.value,
                         // Replace with dynamic phone number
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,

@@ -164,7 +164,7 @@ class Login extends StatelessWidget {
                         ),
                         GradientText(
                           text: S.of(context).create_account,
-                          route: () => Get.to(Signup()),
+                          route: () => Get.to(() => Signup()),
                         ),
                       ],
                     ),
