@@ -152,6 +152,7 @@ class ProfileController extends GetxController {
             await ImagePicker().pickImage(source: ImageSource.camera);
     if (changeProfileImage != null) {
       File selectedFile = File(changeProfileImage.path);
+
       // file = File(changeProfileImage.path);
       // Get file size
       int fileSize = await selectedFile.length();
@@ -161,10 +162,9 @@ class ProfileController extends GetxController {
         // Compress if file is larger than 1MB
         File? compressedFile = await compressImage(selectedFile);
         file = compressedFile;
-      } 
-      //else {
-      //   file = selectedFile;
-      // }
+      } else {
+        file = selectedFile;
+      }
     }
     // setState(() {});
     update();
@@ -194,6 +194,8 @@ class ProfileController extends GetxController {
       await updateUserProfileImgUrl(profileImgUrl!);
       update();
       loadingDialogController.closeLoadingDialog(Get.context!);
+
+      file = null;
 
       // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
