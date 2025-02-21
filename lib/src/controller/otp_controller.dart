@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../constants/urls.dart';
 import '../repository/authentication_repository/authentication_repository.dart';
 import 'loading_dialog_controller.dart';
 
@@ -27,13 +28,7 @@ class OtpController extends GetxController {
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
-  OtpController(String phoneNumber) {
-    phoneNo.value = phoneNumber;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
+  void sendOTP() {
     generateAndSendOtp();
     startResendTimer();
   }
@@ -65,8 +60,9 @@ class OtpController extends GetxController {
     // Replace with your API call
     print('Sending OTP to WhatsApp: $otp');
     try {
-      final response = await http.post(
-        Uri.parse('http://13.59.209.136:3000/api/sendText'),
+      final response = await http
+          .post(
+        Uri.parse(URLs.OTP_API),
         headers: {
           'accept': 'application/json',
           'Content-Type': 'application/json',
@@ -82,6 +78,12 @@ class OtpController extends GetxController {
           "linkPreview": true,
           "session": "default"
         }),
+      )
+          .timeout(
+        const Duration(seconds: 20), // Set timeout duration
+        onTimeout: () {
+          throw TimeoutException("Request to server timed out!");
+        },
       );
       print(response.body);
       if (response.statusCode == 201) {
@@ -90,6 +92,10 @@ class OtpController extends GetxController {
         Get.back();
         showErrorMessage('Failed to send OTP. Please try again.');
       }
+    } on TimeoutException {
+      Get.back();
+      showErrorMessage('Failed to send OTP. Please try again.');
+      print("Timeout error");
     } catch (e) {
       Get.back();
       showErrorMessage('Failed to send OTP. Please try again.');

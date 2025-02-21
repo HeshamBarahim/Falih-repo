@@ -97,8 +97,10 @@ class SignUpController extends GetxController {
       // Redirect to the login screen
       showSuccessMessage(message: "Account created successfully!");
 
-      final otpController = Get.put(OtpController(phoneNo.text.trim()));
+      final otpController = Get.put(OtpController());
+      otpController.phoneNo.value = phoneNo.text.trim();
       otpController.determineControllerType(1);
+      otpController.sendOTP();
 
       Get.offAll(() => OTPVerification());
     } catch (e) {
@@ -125,11 +127,7 @@ class SignUpController extends GetxController {
         userNameError.value = false;
         goToNextPage();
       }
-    } on FirebaseException catch (e) {
-      // Re-throw Firestore exceptions to be handled in the main login method
-      rethrow;
     } catch (e) {
-      // Handle other exceptions (e.g., invalid data format)
       throw const FormatException('Invalid username or data format');
     }
   }

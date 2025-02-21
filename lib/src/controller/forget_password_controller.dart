@@ -35,14 +35,13 @@ class ForgetPasswordController extends GetxController {
         } else {
           phoneNumberError.value = false;
 
-          final otpController = Get.put(OtpController(phoneNumber.text.trim()));
+          final otpController = Get.put(OtpController());
+          otpController.phoneNo.value = phoneNumber.text.trim();
           otpController.determineControllerType(2);
+          otpController.sendOTP();
 
           Get.to(() => OTPVerification());
         }
-      } on FirebaseException catch (e) {
-        // Re-throw Firestore exceptions to be handled in the main login method
-        rethrow;
       } catch (e) {
         // Handle other exceptions (e.g., invalid data format)
         throw const FormatException('Invalid Phone Number or data format');

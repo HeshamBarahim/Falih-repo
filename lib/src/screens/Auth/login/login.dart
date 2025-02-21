@@ -50,126 +50,115 @@ class Login extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage(Images.backgroundImageOfAuth),
-              fit: BoxFit.cover,
-              opacity: 0.09,
-            ),
-          ),
-          child: Form(
-            key: loginController.loginFormKey,
-            child: Padding(
-              // padding: const EdgeInsets.all(16),
-              padding: EdgeInsets.symmetric(
-                  vertical: SizeConfig.screenHeight! * 0.02,
-                  horizontal: SizeConfig.screenWidth! * 0.04),
-              child: SafeArea(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        keyboardDismissBehavior:
-                            ScrollViewKeyboardDismissBehavior.onDrag,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Image.asset(
-                                Images.falih,
-                                width: SizeConfig.screenWidth! * 0.4,
-                                height: SizeConfig.screenWidth! * 0.4,
-                                fit: BoxFit.contain,
+        body: Form(
+          key: loginController.loginFormKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: SizeConfig.screenHeight! * 0.02,
+                horizontal: SizeConfig.screenWidth! * 0.04),
+            child: SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Image.asset(
+                              Images.falih,
+                              width: SizeConfig.screenWidth! * 0.4,
+                              height: SizeConfig.screenWidth! * 0.4,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: SizeConfig.screenHeight! * 0.02),
+                            child: Text(
+                              S.of(context).title_login,
+                              style: const TextStyle(
+                                color: AppColors.darkMainColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 28,
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: SizeConfig.screenHeight! * 0.02),
-                              child: Text(
-                                S.of(context).title_login,
-                                style: const TextStyle(
-                                  color: AppColors.darkMainColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 28,
-                                ),
-                              ),
+                          ),
+                          CustomTextForm(
+                            keyFormatter: true,
+                            keyboardType: TextInputType.text,
+                            myController: loginController.email,
+                            validator: Helper.validatePhoneNumber,
+                            labelText:
+                                S.of(context).hint_text_username_or_phone,
+                            prefixIcon: Icon(
+                              Icons.account_circle,
+                              size: SizeConfig.screenHeight! * 0.03,
                             ),
-                            CustomTextForm(
-                              keyFormatter: true,
-                              keyboardType: TextInputType.text,
-                              myController: loginController.email,
-                              validator: Helper.validatePhoneNumber,
-                              labelText:
-                                  S.of(context).hint_text_username_or_phone,
+                          ),
+                          GetBuilder<ShowPasswordController>(
+                            init: ShowPasswordController(),
+                            builder: (controller) => CustomPasswordTextForm(
+                              myController: loginController.password,
+                              validator: Helper.validatePassword,
+                              labelText: S.of(context).hint_text_password,
                               prefixIcon: Icon(
-                                Icons.account_circle,
+                                Icons.lock,
                                 size: SizeConfig.screenHeight! * 0.03,
                               ),
+                              obscureText: controller.obText,
+                              showPasswordFunction:
+                                  controller.showPasswordFunction,
                             ),
-                            GetBuilder<ShowPasswordController>(
-                              init: ShowPasswordController(),
-                              builder: (controller) => CustomPasswordTextForm(
-                                myController: loginController.password,
-                                validator: Helper.validatePassword,
-                                labelText: S.of(context).hint_text_password,
-                                prefixIcon: Icon(
-                                  Icons.lock,
-                                  size: SizeConfig.screenHeight! * 0.03,
-                                ),
-                                obscureText: controller.obText,
-                                showPasswordFunction:
-                                    controller.showPasswordFunction,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: InkWell(
-                                onTap: () {
-                                  Get.to(ForgotPassword());
-                                },
-                                child: Text(
-                                  S.of(context).forget_password,
-                                  style: const TextStyle(
-                                    color: AppColors.warningColor,
-                                    fontSize: 14,
-                                  ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(ForgotPassword());
+                              },
+                              child: Text(
+                                S.of(context).forget_password,
+                                style: const TextStyle(
+                                  color: AppColors.warningColor,
+                                  fontSize: 14,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    GradientButton(
-                      text: S.of(context).login,
-                      height: SizeConfig.screenHeight! * 0.06,
-                      width: double.infinity,
-                      onClick: () async {
-                        loginController.login(Get.context!);
-                      },
-                    ),
-                    SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          S.of(context).not_registerd,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: SizeConfig.screenHeight! * 0.018,
-                          ),
+                  ),
+                  GradientButton(
+                    text: S.of(context).login,
+                    height: SizeConfig.screenHeight! * 0.06,
+                    width: double.infinity,
+                    onClick: () async {
+                      loginController.login(Get.context!);
+                    },
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        S.of(context).not_registerd,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: SizeConfig.screenHeight! * 0.018,
                         ),
-                        GradientText(
-                          text: S.of(context).create_account,
-                          route: () => Get.to(() => Signup()),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      GradientText(
+                        text: S.of(context).create_account,
+                        route: () => Get.to(() => Signup()),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

@@ -272,19 +272,6 @@ class HomePage extends StatelessWidget {
                                   child: Lottie.asset(Images.emptyAnimation),
                                 ),
                               )
-                            // ? Center(
-                            //     child: Padding(
-                            //       padding: const EdgeInsets.all(8.0),
-                            //       child: Text(
-                            //         S.of(context).go_get_some_exams,
-                            //         style: const TextStyle(
-                            //           color: AppColors.mainColor,
-                            //           fontSize: 18,
-                            //           fontWeight: FontWeight.bold,
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   )
                             : Padding(
                                 padding: const EdgeInsets.only(bottom: 20),
                                 child: ListView.builder(

@@ -20,91 +20,91 @@ class ForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            image: AssetImage(Images.backgroundImageOfAuth),
-            fit: BoxFit.cover,
-            opacity: 0.09,
-          ),
-        ),
-        child: Form(
-          key: forgetPasswordController.forgetPasswordFormKey,
-          child: Padding(
-            // padding: const EdgeInsets.all(16),
-            padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.screenHeight! * 0.02,
-                horizontal: SizeConfig.screenWidth! * 0.04),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Form(
+            key: forgetPasswordController.forgetPasswordFormKey,
             child: SafeArea(
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      keyboardDismissBehavior:
-                          ScrollViewKeyboardDismissBehavior.onDrag,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Image.asset(
-                              Images.falih,
-                              width: SizeConfig.screenWidth! * 0.4,
-                              height: SizeConfig.screenWidth! * 0.4,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: SizeConfig.screenHeight! * 0.02),
-                            child: Text(
-                              S.of(context).search_for_account,
-                              style: const TextStyle(
-                                color: AppColors.darkMainColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: constraints.maxHeight * 0.02,
+                  horizontal: constraints.maxWidth * 0.04,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Image.asset(
+                                Images.falih,
+                                width: SizeConfig.screenWidth! * 0.4,
+                                height: SizeConfig.screenWidth! * 0.4,
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-                          CustomTextForm(
-                            keyFormatter: true,
-                            keyboardType: TextInputType.text,
-                            myController: forgetPasswordController.phoneNumber,
-                            errorMessage:
-                                forgetPasswordController.phoneNumberError.value
-                                    ? forgetPasswordController
-                                        .phoneNumberErrorMessage.value
-                                    : null,
-                            validator: Helper.validatePhoneNumber,
-                            labelText: S.of(context).hint_text_phone,
-                            prefixIcon: Icon(
-                              Icons.account_circle,
-                              size: SizeConfig.screenHeight! * 0.03,
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: constraints.maxHeight * 0.02),
+                              child: Text(
+                                S.of(context).search_for_account,
+                                style: TextStyle(
+                                  color: AppColors.darkMainColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: constraints.maxWidth *
+                                      0.07, // Responsive font size
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            CustomTextForm(
+                              keyFormatter: true,
+                              keyboardType: TextInputType.text,
+                              myController:
+                                  forgetPasswordController.phoneNumber,
+                              errorMessage: forgetPasswordController
+                                      .phoneNumberError.value
+                                  ? forgetPasswordController
+                                      .phoneNumberErrorMessage.value
+                                  : null,
+                              validator: Helper.validatePhoneNumber,
+                              labelText: S.of(context).hint_text_phone,
+                              prefixIcon: Icon(
+                                Icons.account_circle,
+                                size: constraints.maxHeight * 0.03,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.screenWidth! * 0.1),
-                    child: GradientButton(
-                      text: S.of(context).continueText,
-                      height: SizeConfig.screenHeight! * 0.06,
-                      width: double.infinity,
-                      onClick: () {
-                        forgetPasswordController.checkPhoneNumber();
-                      },
+                    SizedBox(height: constraints.maxHeight * 0.02),
+                    // Adds spacing before button
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: constraints.maxWidth * 0.1),
+                      child: FractionallySizedBox(
+                        widthFactor: 0.9, // Ensures button scales properly
+                        child: GradientButton(
+                          text: S.of(context).continueText,
+                          height: constraints.maxHeight * 0.06,
+                          onClick: () =>
+                              forgetPasswordController.checkPhoneNumber(),
+                          width: double.infinity,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.07),
-                ],
+                    SizedBox(height: constraints.maxHeight * 0.03),
+                    // Prevents overflow
+                  ],
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

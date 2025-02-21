@@ -17,107 +17,112 @@ class OTPVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.darkMainColor,
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.darkMainColor,
+            ),
+            onPressed: () {
+              Get.back();
+            },
           ),
-          onPressed: () {
-            Get.back();
-          },
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SafeArea(
-          child: Obx(() => otpController.isSending.value == true
-              ? const Center(
-            child: CircularProgressIndicator(),
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Image.asset(
-                        Images.falih,
-                        width: SizeConfig.screenWidth! * 0.4,
-                        height: SizeConfig.screenWidth! * 0.4,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    Text(
-                      S.of(context).otp,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: SizeConfig.screenHeight! * 0.025,
-                      ),
-                    ),
-                    SizedBox(
-                      height: SizeConfig.screenHeight! * 0.01,
-                    ),
-                    Text(
-                      textAlign: TextAlign.center,
-                      S.of(context).explaination_text,
-                      style: TextStyle(
-                        fontSize: SizeConfig.screenHeight! * 0.017,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        otpController.phoneNo.value,
-                        // Replace with dynamic phone number
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: AppColors.successColor,
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Obx(() {
+            return otpController.isSending.value
+                ? const Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    // Allow scrolling if content exceeds screen size
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Image.asset(
+                            Images.falih,
+                            width: SizeConfig.screenWidth! * 0.4,
+                            height: SizeConfig.screenWidth! * 0.4,
+                            fit: BoxFit.contain,
+                          ),
                         ),
-                      ),
-                    ),
-                    const Form(
-                      child: OtpPinPut(),
-                    ),
-                    Obx(() => Text(
-                          '${otpController.resendTimeout.value} seconds',
+                        Text(
+                          S.of(context).otp,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: SizeConfig.screenHeight! * 0.025,
+                          ),
+                        ),
+                        SizedBox(
+                          height: SizeConfig.screenHeight! * 0.01,
+                        ),
+                        Text(
+                          textAlign: TextAlign.center,
+                          S.of(context).explaination_text,
                           style: TextStyle(
                             fontSize: SizeConfig.screenHeight! * 0.017,
-                            color: AppColors.darkMainColor,
                             fontWeight: FontWeight.bold,
                           ),
-                        )),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Didn\'t receive OTP?',
-                          style: TextStyle(color: AppColors.mainColor),
                         ),
-                        Obx(() => TextButton(
-                              onPressed: otpController.canResendOtp.value
-                                  ? () {
-                                      otpController.resendOtp();
-                                    }
-                                  : null,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            otpController.phoneNo.value,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: AppColors.successColor,
+                            ),
+                          ),
+                        ),
+                        const Form(
+                          child: OtpPinPut(),
+                        ),
+                        Obx(() => Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: SizeConfig.screenHeight! * 0.01),
                               child: Text(
-                                'Resend OTP',
+                                '${otpController.resendTimeout.value} seconds',
                                 style: TextStyle(
-                                  color: otpController.canResendOtp.value
-                                      ? AppColors.mainColor
-                                      : Colors.grey,
+                                  fontSize: SizeConfig.screenHeight! * 0.017,
+                                  color: AppColors.darkMainColor,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             )),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'Didn\'t receive OTP?',
+                              style: TextStyle(color: AppColors.mainColor),
+                            ),
+                            Obx(() => TextButton(
+                                  onPressed: otpController.canResendOtp.value
+                                      ? () {
+                                          otpController.resendOtp();
+                                        }
+                                      : null,
+                                  child: Text(
+                                    'Resend OTP',
+                                    style: TextStyle(
+                                      color: otpController.canResendOtp.value
+                                          ? AppColors.mainColor
+                                          : Colors.grey,
+                                    ),
+                                  ),
+                                )),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                )),
-        ),
-      ),
-    );
+                  );
+          }),
+        ));
   }
 }
