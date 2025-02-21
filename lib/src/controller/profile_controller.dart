@@ -6,6 +6,7 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -123,6 +124,24 @@ class ProfileController extends GetxController {
     );
   }
 
+  Future<File?> compressImage(File file) async {
+    final filePath = file.absolute.path;
+
+    // Define the output file path
+    final lastIndex = filePath.lastIndexOf('.');
+    final splitPath = filePath.substring(0, lastIndex);
+    final outPath = "${splitPath}_compressed.jpg";
+
+    // Compress the image
+    final result = await FlutterImageCompress.compressAndGetFile(
+      filePath,
+      outPath,
+      quality: 50, // Reduce quality (adjust if necessary)
+    );
+
+    return result != null ? File(result.path) : file;
+  }
+
   saveImage(BuildContext context) async {
     final XFile? changeProfileImage;
 
@@ -132,7 +151,20 @@ class ProfileController extends GetxController {
         : changeProfileImage =
             await ImagePicker().pickImage(source: ImageSource.camera);
     if (changeProfileImage != null) {
-      file = File(changeProfileImage.path);
+      File selectedFile = File(changeProfileImage.path);
+      // file = File(changeProfileImage.path);
+      // Get file size
+      int fileSize = await selectedFile.length();
+      double fileSizeMB = fileSize / (1024 * 1024); // Convert to MB
+
+      if (fileSizeMB >= 1.0) {
+        // Compress if file is larger than 1MB
+        File? compressedFile = await compressImage(selectedFile);
+        file = compressedFile;
+      } 
+      //else {
+      //   file = selectedFile;
+      // }
     }
     // setState(() {});
     update();
