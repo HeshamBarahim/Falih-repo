@@ -1,11 +1,20 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:falih/src/screens/Auth/otp/otp_verification.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
+// import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
@@ -36,11 +45,168 @@ class SignUpController extends GetxController {
   RxBool userNameError = false.obs;
   RxString userNameErrorMessage = S.current.username_already_exists.obs;
 
+  String? profileImgUrl;
+
+  int imageType = 0;
+
+  File? file2;
+  File? file;
+
   /// Loader
   final isLoading = false.obs;
 
   // Tracks the current page to manage the split screens of signup
   var currentPageIndex = 1.obs;
+
+  imagePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.image,
+                  size: 25.0,
+                ),
+                title: Text(
+                  S.of(context).upload_image,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  imageType = 0;
+                  picTheImage(context);
+                  // saveImage(context);
+                  Navigator.pop(context);
+
+                  update();
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.camera_alt,
+                  size: 25.0,
+                ),
+                title: Text(
+                  S.of(context).take_photo,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                onTap: () {
+                  imageType = 1;
+                  // saveImage(context);
+                  picTheImage(context);
+                  Navigator.pop(context);
+
+                  update();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<File?> compressImage(File file) async {
+    final filePath = file.absolute.path;
+
+    // Define the output file path
+    final lastIndex = filePath.lastIndexOf('.');
+    final splitPath = filePath.substring(0, lastIndex);
+    final outPath = "${splitPath}_compressed.jpg";
+
+    // Compress the image
+    final result = await FlutterImageCompress.compressAndGetFile(
+      filePath,
+      outPath,
+      quality: 50, // Reduce quality (adjust if necessary)
+    );
+
+    return result != null ? File(result.path) : file;
+  }
+
+  picTheImage(BuildContext context) async {
+    file = null;
+    final XFile? changeProfileImage;
+
+    imageType == 0
+        ? changeProfileImage =
+            await ImagePicker().pickImage(source: ImageSource.gallery)
+        : changeProfileImage =
+            await ImagePicker().pickImage(source: ImageSource.camera);
+    if (changeProfileImage != null) {
+      File selectedFile = File(changeProfileImage.path);
+      // file = File(changeProfileImage.path);
+      // Get file size
+      int fileSize = await selectedFile.length();
+      double fileSizeMB = fileSize / (1024 * 1024); // Convert to MB
+
+      if (fileSizeMB >= 1.0) {
+        // Compress if file is larger than 1MB
+        File? compressedFile = await compressImage(selectedFile);
+        file2 = compressedFile;
+      } else {
+        file2 = selectedFile;
+      }
+    }
+    // setState(() {});
+    update();
+
+    if (file2 == null) {
+      Get.snackbar(S.current.error, S.current.no_image_selected);
+      return;
+    }
+  }
+
+  saveImage(String userId) async {
+    try {
+      loadingDialogController.showLoadingDialog(Get.context!);
+      // Generate a unique filename using user ID and timestamp
+      // Reference to Firebase Storage
+      // final storageRef2 = FirebaseStorage.instance.refFromURL();
+      final storageRef = FirebaseStorage.instance
+          .refFromURL('gs://falih-1.firebasestorage.app')
+          .child('user_profile_images/$userId');
+
+      // Upload the file
+      await storageRef.putFile(file2!);
+
+      // Retrieve the download URL
+      profileImgUrl = await storageRef.getDownloadURL();
+
+      try {
+        // Add Image Url To FireBase
+        CollectionReference imgUrlCollection =
+            FirebaseFirestore.instance.collection('users');
+
+        await imgUrlCollection
+            .doc(userId)
+            .update({'userProfileImgUrl': profileImgUrl})
+            .then((value) => print("Image Edited"))
+            .catchError((error) {
+              print("Failed to Edit Note: $error");
+            });
+        update();
+      } on FirebaseAuthException catch (e) {
+        throw e.message.toString();
+      }
+
+      // await updateUserProfileImgUrl(profileImgUrl!);
+      // update();
+      loadingDialogController.closeLoadingDialog(Get.context!);
+
+      // Get.snackbar("Success", "Image uploaded successfully");
+    } catch (e) {
+      loadingDialogController.closeLoadingDialog(Get.context!);
+      Get.snackbar(S.current.error, "${S.current.failed_upload_image}: $e");
+    }
+  }
 
   void goToNextPage() {
     if (currentPageIndex.value < 2) {
@@ -91,12 +257,15 @@ class SignUpController extends GetxController {
       // Authenticate User first
       final auth = AuthenticationRepository.instance;
       await auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
+
       await UserRepository.instance.createUser(user);
+      final userId = auth.firebaseUser!.uid;
       // auth.setInitialScreen(auth.firebaseUser);
+      saveImage(userId);
       loadingDialogController.closeLoadingDialog(Get.context!);
       // Redirect to the login screen
-      showSuccessMessage(message: "Account created successfully!");
 
+      showSuccessMessage(message: "Account created successfully!");
       final otpController = Get.put(OtpController());
       otpController.phoneNo.value = phoneNo.text.trim();
       otpController.determineControllerType(1);

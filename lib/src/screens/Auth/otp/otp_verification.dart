@@ -11,7 +11,8 @@ import '../widgets_auth/otp_boxes.dart';
 class OTPVerification extends StatelessWidget {
   OTPVerification({super.key});
 
-  final otpController = Get.find<OtpController>(); // Initialize the controller
+  final OtpController otpController =
+      Get.put(OtpController()); // Initialize the controller
 
   @override
   Widget build(BuildContext context) {

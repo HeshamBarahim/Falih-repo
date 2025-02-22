@@ -1,5 +1,4 @@
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/config/images.dart';
 import 'package:falih/src/controller/signup_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/drop_down_form.dart';
@@ -37,11 +36,54 @@ class SignupPart1 extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Image.asset(
-                        Images.falih,
-                        width: SizeConfig.screenWidth! * 0.4,
-                        height: SizeConfig.screenWidth! * 0.4,
-                        fit: BoxFit.contain,
+                      GetBuilder<SignUpController>(
+                        init: SignUpController(),
+                        builder: (c2) => Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: SizeConfig.screenWidth! * 0.13,
+                              backgroundColor: AppColors.darkMainColor,
+                              child: CircleAvatar(
+                                radius: (SizeConfig.screenWidth! * 0.141),
+                                backgroundColor: AppColors.mainColor,
+                                backgroundImage: c2.file2 != null
+                                    ? FileImage(c2.file2!)
+                                    : AssetImage(
+                                        'assets/images/person.jpg',
+                                        // fit: BoxFit.cover,
+                                      ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: SizedBox(
+                                height: SizeConfig.screenWidth! * 0.08,
+                                width: SizeConfig.screenWidth! * 0.08,
+                                child: IconButton(
+                                  splashColor: Colors.black,
+                                  onPressed: () {
+                                    c2.imagePickerDialog(context);
+                                  },
+                                  style: IconButton.styleFrom(
+                                      // backgroundColor:
+                                      //     controller.userProfileImgUrl.value == ""
+                                      //         ? AppColors.lightenMainColor
+                                      //         : AppColors.mainColor,
+                                      ),
+                                  icon: Icon(
+                                    Icons.edit,
+                                    // color:
+                                    //     controller.userProfileImgUrl.value == ""
+                                    //         ? AppColors.mainColor
+                                    //         : Colors.white,
+                                    size: SizeConfig.screenWidth! * 0.044,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
