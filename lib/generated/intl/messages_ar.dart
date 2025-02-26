@@ -63,6 +63,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_out": MessageLookupByLibrary.simpleMessage("أكمل عملية الدفع"),
         "choose_any_section": MessageLookupByLibrary.simpleMessage(
             "اختر أي قسم أو أختبر المنهج كامل"),
+        "second": MessageLookupByLibrary.simpleMessage("ثانية"),
+        "didnt_send_ver_code":
+            MessageLookupByLibrary.simpleMessage("لم يتم استلام كود التحقق"),
+        "resend_ver_code":
+            MessageLookupByLibrary.simpleMessage("اعادة ارسال كود التحقق"),
+        "code_verified_successfully": MessageLookupByLibrary.simpleMessage("تم التحقق من الكود بنجاح."),
+        "invalid_ver_code":
+            MessageLookupByLibrary.simpleMessage("رمز التحقق غير صالح. يرجى المحاولة مرة أخرى."),
+        "failed_send_ver_code":
+            MessageLookupByLibrary.simpleMessage("اعادة ارسال كود فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى."),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),
@@ -198,8 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لا يمكن أن يكون اسم المستخدم فارغًا"),
         "username_already_exists": MessageLookupByLibrary.simpleMessage(
             "اسم المستخدم هذا موجود بالفعل"),
-        "phone_number_not_exists": MessageLookupByLibrary.simpleMessage(
-            "رقم الهاتف هذا غير موجود"),
+        "phone_number_not_exists":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف هذا غير موجود"),
         "name_league": MessageLookupByLibrary.simpleMessage("الدوري الفضي"),
         "name_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المستخدم صالحًا"),

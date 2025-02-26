@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/screens/Auth/forgot_password/change_password.dart';
 import 'package:falih/src/screens/main_screen/main_screen.dart';
@@ -90,15 +91,16 @@ class OtpController extends GetxController {
         isSending.value = false;
       } else {
         Get.back();
-        showErrorMessage('Failed to send OTP. Please try again.');
+        // showErrorMessage('Failed to send OTP. Please try again.');
+        showErrorMessage(S.current.failed_send_ver_code);
       }
     } on TimeoutException {
       Get.back();
-      showErrorMessage('Failed to send OTP. Please try again.');
+      showErrorMessage(S.current.failed_send_ver_code);
       print("Timeout error");
     } catch (e) {
       Get.back();
-      showErrorMessage('Failed to send OTP. Please try again.');
+      showErrorMessage(S.current.failed_send_ver_code);
     } finally {
       isSending.value = false;
     }
@@ -129,7 +131,8 @@ class OtpController extends GetxController {
   // Verify OTP
   Future<void> verifyOtp(String enteredOtp) async {
     if (enteredOtp == generatedOtp.value) {
-      showSuccessMessage(message: "OTP verified successfully.");
+      // showSuccessMessage(message: "OTP verified successfully.");
+      showSuccessMessage(message: S.current.code_verified_successfully);
       loadingDialogController.showLoadingDialog(Get.context!);
 
       if (controllerType.value == 1) {
@@ -151,7 +154,8 @@ class OtpController extends GetxController {
         Get.offAll(() => ChangePassword());
       }
     } else {
-      showErrorMessage('Invalid OTP. Please try again.');
+      // showErrorMessage('Invalid OTP. Please try again.');
+      showErrorMessage(S.current.invalid_ver_code);
     }
   }
 }

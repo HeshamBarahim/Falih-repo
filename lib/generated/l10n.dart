@@ -2606,6 +2606,66 @@ class S {
       args: [],
     );
   }
+
+  /// `ثانية`
+  String get second {
+    return Intl.message(
+      'ثانية',
+      name: 'second',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لم يتم استلام كود التحقق`
+  String get didnt_send_ver_code {
+    return Intl.message(
+      'لم يتم استلام كود التحقق',
+      name: 'didnt_send_ver_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اعادة ارسال كود التحقق`
+  String get resend_ver_code {
+    return Intl.message(
+      'اعادة ارسال كود التحقق',
+      name: 'resend_ver_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم التحقق من الكود بنجاح.`
+  String get code_verified_successfully {
+    return Intl.message(
+      'تم التحقق من الكود بنجاح.',
+      name: 'code_verified_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `رمز التحقق غير صالح. يرجى المحاولة مرة أخرى.`
+  String get invalid_ver_code {
+    return Intl.message(
+      'رمز التحقق غير صالح. يرجى المحاولة مرة أخرى.',
+      name: 'invalid_ver_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى.`
+  String get failed_send_ver_code {
+    return Intl.message(
+      'فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى.',
+      name: 'failed_send_ver_code',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

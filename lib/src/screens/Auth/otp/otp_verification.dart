@@ -87,7 +87,8 @@ class OTPVerification extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   vertical: SizeConfig.screenHeight! * 0.01),
                               child: Text(
-                                '${otpController.resendTimeout.value} seconds',
+                                // '${otpController.resendTimeout.value} seconds',
+                                '${otpController.resendTimeout.value} ${S.current.school_cant_be_empty}}',
                                 style: TextStyle(
                                   fontSize: SizeConfig.screenHeight! * 0.017,
                                   color: AppColors.darkMainColor,
@@ -99,9 +100,11 @@ class OTPVerification extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Didn\'t receive OTP?',
-                              style: TextStyle(color: AppColors.mainColor),
+                            Text(
+                              // 'Didn\'t receive OTP?',
+                              S.current.didnt_send_ver_code,
+                              style:
+                                  const TextStyle(color: AppColors.mainColor),
                             ),
                             Obx(() => TextButton(
                                   onPressed: otpController.canResendOtp.value
@@ -110,7 +113,8 @@ class OTPVerification extends StatelessWidget {
                                         }
                                       : null,
                                   child: Text(
-                                    'Resend OTP',
+                                    // 'Resend OTP',
+                                    S.current.resend_code,
                                     style: TextStyle(
                                       color: otpController.canResendOtp.value
                                           ? AppColors.mainColor

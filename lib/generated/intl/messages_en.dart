@@ -65,6 +65,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "check_out": MessageLookupByLibrary.simpleMessage("Checkout"),
         "choose_any_section": MessageLookupByLibrary.simpleMessage(
             "Choose any section or select all"),
+        "second": MessageLookupByLibrary.simpleMessage("Second"),
+        "didnt_send_ver_code": MessageLookupByLibrary.simpleMessage(
+            "Didn\'t Recieve Verification Code"),
+        "resend_ver_code":
+            MessageLookupByLibrary.simpleMessage("Resend Verification Code"),
+        "code_verified_successfully":
+            MessageLookupByLibrary.simpleMessage("Code Verified Successfully."),
+        "invalid_ver_code": MessageLookupByLibrary.simpleMessage(
+            "Invalid Verification Code. Please Try Again."),
+        "failed_send_ver_code": MessageLookupByLibrary.simpleMessage(
+            "Failed To Send Verification Code. Please Try Again."),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compete_shine":
