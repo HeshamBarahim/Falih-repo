@@ -227,7 +227,7 @@ class NavBar extends StatelessWidget {
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
                                       AuthenticationRepository.instance
-                                          .logout(context);
+                                          .logout();
                                     }
                                   });
                                   controller.selectMenu(menu);

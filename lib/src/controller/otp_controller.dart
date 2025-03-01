@@ -144,7 +144,7 @@ class OtpController extends GetxController {
           'IsVerified': 'true',
         });
         final auth = AuthenticationRepository.instance;
-        await auth.setInitialScreen(auth.firebaseUser);
+        await auth.setInitialScreen();
         loadingDialogController.closeLoadingDialog(Get.context!);
 
         Get.offAll(() => const MainScreen());

@@ -65,7 +65,7 @@ class LoginController extends GetxController {
 
       // Set initial screen based on user state
       final auth = AuthenticationRepository.instance;
-      auth.setInitialScreen(auth.firebaseUser);
+      auth.setInitialScreen();
 
       // Navigate to the main screen
       Get.offAll(() => const MainScreen());

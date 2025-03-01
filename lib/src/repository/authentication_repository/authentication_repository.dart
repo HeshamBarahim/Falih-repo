@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,6 +9,8 @@ import 'package:get_storage/get_storage.dart';
 import '../../../generated/l10n.dart';
 import '../../config/themes.dart';
 import '../../controller/loading_dialog_controller.dart';
+import '../../screens/main_screen/main_screen.dart';
+import '../../screens/on_boarding/first_page_boarding.dart';
 import 'exceptions/t_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -17,9 +18,13 @@ class AuthenticationRepository extends GetxController {
 
   /// Variables
   late final Rx<User?> _firebaseUser;
-  final _auth = FirebaseAuth.instance;
+
+  /// Firebase Instances
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+
   final _phoneVerificationId = ''.obs;
-  RxBool isAuthCheckComplete = false.obs;
 
   User? get firebaseUser => _firebaseUser.value;
 
@@ -34,75 +39,62 @@ class AuthenticationRepository extends GetxController {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setInitialScreen(_firebaseUser.value);
-      isAuthCheckComplete.value = true;
+      setInitialScreen();
     });
   }
 
-  Future<void> saveDeviceToken() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final fcmToken = await FirebaseMessaging.instance.getToken();
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .update({
-        'deviceToken': fcmToken,
-      });
+  /// Setting initial screen
+  setInitialScreen() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (_firebaseUser.value != null) {
+      checkDeviceAndLogoutOldDevice();
+      Get.offAll(() => const MainScreen());
+    } else {
+      bool isFirstTime = userStorage.read('isFirstTime') ?? true;
+      if (isFirstTime) {
+        userStorage.write('isFirstTime', false);
+        Get.offAll(() => const FirstPageBoarding());
+      } else {
+        Get.offAll(() => Login());
+      }
     }
+  }
+
+  Future<void> saveDeviceToken() async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    final fcmToken = await _messaging.getToken();
+    await _firestore.collection('users').doc(user.uid).update({
+      'deviceToken': fcmToken,
+    });
   }
 
   Future<void> checkDeviceAndLogoutOldDevice() async {
     try {
-      final user = FirebaseAuth.instance.currentUser;
-      final currentToken = await FirebaseMessaging.instance.getToken();
+      final user = _auth.currentUser;
+      if (user == null) return;
 
-      final userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user!.uid)
-          .get();
+      final currentToken = await _messaging.getToken();
+      final userDoc = await _firestore.collection('users').doc(user.uid).get();
+      final storedToken = userDoc.data()?['deviceToken'];
 
-      final storedToken = userDoc['deviceToken'];
-
-      final userData = userDoc.data();
-
-      // Check if the 'deviceToken' field exists
-      if (userData != null && userData.containsKey('deviceToken')) {
-        if (currentToken != storedToken) {
-          await FirebaseAuth.instance.signOut();
-          Get.snackbar(
-            S.current.logoutFromMoreThanOneDeviceTitle,
-            S.current.logoutFromMoreThanOneDevice,
-            dismissDirection: DismissDirection.horizontal,
-            backgroundColor: const Color(0xFFFFFFFF),
-            colorText: AppColors.mainColor,
-            snackPosition: SnackPosition.TOP,
-            duration: const Duration(seconds: 4),
-            icon: const Icon(Icons.notifications, color: AppColors.mainColor),
-          );
-          saveDeviceToken();
-        }
+      if (storedToken != null && storedToken != currentToken) {
+        await logout();
+        Get.snackbar(
+          S.current.logoutFromMoreThanOneDeviceTitle,
+          S.current.logoutFromMoreThanOneDevice,
+          backgroundColor: Colors.white,
+          colorText: AppColors.mainColor,
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 4),
+          icon: const Icon(Icons.notifications, color: AppColors.mainColor),
+        );
       } else {
-        saveDeviceToken();
+        await saveDeviceToken();
       }
     } catch (e) {
-      showErrorMessage(S.current.unexpected_error_occured);
-      logout(Get.context!);
-      Get.offAll(() => Login());
-      return;
-    }
-  }
-
-  /// Setting initial screen
-  setInitialScreen(User? user) async {
-    await Future.delayed(
-        const Duration(milliseconds: 500)); // Delay to ensure proper navigation
-
-    if (user != null) {
-      checkDeviceAndLogoutOldDevice();
-    } else {
-      Get.offAll(() => Login());
+      logout();
     }
   }
 
@@ -160,8 +152,8 @@ class AuthenticationRepository extends GetxController {
   }
 
   // LogoutUser
-  Future<void> logout(BuildContext context) async {
-    loadingDialogController.showLoadingDialog(context);
+  Future<void> logout() async {
+    loadingDialogController.showLoadingDialog(Get.context!);
     await Future.delayed(const Duration(seconds: 1), () async {
       try {
         await FirebaseAuth.instance.signOut();

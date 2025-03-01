@@ -28,6 +28,7 @@ class AfterExam extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight * 0.08),
         child: AppBar(
+          scrolledUnderElevation: 0,
           backgroundColor: AppColors.moreLightenMainColor,
           title: Text(
             getSectionDisplayName(subjectController.name.value),

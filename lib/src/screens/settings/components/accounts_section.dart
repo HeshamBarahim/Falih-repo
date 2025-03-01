@@ -108,7 +108,7 @@ class AccountSection extends StatelessWidget {
               ),
               // Logout Function
               onTap: () {
-                AuthenticationRepository.instance.logout(context);
+                AuthenticationRepository.instance.logout();
               },
             ),
           ],

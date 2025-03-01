@@ -1,15 +1,19 @@
+import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
+import 'package:falih/src/screens/Auth/login/login.dart';
+import 'package:falih/src/screens/on_boarding/first_page_boarding.dart';
+import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
-import 'src/app.dart';
 import 'src/controller/network_controller_real_time.dart';
 import 'src/controller/notifications_controller.dart';
 
@@ -17,9 +21,8 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((_) {});
-  await initDependencies();
-  // Initialize GetStorage
   await GetStorage.init();
+  await initDependencies();
   runApp(const MyApp());
 }
 
@@ -35,14 +38,26 @@ Future<void> initDependencies() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Falih',
-      localizationsDelegates: [S.delegate],
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: App(),
+      theme: appTheme,
+      locale: Get.find<SettingsController>().locale.value,
+      fallbackLocale: const Locale('ar'),
+      initialRoute: '/splash',
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      getPages: [
+        GetPage(name: '/splash', page: () => const SplashScreen()),
+        GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/onboarding', page: () => const FirstPageBoarding()),
+      ],
     );
   }
 }
