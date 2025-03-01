@@ -77,6 +77,16 @@ flutter_launcher_icons:
   image_path: "assets/images/icons/falih.png"
   min_sdk_android: 21
 
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  color: "#FBF7FC" # Background color
+
+  android_12:
+    color: "#FBF7FC"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
@@ -97,6 +107,7 @@ flutter:
     - assets/md_files/
     - assets/splash_animation/
     - assets/images/home_carousel_img/
+    - assets/animations/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
