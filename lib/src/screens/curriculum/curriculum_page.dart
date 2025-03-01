@@ -1,6 +1,5 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/controller/subjects_controller.dart';
-import 'package:falih/src/screens/subject_page/subject_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -118,7 +117,7 @@ class CurriculumPage extends StatelessWidget {
                             subjectController.name.value = subject['name'];
                             subjectController.color = subject['color'];
                             subjectController.iconPath = subject['icon'];
-                            Get.to(() => SubjectPage());
+                            Get.toNamed("subject-screen");
                           },
                           child: Container(
                             decoration: BoxDecoration(

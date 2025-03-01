@@ -32,7 +32,6 @@ class SubjectPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          // subjectController.name.value.capitalizeFirst ?? "",
                           getSectionDisplayName(
                             subjectController.name.value,
                           ),

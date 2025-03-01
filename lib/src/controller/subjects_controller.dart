@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../generated/l10n.dart';
 import '../config/images.dart';
 import '../config/themes.dart';
-import '../screens/pre_exam/pre_exam.dart';
 import 'exam_controller.dart';
 
 class SubjectsController extends GetxController {
@@ -318,7 +317,7 @@ class SubjectsController extends GetxController {
       _examController.examName.value = name.value;
       _examController.examType.value = "FinalExam";
       _examController.setExamQuestions();
-      Get.to(() => const PreExam());
+      Get.toNamed("/pre-exam");
     } else {
       changeSelectedSectionIndex(subjectIndex);
       subjectNameFetcher(subjectIndex);
@@ -335,7 +334,7 @@ class SubjectsController extends GetxController {
       _examController.examName.value = name.value;
       _examController.examType.value = "FinalExam";
       _examController.setExamQuestions();
-      Get.to(() => const PreExam());
+      Get.toNamed("/pre-exam");
     }
   }
 

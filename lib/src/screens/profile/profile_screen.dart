@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
 
-class EditProfileScreen extends StatelessWidget {
-  EditProfileScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({super.key});
 
   final ProfileController profileController = Get.put(ProfileController());
 

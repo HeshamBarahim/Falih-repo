@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
 
-class AfterExam extends StatelessWidget {
-  const AfterExam({super.key});
+class ResultsScreen extends StatelessWidget {
+  const ResultsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

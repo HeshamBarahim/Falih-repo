@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 
 import '../constants/dialogs.dart';
 import '../models/exam_model.dart';
-import '../screens/pre_exam/pre_exam.dart';
 
 class ExamController extends GetxController {
   var questionIndex = 0.obs;
@@ -49,7 +48,7 @@ class ExamController extends GetxController {
           .assignAll(loadedQuestions.take(unitQuestionsCount.value).toList());
       selectedAnswers
           .assignAll(List<int?>.filled(unitQuestionsCount.value, null));
-      Get.to(() => const PreExam());
+      Get.toNamed("/pre-exam");
     } catch (error) {
       showErrorMessage("حدث خطأ, يرجى المحاولة مرة اخرى");
     }

@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/run_exam/widgets_run_exam/ai_bottom_sheet.dart';
+import 'package:falih/src/screens/exam/exam_widgets/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:get/get.dart';
@@ -12,8 +12,8 @@ import '../../constants/functions.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
 
-class RunExam extends StatelessWidget {
-  const RunExam({super.key});
+class ExamScreen extends StatelessWidget {
+  const ExamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

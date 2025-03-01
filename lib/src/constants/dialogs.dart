@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import '../config/themes.dart';
-import '../screens/run_exam/widgets_run_exam/result_dialog.dart';
+import '../screens/exam/exam_widgets/result_dialog.dart';
 
 showErrorMessage(message) {
   Get.snackbar(

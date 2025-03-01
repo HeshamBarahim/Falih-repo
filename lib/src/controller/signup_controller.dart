@@ -240,10 +240,6 @@ class SignUpController extends GetxController {
       // Generate a fake email using the phone number
       final fakeEmail = '${phoneNo.text.trim()}@gmail.com';
 
-      /// For Phone Authentication
-      // SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
-      // Get.to(() => const OTPScreen());
-
       // Get User and Pass it to Controller
       final user = UserModel(
         userProfileImgUrl: '',

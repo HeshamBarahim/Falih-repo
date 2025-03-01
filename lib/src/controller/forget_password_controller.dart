@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
-import '../screens/Auth/otp/otp_verification.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
@@ -40,7 +39,7 @@ class ForgetPasswordController extends GetxController {
           otpController.determineControllerType(2);
           otpController.sendOTP();
 
-          Get.to(() => OTPVerification());
+          Get.toNamed("otp-verification");
         }
       } catch (e) {
         // Handle other exceptions (e.g., invalid data format)

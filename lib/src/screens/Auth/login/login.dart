@@ -3,7 +3,6 @@ import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/login_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
-import 'package:falih/src/screens/Auth/signup/signup.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_text.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/text_form_field.dart';
@@ -12,7 +11,6 @@ import 'package:get/get.dart';
 
 import '../../../config/sizes.dart';
 import '../../../controller/show_password_controller.dart';
-import '../forgot_password/forgot_password.dart';
 import '../widgets_auth/password_text_form_field.dart';
 
 class Login extends StatelessWidget {
@@ -118,7 +116,7 @@ class Login extends StatelessWidget {
                             padding: const EdgeInsets.all(16.0),
                             child: InkWell(
                               onTap: () {
-                                Get.to(ForgotPassword());
+                                Get.toNamed("/forgot-password");
                               },
                               child: Text(
                                 S.of(context).forget_password,
@@ -154,7 +152,7 @@ class Login extends StatelessWidget {
                       ),
                       GradientText(
                         text: S.of(context).create_account,
-                        route: () => Get.to(() => Signup()),
+                        route: () => Get.toNamed("signup"),
                       ),
                     ],
                   ),

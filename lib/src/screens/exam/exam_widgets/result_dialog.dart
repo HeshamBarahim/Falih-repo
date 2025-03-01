@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../../generated/l10n.dart';
 import '../../../controller/exam_controller.dart';
 import '../../../controller/home_controller.dart';
-import '../../after_exam/after_exam.dart';
 
 class ResultDialog extends StatelessWidget {
   final BuildContext context;
@@ -227,7 +226,7 @@ class ResultDialog extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           Navigator.pop(context);
-                          Get.to(() => const AfterExam());
+                          Get.toNamed("results");
                         },
                         // Updated for consistency
                         child: Container(

@@ -8,7 +8,6 @@ import '../../../generated/l10n.dart';
 import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
-import '../notification/notification_page.dart';
 import 'components/bottom_nav_bar.dart';
 import 'components/nav_bar.dart';
 import 'components/nav_bar_button.dart';
@@ -159,7 +158,7 @@ class MainScreen extends StatelessWidget {
                                     ),
                                     IconButton(
                                       onPressed: () {
-                                        Get.to(() => const NotificationPage());
+                                        Get.toNamed("notification");
                                       },
                                       icon: Icon(
                                         Icons.notifications,

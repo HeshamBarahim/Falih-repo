@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/themes.dart';
-import 'package:falih/src/screens/on_boarding/third_page_boarding.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_button.dart';
 import 'package:falih/src/screens/on_boarding/widget/boarding_carousel.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../config/sizes.dart';
 
-class SeconedPageBoarding extends StatelessWidget {
-  const SeconedPageBoarding({super.key});
+class SecondPageBoarding extends StatelessWidget {
+  const SecondPageBoarding({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +95,7 @@ class SeconedPageBoarding extends StatelessWidget {
               ],
             ),
             BoardingButton(onClick: () {
-              Get.to(() => const ThirdPageBoarding());
+              Get.toNamed("onboarding-3");
             }),
           ],
         ),

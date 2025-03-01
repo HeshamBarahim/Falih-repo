@@ -1,9 +1,5 @@
 // navbar
 import 'package:falih/generated/l10n.dart';
-import 'package:falih/src/screens/about_us/about_us_screen.dart';
-import 'package:falih/src/screens/profile/edit_profile_screen.dart';
-import 'package:falih/src/screens/settings/settings_screen.dart';
-import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
@@ -21,6 +17,7 @@ import 'nav_bar_tile.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
+
   final String phoneNumber = "+967772020501"; // Your WhatsApp number
 
   @override
@@ -98,10 +95,10 @@ class NavBar extends StatelessWidget {
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
 
-                                      Get.to(() => EditProfileScreen());
+                                      Get.toNamed("profile");
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
-                                      Get.to(() => SubscriptionPlansScreen());
+                                      Get.toNamed("subscription-plan");
                                     }
                                   });
                                   controller.selectMenu(menu);
@@ -216,14 +213,12 @@ class NavBar extends StatelessWidget {
                                           );
                                         },
                                       );
-                                      // Get.to(() => ContactUsScreen());
                                     } else if (menu.index == 1) {
                                       controller.stopProcess();
-                                      Get.to(() => AboutUsScreen());
+                                      Get.toNamed("about-us");
                                     } else if (menu.index == 2) {
                                       controller.stopProcess();
-                                      // navController.moveNavBar();
-                                      Get.to(() => const SettingsScreen());
+                                      Get.toNamed("settings");
                                     } else if (menu.index == 3) {
                                       controller.stopProcess();
                                       AuthenticationRepository.instance

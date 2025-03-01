@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../../md_dialogs/md_dialogs.dart';
-import '../../profile/edit_profile_screen.dart';
 import '../widgets/settings_section.dart';
 import '../widgets/settings_tile.dart';
 
@@ -39,7 +38,7 @@ class AccountSection extends StatelessWidget {
                 color: AppColors.secondaryColor,
               ),
               onTap: () {
-                Get.to(() => EditProfileScreen());
+                Get.toNamed("profile");
               },
             ),
 

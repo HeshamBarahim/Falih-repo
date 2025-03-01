@@ -10,7 +10,6 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../../../generated/l10n.dart';
 import '../../../config/themes.dart';
 import '../../../controller/subjects_controller.dart';
-import '../../pre_exam/pre_exam.dart';
 
 class SubjectsLabels extends StatelessWidget {
   final SubjectsController subjectController = Get.put(SubjectsController());
@@ -706,7 +705,7 @@ class SubjectsLabels extends StatelessWidget {
     } else {
       examController.examType.value = "FinalExam";
       examController.setExamQuestions();
-      Get.to(() => const PreExam());
+      Get.toNamed("pre-exam");
     }
   }
 

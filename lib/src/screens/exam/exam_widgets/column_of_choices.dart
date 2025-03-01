@@ -1,4 +1,4 @@
-import 'package:falih/src/screens/run_exam/widgets_run_exam/choices.dart';
+import 'package:falih/src/screens/exam/exam_widgets/choices.dart';
 import 'package:flutter/material.dart';
 
 class ColumnOfChoices extends StatelessWidget {
