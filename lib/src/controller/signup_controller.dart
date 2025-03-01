@@ -172,7 +172,7 @@ class SignUpController extends GetxController {
 
   saveImage(String userId) async {
     try {
-      loadingDialogController.showLoadingDialog(Get.context!);
+      loadingDialogController.showLoadingDialog();
       // Generate a unique filename using user ID and timestamp
       // Reference to Firebase Storage
       // final storageRef2 = FirebaseStorage.instance.refFromURL();
@@ -205,11 +205,11 @@ class SignUpController extends GetxController {
 
       // await updateUserProfileImgUrl(profileImgUrl!);
       // update();
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
 
       // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
       Get.snackbar(S.current.error, "${S.current.failed_upload_image}: $e");
     }
   }
@@ -228,12 +228,12 @@ class SignUpController extends GetxController {
 
   /// Register New User using ither PhoneEmail and password
   Future<void> createUser(BuildContext context) async {
-    loadingDialogController.showLoadingDialog(context);
+    loadingDialogController.showLoadingDialog();
     try {
       isLoading.value = true;
       if (!signupFormKey.currentState!.validate()) {
         isLoading.value = false;
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
         return;
       }
 
@@ -268,7 +268,7 @@ class SignUpController extends GetxController {
       final userId = auth.firebaseUser!.uid;
       // auth.setInitialScreen(auth.firebaseUser);
       saveImage(userId);
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
       // Redirect to the login screen
 
       showSuccessMessage(message: "Account created successfully!");
@@ -279,7 +279,7 @@ class SignUpController extends GetxController {
 
       Get.offAll(() => OTPVerification());
     } catch (e) {
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
       isLoading.value = false;
       showErrorMessage("Failed to create account. Please try again.");
     }
@@ -287,14 +287,14 @@ class SignUpController extends GetxController {
 
   showUserNameErrorMessage() async {
     try {
-      loadingDialogController.showLoadingDialog(Get.context!);
+      loadingDialogController.showLoadingDialog();
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
           await FirebaseFirestore.instance
               .collection('users')
               .where('UserName', isEqualTo: userName.text.trim())
               .limit(1)
               .get();
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
 
       if (querySnapshot.docs.isNotEmpty) {
         userNameError.value = true;

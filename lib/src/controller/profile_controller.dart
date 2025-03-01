@@ -174,7 +174,7 @@ class ProfileController extends GetxController {
       return;
     }
     try {
-      loadingDialogController.showLoadingDialog(Get.context!);
+      loadingDialogController.showLoadingDialog();
       // Generate a unique filename using user ID and timestamp
       // Reference to Firebase Storage
       // final storageRef2 = FirebaseStorage.instance.refFromURL();
@@ -193,13 +193,13 @@ class ProfileController extends GetxController {
 
       await updateUserProfileImgUrl(profileImgUrl!);
       update();
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
 
       file = null;
 
       // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
-      loadingDialogController.closeLoadingDialog(Get.context!);
+      loadingDialogController.closeLoadingDialog();
       Get.snackbar(S.current.error, "${S.current.failed_upload_image}: $e");
     }
   }

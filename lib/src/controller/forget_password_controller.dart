@@ -19,7 +19,7 @@ class ForgetPasswordController extends GetxController {
   void checkPhoneNumber() async {
     if (forgetPasswordFormKey.currentState!.validate()) {
       try {
-        loadingDialogController.showLoadingDialog(Get.context!);
+        loadingDialogController.showLoadingDialog();
 
         QuerySnapshot<Map<String, dynamic>> querySnapshot =
             await FirebaseFirestore.instance
@@ -28,7 +28,7 @@ class ForgetPasswordController extends GetxController {
                 .limit(1)
                 .get();
 
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
 
         if (querySnapshot.docs.isEmpty) {
           phoneNumberError.value = true;

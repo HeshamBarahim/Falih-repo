@@ -21,7 +21,7 @@ class ChangePasswordController extends GetxController {
 
   void changePasswordFunction() async {
     if (changePasswordFormKey.currentState!.validate()) {
-      loadingDialogController.showLoadingDialog(Get.context!);
+      loadingDialogController.showLoadingDialog();
       final String email = "${otpController.phoneNo.value}@gmail.com";
       final String passwordText = password.text.trim();
 
@@ -62,7 +62,7 @@ class ChangePasswordController extends GetxController {
         showErrorMessage("An unexpected error occurred. Please try again.");
         print("Error: $e"); // Log the error for debugging
       } finally {
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
       }
     }
   }

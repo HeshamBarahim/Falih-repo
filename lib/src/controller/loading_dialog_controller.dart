@@ -6,9 +6,9 @@ import '../config/sizes.dart';
 import '../config/themes.dart';
 
 class LoadingDialogController extends GetxController {
-  void showLoadingDialog(BuildContext context) {
+  void showLoadingDialog() {
     showDialog(
-      context: context,
+      context: Get.context!,
       barrierDismissible: false,
       builder: (BuildContext context) {
         SizeConfig().init(context);
@@ -30,34 +30,50 @@ class LoadingDialogController extends GetxController {
                         0.5, // Set minimum width (50% of screen width)
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth! * 0.04,
-                      vertical: SizeConfig.screenHeight! * 0.02,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      // Center the content horizontally
-                      mainAxisSize: MainAxisSize.min,
-                      // Ensure the Row doesn't expand unnecessarily
-                      children: [
-                        CircularProgressIndicator(
-                          strokeWidth: SizeConfig.screenWidth! * 0.008,
-                          strokeAlign: SizeConfig.screenWidth! * 0.003,
-                        ),
-                        SizedBox(width: SizeConfig.screenWidth! * 0.04),
-                        // Add spacing between the indicator and text
-                        Text(
-                          S.current.loading_text, // سيتم تحديثه عند تغيير اللغة
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.04,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.screenWidth! * 0.04,
+                        vertical: SizeConfig.screenHeight! * 0.02,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Check if the current locale is Arabic, and reverse the order of widgets accordingly
+                          if (Get.locale?.languageCode == 'ar') ...[
+                            // Arabic language: reverse the order of the widgets
+                            Text(
+                              S.current.loading_text,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: AppColors.mainColor,
+                                fontSize: SizeConfig.screenWidth! * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: SizeConfig.screenWidth! * 0.04),
+                            CircularProgressIndicator(
+                              strokeWidth: SizeConfig.screenWidth! * 0.008,
+                              strokeAlign: SizeConfig.screenWidth! * 0.003,
+                            ),
+                          ] else ...[
+                            // Default (LTR) language: use the original order
+                            CircularProgressIndicator(
+                              strokeWidth: SizeConfig.screenWidth! * 0.008,
+                              strokeAlign: SizeConfig.screenWidth! * 0.003,
+                            ),
+                            SizedBox(width: SizeConfig.screenWidth! * 0.04),
+                            Text(
+                              S.current.loading_text,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: AppColors.mainColor,
+                                fontSize: SizeConfig.screenWidth! * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ],
+                      )),
                 ),
               ),
             );
@@ -67,7 +83,7 @@ class LoadingDialogController extends GetxController {
     );
   }
 
-  void closeLoadingDialog(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pop();
+  void closeLoadingDialog() {
+    Navigator.of(Get.context!, rootNavigator: true).pop();
   }
 }

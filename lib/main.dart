@@ -4,6 +4,7 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
+import 'package:falih/src/screens/main_screen/main_screen.dart';
 import 'package:falih/src/screens/on_boarding/first_page_boarding.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,8 +56,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       getPages: [
         GetPage(name: '/splash', page: () => const SplashScreen()),
-        GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/onboarding', page: () => const FirstPageBoarding()),
+        GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/main-screen', page: () => const MainScreen()),
       ],
     );
   }

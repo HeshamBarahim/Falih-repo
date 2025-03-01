@@ -9,8 +9,6 @@ import 'package:get_storage/get_storage.dart';
 import '../../../generated/l10n.dart';
 import '../../config/themes.dart';
 import '../../controller/loading_dialog_controller.dart';
-import '../../screens/main_screen/main_screen.dart';
-import '../../screens/on_boarding/first_page_boarding.dart';
 import 'exceptions/t_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -38,24 +36,30 @@ class AuthenticationRepository extends GetxController {
   void onReady() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(seconds: 2));
       setInitialScreen();
     });
   }
 
   /// Setting initial screen
-  setInitialScreen() async {
-    await Future.delayed(const Duration(seconds: 2));
+  Future<void> setInitialScreen() async {
     if (_firebaseUser.value != null) {
-      checkDeviceAndLogoutOldDevice();
-      Get.offAll(() => const MainScreen());
+      await checkDeviceAndLogoutOldDevice();
+
+      // Ensure the user is still authenticated after the check
+      if (_auth.currentUser != null) {
+        Get.offAllNamed("main-screen");
+      } else {
+        Get.offAllNamed("login");
+      }
     } else {
       bool isFirstTime = userStorage.read('isFirstTime') ?? true;
       if (isFirstTime) {
         userStorage.write('isFirstTime', false);
-        Get.offAll(() => const FirstPageBoarding());
+        Get.offAllNamed("onboarding");
       } else {
-        Get.offAll(() => Login());
+        Get.offAllNamed("login");
       }
     }
   }
@@ -65,9 +69,9 @@ class AuthenticationRepository extends GetxController {
     if (user == null) return;
 
     final fcmToken = await _messaging.getToken();
-    await _firestore.collection('users').doc(user.uid).update({
+    await _firestore.collection('users').doc(user.uid).set({
       'deviceToken': fcmToken,
-    });
+    }, SetOptions(merge: true)); // Ensures existing data is not overwritten
   }
 
   Future<void> checkDeviceAndLogoutOldDevice() async {
@@ -80,7 +84,9 @@ class AuthenticationRepository extends GetxController {
       final storedToken = userDoc.data()?['deviceToken'];
 
       if (storedToken != null && storedToken != currentToken) {
-        await logout();
+        await logout(); // Ensure logout completes before moving forward
+
+        // Show logout message
         Get.snackbar(
           S.current.logoutFromMoreThanOneDeviceTitle,
           S.current.logoutFromMoreThanOneDevice,
@@ -90,11 +96,13 @@ class AuthenticationRepository extends GetxController {
           duration: const Duration(seconds: 4),
           icon: const Icon(Icons.notifications, color: AppColors.mainColor),
         );
+
+        return; // Stop further execution to prevent unintended navigation
       } else {
         await saveDeviceToken();
       }
     } catch (e) {
-      logout();
+      await logout(); // Ensure logout completes even on failure
     }
   }
 
@@ -153,21 +161,21 @@ class AuthenticationRepository extends GetxController {
 
   // LogoutUser
   Future<void> logout() async {
-    loadingDialogController.showLoadingDialog(Get.context!);
+    loadingDialogController.showLoadingDialog();
     await Future.delayed(const Duration(seconds: 1), () async {
       try {
         await FirebaseAuth.instance.signOut();
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
 
         Get.offAll(() => Login());
       } on FirebaseAuthException catch (e) {
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
         throw e.message!;
       } on FormatException catch (e) {
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
         throw e.message;
       } catch (e) {
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
         throw 'Unable to logout. Try again.';
       }
     });

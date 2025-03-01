@@ -133,7 +133,7 @@ class OtpController extends GetxController {
     if (enteredOtp == generatedOtp.value) {
       // showSuccessMessage(message: "OTP verified successfully.");
       showSuccessMessage(message: S.current.code_verified_successfully);
-      loadingDialogController.showLoadingDialog(Get.context!);
+      loadingDialogController.showLoadingDialog();
 
       if (controllerType.value == 1) {
         final user = FirebaseAuth.instance.currentUser;
@@ -145,11 +145,11 @@ class OtpController extends GetxController {
         });
         final auth = AuthenticationRepository.instance;
         await auth.setInitialScreen();
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
 
         Get.offAll(() => const MainScreen());
       } else if (controllerType.value == 2) {
-        loadingDialogController.closeLoadingDialog(Get.context!);
+        loadingDialogController.closeLoadingDialog();
 
         Get.offAll(() => ChangePassword());
       }

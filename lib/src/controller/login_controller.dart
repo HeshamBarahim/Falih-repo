@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
-import '../screens/main_screen/main_screen.dart';
 import 'loading_dialog_controller.dart';
 import 'network_controller.dart';
 
@@ -46,7 +45,7 @@ class LoginController extends GetxController {
     }
 
     try {
-      loadingDialogController.showLoadingDialog(context);
+      loadingDialogController.showLoadingDialog();
 
       final input = email.text.trim();
 
@@ -65,10 +64,7 @@ class LoginController extends GetxController {
 
       // Set initial screen based on user state
       final auth = AuthenticationRepository.instance;
-      auth.setInitialScreen();
-
-      // Navigate to the main screen
-      Get.offAll(() => const MainScreen());
+      await auth.setInitialScreen();
     } on FirebaseAuthException catch (e) {
       // Handle Firebase authentication errors
       _handleFirebaseAuthError(e);
@@ -79,10 +75,10 @@ class LoginController extends GetxController {
       // Handle invalid input format
       showErrorMessage('Invalid input: ${e.message}');
     } catch (e) {
+      loadingDialogController.closeLoadingDialog();
       // Handle all other exceptions
       showErrorMessage('An unexpected error occurred: ${e.toString()}');
     } finally {
-      loadingDialogController.closeLoadingDialog(Get.context!);
       isProcessing.value = false;
     }
   }
