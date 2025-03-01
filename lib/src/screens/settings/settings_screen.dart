@@ -17,58 +17,46 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(56.0), // Default AppBar height
-        child: Container(
-          decoration: const BoxDecoration(
-            color: AppColors.choicesColor,
+      backgroundColor: AppColors.lightenMainColor,
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          S.of(context).settings,
+          style: const TextStyle(
+            fontSize: 26,
+            color: AppColors.mainColor,
+            fontWeight: FontWeight.bold,
           ),
-          child: AppBar(
-            elevation: 0,
-            // Remove shadow
-            backgroundColor: Colors.transparent,
-            title: Text(
-              S.of(context).settings,
-              style: const TextStyle(
-                fontSize: 26,
-                color: AppColors.mainColor,
-              ),
-            ),
-            centerTitle: true,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                size: 26,
-                color: AppColors.mainColor,
-              ),
-              onPressed: () {
-                Get.back();
-              },
-            ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 26,
+            color: AppColors.mainColor,
           ),
+          onPressed: () {
+            Get.back();
+          },
         ),
       ),
-      body: Container(
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: AppColors.secondaryBackgroundColor_2,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: SizeConfig.screenHeight! * 0.03),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: SizeConfig.screenHeight! * 0.03),
 
-              /// Profile Section
-              ProfileSection(),
-              SizedBox(height: SizeConfig.screenHeight! * 0.026),
+            /// Profile Section
+            ProfileSection(),
+            SizedBox(height: SizeConfig.screenHeight! * 0.026),
 
-              /// Preferences Section
-              PreferencesSection(),
+            /// Preferences Section
+            PreferencesSection(),
 
-              /// Account Section
-              const AccountSection(),
-            ],
-          ),
+            /// Account Section
+            const AccountSection(),
+          ],
         ),
       ),
     );

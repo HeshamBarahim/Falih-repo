@@ -59,11 +59,6 @@ class LeaderboardListSection extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // CircleAvatar(
-              //   radius: SizeConfig.screenWidth! * 0.06,
-              //   // backgroundImage: AssetImage(image),
-              // ),
               SizedBox(width: SizeConfig.screenWidth! * 0.03),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +72,7 @@ class LeaderboardListSection extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '@username',
+                    user?.userName?.capitalize ?? "",
                     style: TextStyle(
                       fontSize: SizeConfig.screenWidth! * 0.03,
                       color: const Color(0xFFBBA3C2),

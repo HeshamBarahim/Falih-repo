@@ -50,20 +50,18 @@ class ProfileSection extends StatelessWidget {
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
             userController.user.value?.fullName ?? "",
-            style: TextStyle(
-              // fontSize: SizeConfig.screenHeight! * 0.026,
-              fontSize: SizeConfig.screenWidth! * 0.053,
+            style: const TextStyle(
+              fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppColors.secondaryColor,
+              color: AppColors.darkMainColor,
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.006),
           Text(
             userController.user.value?.schoolName ?? "",
-            style: TextStyle(
-              // fontSize: SizeConfig.screenHeight! * 0.019,
-              fontSize: SizeConfig.screenWidth! * 0.039,
-              color: AppColors.secondaryColor,
+            style: const TextStyle(
+              fontSize: 18,
+              color: AppColors.darkMainColor,
             ),
           ),
         ],

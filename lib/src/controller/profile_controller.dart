@@ -12,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../helper/helper_controller.dart';
 import '../models/user_model.dart';
-import '../screens/main_screen/main_screen.dart';
 import 'loading_dialog_controller.dart';
 
 class ProfileController extends GetxController {
@@ -189,7 +188,7 @@ class ProfileController extends GetxController {
       profileImgUrl = await storageRef.getDownloadURL();
 
       // Add Image Url To FireBase
-      await edituserProfileImgUrl(profileImgUrl!);
+      await editUserProfileImgUrl(profileImgUrl!);
 
       await updateUserProfileImgUrl(profileImgUrl!);
       update();
@@ -204,7 +203,7 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> edituserProfileImgUrl(String url) async {
+  Future<void> editUserProfileImgUrl(String url) async {
     CollectionReference imgUrlCollection =
         FirebaseFirestore.instance.collection('users');
 
@@ -277,7 +276,7 @@ class ProfileController extends GetxController {
         message: S.current.profile_updated_successfully,
       );
       isSavingData.value = false;
-      Get.offAll(() => MainScreen());
+      Get.offAllNamed("main-screen");
     } catch (e) {
       Helper.errorSnackBar(
         title: S.current.updated_failed,

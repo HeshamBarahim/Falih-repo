@@ -52,7 +52,7 @@ class TopLeaderboardSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: isMiddleUser
                           ? AppColors.mainColor
-                          : AppColors.lightenMainColor,
+                          : AppColors.moreLightenMainColor,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(isMiddleUser
                             ? screenWidth * 0.073

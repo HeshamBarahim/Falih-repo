@@ -35,7 +35,7 @@ class AccountSection extends StatelessWidget {
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.secondaryColor,
+                color: AppColors.mainColor,
               ),
               onTap: () {
                 Get.toNamed("profile");
@@ -49,7 +49,7 @@ class AccountSection extends StatelessWidget {
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.secondaryColor,
+                color: AppColors.mainColor,
               ),
               onTap: () {
                 showDialog(
@@ -67,7 +67,7 @@ class AccountSection extends StatelessWidget {
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.secondaryColor,
+                color: AppColors.mainColor,
               ),
               onTap: () {
                 showDialog(
@@ -85,7 +85,7 @@ class AccountSection extends StatelessWidget {
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.secondaryColor,
+                color: AppColors.mainColor,
               ),
               onTap: () {
                 showDialog(
@@ -103,7 +103,7 @@ class AccountSection extends StatelessWidget {
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.secondaryColor,
+                color: AppColors.mainColor,
               ),
               // Logout Function
               onTap: () {

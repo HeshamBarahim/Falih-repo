@@ -24,9 +24,9 @@ class PreferencesSection extends StatelessWidget {
           title: S.of(context).dark_mode,
           trailing: Obx(
             () => Switch(
-              activeTrackColor: const Color(0xFFBBA3C2),
+              activeTrackColor: AppColors.darkMainColor,
               activeColor: AppColors.mainColor,
-              inactiveTrackColor: const Color(0xFFBBA3C2),
+              inactiveTrackColor: AppColors.lightenMainColor,
               inactiveThumbColor: Colors.white,
               value: settingsController.isDarkMode.value,
               // Dark Mode toggle Button Function
@@ -45,9 +45,9 @@ class PreferencesSection extends StatelessWidget {
           icon: Icons.notifications,
           title: S.of(context).notification,
           trailing: Switch(
-            activeTrackColor: AppColors.mainColor,
-            activeColor: Colors.white,
-            inactiveTrackColor: const Color(0xFFBBA3C2),
+            activeTrackColor: AppColors.darkMainColor,
+            activeColor: AppColors.mainColor,
+            inactiveTrackColor: AppColors.lightenMainColor,
             inactiveThumbColor: Colors.white,
             value: false,
             onChanged: (val) {},
@@ -59,7 +59,7 @@ class PreferencesSection extends StatelessWidget {
           trailing: Icon(
             Icons.arrow_forward_ios,
             size: SizeConfig.screenWidth! * 0.063,
-            color: AppColors.secondaryColor,
+            color: AppColors.mainColor,
           ),
           // Language Button Function
           onTap: () {

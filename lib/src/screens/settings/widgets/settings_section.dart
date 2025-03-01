@@ -25,7 +25,7 @@ class SettingsSection extends StatelessWidget {
             horizontal: 16,
           ),
           decoration: const BoxDecoration(
-            color: AppColors.mainColor,
+            color: AppColors.hintColor,
           ),
           child: Padding(
             padding: const EdgeInsets.all(2.0),

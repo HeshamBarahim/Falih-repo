@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/l10n.dart';
-import '../../config/images.dart';
 import '../../config/sizes.dart';
 import '../../config/themes.dart';
 import 'components/bottom_nav_bar.dart';
@@ -106,13 +105,7 @@ class MainScreen extends StatelessWidget {
                           Positioned.fill(
                             child: Container(
                               decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                  image:
-                                      AssetImage(Images.backgroundImageOfAuth),
-                                  fit: BoxFit.cover,
-                                  opacity: 0.2,
-                                ),
+                                color: AppColors.lightenMainColor,
                               ),
                             ),
                           ),
@@ -120,21 +113,22 @@ class MainScreen extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 top: SizeConfig.screenHeight! * 0.053),
                             child: Container(
+                              color: AppColors.lightenMainColor,
                               height: SizeConfig.screenHeight! * 0.067,
                               width: double.infinity,
                               margin: EdgeInsets.symmetric(
                                   horizontal: SizeConfig.screenWidth! * 0.02),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(20.0),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 0.9,
-                                    offset: Offset(0.9, 0.5),
-                                  ),
-                                ],
-                              ),
+                              // decoration: BoxDecoration(
+                              //   color: const Color(0xFFFFFFFF),
+                              //   borderRadius: BorderRadius.circular(20.0),
+                              //   boxShadow: const [
+                              //     BoxShadow(
+                              //       color: Colors.grey,
+                              //       blurRadius: 0.9,
+                              //       offset: Offset(0.9, 0.5),
+                              //     ),
+                              //   ],
+                              // ),
                               child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: Row(
@@ -147,11 +141,11 @@ class MainScreen extends StatelessWidget {
                                     Center(
                                       child: Text(
                                         controller.screenTitle[
-                                            controller.selectedIndex],
+                                        controller.selectedIndex],
                                         style: TextStyle(
                                           color: AppColors.mainColor,
                                           fontSize:
-                                              SizeConfig.screenHeight! * 0.032,
+                                          SizeConfig.screenHeight! * 0.032,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -201,8 +195,9 @@ class MainScreen extends StatelessWidget {
                   curve: Curves.fastOutSlowIn,
                   left: controller.isSideNavBarClosed
                       ? 0
-                      : SizeConfig.screenWidth! *
-                          0.60, // top: SizeConfig.screenHeight! * 0.06,
+                      : SizeConfig.screenWidth! * 0.60,
+                  // top: SizeConfig.screenHeight! * 0.06,
+                  top: 8,
                   child: Padding(
                     padding:
                         EdgeInsets.only(top: SizeConfig.screenHeight! * 0.053),

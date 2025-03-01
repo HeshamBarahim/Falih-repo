@@ -239,7 +239,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "you have not taken any test yet take a test to join the leaderboard and compete with other students"),
         "not_taken_exams_home_page": MessageLookupByLibrary.simpleMessage(
             "You have not taken any tests yet"),
-        "notification": MessageLookupByLibrary.simpleMessage("Nontification"),
+        "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "on": MessageLookupByLibrary.simpleMessage("On"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
         "over_all_points":

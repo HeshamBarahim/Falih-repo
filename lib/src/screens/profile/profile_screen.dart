@@ -28,6 +28,30 @@ class ProfileScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            S.of(context).profile,
+            style: const TextStyle(
+              fontSize: 26,
+              color: AppColors.mainColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 26,
+              color: AppColors.mainColor,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
@@ -38,13 +62,12 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(height: MediaQuery.sizeOf(context).height * .10),
                     GetBuilder<ProfileController>(
                       init: ProfileController(),
                       builder: (controller) => Stack(
                         children: [
                           CircleAvatar(
-                            radius: SizeConfig.screenWidth! * 0.13,
+                            radius: SizeConfig.screenWidth! * 0.141,
                             backgroundColor: AppColors.darkMainColor,
                             child: ClipOval(
                               child: CachedNetworkImage(
@@ -66,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                                       firstLetter,
                                       style: TextStyle(
                                         fontSize:
-                                            (SizeConfig.screenWidth! * 0.08),
+                                        (SizeConfig.screenWidth! * 0.08),
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.moreLightenMainColor,
                                       ),
@@ -92,16 +115,16 @@ class ProfileScreen extends StatelessWidget {
                                 },
                                 style: IconButton.styleFrom(
                                   backgroundColor:
-                                      controller.userProfileImgUrl.value == ""
-                                          ? AppColors.lightenMainColor
-                                          : AppColors.mainColor,
+                                  controller.userProfileImgUrl.value == ""
+                                      ? AppColors.lightenMainColor
+                                      : AppColors.mainColor,
                                 ),
                                 icon: Icon(
                                   Icons.edit,
                                   color:
-                                      controller.userProfileImgUrl.value == ""
-                                          ? AppColors.mainColor
-                                          : Colors.white,
+                                  controller.userProfileImgUrl.value == ""
+                                      ? AppColors.mainColor
+                                      : Colors.white,
                                   size: SizeConfig.screenWidth! * 0.044,
                                 ),
                               ),
@@ -134,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                                 newValue;
                           },
                           selectedValue:
-                              profileController.selectedGovernorate.value,
+                          profileController.selectedGovernorate.value,
                           hintText: S.of(context).hint_text_Governorate,
                           prefixIcon: const Icon(Icons.location_pin),
                           list: [
@@ -203,21 +226,21 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * .10),
                     Obx(
-                      () => profileController.isSavingData.value == false
+                          () => profileController.isSavingData.value == false
                           ? GradientButton(
-                              text: S.of(context).update_profile,
-                              height: 50,
-                              width: double.infinity,
-                              onClick: () async {
-                                if (profileController.formKey.currentState!
-                                    .validate()) {
-                                  profileController.updateUserData();
-                                }
-                              },
-                            )
+                        text: S.of(context).update_profile,
+                        height: 50,
+                        width: double.infinity,
+                        onClick: () async {
+                          if (profileController.formKey.currentState!
+                              .validate()) {
+                            profileController.updateUserData();
+                          }
+                        },
+                      )
                           : const Center(
-                              child: CircularProgressIndicator(),
-                            ),
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   ],
                 ),

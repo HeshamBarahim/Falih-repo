@@ -23,16 +23,14 @@ class SettingsTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: AppColors.secondaryColor,
-        // size: screenHeight * 0.03,
+        color: AppColors.mainColor,
         size: SizeConfig.screenWidth! * 0.062,
       ),
       title: Text(
         title,
         style: TextStyle(
-          // fontSize: screenHeight * 0.021,
           fontSize: SizeConfig.screenWidth! * 0.043,
-          color: AppColors.secondaryColor,
+          color: AppColors.darkMainColor,
           fontWeight: FontWeight.bold,
         ),
       ),
