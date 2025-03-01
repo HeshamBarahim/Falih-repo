@@ -42,49 +42,56 @@ class SignupPart1 extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: SizeConfig.screenWidth! * 0.13,
-                              backgroundColor: AppColors.darkMainColor,
-                              child: CircleAvatar(
-                                radius: (SizeConfig.screenWidth! * 0.141),
-                                backgroundColor: AppColors.mainColor,
-                                backgroundImage: c2.file2 != null
-                                    ? FileImage(c2.file2!)
-                                    : AssetImage(
-                                        'assets/images/person.jpg',
-                                        // fit: BoxFit.cover,
-                                      ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: SizedBox(
-                                height: SizeConfig.screenWidth! * 0.08,
-                                width: SizeConfig.screenWidth! * 0.08,
-                                child: IconButton(
-                                  splashColor: Colors.black,
-                                  onPressed: () {
-                                    c2.imagePickerDialog(context);
-                                  },
-                                  style: IconButton.styleFrom(
-                                      // backgroundColor:
-                                      //     controller.userProfileImgUrl.value == ""
-                                      //         ? AppColors.lightenMainColor
-                                      //         : AppColors.mainColor,
-                                      ),
-                                  icon: Icon(
-                                    Icons.edit,
-                                    // color:
-                                    //     controller.userProfileImgUrl.value == ""
-                                    //         ? AppColors.mainColor
-                                    //         : Colors.white,
-                                    size: SizeConfig.screenWidth! * 0.044,
+                                    backgroundColor: AppColors.lightenMainColor,
+                                    child: c2.file2 != null
+                                        ? ClipOval(
+                                            child: Image.file(
+                                              c2.file2!,
+                                              fit: BoxFit.cover,
+                                              // Ensure the image covers the entire circle
+                                              width: SizeConfig.screenWidth! *
+                                                  0.26,
+                                              // Match the diameter of the CircleAvatar
+                                              height: SizeConfig.screenWidth! *
+                                                  0.26,
+                                            ),
+                                          )
+                                        : Icon(
+                                            Icons.person,
+                                            size:
+                                                SizeConfig.screenWidth! * 0.15,
+                                          ),
                                   ),
-                                ),
+                            Positioned(
+                                    bottom: SizeConfig.screenWidth! * 0.01,
+                                    // Adjust this value as needed
+                                    right: SizeConfig.screenWidth! * 0.01,
+                                    // Adjust this value as needed
+                                    child: Container(
+                                      height: SizeConfig.screenWidth! * 0.07,
+                                      width: SizeConfig.screenWidth! * 0.07,
+                                      decoration: const BoxDecoration(
+                                        color: AppColors.mainColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: IconButton(
+                                        splashColor: Colors.transparent,
+                                        // Remove splash effect
+                                        onPressed: () {
+                                          c2.imagePickerDialog(context);
+                                        },
+                                        padding: EdgeInsets.zero,
+                                        // Remove default padding
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
+                                          size: SizeConfig.screenWidth! * 0.044,
+                                        ),
+                                      ),
                               ),
                             ),
                           ],
-                        ),
-                      ),
+                        )),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 12.0, horizontal: 16),

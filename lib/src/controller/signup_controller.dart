@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/models/user_model.dart';
@@ -63,50 +64,55 @@ class SignUpController extends GetxController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(
-                  Icons.image,
-                  size: 25.0,
-                ),
-                title: Text(
-                  S.of(context).upload_image,
-                  style: const TextStyle(
-                    fontSize: 16.0,
+          content: Directionality(
+            textDirection: Get.locale?.languageCode == "ar"
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: const Icon(
+                    Icons.image,
+                    size: 25.0,
                   ),
-                ),
-                onTap: () {
-                  imageType = 0;
-                  picTheImage(context);
-                  // saveImage(context);
-                  Navigator.pop(context);
-
-                  update();
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.camera_alt,
-                  size: 25.0,
-                ),
-                title: Text(
-                  S.of(context).take_photo,
-                  style: const TextStyle(
-                    fontSize: 16.0,
+                  title: Text(
+                    S.of(context).upload_image,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-                onTap: () {
-                  imageType = 1;
-                  // saveImage(context);
-                  picTheImage(context);
-                  Navigator.pop(context);
+                  onTap: () {
+                    imageType = 0;
+                    picTheImage(context);
+                    // saveImage(context);
+                    Navigator.pop(context);
 
-                  update();
-                },
-              ),
-            ],
+                    update();
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.camera_alt,
+                    size: 25.0,
+                  ),
+                  title: Text(
+                    S.of(context).take_photo,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  onTap: () {
+                    imageType = 1;
+                    // saveImage(context);
+                    picTheImage(context);
+                    Navigator.pop(context);
+
+                    update();
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

@@ -22,28 +22,41 @@ class LoadingDialogController extends GetxController {
                 }
               },
               child: Dialog(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.screenWidth! * 0.04,
-                    vertical: SizeConfig.screenHeight! * 0.02,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: SizeConfig.screenWidth! * 0.8,
+                    // Set maximum width (80% of screen width)
+                    minWidth: SizeConfig.screenWidth! *
+                        0.5, // Set minimum width (50% of screen width)
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CircularProgressIndicator(
-                        strokeWidth: SizeConfig.screenWidth! * 0.008,
-                        strokeAlign: SizeConfig.screenWidth! * 0.003,
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth! * 0.06),
-                      Text(
-                        S.current.loading_text, // سيتم تحديثه عند تغيير اللغة
-                        style: TextStyle(
-                          color: AppColors.mainColor,
-                          fontSize: SizeConfig.screenWidth! * 0.04,
-                          fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.screenWidth! * 0.04,
+                      vertical: SizeConfig.screenHeight! * 0.02,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // Center the content horizontally
+                      mainAxisSize: MainAxisSize.min,
+                      // Ensure the Row doesn't expand unnecessarily
+                      children: [
+                        CircularProgressIndicator(
+                          strokeWidth: SizeConfig.screenWidth! * 0.008,
+                          strokeAlign: SizeConfig.screenWidth! * 0.003,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: SizeConfig.screenWidth! * 0.04),
+                        // Add spacing between the indicator and text
+                        Text(
+                          S.current.loading_text, // سيتم تحديثه عند تغيير اللغة
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: SizeConfig.screenWidth! * 0.04,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

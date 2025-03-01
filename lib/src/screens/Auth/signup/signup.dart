@@ -4,8 +4,11 @@ import 'package:falih/src/screens/Auth/signup/signup_part2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/themes.dart';
+
 class Signup extends StatelessWidget {
   final SignUpController controller = Get.put(SignUpController());
+
   Signup({super.key});
 
   @override
@@ -25,6 +28,20 @@ class Signup extends StatelessWidget {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: AppColors.secondaryColor,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.darkMainColor,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
         body: Obx(() {
           return controller.currentPageIndex.value == 1
               ? SignupPart1()
