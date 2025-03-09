@@ -130,8 +130,18 @@ class AppColors {
   );
 }
 
+final OutlineInputBorder baseBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(16),
+  borderSide: const BorderSide(
+    color: AppColors.mainColor,
+    width: 2, // Adjusted for a more balanced UI
+  ),
+);
+
+/// Light theme data
 final ThemeData appTheme = ThemeData(
-  primaryColor: AppColors.mainColor,
+  scaffoldBackgroundColor: AppColors.lightenMainColor,
+  primaryColor: AppColors.lightenMainColor,
   fontFamily: 'ElMessiri',
   textTheme: const TextTheme(
     bodyLarge: TextStyle(
@@ -150,14 +160,184 @@ final ThemeData appTheme = ThemeData(
       color: AppColors.mainColor,
     ),
     titleLarge: TextStyle(
-      fontSize: 22,
+      fontSize: 24,
       fontWeight: FontWeight.bold,
       color: AppColors.mainColor,
     ),
     titleMedium: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      color: AppColors.mainColor,
+    ),
+    titleSmall: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: AppColors.mainColor,
     ),
   ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.white,
+    // labelText: labelText,
+    labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
+    // errorText: errorMessage,
+    errorStyle: const TextStyle(
+      color: Colors.red,
+      fontSize: 16,
+    ),
+    border: baseBorder,
+    enabledBorder: baseBorder,
+    focusedBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
+        color: AppColors.mainColor,
+        width: 3, // Slightly thicker on focus
+      ),
+    ),
+    errorBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 3,
+      ),
+    ),
+    focusedErrorBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
+        color: Colors.redAccent,
+        width: 3,
+      ),
+    ),
+    // prefixIcon: prefixIcon,
+    prefixIconColor: AppColors.mainColor,
+    suffixIconColor: AppColors.mainColor,
+  ),
+  iconTheme: const IconThemeData(color: AppColors.mainColor, size: 24),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      iconSize: WidgetStateProperty.all(24),
+      iconColor: WidgetStateProperty.all(AppColors.mainColor),
+    ),
+  ),
+  colorScheme: const ColorScheme.light(
+    primary: AppColors.moreLightenMainColor,
+    secondary: AppColors.mainColor,
+    surface: AppColors.darkMainColor,
+    // Background in light mode
+  ),
+  cardTheme: const CardTheme(
+    color: AppColors.moreLightenMainColor,
+    elevation: 10,
+    shadowColor: AppColors.darkMainColor,
+  ),
+  listTileTheme: const ListTileThemeData(
+    iconColor: AppColors.mainColor,
+    textColor: AppColors.lightenMainColor,
+  ),
+  progressIndicatorTheme:
+      const ProgressIndicatorThemeData(color: AppColors.mainColor),
+  dropdownMenuTheme: DropdownMenuThemeData(
+    inputDecorationTheme: const InputDecorationTheme(
+      border: InputBorder.none, // Removes border for DropdownButtonFormField
+    ),
+    menuStyle: MenuStyle(
+      side: WidgetStateProperty.all(BorderSide.none),
+      backgroundColor: WidgetStateProperty.all(AppColors.moreLightenMainColor),
+    ),
+  ),
 );
+
+/// -------------  Dark theme -----------------
+final ThemeData darkAppTheme = ThemeData(
+    primaryColor: AppColors.mainColor,
+    fontFamily: 'ElMessiri',
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColors.lightenMainColor, // Default color
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.lightenMainColor,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColors.lightenMainColor,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: AppColors.lightenMainColor,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+        color: AppColors.lightenMainColor,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: AppColors.lightenMainColor,
+      ),
+    ),
+    scaffoldBackgroundColor: AppColors.darkMainColor,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      isDense: true,
+      alignLabelWithHint: true,
+      fillColor: AppColors.mainColor,
+      labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
+      errorStyle: const TextStyle(
+        color: Colors.red,
+        fontSize: 16,
+      ),
+      border: baseBorder,
+      enabledBorder: baseBorder,
+      focusedBorder: baseBorder.copyWith(
+        borderSide: const BorderSide(
+          color: AppColors.mainColor,
+          width: 3, // Slightly thicker on focus
+        ),
+      ),
+      errorBorder: baseBorder.copyWith(
+        borderSide: const BorderSide(
+          color: Colors.red,
+          width: 3,
+        ),
+      ),
+      focusedErrorBorder: baseBorder.copyWith(
+        borderSide: const BorderSide(
+          color: Colors.redAccent,
+          width: 3,
+        ),
+      ),
+      hintStyle:
+          const TextStyle(fontSize: 16, color: AppColors.hintColor, height: 2),
+      // prefixIcon: prefixIcon,
+      prefixIconColor: AppColors.lightenMainColor,
+      suffixIconColor: AppColors.lightenMainColor,
+    ),
+    iconTheme: const IconThemeData(color: AppColors.lightenMainColor, size: 24),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        iconSize: WidgetStateProperty.all(24),
+        iconColor: WidgetStateProperty.all(AppColors.lightenMainColor),
+      ),
+    ),
+    colorScheme: const ColorScheme.dark(
+      primary: AppColors.mainColor,
+      secondary: AppColors.lightenMainColor,
+      surface: AppColors.mainColor,
+
+      // Background in light mode
+    ),
+    cardTheme: const CardTheme(
+      color: AppColors.mainColor,
+      elevation: 10,
+    ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: AppColors.lightenMainColor,
+      textColor: AppColors.lightenMainColor,
+    ),
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: AppColors.lightenMainColor));

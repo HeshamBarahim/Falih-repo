@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
-import 'network_controller.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
@@ -19,7 +18,7 @@ class LoginController extends GetxController {
   final TextEditingController password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-  final NetworkController networkController = Get.put(NetworkController());
+  // final NetworkController networkController = Get.put(NetworkController());
   final LoadingDialogController loadingDialogController =
       LoadingDialogController();
 
@@ -32,11 +31,11 @@ class LoginController extends GetxController {
     isProcessing.value = true;
 
     // Check network connection
-    if (!await networkController.checkConnection()) {
-      showErrorMessage('No Internet Connection');
-      isProcessing.value = false;
-      return;
-    }
+    // if (!await networkController.checkConnection()) {
+    //   showErrorMessage('No Internet Connection');
+    //   isProcessing.value = false;
+    //   return;
+    // }
 
     // Validate form
     if (!loginFormKey.currentState!.validate()) {
@@ -66,16 +65,18 @@ class LoginController extends GetxController {
       final auth = AuthenticationRepository.instance;
       await auth.setInitialScreen();
     } on FirebaseAuthException catch (e) {
+      loadingDialogController.closeLoadingDialog();
       // Handle Firebase authentication errors
       _handleFirebaseAuthError(e);
     } on FirebaseException catch (e) {
+      loadingDialogController.closeLoadingDialog();
       // Handle Firestore errors
       showErrorMessage(S.current.wrong_credentials);
     } on FormatException catch (e) {
+      loadingDialogController.closeLoadingDialog();
       // Handle invalid input format
       showErrorMessage('Invalid input: ${e.message}');
     } catch (e) {
-      loadingDialogController.closeLoadingDialog();
       // Handle all other exceptions
       showErrorMessage('An unexpected error occurred: ${e.toString()}');
     } finally {

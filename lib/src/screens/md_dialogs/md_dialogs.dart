@@ -1,5 +1,4 @@
 import 'package:falih/src/config/sizes.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +19,7 @@ class MdDialogs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -43,18 +43,8 @@ class MdDialogs extends StatelessWidget {
                     data: snapshot.data ?? '',
                     styleSheet: MarkdownStyleSheet(
                       h1Align: WrapAlignment.center,
-                      h1: const TextStyle(
-                          fontSize: 22.0, // Adjust the font size if needed
-                          color: AppColors.darkMainColor,
-                          fontWeight:
-                              FontWeight.bold // Optional: Change the text color
-                          ),
-                      h2: const TextStyle(
-                          fontSize: 20.0, // Adjust the font size if needed
-                          color: AppColors.mainColor,
-                          fontWeight:
-                              FontWeight.bold // Optional: Change the text color
-                          ),
+                      h1: Theme.of(context).textTheme.titleLarge,
+                      h2: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 );

@@ -1,6 +1,5 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,25 +16,17 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: AppColors.lightenMainColor,
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
           S.of(context).settings,
-          style: const TextStyle(
-            fontSize: 26,
-            color: AppColors.mainColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+            style: Theme.of(context).textTheme.titleLarge),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            size: 26,
-            color: AppColors.mainColor,
           ),
           onPressed: () {
             Get.back();
@@ -45,15 +36,11 @@ class SettingsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: SizeConfig.screenHeight! * 0.03),
-
             /// Profile Section
             ProfileSection(),
             SizedBox(height: SizeConfig.screenHeight! * 0.026),
-
             /// Preferences Section
             PreferencesSection(),
-
             /// Account Section
             const AccountSection(),
           ],

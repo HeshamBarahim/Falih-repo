@@ -39,7 +39,8 @@ class HomePage extends StatelessWidget {
                   color: AppColors.mainColor, // Border color
                   width: 1.5, // Border width
                 ),
-                color: AppColors.moreLightenMainColor, // Container color
+                color: Theme.of(context).colorScheme.primary,
+
                 borderRadius: BorderRadius.circular(12), // Rounded corners
                 boxShadow: [
                   BoxShadow(
@@ -61,7 +62,6 @@ class HomePage extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: SizeConfig.screenWidth! * 0.13,
-                        backgroundColor: AppColors.darkMainColor,
                         child: ClipOval(
                           child: CachedNetworkImage(
                             key: ValueKey(
@@ -79,20 +79,11 @@ class HomePage extends StatelessWidget {
                                   : "U";
 
                               return CircleAvatar(
-                                radius: (SizeConfig.screenWidth! * 0.141),
-                                // Half of image size
-                                backgroundColor: AppColors.mainColor,
-                                // You can change the color
-                                child: Text(
-                                  initial,
-                                  style: TextStyle(
-                                    fontSize: (SizeConfig.screenWidth! * 0.08),
-                                    // Responsive text size
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.moreLightenMainColor,
-                                  ),
-                                ),
-                              );
+                                  radius: (SizeConfig.screenWidth! * 0.141),
+                                  child: Text(initial,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge));
                             },
                             fit: BoxFit.cover,
                             width: SizeConfig.screenWidth! * 0.282,
@@ -107,46 +98,46 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${S.of(context).hi}${userController.currentUser!.fullName.split(" ")[0]}",
-                                style: const TextStyle(
-                                    color: AppColors.darkMainColor,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                                  "${S.of(context).hi}${userController.currentUser!.fullName.split(" ")[0]}",
+                                  style:
+                                      Theme.of(context).textTheme.titleLarge),
                               SizedBox(height: SizeConfig.screenHeight! * 0.01),
                               Obx(
                                 () => controller.isLoading.value
-                                    ? const SizedBox(
-                                        child: CircularProgressIndicator(),
+                                    ? const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          CircularProgressIndicator(),
+                                        ],
                                       )
                                     : Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "${S.of(context).rank}: #${controller.rank.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                              "${S.of(context).rank}: #${controller.rank.value}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
                                           Text(
-                                            "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                              "${S
+                                                  .of(context)
+                                                  .over_all_points}: ${controller
+                                                  .overallPoints.value}",
+                                              style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
                                           Text(
-                                            "${S.of(context).this_month_points}: ${controller.point.value}",
-                                            style: const TextStyle(
-                                              color: AppColors.darkMainColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                              "${S
+                                                  .of(context)
+                                                  .this_month_points}: ${controller
+                                                  .point.value}",
+                                              style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
                                         ],
                                       ),
                               )
@@ -157,7 +148,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                  Get.locale?.languageCode == "Ar"
+                  Get.locale?.languageCode == "ar"
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -166,8 +157,9 @@ class HomePage extends StatelessWidget {
                                 value: controller.point.value /
                                     controller.maxPoint.value,
                                 // Bind progress value
-                                backgroundColor: AppColors.mainColor,
-                                color: AppColors.lightenMainColor,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                color: Theme.of(context).colorScheme.primary,
                                 minHeight: 10,
                               ),
                             ),
@@ -177,26 +169,31 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                style: const TextStyle(
-                                    color: AppColors.darkMainColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                                  '${((controller.point.value /
+                                      controller.maxPoint.value) * 100)
+                                      .toStringAsFixed(2)}%',
+                                  style:
+                                  Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyMedium),
                             )
                           ],
                         )
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          // Aligns children to the end (right for LTR, left for RTL)
                           children: [
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                style: const TextStyle(
-                                    color: AppColors.darkMainColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                                  '${((controller.point.value /
+                                      controller.maxPoint.value) * 100)
+                                      .toStringAsFixed(2)}%',
+                                  style:
+                                  Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyMedium),
                             ),
                             const SizedBox(
                               width: 10,
@@ -206,8 +203,15 @@ class HomePage extends StatelessWidget {
                                 value: controller.point.value /
                                     controller.maxPoint.value,
                                 // Bind progress value
-                                backgroundColor: AppColors.mainColor,
-                                color: AppColors.lightenMainColor,
+                                backgroundColor:
+                                Theme
+                                    .of(context)
+                                    .colorScheme
+                                    .secondary,
+                                color: Theme
+                                    .of(context)
+                                    .colorScheme
+                                    .primary,
                                 minHeight: 10,
                               ),
                             ),
@@ -221,11 +225,12 @@ class HomePage extends StatelessWidget {
             // Image and indicator slider
             AdvertiseImgsCarousel(),
             SizedBox(height: SizeConfig.screenHeight! * 0.02),
-            // Adjusted spacing
-            // History part
             Container(
               decoration: BoxDecoration(
-                color: AppColors.darkMainColor, // Container color
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .surface, // Container color
                 borderRadius: BorderRadius.circular(8), // Rounded corners
                 boxShadow: [
                   BoxShadow(
@@ -285,7 +290,6 @@ class HomePage extends StatelessWidget {
                                       (percentage).toStringAsFixed(1));
                                   return Card(
                                     margin: const EdgeInsets.only(bottom: 12),
-                                    color: AppColors.moreLightenMainColor,
                                     elevation: 10,
                                     shadowColor: AppColors.darkMainColor,
                                     child: Padding(
@@ -302,11 +306,11 @@ class HomePage extends StatelessWidget {
                                             lineWidth: 4.0,
                                             percent: roundedPercentage,
                                             center: Text(
-                                              "${roundedPercentage * 100}%",
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  color: AppColors.mainColor),
-                                            ),
+                                                "${roundedPercentage * 100}%",
+                                                style: Theme
+                                                    .of(context)
+                                                    .textTheme
+                                                    .bodySmall),
                                             progressColor: (examResult[
                                                             "correctAnswers"] /
                                                         examResult[
@@ -396,14 +400,12 @@ class HomePage extends StatelessWidget {
                                                 height: 5,
                                               ),
                                               Text(
-                                                getTypeExamDisplayName(
-                                                    examResult["examType"]),
-                                                style: const TextStyle(
-                                                  color: AppColors.mainColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              )
+                                                  getTypeExamDisplayName(
+                                                      examResult["examType"]),
+                                                  style: Theme
+                                                      .of(context)
+                                                      .textTheme
+                                                      .bodySmall)
                                             ],
                                           ),
                                           Column(
@@ -421,21 +423,32 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                textAlign: TextAlign.right,
-                                                style: const TextStyle(
-                                                    color: AppColors.mainColor),
-                                              ),
+                                                  "${S
+                                                      .of(context)
+                                                      .on}: ${DateFormat(
+                                                      'yyyy-MM-dd HH:mm')
+                                                      .format(examResult["date"]
+                                                      .toDate())}",
+                                                  overflow:
+                                                  TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                  style: Theme
+                                                      .of(context)
+                                                      .textTheme
+                                                      .bodySmall),
                                               Text(
-                                                "${examResult["points"]} ${S.of(context).points}",
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                textAlign: TextAlign.right,
-                                                style: const TextStyle(
-                                                    color: AppColors.mainColor),
-                                              ),
+                                                  "${examResult["points"]} ${S
+                                                      .of(context)
+                                                      .points}",
+                                                  overflow:
+                                                  TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                  style: Theme
+                                                      .of(context)
+                                                      .textTheme
+                                                      .bodySmall),
                                             ],
                                           ),
                                         ],
@@ -450,14 +463,8 @@ class HomePage extends StatelessWidget {
                             controller.userExamHistory.length
                         ? GestureDetector(
                             onTap: controller.loadMore,
-                            child: const Text(
-                              'See More',
-                              style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ))
+                            child: Text('See More',
+                                style: Theme.of(context).textTheme.bodyMedium))
                         : const SizedBox
                             .shrink(); // Hide the button when all items are loaded
                   }),

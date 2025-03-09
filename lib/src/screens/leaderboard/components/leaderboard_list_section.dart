@@ -1,5 +1,4 @@
 import 'package:falih/src/config/sizes.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +28,9 @@ class LeaderboardListSection extends StatelessWidget {
         vertical: SizeConfig.screenHeight! * 0.015,
         horizontal: SizeConfig.screenWidth! * 0.04,
       ),
-      decoration: BoxDecoration(
-        color: id == user?.id.toString()
-            ? AppColors.lightenMainColor
-            : AppColors.secondaryColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
+      color: id == user?.id.toString()
+          ? Theme.of(context).colorScheme.secondary
+          : Theme.of(context).colorScheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -44,54 +40,45 @@ class LeaderboardListSection extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.12,
                 height: MediaQuery.of(context).size.width * 0.12,
                 // Ensure it's a perfect circle
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.darkMainColor,
+                  color: id == user?.id.toString()
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.secondary,
                 ),
                 alignment: Alignment.center,
                 // Centers the text
-                child: Text(
-                  "#$rank",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors
-                        .secondaryColor, // Add contrasting color for visibility
-                  ),
-                ),
+                child: Text("#$rank",
+                    style: id == user?.id.toString()
+                        ? Theme.of(context).textTheme.bodySmall
+                        : Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary)),
               ),
               SizedBox(width: SizeConfig.screenWidth! * 0.03),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    name.capitalize ?? "",
-                    style: TextStyle(
-                      fontSize: SizeConfig.screenWidth! * 0.035,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF743089),
-                    ),
-                  ),
-                  Text(
-                    user?.userName?.capitalize ?? "",
-                    style: TextStyle(
-                      fontSize: SizeConfig.screenWidth! * 0.03,
-                      color: const Color(0xFFBBA3C2),
-                    ),
-                  ),
+                  Text(name.capitalize ?? "",
+                      style: id == user?.id.toString()
+                          ? Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary)
+                          : Theme.of(context).textTheme.titleSmall),
+                  Text(user?.userName?.capitalize ?? "",
+                      style: id == user?.id.toString()
+                          ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.primary)
+                          : Theme.of(context).textTheme.bodyMedium),
                 ],
               ),
             ],
           ),
           Row(
             children: [
-              Text(
-                '$points',
-                style: TextStyle(
-                  fontSize: SizeConfig.screenWidth! * 0.04,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF743089),
-                ),
-              ),
+              Text('$points',
+                  style: id == user?.id.toString()
+                      ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary)
+                      : Theme.of(context).textTheme.bodyMedium),
             ],
           ),
         ],

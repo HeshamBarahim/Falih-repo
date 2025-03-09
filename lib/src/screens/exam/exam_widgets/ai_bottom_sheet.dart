@@ -21,10 +21,10 @@ class AIBottomSheet extends StatelessWidget {
       maxChildSize: 0.7,
       builder: (_, scrollController) =>
           Container(
-              decoration: const BoxDecoration(
-                color: AppColors.moreLightenMainColor,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-              ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          ),
               padding: const EdgeInsets.all(16),
               child: Obx(() {
                 if (controller.isGeneratingResponse.value) {

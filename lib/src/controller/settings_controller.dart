@@ -1,9 +1,10 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SettingsController extends GetxController {
   final _storage = GetStorage();
+  late Rx<ThemeMode> themeMode;
 
   // Observable for dark mode state
   RxBool isDarkMode = false.obs;
@@ -18,12 +19,21 @@ class SettingsController extends GetxController {
     isDarkMode.value = _storage.read('isDarkMode') ?? false;
     locale.value = Locale(_storage.read('locale') ?? 'ar');
     Get.updateLocale(locale.value);
+    themeMode = Rx<ThemeMode>(_loadThemeFromStorage());
   }
 
   // Update the state
-  void toggleDarkMode(bool value) {
-    isDarkMode.value = value;
-    _storage.write('isDarkMode', value);
+  void toggleDarkMode(bool isDark) {
+    isDarkMode.value = isDark;
+    themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
+    _storage.write('isDarkMode', isDark);
+  }
+
+  ThemeMode _loadThemeFromStorage() {
+    bool? isDark = _storage.read<bool>('isDarkMode');
+    return isDark == null
+        ? ThemeMode.system
+        : (isDark ? ThemeMode.dark : ThemeMode.light);
   }
 
   // Update the app's locale

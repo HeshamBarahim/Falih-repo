@@ -5,7 +5,6 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../config/themes.dart';
 
 class ProfileSection extends StatelessWidget {
   ProfileSection({
@@ -23,7 +22,6 @@ class ProfileSection extends StatelessWidget {
           Obx(
             () => CircleAvatar(
               radius: SizeConfig.screenWidth! * 0.141,
-              backgroundColor: Colors.grey[200],
               child: ClipOval(
                 child: userController.user.value!.userProfileImgUrl != ''
                     ? CachedNetworkImage(
@@ -50,20 +48,11 @@ class ProfileSection extends StatelessWidget {
           SizedBox(height: SizeConfig.screenHeight! * 0.012),
           Text(
             userController.user.value?.fullName ?? "",
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: AppColors.darkMainColor,
-            ),
-          ),
+              style: Theme.of(context).textTheme.titleLarge),
           SizedBox(height: SizeConfig.screenHeight! * 0.006),
           Text(
             userController.user.value?.schoolName ?? "",
-            style: const TextStyle(
-              fontSize: 18,
-              color: AppColors.darkMainColor,
-            ),
-          ),
+              style: Theme.of(context).textTheme.bodyMedium),
         ],
       ),
     );

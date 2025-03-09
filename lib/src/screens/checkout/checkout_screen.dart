@@ -3,6 +3,8 @@ import 'package:falih/src/screens/checkout/components/checkout_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../generated/l10n.dart';
+import '../../config/themes.dart';
 import 'components/checkout_bottom.dart';
 import 'components/checkout_date_picker.dart';
 import 'components/credit_card_form.dart';
@@ -25,6 +27,30 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          S.of(context).check_details,
+          style: const TextStyle(
+            fontSize: 26,
+            color: AppColors.mainColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 26,
+            color: AppColors.mainColor,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

@@ -4,8 +4,6 @@ import 'package:falih/src/screens/Auth/signup/signup_part2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../config/themes.dart';
-
 class Signup extends StatelessWidget {
   final SignUpController controller = Get.put(SignUpController());
 
@@ -31,11 +29,10 @@ class Signup extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           scrolledUnderElevation: 0,
-          backgroundColor: AppColors.secondaryColor,
+          backgroundColor: Colors.transparent,
           leading: IconButton(
             icon: const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.darkMainColor,
+              Icons.arrow_back,
             ),
             onPressed: () {
               Get.back();

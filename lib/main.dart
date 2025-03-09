@@ -39,7 +39,7 @@ main() async {
       .then((_) {});
   await GetStorage.init();
   await initDependencies();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<void> initDependencies() async {
@@ -52,13 +52,17 @@ Future<void> initDependencies() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final settingsController = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: appTheme,
+      darkTheme: darkAppTheme,
+      themeMode: settingsController.themeMode.value,
       locale: Get.find<SettingsController>().locale.value,
       fallbackLocale: const Locale('ar'),
       initialRoute: '/splash',

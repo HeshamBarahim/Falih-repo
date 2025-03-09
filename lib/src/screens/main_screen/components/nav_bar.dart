@@ -6,8 +6,6 @@ import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/sizes.dart';
-import '../../../config/themes.dart';
-import '../../../helper/helper_controller.dart';
 import '../../../repository/authentication_repository/authentication_repository.dart';
 import '../controller/nav_bar_controller.dart';
 import '../data/side_menu_data_list.dart';
@@ -23,6 +21,8 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    final isRTL =
+        Get.locale?.languageCode == "ar" ? TextAlign.right : TextAlign.left;
     return Scaffold(
       body: GetBuilder<NavBarController>(
         init: NavBarController(),
@@ -142,31 +142,39 @@ class NavBar extends StatelessWidget {
                                         context: Get.context!,
                                         builder: (context) {
                                           return AlertDialog(
-                                            title: Center(
-                                              child: Text(
-                                                S.current.confirm,
-                                                style: TextStyle(
-                                                  fontSize:
-                                                      SizeConfig.screenHeight! *
-                                                          0.030,
-                                                  color:
-                                                      AppColors.darkMainColor,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
+                                            title: Text(
+                                              S.current.confirm,
+                                              textAlign: isRTL,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                    color: Get.isDarkMode
+                                                        ? Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary
+                                                        : Theme.of(context)
+                                                            .primaryColor,
+                                                  ),
                                             ),
-                                            // alignment: TextAlign.center,
                                             content: Text(
                                               S.current.whatsapp_leave_warning,
-                                              style: TextStyle(
-                                                fontSize:
-                                                    SizeConfig.screenHeight! *
-                                                        0.018,
-                                                color: AppColors.mainColor,
-                                              ),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                    color: Get.isDarkMode
+                                                        ? Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary
+                                                        : Theme.of(context)
+                                                            .primaryColor,
+                                                  ),
+                                              textAlign:
+                                                  isRTL, // Align button text
                                             ),
                                             actions: [
-                                              MaterialButton(
+                                              TextButton(
                                                 onPressed: () async {
                                                   Navigator.pop(context);
                                                   final String url =
@@ -178,37 +186,45 @@ class NavBar extends StatelessWidget {
                                                       mode: LaunchMode
                                                           .externalApplication);
                                                 },
+                                                // Stay in exam
                                                 child: Text(
                                                   S.current.continueText,
-                                                  style: TextStyle(
-                                                    fontSize: SizeConfig
-                                                            .screenHeight! *
-                                                        0.020,
-                                                    color:
-                                                        AppColors.darkMainColor,
-                                                  ),
+                                                  textAlign: isRTL,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge
+                                                      ?.copyWith(
+                                                        color: Get.isDarkMode
+                                                            ? Theme.of(context)
+                                                                .colorScheme
+                                                                .secondary
+                                                            : Theme.of(context)
+                                                                .primaryColor,
+                                                      ),
                                                 ),
                                               ),
-                                              MaterialButton(
+                                              TextButton(
                                                 onPressed: () {
-                                                  Navigator.pop(context);
-                                                  Helper.errorSnackBar(
-                                                    title: S.current.error,
-                                                    message: S.current
-                                                        .whatsapp_open_denied,
-                                                  );
+                                                  Navigator.pop(context,
+                                                      true); // Allow exit
                                                 },
                                                 child: Text(
                                                   S.current.cancel,
-                                                  style: TextStyle(
-                                                    fontSize: SizeConfig
-                                                            .screenHeight! *
-                                                        0.020,
-                                                    color:
-                                                        AppColors.darkMainColor,
-                                                  ),
+                                                  textAlign: isRTL,
+                                                  // Align button text
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge
+                                                      ?.copyWith(
+                                                        color: Get.isDarkMode
+                                                            ? Theme.of(context)
+                                                                .colorScheme
+                                                                .secondary
+                                                            : Theme.of(context)
+                                                                .primaryColor,
+                                                      ),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           );
                                         },

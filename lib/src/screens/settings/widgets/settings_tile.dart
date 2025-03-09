@@ -1,8 +1,6 @@
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
 
-import '../../../config/themes.dart';
-
 class SettingsTile extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -23,16 +21,10 @@ class SettingsTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: AppColors.mainColor,
-        size: SizeConfig.screenWidth! * 0.062,
       ),
       title: Text(
         title,
-        style: TextStyle(
-          fontSize: SizeConfig.screenWidth! * 0.043,
-          color: AppColors.darkMainColor,
-          fontWeight: FontWeight.bold,
-        ),
+        style: Theme.of(context).textTheme.titleMedium,
       ),
       trailing: trailing,
       onTap: onTap,

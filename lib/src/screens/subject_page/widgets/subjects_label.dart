@@ -55,26 +55,30 @@ class SubjectsLabels extends StatelessWidget {
                             top: BorderSide(
                               color:
                                   subjectController.selectedIndex.value == index
-                                      ? AppColors.darkMainColor
+                                      ? Theme.of(context).colorScheme.primary
                                       : AppColors.lightenMainColor,
                               width: 2.0,
                             ),
                           ),
                           color: subjectController.selectedIndex.value == index
-                              ? AppColors.choicesColor
-                              : Colors.white,
-                          // borderRadius: BorderRadius.circular(4),
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(context).colorScheme.primary,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
                               items[index].labelName,
-                              style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: screenHeight * 0.015,
-                              ),
+                              style:
+                                  subjectController.selectedIndex.value == index
+                                      ? Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary)
+                                      : Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
@@ -126,8 +130,14 @@ class SubjectsLabels extends StatelessWidget {
                                                     .selectedSectionIndex
                                                     .value ==
                                                 index
-                                            ? AppColors.choicesColor
-                                            : Colors.white,
+                                            ? Theme
+                                            .of(context)
+                                            .colorScheme
+                                            .secondary
+                                            : Theme
+                                            .of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
                                       child: Center(
                                         child: AutoSizeText(
@@ -143,11 +153,20 @@ class SubjectsLabels extends StatelessWidget {
                                           minFontSize: 12,
                                           maxFontSize: 14,
                                           textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            color: AppColors.darkMainColor,
-                                            fontWeight: FontWeight.bold,
-                                            // fontSize: 12,
-                                          ),
+                                          style: subjectController
+                                                      .selectedSectionIndex
+                                                      .value ==
+                                                  index
+                                              ? Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall
+                                                  ?.copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primary)
+                                              : Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall,
                                         ),
                                       ),
                                     )),
@@ -172,6 +191,13 @@ class SubjectsLabels extends StatelessWidget {
                                                             .id.value]!
                                                     .length ??
                                                 0);
+                                    print(subjectController
+                                            .selectedSectionIndex.value ==
+                                        subjectController
+                                            .subjectSections[subjectController
+                                                    .curriculumGrade.value]
+                                                ?[subjectController.id.value]!
+                                            .length);
                                   },
                                   child: Obx(() => Container(
                                         height: screenHeight * 0.06,
@@ -205,8 +231,14 @@ class SubjectsLabels extends StatelessWidget {
                                                           subjectController
                                                               .id.value]!
                                                       .length
-                                              ? AppColors.choicesColor
-                                              : Colors.white,
+                                              ? Theme
+                                              .of(context)
+                                              .colorScheme
+                                              .secondary
+                                              : Theme
+                                              .of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
@@ -214,11 +246,26 @@ class SubjectsLabels extends StatelessWidget {
                                           children: [
                                             Text(
                                               S.of(context).all,
-                                              style: TextStyle(
-                                                color: AppColors.darkMainColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: screenHeight * 0.015,
-                                              ),
+                                              style: subjectController
+                                                          .selectedSectionIndex
+                                                          .value ==
+                                                      subjectController
+                                                          .subjectSections[
+                                                              subjectController
+                                                                  .curriculumGrade
+                                                                  .value]?[
+                                                              subjectController.id
+                                                                  .value]!
+                                                          .length
+                                                  ? Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall
+                                                      ?.copyWith(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .primary)
+                                                  : Theme.of(context).textTheme.bodySmall,
                                             ),
                                           ],
                                         ),
@@ -289,9 +336,6 @@ class SubjectsLabels extends StatelessWidget {
                 },
                 child: Card(
                   margin: const EdgeInsets.only(bottom: 12),
-                  color: AppColors.moreLightenMainColor,
-                  elevation: 10,
-                  shadowColor: AppColors.darkMainColor,
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Row(
@@ -399,9 +443,6 @@ class SubjectsLabels extends StatelessWidget {
                 onTap: () {},
                 child: Card(
                   margin: const EdgeInsets.only(bottom: 12),
-                  color: AppColors.moreLightenMainColor,
-                  elevation: 10,
-                  shadowColor: AppColors.darkMainColor,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 8.0, vertical: 8.0),

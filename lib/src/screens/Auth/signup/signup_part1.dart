@@ -37,11 +37,11 @@ class SignupPart1 extends StatelessWidget {
                   Column(
                     children: [
                       GetBuilder<SignUpController>(
-                        init: SignUpController(),
-                        builder: (c2) => Stack(
-                          children: [
-                            CircleAvatar(
-                              radius: SizeConfig.screenWidth! * 0.13,
+                          init: SignUpController(),
+                          builder: (c2) => Stack(
+                                children: [
+                                  CircleAvatar(
+                                    radius: SizeConfig.screenWidth! * 0.13,
                                     backgroundColor: AppColors.lightenMainColor,
                                     child: c2.file2 != null
                                         ? ClipOval(
@@ -62,7 +62,7 @@ class SignupPart1 extends StatelessWidget {
                                                 SizeConfig.screenWidth! * 0.15,
                                           ),
                                   ),
-                            Positioned(
+                                  Positioned(
                                     bottom: SizeConfig.screenWidth! * 0.01,
                                     // Adjust this value as needed
                                     right: SizeConfig.screenWidth! * 0.01,
@@ -84,14 +84,13 @@ class SignupPart1 extends StatelessWidget {
                                         // Remove default padding
                                         icon: Icon(
                                           Icons.edit,
-                                          color: Colors.white,
                                           size: SizeConfig.screenWidth! * 0.044,
                                         ),
                                       ),
-                              ),
-                            ),
-                          ],
-                        )),
+                                    ),
+                                  ),
+                                ],
+                              )),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 12.0, horizontal: 16),
@@ -100,16 +99,11 @@ class SignupPart1 extends StatelessWidget {
                           children: [
                             Text(
                               S.of(context).title_signup,
-                              style: const TextStyle(
-                                color: AppColors.darkMainColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             Text(
                               S.of(context).step1_of_2,
-                              style: const TextStyle(
-                                  color: AppColors.darkMainColor, fontSize: 18),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],
                         ),
@@ -121,9 +115,8 @@ class SignupPart1 extends StatelessWidget {
                         myController: controller.phoneNo,
                         validator: Helper.validatePhoneNumber,
                         labelText: S.of(context).hint_text_phone,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.phone_android,
-                          size: SizeConfig.screenWidth! * 0.06,
                         ),
                       ),
                       CustomTextForm(
@@ -134,7 +127,6 @@ class SignupPart1 extends StatelessWidget {
                         labelText: S.of(context).hint_text_fullname,
                         prefixIcon: Icon(
                           Icons.account_circle,
-                          size: SizeConfig.screenWidth! * 0.06,
                         ),
                       ),
                       CustomTextForm(
@@ -147,9 +139,8 @@ class SignupPart1 extends StatelessWidget {
                         // onChanged: Helper.onChangedUsername,
                         validator: Helper.validateUsername,
                         labelText: S.of(context).hint_text_username,
-                        prefixIcon: Icon(
-                          Icons.account_circle,
-                          size: SizeConfig.screenWidth! * 0.06,
+                        prefixIcon: const Icon(
+                          Icons.account_box_rounded,
                         ),
                       ),
                       CustomDropDownForm(
@@ -159,25 +150,22 @@ class SignupPart1 extends StatelessWidget {
                         },
                         selectedValue: controller.selectedGender.value,
                         hintText: S.of(context).male,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.person_outline,
-                          size: SizeConfig.screenWidth! * 0.06,
                         ),
                         list: [
                           DropdownMenuItem(
                             value: "Male",
                             child: Text(
                               S.of(context).male,
-                              style: const TextStyle(
-                                  color: AppColors.mainColor, fontSize: 16),
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
                           DropdownMenuItem(
                             value: 'Female',
                             child: Text(
                               S.of(context).female,
-                              style: const TextStyle(
-                                  color: AppColors.mainColor, fontSize: 16),
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
                         ],
@@ -190,9 +178,8 @@ class SignupPart1 extends StatelessWidget {
                               myController: controller.password,
                               validator: Helper.validatePassword,
                               labelText: S.of(context).hint_text_password,
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.lock,
-                                size: SizeConfig.screenHeight! * 0.03,
                               ),
                               obscureText: showPasswordController.obText,
                               showPasswordFunction:
@@ -211,9 +198,8 @@ class SignupPart1 extends StatelessWidget {
                               },
                               labelText:
                                   S.of(context).hint_text_password_confirm,
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.lock,
-                                size: SizeConfig.screenHeight! * 0.03,
                               ),
                               obscureText: showPasswordController.obText2,
                               showPasswordFunction:
@@ -241,11 +227,6 @@ class SignupPart1 extends StatelessWidget {
                         children: [
                           Text(
                             S.of(context).bottom_text_part1,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: SizeConfig.screenWidth! * 0.035,
-                              color: AppColors.darkMainColor,
-                            ),
                           ),
                           GradientText(
                             text: S.of(context).bottom_text_part2,

@@ -1,6 +1,5 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,11 +31,7 @@ class AccountSection extends StatelessWidget {
             SettingsTile(
               icon: Icons.person,
               title: S.of(context).edit_profile,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.mainColor,
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Get.toNamed("profile");
               },
@@ -46,11 +41,7 @@ class AccountSection extends StatelessWidget {
             SettingsTile(
               icon: Icons.privacy_tip,
               title: S.of(context).privacy,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.mainColor,
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 showDialog(
                     context: context,
@@ -64,11 +55,7 @@ class AccountSection extends StatelessWidget {
             SettingsTile(
               icon: Icons.info,
               title: S.of(context).terms_conditions,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.mainColor,
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 showDialog(
                     context: context,
@@ -82,11 +69,7 @@ class AccountSection extends StatelessWidget {
             SettingsTile(
               icon: Icons.view_list_rounded,
               title: S.of(context).rules_prizes,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.mainColor,
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 showDialog(
                     context: context,
@@ -100,11 +83,7 @@ class AccountSection extends StatelessWidget {
             SettingsTile(
               icon: Icons.logout,
               title: S.of(context).logout,
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: SizeConfig.screenWidth! * 0.063,
-                color: AppColors.mainColor,
-              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
               // Logout Function
               onTap: () {
                 AuthenticationRepository.instance.logout();

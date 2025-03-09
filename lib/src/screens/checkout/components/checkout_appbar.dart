@@ -43,27 +43,27 @@ class CheckoutAppBar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Back Button
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: SizeConfig.screenWidth! * 0.078,
-                  color: AppColors.mainColor,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-
-              Center(
-                child: Text(
-                  S.of(context).check_details,
-                  style: TextStyle(
-                    fontSize: SizeConfig.screenWidth! * 0.063,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              // /// Back Button
+              // IconButton(
+              //   icon: Icon(
+              //     Icons.arrow_back,
+              //     size: SizeConfig.screenWidth! * 0.078,
+              //     color: AppColors.mainColor,
+              //   ),
+              //   onPressed: () {
+              //     Navigator.pop(context);
+              //   },
+              // ),
+              //
+              // Center(
+              //   child: Text(
+              //     S.of(context).check_details,
+              //     style: TextStyle(
+              //       fontSize: SizeConfig.screenWidth! * 0.063,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: SizeConfig.screenHeight! * 0.0237),
               Padding(
                 padding: EdgeInsets.symmetric(

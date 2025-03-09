@@ -31,12 +31,21 @@ class ExamScreen extends StatelessWidget {
             context: context,
             builder: (context) => AlertDialog(
               title: Text(
-                S.current.exit_exam, textAlign: isRTL,
-                style: const TextStyle(
-                    color: AppColors.darkMainColor), // Align button text
+                S.current.exit_exam,
+                textAlign: isRTL,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Get.isDarkMode
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).primaryColor,
+                    ),
               ),
               content: Text(
                 S.current.exit_exam_warning,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Get.isDarkMode
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).primaryColor,
+                    ),
                 textAlign: isRTL, // Align button text
               ),
               actions: [
@@ -44,7 +53,13 @@ class ExamScreen extends StatelessWidget {
                   onPressed: () => Navigator.pop(context, false),
                   // Stay in exam
                   child: Text(
-                    S.current.cancel, textAlign: isRTL, // Align button text
+                    S.current.cancel,
+                    textAlign: isRTL,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Get.isDarkMode
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(context).primaryColor,
+                        ),
                   ),
                 ),
                 TextButton(
@@ -54,6 +69,11 @@ class ExamScreen extends StatelessWidget {
                   },
                   child: Text(
                     S.current.exit, textAlign: isRTL, // Align button text
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Get.isDarkMode
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(context).primaryColor,
+                        ),
                   ),
                 ),
               ],
@@ -82,10 +102,6 @@ class ExamScreen extends StatelessWidget {
 
           return Container(
             padding: const EdgeInsets.all(16),
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              color: AppColors.lightenMainColor,
-            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
@@ -102,7 +118,7 @@ class ExamScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: AppColors.mainColor, width: 2),
-                            color: AppColors.customGrey,
+                            color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(16),
                             boxShadow: [
                               BoxShadow(
@@ -132,9 +148,6 @@ class ExamScreen extends StatelessWidget {
                                     child: Center(
                                       child: Text(
                                         '${controller.trueAnswers.value}',
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
@@ -147,9 +160,6 @@ class ExamScreen extends StatelessWidget {
                                     child: Center(
                                       child: Text(
                                         '${controller.falseAnswers.value}',
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
@@ -190,12 +200,16 @@ class ExamScreen extends StatelessWidget {
                               child: Center(
                                 child: Obx(
                                   () => Text(
-                                    controller.formatTime(
-                                        controller.currentTime.value),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
+                                      controller.formatTime(
+                                          controller.currentTime.value),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          )),
                                 ),
                               ),
                             ),
@@ -245,10 +259,17 @@ class ExamScreen extends StatelessWidget {
                                       Center(
                                         child: Text(
                                           (idx + 1).toString(),
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.choicesColor),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.copyWith(
+                                                color: Get.isDarkMode
+                                                    ? Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary
+                                                    : Theme.of(context)
+                                                        .primaryColor,
+                                              ),
                                         ),
                                       ),
                                       const SizedBox(
@@ -268,11 +289,17 @@ class ExamScreen extends StatelessWidget {
                                                     ? "True"
                                                     : "False"
                                             : option,
-                                        style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                            color:
-                                                AppColors.moreLightenMainColor),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              color: Get.isDarkMode
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary
+                                                  : Theme.of(context)
+                                                      .primaryColor,
+                                            ),
                                       ),
                                       const Spacer(),
                                       selectedAnswer != null &&
@@ -313,23 +340,17 @@ class ExamScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24),
-                            color: AppColors.darkMainColor),
+                            color: Theme.of(context).colorScheme.primary),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
                               const Icon(
-                                size: 28,
                                 Icons.navigate_before,
-                                color: AppColors.moreLightenMainColor,
                               ),
                               Text(
                                 S.of(context).continueText,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.moreLightenMainColor,
-                                ),
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ],
                           ),
@@ -379,10 +400,7 @@ class ExamScreen extends StatelessWidget {
         : Expanded(
             child: AutoSizeText(
               question,
-              style: const TextStyle(
-                fontSize: 20,
-                color: AppColors.mainColor,
-              ),
+              style: Theme.of(Get.context!).textTheme.bodyMedium,
               minFontSize: 12, // Minimum size to shrink to
             ),
           );

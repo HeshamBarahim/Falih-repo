@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import '../config/sizes.dart';
-import '../config/themes.dart';
 
 class LoadingDialogController extends GetxController {
   void showLoadingDialog() {
@@ -43,33 +42,25 @@ class LoadingDialogController extends GetxController {
                             // Arabic language: reverse the order of the widgets
                             Text(
                               S.current.loading_text,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontSize: SizeConfig.screenWidth! * 0.04,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              textDirection: TextDirection.ltr,
                             ),
                             SizedBox(width: SizeConfig.screenWidth! * 0.04),
                             CircularProgressIndicator(
                               strokeWidth: SizeConfig.screenWidth! * 0.008,
                               strokeAlign: SizeConfig.screenWidth! * 0.003,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ] else ...[
                             // Default (LTR) language: use the original order
+
+                            Text(
+                              S.current.loading_text,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            SizedBox(width: SizeConfig.screenWidth! * 0.04),
                             CircularProgressIndicator(
                               strokeWidth: SizeConfig.screenWidth! * 0.008,
                               strokeAlign: SizeConfig.screenWidth! * 0.003,
-                            ),
-                            SizedBox(width: SizeConfig.screenWidth! * 0.04),
-                            Text(
-                              S.current.loading_text,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontSize: SizeConfig.screenWidth! * 0.04,
-                                fontWeight: FontWeight.bold,
-                              ),
                             ),
                           ],
                         ],

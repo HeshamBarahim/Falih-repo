@@ -1,6 +1,5 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/images.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/signup_controller.dart';
 import 'package:falih/src/helper/helper_controller.dart';
 import 'package:falih/src/screens/Auth/widgets_auth/custom_agreeing_check.dart';
@@ -45,16 +44,11 @@ class SignupPart2 extends StatelessWidget {
                     children: [
                       Text(
                         S.of(context).title_signup,
-                        style: const TextStyle(
-                          color: AppColors.darkMainColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        S.of(context).step2_of_2,
-                        style: const TextStyle(
-                            color: AppColors.darkMainColor, fontSize: 18),
+                        S.of(context).step1_of_2,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
                   ),
@@ -66,9 +60,8 @@ class SignupPart2 extends StatelessWidget {
                   myController: controller.schoolName,
                   validator: Helper.validateSchoolName,
                   labelText: S.of(context).hint_text_School,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.school,
-                    size: SizeConfig.screenWidth! * 0.06,
                   ),
                 ),
                 CustomDropDownForm(
@@ -78,29 +71,22 @@ class SignupPart2 extends StatelessWidget {
                   },
                   selectedValue: controller.selectedDepartment.value,
                   hintText: S.of(context).hint_text_department,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.home_work_outlined,
-                    size: SizeConfig.screenWidth! * 0.06,
                   ),
                   list: [
                     DropdownMenuItem(
                       value: "En",
                       child: Text(
                         S.of(context).drop_depatment_val1,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.mainColor,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Ar',
                       child: Text(
                         S.of(context).drop_depatment_val2,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.mainColor,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -112,117 +98,92 @@ class SignupPart2 extends StatelessWidget {
                   },
                   selectedValue: controller.selectedGovernorate.value,
                   hintText: S.of(context).hint_text_Governorate,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.location_city,
-                    size: SizeConfig.screenWidth! * 0.06,
                   ),
                   list: [
                     DropdownMenuItem(
                       value: "Sana'a",
                       child: Text(
                         S.of(context).drop_governorate_val1,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Taiz',
                       child: Text(
                         S.of(context).drop_governorate_val2,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Ibb',
                       child: Text(
                         S.of(context).drop_governorate_val3,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Al Hudaydah',
                       child: Text(
                         S.of(context).drop_governorate_val4,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Amran',
                       child: Text(
                         S.of(context).drop_governorate_val5,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Lahij',
                       child: Text(
                         S.of(context).drop_governorate_val6,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Dhamar',
                       child: Text(
                         S.of(context).drop_governorate_val7,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Raymah',
                       child: Text(
                         S.of(context).drop_governorate_val8,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Al Mahwit',
                       child: Text(
                         S.of(context).drop_governorate_val9,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Hajjah',
                       child: Text(
                         S.of(context).drop_governorate_val10,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Sa\'dah',
                       child: Text(
                         S.of(context).drop_governorate_val11,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: 'Al-Jawf',
                       child: Text(
                         S.of(context).drop_governorate_val12,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -234,27 +195,22 @@ class SignupPart2 extends StatelessWidget {
                   },
                   selectedValue: controller.selectedGrade.value,
                   hintText: S.of(context).hint_text_Grade,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.book_rounded,
-                    size: SizeConfig.screenWidth! * 0.06,
                   ),
                   list: [
                     DropdownMenuItem(
                       value: "9",
                       child: Text(
                         S.of(context).drop_grade_val1,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                     DropdownMenuItem(
                       value: '12',
                       child: Text(
                         S.of(context).drop_grade_val2,
-                        style: TextStyle(
-                            color: AppColors.mainColor,
-                            fontSize: SizeConfig.screenWidth! * 0.035),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -282,11 +238,6 @@ class SignupPart2 extends StatelessWidget {
                   children: [
                     Text(
                       S.of(context).bottom_text_part1,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: SizeConfig.screenWidth! * 0.035,
-                        color: AppColors.darkMainColor,
-                      ),
                     ),
                     GradientText(
                       text: S.of(context).login,

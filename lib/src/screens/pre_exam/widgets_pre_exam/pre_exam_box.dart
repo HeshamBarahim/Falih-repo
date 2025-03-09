@@ -14,8 +14,9 @@ class PreExamBox extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-              border: Border.all(color: AppColors.choicesColor, width: 5),
-              color: AppColors.secondaryColor,
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.secondary, width: 5),
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(8)),
           child: Column(
             children: [
@@ -25,21 +26,22 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "مجموع الاسئلة",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                  Text("مجموع الاسئلة",
+                      style: Theme.of(context).textTheme.titleSmall),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: AppColors.choicesColor),
+                        color: Theme.of(context).colorScheme.secondary),
                     width: 75,
                     child: Center(
                       child: Text(
                         "$questionCount",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
                     ),
                   ),
                 ],
@@ -50,21 +52,22 @@ class PreExamBox extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "إجمالي النقاط في الاختبار",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                  Text("إجمالي النقاط في الاختبار",
+                      style: Theme.of(context).textTheme.titleSmall),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: AppColors.choicesColor),
+                        color: Theme.of(context).colorScheme.secondary),
                     width: 75,
                     child: Center(
                       child: Text(
                         questionCount == 10 ? "17" : "118",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
                     ),
                   ),
                 ],
@@ -84,16 +87,15 @@ class PreExamBox extends StatelessWidget {
                       border:
                           Border.all(color: AppColors.darkMainColor, width: 3),
                       borderRadius: BorderRadius.circular(50),
-                      color: AppColors.secondaryColor),
-                  child: const Center(
-                      child: Text(
-                    '0:00',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.mainColor,
-                    ),
-                  ))),
+                      color: Theme.of(context).colorScheme.secondary),
+                  child: Center(
+                      child: Text('0:00',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)))),
             ))
       ],
     );

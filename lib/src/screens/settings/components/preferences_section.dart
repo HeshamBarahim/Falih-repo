@@ -33,9 +33,9 @@ class PreferencesSection extends StatelessWidget {
               onChanged: (val) {
                 settingsController.toggleDarkMode(val);
                 if (val) {
-                  Get.changeTheme(ThemeData.dark());
+                  Get.changeTheme(darkAppTheme);
                 } else {
-                  Get.changeTheme(ThemeData.light());
+                  Get.changeTheme(appTheme);
                 }
               },
             ),
@@ -56,10 +56,8 @@ class PreferencesSection extends StatelessWidget {
         SettingsTile(
           icon: Icons.language,
           title: S.of(context).language,
-          trailing: Icon(
+          trailing: const Icon(
             Icons.arrow_forward_ios,
-            size: SizeConfig.screenWidth! * 0.063,
-            color: AppColors.mainColor,
           ),
           // Language Button Function
           onTap: () {

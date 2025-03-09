@@ -34,18 +34,13 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           title: Text(
             S.of(context).profile,
-            style: const TextStyle(
-              fontSize: 26,
-              color: AppColors.mainColor,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
               size: 26,
-              color: AppColors.mainColor,
             ),
             onPressed: () {
               Get.back();
@@ -163,19 +158,22 @@ class ProfileScreen extends StatelessWidget {
                           list: [
                             DropdownMenuItem(
                                 value: "Sana'a",
-                                child: Text(S.of(context).drop_governorate_val1,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).drop_governorate_val1,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                             DropdownMenuItem(
                                 value: 'Taiz',
-                                child: Text(S.of(context).drop_governorate_val2,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).drop_governorate_val2,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                             DropdownMenuItem(
                                 value: 'Ibb',
-                                child: Text(S.of(context).drop_governorate_val3,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).drop_governorate_val3,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                           ],
                         ),
                         CustomDropDownForm(
@@ -189,14 +187,16 @@ class ProfileScreen extends StatelessWidget {
                           list: [
                             DropdownMenuItem(
                                 value: "9",
-                                child: Text(S.of(context).drop_grade_val1,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).drop_grade_val1,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                             DropdownMenuItem(
                                 value: '12',
-                                child: Text(S.of(context).drop_grade_val2,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).drop_grade_val2,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                           ],
                         ),
                         CustomDropDownForm(
@@ -212,25 +212,25 @@ class ProfileScreen extends StatelessWidget {
                                 value: "Male",
                                 child: Text(
                                   S.of(context).male,
-                                  style: const TextStyle(
-                                      color: AppColors.mainColor),
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 )),
                             DropdownMenuItem(
                                 value: 'Female',
-                                child: Text(S.of(context).female,
-                                    style: const TextStyle(
-                                        color: AppColors.mainColor))),
+                                child: Text(
+                                  S.of(context).female,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
                           ],
                         ),
                       ],
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * .10),
                     Obx(
-                          () => profileController.isSavingData.value == false
+                      () => profileController.isSavingData.value == false
                           ? GradientButton(
-                        text: S.of(context).update_profile,
-                        height: 50,
-                        width: double.infinity,
+                              text: S.of(context).update_profile,
+                              height: 50,
+                              width: double.infinity,
                         onClick: () async {
                           if (profileController.formKey.currentState!
                               .validate()) {

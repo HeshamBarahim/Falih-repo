@@ -59,7 +59,7 @@ class AdvertiseImgsCarousel extends StatelessWidget {
                   dotHeight: 6,
                   dotWidth: 6,
                   spacing: 10,
-                  dotColor: AppColors.lightenMainColor,
+                  dotColor: AppColors.moreLightenMainColor,
                   activeDotColor: AppColors.darkMainColor,
                   paintStyle: PaintingStyle.fill),
             ),

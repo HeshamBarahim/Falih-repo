@@ -21,13 +21,15 @@ class ForgotPassword extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
-        scrolledUnderElevation: 0,
-        backgroundColor: AppColors.secondaryColor,
         elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(S.of(context).forget_password,
+            style: Theme.of(context).textTheme.titleLarge),
+        centerTitle: true,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: AppColors.darkMainColor,
+            Icons.arrow_back,
           ),
           onPressed: () {
             Get.back();
