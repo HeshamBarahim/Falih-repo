@@ -229,6 +229,7 @@ class ExamScreen extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
                               onTap: () {
                                 controller.selectAnswer(idx);
                               },

@@ -76,6 +76,11 @@ class SubjectsController extends GetxController {
 
       if (snapshot.exists && snapshot.data() != null) {
         units.value = snapshot.data()?['units'] ?? [];
+        List<Map<String, dynamic>> allSectionUnits = [];
+        for (var unit in units) {
+          allSectionUnits.add(unit as Map<String, dynamic>);
+        }
+        _examController.units = allSectionUnits;
       } else {
         errorMessage.value = 'No units found';
       }
@@ -317,7 +322,7 @@ class SubjectsController extends GetxController {
       _examController.examName.value = name.value;
       _examController.examType.value = "FinalExam";
       _examController.setExamQuestions();
-      Get.toNamed("/pre-exam");
+      Get.toNamed("pre-exam");
     } else {
       changeSelectedSectionIndex(subjectIndex);
       subjectNameFetcher(subjectIndex);
@@ -333,8 +338,9 @@ class SubjectsController extends GetxController {
       _examController.units = units;
       _examController.examName.value = name.value;
       _examController.examType.value = "FinalExam";
+
       _examController.setExamQuestions();
-      Get.toNamed("/pre-exam");
+      Get.toNamed("pre-exam");
     }
   }
 

@@ -9,6 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../config/themes.dart';
+import '../../../constants/functions.dart';
 import '../../../controller/subjects_controller.dart';
 
 class SubjectsLabels extends StatelessWidget {
@@ -702,7 +703,6 @@ class SubjectsLabels extends StatelessWidget {
                       onTap: () async {
                         await subjectController
                             .startFinalExam(localSelectedIndex);
-                        Navigator.pop(_);
                         subjectController.changeSelectedIndex(0);
                       },
                       child: Container(
@@ -747,62 +747,6 @@ class SubjectsLabels extends StatelessWidget {
       examController.examType.value = "FinalExam";
       examController.setExamQuestions();
       Get.toNamed("pre-exam");
-    }
-  }
-
-  String getSectionDisplayName(String key) {
-    switch (key) {
-      case "geography":
-        return "جغرافيا";
-      case "history":
-        return "تاريخ";
-      case "nationalism":
-        return "وطنية";
-      case "physics":
-        return S.current.subject_six;
-      case "biology":
-        return S.current.subject_seven;
-      case "chemistry":
-        return S.current.subject_five;
-      case "math":
-        return S.current.subject_eight;
-      case "iman":
-        return "ُالإيمان";
-      case "fiqh":
-        return "الفقة";
-      case "hadith":
-        return "الحديث";
-      case "seerah":
-        return "السيرة";
-      case "grammar_morphology":
-        return "النحو والصرف";
-      case "literature_texts":
-        return "الأدب والنصوص";
-      case "reading":
-        return "القراءة";
-      case "criticism":
-        return "النقد";
-      case "tafsir_alquran":
-        return "الحفظ والتفسير";
-      case "uloom_alquran":
-        return "علوم القرآن";
-      case "tajweed":
-        return "التجويد";
-      default:
-        return key.capitalizeFirst ?? key;
-    }
-  }
-
-  String getTypeExamDisplayName(String key) {
-    // print("Plan ID from Firebase: $key");
-    switch (key) {
-      case "FinalExam":
-        return S.current.final_exam;
-      case "UnitExam":
-        return S.current.unit_exam;
-
-      default:
-        return key.capitalizeFirst ?? key;
     }
   }
 }
