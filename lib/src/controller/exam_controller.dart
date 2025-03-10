@@ -75,13 +75,13 @@ class ExamController extends GetxController {
       int selectedQuestionsCount = (unitPercentage * 50 / 100).round();
       //  Shuffle the questions and then take the required count
       final random = Random();
-      List<dynamic> shuffledQuestions = List.from(unit["questions"])
-        ..shuffle(random);
-      List<dynamic> selectedQuestions =
-          shuffledQuestions.take(selectedQuestionsCount).toList();
+      List<dynamic> shuffledQuestions = List.from(unit["questions"]);
+      // ..shuffle(random);
+      List<dynamic> selectedQuestions = shuffledQuestions.take(10000).toList();
 
       // Add selected questions from the current unit to the general list
       selected50Questions.addAll(selectedQuestions);
+      print("sssssssssssssssssssssssssss");
     }
 
     // If the total number of selected questions is less than 50, add the remaining questions
@@ -102,9 +102,9 @@ class ExamController extends GetxController {
 
         // Shuffle the remaining questions and take the required count
         final random = Random();
-        remainingUnitQuestions.shuffle(random);
+        // remainingUnitQuestions.shuffle(random);
         List<dynamic> additionalQuestions =
-            remainingUnitQuestions.take(remainingQuestions).toList();
+            remainingUnitQuestions.take(100000).toList();
 
         // Add the additional questions to the selected list
         selected50Questions.addAll(additionalQuestions);
@@ -115,7 +115,7 @@ class ExamController extends GetxController {
     }
 
     // Shuffle the final list of selected questions
-    selected50Questions.shuffle(Random());
+    // selected50Questions.shuffle(Random());
 
     final List<Exam> loadedQuestions = selected50Questions.map((data) {
       return Exam.fromMap(data as Map<String, dynamic>);
