@@ -242,102 +242,111 @@ final ThemeData appTheme = ThemeData(
       backgroundColor: WidgetStateProperty.all(AppColors.moreLightenMainColor),
     ),
   ),
+  switchTheme: SwitchThemeData(
+    trackOutlineColor:
+        WidgetStateProperty.all(Colors.transparent), // Remove track border
+  ),
 );
 
 /// -------------  Dark theme -----------------
 final ThemeData darkAppTheme = ThemeData(
-    primaryColor: AppColors.mainColor,
-    fontFamily: 'ElMessiri',
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w400,
-        color: AppColors.lightenMainColor, // Default color
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: AppColors.lightenMainColor,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: AppColors.lightenMainColor,
-      ),
-      titleLarge: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: AppColors.lightenMainColor,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-        color: AppColors.lightenMainColor,
-      ),
-      titleSmall: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: AppColors.lightenMainColor,
+  primaryColor: AppColors.mainColor,
+  fontFamily: 'ElMessiri',
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      color: AppColors.lightenMainColor, // Default color
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: AppColors.lightenMainColor,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: AppColors.lightenMainColor,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: AppColors.lightenMainColor,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      color: AppColors.lightenMainColor,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: AppColors.lightenMainColor,
+    ),
+  ),
+  scaffoldBackgroundColor: AppColors.darkMainColor,
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    isDense: true,
+    alignLabelWithHint: true,
+    fillColor: AppColors.mainColor,
+    labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
+    errorStyle: const TextStyle(
+      color: Colors.red,
+      fontSize: 16,
+    ),
+    border: baseBorder,
+    enabledBorder: baseBorder,
+    focusedBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
+        color: AppColors.mainColor,
+        width: 3, // Slightly thicker on focus
       ),
     ),
-    scaffoldBackgroundColor: AppColors.darkMainColor,
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      isDense: true,
-      alignLabelWithHint: true,
-      fillColor: AppColors.mainColor,
-      labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
-      errorStyle: const TextStyle(
+    errorBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
         color: Colors.red,
-        fontSize: 16,
-      ),
-      border: baseBorder,
-      enabledBorder: baseBorder,
-      focusedBorder: baseBorder.copyWith(
-        borderSide: const BorderSide(
-          color: AppColors.mainColor,
-          width: 3, // Slightly thicker on focus
-        ),
-      ),
-      errorBorder: baseBorder.copyWith(
-        borderSide: const BorderSide(
-          color: Colors.red,
-          width: 3,
-        ),
-      ),
-      focusedErrorBorder: baseBorder.copyWith(
-        borderSide: const BorderSide(
-          color: Colors.redAccent,
-          width: 3,
-        ),
-      ),
-      hintStyle:
-          const TextStyle(fontSize: 16, color: AppColors.hintColor, height: 2),
-      // prefixIcon: prefixIcon,
-      prefixIconColor: AppColors.lightenMainColor,
-      suffixIconColor: AppColors.lightenMainColor,
-    ),
-    iconTheme: const IconThemeData(color: AppColors.lightenMainColor, size: 24),
-    iconButtonTheme: IconButtonThemeData(
-      style: ButtonStyle(
-        iconSize: WidgetStateProperty.all(24),
-        iconColor: WidgetStateProperty.all(AppColors.lightenMainColor),
+        width: 3,
       ),
     ),
-    colorScheme: const ColorScheme.dark(
-      primary: AppColors.mainColor,
-      secondary: AppColors.lightenMainColor,
-      surface: AppColors.mainColor,
+    focusedErrorBorder: baseBorder.copyWith(
+      borderSide: const BorderSide(
+        color: Colors.redAccent,
+        width: 3,
+      ),
+    ),
+    hintStyle:
+        const TextStyle(fontSize: 16, color: AppColors.hintColor, height: 2),
+    // prefixIcon: prefixIcon,
+    prefixIconColor: AppColors.lightenMainColor,
+    suffixIconColor: AppColors.lightenMainColor,
+  ),
+  iconTheme: const IconThemeData(color: AppColors.lightenMainColor, size: 24),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      iconSize: WidgetStateProperty.all(24),
+      iconColor: WidgetStateProperty.all(AppColors.lightenMainColor),
+    ),
+  ),
+  colorScheme: const ColorScheme.dark(
+    primary: AppColors.mainColor,
+    secondary: AppColors.lightenMainColor,
+    surface: AppColors.mainColor,
 
-      // Background in light mode
-    ),
-    cardTheme: const CardTheme(
-      color: AppColors.mainColor,
-      elevation: 10,
-    ),
-    listTileTheme: const ListTileThemeData(
-      iconColor: AppColors.lightenMainColor,
-      textColor: AppColors.lightenMainColor,
-    ),
-    progressIndicatorTheme:
-        const ProgressIndicatorThemeData(color: AppColors.lightenMainColor));
+    // Background in light mode
+  ),
+  cardTheme: const CardTheme(
+    color: AppColors.mainColor,
+    elevation: 10,
+  ),
+  listTileTheme: const ListTileThemeData(
+    iconColor: AppColors.lightenMainColor,
+    textColor: AppColors.lightenMainColor,
+  ),
+  progressIndicatorTheme:
+      const ProgressIndicatorThemeData(color: AppColors.lightenMainColor),
+  switchTheme: SwitchThemeData(
+    trackOutlineColor:
+        WidgetStateProperty.all(Colors.transparent), // Remove track border
+  ),
+);

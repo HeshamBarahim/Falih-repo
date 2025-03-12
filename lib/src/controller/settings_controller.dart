@@ -8,6 +8,7 @@ class SettingsController extends GetxController {
 
   // Observable for dark mode state
   RxBool isDarkMode = false.obs;
+  RxBool isEnabledNotification = false.obs;
 
   // Observable for current locale
   Rx<Locale> locale = const Locale('en').obs;
@@ -17,6 +18,8 @@ class SettingsController extends GetxController {
     super.onInit();
     // Load stored settings
     isDarkMode.value = _storage.read('isDarkMode') ?? false;
+    isEnabledNotification.value =
+        _storage.read('isEnabledNotification') ?? false;
     locale.value = Locale(_storage.read('locale') ?? 'ar');
     Get.updateLocale(locale.value);
     themeMode = Rx<ThemeMode>(_loadThemeFromStorage());
@@ -27,6 +30,11 @@ class SettingsController extends GetxController {
     isDarkMode.value = isDark;
     themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
     _storage.write('isDarkMode', isDark);
+  }
+
+  void toggleNotification(bool isEnabled) {
+    isEnabledNotification.value = isEnabled;
+    _storage.write('isEnabledNotification', isEnabled);
   }
 
   ThemeMode _loadThemeFromStorage() {
