@@ -24,10 +24,10 @@ class PreferencesSection extends StatelessWidget {
           title: S.of(context).dark_mode,
           trailing: Obx(
             () => Switch(
-              activeTrackColor: AppColors.darkMainColor,
-              activeColor: AppColors.mainColor,
-              inactiveTrackColor: AppColors.lightenMainColor,
-              inactiveThumbColor: Colors.white,
+              activeTrackColor: Theme.of(context).colorScheme.primary,
+              activeColor: Theme.of(context).colorScheme.secondary,
+              inactiveTrackColor: Theme.of(context).colorScheme.primary,
+              inactiveThumbColor: AppColors.lightenMainColor,
               value: settingsController.isDarkMode.value,
               // Dark Mode toggle Button Function
               onChanged: (val) {
@@ -44,13 +44,17 @@ class PreferencesSection extends StatelessWidget {
         SettingsTile(
           icon: Icons.notifications,
           title: S.of(context).notification,
-          trailing: Switch(
-            activeTrackColor: AppColors.darkMainColor,
-            activeColor: AppColors.mainColor,
-            inactiveTrackColor: AppColors.lightenMainColor,
-            inactiveThumbColor: Colors.white,
-            value: false,
-            onChanged: (val) {},
+          trailing: Obx(
+            () => Switch(
+              activeTrackColor: Theme.of(context).colorScheme.primary,
+              activeColor: Theme.of(context).colorScheme.secondary,
+              inactiveTrackColor: Theme.of(context).colorScheme.primary,
+              inactiveThumbColor: AppColors.lightenMainColor,
+              value: settingsController.isEnabledNotification.value,
+              onChanged: (val) {
+                settingsController.toggleNotification(val);
+              },
+            ),
           ),
         ),
         SettingsTile(

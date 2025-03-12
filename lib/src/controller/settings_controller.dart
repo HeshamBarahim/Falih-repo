@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +9,7 @@ class SettingsController extends GetxController {
 
   // Observable for dark mode state
   RxBool isDarkMode = false.obs;
+  RxBool isEnabledNotification = false.obs;
 
   // Observable for current locale
   Rx<Locale> locale = const Locale('en').obs;
@@ -17,6 +19,8 @@ class SettingsController extends GetxController {
     super.onInit();
     // Load stored settings
     isDarkMode.value = _storage.read('isDarkMode') ?? false;
+    isEnabledNotification.value =
+        _storage.read('isEnabledNotification') ?? false;
     locale.value = Locale(_storage.read('locale') ?? 'ar');
     Get.updateLocale(locale.value);
     themeMode = Rx<ThemeMode>(_loadThemeFromStorage());
@@ -27,6 +31,19 @@ class SettingsController extends GetxController {
     isDarkMode.value = isDark;
     themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
     _storage.write('isDarkMode', isDark);
+  }
+
+  void toggleNotification(bool isEnabled) {
+    isEnabledNotification.value = isEnabled;
+    _storage.write('isEnabledNotification', isEnabled);
+
+    if (isEnabled) {
+      // Request notification permissions if not granted
+      FirebaseMessaging.instance.requestPermission();
+    } else {
+      // Optionally, remove the device's FCM token to stop notifications
+      FirebaseMessaging.instance.deleteToken();
+    }
   }
 
   ThemeMode _loadThemeFromStorage() {

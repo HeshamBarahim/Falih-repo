@@ -76,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Invalid Verification Code. Please Try Again."),
         "failed_send_ver_code": MessageLookupByLibrary.simpleMessage(
             "Failed To Send Verification Code. Please Try Again."),
+        "no_notification":
+            MessageLookupByLibrary.simpleMessage("There is No Notification"),
         "class_text": MessageLookupByLibrary.simpleMessage("Class:"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compete_shine":

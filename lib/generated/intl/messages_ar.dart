@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رمز التحقق غير صالح. يرجى المحاولة مرة أخرى."),
         "failed_send_ver_code":
             MessageLookupByLibrary.simpleMessage("اعادة ارسال كود فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى."),
+        "no_notification":
+            MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "compete_shine": MessageLookupByLibrary.simpleMessage("تنافس وتألق"),

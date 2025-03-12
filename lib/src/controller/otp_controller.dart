@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../constants/urls.dart';
 import '../repository/authentication_repository/authentication_repository.dart';
 import 'loading_dialog_controller.dart';
 
@@ -25,6 +24,8 @@ class OtpController extends GetxController {
   var isSending = false.obs; // Loading state
   final RxInt controllerType = 1.obs;
   Timer? _resendTimer;
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
@@ -60,10 +61,18 @@ class OtpController extends GetxController {
   Future<void> sendOtpToWhatsApp(String otp) async {
     // Replace with your API call
     print('Sending OTP to WhatsApp: $otp');
+
+    final snapshot =
+        await _firestore.collection('app_config').doc("whatsapp_docker").get();
+
+    final otpServer = snapshot.data();
+    var otpAPI = otpServer!["api_url"];
+    print(otpAPI);
+
     try {
       final response = await http
           .post(
-        Uri.parse(URLs.OTP_API),
+        Uri.parse(otpAPI),
         headers: {
           'accept': 'application/json',
           'Content-Type': 'application/json',
@@ -86,7 +95,6 @@ class OtpController extends GetxController {
           throw TimeoutException("Request to server timed out!");
         },
       );
-      print(response.body);
       if (response.statusCode == 201) {
         isSending.value = false;
       } else {

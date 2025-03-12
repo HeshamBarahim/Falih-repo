@@ -81,7 +81,6 @@ class ExamController extends GetxController {
 
       // Add selected questions from the current unit to the general list
       selected50Questions.addAll(selectedQuestions);
-      print("sssssssssssssssssssssssssss");
     }
 
     // If the total number of selected questions is less than 50, add the remaining questions

@@ -1,31 +1,24 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../config/themes.dart';
+import '../../../controller/checkout_controller.dart';
 
 class CheckoutBottom extends StatelessWidget {
-  const CheckoutBottom({super.key, required this.formKey});
+  CheckoutBottom({super.key});
 
-  final GlobalKey<FormState> formKey;
+  final CheckoutController controller = Get.put(CheckoutController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: SizeConfig.screenWidth! * 0.1,
-              vertical: SizeConfig.screenHeight! * 0.0077),
-          child: Text(
-            S.of(context).we_will_send,
-            // textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.grey.shade600,
-              fontSize: SizeConfig.screenWidth! * 0.0291,
-            ),
-          ),
+        Text(
+          S.of(context).we_will_send,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         SizedBox(height: SizeConfig.screenHeight! * 0.0142),
         Center(
@@ -33,7 +26,6 @@ class CheckoutBottom extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               iconColor: AppColors.mainColor,
               backgroundColor: AppColors.mainColor,
-              // primary: Color(0xFF743089),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -50,7 +42,7 @@ class CheckoutBottom extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              if (formKey.currentState!.validate()) {
+              if (controller.formKey.currentState!.validate()) {
                 showDialog(
                   context: context,
                   builder: (context) {
