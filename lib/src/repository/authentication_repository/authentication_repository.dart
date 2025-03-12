@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../generated/l10n.dart';
 import '../../config/themes.dart';
 import '../../controller/loading_dialog_controller.dart';
+import '../../controller/version_check_controller.dart';
 import 'exceptions/t_exceptions.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -30,6 +31,8 @@ class AuthenticationRepository extends GetxController {
   final userStorage = GetStorage();
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
+  final VersionCheckController versionCheckController =
+      VersionCheckController();
 
   /// Loads when app Launch from main.dart
   @override
@@ -44,22 +47,30 @@ class AuthenticationRepository extends GetxController {
 
   /// Setting initial screen
   Future<void> setInitialScreen() async {
-    if (_firebaseUser.value != null) {
-      await checkDeviceAndLogoutOldDevice();
-
-      // Ensure the user is still authenticated after the check
-      if (_auth.currentUser != null) {
-        Get.offAllNamed("main-screen");
-      } else {
-        Get.offAllNamed("login");
-      }
+    // loadingDialogController.showLoadingDialog();
+    if (await versionCheckController.checkVersion()) {
+      // loadingDialogController.closeLoadingDialog();
+      versionCheckController.showUpdateDialog();
     } else {
-      bool isFirstTime = userStorage.read('isFirstTime') ?? true;
-      if (isFirstTime) {
-        userStorage.write('isFirstTime', false);
-        Get.offAllNamed("onboarding");
+      // loadingDialogController.closeLoadingDialog();
+      if (_firebaseUser.value != null) {
+        // loadingDialogController.showLoadingDialog();
+        await checkDeviceAndLogoutOldDevice();
+
+        // Ensure the user is still authenticated after the check
+        if (_auth.currentUser != null) {
+          Get.offAllNamed("main-screen");
+        } else {
+          Get.offAllNamed("login");
+        }
       } else {
-        Get.offAllNamed("login");
+        bool isFirstTime = userStorage.read('isFirstTime') ?? true;
+        if (isFirstTime) {
+          userStorage.write('isFirstTime', false);
+          Get.offAllNamed("onboarding");
+        } else {
+          Get.offAllNamed("login");
+        }
       }
     }
   }

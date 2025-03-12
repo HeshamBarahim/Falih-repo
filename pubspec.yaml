@@ -58,6 +58,7 @@ dependencies:
   intl: null
   intl_utils: null
   lottie: ^3.2.0
+  package_info_plus: ^8.3.0
   path: ^1.9.0
   percent_indicator: null
   pinput: null
