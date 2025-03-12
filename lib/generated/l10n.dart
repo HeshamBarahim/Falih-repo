@@ -2666,6 +2666,16 @@ class S {
       args: [],
     );
   }
+
+  /// `فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى.`
+  String get no_notification {
+    return Intl.message(
+      'لا يوجد إشعارات',
+      name: 'no_notification',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

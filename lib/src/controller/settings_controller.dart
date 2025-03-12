@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -35,6 +36,14 @@ class SettingsController extends GetxController {
   void toggleNotification(bool isEnabled) {
     isEnabledNotification.value = isEnabled;
     _storage.write('isEnabledNotification', isEnabled);
+
+    if (isEnabled) {
+      // Request notification permissions if not granted
+      FirebaseMessaging.instance.requestPermission();
+    } else {
+      // Optionally, remove the device's FCM token to stop notifications
+      FirebaseMessaging.instance.deleteToken();
+    }
   }
 
   ThemeMode _loadThemeFromStorage() {

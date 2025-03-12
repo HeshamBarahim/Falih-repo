@@ -1,6 +1,5 @@
 import 'package:falih/src/config/images.dart';
 import 'package:falih/src/config/sizes.dart';
-import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 
 class NotificationContainer extends StatelessWidget {
@@ -22,7 +21,6 @@ class NotificationContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(bottom: 0),
       decoration: BoxDecoration(
-        color: Colors.white, // Background color of the container
         borderRadius: BorderRadius.circular(8), // Rounded corners
         border: Border.all(
           color: Colors.grey.shade300, // Border color
@@ -57,19 +55,10 @@ class NotificationContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title
-                Text(
-                  title,
-                  style: TextStyle(
-                      color: AppColors.bgScreen1,
-                      fontSize: SizeConfig.screenWidth! * 0.050,
-                      fontWeight: FontWeight.bold),
-                ),
+                Text(title, style: Theme.of(context).textTheme.titleLarge),
                 // Time and Date
                 SizedBox(height: SizeConfig.screenHeight! * 0.005),
-                Text(subTitle,
-                    style: TextStyle(
-                        color: AppColors.mainColor,
-                        fontSize: SizeConfig.screenWidth! * 0.040)),
+                Text(subTitle, style: Theme.of(context).textTheme.bodyMedium),
                 SizedBox(height: SizeConfig.screenHeight! * 0.010),
                 Text(date),
               ],
