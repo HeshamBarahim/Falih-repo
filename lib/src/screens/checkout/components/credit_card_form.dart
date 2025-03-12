@@ -1,129 +1,45 @@
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
-import 'checkout_textfield.dart';
+import '../../../controller/checkout_controller.dart';
+import '../../../helper/helper_controller.dart';
+import '../../Auth/widgets_auth/text_form_field.dart';
 
 class CreditCardForm extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
+  CreditCardForm({super.key});
 
-  final TextEditingController cardNumber;
-
-  final TextEditingController cardHolderName;
-
-  final TextEditingController cvvCvcNumber;
-
-  final Widget datePicker;
-
-  const CreditCardForm(
-      {super.key,
-      required this.formKey,
-      required this.cardNumber,
-      required this.cardHolderName,
-      required this.cvvCvcNumber,
-      required this.datePicker});
+  final CheckoutController controller = Get.put(CheckoutController());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Form(
-      key: formKey,
+      key: controller.formKey,
       child: Column(
         children: [
-          CheckoutTextfield(
-            label: S.of(context).account_number,
-            inputType: TextInputType.number,
-            controller: cardNumber,
-            validator: (val) {
-              //
-              if (val == null || val.isEmpty) {
-                return S.of(context).enter_account_number;
-              }
-              return null;
-            },
-            onChangedFunction: (val) {
-              return null;
-
-              //
-            },
-            inputFormatters: FilteringTextInputFormatter.deny(RegExp(r'\s')),
-            icon: Icons.credit_card,
-            hintText: 'Ex: 5261 4141 0151 8472',
+          CustomTextForm(
+            keyFormatter: true,
+            keyboardType: TextInputType.number,
+            myController: controller.cardNumber,
+            validator: Helper.validatePhoneNumber,
+            labelText: S.of(context).kurami_card,
+            prefixIcon: const Icon(
+              Icons.credit_card,
+            ),
           ),
-          ////////////////////
           SizedBox(height: SizeConfig.screenHeight! * 0.0296),
-          ////////////////////
-          CheckoutTextfield(
-            label: S.of(context).account_holder_number,
-            inputType: TextInputType.name,
-            controller: cardHolderName,
-            validator: (val) {
-              //
-              if (val == null || val.isEmpty) {
-                return S.of(context).enter_holder_number;
-              }
-              return null;
-            },
-            onChangedFunction: (val) {
-              return null;
-
-              //
-            },
-            inputFormatters: FilteringTextInputFormatter.deny(RegExp(r'\s')),
-            icon: null,
-            hintText: 'Ex: Sameer Saeed Anwar',
+          CustomTextForm(
+            keyFormatter: false,
+            keyboardType: TextInputType.text,
+            myController: controller.cardName,
+            validator: Helper.validatefullName,
+            labelText: S.of(context).hint_text_fullname,
+            prefixIcon: const Icon(
+              Icons.account_circle,
+            ),
           ),
-          ////////////////////
-          SizedBox(height: SizeConfig.screenHeight! * 0.0296),
-          ////////////////////
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.end,
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          //     Expanded(
-          //       child: Column(
-          //         crossAxisAlignment: CrossAxisAlignment.start,
-          //         children: [
-          //           Text(
-          //             'Expire date',
-          //             style: TextStyle(
-          //               fontSize: SizeConfig.screenWidth! * 0.0388,
-          //               color: Colors.black,
-          //               fontWeight: FontWeight.bold,
-          //             ),
-          //           ),
-          //           SizedBox(height: SizeConfig.screenHeight! * 0.0094),
-          //           datePicker,
-          //         ],
-          //       ),
-          //     ),
-          //     ////////////////////
-          //     SizedBox(width: SizeConfig.screenWidth! * 0.085),
-          //     ////////////////////
-          //     Expanded(
-          //       child: CheckoutTextfield(
-          //         label: 'CVV / CVC',
-          //         inputType: TextInputType.number,
-          //         controller: cvv_cvcNumber,
-          //         validator: (val) {
-          //           //
-          //           if (val == null || val.isEmpty) {
-          //             return 'Please Enter Your CVV / CVC Number';
-          //           }
-          //           return null;
-          //         },
-          //         onChangedFunction: (val) {
-          //           return null;
-          //           },
-          //         inputFormatters:
-          //             FilteringTextInputFormatter.deny(RegExp(r'\s')),
-          //         icon: Icons.info_rounded,
-          //         hintText: 'Ex: 915',
-          //       ),
-          //     ),
-          //   ],
-          // ),
         ],
       ),
     );

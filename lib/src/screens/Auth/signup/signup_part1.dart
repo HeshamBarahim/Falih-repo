@@ -125,7 +125,7 @@ class SignupPart1 extends StatelessWidget {
                         myController: controller.fullName,
                         validator: Helper.validatefullName,
                         labelText: S.of(context).hint_text_fullname,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.account_circle,
                         ),
                       ),
