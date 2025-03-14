@@ -1,5 +1,6 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/settings_controller.dart';
+import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
@@ -50,6 +51,7 @@ Future<void> initDependencies() async {
   Get.put(UserRepository());
   Get.put(UserController());
   Get.put(SettingsController());
+  Get.put(TextFormatterController());
   // Get.put(VersionCheckController());
 }
 

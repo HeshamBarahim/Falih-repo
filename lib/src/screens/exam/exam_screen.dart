@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
+import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/screens/exam/exam_widgets/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
@@ -11,6 +12,8 @@ import '../../config/sizes.dart';
 import '../../constants/functions.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
+
+final TextFormatterController textController = Get.find();
 
 class ExamScreen extends StatelessWidget {
   const ExamScreen({super.key});
@@ -180,8 +183,8 @@ class ExamScreen extends StatelessWidget {
                                   textDirection: isArabic(question.questionText)
                                       ? TextDirection.rtl
                                       : TextDirection.ltr,
-                                  child:
-                                      buildQuestionText(question.questionText)),
+                                  child: textController
+                                      .formatText(question.questionText)),
                             ],
                           ),
                         ),
@@ -276,19 +279,24 @@ class ExamScreen extends StatelessWidget {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      Text(
+
+                                      textController.formatText(
                                         option.toLowerCase().trim() == "true" ||
-                                                (option.toLowerCase().trim() ==
-                                                    "false")
+                                                option.toLowerCase().trim() ==
+                                                    "false"
                                             ? Get.locale?.languageCode == "ar"
-                                                ? option.toLowerCase().trim() ==
+                                                ? (option
+                                                            .toLowerCase()
+                                                            .trim() ==
                                                         "true"
                                                     ? "صح"
-                                                    : "خطأ"
-                                                : option.toLowerCase().trim() ==
+                                                    : "خطأ")
+                                                : (option
+                                                            .toLowerCase()
+                                                            .trim() ==
                                                         "true"
                                                     ? "True"
-                                                    : "False"
+                                                    : "False")
                                             : option,
                                         style: Theme.of(context)
                                             .textTheme
@@ -302,6 +310,7 @@ class ExamScreen extends StatelessWidget {
                                                       .primaryColor,
                                             ),
                                       ),
+
                                       const Spacer(),
                                       selectedAnswer != null &&
                                               question.correctAnswerIndex == idx
@@ -393,88 +402,88 @@ class ExamScreen extends StatelessWidget {
     );
   }
 
-  Widget buildQuestionText(String question) {
-    // Detect if the question contains mathematical symbols
-    bool containsMath = question.contains(RegExp(r'[/√^]'));
-    return containsMath
-        ? buildMathQuestion(question)
-        : Expanded(
-            child: AutoSizeText(
-              question,
-              style: Theme.of(Get.context!).textTheme.bodyMedium,
-              minFontSize: 12, // Minimum size to shrink to
-            ),
-          );
-  }
+  // Widget buildQuestionText(String question) {
+  //   // Detect if the question contains mathematical symbols
+  //   bool containsMath = question.contains(RegExp(r'[/√^]'));
+  //   return containsMath
+  //       ? buildMathQuestion(question)
+  //       : Expanded(
+  //           child: AutoSizeText(
+  //             question,
+  //             style: Theme.of(Get.context!).textTheme.bodyMedium,
+  //             minFontSize: 12, // Minimum size to shrink to
+  //           ),
+  //         );
+  // }
 
-  String formatFractions(String input) {
-    // First, replace fractions (e.g., 9/3) with LaTeX style \frac{numerator}{denominator}
-    input = input.replaceAllMapped(RegExp(r'(\d+)/(\d+)'), (match) {
-      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
-    });
+  // String formatFractions(String input) {
+  //   // First, replace fractions (e.g., 9/3) with LaTeX style \frac{numerator}{denominator}
+  //   input = input.replaceAllMapped(RegExp(r'(\d+)/(\d+)'), (match) {
+  //     return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+  //   });
 
-    input = input.replaceAllMapped(RegExp(r'(-?[\dπ]+)\/([\dπ]+)'), (match) {
-      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
-    });
+  //   input = input.replaceAllMapped(RegExp(r'(-?[\dπ]+)\/([\dπ]+)'), (match) {
+  //     return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+  //   });
 
-    input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/(\d+)'), (match) {
-      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
-    });
+  //   input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/(\d+)'), (match) {
+  //     return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+  //   });
 
-    while (input.indexOf('/') > 0) {
-      int divisionIndex = input.indexOf('/');
-      divisionIndex = divisionIndex - 1;
-      input = input.replaceFirst("/", "");
-      // input = r"\text {" +
-      input.substring(0, divisionIndex) +
-          r"} \frac " +
-          input.substring(divisionIndex, divisionIndex + 2) +
-          r"\text {" +
-          input.substring(divisionIndex + 2);
-    }
+  //   while (input.indexOf('/') > 0) {
+  //     int divisionIndex = input.indexOf('/');
+  //     divisionIndex = divisionIndex - 1;
+  //     input = input.replaceFirst("/", "");
+  //     // input = r"\text {" +
+  //     input.substring(0, divisionIndex) +
+  //         r"} \frac " +
+  //         input.substring(divisionIndex, divisionIndex + 2) +
+  //         r"\text {" +
+  //         input.substring(divisionIndex + 2);
+  //   }
 
-    while (input.indexOf('√') > 0) {
-      int rootIndex = input.indexOf('√');
-      rootIndex = rootIndex - 1;
-      input = input.replaceFirst("√", r" \sqrt");
-    }
+  //   while (input.indexOf('√') > 0) {
+  //     int rootIndex = input.indexOf('√');
+  //     rootIndex = rootIndex - 1;
+  //     input = input.replaceFirst("√", r" \sqrt");
+  //   }
 
-    // Now handle complex numbers like "9-3i" and "1+3i"
-    // input = input.replaceAllMapped(RegExp(r'([0-9\-+]+)(i)'), (match) {
-    //   return match.group(1)! + r"\cdot i"; // Convert "9-3i" into "9-3\cdot i"
-    // });
+  //   // Now handle complex numbers like "9-3i" and "1+3i"
+  //   // input = input.replaceAllMapped(RegExp(r'([0-9\-+]+)(i)'), (match) {
+  //   //   return match.group(1)! + r"\cdot i"; // Convert "9-3i" into "9-3\cdot i"
+  //   // });
 
-    // Optionally, you can format the entire complex number expression as a fraction (if applicable)
-    // Example: if the input is a complex number expression in the form of (a + bi)/(c + di)
-    input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/\(([^)]+)\)'), (match) {
-      return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
-    });
+  //   // Optionally, you can format the entire complex number expression as a fraction (if applicable)
+  //   // Example: if the input is a complex number expression in the form of (a + bi)/(c + di)
+  //   input = input.replaceAllMapped(RegExp(r'\(([^)]+)\)/\(([^)]+)\)'), (match) {
+  //     return r"\frac{" + match.group(1)! + "}{" + match.group(2)! + "}";
+  //   });
 
-    return input;
-  }
+  //   return input;
+  // }
 
-  Widget buildMathQuestion(String question) {
-    // Replace root by latex root
-    // print(question);
-    question = formatFractions(question);
-    question = question.replaceAll(' ', r'\,');
-    // print("------------");
-    // print(question);
+  // Widget buildMathQuestion(String question) {
+  //   // Replace root by latex root
+  //   // print(question);
+  //   question = formatFractions(question);
+  //   question = question.replaceAll(' ', r'\,');
+  //   // print("------------");
+  //   // print(question);
 
-    final maxWidth = SizeConfig.screenWidth! - 10;
-    final processedEquation = insertAllowBreakByCharCount(question, maxWidth);
-    // print(processedEquation);
-    final longEq = Math.tex(
-      processedEquation,
-      mathStyle: MathStyle.display,
-      textStyle: const TextStyle(fontSize: 18, color: AppColors.mainColor),
-    );
+  //   final maxWidth = SizeConfig.screenWidth! - 10;
+  //   final processedEquation = insertAllowBreakByCharCount(question, maxWidth);
+  //   // print(processedEquation);
+  //   final longEq = Math.tex(
+  //     processedEquation,
+  //     mathStyle: MathStyle.display,
+  //     textStyle: const TextStyle(fontSize: 18, color: AppColors.mainColor),
+  //   );
 
-    return Wrap(
-      runSpacing: 15,
-      children: longEq.texBreak().parts,
-    );
-  }
+  //   return Wrap(
+  //     runSpacing: 15,
+  //     children: longEq.texBreak().parts,
+  //   );
+  // }
 
   int estimateCharsPerLine(String sample, double maxWidth) {
     // Use a sample string that represents an average-case width.
