@@ -32,6 +32,7 @@ import 'firebase_options.dart';
 import 'generated/l10n.dart';
 import 'src/controller/network_controller_real_time.dart';
 import 'src/controller/notifications_controller.dart';
+import 'src/controller/version_check_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +50,7 @@ Future<void> initDependencies() async {
   Get.put(UserRepository());
   Get.put(UserController());
   Get.put(SettingsController());
+  // Get.put(VersionCheckController());
 }
 
 class MyApp extends StatelessWidget {
