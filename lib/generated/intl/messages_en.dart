@@ -396,7 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unit_exam": MessageLookupByLibrary.simpleMessage("Unit Exam"),
         "unit_exam_limit":
             MessageLookupByLibrary.simpleMessage("Unit Exam Limit:"),
-        "unit_exams": MessageLookupByLibrary.simpleMessage("unit_exams"),
+        "unit_exams": MessageLookupByLibrary.simpleMessage("Unit Exams"),
         "unlock_of_the_power": MessageLookupByLibrary.simpleMessage(
             "Unlock all the power of Falih and\n"),
         "update_profile":

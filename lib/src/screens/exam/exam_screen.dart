@@ -11,10 +11,11 @@ import '../../constants/functions.dart';
 import '../../controller/exam_controller.dart';
 import '../../controller/subjects_controller.dart';
 
-final TextFormatterController textController = Get.find();
-
 class ExamScreen extends StatelessWidget {
-  const ExamScreen({super.key});
+  ExamScreen({super.key});
+
+  final TextFormatterController textController =
+      Get.put(TextFormatterController());
 
   @override
   Widget build(BuildContext context) {
@@ -296,17 +297,6 @@ class ExamScreen extends StatelessWidget {
                                                     ? "True"
                                                     : "False")
                                             : option,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              color: Get.isDarkMode
-                                                  ? Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary
-                                                  : Theme.of(context)
-                                                      .primaryColor,
-                                            ),
                                       ),
 
                                       const Spacer(),

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'loading_dialog_controller.dart';
@@ -57,7 +57,7 @@ class VersionCheckController extends GetxController {
     if (versionCode != querySnapshot.docs.first['VersionCode'] ||
         versionName != querySnapshot.docs.first['VersionName']) {
       loadingDialogController.closeLoadingDialog();
-      return true;
+      return false;
       // showDialog(context: Get.context!, builder: )
       // _showUpdateDialog();
     } else {

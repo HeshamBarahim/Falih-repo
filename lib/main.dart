@@ -1,6 +1,5 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/settings_controller.dart';
-import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
@@ -33,7 +32,6 @@ import 'firebase_options.dart';
 import 'generated/l10n.dart';
 import 'src/controller/network_controller_real_time.dart';
 import 'src/controller/notifications_controller.dart';
-import 'src/controller/version_check_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,8 +49,6 @@ Future<void> initDependencies() async {
   Get.put(UserRepository());
   Get.put(UserController());
   Get.put(SettingsController());
-  Get.put(TextFormatterController());
-  // Get.put(VersionCheckController());
 }
 
 class MyApp extends StatelessWidget {
@@ -90,7 +86,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/main-screen', page: () => const MainScreen()),
         GetPage(name: '/subject-screen', page: () => SubjectPage()),
         GetPage(name: '/pre-exam', page: () => const PreExam()),
-        GetPage(name: '/exam', page: () => const ExamScreen()),
+        GetPage(name: '/exam', page: () => ExamScreen()),
         GetPage(name: '/results', page: () => const ResultsScreen()),
         GetPage(name: '/profile', page: () => ProfileScreen()),
         GetPage(

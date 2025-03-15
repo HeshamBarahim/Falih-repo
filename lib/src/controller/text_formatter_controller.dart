@@ -23,7 +23,10 @@ class FractionText extends StatelessWidget {
   Widget build(BuildContext context) {
     final parts = fraction.split('/');
     if (parts.length != 2) {
-      return Text(fraction, style: TextStyle(fontSize: fontSize, color: color));
+      return Text(fraction,
+          style: TextStyle(
+            fontSize: fontSize,
+          ));
     }
 
     final numerator = parts[0].trim();
@@ -35,19 +38,23 @@ class FractionText extends StatelessWidget {
         Text(
           numerator,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: fontSize, color: color),
+          style: TextStyle(
+            fontSize: fontSize,
+          ),
         ),
         if (showLine)
           Container(
             margin: const EdgeInsets.symmetric(vertical: 2),
             height: 1,
             width: lineWidth,
-            color: color,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         Text(
           denominator,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: fontSize, color: color),
+          style: TextStyle(
+            fontSize: fontSize,
+          ),
         ),
       ],
     );
@@ -58,10 +65,7 @@ class FractionText extends StatelessWidget {
 /// It detects markers for superscript/subscript as well as fractions.
 /// This version uses '#' markers for fractions, with an optional 'n' prefix to indicate no line.
 class TextFormatterController extends GetxController {
-  Text formatText(String text, {TextStyle? style}) {
-    // Use the provided style or fallback to a default one.
-    final defaultStyle =
-        style ?? const TextStyle(fontSize: 20, color: Colors.black);
+  Text formatText(String text) {
     List<InlineSpan> spans = [];
 
     // Regex remains the same
@@ -76,7 +80,10 @@ class TextFormatterController extends GetxController {
       if (match.start > lastIndex) {
         spans.add(TextSpan(
           text: text.substring(lastIndex, match.start),
-          style: defaultStyle,
+          style: Theme.of(Get.context!)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
         ));
       }
 
@@ -95,10 +102,8 @@ class TextFormatterController extends GetxController {
               offset: offset,
               child: Text(
                 characters,
-                style: defaultStyle.copyWith(
-                    fontSize: defaultStyle.fontSize != null
-                        ? defaultStyle.fontSize! * 0.7
-                        : 14),
+                style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(Get.context!).colorScheme.secondary),
               ),
             ),
           ),
@@ -117,11 +122,8 @@ class TextFormatterController extends GetxController {
             alignment: PlaceholderAlignment.middle,
             child: FractionText(
               fraction: fractionCode,
-              fontSize: defaultStyle.fontSize != null
-                  ? defaultStyle.fontSize! * 0.7
-                  : 14,
+              fontSize: 14,
               lineWidth: 40,
-              color: defaultStyle.color ?? Colors.black,
               showLine: showLine,
             ),
           ),
@@ -135,14 +137,20 @@ class TextFormatterController extends GetxController {
     if (lastIndex < text.length) {
       spans.add(TextSpan(
         text: text.substring(lastIndex),
-        style: defaultStyle,
+        style: Theme.of(Get.context!)
+            .textTheme
+            .bodyLarge
+            ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
       ));
     }
 
     return Text.rich(
       TextSpan(
-        style: defaultStyle,
         children: spans,
+        style: Theme.of(Get.context!)
+            .textTheme
+            .bodyLarge
+            ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
       ),
     );
   }

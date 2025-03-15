@@ -66,20 +66,23 @@ class SubjectsLabels extends StatelessWidget {
                               : Theme.of(context).colorScheme.primary,
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              items[index].labelName,
-                              style:
-                                  subjectController.selectedIndex.value == index
-                                      ? Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary)
-                                      : Theme.of(context).textTheme.bodySmall,
+                            Expanded(
+                              child: Text(
+                                items[index].labelName,
+                                textAlign: TextAlign.center,
+                                style: subjectController.selectedIndex.value ==
+                                        index
+                                    ? Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary)
+                                    : Theme.of(context).textTheme.bodySmall,
+                              ),
                             ),
                           ],
                         ),
@@ -131,14 +134,12 @@ class SubjectsLabels extends StatelessWidget {
                                                     .selectedSectionIndex
                                                     .value ==
                                                 index
-                                            ? Theme
-                                            .of(context)
-                                            .colorScheme
-                                            .secondary
-                                            : Theme
-                                            .of(context)
-                                            .colorScheme
-                                            .primary,
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .secondary
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                       ),
                                       child: Center(
                                         child: AutoSizeText(
@@ -232,14 +233,12 @@ class SubjectsLabels extends StatelessWidget {
                                                           subjectController
                                                               .id.value]!
                                                       .length
-                                              ? Theme
-                                              .of(context)
-                                              .colorScheme
-                                              .secondary
-                                              : Theme
-                                              .of(context)
-                                              .colorScheme
-                                              .primary,
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
