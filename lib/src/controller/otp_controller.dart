@@ -99,7 +99,6 @@ class OtpController extends GetxController {
         isSending.value = false;
       } else {
         Get.back();
-        // showErrorMessage('Failed to send OTP. Please try again.');
         showErrorMessage(S.current.failed_send_ver_code);
       }
     } on TimeoutException {

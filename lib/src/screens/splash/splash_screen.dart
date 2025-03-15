@@ -18,6 +18,7 @@ class SplashScreen extends StatelessWidget {
             child: LottieBuilder.asset(
               'assets/splash_animation/splash_View.json',
               fit: BoxFit.cover,
+              repeat: false,
             ),
           ),
         ),

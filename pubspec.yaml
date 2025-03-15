@@ -46,7 +46,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.7.4+3
-  flutter_math_fork: null
   flutter_native_splash: null
   get: null
   get_storage: null
@@ -83,10 +82,13 @@ flutter_native_splash:
   ios: true
   web: false
 
-  color: "#FBF7FC" # Background color
+  color: "#FBF7FC" # Light mode background
+  color_dark: "#532262" # Dark mode background (adjust the color as needed)
 
   android_12:
-    color: "#FBF7FC"
+    color: "#FBF7FC" # Light mode background for Android 12
+    color_dark: "#532262" # Dark mode background for Android 12
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

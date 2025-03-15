@@ -1,10 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/config/themes.dart';
 import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/screens/exam/exam_widgets/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:get/get.dart';
 
 import '../../config/images.dart';

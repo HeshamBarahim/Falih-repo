@@ -78,12 +78,10 @@ class Login extends StatelessWidget {
                                 vertical: SizeConfig.screenHeight! * 0.02),
                             child: Text(
                               S.of(context).title_login,
-                              style: const TextStyle(
-                                color: AppColors.darkMainColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 28,
-                              ),
-                            ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(fontSize: 36)),
                           ),
                           CustomTextForm(
                             keyFormatter: true,
@@ -120,11 +118,11 @@ class Login extends StatelessWidget {
                               },
                               child: Text(
                                 S.of(context).forget_password,
-                                style: const TextStyle(
-                                  color: AppColors.warningColor,
-                                  fontSize: 14,
-                                ),
-                              ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall
+                                      ?.copyWith(
+                                          color: AppColors.warningColor)),
                             ),
                           ),
                         ],
