@@ -32,11 +32,6 @@ class PreferencesSection extends StatelessWidget {
               // Dark Mode toggle Button Function
               onChanged: (val) {
                 settingsController.toggleDarkMode(val);
-                if (val) {
-                  Get.changeTheme(darkAppTheme);
-                } else {
-                  Get.changeTheme(appTheme);
-                }
               },
             ),
           ),

@@ -27,10 +27,16 @@ class SettingsController extends GetxController {
   }
 
   // Update the state
-  void toggleDarkMode(bool isDark) {
+  Future<void> toggleDarkMode(bool isDark) async {
     isDarkMode.value = isDark;
     themeMode.value = isDark ? ThemeMode.dark : ThemeMode.light;
-    _storage.write('isDarkMode', isDark);
+    await _storage.write('isDarkMode', isDark);
+
+    if (isDark) {
+      Get.changeThemeMode(ThemeMode.dark);
+    } else {
+      Get.changeThemeMode(ThemeMode.light);
+    }
   }
 
   void toggleNotification(bool isEnabled) {
