@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart' as rive;
 
-import '../../../../generated/l10n.dart';
 import '../../curriculum/curriculum_page.dart';
 import '../../home/home_page.dart';
 import '../../leaderboard/leaderboard_screen.dart';
@@ -37,11 +36,12 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
     HomePage(),
     LeaderBoardScreen(),
   ];
-  final screenTitle = [
-    S.current.subjects,
-    S.current.home,
-    S.current.leaderBoard
-  ];
+
+  // final screenTitle = [
+  //   S.of(Get.context!).subjects,
+  //   S.of(Get.context!).home,
+  //   S.of(Get.context!).leaderBoard
+  // ];
 
   @override
   void onInit() {

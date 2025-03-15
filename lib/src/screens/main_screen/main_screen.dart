@@ -39,23 +39,38 @@ class MainScreen extends StatelessWidget {
           children: [
             Scaffold(
               appBar: AppBar(
-                elevation: 0,
-                scrolledUnderElevation: 0,
-                backgroundColor: Colors.transparent,
-                title: Text(
-                  controller.screenTitle[controller.selectedIndex],
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                centerTitle: true,
-                leading: IconButton(
-                  onPressed: () {
-                    Get.toNamed("notification");
-                  },
-                  icon: const Icon(
-                    Icons.notifications,
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: Colors.transparent,
+                  title: Text(
+                    controller.selectedIndex == 0
+                        ? S.current.subjects
+                        : controller.selectedIndex == 1
+                            ? S.current.home
+                            : S.current.leaderBoard,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                ),
-              ),
+                  centerTitle: true,
+                  actions: [
+                    Directionality.of(context) == TextDirection.ltr
+                        ? IconButton(
+                            onPressed: () {
+                              Get.toNamed("notification");
+                            },
+                            icon: const Icon(Icons.notifications),
+                          )
+                        : Container()
+                  ],
+                  leading: Directionality.of(context) == TextDirection.rtl
+                      ? IconButton(
+                          onPressed: () {
+                            Get.toNamed("notification");
+                          },
+                          icon: const Icon(
+                            Icons.notifications,
+                          ),
+                        )
+                      : Container()),
               resizeToAvoidBottomInset: false,
               extendBody: true,
               body: Transform(
@@ -116,26 +131,26 @@ class MainScreen extends StatelessWidget {
               child: const NavBar(),
             ),
             AnimatedPositioned(
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.fastOutSlowIn,
-                  left: controller.isSideNavBarClosed
-                      ? 0
-                      : SizeConfig.screenWidth! * 0.60,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.fastOutSlowIn,
+              left: controller.isSideNavBarClosed
+                  ? 0
+                  : SizeConfig.screenWidth! * 0.60,
               top: -50,
               child: Padding(
                 padding: const EdgeInsets.only(top: 105),
                 child: NavBarButton(
                   riveOnInit: (artboard) {
-                        controller.onPressriveOnInit(artboard);
-                      },
-                      press: () {
-                        controller.onPressNavBarButton();
-                        controller.onOpen();
-                      },
-                    ),
-                  ),
+                    controller.onPressriveOnInit(artboard);
+                  },
+                  press: () {
+                    controller.onPressNavBarButton();
+                    controller.onOpen();
+                  },
                 ),
-              ],
+              ),
+            ),
+          ],
         ),
       ),
     );
