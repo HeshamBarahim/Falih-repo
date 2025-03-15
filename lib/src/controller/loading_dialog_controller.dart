@@ -21,6 +21,7 @@ class LoadingDialogController extends GetxController {
                 }
               },
               child: Dialog(
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     maxWidth: SizeConfig.screenWidth! * 0.8,
@@ -42,25 +43,36 @@ class LoadingDialogController extends GetxController {
                             // Arabic language: reverse the order of the widgets
                             Text(
                               S.current.loading_text,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: Theme.of(context).primaryColor),
                               textDirection: TextDirection.ltr,
                             ),
                             SizedBox(width: SizeConfig.screenWidth! * 0.04),
                             CircularProgressIndicator(
                               strokeWidth: SizeConfig.screenWidth! * 0.008,
                               strokeAlign: SizeConfig.screenWidth! * 0.003,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ] else ...[
                             // Default (LTR) language: use the original order
 
                             Text(
                               S.current.loading_text,
-                              textDirection: TextDirection.rtl,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: Theme.of(context).primaryColor),
+                              textDirection: TextDirection.ltr,
                             ),
                             SizedBox(width: SizeConfig.screenWidth! * 0.04),
                             CircularProgressIndicator(
                               strokeWidth: SizeConfig.screenWidth! * 0.008,
                               strokeAlign: SizeConfig.screenWidth! * 0.003,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ],
                         ],
