@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/sizes.dart';
-import '../../../config/themes.dart';
 import '../../../controller/show_password_controller.dart';
 import '../widgets_auth/password_text_form_field.dart';
 
@@ -42,7 +41,8 @@ class SignupPart1 extends StatelessWidget {
                                 children: [
                                   CircleAvatar(
                                     radius: SizeConfig.screenWidth! * 0.13,
-                                    backgroundColor: AppColors.lightenMainColor,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
                                     child: c2.file2 != null
                                         ? ClipOval(
                                             child: Image.file(
@@ -70,8 +70,10 @@ class SignupPart1 extends StatelessWidget {
                                     child: Container(
                                       height: SizeConfig.screenWidth! * 0.07,
                                       width: SizeConfig.screenWidth! * 0.07,
-                                      decoration: const BoxDecoration(
-                                        color: AppColors.mainColor,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                         shape: BoxShape.circle,
                                       ),
                                       child: IconButton(

@@ -47,14 +47,10 @@ class AuthenticationRepository extends GetxController {
 
   /// Setting initial screen
   Future<void> setInitialScreen() async {
-    // loadingDialogController.showLoadingDialog();
     if (await versionCheckController.checkVersion()) {
-      // loadingDialogController.closeLoadingDialog();
       versionCheckController.showUpdateDialog();
     } else {
-      // loadingDialogController.closeLoadingDialog();
       if (_firebaseUser.value != null) {
-        // loadingDialogController.showLoadingDialog();
         await checkDeviceAndLogoutOldDevice();
 
         // Ensure the user is still authenticated after the check

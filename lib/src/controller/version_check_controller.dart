@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
 
 class VersionCheckController extends GetxController {
@@ -44,8 +45,6 @@ class VersionCheckController extends GetxController {
   }
 
   Future<bool> checkVersion() async {
-    // loadingDialogController.showLoadingDialog();
-    // List<QueryDocumentSnapshot> version = [];
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
     String versionName = packageInfo.version; // Version Name
@@ -53,40 +52,12 @@ class VersionCheckController extends GetxController {
 
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await FirebaseFirestore.instance.collection('app_config').get();
-    // version.addAll(querySnapshot.docs);
     if (versionCode != querySnapshot.docs.first['VersionCode'] ||
         versionName != querySnapshot.docs.first['VersionName']) {
-      loadingDialogController.closeLoadingDialog();
-      return false;
-      // showDialog(context: Get.context!, builder: )
-      // _showUpdateDialog();
+      return true;
     } else {
       return false;
-      // loadingDialogController.closeLoadingDialog();
-      // Get.back();
     }
-    /////////////////////////////////////////////
-    try {
-      // QuerySnapshot<Map<String, dynamic>> querySnapshot =
-      //     await FirebaseFirestore.instance.collection('app_config').get();
-      // // version.addAll(querySnapshot.docs);
-      // if (versionCode != querySnapshot.docs.first['VersionCode'] &&
-      //     versionName != querySnapshot.docs.first['VersionName']) {
-      //   loadingDialogController.closeLoadingDialog();
-      //   return true;
-      //   // showDialog(context: Get.context!, builder: )
-      //   // _showUpdateDialog();
-      // } else {
-      //   return false;
-      //   // loadingDialogController.closeLoadingDialog();
-      //   // Get.back();
-      // }
-    } on FirebaseException catch (e) {
-      throw e.message.toString();
-    } catch (_) {
-      throw 'Something went wrong. Please Try Again';
-    }
-    /////////////////////////////////////////////
   }
 
   void showUpdateDialog() {
@@ -95,17 +66,27 @@ class VersionCheckController extends GetxController {
       barrierDismissible:
           false, // لا يمكن للمستخدم إغلاق الـ Dialog بالضغط خارجها
       builder: (context) => AlertDialog(
-        title: Text('تحديث جديد متاح'),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          'تحديث جديد متاح',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         content:
             Text('هناك تحديث جديد للتطبيق، قم بتحديث التطبيق أولًا لاستخدامه.'),
         actions: [
           TextButton(
             onPressed: () => _launchURL(),
-            child: Text('تحديث'),
+            child: Text(
+              'تحديث',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
           TextButton(
             onPressed: () => _exitApp(),
-            child: Text('خروج'),
+            child: Text(
+              S.current.exit,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
         ],
       ),
@@ -113,6 +94,7 @@ class VersionCheckController extends GetxController {
   }
 
   void _launchURL() {}
+
   void _exitApp() {
     exit(0);
   }
