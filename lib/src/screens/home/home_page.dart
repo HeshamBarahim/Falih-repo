@@ -79,11 +79,17 @@ class HomePage extends StatelessWidget {
                                   : "U";
 
                               return CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
                                   radius: (SizeConfig.screenWidth! * 0.141),
                                   child: Text(initial,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge));
+                                          .titleLarge
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              fontSize: 48)));
                             },
                             fit: BoxFit.cover,
                             width: SizeConfig.screenWidth! * 0.282,
@@ -121,21 +127,13 @@ class HomePage extends StatelessWidget {
                                                   .textTheme
                                                   .bodyMedium),
                                           Text(
-                                              "${S
-                                                  .of(context)
-                                                  .over_all_points}: ${controller
-                                                  .overallPoints.value}",
-                                              style: Theme
-                                                  .of(context)
+                                              "${S.of(context).over_all_points}: ${controller.overallPoints.value}",
+                                              style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium),
                                           Text(
-                                              "${S
-                                                  .of(context)
-                                                  .this_month_points}: ${controller
-                                                  .point.value}",
-                                              style: Theme
-                                                  .of(context)
+                                              "${S.of(context).this_month_points}: ${controller.point.value}",
+                                              style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium),
                                         ],
@@ -169,14 +167,9 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                  '${((controller.point.value /
-                                      controller.maxPoint.value) * 100)
-                                      .toStringAsFixed(2)}%',
+                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
                                   style:
-                                  Theme
-                                      .of(context)
-                                      .textTheme
-                                      .bodyMedium),
+                                      Theme.of(context).textTheme.bodyMedium),
                             )
                           ],
                         )
@@ -186,14 +179,9 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                  '${((controller.point.value /
-                                      controller.maxPoint.value) * 100)
-                                      .toStringAsFixed(2)}%',
+                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
                                   style:
-                                  Theme
-                                      .of(context)
-                                      .textTheme
-                                      .bodyMedium),
+                                      Theme.of(context).textTheme.bodyMedium),
                             ),
                             const SizedBox(
                               width: 10,
@@ -204,14 +192,8 @@ class HomePage extends StatelessWidget {
                                     controller.maxPoint.value,
                                 // Bind progress value
                                 backgroundColor:
-                                Theme
-                                    .of(context)
-                                    .colorScheme
-                                    .secondary,
-                                color: Theme
-                                    .of(context)
-                                    .colorScheme
-                                    .primary,
+                                    Theme.of(context).colorScheme.secondary,
+                                color: Theme.of(context).colorScheme.primary,
                                 minHeight: 10,
                               ),
                             ),
@@ -227,10 +209,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.02),
             Container(
               decoration: BoxDecoration(
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .surface, // Container color
+                color: Theme.of(context).colorScheme.surface, // Container color
                 borderRadius: BorderRadius.circular(8), // Rounded corners
                 boxShadow: [
                   BoxShadow(
@@ -267,11 +246,11 @@ class HomePage extends StatelessWidget {
                         )
                       : controller.visibleExams.isEmpty
                           ? Center(
-                              child: AspectRatio(
-                                aspectRatio:
-                                    1, // 1:1 ratio (square), adjust as needed
-                                child: Lottie.asset(Images.emptyAnimation),
-                              ),
+                              child: Lottie.asset(
+                                  width: 200, // Set your desired width
+                                  height: 200, // Set your desired height
+                                  fit: BoxFit.fill,
+                                  Images.emptyAnimation),
                             )
                           : Padding(
                               padding: const EdgeInsets.only(bottom: 20),
@@ -307,8 +286,7 @@ class HomePage extends StatelessWidget {
                                             percent: roundedPercentage,
                                             center: Text(
                                                 "${roundedPercentage * 100}%",
-                                                style: Theme
-                                                    .of(context)
+                                                style: Theme.of(context)
                                                     .textTheme
                                                     .bodySmall),
                                             progressColor: (examResult[
@@ -402,8 +380,7 @@ class HomePage extends StatelessWidget {
                                               Text(
                                                   getTypeExamDisplayName(
                                                       examResult["examType"]),
-                                                  style: Theme
-                                                      .of(context)
+                                                  style: Theme.of(context)
                                                       .textTheme
                                                       .bodySmall)
                                             ],
@@ -423,30 +400,21 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                  "${S
-                                                      .of(context)
-                                                      .on}: ${DateFormat(
-                                                      'yyyy-MM-dd HH:mm')
-                                                      .format(examResult["date"]
-                                                      .toDate())}",
+                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
-                                                  style: Theme
-                                                      .of(context)
+                                                  style: Theme.of(context)
                                                       .textTheme
                                                       .bodySmall),
                                               Text(
-                                                  "${examResult["points"]} ${S
-                                                      .of(context)
-                                                      .points}",
+                                                  "${examResult["points"]} ${S.of(context).points}",
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   textAlign: TextAlign.right,
-                                                  style: Theme
-                                                      .of(context)
+                                                  style: Theme.of(context)
                                                       .textTheme
                                                       .bodySmall),
                                             ],

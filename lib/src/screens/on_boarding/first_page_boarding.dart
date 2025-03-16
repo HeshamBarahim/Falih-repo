@@ -69,7 +69,7 @@ class FirstPageBoarding extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
-                    padding: EdgeInsets.all(SizeConfig.screenWidth! * 0.03),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -79,7 +79,7 @@ class FirstPageBoarding extends StatelessWidget {
                           child: Text(
                             S.of(context).welcome_to,
                             style: TextStyle(
-                              fontSize: SizeConfig.screenHeight! * 0.03,
+                              fontSize: SizeConfig.screenHeight! * 0.04,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -90,7 +90,7 @@ class FirstPageBoarding extends StatelessWidget {
                           child: Text(
                             S.of(context).falih,
                             style: TextStyle(
-                              fontSize: SizeConfig.screenHeight! * 0.03,
+                              fontSize: SizeConfig.screenHeight! * 0.04,
                               fontWeight: FontWeight.bold,
                               color: AppColors.bgScreen1,
                             ),
@@ -111,7 +111,7 @@ class FirstPageBoarding extends StatelessWidget {
                                 S.of(context).explaination_on_boarding_1,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: SizeConfig.screenHeight! * 0.02,
+                                  fontSize: SizeConfig.screenHeight! * 0.026,
                                 ),
                               ),
                             ),

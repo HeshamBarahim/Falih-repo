@@ -236,6 +236,11 @@ final ThemeData appTheme = ThemeData(
   dropdownMenuTheme: DropdownMenuThemeData(
     inputDecorationTheme: const InputDecorationTheme(
       border: InputBorder.none, // Removes border for DropdownButtonFormField
+      hintStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: Colors.red,
+      ),
     ),
     menuStyle: MenuStyle(
       side: WidgetStateProperty.all(BorderSide.none),
