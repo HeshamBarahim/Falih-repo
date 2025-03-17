@@ -4,45 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../generated/l10n.dart';
-import 'loading_dialog_controller.dart';
 
 class VersionCheckController extends GetxController {
-  final LoadingDialogController loadingDialogController =
-      LoadingDialogController();
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    checkVersion();
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    // _showSnackbar(title: 'title', message: 'message', color: Colors.black, icon: Icons.abc);
-  }
-
-  // Show a snackbar with custom message
-  void _showSnackbar(
-      {required String title,
-      required String message,
-      required Color color,
-      required IconData icon}) {
-    Get.snackbar(
-      title,
-      message,
-      backgroundColor: color,
-      colorText: Colors.white,
-      dismissDirection: DismissDirection.horizontal,
-      snackPosition: SnackPosition.TOP,
-      duration: const Duration(seconds: 4),
-      icon: Icon(icon, color: Colors.white),
-    );
-  }
 
   Future<bool> checkVersion() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -63,21 +29,19 @@ class VersionCheckController extends GetxController {
   void showUpdateDialog() {
     showDialog(
       context: Get.context!,
-      barrierDismissible:
-          false, // لا يمكن للمستخدم إغلاق الـ Dialog بالضغط خارجها
+      barrierDismissible: false,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
-          'تحديث جديد متاح',
+          S.current.new_update_available,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        content:
-            Text('هناك تحديث جديد للتطبيق، قم بتحديث التطبيق أولًا لاستخدامه.'),
+        content: Text(S.current.new_update_available_text),
         actions: [
           TextButton(
             onPressed: () => _launchURL(),
             child: Text(
-              'تحديث',
+              S.current.update,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
@@ -93,7 +57,14 @@ class VersionCheckController extends GetxController {
     );
   }
 
-  void _launchURL() {}
+  Future<void> _launchURL() async {
+    final Uri url = Uri.parse(
+        "https://play.google.com/store/apps/details?id=com.falih.app");
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw "Could not launch $url";
+    }
+  }
 
   void _exitApp() {
     exit(0);

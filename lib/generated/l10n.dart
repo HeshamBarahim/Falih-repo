@@ -99,6 +99,33 @@ class S {
     );
   }
 
+  String get update {
+    return Intl.message(
+      'تحديث',
+      name: 'Update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get new_update_available_text {
+    return Intl.message(
+      '',
+      name: 'new_update_available_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get new_update_available {
+    return Intl.message(
+      '',
+      name: 'new_update_available',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get exit_exam {
     return Intl.message(
       'خروج من الاختبار',

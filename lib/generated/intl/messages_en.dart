@@ -364,6 +364,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "new_update_available":
+            MessageLookupByLibrary.simpleMessage("New update available"),
+        "new_update_available_text": MessageLookupByLibrary.simpleMessage(
+            "There is a new app update, update the app first to use it."),
         "exit_exam": MessageLookupByLibrary.simpleMessage("Exit Exam"),
         "exit_exam_warning": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to exit the exam?"),

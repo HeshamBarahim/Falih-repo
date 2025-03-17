@@ -362,6 +362,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "exit": MessageLookupByLibrary.simpleMessage("خروج"),
+        "update": MessageLookupByLibrary.simpleMessage("تحديث"),
+        "new_update_available":
+            MessageLookupByLibrary.simpleMessage("تحديث جديد متاح"),
+        "new_update_available_text": MessageLookupByLibrary.simpleMessage(
+            "هناك تحديث جديد للتطبيق، قم بتحديث التطبيق أولًا لاستخدامه."),
         "exit_exam": MessageLookupByLibrary.simpleMessage("خروج من الاختبار"),
         "exit_exam_warning": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد من أنك تريد الخروج من الاختبار؟"),
