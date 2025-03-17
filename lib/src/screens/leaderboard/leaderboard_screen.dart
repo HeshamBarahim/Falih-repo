@@ -50,6 +50,7 @@ class LeaderBoardScreen extends StatelessWidget {
                             rank: index + 1,
                             name: user.fullName.split(" ")[0].capitalizeFirst ??
                                 "",
+                            userName: user.userName?.split(" ")[0] ?? "",
                             points: controller.userPoints[user.id] ?? 0);
                       }).toList(),
                     ),

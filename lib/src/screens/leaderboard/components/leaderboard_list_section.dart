@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class LeaderboardListSection extends StatelessWidget {
   final String id;
   final String name;
+  final String userName;
   final int points;
   final int rank;
 
@@ -14,6 +15,7 @@ class LeaderboardListSection extends StatelessWidget {
     super.key,
     required this.id,
     required this.name,
+    required this.userName,
     required this.points,
     required this.rank,
   });
@@ -63,7 +65,7 @@ class LeaderboardListSection extends StatelessWidget {
                           ? Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: Theme.of(context).colorScheme.primary)
                           : Theme.of(context).textTheme.titleSmall),
-                  Text(user?.userName?.capitalize ?? "",
+                  Text(userName.capitalize ?? "",
                       style: id == user?.id.toString()
                           ? Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: Theme.of(context).colorScheme.primary)
