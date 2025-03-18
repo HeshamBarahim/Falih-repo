@@ -1,6 +1,7 @@
 // navbar_tile
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+
 import '../../../config/sizes.dart';
 import '../models/rive_asset.dart';
 
@@ -30,9 +31,10 @@ class NavBarTile extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth! * 0.036),
           child: Divider(
             color: Colors.white24,
-            height: SizeConfig.screenHeight! * 0.001,
+            height: SizeConfig.screenHeight! * 0.003,
           ),
         ),
+
         Stack(
           children: [
             // AnimatedPositioned widget for the active state indicator

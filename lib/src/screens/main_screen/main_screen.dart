@@ -8,7 +8,6 @@ import '../../../generated/l10n.dart';
 import '../../config/sizes.dart';
 import 'components/bottom_nav_bar.dart';
 import 'components/nav_bar.dart';
-import 'components/nav_bar_button.dart';
 import 'controller/nav_bar_controller.dart';
 
 class MainScreen extends StatelessWidget {
@@ -39,38 +38,73 @@ class MainScreen extends StatelessWidget {
           children: [
             Scaffold(
               appBar: AppBar(
-                  elevation: 0,
-                  scrolledUnderElevation: 0,
-                  backgroundColor: Colors.transparent,
-                  title: Text(
-                    controller.selectedIndex == 0
-                        ? S.current.subjects
-                        : controller.selectedIndex == 1
-                            ? S.current.home
-                            : S.current.leaderBoard,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  centerTitle: true,
-                  actions: [
-                    Directionality.of(context) == TextDirection.ltr
+                elevation: 0,
+                scrolledUnderElevation: 0,
+                backgroundColor: Colors.transparent,
+                title: Text(
+                  controller.selectedIndex == 0
+                      ? S.current.subjects
+                      : controller.selectedIndex == 1
+                          ? S.current.home
+                          : S.current.leaderBoard,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                centerTitle: true,
+                actions: [
+                  Directionality.of(context) == TextDirection.ltr
+                      ? controller.isSideNavBarClosed
+                          ? IconButton(
+                              onPressed: () {
+                                Get.toNamed("notification");
+                              },
+                              icon: const Icon(
+                                Icons.notifications,
+                              ),
+                            )
+                          : IconButton(
+                              onPressed: () {
+                                controller.onPressNavBarButton();
+                                controller.onOpen();
+                              },
+                              icon: const Icon(
+                                Icons.close,
+                              ),
+                            )
+                      : IconButton(
+                          onPressed: () {
+                            controller.onPressNavBarButton();
+                            controller.onOpen();
+                          },
+                          icon: const Icon(Icons.menu),
+                        )
+                ],
+                leading: Directionality.of(context) == TextDirection.rtl
+                    ? controller.isSideNavBarClosed
                         ? IconButton(
                             onPressed: () {
                               Get.toNamed("notification");
                             },
-                            icon: const Icon(Icons.notifications),
+                            icon: const Icon(
+                              Icons.notifications,
+                            ),
                           )
-                        : Container()
-                  ],
-                  leading: Directionality.of(context) == TextDirection.rtl
-                      ? IconButton(
-                          onPressed: () {
-                            Get.toNamed("notification");
-                          },
-                          icon: const Icon(
-                            Icons.notifications,
-                          ),
-                        )
-                      : Container()),
+                        : IconButton(
+                            onPressed: () {
+                              controller.onPressNavBarButton();
+                              controller.onOpen();
+                            },
+                            icon: const Icon(
+                              Icons.close,
+                            ),
+                          )
+                    : IconButton(
+                        onPressed: () {
+                          controller.onPressNavBarButton();
+                          controller.onOpen();
+                        },
+                        icon: const Icon(Icons.menu),
+                      ),
+              ),
               resizeToAvoidBottomInset: false,
               extendBody: true,
               body: Transform(
@@ -130,26 +164,26 @@ class MainScreen extends StatelessWidget {
               height: SizeConfig.screenHeight!,
               child: const NavBar(),
             ),
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 600),
-              curve: Curves.fastOutSlowIn,
-              left: controller.isSideNavBarClosed
-                  ? 0
-                  : SizeConfig.screenWidth! * 0.60,
-              top: -50,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 105),
-                child: NavBarButton(
-                  riveOnInit: (artboard) {
-                    controller.onPressriveOnInit(artboard);
-                  },
-                  press: () {
-                    controller.onPressNavBarButton();
-                    controller.onOpen();
-                  },
-                ),
-              ),
-            ),
+            // AnimatedPositioned(
+            //   duration: const Duration(milliseconds: 600),
+            //   curve: Curves.fastOutSlowIn,
+            //   left: controller.isSideNavBarClosed
+            //       ? 0
+            //       : SizeConfig.screenWidth! * 0.60,
+            //   top: -50,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(top: 105),
+            //     child: NavBarButton(
+            //       riveOnInit: (artboard) {
+            //         controller.onPressriveOnInit(artboard);
+            //       },
+            //       press: () {
+            //         controller.onPressNavBarButton();
+            //         controller.onOpen();
+            //       },
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
