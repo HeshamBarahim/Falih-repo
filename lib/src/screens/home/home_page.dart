@@ -187,16 +187,35 @@ class HomePage extends StatelessWidget {
                               width: 10,
                             ),
                             Expanded(
-                              child: LinearProgressIndicator(
-                                value: controller.point.value /
-                                    controller.maxPoint.value,
-                                // Bind progress value
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                color: Theme.of(context).colorScheme.primary,
-                                minHeight: 10,
+                                child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    width: 2), // Add border
+                                borderRadius: BorderRadius.circular(
+                                    0), // Optional: Rounded corners
                               ),
-                            ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(0),
+                                // Match border radius to avoid overflow
+                                child: LinearProgressIndicator(
+                                  value: controller.point.value /
+                                      controller.maxPoint.value,
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  minHeight: 10,
+                                ),
+                              ),
+                            )),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text('${controller.maxPoint.value}',
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                            )
                           ],
                         )
                 ],
