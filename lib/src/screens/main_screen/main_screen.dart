@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
                 centerTitle: true,
                 actions: [
                   Directionality.of(context) == TextDirection.ltr
-                      ? controller.isSideNavBarClosed
+                      ? controller.isSideNavBarClosed.value
                           ? IconButton(
                               onPressed: () {
                                 Get.toNamed("notification");
@@ -79,7 +79,7 @@ class MainScreen extends StatelessWidget {
                         )
                 ],
                 leading: Directionality.of(context) == TextDirection.rtl
-                    ? controller.isSideNavBarClosed
+                    ? controller.isSideNavBarClosed.value
                         ? IconButton(
                             onPressed: () {
                               Get.toNamed("notification");
@@ -158,7 +158,7 @@ class MainScreen extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               curve: Curves.fastOutSlowIn,
               width: SizeConfig.screenWidth! * 0.7,
-              left: controller.isSideNavBarClosed
+              left: controller.isSideNavBarClosed.value
                   ? -SizeConfig.screenWidth! * 0.7
                   : 0,
               height: SizeConfig.screenHeight!,

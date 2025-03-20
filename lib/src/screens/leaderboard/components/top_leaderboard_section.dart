@@ -25,7 +25,7 @@ class TopLeaderboardSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: topUserOrder.map((index) {
-          final user = leaderboardController.usersList[index];
+          final user = leaderboardController.leaderboardUsers.value[index];
 
           bool isMiddleUser = index == 0;
           bool isSecondUser = index == 1;
@@ -76,7 +76,11 @@ class TopLeaderboardSection extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: Text(
-                            user.fullName.split(" ")[0].capitalizeFirst ?? "",
+                            user["name"]
+                                    .toString()
+                                    .split(" ")[0]
+                                    .capitalizeFirst ??
+                                "",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -90,7 +94,7 @@ class TopLeaderboardSection extends StatelessWidget {
                         ),
                         SizedBox(height: screenHeight * 0.003),
                         Text(
-                          '${leaderboardController.userPoints[user.id] ?? 0} p',
+                          '${user["points"] ?? 0} p',
                           style: const TextStyle(
                             color: AppColors.successColor,
                             fontWeight: FontWeight.bold,
@@ -121,13 +125,13 @@ class TopLeaderboardSection extends StatelessWidget {
                               : screenWidth * 0.085,
                           child: ClipOval(
                             child: CachedNetworkImage(
-                              key: ValueKey(user.userProfileImgUrl),
+                              key: ValueKey(user["name"]),
                               imageUrl:
-                                  "${user.userProfileImgUrl}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
+                                  "${user["name"]}?w=${(SizeConfig.screenWidth! * 0.282).toInt()}&h=${(SizeConfig.screenWidth! * 0.282).toInt()}",
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator(),
                               errorWidget: (context, url, error) {
-                                String userName = user.fullName;
+                                String userName = user["name"];
                                 String initial = userName.isNotEmpty
                                     ? userName[0].toUpperCase()
                                     : "U";

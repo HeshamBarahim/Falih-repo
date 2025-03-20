@@ -20,7 +20,7 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
   // late Rx<rive.SMIBool> isSideBarClosed;
   late rive.SMIBool isSideBarClosed;
   // RxBool isSideNavBarClosed = true.obs;
-  bool isSideNavBarClosed = true;
+  RxBool isSideNavBarClosed = true.obs;
 
   // RxBool bottomNavBarVisability = true.obs;
   bool bottomNavBarVisability = true;
@@ -45,6 +45,8 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
 
   @override
   void onInit() {
+    super.onInit();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -64,7 +66,6 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
         curve: Curves.fastOutSlowIn,
       ),
     );
-    super.onInit();
   }
 
   @override
@@ -87,8 +88,8 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void onPressNavBarButton() async {
-    isSideBarClosed.value = !isSideBarClosed.value;
-    if (isSideNavBarClosed) {
+    // isSideBarClosed.value = !isSideBarClosed.value;
+    if (isSideNavBarClosed.value) {
       _animationController.forward();
       bottomNavBarVisability = false;
       update();
@@ -102,7 +103,7 @@ class NavBarController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void onOpen() {
-    isSideNavBarClosed = isSideBarClosed.value;
+    isSideNavBarClosed.value = !isSideNavBarClosed.value;
     update();
   }
 

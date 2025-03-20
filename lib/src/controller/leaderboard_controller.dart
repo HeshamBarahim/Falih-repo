@@ -17,11 +17,28 @@ class LeaderboardController extends GetxController {
   final HomeController controller = Get.put(HomeController());
   final UserController userController = Get.put(UserController());
 
+  var leaderboardUsers = <Map<String, dynamic>>[].obs; // Use RxList
   @override
   Future<void> onInit() async {
-    await fetchAllUsersData();
+    // await fetchAllUsersData();
+    leaderboardUsers.value = await fetchLeaderboard();
     fetchUserPointsAndRank();
+
     super.onInit();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchLeaderboard() async {
+    // Get the leaderboard document for the current month
+
+    final DocumentSnapshot leaderboardSnapshot =
+        await _db.collection("leaderboard").doc("current-month").get();
+
+    if (leaderboardSnapshot.exists) {
+      final data = leaderboardSnapshot.data() as Map<String, dynamic>;
+      return List<Map<String, dynamic>>.from(data['leaderboard'] ?? []);
+    } else {
+      return [];
+    }
   }
 
   Future<void> fetchAllUsersData() async {
@@ -37,13 +54,26 @@ class LeaderboardController extends GetxController {
   }
 
   void fetchUserPointsAndRank() {
-    controller.rank.value = (usersList
-            .indexWhere((user) => user.id == userController.user.value?.id)) +
-        1;
-    controller.point.value = userPoints[userController.user.value?.id] ?? 0;
+    final userEntry = leaderboardUsers.firstWhere(
+        (user) => user['userId'] == userController.user.value?.id,
+        orElse: () => {});
+
+    // controller.point.value = userPoints[userController.user.value?.id] ?? 0;
+    controller.point.value =
+        userEntry.isNotEmpty ? userEntry['points'] as int : 0;
+
+    // Find the rank of the user
+    final int index = leaderboardUsers
+        .indexWhere((user) => user['userId'] == userController.user.value?.id);
+    controller.rank.value =
+        index != -1 ? index + 1 : 0; // Convert 0-based index to 1-based rank
 
     controller.isLoading.value = false;
     isLoading.value = false;
+
+    // controller.rank.value = (leaderboardUsers.value
+    //         .indexWhere((user) => user["userId"] == userController.user.value?.id)) +
+    //     1;
   }
 
   void changeIndex(int index) {

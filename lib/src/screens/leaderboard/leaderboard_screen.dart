@@ -40,18 +40,23 @@ class LeaderBoardScreen extends StatelessWidget {
                     ),
                     child: ListView(
                       padding: EdgeInsets.zero,
-                      children:
-                          controller.usersList.asMap().entries.map((element) {
+                      children: controller.leaderboardUsers
+                          .asMap()
+                          .entries
+                          .map((element) {
                         final index = element.key; // The index of the user
                         final user = element.value; // The user object
 
                         return LeaderboardListSection(
-                            id: user.id ?? "",
+                            id: user["userId"] ?? "",
                             rank: index + 1,
-                            name: user.fullName.split(" ")[0].capitalizeFirst ??
+                            name: user["name"]
+                                    .toString()
+                                    .split(" ")[0]
+                                    .capitalizeFirst ??
                                 "",
-                            userName: user.userName?.split(" ")[0] ?? "",
-                            points: controller.userPoints[user.id] ?? 0);
+                            userName: user["username"]?.split(" ")[0] ?? "",
+                            points: user["points"] ?? 0);
                       }).toList(),
                     ),
                   ),
