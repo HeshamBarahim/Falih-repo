@@ -147,17 +147,15 @@ class ResultDialog extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              "إعادة",
-                              style: TextStyle(
-                                fontSize: 18,
-                                // Slightly larger text for readability
+                              S.current.restart,
+                              style: const TextStyle(
+                                  fontSize: 18,
                                 color: AppColors.mainColor,
-                                // Consistent text color with theme
                                 fontWeight: FontWeight
-                                    .w600, // Semi-bold for a cleaner look
-                              ),
+                                      .w600 // Semi-bold for a cleaner look
+                                  ),
                             ),
                           ),
                         ),
@@ -176,8 +174,8 @@ class ResultDialog extends StatelessWidget {
                           Navigator.pop(context);
                           Get.back();
                           Get.back();
-                          await leaderboardController.fetchAllUsersData();
-                          leaderboardController.fetchUserPointsAndRank();
+                          // await leaderboardController.fetchAllUsersData();
+                          // leaderboardController.fetchUserPointsAndRank();
                           homeController.fetchAllUserExamHistory();
                         },
                         borderRadius: BorderRadius.circular(16),
@@ -235,30 +233,23 @@ class ResultDialog extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                                 width: 2, color: AppColors.mainColor),
-                            // Consistent border style
                             borderRadius: BorderRadius.circular(12),
-                            // Consistent border radius
                             color: AppColors.mainColor.withOpacity(0.05),
-                            // Subtle background for improved look
                             boxShadow: [
                               BoxShadow(
                                 color: AppColors.mainColor.withOpacity(0.2),
-                                // Soft shadow for depth
                                 blurRadius: 6,
                                 offset: const Offset(0, 3),
                               ),
                             ],
                           ),
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              "مراجعة",
-                              style: TextStyle(
+                              S.current.review,
+                              style: const TextStyle(
                                 fontSize: 18,
-                                // Improved readability
                                 color: AppColors.mainColor,
-                                // Consistent theme color
-                                fontWeight: FontWeight
-                                    .w600, // Semi-bold for modern look
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),

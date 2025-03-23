@@ -291,6 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "restart": MessageLookupByLibrary.simpleMessage("إعادة الاختبار"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
         "review_answer": MessageLookupByLibrary.simpleMessage("مراجعة إجاباتك"),
+        "review": MessageLookupByLibrary.simpleMessage("مراجعة"),
         "rules_prizes":
             MessageLookupByLibrary.simpleMessage("القواعد والجوائز"),
         "ry": MessageLookupByLibrary.simpleMessage("ر.ي"),

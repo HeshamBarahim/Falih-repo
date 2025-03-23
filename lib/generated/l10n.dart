@@ -922,6 +922,15 @@ class S {
     );
   }
 
+  String get review {
+    return Intl.message(
+      'مراجعة',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `تمكن من موادك الدراسية مع رفيقك الدراسي النهائي`
   String get explaination_on_boarding_1 {
     return Intl.message(
