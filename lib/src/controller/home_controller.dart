@@ -7,7 +7,7 @@ class HomeController extends GetxController {
   var userExamHistoryIsLoading = true.obs;
   var carouselCurrentIndex = 0.obs;
   var overallPoints = 0.obs;
-  var point = 0.obs;
+  var monthlyPoints = 0.obs;
   var rank = 0.obs;
   var maxPoint = 500.obs;
   final _db = FirebaseFirestore.instance;
@@ -25,6 +25,7 @@ class HomeController extends GetxController {
     userExamHistory.clear();
     userExamHistoryIsLoading.value = true;
     overallPoints.value = 0;
+    monthlyPoints.value = 0;
 
     var user = UserController.instance.user.value;
     final QuerySnapshot userExamsSnapshot = await _db
@@ -32,8 +33,22 @@ class HomeController extends GetxController {
         .doc(user?.id)
         .collection('userExams')
         .get();
+
     userExamHistory.addAll(userExamsSnapshot.docs.map((doc) {
       final examData = doc.data() as Map<String, dynamic>;
+      Timestamp? examTimestamp = examData["date"];
+      if (examTimestamp != null) {
+        DateTime examDate = examTimestamp.toDate();
+
+        final DateTime now = DateTime.now();
+
+        final int currentMonth = now.month;
+        final int currentYear = now.year;
+        // Check if the exam is in the current month and year
+        if (examDate.month == currentMonth && examDate.year == currentYear) {
+          monthlyPoints += examData["points"] ?? 0;
+        }
+      }
       overallPoints += examData["points"] ?? 0;
       return examData;
     }));

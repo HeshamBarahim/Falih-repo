@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
                                                   .textTheme
                                                   .bodyMedium),
                                           Text(
-                                              "${S.of(context).this_month_points}: ${controller.point.value}",
+                                              "${S.of(context).this_month_points}: ${controller.monthlyPoints.value}",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium),
@@ -152,7 +152,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Expanded(
                               child: LinearProgressIndicator(
-                                value: controller.point.value /
+                                value: controller.monthlyPoints.value /
                                     controller.maxPoint.value,
                                 // Bind progress value
                                 backgroundColor:
@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                  '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                             )
@@ -179,7 +179,7 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                  '${((controller.point.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                  '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                             ),
@@ -200,7 +200,7 @@ class HomePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(0),
                                 // Match border radius to avoid overflow
                                 child: LinearProgressIndicator(
-                                  value: controller.point.value /
+                                  value: controller.monthlyPoints.value /
                                       controller.maxPoint.value,
                                   backgroundColor:
                                       Theme.of(context).colorScheme.secondary,
