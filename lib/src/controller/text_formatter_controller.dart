@@ -92,7 +92,7 @@ class TextFormatterController extends GetxController {
         String symbol = match.group(2)!; // '^' or '~'
         String characters = match.group(3)!;
         final Offset offset =
-            symbol == '^' ? const Offset(0, -5) : const Offset(0, 2);
+            symbol == '^' ? const Offset(0, -10) : const Offset(0, 10);
 
         spans.add(
           WidgetSpan(
