@@ -182,8 +182,11 @@ class ExamScreen extends StatelessWidget {
                                   textDirection: isArabic(question.questionText)
                                       ? TextDirection.rtl
                                       : TextDirection.ltr,
-                                  child: textController
-                                      .formatText(question.questionText)),
+                                  child: textController.formatText(
+                                      question.questionText,
+                                      lightModeColor: Theme.of(Get.context!)
+                                          .colorScheme
+                                          .secondary)),
                             ],
                           ),
                         ),
