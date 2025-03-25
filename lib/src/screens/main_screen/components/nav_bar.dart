@@ -16,7 +16,7 @@ import 'nav_bar_tile.dart';
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
-  final String phoneNumber = "+967772020501"; // Your WhatsApp number
+  final String phoneNumber = "+967776731057"; // Your WhatsApp number
 
   @override
   Widget build(BuildContext context) {
