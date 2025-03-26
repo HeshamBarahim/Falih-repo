@@ -177,10 +177,10 @@ final ThemeData appTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
+    isDense: true,
+    alignLabelWithHint: true,
     fillColor: Colors.white,
-    // labelText: labelText,
     labelStyle: const TextStyle(fontSize: 16, color: AppColors.hintColor),
-    // errorText: errorMessage,
     errorStyle: const TextStyle(
       color: Colors.red,
       fontSize: 16,
@@ -205,7 +205,8 @@ final ThemeData appTheme = ThemeData(
         width: 3,
       ),
     ),
-    // prefixIcon: prefixIcon,
+    hintStyle:
+        const TextStyle(fontSize: 16, color: AppColors.hintColor, height: 2),
     prefixIconColor: AppColors.mainColor,
     suffixIconColor: AppColors.mainColor,
   ),
@@ -255,6 +256,7 @@ final ThemeData appTheme = ThemeData(
 
 /// -------------  Dark theme -----------------
 final ThemeData darkAppTheme = ThemeData(
+  scaffoldBackgroundColor: AppColors.darkMainColor,
   primaryColor: AppColors.mainColor,
   fontFamily: 'ElMessiri',
   textTheme: const TextTheme(
@@ -289,7 +291,6 @@ final ThemeData darkAppTheme = ThemeData(
       color: AppColors.lightenMainColor,
     ),
   ),
-  scaffoldBackgroundColor: AppColors.darkMainColor,
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     isDense: true,
@@ -322,7 +323,6 @@ final ThemeData darkAppTheme = ThemeData(
     ),
     hintStyle:
         const TextStyle(fontSize: 16, color: AppColors.hintColor, height: 2),
-    // prefixIcon: prefixIcon,
     prefixIconColor: AppColors.lightenMainColor,
     suffixIconColor: AppColors.lightenMainColor,
   ),
@@ -337,7 +337,6 @@ final ThemeData darkAppTheme = ThemeData(
     primary: AppColors.mainColor,
     secondary: AppColors.lightenMainColor,
     surface: AppColors.mainColor,
-
     // Background in light mode
   ),
   cardTheme: const CardTheme(

@@ -65,7 +65,11 @@ class FractionText extends StatelessWidget {
 /// It detects markers for superscript/subscript as well as fractions.
 /// This version uses '#' markers for fractions, with an optional 'n' prefix to indicate no line.
 class TextFormatterController extends GetxController {
-  Text formatText(String text) {
+  Text formatText(String text, {Color? lightModeColor}) {
+    final lightModeColor0 = lightModeColor ??
+        (Get.context != null
+            ? Theme.of(Get.context!).primaryColor
+            : Colors.black);
     List<InlineSpan> spans = [];
 
     // Regex remains the same
@@ -137,20 +141,22 @@ class TextFormatterController extends GetxController {
     if (lastIndex < text.length) {
       spans.add(TextSpan(
         text: text.substring(lastIndex),
-        style: Theme.of(Get.context!)
-            .textTheme
-            .bodyLarge
-            ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
+        style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+              color: Get.isDarkMode
+                  ? Theme.of(Get.context!).colorScheme.secondary
+                  : lightModeColor0,
+            ),
       ));
     }
 
     return Text.rich(
       TextSpan(
         children: spans,
-        style: Theme.of(Get.context!)
-            .textTheme
-            .bodyLarge
-            ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
+        style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+              color: Get.isDarkMode
+                  ? Theme.of(Get.context!).colorScheme.secondary
+                  : lightModeColor0,
+            ),
       ),
     );
   }
