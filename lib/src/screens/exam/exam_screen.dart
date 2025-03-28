@@ -4,6 +4,7 @@ import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/screens/exam/exam_widgets/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/images.dart';
 import '../../config/sizes.dart';
@@ -132,62 +133,68 @@ class ExamScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Column(
-                            crossAxisAlignment: isArabic(question.questionText)
-                                ? CrossAxisAlignment.start
-                                : CrossAxisAlignment.end,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.green,
-                                    ),
-                                    width: SizeConfig.screenWidth! * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        '${controller.trueAnswers.value}',
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment:
+                                  isArabic(question.questionText)
+                                      ? CrossAxisAlignment.start
+                                      : CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.green,
+                                      ),
+                                      width: SizeConfig.screenWidth! * 0.12,
+                                      child: Center(
+                                        child: Text(
+                                          '${controller.trueAnswers.value}',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.red,
-                                    ),
-                                    width: SizeConfig.screenWidth! * 0.12,
-                                    child: Center(
-                                      child: Text(
-                                        '${controller.falseAnswers.value}',
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.red,
+                                      ),
+                                      width: SizeConfig.screenWidth! * 0.12,
+                                      child: Center(
+                                        child: Text(
+                                          '${controller.falseAnswers.value}',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: SizeConfig.screenHeight! * 0.01),
-                              Center(
-                                child: Text(
-                                  "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
-                                  style: const TextStyle(
-                                      color: AppColors.warningColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                  ],
                                 ),
-                              ),
-                              SizedBox(height: SizeConfig.screenHeight! * 0.03),
-                              Directionality(
-                                  textDirection: isArabic(question.questionText)
-                                      ? TextDirection.rtl
-                                      : TextDirection.ltr,
-                                  child: textController.formatText(
-                                      question.questionText,
-                                      lightModeColor: Theme.of(Get.context!)
-                                          .colorScheme
-                                          .secondary)),
-                            ],
+                                SizedBox(
+                                    height: SizeConfig.screenHeight! * 0.01),
+                                Center(
+                                  child: Text(
+                                    "${S.of(context).question} ${questionNumber + 1}/${controller.questions.length}",
+                                    style: const TextStyle(
+                                        color: AppColors.warningColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                    height: SizeConfig.screenHeight! * 0.03),
+                                Directionality(
+                                    textDirection:
+                                        isArabic(question.questionText)
+                                            ? TextDirection.rtl
+                                            : TextDirection.ltr,
+                                    child: textController.formatText(
+                                        question.questionText,
+                                        lightModeColor: Theme.of(Get.context!)
+                                            .colorScheme
+                                            .secondary)),
+                              ],
+                            ),
                           ),
                         ),
                         Align(

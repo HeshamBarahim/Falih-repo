@@ -126,9 +126,10 @@ flutter:
         - asset: assets/fonts/el_messiri/ElMessiri-Regular.ttf
         - asset: assets/fonts/el_messiri/ElMessiri-Bold.ttf
           # style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/Roboto-Italic-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/roboto/Roboto-VariableFont_wdth,wght.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

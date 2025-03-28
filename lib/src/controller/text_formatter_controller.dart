@@ -84,10 +84,10 @@ class TextFormatterController extends GetxController {
       if (match.start > lastIndex) {
         spans.add(TextSpan(
           text: text.substring(lastIndex, match.start),
-          style: Theme.of(Get.context!)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: Theme.of(Get.context!).colorScheme.secondary),
+          style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(Get.context!).colorScheme.secondary,
+                fontFamily: 'Roboto',
+              ),
         ));
       }
 
@@ -107,6 +107,7 @@ class TextFormatterController extends GetxController {
               child: Text(
                 characters,
                 style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                    fontFamily: 'Roboto',
                     color: Theme.of(Get.context!).colorScheme.secondary),
               ),
             ),
@@ -142,6 +143,7 @@ class TextFormatterController extends GetxController {
       spans.add(TextSpan(
         text: text.substring(lastIndex),
         style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+              fontFamily: 'Roboto',
               color: Get.isDarkMode
                   ? Theme.of(Get.context!).colorScheme.secondary
                   : lightModeColor0,
@@ -153,6 +155,7 @@ class TextFormatterController extends GetxController {
       TextSpan(
         children: spans,
         style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+              fontFamily: 'Roboto',
               color: Get.isDarkMode
                   ? Theme.of(Get.context!).colorScheme.secondary
                   : lightModeColor0,
