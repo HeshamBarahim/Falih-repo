@@ -116,6 +116,9 @@ class SignupPart1 extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         myController: controller.phoneNo,
                         validator: Helper.validatePhoneNumber,
+                        errorMessage: controller.phoneError.value
+                            ? S.current.phone_number_exists
+                            : null,
                         labelText: S.of(context).hint_text_phone,
                         prefixIcon: const Icon(
                           Icons.phone_android,
@@ -136,7 +139,7 @@ class SignupPart1 extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         myController: controller.userName,
                         errorMessage: controller.userNameError.value
-                            ? controller.userNameErrorMessage.value
+                            ? S.current.username_already_exists
                             : null,
                         // onChanged: Helper.onChangedUsername,
                         validator: Helper.validateUsername,
@@ -219,7 +222,7 @@ class SignupPart1 extends StatelessWidget {
                         funtion: () {
                           if (controller.signupFormKey.currentState!
                               .validate()) {
-                            controller.showUserNameErrorMessage();
+                            controller.checkUserName();
                           }
                         },
                       ),

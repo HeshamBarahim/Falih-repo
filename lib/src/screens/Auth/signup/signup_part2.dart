@@ -47,7 +47,7 @@ class SignupPart2 extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        S.of(context).step1_of_2,
+                        S.of(context).step2_of_2,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
@@ -218,17 +218,17 @@ class SignupPart2 extends StatelessWidget {
                 SizedBox(height: SizeConfig.screenHeight! * 0.03),
                 CustomAgreeingCheck(
                   onChange: (value) => controller.toggleCheckbox(value!),
-                  value: controller.isChecked,
+                  value: controller.isPrivacyChecked,
                 ),
                 SizedBox(height: SizeConfig.screenHeight! * 0.05),
                 Obx(
                   () => CustomCheckButton(
-                    isChecked: controller.isChecked.value,
+                    isChecked: controller.isPrivacyChecked.value,
                     text: S.of(context).title_signup,
                     height: SizeConfig.screenHeight! * 0.06,
                     width: double.infinity,
                     onClick: () {
-                      controller.createUser(context);
+                      controller.createUser();
                     },
                   ),
                 ),

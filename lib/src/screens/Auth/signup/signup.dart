@@ -15,14 +15,8 @@ class Signup extends StatelessWidget {
       // Enable controlled back navigation
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) {
+        if (!didPop) {
           return;
-        }
-        if (controller.currentPageIndex.value > 1) {
-          // If on the second page, go back to the first page
-          controller.goToPreviousPage();
-        } else {
-          Navigator.of(context).pop(result);
         }
       },
       child: Scaffold(
@@ -35,7 +29,12 @@ class Signup extends StatelessWidget {
               Icons.arrow_back,
             ),
             onPressed: () {
-              Get.back();
+              if (controller.currentPageIndex.value > 1) {
+                // If on the second page, go back to the first page
+                controller.goToPreviousPage();
+              } else {
+                Get.back();
+              }
             },
           ),
         ),
