@@ -3,11 +3,11 @@ import 'dart:convert';
 
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/constants/urls.dart';
-import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
@@ -45,7 +45,7 @@ class ChangePasswordController extends GetxController {
 
         if (response.statusCode == 200) {
           showSuccessMessage(message: "Password updated successfully!");
-          Get.offAll(() => Login());
+          Get.offAllNamed("login");
         } else {
           // Parse server error messages if available
           final Map<String, dynamic>? responseData = jsonDecode(response.body);
@@ -59,7 +59,7 @@ class ChangePasswordController extends GetxController {
       } on FormatException {
         showErrorMessage("Invalid response format from server.");
       } on Exception catch (e) {
-        showErrorMessage("An unexpected error occurred. Please try again.");
+        showErrorMessage(S.current.unexpected_error_occured);
         print("Error: $e"); // Log the error for debugging
       } finally {
         loadingDialogController.closeLoadingDialog();

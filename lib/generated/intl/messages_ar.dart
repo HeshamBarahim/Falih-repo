@@ -68,11 +68,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لم يتم استلام كود التحقق"),
         "resend_ver_code":
             MessageLookupByLibrary.simpleMessage("اعادة ارسال كود التحقق"),
-        "code_verified_successfully": MessageLookupByLibrary.simpleMessage("تم التحقق من الكود بنجاح."),
-        "invalid_ver_code":
-            MessageLookupByLibrary.simpleMessage("رمز التحقق غير صالح. يرجى المحاولة مرة أخرى."),
-        "failed_send_ver_code":
-            MessageLookupByLibrary.simpleMessage("اعادة ارسال كود فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى."),
+        "code_verified_successfully":
+            MessageLookupByLibrary.simpleMessage("تم التحقق من الكود بنجاح."),
+        "invalid_ver_code": MessageLookupByLibrary.simpleMessage(
+            "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى."),
+        "failed_send_ver_code": MessageLookupByLibrary.simpleMessage(
+            "فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى."),
         "no_notification":
             MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
         "class_text": MessageLookupByLibrary.simpleMessage("الصف:"),
@@ -91,7 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "correct": MessageLookupByLibrary.simpleMessage("صحيح"),
         "correct_answers":
             MessageLookupByLibrary.simpleMessage("الإجابات الصحيحة"),
-        "create_account": MessageLookupByLibrary.simpleMessage(" إنشاء حساب"),
+        "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "create_account_successfully":
+            MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("وضع الظلام"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
@@ -212,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اسم المستخدم هذا موجود بالفعل"),
         "phone_number_not_exists":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف هذا غير موجود"),
+        "phone_number_exists":
+            MessageLookupByLibrary.simpleMessage("يوجد حساب بهذا الرقم"),
         "name_league": MessageLookupByLibrary.simpleMessage("الدوري الفضي"),
         "name_must_be": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون اسم المستخدم صالحًا"),

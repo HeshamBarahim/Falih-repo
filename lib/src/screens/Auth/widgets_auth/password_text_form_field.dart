@@ -7,7 +7,6 @@ class CustomPasswordTextForm extends StatelessWidget {
   final TextEditingController myController;
   final String? Function(String?)? validator;
   final bool obscureText;
-  // final bool keyFormatter;
   final String labelText;
   final Widget prefixIcon;
   final VoidCallback showPasswordFunction;
@@ -17,7 +16,6 @@ class CustomPasswordTextForm extends StatelessWidget {
     required this.myController,
     this.validator,
     required this.obscureText,
-    // required this.keyFormatter,
     required this.labelText,
     required this.prefixIcon,
     required this.showPasswordFunction,
@@ -29,24 +27,21 @@ class CustomPasswordTextForm extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
-        // 1
         controller: myController,
-        // 2
         validator: validator,
-        // 3
         keyboardType: TextInputType.visiblePassword,
         obscureText: obscureText,
-        // 4
         inputFormatters: [
           FilteringTextInputFormatter.deny(RegExp(r'\s')),
           LengthLimitingTextInputFormatter(20),
         ],
         decoration: InputDecoration(
+          prefixIcon: prefixIcon,
           labelText: labelText,
           suffixIcon: IconButton(
             icon: Icon(
               obscureText == true ? Icons.visibility : Icons.visibility_off,
-              size: SizeConfig.screenHeight! * 0.03,
+              size: SizeConfig.screenHeight! * 0.02,
             ),
             onPressed: showPasswordFunction,
           ),

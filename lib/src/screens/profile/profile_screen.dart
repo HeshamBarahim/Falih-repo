@@ -23,7 +23,6 @@ class ProfileScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          // Navigate to the menu screen when the user tries to pop
           Get.back();
         }
       },
@@ -84,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
                                       firstLetter,
                                       style: TextStyle(
                                         fontSize:
-                                        (SizeConfig.screenWidth! * 0.08),
+                                            (SizeConfig.screenWidth! * 0.08),
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.moreLightenMainColor,
                                       ),
@@ -110,16 +109,16 @@ class ProfileScreen extends StatelessWidget {
                                 },
                                 style: IconButton.styleFrom(
                                   backgroundColor:
-                                  controller.userProfileImgUrl.value == ""
-                                      ? AppColors.lightenMainColor
-                                      : AppColors.mainColor,
+                                      controller.userProfileImgUrl.value == ""
+                                          ? AppColors.lightenMainColor
+                                          : AppColors.mainColor,
                                 ),
                                 icon: Icon(
                                   Icons.edit,
                                   color:
-                                  controller.userProfileImgUrl.value == ""
-                                      ? AppColors.mainColor
-                                      : Colors.white,
+                                      controller.userProfileImgUrl.value == ""
+                                          ? AppColors.mainColor
+                                          : Colors.white,
                                   size: SizeConfig.screenWidth! * 0.044,
                                 ),
                               ),
@@ -134,10 +133,17 @@ class ProfileScreen extends StatelessWidget {
                         CustomTextForm(
                             keyFormatter: false,
                             keyboardType: TextInputType.text,
-                            labelText: S.of(context).hint_text_username,
+                            labelText: S.of(context).hint_text_fullname,
                             prefixIcon: const Icon(Icons.person),
                             myController: profileController.fullName,
                             validator: Helper.validatefullName),
+                        CustomTextForm(
+                            keyFormatter: false,
+                            keyboardType: TextInputType.text,
+                            labelText: S.of(context).hint_text_username,
+                            prefixIcon: const Icon(Icons.person),
+                            myController: profileController.userName,
+                            validator: Helper.validateUsername),
                         CustomTextForm(
                             keyFormatter: false,
                             keyboardType: TextInputType.text,
@@ -152,28 +158,94 @@ class ProfileScreen extends StatelessWidget {
                                 newValue;
                           },
                           selectedValue:
-                          profileController.selectedGovernorate.value,
+                              profileController.selectedGovernorate.value,
                           hintText: S.of(context).hint_text_Governorate,
                           prefixIcon: const Icon(Icons.location_pin),
                           list: [
                             DropdownMenuItem(
-                                value: "Sana'a",
-                                child: Text(
-                                  S.of(context).drop_governorate_val1,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                )),
+                              value: "Sana'a",
+                              child: Text(
+                                S.of(context).drop_governorate_val1,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
                             DropdownMenuItem(
-                                value: 'Taiz',
-                                child: Text(
-                                  S.of(context).drop_governorate_val2,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                )),
+                              value: 'Taiz',
+                              child: Text(
+                                S.of(context).drop_governorate_val2,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
                             DropdownMenuItem(
-                                value: 'Ibb',
-                                child: Text(
-                                  S.of(context).drop_governorate_val3,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                )),
+                              value: 'Ibb',
+                              child: Text(
+                                S.of(context).drop_governorate_val3,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Al Hudaydah',
+                              child: Text(
+                                S.of(context).drop_governorate_val4,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Amran',
+                              child: Text(
+                                S.of(context).drop_governorate_val5,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Lahij',
+                              child: Text(
+                                S.of(context).drop_governorate_val6,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Dhamar',
+                              child: Text(
+                                S.of(context).drop_governorate_val7,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Raymah',
+                              child: Text(
+                                S.of(context).drop_governorate_val8,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Al Mahwit',
+                              child: Text(
+                                S.of(context).drop_governorate_val9,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Hajjah',
+                              child: Text(
+                                S.of(context).drop_governorate_val10,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Sa\'dah',
+                              child: Text(
+                                S.of(context).drop_governorate_val11,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Al-Jawf',
+                              child: Text(
+                                S.of(context).drop_governorate_val12,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
                           ],
                         ),
                         CustomDropDownForm(
@@ -222,6 +294,33 @@ class ProfileScreen extends StatelessWidget {
                                 )),
                           ],
                         ),
+                        CustomDropDownForm(
+                          validator: Helper.validateDepartment,
+                          onChanged: (newValue) {
+                            profileController.selectedDepartment.value =
+                                newValue;
+                          },
+                          selectedValue:
+                              profileController.selectedDepartment.value,
+                          hintText: S.of(context).male,
+                          prefixIcon: const Icon(Icons.person_pin_rounded),
+                          list: [
+                            DropdownMenuItem(
+                              value: "En",
+                              child: Text(
+                                S.of(context).drop_depatment_val1,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Ar',
+                              child: Text(
+                                S.of(context).drop_depatment_val2,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * .10),
@@ -231,16 +330,16 @@ class ProfileScreen extends StatelessWidget {
                               text: S.of(context).update_profile,
                               height: 50,
                               width: double.infinity,
-                        onClick: () async {
-                          if (profileController.formKey.currentState!
-                              .validate()) {
-                            profileController.updateUserData();
-                          }
-                        },
-                      )
+                              onClick: () async {
+                                if (profileController.formKey.currentState!
+                                    .validate()) {
+                                  profileController.updateUserData();
+                                }
+                              },
+                            )
                           : const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                              child: CircularProgressIndicator(),
+                            ),
                     ),
                   ],
                 ),

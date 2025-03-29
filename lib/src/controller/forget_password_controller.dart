@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
+import '../constants/dialogs.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
@@ -37,9 +38,11 @@ class ForgetPasswordController extends GetxController {
           final otpController = Get.put(OtpController());
           otpController.phoneNo.value = phoneNumber.text.trim();
           otpController.determineControllerType(2);
-          otpController.sendOTP();
-
-          Get.toNamed("otp-verification");
+          if (!await otpController.sendOtpToWhatsApp() == true) {
+            Get.offNamed("otp-verification");
+          } else {
+            showErrorMessage(S.current.failed_send_ver_code);
+          }
         }
       } catch (e) {
         // Handle other exceptions (e.g., invalid data format)

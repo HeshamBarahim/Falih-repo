@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -174,7 +173,7 @@ class AuthenticationRepository extends GetxController {
         await FirebaseAuth.instance.signOut();
         loadingDialogController.closeLoadingDialog();
 
-        Get.offAll(() => Login());
+        Get.offAllNamed("login");
       } on FirebaseAuthException catch (e) {
         loadingDialogController.closeLoadingDialog();
         throw e.message!;
