@@ -5,9 +5,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/constants/dialogs.dart';
-import 'package:falih/src/screens/Auth/forgot_password/change_password.dart';
-import 'package:falih/src/screens/main_screen/main_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:falih/src/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -26,14 +24,8 @@ class OtpController extends GetxController {
   Timer? _resendTimer;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
-
-  void sendOTP() {
-    generateAndSendOtp();
-    startResendTimer();
-  }
 
   @override
   void onClose() {
@@ -46,28 +38,19 @@ class OtpController extends GetxController {
     controllerType.value = type;
   }
 
-  // Generate a random 6-digit OTP
-  void generateAndSendOtp() {
+  // Simulate sending OTP via API
+  Future<bool> sendOtpToWhatsApp() async {
+    startResendTimer();
     isSending.value = true;
 
     final random = Random();
     generatedOtp.value = (100000 + random.nextInt(900000)).toString();
-    print('Generated OTP: ${generatedOtp.value}'); // For debugging
-    // Call your API to send the OTP here
-    sendOtpToWhatsApp(generatedOtp.value);
-  }
-
-  // Simulate sending OTP via API
-  Future<void> sendOtpToWhatsApp(String otp) async {
-    // Replace with your API call
-    print('Sending OTP to WhatsApp: $otp');
 
     final snapshot =
         await _firestore.collection('app_config').doc("whatsapp_docker").get();
 
     final otpServer = snapshot.data();
     var otpAPI = otpServer!["api_url"];
-    print(otpAPI);
 
     try {
       final response = await http
@@ -81,7 +64,7 @@ class OtpController extends GetxController {
           "chatId": "967${phoneNo.value}",
           "reply_to": null,
           "text": """عزيزي العميل،
-رمز التحقق الخاص بك لتطبيق فالح هو $otp. يرجى عدم مشاركته مع أي شخص.
+رمز التحقق الخاص بك لتطبيق فالح هو ${generatedOtp.value}. يرجى عدم مشاركته مع أي شخص.
 يظل الرمز صالحًا لمدة 5 دقائق.
 
 شكرًا لاستخدامك تطبيق فالح! 🚀""",
@@ -97,20 +80,18 @@ class OtpController extends GetxController {
       );
       if (response.statusCode == 201) {
         isSending.value = false;
+        return true;
       } else {
-        Get.back();
-        showErrorMessage(S.current.failed_send_ver_code);
+        return false;
+        // Get.back();
+        // showErrorMessage(S.current.failed_send_ver_code);
       }
-    } on TimeoutException {
-      Get.back();
-      showErrorMessage(S.current.failed_send_ver_code);
-      print("Timeout error");
     } catch (e) {
-      Get.back();
-      showErrorMessage(S.current.failed_send_ver_code);
+      print(e.toString());
     } finally {
       isSending.value = false;
     }
+    return false;
   }
 
   // Start the resend timer
@@ -130,38 +111,31 @@ class OtpController extends GetxController {
   // Resend OTP
   void resendOtp() {
     if (canResendOtp.value) {
-      generateAndSendOtp();
       startResendTimer();
+      sendOtpToWhatsApp();
     }
   }
 
   // Verify OTP
   Future<void> verifyOtp(String enteredOtp) async {
     if (enteredOtp == generatedOtp.value) {
-      // showSuccessMessage(message: "OTP verified successfully.");
       showSuccessMessage(message: S.current.code_verified_successfully);
       loadingDialogController.showLoadingDialog();
 
       if (controllerType.value == 1) {
-        final user = FirebaseAuth.instance.currentUser;
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(user!.uid)
-            .update({
-          'IsVerified': 'true',
-        });
+        final SignUpController signUpController = Get.put(SignUpController());
+        await signUpController.addUser();
+
         final auth = AuthenticationRepository.instance;
         await auth.setInitialScreen();
         loadingDialogController.closeLoadingDialog();
 
-        Get.offAll(() => const MainScreen());
+        Get.offAllNamed("main-screen");
       } else if (controllerType.value == 2) {
         loadingDialogController.closeLoadingDialog();
-
-        Get.offAll(() => ChangePassword());
+        Get.offAllNamed("change-password");
       }
     } else {
-      // showErrorMessage('Invalid OTP. Please try again.');
       showErrorMessage(S.current.invalid_ver_code);
     }
   }

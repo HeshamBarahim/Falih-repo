@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
+import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
-import 'package:falih/src/screens/Auth/otp/otp_verification.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +13,13 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-// import 'package:flutter_image_compress/flutter_image_compress.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:get/get.dart';
-
 import '../../generated/l10n.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
+  final _auth = AuthenticationRepository.instance;
 
   // TextField Controllers to get data from TextFields
   final profile = TextEditingController();
@@ -39,25 +36,21 @@ class SignUpController extends GetxController {
   var selectedGrade = Rxn<String>();
   var selectedDepartment = Rxn<String>();
   var selectedGender = Rxn<String>();
+  var isPrivacyChecked = false.obs;
+
   final UserRepository userRepository = Get.put(UserRepository());
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
+  var currentPageIndex = 1.obs;
   RxBool userNameError = false.obs;
-  RxString userNameErrorMessage = S.current.username_already_exists.obs;
-
-  String? profileImgUrl;
-
-  int imageType = 0;
-
-  File? file2;
-  File? file;
-
-  /// Loader
+  RxBool phoneError = false.obs;
   final isLoading = false.obs;
 
-  // Tracks the current page to manage the split screens of signup
-  var currentPageIndex = 1.obs;
+  String? profileImgUrl;
+  int imageType = 0;
+  File? file2;
+  File? file;
 
   imagePickerDialog(BuildContext context) {
     showDialog(
@@ -170,47 +163,39 @@ class SignUpController extends GetxController {
     }
   }
 
-  saveImage(String userId) async {
+  void saveImage(String userId) async {
     try {
-      loadingDialogController.showLoadingDialog();
-      // Generate a unique filename using user ID and timestamp
-      // Reference to Firebase Storage
-      // final storageRef2 = FirebaseStorage.instance.refFromURL();
-      final storageRef = FirebaseStorage.instance
-          .refFromURL('gs://falih-1.firebasestorage.app')
-          .child('user_profile_images/$userId');
+      if (file2 != null) {
+        loadingDialogController.showLoadingDialog();
+        final storageRef = FirebaseStorage.instance
+            .refFromURL('gs://falih-1.firebasestorage.app')
+            .child('user_profile_images/$userId');
 
-      // Upload the file
-      await storageRef.putFile(file2!);
+        // Upload the file
+        await storageRef.putFile(file2!);
+        profileImgUrl = await storageRef.getDownloadURL();
 
-      // Retrieve the download URL
-      profileImgUrl = await storageRef.getDownloadURL();
+        try {
+          // Add Image Url To FireBase
+          CollectionReference imgUrlCollection =
+              FirebaseFirestore.instance.collection('users');
 
-      try {
-        // Add Image Url To FireBase
-        CollectionReference imgUrlCollection =
-            FirebaseFirestore.instance.collection('users');
+          await imgUrlCollection
+              .doc(userId)
+              .update({'userProfileImgUrl': profileImgUrl})
+              .then((value) => print("Image Edited"))
+              .catchError((error) {
+                print("Failed to Edit Note: $error");
+              });
+          update();
+        } on FirebaseAuthException catch (e) {
+          throw e.message.toString();
+        }
 
-        await imgUrlCollection
-            .doc(userId)
-            .update({'userProfileImgUrl': profileImgUrl})
-            .then((value) => print("Image Edited"))
-            .catchError((error) {
-              print("Failed to Edit Note: $error");
-            });
-        update();
-      } on FirebaseAuthException catch (e) {
-        throw e.message.toString();
+        loadingDialogController.closeLoadingDialog();
       }
-
-      // await updateUserProfileImgUrl(profileImgUrl!);
-      // update();
-      loadingDialogController.closeLoadingDialog();
-
-      // Get.snackbar("Success", "Image uploaded successfully");
     } catch (e) {
       loadingDialogController.closeLoadingDialog();
-      Get.snackbar(S.current.error, "${S.current.failed_upload_image}: $e");
     }
   }
 
@@ -226,8 +211,8 @@ class SignUpController extends GetxController {
     }
   }
 
-  /// Register New User using ither PhoneEmail and password
-  Future<void> createUser(BuildContext context) async {
+  /// Register New User using either PhoneEmail and password
+  Future<void> createUser() async {
     loadingDialogController.showLoadingDialog();
     try {
       isLoading.value = true;
@@ -237,65 +222,95 @@ class SignUpController extends GetxController {
         return;
       }
 
-      // Generate a fake email using the phone number
-      final fakeEmail = '${phoneNo.text.trim()}@gmail.com';
-
-      // Get User and Pass it to Controller
-      final user = UserModel(
-        userProfileImgUrl: '',
-        password: password.text.trim(),
-        fullName: fullName.text.trim(),
-        userName: userName.text.trim(),
-        phoneNo: phoneNo.text.trim(),
-        fakeEmail: fakeEmail,
-        isVerified: 'false',
-        schoolName: schoolName.text.trim(),
-        selectedGovernorate: selectedGovernorate.value,
-        selectedGrade: selectedGrade.value,
-        selectedDepartment: selectedDepartment.value,
-        selectedGender: selectedGender.value,
-      );
-
-      // Authenticate User first
-      final auth = AuthenticationRepository.instance;
-      await auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
-
-      await UserRepository.instance.createUser(user);
-      final userId = auth.firebaseUser!.uid;
-      // auth.setInitialScreen(auth.firebaseUser);
-      saveImage(userId);
-      loadingDialogController.closeLoadingDialog();
-      // Redirect to the login screen
-
-      showSuccessMessage(message: "Account created successfully!");
       final otpController = Get.put(OtpController());
       otpController.phoneNo.value = phoneNo.text.trim();
       otpController.determineControllerType(1);
-      otpController.sendOTP();
-
-      Get.offAll(() => OTPVerification());
+      if (await otpController.sendOtpToWhatsApp() == true) {
+        Get.offNamed("otp-verification");
+      } else {
+        showErrorMessage(S.current.failed_send_ver_code);
+        loadingDialogController.closeLoadingDialog();
+      }
     } catch (e) {
       loadingDialogController.closeLoadingDialog();
       isLoading.value = false;
-      showErrorMessage("Failed to create account. Please try again.");
+      if (e.toString() == 'Phone already exists.') {
+        showErrorMessage(
+            "The number is already in use. Please try a different number.");
+      } else {
+        print("Error: ${e.toString()}");
+        showErrorMessage("Failed to create account. Please try again.");
+      }
     }
   }
 
-  showUserNameErrorMessage() async {
+  addUser() async {
+    final fakeEmail = '${phoneNo.text.trim()}@gmail.com';
+
+    var user = UserModel(
+      userProfileImgUrl: '',
+      password: password.text.trim(),
+      fullName: fullName.text.trim(),
+      userName: userName.text.trim(),
+      phoneNo: phoneNo.text.trim(),
+      fakeEmail: fakeEmail,
+      isVerified: 'true',
+      schoolName: schoolName.text.trim(),
+      selectedGovernorate: selectedGovernorate.value,
+      selectedGrade: selectedGrade.value,
+      selectedDepartment: selectedDepartment.value,
+      selectedGender: selectedGender.value,
+    );
+
+    // Authenticate User first
+    await _auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
+
+    showSuccessMessage(
+      message: S.current.create_account_successfully,
+    );
+    await UserRepository.instance.createUser(user);
+    final userId = _auth.firebaseUser!.uid;
+    saveImage(userId);
+
+    // Update the user data in the controller
+
+    final userData = await UserRepository.instance.getUserDetails();
+    UserController.instance.setUser(userData);
+  }
+
+  checkUserName() async {
     try {
       loadingDialogController.showLoadingDialog();
-      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+      // Check if the username is unique
+      QuerySnapshot<Map<String, dynamic>> userNameSnapshot =
           await FirebaseFirestore.instance
               .collection('users')
               .where('UserName', isEqualTo: userName.text.trim())
               .limit(1)
               .get();
-      loadingDialogController.closeLoadingDialog();
 
-      if (querySnapshot.docs.isNotEmpty) {
+      if (userNameSnapshot.docs.isNotEmpty) {
         userNameError.value = true;
       } else {
         userNameError.value = false;
+      }
+
+      // Check if the phone number is unique
+      QuerySnapshot<Map<String, dynamic>> phoneNoSnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .where('Phone', isEqualTo: phoneNo.text.trim())
+              .limit(1)
+              .get();
+      loadingDialogController.closeLoadingDialog();
+
+      if (phoneNoSnapshot.docs.isNotEmpty) {
+        phoneError.value = true;
+      } else {
+        phoneError.value = false;
+      }
+
+      if (!userNameError.value && !phoneError.value) {
         goToNextPage();
       }
     } catch (e) {
@@ -303,20 +318,8 @@ class SignUpController extends GetxController {
     }
   }
 
-  //PhoneNoAuthentication
-  // Future<void> phoneAuthentication(String phoneNo) async {
-  //   try {
-  //     await AuthenticationRepository.instance.phoneAuthentication(phoneNo);
-  //   } catch (e) {
-  //     throw e.toString();
-  //   }
-  // }
-
-  //  manage checkbox state
-  var isChecked = false.obs;
-
   //  toggle the checkbox
   void toggleCheckbox(bool value) {
-    isChecked(value);
+    isPrivacyChecked(value);
   }
 }

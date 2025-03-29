@@ -1,4 +1,3 @@
-import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/sizes.dart';
@@ -30,7 +29,7 @@ class CustomDropDownForm extends StatelessWidget {
         validator: validator,
         value: selectedValue,
         isExpanded: false,
-        dropdownColor: AppColors.lightenMainColor,
+        dropdownColor: Theme.of(context).colorScheme.primary,
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: prefixIcon,

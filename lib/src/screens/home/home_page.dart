@@ -6,7 +6,7 @@ import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/screens/home/widgets_home/advertise_img_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -150,65 +150,98 @@ class HomePage extends StatelessWidget {
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: LinearProgressIndicator(
-                                value: controller.monthlyPoints.value /
-                                    controller.maxPoint.value,
-                                // Bind progress value
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                color: Theme.of(context).colorScheme.primary,
-                                minHeight: 10,
-                              ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text('${controller.maxPoint.value}',
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                            ),
+                            Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: Expanded(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      width: 2), // Add border
+                                  borderRadius: BorderRadius.circular(
+                                      0), // Optional: Rounded corners
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(0),
+                                  // Match border radius to avoid overflow
+                                  child: LinearProgressIndicator(
+                                    value: controller.monthlyPoints.value /
+                                        controller.maxPoint.value,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    minHeight: 10,
+                                  ),
+                                ),
+                              )),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                  '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium),
+                            Obx(
+                              () => Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                    '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
+                              ),
                             )
                           ],
                         )
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                  '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium),
+                            Obx(
+                              () => Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                    '${((controller.monthlyPoints.value / controller.maxPoint.value) * 100).toStringAsFixed(2)}%',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
+                              ),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Expanded(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    width: 2), // Add border
-                                borderRadius: BorderRadius.circular(
-                                    0), // Optional: Rounded corners
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0),
-                                // Match border radius to avoid overflow
-                                child: LinearProgressIndicator(
-                                  value: controller.monthlyPoints.value /
-                                      controller.maxPoint.value,
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.secondary,
-                                  color: Theme.of(context).colorScheme.primary,
-                                  minHeight: 10,
+                            Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Expanded(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      width: 2), // Add border
+                                  borderRadius: BorderRadius.circular(
+                                      0), // Optional: Rounded corners
                                 ),
-                              ),
-                            )),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(0),
+                                  // Match border radius to avoid overflow
+                                  child: LinearProgressIndicator(
+                                    value: controller.monthlyPoints.value /
+                                        controller.maxPoint.value,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    minHeight: 10,
+                                  ),
+                                ),
+                              )),
+                            ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8.0),
@@ -419,7 +452,7 @@ class HomePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                  "${S.of(context).on}: ${DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
+                                                  "${S.of(context).on}: ${intl.DateFormat('yyyy-MM-dd HH:mm').format(examResult["date"].toDate())}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,

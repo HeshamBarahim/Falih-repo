@@ -18,7 +18,6 @@ class UserController extends GetxController {
       showErrorMessage(S.current.unexpected_error_occured);
       return;
     }
-    // getProfileImage();
     super.onInit();
   }
 

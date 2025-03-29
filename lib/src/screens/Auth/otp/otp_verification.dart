@@ -11,8 +11,7 @@ import '../widgets_auth/otp_boxes.dart';
 class OTPVerification extends StatelessWidget {
   OTPVerification({super.key});
 
-  final OtpController otpController =
-      Get.put(OtpController()); // Initialize the controller
+  final OtpController otpController = Get.find<OtpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,19 @@ class OTPVerification extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            S.of(context).otp,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          centerTitle: true,
           leading: IconButton(
             icon: const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.darkMainColor,
+              Icons.arrow_back,
             ),
             onPressed: () {
-              Get.back();
+              Get.offAllNamed("login");
             },
           ),
         ),
@@ -36,7 +41,6 @@ class OTPVerification extends StatelessWidget {
             return otpController.isSending.value
                 ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
-                    // Allow scrolling if content exceeds screen size
                     keyboardDismissBehavior:
                         ScrollViewKeyboardDismissBehavior.onDrag,
                     child: Column(
@@ -52,11 +56,7 @@ class OTPVerification extends StatelessWidget {
                         ),
                         Text(
                           S.of(context).otp,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: SizeConfig.screenHeight! * 0.025,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         SizedBox(
                           height: SizeConfig.screenHeight! * 0.01,
@@ -64,20 +64,13 @@ class OTPVerification extends StatelessWidget {
                         Text(
                           textAlign: TextAlign.center,
                           S.of(context).explaination_text,
-                          style: TextStyle(
-                            fontSize: SizeConfig.screenHeight! * 0.017,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             otpController.phoneNo.value,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: AppColors.successColor,
-                            ),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
                         const Form(
@@ -87,13 +80,8 @@ class OTPVerification extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   vertical: SizeConfig.screenHeight! * 0.01),
                               child: Text(
-                                // '${otpController.resendTimeout.value} seconds',
-                                '${otpController.resendTimeout.value} ${S.current.school_cant_be_empty}}',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.screenHeight! * 0.017,
-                                  color: AppColors.darkMainColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                '${otpController.resendTimeout.value}',
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             )),
                         const SizedBox(height: 20),
@@ -101,10 +89,8 @@ class OTPVerification extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              // 'Didn\'t receive OTP?',
                               S.current.didnt_send_ver_code,
-                              style:
-                                  const TextStyle(color: AppColors.mainColor),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                             Obx(() => TextButton(
                                   onPressed: otpController.canResendOtp.value
@@ -113,13 +99,16 @@ class OTPVerification extends StatelessWidget {
                                         }
                                       : null,
                                   child: Text(
-                                    // 'Resend OTP',
                                     S.current.resend_code,
-                                    style: TextStyle(
-                                      color: otpController.canResendOtp.value
-                                          ? AppColors.mainColor
-                                          : Colors.grey,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          color:
+                                              otpController.canResendOtp.value
+                                                  ? AppColors.mainColor
+                                                  : Colors.grey,
+                                        ),
                                   ),
                                 )),
                           ],

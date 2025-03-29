@@ -270,6 +270,15 @@ class S {
     );
   }
 
+  String get create_account_successfully {
+    return Intl.message(
+      'Account created successfully!',
+      name: 'create_account_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `الخطوة 1 من 2`
   String get step1_of_2 {
     return Intl.message(
@@ -1807,6 +1816,16 @@ class S {
       name: 'phone_number_not_exists',
       desc:
           'Displayed when the user tries to register with an already taken username',
+      args: [],
+    );
+  }
+
+  String get phone_number_exists {
+    return Intl.message(
+      '',
+      name: 'phone_number_exists',
+      desc:
+          'Displayed when the user tries to register with an already taken phone number',
       args: [],
     );
   }

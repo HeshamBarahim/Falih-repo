@@ -90,9 +90,8 @@ class Login extends StatelessWidget {
                             validator: Helper.validatePhoneNumber,
                             labelText:
                                 S.of(context).hint_text_username_or_phone,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.account_circle,
-                              size: SizeConfig.screenHeight! * 0.03,
                             ),
                           ),
                           GetBuilder<ShowPasswordController>(
@@ -101,9 +100,8 @@ class Login extends StatelessWidget {
                               myController: loginController.password,
                               validator: Helper.validatePassword,
                               labelText: S.of(context).hint_text_password,
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.lock,
-                                size: SizeConfig.screenHeight! * 0.03,
                               ),
                               obscureText: controller.obText,
                               showPasswordFunction:

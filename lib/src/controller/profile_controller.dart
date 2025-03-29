@@ -21,8 +21,8 @@ class ProfileController extends GetxController {
   final LoadingDialogController loadingDialogController =
       LoadingDialogController();
 
-  final password = TextEditingController();
   final fullName = TextEditingController();
+  final userName = TextEditingController();
   final phoneNo = TextEditingController();
   final schoolName = TextEditingController();
 
@@ -41,11 +41,7 @@ class ProfileController extends GetxController {
   String userId = FirebaseAuth.instance.currentUser!.uid;
 
   bool isProfileImgLoading = true;
-
-  // bool isProfileImgLoading = true;
-
   int imgInit = 0;
-
   String? profileImgUrl;
 
   @override
@@ -62,6 +58,7 @@ class ProfileController extends GetxController {
   Future<void> getVariables() async {
     userProfileImgUrl.value = userController.user.value!.userProfileImgUrl;
     fullName.text = userController.user.value!.fullName;
+    userName.text = userController.user.value!.userName ?? "";
     schoolName.text = userController.user.value!.schoolName;
     phoneNo.text = userController.user.value!.phoneNo;
     selectedGovernorate.value = userController.user.value!.selectedGovernorate;
@@ -259,7 +256,7 @@ class ProfileController extends GetxController {
       final updatedUser = UserModel(
         id: userController.user.value?.id,
         fullName: fullName.text.trim(),
-        userName: userController.user.value?.userName ?? '',
+        userName: userName.text.trim(),
         userProfileImgUrl: userProfileImgUrl.value?.trim(),
         phoneNo: phoneNo.text.trim(),
         fakeEmail: userController.user.value!.fakeEmail,

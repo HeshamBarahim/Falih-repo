@@ -96,7 +96,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "correct_answers":
             MessageLookupByLibrary.simpleMessage("Correct Answers"),
         "create_account":
-            MessageLookupByLibrary.simpleMessage(" Create an Account"),
+            MessageLookupByLibrary.simpleMessage("Create an Account"),
+        "create_account_successfully": MessageLookupByLibrary.simpleMessage(
+            "Account created successfully!"),
         "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "days": MessageLookupByLibrary.simpleMessage("days"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
@@ -212,6 +214,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Username already exists"),
         "phone_number_not_exists": MessageLookupByLibrary.simpleMessage(
             "This Phone Number Doesn\'t Exist"),
+        "phone_number_exists": MessageLookupByLibrary.simpleMessage(
+            "This number is already associated with account"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
             "Username must be longer than 3 characters"),
         "usernameInvalidCharacters": MessageLookupByLibrary.simpleMessage(

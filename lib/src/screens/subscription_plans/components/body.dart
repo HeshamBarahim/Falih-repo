@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
       }
 
       return SizedBox(
-        height: SizeConfig.screenHeight! * 0.5,
+        height: SizeConfig.screenHeight! * 0.45,
         child: Column(
           children: [
             Row(

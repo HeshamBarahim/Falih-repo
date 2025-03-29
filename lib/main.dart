@@ -3,6 +3,7 @@ import 'package:falih/src/controller/settings_controller.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
+import 'package:falih/src/screens/Auth/forgot_password/change_password.dart';
 import 'package:falih/src/screens/Auth/forgot_password/forgot_password.dart';
 import 'package:falih/src/screens/Auth/login/login.dart';
 import 'package:falih/src/screens/Auth/otp/otp_verification.dart';
@@ -94,6 +95,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/about-us', page: () => AboutUsScreen()),
         GetPage(name: '/settings', page: () => const SettingsScreen()),
         GetPage(name: '/checkout', page: () => CheckoutScreen()),
+        GetPage(name: '/change-password', page: () => ChangePassword()),
       ],
     );
   }
