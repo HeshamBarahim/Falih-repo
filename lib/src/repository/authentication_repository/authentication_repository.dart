@@ -22,8 +22,6 @@ class AuthenticationRepository extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
-  final _phoneVerificationId = ''.obs;
-
   User? get firebaseUser => _firebaseUser.value;
 
   // Use this to store data locally
@@ -128,21 +126,6 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  //EmailAuthentication  - REGISTER
-  Future<void> registerWithEmailAndPassword(
-      String email, String password) async {
-    try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      final ex = TExceptions.fromCode(e.code);
-      throw ex.message;
-    } catch (_) {
-      const ex = TExceptions();
-      throw ex.message;
-    }
-  }
-
   // EmailVerification  MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
     try {
@@ -154,15 +137,6 @@ class AuthenticationRepository extends GetxController {
       const ex = TExceptions();
       throw ex.message;
     }
-  }
-
-  // PhoneAuthentication VERIFY PHONE NO BY OTP
-  Future<bool> verifyOTP(String otp) async {
-    var credentials = await _auth.signInWithCredential(
-      PhoneAuthProvider.credential(
-          verificationId: _phoneVerificationId.value, smsCode: otp),
-    );
-    return credentials.user != null ? true : false;
   }
 
   // LogoutUser

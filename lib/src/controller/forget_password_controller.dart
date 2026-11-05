@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../generated/l10n.dart';
 import '../constants/dialogs.dart';
+import '../services/auth_messages.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
@@ -16,38 +16,26 @@ class ForgetPasswordController extends GetxController {
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
-  void checkPhoneNumber() async {
-    if (forgetPasswordFormKey.currentState!.validate()) {
-      try {
-        loadingDialogController.showLoadingDialog();
-
-        QuerySnapshot<Map<String, dynamic>> querySnapshot =
-            await FirebaseFirestore.instance
-                .collection('users')
-                .where('Phone', isEqualTo: phoneNumber.text.trim())
-                .limit(1)
-                .get();
-
+  /// Asks the server to send a reset code. The server answers the same way
+  /// whether or not the number is registered, so this screen cannot be used
+  /// to find out who has an account.
+  Future<void> checkPhoneNumber() async {
+    if (!forgetPasswordFormKey.currentState!.validate()) return;
+    loadingDialogController.showLoadingDialog();
+    try {
+      final otpController = Get.put(OtpController());
+      otpController.phoneNo.value = phoneNumber.text.trim();
+      otpController.determineControllerType(2);
+      if (await otpController.sendOtp()) {
+        // Replaces the loading dialog route and shows the OTP page.
+        Get.offNamed("otp-verification");
+      } else {
         loadingDialogController.closeLoadingDialog();
-
-        if (querySnapshot.docs.isEmpty) {
-          phoneNumberError.value = true;
-        } else {
-          phoneNumberError.value = false;
-
-          final otpController = Get.put(OtpController());
-          otpController.phoneNo.value = phoneNumber.text.trim();
-          otpController.determineControllerType(2);
-          if (!await otpController.sendOtpToWhatsApp() == true) {
-            Get.offNamed("otp-verification");
-          } else {
-            showErrorMessage(S.current.failed_send_ver_code);
-          }
-        }
-      } catch (e) {
-        // Handle other exceptions (e.g., invalid data format)
-        throw const FormatException('Invalid Phone Number or data format');
+        showErrorMessage(authErrorMessage(otpController.lastFailure));
       }
+    } catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
     }
   }
 }

@@ -70,18 +70,21 @@ class UserModel {
   /// Map Json oriented document snapshot from Firebase to UserModel
   factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    // If document is empty then return an empty Model as created above.
-    if (document.data() == null || document.data()!.isEmpty) {
-      return UserModel.empty();
-    }
-    final data = document.data()!;
+    return UserModel.fromMap(document.id, document.data() ?? {});
+  }
+
+  /// Build from raw document data. Reads both the current `fakeEmail` key and
+  /// the `Fake Email` key some older code looked for.
+  factory UserModel.fromMap(String id, Map<String, dynamic> data) {
+    // If the document is empty then return an empty Model as created above.
+    if (data.isEmpty) return UserModel.empty();
     return UserModel(
-      id: document.id,
+      id: id,
       userProfileImgUrl: data['userProfileImgUrl'] ?? '',
       fullName: data["FullName"] ?? '',
       userName: data["UserName"] ?? '',
       phoneNo: data["Phone"] ?? '',
-      fakeEmail: data["Fake Email"] ?? '',
+      fakeEmail: data["fakeEmail"] ?? data["Fake Email"] ?? '',
       isVerified: data["IsVerified"] ?? '',
       selectedGovernorate: data["Governoroate"] ?? '',
       schoolName: data["School Name"] ?? '',

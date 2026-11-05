@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 import '../authentication_repository/exceptions/t_exceptions.dart';
@@ -10,37 +9,6 @@ class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
-
-  /// Store user data
-  Future<void> createUser(UserModel user) async {
-    try {
-      // Use Authentication ID (uID) as DocumentId for the "users" collection.
-      final uid = FirebaseAuth.instance.currentUser?.uid;
-      if (uid == null) throw "User is not authenticated.";
-
-      // Check if the record already exists based on email.
-      final exists = await recordExist(user.fakeEmail);
-      if (exists) throw "User already exists";
-
-      // Add user using uID as the document ID.
-      await _db.collection("users").doc(uid).set(user.toJson());
-
-      // Update the device token separately
-      final fcmToken = await FirebaseMessaging.instance.getToken();
-      await _db.collection("users").doc(uid).update({
-        'deviceToken': fcmToken,
-      });
-    } on FirebaseAuthException catch (e) {
-      final result = TExceptions.fromCode(e.code);
-      throw result.message;
-    } on FirebaseException catch (e) {
-      throw e.message.toString();
-    } catch (e) {
-      throw e.toString().isEmpty
-          ? 'Something went wrong. Please Try Again'
-          : e.toString();
-    }
-  }
 
   /// Fetch User Specific Details
   Future<UserModel> getUserDetails() async {
@@ -114,19 +82,6 @@ class UserRepository extends GetxController {
       throw e.message.toString();
     } catch (_) {
       throw 'Something went wrong. Please Try Again';
-    }
-  }
-
-  /// Check if user exists with email or phoneNo
-  Future<bool> recordExist(String fakeEmail) async {
-    try {
-      final snapshot = await _db
-          .collection("users")
-          .where("Email", isEqualTo: fakeEmail)
-          .get();
-      return snapshot.docs.isNotEmpty;
-    } catch (e) {
-      throw "Error fetching record.";
     }
   }
 }

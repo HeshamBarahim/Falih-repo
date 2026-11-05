@@ -23,7 +23,9 @@ import 'package:falih/src/screens/settings/settings_screen.dart';
 import 'package:falih/src/screens/splash/splash_screen.dart';
 import 'package:falih/src/screens/subject_page/subject_page.dart';
 import 'package:falih/src/screens/subscription_plans/subscription_plans_screen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -36,8 +38,13 @@ import 'src/controller/notifications_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((_) {});
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // Lets the backend reject calls that do not come from the genuine app.
+  await FirebaseAppCheck.instance.activate(
+    androidProvider:
+        kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
+    appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
+  );
   await GetStorage.init();
   await initDependencies();
   runApp(MyApp());

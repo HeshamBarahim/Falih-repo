@@ -1,8 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/controller/user_controller.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
+import 'package:falih/src/services/auth_backend.dart';
+import 'package:falih/src/services/auth_messages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,11 @@ import 'loading_dialog_controller.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
+
+  LoginController({AuthBackend? backend})
+      : _backend = backend ?? CloudAuthBackend();
+
+  final AuthBackend _backend;
 
   /// TextField Controllers to get data from TextFields
   final TextEditingController email = TextEditingController();
@@ -28,110 +34,46 @@ class LoginController extends GetxController {
   Future<void> login(BuildContext context) async {
     if (isProcessing.value) return; // Exit if already processing
 
-    isProcessing.value = true;
-
-    // Check network connection
-    // if (!await networkController.checkConnection()) {
-    //   showErrorMessage('No Internet Connection');
-    //   isProcessing.value = false;
-    //   return;
-    // }
-
     // Validate form
-    if (!loginFormKey.currentState!.validate()) {
-      isProcessing.value = false;
-      return;
+    if (!loginFormKey.currentState!.validate()) return;
+
+    isProcessing.value = true;
+    loadingDialogController.showLoadingDialog();
+    var dialogOpen = true;
+    void closeDialog() {
+      if (dialogOpen) {
+        dialogOpen = false;
+        loadingDialogController.closeLoadingDialog();
+      }
     }
 
     try {
-      loadingDialogController.showLoadingDialog();
-
-      final input = email.text.trim();
-
-      // Determine if the input is a phone number or username
-      if (isNumeric(input)) {
-        // Login with phone number
-        await _loginWithPhoneNumber(input);
-      } else {
-        // Login with username
-        await _loginWithUsername(input);
-      }
+      // The server turns a phone number or username into the Firebase email,
+      // so the app never builds emails or queries other users' documents.
+      final loginEmail = await _backend.lookupLoginEmail(email.text.trim());
+      await AuthenticationRepository.instance
+          .loginWithEmailAndPassword(loginEmail, password.text.trim());
 
       // Fetch and store user details
       final user = await UserRepository.instance.getUserDetails();
       UserController.instance.setUser(user);
 
       // Set initial screen based on user state
-      final auth = AuthenticationRepository.instance;
-      await auth.setInitialScreen();
+      await AuthenticationRepository.instance.setInitialScreen();
     } on FirebaseAuthException catch (e) {
-      loadingDialogController.closeLoadingDialog();
-      // Handle Firebase authentication errors
+      closeDialog();
       _handleFirebaseAuthError(e);
-    } on FirebaseException catch (e) {
-      loadingDialogController.closeLoadingDialog();
-      // Handle Firestore errors
+    } on AuthFailure catch (e) {
+      closeDialog();
+      showErrorMessage(authErrorMessage(e));
+    } on FirebaseException {
+      closeDialog();
       showErrorMessage(S.current.wrong_credentials);
-    } on FormatException catch (e) {
-      loadingDialogController.closeLoadingDialog();
-      // Handle invalid input format
-      showErrorMessage('Invalid input: ${e.message}');
     } catch (e) {
-      // Handle all other exceptions
-      showErrorMessage('An unexpected error occurred: ${e.toString()}');
+      closeDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
     } finally {
       isProcessing.value = false;
-    }
-  }
-
-  /// Helper method to check if the input is numeric (phone number)
-  bool isNumeric(String input) {
-    return int.tryParse(input) != null;
-  }
-
-  /// Login with phone number
-  Future<void> _loginWithPhoneNumber(String phoneNumber) async {
-    try {
-      final fakeEmail = '$phoneNumber@gmail.com'; // Append a fake domain
-      final auth = AuthenticationRepository.instance;
-      await auth.loginWithEmailAndPassword(fakeEmail, password.text.trim());
-    } on FirebaseAuthException catch (e) {
-      // Re-throw FirebaseAuthException to be handled in the main login method
-      rethrow;
-    } catch (e) {
-      // Handle other exceptions (e.g., invalid email format)
-      throw FirebaseException(
-        plugin: 'firestore',
-        message: 'User not found',
-      );
-    }
-  }
-
-  /// Login with username
-  Future<void> _loginWithUsername(String username) async {
-    try {
-      // Fetch the associated phone number from Firestore
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .where('UserName', isEqualTo: username)
-          .limit(1)
-          .get();
-
-      if (querySnapshot.docs.isEmpty) {
-        throw FirebaseException(
-          plugin: 'firestore',
-          message: 'User not found',
-        );
-      }
-
-      final phoneNumber = querySnapshot.docs[0]['Phone'];
-      await _loginWithPhoneNumber(phoneNumber); // Reuse phone login logic
-    } on FirebaseException catch (e) {
-      // Re-throw Firestore exceptions to be handled in the main login method
-      rethrow;
-    } catch (e) {
-      // Handle other exceptions (e.g., invalid data format)
-      throw const FormatException('Invalid username or data format');
     }
   }
 
@@ -139,20 +81,16 @@ class LoginController extends GetxController {
   void _handleFirebaseAuthError(FirebaseAuthException e) {
     String errorMessage;
     switch (e.code) {
-      case 'invalid-email':
-        errorMessage = 'Invalid email format';
-        break;
-      case 'user-not-found':
-        errorMessage = 'User not found';
-        break;
-      case 'wrong-password':
-        errorMessage = 'Incorrect password';
+      case 'network-request-failed':
+        errorMessage = S.current.no_internet_connection;
         break;
       case 'too-many-requests':
-        errorMessage = 'Too many requests. Try again later';
+        errorMessage = 'Too many requests. Try again later'; // TODO(l10n)
         break;
       default:
-        errorMessage = 'Authentication failed: ${e.message}';
+        // invalid-credential, user-not-found, wrong-password, invalid-email:
+        // one message, so the app does not reveal which accounts exist.
+        errorMessage = S.current.wrong_credentials;
     }
     showErrorMessage(errorMessage);
   }

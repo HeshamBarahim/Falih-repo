@@ -223,7 +223,7 @@ final ThemeData appTheme = ThemeData(
     surface: AppColors.darkMainColor,
     // Background in light mode
   ),
-  cardTheme: const CardTheme(
+  cardTheme: const CardThemeData(
     color: AppColors.moreLightenMainColor,
     elevation: 10,
     shadowColor: AppColors.darkMainColor,
@@ -339,7 +339,7 @@ final ThemeData darkAppTheme = ThemeData(
     surface: AppColors.mainColor,
     // Background in light mode
   ),
-  cardTheme: const CardTheme(
+  cardTheme: const CardThemeData(
     color: AppColors.mainColor,
     elevation: 10,
   ),

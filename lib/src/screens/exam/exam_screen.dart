@@ -4,7 +4,6 @@ import 'package:falih/src/controller/text_formatter_controller.dart';
 import 'package:falih/src/screens/exam/exam_widgets/ai_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/images.dart';
 import '../../config/sizes.dart';

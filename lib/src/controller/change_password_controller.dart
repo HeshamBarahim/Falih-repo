@@ -1,17 +1,19 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:falih/src/constants/dialogs.dart';
-import 'package:falih/src/constants/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 import '../../generated/l10n.dart';
+import '../services/auth_backend.dart';
+import '../services/auth_messages.dart';
 import 'loading_dialog_controller.dart';
 import 'otp_controller.dart';
 
 class ChangePasswordController extends GetxController {
+  ChangePasswordController({AuthBackend? backend})
+      : _backend = backend ?? CloudAuthBackend();
+
+  final AuthBackend _backend;
+
   GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
   final TextEditingController password = TextEditingController();
   final TextEditingController rePassword = TextEditingController();
@@ -19,51 +21,37 @@ class ChangePasswordController extends GetxController {
   final LoadingDialogController loadingDialogController =
       Get.put(LoadingDialogController());
 
-  void changePasswordFunction() async {
-    if (changePasswordFormKey.currentState!.validate()) {
-      loadingDialogController.showLoadingDialog();
-      final String email = "${otpController.phoneNo.value}@gmail.com";
-      final String passwordText = password.text.trim();
+  /// Sends the code the user typed plus the new password. The server verifies
+  /// the code and changes the password in one step.
+  Future<void> changePasswordFunction() async {
+    if (!changePasswordFormKey.currentState!.validate()) return;
+    final challengeId = otpController.challengeId;
+    final code = otpController.enteredCode;
+    if (challengeId == null || code == null) {
+      Get.offAllNamed("forgot-password");
+      return;
+    }
 
-      if (email.isEmpty || passwordText.isEmpty) {
-        showErrorMessage("Email and password cannot be empty.");
-        return;
+    loadingDialogController.showLoadingDialog();
+    try {
+      await _backend.resetPassword(
+        challengeId: challengeId,
+        code: code,
+        newPassword: password.text.trim(),
+      );
+      loadingDialogController.closeLoadingDialog();
+      showSuccessMessage(message: "Password updated successfully!"); // TODO(l10n)
+      Get.offAllNamed("login");
+    } on AuthFailure catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(authErrorMessage(e));
+      // A wrong, expired or used-up code cannot be retried here: start over.
+      if (e.code == 'permission-denied' || e.code == 'failed-precondition') {
+        Get.offAllNamed("forgot-password");
       }
-
-      final Uri url = Uri.parse(URLs.UPDATE_PASSWORD_API);
-
-      try {
-        final response = await http
-            .post(
-              url,
-              headers: {"Content-Type": "application/json"},
-              body: jsonEncode({"email": email, "newPassword": passwordText}),
-            )
-            .timeout(
-              const Duration(seconds: 10),
-            );
-
-        if (response.statusCode == 200) {
-          showSuccessMessage(message: "Password updated successfully!");
-          Get.offAllNamed("login");
-        } else {
-          // Parse server error messages if available
-          final Map<String, dynamic>? responseData = jsonDecode(response.body);
-          final String errorMessage =
-              responseData?["error"] ?? "Failed to update password.";
-
-          showErrorMessage(errorMessage);
-        }
-      } on TimeoutException {
-        showErrorMessage("Request timed out. Please try again.");
-      } on FormatException {
-        showErrorMessage("Invalid response format from server.");
-      } on Exception catch (e) {
-        showErrorMessage(S.current.unexpected_error_occured);
-        print("Error: $e"); // Log the error for debugging
-      } finally {
-        loadingDialogController.closeLoadingDialog();
-      }
+    } catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
     }
   }
 }

@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/controller/user_controller.dart';
-import 'package:falih/src/models/user_model.dart';
 import 'package:falih/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:falih/src/repository/user_repository/user_repository.dart';
+import 'package:falih/src/services/auth_backend.dart';
+import 'package:falih/src/services/auth_messages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,11 @@ import 'otp_controller.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
-  final _auth = AuthenticationRepository.instance;
+  AuthenticationRepository get _auth => AuthenticationRepository.instance;
+  final AuthBackend _backend;
+
+  SignUpController({AuthBackend? backend})
+      : _backend = backend ?? CloudAuthBackend();
 
   // TextField Controllers to get data from TextFields
   final profile = TextEditingController();
@@ -163,39 +168,22 @@ class SignUpController extends GetxController {
     }
   }
 
-  void saveImage(String userId) async {
+  /// Best-effort profile image upload; the account already exists at this point.
+  Future<void> saveImage(String userId) async {
+    final image = file2;
+    if (image == null) return;
     try {
-      if (file2 != null) {
-        loadingDialogController.showLoadingDialog();
-        final storageRef = FirebaseStorage.instance
-            .refFromURL('gs://falih-1.firebasestorage.app')
-            .child('user_profile_images/$userId');
-
-        // Upload the file
-        await storageRef.putFile(file2!);
-        profileImgUrl = await storageRef.getDownloadURL();
-
-        try {
-          // Add Image Url To FireBase
-          CollectionReference imgUrlCollection =
-              FirebaseFirestore.instance.collection('users');
-
-          await imgUrlCollection
-              .doc(userId)
-              .update({'userProfileImgUrl': profileImgUrl})
-              .then((value) => print("Image Edited"))
-              .catchError((error) {
-                print("Failed to Edit Note: $error");
-              });
-          update();
-        } on FirebaseAuthException catch (e) {
-          throw e.message.toString();
-        }
-
-        loadingDialogController.closeLoadingDialog();
-      }
+      final storageRef = FirebaseStorage.instance
+          .refFromURL('gs://falih-1.firebasestorage.app')
+          .child('user_profile_images/$userId');
+      await storageRef.putFile(image);
+      profileImgUrl = await storageRef.getDownloadURL();
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .update({'userProfileImgUrl': profileImgUrl});
     } catch (e) {
-      loadingDialogController.closeLoadingDialog();
+      debugPrint('Profile image upload failed: $e');
     }
   }
 
@@ -211,110 +199,86 @@ class SignUpController extends GetxController {
     }
   }
 
-  /// Register New User using either PhoneEmail and password
+  /// Step 1 of signup: validate the form, then ask the server to send a code.
   Future<void> createUser() async {
+    if (!signupFormKey.currentState!.validate()) return;
     loadingDialogController.showLoadingDialog();
+    isLoading.value = true;
     try {
-      isLoading.value = true;
-      if (!signupFormKey.currentState!.validate()) {
-        isLoading.value = false;
-        loadingDialogController.closeLoadingDialog();
-        return;
-      }
-
       final otpController = Get.put(OtpController());
       otpController.phoneNo.value = phoneNo.text.trim();
       otpController.determineControllerType(1);
-      if (await otpController.sendOtpToWhatsApp() == true) {
+      if (await otpController.sendOtp()) {
+        // Replaces the loading dialog route and shows the OTP page.
         Get.offNamed("otp-verification");
       } else {
-        showErrorMessage(S.current.failed_send_ver_code);
         loadingDialogController.closeLoadingDialog();
+        showErrorMessage(authErrorMessage(otpController.lastFailure));
       }
     } catch (e) {
       loadingDialogController.closeLoadingDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
+    } finally {
       isLoading.value = false;
-      if (e.toString() == 'Phone already exists.') {
-        showErrorMessage(
-            "The number is already in use. Please try a different number.");
-      } else {
-        print("Error: ${e.toString()}");
-        showErrorMessage("Failed to create account. Please try again.");
-      }
     }
   }
 
-  addUser() async {
-    final fakeEmail = '${phoneNo.text.trim()}@gmail.com';
-
-    var user = UserModel(
-      userProfileImgUrl: '',
-      password: password.text.trim(),
-      fullName: fullName.text.trim(),
-      userName: userName.text.trim(),
-      phoneNo: phoneNo.text.trim(),
-      fakeEmail: fakeEmail,
-      isVerified: 'true',
-      schoolName: schoolName.text.trim(),
-      selectedGovernorate: selectedGovernorate.value,
-      selectedGrade: selectedGrade.value,
-      selectedDepartment: selectedDepartment.value,
-      selectedGender: selectedGender.value,
-    );
-
-    // Authenticate User first
-    await _auth.registerWithEmailAndPassword(user.fakeEmail, user.password!);
-
-    showSuccessMessage(
-      message: S.current.create_account_successfully,
-    );
-    await UserRepository.instance.createUser(user);
-    final userId = _auth.firebaseUser!.uid;
-    saveImage(userId);
-
-    // Update the user data in the controller
-
-    final userData = await UserRepository.instance.getUserDetails();
-    UserController.instance.setUser(userData);
+  /// Step 2 of signup: the server checks the code and creates the account;
+  /// then we sign in with the returned email.
+  Future<void> completeSignup(String challengeId, String code) async {
+    loadingDialogController.showLoadingDialog();
+    try {
+      final email = await _backend.completeSignup(
+        challengeId: challengeId,
+        code: code,
+        password: password.text.trim(),
+        profile: {
+          'fullName': fullName.text.trim(),
+          'userName': userName.text.trim(),
+          'schoolName': schoolName.text.trim(),
+          'governorate': selectedGovernorate.value,
+          'grade': selectedGrade.value,
+          'department': selectedDepartment.value,
+          'gender': selectedGender.value,
+        },
+      );
+      await _auth.loginWithEmailAndPassword(email, password.text.trim());
+      final userId = _auth.firebaseUser?.uid ??
+          FirebaseAuth.instance.currentUser!.uid;
+      await saveImage(userId);
+      UserController.instance
+          .setUser(await UserRepository.instance.getUserDetails());
+      loadingDialogController.closeLoadingDialog();
+      showSuccessMessage(message: S.current.create_account_successfully);
+      await _auth.setInitialScreen();
+    } on AuthFailure catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(authErrorMessage(e));
+    } catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
+    }
   }
 
-  checkUserName() async {
+  /// Signup page 1: are the username and phone free? Answered by the server,
+  /// so the app needs no read access to other users' documents.
+  Future<void> checkUserName() async {
+    loadingDialogController.showLoadingDialog();
     try {
-      loadingDialogController.showLoadingDialog();
-      // Check if the username is unique
-      QuerySnapshot<Map<String, dynamic>> userNameSnapshot =
-          await FirebaseFirestore.instance
-              .collection('users')
-              .where('UserName', isEqualTo: userName.text.trim())
-              .limit(1)
-              .get();
-
-      if (userNameSnapshot.docs.isNotEmpty) {
-        userNameError.value = true;
-      } else {
-        userNameError.value = false;
-      }
-
-      // Check if the phone number is unique
-      QuerySnapshot<Map<String, dynamic>> phoneNoSnapshot =
-          await FirebaseFirestore.instance
-              .collection('users')
-              .where('Phone', isEqualTo: phoneNo.text.trim())
-              .limit(1)
-              .get();
+      final result = await _backend.checkAvailability(
+        userName: userName.text.trim(),
+        phone: phoneNo.text.trim(),
+      );
       loadingDialogController.closeLoadingDialog();
-
-      if (phoneNoSnapshot.docs.isNotEmpty) {
-        phoneError.value = true;
-      } else {
-        phoneError.value = false;
-      }
-
-      if (!userNameError.value && !phoneError.value) {
-        goToNextPage();
-      }
+      userNameError.value = result.userNameTaken ?? false;
+      phoneError.value = result.phoneTaken ?? false;
+      if (!userNameError.value && !phoneError.value) goToNextPage();
+    } on AuthFailure catch (e) {
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(authErrorMessage(e));
     } catch (e) {
-      throw const FormatException('Invalid username or data format');
+      loadingDialogController.closeLoadingDialog();
+      showErrorMessage(S.current.unexpected_error_occured);
     }
   }
 

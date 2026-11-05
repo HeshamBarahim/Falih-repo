@@ -1,101 +1,74 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:falih/generated/l10n.dart';
 import 'package:falih/src/constants/dialogs.dart';
 import 'package:falih/src/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
-import '../repository/authentication_repository/authentication_repository.dart';
-import 'loading_dialog_controller.dart';
+import '../services/auth_backend.dart';
+import '../services/auth_messages.dart';
 
+/// Holds the state of one OTP challenge. The code is created, delivered and
+/// checked by the server; this controller only requests it and relays what the
+/// user typed.
 class OtpController extends GetxController {
-  final otpTextController = TextEditingController();
-  var phoneNo = "".obs;
-  var resendTimeout = 60.obs; // Resend timeout in seconds
-  var canResendOtp = false.obs; // Whether the user can resend OTP
-  var generatedOtp = ''.obs; // Dynamically generated OTP
-  var isSending = false.obs; // Loading state
-  final RxInt controllerType = 1.obs;
-  Timer? _resendTimer;
+  OtpController({AuthBackend? backend}) : _backend = backend ?? CloudAuthBackend();
 
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final LoadingDialogController loadingDialogController =
-      Get.put(LoadingDialogController());
+  final AuthBackend _backend;
+
+  final otpTextController = TextEditingController();
+  final phoneNo = "".obs;
+  final resendTimeout = 60.obs; // seconds until a resend is allowed
+  final canResendOtp = true.obs;
+  final isSending = false.obs;
+  final RxInt controllerType = 1.obs; // 1 = signup, 2 = password reset
+
+  /// Server-issued id of the active challenge.
+  String? challengeId;
+
+  /// Code the user typed for a password reset; it is checked by the server
+  /// together with the new password (a code is single use).
+  String? enteredCode;
+
+  /// Why the last [sendOtp] failed, if it did.
+  AuthFailure? lastFailure;
+
+  Timer? _resendTimer;
 
   @override
   void onClose() {
-    _resendTimer?.cancel(); // Cancel the timer when the controller is closed
+    _resendTimer?.cancel();
+    otpTextController.dispose();
     super.onClose();
   }
 
-  // Determine The Type of Controller
-  determineControllerType(int type) {
+  void determineControllerType(int type) {
     controllerType.value = type;
   }
 
-  // Simulate sending OTP via API
-  Future<bool> sendOtpToWhatsApp() async {
-    startResendTimer();
+  Future<bool> sendOtp() async {
     isSending.value = true;
-
-    final random = Random();
-    generatedOtp.value = (100000 + random.nextInt(900000)).toString();
-
-    final snapshot =
-        await _firestore.collection('app_config').doc("whatsapp_docker").get();
-
-    final otpServer = snapshot.data();
-    var otpAPI = otpServer!["api_url"];
-
+    lastFailure = null;
     try {
-      final response = await http
-          .post(
-        Uri.parse(otpAPI),
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          "chatId": "967${phoneNo.value}",
-          "reply_to": null,
-          "text": """عزيزي العميل،
-رمز التحقق الخاص بك لتطبيق فالح هو ${generatedOtp.value}. يرجى عدم مشاركته مع أي شخص.
-يظل الرمز صالحًا لمدة 5 دقائق.
-
-شكرًا لاستخدامك تطبيق فالح! 🚀""",
-          "linkPreview": true,
-          "session": "default"
-        }),
-      )
-          .timeout(
-        const Duration(seconds: 20), // Set timeout duration
-        onTimeout: () {
-          throw TimeoutException("Request to server timed out!");
-        },
+      final challenge = await _backend.requestOtp(
+        phone: phoneNo.value,
+        purpose: controllerType.value == 1 ? OtpPurpose.signup : OtpPurpose.reset,
       );
-      if (response.statusCode == 201) {
-        isSending.value = false;
-        return true;
-      } else {
-        return false;
-        // Get.back();
-        // showErrorMessage(S.current.failed_send_ver_code);
-      }
-    } catch (e) {
-      print(e.toString());
+      challengeId = challenge.challengeId;
+      enteredCode = null;
+      startResendTimer();
+      return true;
+    } on AuthFailure catch (e) {
+      lastFailure = e;
+      return false;
     } finally {
       isSending.value = false;
     }
-    return false;
   }
 
-  // Start the resend timer
   void startResendTimer() {
+    _resendTimer?.cancel();
     canResendOtp.value = false;
     resendTimeout.value = 60;
     _resendTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -108,35 +81,23 @@ class OtpController extends GetxController {
     });
   }
 
-  // Resend OTP
-  void resendOtp() {
-    if (canResendOtp.value) {
-      startResendTimer();
-      sendOtpToWhatsApp();
-    }
+  Future<void> resendOtp() async {
+    if (!canResendOtp.value) return;
+    if (!await sendOtp()) showErrorMessage(authErrorMessage(lastFailure));
   }
 
-  // Verify OTP
-  Future<void> verifyOtp(String enteredOtp) async {
-    if (enteredOtp == generatedOtp.value) {
-      showSuccessMessage(message: S.current.code_verified_successfully);
-      loadingDialogController.showLoadingDialog();
-
-      if (controllerType.value == 1) {
-        final SignUpController signUpController = Get.put(SignUpController());
-        await signUpController.addUser();
-
-        final auth = AuthenticationRepository.instance;
-        await auth.setInitialScreen();
-        loadingDialogController.closeLoadingDialog();
-
-        Get.offAllNamed("main-screen");
-      } else if (controllerType.value == 2) {
-        loadingDialogController.closeLoadingDialog();
-        Get.offAllNamed("change-password");
-      }
-    } else {
+  /// Called when the user has typed all digits.
+  Future<void> verifyOtp(String code) async {
+    final id = challengeId;
+    if (id == null) {
       showErrorMessage(S.current.invalid_ver_code);
+      return;
+    }
+    if (controllerType.value == 1) {
+      await Get.find<SignUpController>().completeSignup(id, code);
+    } else {
+      enteredCode = code;
+      Get.offAllNamed("change-password");
     }
   }
 }
