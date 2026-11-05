@@ -45,6 +45,14 @@
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
+		<key>NSCameraUsageDescription</key>
+		<string>Falih uses the camera so you can take a profile photo.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Falih uses your photo library so you can choose a profile photo.</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>remote-notification</string>
+		</array>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>

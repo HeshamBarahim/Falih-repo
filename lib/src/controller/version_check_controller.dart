@@ -2,26 +2,31 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../generated/l10n.dart';
+import '../services/version_policy.dart';
 
 class VersionCheckController extends GetxController {
 
+  /// True when this install is older than the build required in `app_config`.
+  /// Any failure (offline, missing config) lets the user in: a broken check
+  /// must never lock people out. Only Android is gated; the update link is a
+  /// Google Play link.
   Future<bool> checkVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-    String versionName = packageInfo.version; // Version Name
-    String versionCode = packageInfo.buildNumber; // Version Code
-
-    QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await FirebaseFirestore.instance.collection('app_config').get();
-    if (versionCode != querySnapshot.docs.first['VersionCode'] ||
-        versionName != querySnapshot.docs.first['VersionName']) {
-      return true;
-    } else {
+    if (!Platform.isAndroid) return false;
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('app_config').get();
+      return isUpdateRequired(
+        installedBuild: packageInfo.buildNumber,
+        requiredBuild: pickRequiredBuild(snapshot.docs.map((d) => d.data())),
+      );
+    } catch (_) {
       return false;
     }
   }
@@ -67,6 +72,6 @@ class VersionCheckController extends GetxController {
   }
 
   void _exitApp() {
-    exit(0);
+    SystemNavigator.pop();
   }
 }

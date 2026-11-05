@@ -4,23 +4,18 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../services/notification_message.dart';
+
 class NotificationsController extends GetxController {
   List<QueryDocumentSnapshot> notificationsList = [];
 
   @override
   void onInit() {
-    // TODO: implement onInit
     getNotificationsList();
     getNotificationsPermission();
     foreGroundNotificationsHandler();
     backgroundNotificationsHandler();
     super.onInit();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
   }
 
   Future<void> getNotificationsList() async {
@@ -44,43 +39,37 @@ class NotificationsController extends GetxController {
     update();
   }
 
-  Future<void> addNotification(
-      String title, String subTitle, String date) async {
+  /// Stores a push message in the signed-in user's history. Uses the message
+  /// id as the document id, so the same message is never stored twice. Does
+  /// nothing for data-only messages or when nobody is signed in.
+  Future<void> storeMessage(RemoteMessage message) async {
     final user = FirebaseAuth.instance.currentUser;
+    final item = notificationFromMessage(
+      title: message.notification?.title,
+      body: message.notification?.body,
+      sentTime: message.sentTime,
+      now: DateTime.now(),
+    );
+    if (user == null || item == null) return;
 
-    getNotificationsList();
-
-    CollectionReference notifications = FirebaseFirestore.instance
+    final notifications = FirebaseFirestore.instance
         .collection('users')
-        .doc(user!.uid)
+        .doc(user.uid)
         .collection('notifications');
-
-    if (notificationsList.isNotEmpty) {
-      await notifications
-          .add({
-            'id': notificationsList.length + 1,
-            'title': '${title}',
-            'subTitle': '${subTitle}',
-            'date': '${date}'
-          })
-          .then((value) => print("Note Added"))
-          .catchError((error) {
-            print("Failed To Add Note: $error");
-          });
-    } else {
-      await notifications
-          .add({
-            'id': 1,
-            'title': '${title}',
-            'subTitle': '${subTitle}',
-            'date': '${date}'
-          })
-          .then((value) => print("Note Added"))
-          .catchError((error) {
-            print("Failed To Add Note: $error");
-          });
+    final doc = (message.messageId?.isNotEmpty ?? false)
+        ? notifications.doc(message.messageId)
+        : notifications.doc();
+    try {
+      await doc.set({
+        'title': item.title,
+        'subTitle': item.subTitle,
+        'date': item.date,
+      });
+    } catch (e) {
+      debugPrint('Could not store notification: $e');
+      return;
     }
-    getNotificationsList();
+    await getNotificationsList();
   }
 
   Future<void> deleteNotification(String index) async {
@@ -96,66 +85,38 @@ class NotificationsController extends GetxController {
   }
 
   Future<void> getNotificationsPermission() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-    NotificationSettings settings = await messaging.requestPermission(
+    await FirebaseMessaging.instance.requestPermission(
       alert: true,
-      announcement: false,
       badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
       sound: true,
     );
-
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
-    } else {
-      print('User declined or has not accepted permission');
-    }
   }
 
-  Future<void> foreGroundNotificationsHandler() async {
+  void foreGroundNotificationsHandler() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      // print('Got a message whilst in the foreground! ${message.data}');
-      // print('---------------------------------------------------------------');
-      // print('---------------------------------------------------------------');
-      // print('Message data : ${message.data}');
-      // print('Message data : ${message.notification!.title}');
-      // print('Message data : ${message.notification!.body}');
-      // print('Message data : ${message.sentTime}');
-      // getNotificationsList();
-
-      Get.snackbar(
-        '${message.notification!.title}',
-        // '${message.sentTime}',
-        '${message.notification!.body}',
-        dismissDirection: DismissDirection.horizontal,
-        backgroundColor: Color(0xFFFFFFFF),
-        colorText: Color(0xFF742e89),
-        snackPosition: SnackPosition.TOP,
-        duration: const Duration(seconds: 4),
-        icon: const Icon(Icons.notifications, color: Color(0xFF742e89)),
-      );
-      addNotification(
-        '${message.notification!.title}',
-        '${message.notification!.body}',
-        '${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}',
-      );
+      final n = message.notification;
+      if (n != null) {
+        Get.snackbar(
+          n.title ?? '',
+          n.body ?? '',
+          dismissDirection: DismissDirection.horizontal,
+          backgroundColor: const Color(0xFFFFFFFF),
+          colorText: const Color(0xFF742e89),
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 4),
+          icon: const Icon(Icons.notifications, color: Color(0xFF742e89)),
+        );
+      }
+      storeMessage(message);
     });
   }
 
-  Future<void> backgroundNotificationsHandler() async {
-    // TODO: implement terminatedNotifications
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      addNotification(
-        '${message.notification!.title}',
-        '${message.notification!.body}',
-        '${message.sentTime!.day}/${message.sentTime!.month}/${message.sentTime!.year} - ${message.sentTime!.hour.toString().padLeft(2, '0')}:${message.sentTime!.minute.toString().padLeft(2, '0')}',
-      );
+  void backgroundNotificationsHandler() {
+    // App opened by tapping a notification while it was in the background.
+    FirebaseMessaging.onMessageOpenedApp.listen(storeMessage);
+    // App opened by tapping a notification while it was terminated.
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if (message != null) storeMessage(message);
     });
   }
 }
