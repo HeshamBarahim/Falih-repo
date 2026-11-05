@@ -40,7 +40,7 @@ class ChangePasswordController extends GetxController {
         newPassword: password.text.trim(),
       );
       loadingDialogController.closeLoadingDialog();
-      showSuccessMessage(message: "Password updated successfully!"); // TODO(l10n)
+      showSuccessMessage(message: S.current.password_updated_successfully);
       Get.offAllNamed("login");
     } on AuthFailure catch (e) {
       loadingDialogController.closeLoadingDialog();

@@ -85,7 +85,7 @@ class LoginController extends GetxController {
         errorMessage = S.current.no_internet_connection;
         break;
       case 'too-many-requests':
-        errorMessage = 'Too many requests. Try again later'; // TODO(l10n)
+        errorMessage = S.current.too_many_requests;
         break;
       default:
         // invalid-credential, user-not-found, wrong-password, invalid-email:

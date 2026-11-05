@@ -59,6 +59,10 @@ abstract class AuthBackend {
   Future<String> lookupLoginEmail(String identifier);
 
   Future<Availability> checkAvailability({String? userName, String? phone});
+
+  /// Deletes the signed-in user's account and all their data. The caller must
+  /// have re-authenticated within the last five minutes.
+  Future<void> deleteAccount();
 }
 
 class CloudAuthBackend implements AuthBackend {
@@ -125,6 +129,11 @@ class CloudAuthBackend implements AuthBackend {
   Future<String> lookupLoginEmail(String identifier) async {
     final r = await _call('authLookupLoginEmail', {'identifier': identifier});
     return r['email'] as String;
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _call('authDeleteAccount', {});
   }
 
   @override

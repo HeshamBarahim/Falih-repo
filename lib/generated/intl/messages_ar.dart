@@ -427,6 +427,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "your_journey": MessageLookupByLibrary.simpleMessage("رحلتك مع فالح"),
         "your_latest_exams":
             MessageLookupByLibrary.simpleMessage("آخر الامتحانات الخاصة بك"),
-        "your_self": MessageLookupByLibrary.simpleMessage("نفسك")
+        "your_self": MessageLookupByLibrary.simpleMessage("نفسك"),
+        "delete_account": MessageLookupByLibrary.simpleMessage(
+            "حذف الحساب"),
+        "delete_account_warning": MessageLookupByLibrary.simpleMessage(
+            "سيتم حذف حسابك وتقدمك وسجل اختباراتك نهائيًا، ولا يمكن التراجع عن ذلك."),
+        "delete_account_confirm_password": MessageLookupByLibrary.simpleMessage(
+            "أدخل كلمة المرور لتأكيد الحذف"),
+        "account_deleted": MessageLookupByLibrary.simpleMessage(
+            "تم حذف حسابك"),
+        "password_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "تم تحديث كلمة المرور بنجاح"),
+        "too_many_requests": MessageLookupByLibrary.simpleMessage(
+            "محاولات كثيرة، يرجى المحاولة لاحقًا"),
+        "otp_expired": MessageLookupByLibrary.simpleMessage(
+            "انتهت صلاحية الرمز أو استُنفدت المحاولات، اطلب رمزًا جديدًا"),
+        "phone_already_registered": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف مسجل مسبقًا"),
+        "weak_password": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور قصيرة جدًا")
       };
 }

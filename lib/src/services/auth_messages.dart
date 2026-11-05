@@ -1,9 +1,7 @@
 import '../../generated/l10n.dart';
 import 'auth_backend.dart';
 
-/// User-facing text for an auth failure, using existing l10n strings.
-/// TODO(l10n): add dedicated strings for too-many-requests, otp-expired,
-/// phone-taken and weak-password; they currently fall back to the generic message.
+/// User-facing text for an auth failure.
 String authErrorMessage(AuthFailure? f) {
   switch (f?.reason) {
     case 'otp-invalid':
@@ -12,7 +10,18 @@ String authErrorMessage(AuthFailure? f) {
       return S.current.failed_send_ver_code;
     case 'username-taken':
       return S.current.username_already_exists;
+    case 'phone-taken':
+      return S.current.phone_already_registered;
+    case 'weak-password':
+      return S.current.weak_password;
+    case 'too-many-requests':
+      return S.current.too_many_requests;
+    case 'otp-expired':
+    case 'otp-locked':
+    case 'otp-consumed':
+      return S.current.otp_expired;
   }
+  if (f?.code == 'resource-exhausted') return S.current.too_many_requests;
   if (f?.code == 'unavailable') return S.current.no_internet_connection;
   return S.current.unexpected_error_occured;
 }

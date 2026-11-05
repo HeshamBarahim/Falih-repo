@@ -679,7 +679,6 @@
     },
     "username_already_exists": "Username already exists",
     
-    {
     "@usernameTooShort": {
       "description": "Validation message for username length"
     },
@@ -693,8 +692,7 @@
     "@usernameNoSpaces": {
       "description": "Validation message for username spaces"
     },
-    "usernameNoSpaces": "لا يُسمح بالمسافات في اسم المستخدم"
-  }
+    "usernameNoSpaces": "لا يُسمح بالمسافات في اسم المستخدم",
 
 
     "@name_must_be": {
@@ -1015,7 +1013,41 @@
     "@choose_any_section": {
       "description": ""
     },
-    "choose_any_section": "Choose any section or select all"
-  
-
+    "choose_any_section": "Choose any section or select all",
+    "@delete_account": {
+      "description": ""
+    },
+    "delete_account": "Delete account",
+    "@delete_account_warning": {
+      "description": ""
+    },
+    "delete_account_warning": "This permanently deletes your account, progress and exam history. This cannot be undone.",
+    "@delete_account_confirm_password": {
+      "description": ""
+    },
+    "delete_account_confirm_password": "Enter your password to confirm deletion",
+    "@account_deleted": {
+      "description": ""
+    },
+    "account_deleted": "Your account has been deleted",
+    "@password_updated_successfully": {
+      "description": ""
+    },
+    "password_updated_successfully": "Password updated successfully!",
+    "@too_many_requests": {
+      "description": ""
+    },
+    "too_many_requests": "Too many attempts. Please try again later.",
+    "@otp_expired": {
+      "description": ""
+    },
+    "otp_expired": "The code expired or was tried too many times. Request a new one.",
+    "@phone_already_registered": {
+      "description": ""
+    },
+    "phone_already_registered": "This phone number is already registered",
+    "@weak_password": {
+      "description": ""
+    },
+    "weak_password": "Password is too short"
 }

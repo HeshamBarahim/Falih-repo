@@ -430,6 +430,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your Journey With Falih"),
         "your_latest_exams":
             MessageLookupByLibrary.simpleMessage("Your latest Exams"),
-        "your_self": MessageLookupByLibrary.simpleMessage("Yourself")
+        "your_self": MessageLookupByLibrary.simpleMessage("Yourself"),
+        "delete_account": MessageLookupByLibrary.simpleMessage(
+            "Delete account"),
+        "delete_account_warning": MessageLookupByLibrary.simpleMessage(
+            "This permanently deletes your account, progress and exam history. This cannot be undone."),
+        "delete_account_confirm_password": MessageLookupByLibrary.simpleMessage(
+            "Enter your password to confirm deletion"),
+        "account_deleted": MessageLookupByLibrary.simpleMessage(
+            "Your account has been deleted"),
+        "password_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "Password updated successfully!"),
+        "too_many_requests": MessageLookupByLibrary.simpleMessage(
+            "Too many attempts. Please try again later."),
+        "otp_expired": MessageLookupByLibrary.simpleMessage(
+            "The code expired or was tried too many times. Request a new one."),
+        "phone_already_registered": MessageLookupByLibrary.simpleMessage(
+            "This phone number is already registered"),
+        "weak_password": MessageLookupByLibrary.simpleMessage(
+            "Password is too short")
       };
 }

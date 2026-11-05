@@ -2731,6 +2731,96 @@ class S {
       args: [],
     );
   }
+
+  /// `حذف الحساب`
+  String get delete_account {
+    return Intl.message(
+      "حذف الحساب",
+      name: 'delete_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `سيتم حذف حسابك وتقدمك وسجل اختباراتك نهائيًا، ولا يمكن التراجع عن ذلك.`
+  String get delete_account_warning {
+    return Intl.message(
+      "سيتم حذف حسابك وتقدمك وسجل اختباراتك نهائيًا، ولا يمكن التراجع عن ذلك.",
+      name: 'delete_account_warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل كلمة المرور لتأكيد الحذف`
+  String get delete_account_confirm_password {
+    return Intl.message(
+      "أدخل كلمة المرور لتأكيد الحذف",
+      name: 'delete_account_confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم حذف حسابك`
+  String get account_deleted {
+    return Intl.message(
+      "تم حذف حسابك",
+      name: 'account_deleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تحديث كلمة المرور بنجاح`
+  String get password_updated_successfully {
+    return Intl.message(
+      "تم تحديث كلمة المرور بنجاح",
+      name: 'password_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `محاولات كثيرة، يرجى المحاولة لاحقًا`
+  String get too_many_requests {
+    return Intl.message(
+      "محاولات كثيرة، يرجى المحاولة لاحقًا",
+      name: 'too_many_requests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `انتهت صلاحية الرمز أو استُنفدت المحاولات، اطلب رمزًا جديدًا`
+  String get otp_expired {
+    return Intl.message(
+      "انتهت صلاحية الرمز أو استُنفدت المحاولات، اطلب رمزًا جديدًا",
+      name: 'otp_expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `رقم الهاتف مسجل مسبقًا`
+  String get phone_already_registered {
+    return Intl.message(
+      "رقم الهاتف مسجل مسبقًا",
+      name: 'phone_already_registered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور قصيرة جدًا`
+  String get weak_password {
+    return Intl.message(
+      "كلمة المرور قصيرة جدًا",
+      name: 'weak_password',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -40,6 +40,12 @@ class FakeAuthBackend implements AuthBackend {
   }
 
   @override
+  Future<void> deleteAccount() async {
+    calls.add('deleteAccount');
+    _maybeFail();
+  }
+
+  @override
   Future<String> lookupLoginEmail(String identifier) async {
     calls.add('lookup:$identifier');
     _maybeFail();

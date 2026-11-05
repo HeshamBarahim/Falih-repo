@@ -2,10 +2,13 @@ import { createHmac, randomBytes } from 'node:crypto';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
+import { getStorage } from 'firebase-admin/storage';
 import { defineBoolean, defineSecret } from 'firebase-functions/params';
 import { logger } from 'firebase-functions/v2';
 import { CallableOptions, CallableRequest, HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { FirebaseAccountData } from './accountData';
+import { deleteAccount } from './accountService';
 import { Deps, checkAvailability, completeSignup, lookupLoginEmail, requestOtp, resetPassword } from './authService';
 import { FirebaseDirectory } from './directory';
 import { FirestoreStore } from './firestoreStores';
@@ -66,6 +69,23 @@ function handle<I, O>(fn: (d: Deps, data: I, ip: string) => Promise<O>) {
     }
   });
 }
+
+export const authDeleteAccount = onCall({ region: 'us-central1', maxInstances: 5 }, async (req: CallableRequest) => {
+  if (ENFORCE_APP_CHECK.value() && !req.app) throw new HttpsError('failed-precondition', 'app-check-required');
+  try {
+    const data = new FirebaseAccountData(getAuth(), db, async (uid) => {
+      await getStorage().bucket().file(`user_profile_images/${uid}`).delete({ ignoreNotFound: true });
+    });
+    return await deleteAccount(
+      { data, now: () => Date.now() },
+      { uid: req.auth?.uid, authTimeSec: req.auth?.token.auth_time },
+    );
+  } catch (e) {
+    if (e instanceof AppError) throw new HttpsError(e.code, e.message);
+    logger.error('account deletion failed', e);
+    throw new HttpsError('internal', 'internal');
+  }
+});
 
 export const authRequestOtp = handle(requestOtp);
 export const authCompleteSignup = handle(completeSignup);

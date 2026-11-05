@@ -6,6 +6,8 @@ import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { Deps, completeSignup, lookupLoginEmail, requestOtp, resetPassword } from '../src/authService';
+import { FirebaseAccountData } from '../src/accountData';
+import { deleteAccount } from '../src/accountService';
 import { FirebaseDirectory } from '../src/directory';
 import { FirestoreStore } from '../src/firestoreStores';
 import { generateCode, issueChallenge, verifyChallenge } from '../src/otp';
@@ -129,5 +131,43 @@ describe('end to end with real stores', () => {
     await resetPassword(later, { challengeId: reset.challengeId, code: sent.at(-1)!.code, newPassword: 'brandnew1' }, '1.1.1.1');
     expect(await signInWithPassword(signup.email, 'brandnew1')).toBe(true);
     expect(await signInWithPassword(signup.email, 'secret1')).toBe(false);
+  });
+});
+
+describe('account deletion with real stores', () => {
+  it('removes profile, history, notifications, username claim, image hook and auth user, and only for that user', async () => {
+    const a = await dir.createAccount({ phone: '771234567', password: 'secret1', profile: profile('alice') });
+    const b = await dir.createAccount({ phone: '700000000', password: 'secret1', profile: profile('bob') });
+    for (const u of [a, b]) {
+      await db.collection('users').doc(u.uid).collection('notifications').doc('n1').set({ t: 1 });
+      await db.collection('exams').doc(u.uid).collection('userExams').doc('e1').set({ points: 5 });
+    }
+    const images: string[] = [];
+    const data = new FirebaseAccountData(auth, db, async (uid) => { images.push(uid); });
+    const now = Date.now();
+
+    await deleteAccount({ data, now: () => now }, { uid: a.uid, authTimeSec: Math.floor(now / 1000) });
+
+    expect((await db.collection('users').doc(a.uid).get()).exists).toBe(false);
+    expect((await db.collection('users').doc(a.uid).collection('notifications').get()).size).toBe(0);
+    expect((await db.collection('exams').doc(a.uid).collection('userExams').get()).size).toBe(0);
+    expect((await db.collection('usernames').doc('alice').get()).exists).toBe(false);
+    await expect(auth.getUser(a.uid)).rejects.toMatchObject({ code: 'auth/user-not-found' });
+    expect(images).toEqual([a.uid]);
+
+    // the other user is untouched
+    expect((await db.collection('users').doc(b.uid).get()).exists).toBe(true);
+    expect((await db.collection('exams').doc(b.uid).collection('userExams').get()).size).toBe(1);
+    expect((await db.collection('usernames').doc('bob').get()).exists).toBe(true);
+    expect((await auth.getUser(b.uid)).uid).toBe(b.uid);
+  });
+
+  it('can be retried after the auth user is already gone', async () => {
+    const a = await dir.createAccount({ phone: '771234567', password: 'secret1', profile: profile('alice') });
+    await auth.deleteUser(a.uid);
+    const data = new FirebaseAccountData(auth, db, async () => {});
+    const now = Date.now();
+    await deleteAccount({ data, now: () => now }, { uid: a.uid, authTimeSec: Math.floor(now / 1000) });
+    expect((await db.collection('users').doc(a.uid).get()).exists).toBe(false);
   });
 });
