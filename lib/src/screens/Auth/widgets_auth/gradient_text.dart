@@ -1,6 +1,5 @@
 import 'package:falih/src/config/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../config/sizes.dart';
 
 class GradientText extends StatelessWidget {

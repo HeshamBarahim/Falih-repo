@@ -16,8 +16,7 @@ class ResultDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeController homeController = Get.find<HomeController>();
     final ExamController controller = Get.find<ExamController>();
-    final LeaderboardController leaderboardController =
-        Get.find<LeaderboardController>();
+    Get.find<LeaderboardController>(); // must already be registered, as before
 
     return Dialog(
       child: Builder(builder: (ctx) {

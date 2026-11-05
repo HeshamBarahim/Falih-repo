@@ -40,10 +40,6 @@ class LeaderboardController extends GetxController {
   }
 
   void fetchUserPointsAndRank() {
-    final userEntry = leaderboardUsers.firstWhere(
-        (user) => user['userId'] == userController.user.value?.id,
-        orElse: () => {});
-
     // controller.point.value = userPoints[userController.user.value?.id] ?? 0;
     // controller.point.value =
     //     userEntry.isNotEmpty ? userEntry['points'] as int : 0;
