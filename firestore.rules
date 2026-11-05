@@ -1,0 +1,71 @@
+rules_version = '2';
+
+// UNTESTED against the emulator (no Java/emulator on the authoring machine).
+// Run the Firebase emulator rules tests before deploying. See docs/auth-rollout.md.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+
+    // Profile documents: created and deleted only by Cloud Functions (Admin SDK).
+    // Identity fields (Phone, UserName, fakeEmail, IsVerified) are immutable from the client.
+    match /users/{uid} {
+      allow get: if isOwner(uid);
+      allow list, create, delete: if false;
+      allow update: if isOwner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'FullName', 'School Name', 'Governoroate', 'Grade', 'Department', 'Gender',
+          'userProfileImgUrl', 'deviceToken'
+        ]);
+
+      match /notifications/{id} {
+        allow read, create, delete: if isOwner(uid);
+        allow update: if false;
+      }
+    }
+
+    // Exam history. Clients may append one validated result; never edit or delete.
+    // NOTE: points are still computed on the device. Server-side scoring is a follow-up (audit issue 12).
+    match /exams/{uid}/userExams/{id} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && validExam(request.resource.data);
+      allow update, delete: if false;
+    }
+
+    function validExam(d) {
+      return d.keys().hasOnly([
+          'examName', 'grade', 'department', 'examType', 'score', 'totalQuestions',
+          'correctAnswers', 'wrongAnswers', 'points', 'timeTaken', 'date', 'answers'
+        ])
+        && d.examType in ['UnitExam', 'FinalExam']
+        && d.totalQuestions is int && d.totalQuestions >= 1 && d.totalQuestions <= 100
+        && d.correctAnswers is int && d.correctAnswers >= 0
+        && d.wrongAnswers is int && d.wrongAnswers >= 0
+        && d.correctAnswers + d.wrongAnswers <= d.totalQuestions
+        && d.score is int && d.score >= 0 && d.score <= 2 * d.totalQuestions
+        && d.points is int && d.points >= 0 && d.points <= 200
+        && d.date is timestamp
+        && d.date > request.time - duration.value(1, 'd')
+        && d.date < request.time + duration.value(1, 'h')
+        && d.answers is list && d.answers.size() <= 100;
+    }
+
+    match /leaderboard/{doc} { allow read: if signedIn(); allow write: if false; }
+    match /plans/{doc}       { allow read: if signedIn(); allow write: if false; }
+
+    // Question banks (collections named subjects_<department>_<grade>).
+    match /{col}/{doc} {
+      allow read: if signedIn() && col.matches('subjects_.*');
+    }
+
+    // Needed before login (force-update check). The collection is listed as a whole, so it must
+    // hold NOTHING secret: delete app_config/whatsapp_docker first (see rollout doc).
+    match /app_config/{doc} { allow read: if true; allow write: if false; }
+
+    // Server-only collections: Functions use the Admin SDK, which bypasses rules.
+    match /otp_challenges/{doc} { allow read, write: if false; }
+    match /rate_limits/{doc}    { allow read, write: if false; }
+    match /usernames/{doc}      { allow read, write: if false; }
+  }
+}
