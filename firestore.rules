@@ -1,7 +1,7 @@
 rules_version = '2';
 
-// UNTESTED against the emulator (no Java/emulator on the authoring machine).
-// Run the Firebase emulator rules tests before deploying. See docs/auth-rollout.md.
+// Tested against the Firebase emulator: `cd rules-tests && npm test` (38 cases).
+// Re-run after any edit. Deploy order and legacy-client impact: docs/auth-rollout.md.
 service cloud.firestore {
   match /databases/{database}/documents {
 

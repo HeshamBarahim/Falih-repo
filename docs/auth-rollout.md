@@ -17,7 +17,12 @@ Nothing in this branch has been deployed. The owner deploys, in this order. Old 
    firebase functions:secrets:set WHATSAPP_API_URL    # https://... relay endpoint
    firebase functions:secrets:set WHATSAPP_API_KEY    # sent as X-Api-Key; adjust whatsapp.ts if the relay uses another header
    ```
-3. Run the emulator tests for `firestore.rules` / `storage.rules` (not done here: the authoring machine has no Java/emulator). Also smoke-test the Functions against the emulator: the Firebase adapters (`directory.ts`, `firestoreStores.ts`) are type-checked only, not run.
+3. Run the tests (needs Java 21 and `npm install` in `rules-tests/` and `functions/`):
+   ```
+   (cd functions && npm test)                 # 47 unit tests
+   (cd rules-tests && npm test)               # 44 rules tests + 8 adapter integration tests, in the emulators
+   ```
+   The emulator config (`firebase.test.json`) uses ports 18080/19099/19199 so it does not clash with other services. These tests cover the Firestore/Storage rules, the real Firestore transactions (20 concurrent verifications, exactly one wins) and the full signup, login lookup and reset flow against the Auth emulator. They do NOT cover: WhatsApp delivery, App Check, secrets, or the Flutter app talking to deployed functions. Test those on a staging Firebase project before production.
 
 ## Order
 1. `firebase deploy --only functions` (adds endpoints; nothing calls them yet).

@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// UNTESTED against the emulator. See docs/auth-rollout.md.
+// Tested against the Firebase emulator: `cd rules-tests && npm test` (6 cases).
 service firebase.storage {
   match /b/{bucket}/o {
     match /user_profile_images/{uid} {
