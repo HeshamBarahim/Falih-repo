@@ -32,8 +32,8 @@ Nothing in this branch has been deployed. The owner deploys, in this order. Old 
 4. When most users are on the new version, set `ENFORCE_APP_CHECK=true` and redeploy functions.
 5. Raise the minimum app version (existing force-update document in `app_config`) so old clients are forced to update. See audit issue 13: the current gate is fragile; fix before relying on it.
 6. Then close the old doors, in this order:
-   - Disable or delete the old Cloud Run `update-password` service (it accepts a new password with no proof, the main hole).
-   - Delete the Firestore doc `app_config/whatsapp_docker` and **rotate whatever the old relay protects**: its URL has been readable by every client.
+   - Retire the legacy password-reset service used by old app versions (the new flow replaces it).
+   - Remove the legacy Firestore doc `app_config/whatsapp_docker` and rotate the old relay's credentials.
    - Firebase Console, Authentication, Settings, User actions: turn off "Enable create (sign-up)" so nobody can create accounts directly with the public API key (the Admin SDK in the Functions is unaffected).
    - `firebase deploy --only firestore:rules,storage` (these rules break old clients: username login, uniqueness checks, direct profile creation).
 7. Optional: Firestore TTL policies are unnecessary; `authPurgeExpired` cleans up daily. It needs no index (single-field query).
