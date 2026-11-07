@@ -10,7 +10,7 @@ import { FirebaseAccountData } from '../src/accountData';
 import { deleteAccount } from '../src/accountService';
 import { FirebaseDirectory } from '../src/directory';
 import { FirestoreStore } from '../src/firestoreStores';
-import { generateCode, issueChallenge, verifyChallenge } from '../src/otp';
+import { OtpProvider, issueChallenge, verifyChallenge } from '../src/otp';
 import { Challenge, Counter } from '../src/types';
 import { AppError } from '../src/validation';
 
@@ -42,22 +42,25 @@ beforeAll(() => {
 });
 beforeEach(clearAll);
 
+/** Provider that always confirms: isolates our own single-use guarantee from the provider's. */
+const yes: OtpProvider = { send: async () => {}, check: async () => true };
+
 describe('FirestoreStore (real transactions)', () => {
   it('lets exactly one of 20 concurrent correct verifications succeed', async () => {
     const store = new FirestoreStore<Challenge>(db, 'otp_challenges');
-    await issueChallenge(store, { id: 'c1', phone: '771234567', purpose: 'signup', code: '482913', pepper: 'p', now: Date.now() });
+    await issueChallenge(store, { id: 'c1', phone: '771234567', purpose: 'signup', now: Date.now() });
     const results = await Promise.all(
-      Array.from({ length: 20 }, () => verifyChallenge(store, { id: 'c1', code: '482913', purpose: 'signup', pepper: 'p', now: Date.now() })),
+      Array.from({ length: 20 }, () => verifyChallenge(store, yes, { id: 'c1', code: '482913', purpose: 'signup', now: Date.now() })),
     );
     expect(results.filter((r) => r.status === 'ok')).toHaveLength(1);
     expect(results.filter((r) => r.status === 'consumed')).toHaveLength(19);
   });
 
-  it('stores only the hash of the code', async () => {
+  it('stores no code material', async () => {
     const store = new FirestoreStore<Challenge>(db, 'otp_challenges');
-    await issueChallenge(store, { id: 'c2', phone: '771234567', purpose: 'signup', code: '908172', pepper: 'p', now: Date.now() });
-    const raw = JSON.stringify((await db.collection('otp_challenges').doc('c2').get()).data());
-    expect(raw).not.toContain('908172');
+    await issueChallenge(store, { id: 'c2', phone: '771234567', purpose: 'signup', now: Date.now() });
+    const data = (await db.collection('otp_challenges').doc('c2').get()).data()!;
+    expect(Object.keys(data).sort()).toEqual(['attempts', 'consumed', 'createdAt', 'expiresAt', 'phone', 'purpose']);
   });
 });
 
@@ -103,13 +106,18 @@ describe('FirebaseDirectory', () => {
 
 describe('end to end with real stores', () => {
   const sent: { phone: string; code: string }[] = [];
+  const pending = new Map<string, string>();
+  const provider: OtpProvider = {
+    send: async (phone) => { const code = String(100000 + sent.length); pending.set(phone, code); sent.push({ phone, code }); },
+    check: async (phone, c) => { const ok = pending.get(phone) === c; if (ok) pending.delete(phone); return ok; },
+  };
   const deps = (): Deps => ({
     challenges: new FirestoreStore<Challenge>(db, 'otp_challenges'),
     limits: new FirestoreStore<Counter>(db, 'rate_limits'),
     users: dir,
-    sender: { send: async (phone, code) => { sent.push({ phone, code }); } },
+    otp: provider,
     pepper: 'pepper', decoySecret: 'decoy', now: () => Date.now(),
-    newId: () => randomBytes(16).toString('hex'), newCode: generateCode,
+    newId: () => randomBytes(16).toString('hex'),
   });
 
   it('signup, login lookup, then password reset', async () => {

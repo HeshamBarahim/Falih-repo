@@ -4,25 +4,26 @@ Nothing in this branch has been deployed. The owner deploys, in this order. Old 
 
 ## What changed
 - OTP creation, delivery, verification, signup, password reset and login-identifier lookup run in Cloud Functions (`functions/`): `authRequestOtp`, `authCompleteSignup`, `authResetPassword`, `authLookupLoginEmail`, `authCheckAvailability`, plus `authPurgeExpired` (daily cleanup).
-- OTPs: CSPRNG, stored only as HMAC hashes in `otp_challenges` (no client access), 5 min TTL, 5 attempts, single use. Rate limits: 1 code/60 s and 5/hour per phone, 20/hour per IP.
-- The WhatsApp relay URL and key live in Secret Manager. The client no longer knows them.
+- OTPs: created and checked by Smarticbot (we store no code, only phone/purpose/attempts in `otp_challenges`, no client access), 5 min TTL, 5 attempts, single use enforced by a Firestore transaction. Rate limits: 1 code/60 s and 5/hour per phone, 20/hour per IP.
+- The Smarticbot key lives in Secret Manager. The client no longer knows it or any relay URL.
 - Existing accounts (`<phone>@gmail.com`) keep working: the server resolves the real login email (new domain first, then legacy). New accounts use `<phone>@users.falih.invalid` (never receives mail).
 - `firestore.rules` and `storage.rules` implement default-deny (audit issue 04).
 
 ## Before deploying
-1. **Relay must be reachable over HTTPS.** `WhatsAppSender` refuses `http://`. If the relay is a plain-HTTP raw-IP service, put TLS in front of it (reverse proxy) or the OTPs travel in cleartext. Ideally also add an API key check on the relay.
-2. Secrets (values never go in the repo or chat):
+1. **OTP provider: Smarticbot** (`https://smarticbot.com/api/v1`, docs at smarticbot.com/en/docs). Smarticbot creates, sends and checks the code; our functions only call `send-otp` and `verify-otp` and enforce rate limits, attempt limits and single use. Connect a phone in the Smarticbot dashboard and create its API key first. Prefer the official WhatsApp Business connection over the unofficial QR one (QR sessions can be disconnected or banned, which stops every OTP).
+2. Secrets (values never go in the repo or chat; run in your own terminal and paste when asked):
    ```
-   firebase functions:secrets:set OTP_PEPPER          # long random string, e.g. openssl rand -hex 32
-   firebase functions:secrets:set WHATSAPP_API_URL    # https://... relay endpoint
-   firebase functions:secrets:set WHATSAPP_API_KEY    # sent as X-Api-Key; adjust whatsapp.ts if the relay uses another header
+   firebase functions:secrets:set SMARTICBOT_API_KEY  # the key from the Smarticbot dashboard, sent as x-api-key
+   firebase functions:secrets:set OTP_PEPPER          # random string (openssl rand -hex 32); keys the decoy login emails
    ```
+   **Rotating the key** (the app never changes): create the new key, run `firebase functions:secrets:set SMARTICBOT_API_KEY`, `firebase deploy --only functions`, send a test OTP, then revoke the old key. Running instances read the secret at start, so the redeploy is what applies it.
+   Delivery failures are logged as `otp provider error` / `otp provider unreachable` with the HTTP status and Smarticbot error code, never the key, phone or code. Alert on `otp-provider-misconfigured` (bad or revoked key).
 3. Run the tests (needs Java 21 and `npm install` in `rules-tests/` and `functions/`):
    ```
-   (cd functions && npm test)                 # 47 unit tests
-   (cd rules-tests && npm test)               # 44 rules tests + 8 adapter integration tests, in the emulators
+   (cd functions && npm test)                 # unit tests
+   (cd rules-tests && npm test)               # rules tests + adapter integration tests, in the emulators
    ```
-   The emulator config (`firebase.test.json`) uses ports 18080/19099/19199 so it does not clash with other services. These tests cover the Firestore/Storage rules, the real Firestore transactions (20 concurrent verifications, exactly one wins) and the full signup, login lookup and reset flow against the Auth emulator. They do NOT cover: WhatsApp delivery, App Check, secrets, or the Flutter app talking to deployed functions. Test those on a staging Firebase project before production.
+   The emulator config (`firebase.test.json`) uses ports 18080/19099/19199 so it does not clash with other services. These tests cover the Firestore/Storage rules, the real Firestore transactions (20 concurrent verifications, exactly one wins) and the full signup, login lookup and reset flow against the Auth emulator. They do NOT cover: real Smarticbot delivery/verification (the client is tested against a fake `fetch`; its exact responses for wrong or expired codes are assumed from the docs), App Check, secrets, or the Flutter app talking to deployed functions. Test those on a staging Firebase project before production.
 
 ## Order
 1. `firebase deploy --only functions` (adds endpoints; nothing calls them yet).
@@ -32,7 +33,7 @@ Nothing in this branch has been deployed. The owner deploys, in this order. Old 
 5. Raise the minimum app version (existing force-update document in `app_config`) so old clients are forced to update. See audit issue 13: the current gate is fragile; fix before relying on it.
 6. Then close the old doors, in this order:
    - Disable or delete the old Cloud Run `update-password` service (it accepts a new password with no proof, the main hole).
-   - Delete the Firestore doc `app_config/whatsapp_docker` and **rotate whatever the relay protects**: its URL has been readable by every client.
+   - Delete the Firestore doc `app_config/whatsapp_docker` and **rotate whatever the old relay protects**: its URL has been readable by every client.
    - Firebase Console, Authentication, Settings, User actions: turn off "Enable create (sign-up)" so nobody can create accounts directly with the public API key (the Admin SDK in the Functions is unaffected).
    - `firebase deploy --only firestore:rules,storage` (these rules break old clients: username login, uniqueness checks, direct profile creation).
 7. Optional: Firestore TTL policies are unnecessary; `authPurgeExpired` cleans up daily. It needs no index (single-field query).

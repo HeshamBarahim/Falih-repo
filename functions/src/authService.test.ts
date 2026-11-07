@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { AppError } from './validation';
 import { Challenge, Counter, MemoryStore } from './types';
-import { Deps, OtpSender, UserDirectory, checkAvailability, completeSignup, lookupLoginEmail, requestOtp, resetPassword } from './authService';
-import { MAX_ATTEMPTS } from './otp';
+import { Deps, UserDirectory, checkAvailability, completeSignup, lookupLoginEmail, requestOtp, resetPassword } from './authService';
+import { MAX_ATTEMPTS, OtpProvider } from './otp';
 
 class FakeDirectory implements UserDirectory {
   accounts = new Map<string, { uid: string; email: string; password: string }>(); // by phone
@@ -24,12 +24,20 @@ class FakeDirectory implements UserDirectory {
   }
 }
 
-class FakeSender implements OtpSender {
-  sent: { phone: string; code: string }[] = [];
+/** Behaves like the provider: it owns the code, a code works once. */
+class FakeSender implements OtpProvider {
+  sent: { phone: string; key: string }[] = [];
+  live = new Map<string, string>(); // phone -> pending code
   fail = false;
-  async send(phone: string, code: string) {
-    if (this.fail) throw new Error('relay down');
-    this.sent.push({ phone, code });
+  async send(phone: string, key: string) {
+    if (this.fail) throw new Error('provider down');
+    this.sent.push({ phone, key });
+    this.live.set(phone, '482913');
+  }
+  async check(phone: string, c: string) {
+    const ok = this.live.get(phone) === c;
+    if (ok) this.live.delete(phone);
+    return ok;
   }
 }
 
@@ -49,12 +57,11 @@ beforeEach(() => {
     challenges: new MemoryStore<Challenge>(),
     limits: new MemoryStore<Counter>(),
     users: dir,
-    sender,
+    otp: sender,
     pepper: 'pepper',
     decoySecret: 'decoy',
     now: () => now,
     newId: () => `id${++n}`,
-    newCode: () => '482913',
   };
 });
 
@@ -71,9 +78,9 @@ async function signup(phone = '771234567') {
 }
 
 describe('requestOtp', () => {
-  it('sends the code over the sender and returns only a challenge id', async () => {
+  it('asks the provider to send the code and returns only a challenge id', async () => {
     const r = await requestOtp(deps, { phone: '771234567', purpose: 'signup' }, 'ip');
-    expect(sender.sent).toEqual([{ phone: '771234567', code: '482913' }]);
+    expect(sender.sent).toEqual([{ phone: '771234567', key: 'id1' }]);
     expect(JSON.stringify(r)).not.toContain('482913');
     expect(r.challengeId).toBe('id1');
   });

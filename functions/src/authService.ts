@@ -1,5 +1,5 @@
 import { createHmac } from 'node:crypto';
-import { OTP_TTL_MS, VerifyResult, issueChallenge, verifyChallenge } from './otp';
+import { OTP_TTL_MS, OtpProvider, VerifyResult, issueChallenge, verifyChallenge } from './otp';
 import { Limit, allow } from './rateLimit';
 import { Challenge, Counter, KeyedStore, Purpose } from './types';
 import { AppError, Profile, normalizePhone, parseProfile, validatePassword } from './validation';
@@ -19,20 +19,15 @@ export interface UserDirectory {
   setPassword(uid: string, password: string): Promise<void>;
 }
 
-export interface OtpSender {
-  send(phone: string, code: string): Promise<void>;
-}
-
 export interface Deps {
   challenges: KeyedStore<Challenge>;
   limits: KeyedStore<Counter>;
   users: UserDirectory;
-  sender: OtpSender;
+  otp: OtpProvider;
   pepper: string;
   decoySecret: string;
   now(): number;
   newId(): string;
-  newCode(): string;
 }
 
 const HOUR = 3_600_000;
@@ -78,11 +73,10 @@ function failFor(r: Exclude<VerifyResult, { status: 'ok' }>): never {
 }
 
 async function verify(d: Deps, id: unknown, code: unknown, purpose: Purpose): Promise<string> {
-  const r = await verifyChallenge(d.challenges, {
+  const r = await verifyChallenge(d.challenges, d.otp, {
     id: requireString(id, 'challengeId'),
     code: requireString(code, 'code'),
     purpose,
-    pepper: d.pepper,
     now: d.now(),
   });
   if (r.status !== 'ok') failFor(r);
@@ -114,13 +108,13 @@ export async function requestOtp(
     return { challengeId: id, expiresInSec };
   }
 
-  const code = d.newCode();
-  await issueChallenge(d.challenges, { id, phone, purpose, code, pepper: d.pepper, now: d.now() });
+  await issueChallenge(d.challenges, { id, phone, purpose, now: d.now() });
   try {
-    await d.sender.send(phone, code);
-  } catch {
+    await d.otp.send(phone, id);
+  } catch (e) {
     // Burn the challenge so a code that may have been half-delivered is unusable.
     await d.challenges.mutate(id, (c) => (c ? { next: { ...c, consumed: true }, result: undefined } : { result: undefined }));
+    if (e instanceof AppError) throw e;
     throw new AppError('unavailable', 'otp-send-failed');
   }
   return { challengeId: id, expiresInSec };

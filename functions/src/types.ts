@@ -3,7 +3,6 @@ export type Purpose = 'signup' | 'reset';
 export interface Challenge {
   phone: string;
   purpose: Purpose;
-  codeHash: string;
   createdAt: number;
   expiresAt: number;
   attempts: number;

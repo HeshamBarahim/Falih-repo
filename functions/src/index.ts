@@ -12,24 +12,22 @@ import { deleteAccount } from './accountService';
 import { Deps, checkAvailability, completeSignup, lookupLoginEmail, requestOtp, resetPassword } from './authService';
 import { FirebaseDirectory } from './directory';
 import { FirestoreStore } from './firestoreStores';
-import { generateCode } from './otp';
 import { Challenge, Counter } from './types';
 import { AppError } from './validation';
-import { WhatsAppSender } from './whatsapp';
+import { SmarticbotOtp } from './smarticbot';
 
 initializeApp();
 const db = getFirestore();
 
 const OTP_PEPPER = defineSecret('OTP_PEPPER');
-const WHATSAPP_API_URL = defineSecret('WHATSAPP_API_URL');
-const WHATSAPP_API_KEY = defineSecret('WHATSAPP_API_KEY');
+const SMARTICBOT_API_KEY = defineSecret('SMARTICBOT_API_KEY');
 /** Flip to true once Play Integrity / App Check is registered and the app version using it is live. */
 const ENFORCE_APP_CHECK = defineBoolean('ENFORCE_APP_CHECK', { default: false });
 
 const options: CallableOptions = {
   region: 'us-central1',
   maxInstances: 10,
-  secrets: [OTP_PEPPER, WHATSAPP_API_URL, WHATSAPP_API_KEY],
+  secrets: [OTP_PEPPER, SMARTICBOT_API_KEY],
 };
 
 function deps(): Deps {
@@ -38,12 +36,11 @@ function deps(): Deps {
     challenges: new FirestoreStore<Challenge>(db, 'otp_challenges'),
     limits: new FirestoreStore<Counter>(db, 'rate_limits'),
     users: new FirebaseDirectory(getAuth(), db),
-    sender: new WhatsAppSender(WHATSAPP_API_URL.value(), WHATSAPP_API_KEY.value()),
+    otp: new SmarticbotOtp(SMARTICBOT_API_KEY.value()),
     pepper,
     decoySecret: createHmac('sha256', pepper).update('decoy').digest('hex'),
     now: () => Date.now(),
     newId: () => randomBytes(16).toString('hex'),
-    newCode: generateCode,
   };
 }
 
